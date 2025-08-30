@@ -1,10 +1,21 @@
 (uiop/package:define-package #:pira/kinesis-video-media (:use)
-                             (:export #:awsacuity-inlet-service #:content-type
-                              #:continuation-token #:error-message
-                              #:fragment-number-string #:get-media #:payload
-                              #:resource-arn #:start-selector
-                              #:start-selector-type #:stream-name #:timestamp))
+                             (:export #:awsacuity-inlet-service
+                              #:client-limit-exceeded-exception
+                              #:connection-limit-exceeded-exception
+                              #:content-type #:continuation-token
+                              #:error-message #:fragment-number-string
+                              #:get-media #:invalid-argument-exception
+                              #:invalid-endpoint-exception
+                              #:not-authorized-exception #:payload
+                              #:resource-arn #:resource-not-found-exception
+                              #:start-selector #:start-selector-type
+                              #:stream-name #:timestamp
+                              #:kinesis-video-media-error))
 (common-lisp:in-package #:pira/kinesis-video-media)
+
+(common-lisp:define-condition kinesis-video-media-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsacuity-inlet-service :shape-name
                                    "AWSAcuityInletService" :version
@@ -27,7 +38,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ClientLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-media-error))
 
 (smithy/sdk/shapes:define-error connection-limit-exceeded-exception
                                 common-lisp:nil
@@ -35,7 +47,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ConnectionLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-media-error))
 
 (smithy/sdk/shapes:define-type content-type smithy/sdk/smithy-types:string)
 
@@ -69,19 +82,22 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-media-error))
 
 (smithy/sdk/shapes:define-error invalid-endpoint-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidEndpointException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-media-error))
 
 (smithy/sdk/shapes:define-error not-authorized-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NotAuthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class kinesis-video-media-error))
 
 (smithy/sdk/shapes:define-type payload smithy/sdk/smithy-types:blob :streaming
                                common-lisp:t)
@@ -92,7 +108,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class kinesis-video-media-error))
 
 (smithy/sdk/shapes:define-structure start-selector common-lisp:nil
                                     ((start-selector-type :target-type

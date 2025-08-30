@@ -1,8 +1,9 @@
 (uiop/package:define-package #:pira/elastic-transcoder (:use)
                              (:export #:access-control #:access-controls
-                              #:artwork #:artworks #:ascending #:aspect-ratio
-                              #:audio-bit-depth #:audio-bit-order
-                              #:audio-bit-rate #:audio-channels #:audio-codec
+                              #:access-denied-exception #:artwork #:artworks
+                              #:ascending #:aspect-ratio #:audio-bit-depth
+                              #:audio-bit-order #:audio-bit-rate
+                              #:audio-channels #:audio-codec
                               #:audio-codec-options #:audio-codec-profile
                               #:audio-packing-mode #:audio-parameters
                               #:audio-sample-rate #:audio-signed
@@ -23,13 +24,15 @@
                               #:float-string #:frame-rate #:grantee
                               #:grantee-type #:hls-content-protection
                               #:hls-content-protection-method
-                              #:horizontal-align #:id #:input-captions
-                              #:interlaced #:job #:job-album-art
-                              #:job-container #:job-input #:job-inputs
-                              #:job-output #:job-outputs #:job-status
-                              #:job-watermark #:job-watermarks #:jobs
-                              #:jpg-or-png #:key #:key-arn #:key-id-guid
+                              #:horizontal-align #:id
+                              #:incompatible-version-exception #:input-captions
+                              #:interlaced #:internal-service-exception #:job
+                              #:job-album-art #:job-container #:job-input
+                              #:job-inputs #:job-output #:job-outputs
+                              #:job-status #:job-watermark #:job-watermarks
+                              #:jobs #:jpg-or-png #:key #:key-arn #:key-id-guid
                               #:key-storage-policy #:keyframes-max-dist
+                              #:limit-exceeded-exception
                               #:list-jobs-by-pipeline #:list-jobs-by-status
                               #:list-pipelines #:list-presets #:long-key
                               #:max-frame-rate #:merge-policy #:name
@@ -44,19 +47,26 @@
                               #:preset-container #:preset-type
                               #:preset-watermark #:preset-watermark-id
                               #:preset-watermarks #:presets #:read-job
-                              #:read-pipeline #:read-preset #:resolution #:role
-                              #:rotate #:sizing-policy #:sns-topic #:sns-topics
+                              #:read-pipeline #:read-preset #:resolution
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception #:role #:rotate
+                              #:sizing-policy #:sns-topic #:sns-topics
                               #:storage-class #:string #:success #:target
                               #:test-role #:thumbnail-pattern
                               #:thumbnail-resolution #:thumbnails #:time
                               #:time-offset #:time-span #:timing
                               #:update-pipeline #:update-pipeline-notifications
                               #:update-pipeline-status #:user-metadata
-                              #:vertical-align #:video-bit-rate #:video-codec
-                              #:video-parameters #:warning #:warnings
-                              #:watermark-key #:watermark-sizing-policy
-                              #:zero-to255string #:zero-to512string))
+                              #:validation-exception #:vertical-align
+                              #:video-bit-rate #:video-codec #:video-parameters
+                              #:warning #:warnings #:watermark-key
+                              #:watermark-sizing-policy #:zero-to255string
+                              #:zero-to512string #:elastic-transcoder-error))
 (common-lisp:in-package #:pira/elastic-transcoder)
+
+(common-lisp:define-condition elastic-transcoder-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ets-customer-service :shape-name
                                    "EtsCustomerService" :version "2012-09-25"
@@ -98,7 +108,8 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class elastic-transcoder-error))
 
 (smithy/sdk/shapes:define-structure artwork common-lisp:nil
                                     ((input-key :target-type watermark-key
@@ -467,7 +478,8 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "IncompatibleVersionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-transcoder-error))
 
 (smithy/sdk/shapes:define-structure input-captions common-lisp:nil
                                     ((merge-policy :target-type
@@ -485,7 +497,8 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class elastic-transcoder-error))
 
 (smithy/sdk/shapes:define-structure job common-lisp:nil
                                     ((id :target-type id :member-name "Id")
@@ -634,7 +647,8 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class elastic-transcoder-error))
 
 (smithy/sdk/shapes:define-input list-jobs-by-pipeline-request common-lisp:nil
                                 ((pipeline-id :target-type id :required
@@ -925,14 +939,16 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class elastic-transcoder-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elastic-transcoder-error))
 
 (smithy/sdk/shapes:define-type role smithy/sdk/smithy-types:string)
 
@@ -1084,7 +1100,8 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-transcoder-error))
 
 (smithy/sdk/shapes:define-type vertical-align smithy/sdk/smithy-types:string)
 

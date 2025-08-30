@@ -1,7 +1,8 @@
 (uiop/package:define-package #:pira/lex-model-building-service (:use)
                              (:export #:awsdeep-sense-model-building-service
-                              #:alias-name #:alias-name-or-list-all
-                              #:amazon-resource-name #:blob #:boolean
+                              #:access-denied-exception #:alias-name
+                              #:alias-name-or-list-all #:amazon-resource-name
+                              #:bad-request-exception #:blob #:boolean
                               #:bot-alias-metadata #:bot-alias-metadata-list
                               #:bot-channel-association
                               #:bot-channel-association-list #:bot-channel-name
@@ -15,8 +16,8 @@
                               #:builtin-slot-type-signature
                               #:channel-configuration-map #:channel-status
                               #:channel-type #:code-hook #:confidence-threshold
-                              #:content-string #:content-type
-                              #:context-time-to-live-in-seconds
+                              #:conflict-exception #:content-string
+                              #:content-type #:context-time-to-live-in-seconds
                               #:context-turns-to-live
                               #:conversation-logs-request
                               #:conversation-logs-response #:count
@@ -47,11 +48,13 @@
                               #:input-context-list #:input-context-name
                               #:intent #:intent-list #:intent-metadata
                               #:intent-metadata-list #:intent-name
-                              #:intent-utterance-list #:kendra-configuration
-                              #:kendra-index-arn #:kms-key-arn #:lambda-arn
-                              #:list-of-utterance #:list-tags-for-resource
-                              #:lists-of-utterances #:locale #:locale-list
-                              #:log-settings-request
+                              #:intent-utterance-list
+                              #:internal-failure-exception
+                              #:kendra-configuration #:kendra-index-arn
+                              #:kms-key-arn #:lambda-arn
+                              #:limit-exceeded-exception #:list-of-utterance
+                              #:list-tags-for-resource #:lists-of-utterances
+                              #:locale #:locale-list #:log-settings-request
                               #:log-settings-request-list
                               #:log-settings-response
                               #:log-settings-response-list #:log-type
@@ -66,14 +69,16 @@
                               #:migration-id #:migration-sort-attribute
                               #:migration-status #:migration-strategy
                               #:migration-summary #:migration-summary-list
-                              #:name #:next-token #:numerical-version
-                              #:obfuscation-setting #:output-context
-                              #:output-context-list #:output-context-name
-                              #:priority #:process-behavior #:prompt
-                              #:prompt-max-attempts #:put-bot #:put-bot-alias
-                              #:put-intent #:put-slot-type
-                              #:query-filter-string #:reference-type
-                              #:regex-pattern #:resource-arn #:resource-prefix
+                              #:name #:next-token #:not-found-exception
+                              #:numerical-version #:obfuscation-setting
+                              #:output-context #:output-context-list
+                              #:output-context-name
+                              #:precondition-failed-exception #:priority
+                              #:process-behavior #:prompt #:prompt-max-attempts
+                              #:put-bot #:put-bot-alias #:put-intent
+                              #:put-slot-type #:query-filter-string
+                              #:reference-type #:regex-pattern #:resource-arn
+                              #:resource-in-use-exception #:resource-prefix
                               #:resource-reference #:resource-type
                               #:response-card #:session-ttl #:slot
                               #:slot-constraint #:slot-default-value
@@ -93,8 +98,13 @@
                               #:untag-resource #:user-id #:utterance
                               #:utterance-data #:utterance-list
                               #:utterance-string #:v2bot-id #:v2bot-name
-                              #:value #:version #:role-arn))
+                              #:value #:version #:role-arn
+                              #:lex-model-building-service-error))
 (common-lisp:in-package #:pira/lex-model-building-service)
+
+(common-lisp:define-condition lex-model-building-service-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsdeep-sense-model-building-service
                                    :shape-name
@@ -139,7 +149,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class lex-model-building-service-error))
 
 (smithy/sdk/shapes:define-type alias-name smithy/sdk/smithy-types:string)
 
@@ -153,7 +164,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lex-model-building-service-error))
 
 (smithy/sdk/shapes:define-type blob smithy/sdk/smithy-types:blob)
 
@@ -299,7 +311,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class lex-model-building-service-error))
 
 (smithy/sdk/shapes:define-type content-string smithy/sdk/smithy-types:string)
 
@@ -1229,7 +1242,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class lex-model-building-service-error))
 
 (smithy/sdk/shapes:define-structure kendra-configuration common-lisp:nil
                                     ((kendra-index :target-type
@@ -1255,7 +1269,8 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class lex-model-building-service-error))
 
 (smithy/sdk/shapes:define-list list-of-utterance :member utterance-data)
 
@@ -1440,7 +1455,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class lex-model-building-service-error))
 
 (smithy/sdk/shapes:define-type numerical-version smithy/sdk/smithy-types:string)
 
@@ -1472,7 +1488,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "PreconditionFailedException")
-                                (:error-code 412))
+                                (:error-code 412)
+                                (:base-class lex-model-building-service-error))
 
 (smithy/sdk/shapes:define-type priority smithy/sdk/smithy-types:integer)
 
@@ -1788,7 +1805,8 @@
                                   resource-reference :member-name
                                   "exampleReference"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lex-model-building-service-error))
 
 (smithy/sdk/shapes:define-type resource-prefix smithy/sdk/smithy-types:string)
 

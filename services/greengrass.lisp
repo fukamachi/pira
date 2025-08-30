@@ -1,7 +1,8 @@
 (uiop/package:define-package #:pira/greengrass (:use)
                              (:export #:associate-role-to-group
                               #:associate-service-role-to-account
-                              #:bulk-deployment #:bulk-deployment-metrics
+                              #:bad-request-exception #:bulk-deployment
+                              #:bulk-deployment-metrics
                               #:bulk-deployment-result
                               #:bulk-deployment-results
                               #:bulk-deployment-status #:bulk-deployments
@@ -68,7 +69,7 @@
                               #:get-thing-runtime-configuration #:greengrass
                               #:group-certificate-authority-properties
                               #:group-information #:group-owner-setting
-                              #:group-version
+                              #:group-version #:internal-server-error-exception
                               #:list-bulk-deployment-detailed-reports
                               #:list-bulk-deployments
                               #:list-connector-definition-versions
@@ -130,8 +131,12 @@
                               #:list-of-resource-access-policy
                               #:list-of-subscription
                               #:list-of-version-information #:list-of-string
-                              #:map-of-string #:string))
+                              #:map-of-string #:string #:greengrass-error))
 (common-lisp:in-package #:pira/greengrass)
+
+(common-lisp:define-condition greengrass-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service greengrass :shape-name "Greengrass" :version
                                    "2017-06-07" :title "AWS Greengrass"
@@ -263,7 +268,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class greengrass-error))
 
 (smithy/sdk/shapes:define-structure bulk-deployment common-lisp:nil
                                     ((bulk-deployment-arn :target-type string
@@ -1812,7 +1818,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class greengrass-error))
 
 (smithy/sdk/shapes:define-input list-bulk-deployment-detailed-reports-request
                                 common-lisp:nil

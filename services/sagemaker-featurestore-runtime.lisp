@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/sagemaker-featurestore-runtime (:use)
-                             (:export #:amazon-sage-maker-feature-store-runtime
+                             (:export #:access-forbidden
+                              #:amazon-sage-maker-feature-store-runtime
                               #:batch-get-record #:batch-get-record-error
                               #:batch-get-record-errors
                               #:batch-get-record-identifier
@@ -9,13 +10,19 @@
                               #:deletion-mode #:expiration-time-response
                               #:expires-at #:feature-group-name-or-arn
                               #:feature-name #:feature-names #:feature-value
-                              #:get-record #:message #:put-record #:record
-                              #:record-identifiers #:target-store
-                              #:target-stores #:ttl-duration
+                              #:get-record #:internal-failure #:message
+                              #:put-record #:record #:record-identifiers
+                              #:resource-not-found #:service-unavailable
+                              #:target-store #:target-stores #:ttl-duration
                               #:ttl-duration-unit #:ttl-duration-value
-                              #:unprocessed-identifiers #:value-as-string
-                              #:value-as-string-list))
+                              #:unprocessed-identifiers #:validation-error
+                              #:value-as-string #:value-as-string-list
+                              #:sagemaker-featurestore-runtime-error))
 (common-lisp:in-package #:pira/sagemaker-featurestore-runtime)
+
+(common-lisp:define-condition sagemaker-featurestore-runtime-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-sage-maker-feature-store-runtime
                                    :shape-name
@@ -43,7 +50,9 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "AccessForbidden")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class
+                                 sagemaker-featurestore-runtime-error))
 
 (smithy/sdk/shapes:define-structure batch-get-record-error common-lisp:nil
                                     ((feature-group-name :target-type
@@ -202,7 +211,9 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InternalFailure")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class
+                                 sagemaker-featurestore-runtime-error))
 
 (smithy/sdk/shapes:define-type message smithy/sdk/smithy-types:string)
 
@@ -227,13 +238,17 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class
+                                 sagemaker-featurestore-runtime-error))
 
 (smithy/sdk/shapes:define-error service-unavailable common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ServiceUnavailable")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class
+                                 sagemaker-featurestore-runtime-error))
 
 (smithy/sdk/shapes:define-enum target-store
     common-lisp:nil
@@ -269,7 +284,9 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ValidationError")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 sagemaker-featurestore-runtime-error))
 
 (smithy/sdk/shapes:define-type value-as-string smithy/sdk/smithy-types:string)
 

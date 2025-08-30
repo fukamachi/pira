@@ -1,13 +1,18 @@
 (uiop/package:define-package #:pira/codestar-notifications (:use)
-                             (:export #:client-request-token
+                             (:export #:access-denied-exception
+                              #:client-request-token
                               #:code-star-notifications-20191015
+                              #:concurrent-modification-exception
+                              #:configuration-exception
                               #:create-notification-rule #:created-timestamp
                               #:delete-notification-rule #:delete-target
                               #:describe-notification-rule #:detail-type
                               #:event-type-batch #:event-type-id
                               #:event-type-ids #:event-type-name
                               #:event-type-summary #:force-unsubscribe-all
-                              #:last-modified-timestamp #:list-event-types
+                              #:invalid-next-token-exception
+                              #:last-modified-timestamp
+                              #:limit-exceeded-exception #:list-event-types
                               #:list-event-types-filter
                               #:list-event-types-filter-name
                               #:list-event-types-filter-value
@@ -27,14 +32,21 @@
                               #:notification-rule-id #:notification-rule-name
                               #:notification-rule-resource
                               #:notification-rule-status
-                              #:notification-rule-summary #:resource-type
+                              #:notification-rule-summary
+                              #:resource-already-exists-exception
+                              #:resource-not-found-exception #:resource-type
                               #:service-name #:subscribe #:tag-key #:tag-keys
                               #:tag-resource #:tag-value #:tags #:target
                               #:target-address #:target-status #:target-summary
                               #:target-type #:targets #:targets-batch
                               #:unsubscribe #:untag-resource
-                              #:update-notification-rule))
+                              #:update-notification-rule #:validation-exception
+                              #:codestar-notifications-error))
 (common-lisp:in-package #:pira/codestar-notifications)
+
+(common-lisp:define-condition codestar-notifications-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service code-star-notifications-20191015 :shape-name
                                    "CodeStarNotifications_20191015" :version
@@ -66,7 +78,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class codestar-notifications-error))
 
 (smithy/sdk/shapes:define-type client-request-token
                                smithy/sdk/smithy-types:string)
@@ -76,13 +89,15 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codestar-notifications-error))
 
 (smithy/sdk/shapes:define-error configuration-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ConfigurationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codestar-notifications-error))
 
 (smithy/sdk/shapes:define-input create-notification-rule-request
                                 common-lisp:nil
@@ -208,7 +223,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codestar-notifications-error))
 
 (smithy/sdk/shapes:define-type last-modified-timestamp
                                smithy/sdk/smithy-types:timestamp)
@@ -217,7 +233,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codestar-notifications-error))
 
 (smithy/sdk/shapes:define-structure list-event-types-filter common-lisp:nil
                                     ((name :target-type
@@ -384,13 +401,15 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codestar-notifications-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class codestar-notifications-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -514,7 +533,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codestar-notifications-error))
 
 (smithy/sdk/operation:define-operation create-notification-rule :shape-name
                                        "CreateNotificationRule" :input

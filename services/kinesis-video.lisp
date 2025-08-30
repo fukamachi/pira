@@ -1,8 +1,11 @@
 (uiop/package:define-package #:pira/kinesis-video (:use)
-                             (:export #:apiname #:channel-info
-                              #:channel-info-list #:channel-name
+                             (:export #:apiname #:access-denied-exception
+                              #:account-channel-limit-exceeded-exception
+                              #:account-stream-limit-exceeded-exception
+                              #:channel-info #:channel-info-list #:channel-name
                               #:channel-name-condition #:channel-protocol
                               #:channel-role #:channel-type
+                              #:client-limit-exceeded-exception
                               #:comparison-operator #:configuration-status
                               #:create-signaling-channel #:create-stream
                               #:data-endpoint #:data-retention-change-in-hours
@@ -16,18 +19,23 @@
                               #:describe-notification-configuration
                               #:describe-signaling-channel #:describe-stream
                               #:destination-region #:destination-uri
-                              #:device-name #:duration-in-seconds
-                              #:edge-agent-status #:edge-config
-                              #:edge-retention-in-hours #:error-message
-                              #:failed-status-details #:format #:format-config
-                              #:format-config-key #:format-config-value
-                              #:get-data-endpoint
+                              #:device-name
+                              #:device-stream-limit-exceeded-exception
+                              #:duration-in-seconds #:edge-agent-status
+                              #:edge-config #:edge-retention-in-hours
+                              #:error-message #:failed-status-details #:format
+                              #:format-config #:format-config-key
+                              #:format-config-value #:get-data-endpoint
                               #:get-signaling-channel-endpoint #:height-pixels
                               #:hub-device-arn #:image-generation-configuration
                               #:image-generation-destination-config
-                              #:image-selector-type #:job-status-details
-                              #:kinesis-video-20170930 #:kms-key-id
-                              #:last-recorder-status #:last-uploader-status
+                              #:image-selector-type
+                              #:invalid-argument-exception
+                              #:invalid-device-exception
+                              #:invalid-resource-format-exception
+                              #:job-status-details #:kinesis-video-20170930
+                              #:kms-key-id #:last-recorder-status
+                              #:last-uploader-status
                               #:list-edge-agent-configurations
                               #:list-edge-agent-configurations-edge-config
                               #:list-edge-agent-configurations-edge-config-list
@@ -45,23 +53,30 @@
                               #:media-storage-configuration-status #:media-type
                               #:media-uri-secret-arn #:media-uri-type
                               #:message-ttl-seconds #:next-token
+                              #:no-data-retention-exception
+                              #:not-authorized-exception
                               #:notification-configuration
                               #:notification-destination-config
                               #:recorder-config #:recorder-status
                               #:resource-arn #:resource-endpoint
                               #:resource-endpoint-list
-                              #:resource-endpoint-list-item #:resource-tags
+                              #:resource-endpoint-list-item
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception #:resource-tags
                               #:sampling-interval #:schedule-config
                               #:schedule-expression
                               #:single-master-channel-endpoint-configuration
                               #:single-master-configuration
                               #:start-edge-configuration-update #:status
-                              #:strategy-on-full-size #:stream-info
-                              #:stream-info-list #:stream-name
+                              #:strategy-on-full-size
+                              #:stream-edge-configuration-not-found-exception
+                              #:stream-info #:stream-info-list #:stream-name
                               #:stream-name-condition #:sync-status #:tag
                               #:tag-key #:tag-key-list #:tag-list
                               #:tag-on-create-list #:tag-resource #:tag-stream
-                              #:tag-value #:timestamp #:type #:untag-resource
+                              #:tag-value
+                              #:tags-per-resource-exceeded-limit-exception
+                              #:timestamp #:type #:untag-resource
                               #:untag-stream #:update-data-retention
                               #:update-data-retention-operation
                               #:update-image-generation-configuration
@@ -69,8 +84,13 @@
                               #:update-notification-configuration
                               #:update-signaling-channel #:update-stream
                               #:uploader-config #:uploader-status #:version
-                              #:width-pixels))
+                              #:version-mismatch-exception #:width-pixels
+                              #:kinesis-video-error))
 (common-lisp:in-package #:pira/kinesis-video)
+
+(common-lisp:define-condition kinesis-video-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service kinesis-video-20170930 :shape-name
                                    "KinesisVideo_20170930" :version
@@ -130,7 +150,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-error account-channel-limit-exceeded-exception
                                 common-lisp:nil
@@ -138,7 +159,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "AccountChannelLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-error account-stream-limit-exceeded-exception
                                 common-lisp:nil
@@ -146,7 +168,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "AccountStreamLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-structure channel-info common-lisp:nil
                                     ((channel-name :target-type channel-name
@@ -199,7 +222,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ClientLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-enum comparison-operator
     common-lisp:nil
@@ -456,7 +480,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "DeviceStreamLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-type duration-in-seconds
                                smithy/sdk/smithy-types:integer)
@@ -595,20 +620,23 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-error invalid-device-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidDeviceException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-format-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidResourceFormatException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-type job-status-details
                                smithy/sdk/smithy-types:string)
@@ -837,13 +865,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NoDataRetentionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-error not-authorized-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NotAuthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-structure notification-configuration common-lisp:nil
                                     ((status :target-type configuration-status
@@ -898,13 +928,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-map resource-tags :key tag-key :value tag-value)
 
@@ -987,7 +1019,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "StreamEdgeConfigurationNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-structure stream-info common-lisp:nil
                                     ((device-name :target-type device-name
@@ -1081,7 +1114,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "TagsPerResourceExceededLimitException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -1243,7 +1277,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "VersionMismatchException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-error))
 
 (smithy/sdk/shapes:define-type width-pixels smithy/sdk/smithy-types:integer)
 

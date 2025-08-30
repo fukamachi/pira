@@ -2,7 +2,8 @@
                              (:export #:awsinsights-index-service #:account-id
                               #:account-scope #:amortized-recurring-fee
                               #:amortized-upfront-fee #:analysis-details
-                              #:analysis-id #:analysis-ids #:analysis-status
+                              #:analysis-id #:analysis-ids
+                              #:analysis-not-found-exception #:analysis-status
                               #:analysis-summary #:analysis-summary-list
                               #:analysis-type #:anomalies #:anomaly
                               #:anomaly-date-interval #:anomaly-feedback-type
@@ -12,7 +13,9 @@
                               #:anomaly-subscriptions
                               #:approximate-usage-records-per-service
                               #:approximation-dimension #:arn #:attribute-type
-                              #:attribute-value #:attributes #:billing-view-arn
+                              #:attribute-value #:attributes
+                              #:backfill-limit-exceeded-exception
+                              #:bill-expiration-exception #:billing-view-arn
                               #:commitment-purchase-analysis-configuration
                               #:comparison-metric-value #:comparison-metrics
                               #:context #:cost-allocation-tag
@@ -64,8 +67,8 @@
                               #:coverages-by-time #:create-anomaly-monitor
                               #:create-anomaly-subscription
                               #:create-cost-category-definition
-                              #:current-instance #:date-interval
-                              #:delete-anomaly-monitor
+                              #:current-instance #:data-unavailable-exception
+                              #:date-interval #:delete-anomaly-monitor
                               #:delete-anomaly-subscription
                               #:delete-cost-category-definition
                               #:describe-cost-category-definition #:dimension
@@ -81,7 +84,8 @@
                               #:error-code #:error-message #:estimated
                               #:expression #:expressions #:finding-reason-code
                               #:finding-reason-codes #:forecast-result
-                              #:forecast-results-by-time #:generation-status
+                              #:forecast-results-by-time
+                              #:generation-exists-exception #:generation-status
                               #:generation-summary #:generation-summary-list
                               #:generic-boolean #:generic-double
                               #:generic-string #:get-anomalies
@@ -106,7 +110,9 @@
                               #:get-tags #:get-usage-forecast #:granularity
                               #:group #:group-definition #:group-definition-key
                               #:group-definition-type #:group-definitions
-                              #:groups #:impact #:instance-details #:key #:keys
+                              #:groups #:impact #:instance-details
+                              #:invalid-next-token-exception #:key #:keys
+                              #:limit-exceeded-exception
                               #:list-commitment-purchase-analyses
                               #:list-cost-allocation-tag-backfill-history
                               #:list-cost-allocation-tags
@@ -139,6 +145,7 @@
                               #:recommendation-detail-id #:recommendation-id
                               #:recommendation-id-list #:recommendation-target
                               #:redshift-instance-details
+                              #:request-changed-exception
                               #:reservation-aggregates
                               #:reservation-coverage-group
                               #:reservation-coverage-groups
@@ -153,11 +160,11 @@
                               #:reservation-utilization-groups
                               #:reserved-capacity-details #:reserved-hours
                               #:reserved-normalized-units #:resource-details
-                              #:resource-tag #:resource-tag-key
-                              #:resource-tag-key-list #:resource-tag-list
-                              #:resource-tag-value #:resource-utilization
-                              #:result-by-time #:results-by-time
-                              #:rightsizing-recommendation
+                              #:resource-not-found-exception #:resource-tag
+                              #:resource-tag-key #:resource-tag-key-list
+                              #:resource-tag-list #:resource-tag-value
+                              #:resource-utilization #:result-by-time
+                              #:results-by-time #:rightsizing-recommendation
                               #:rightsizing-recommendation-configuration
                               #:rightsizing-recommendation-list
                               #:rightsizing-recommendation-metadata
@@ -188,10 +195,11 @@
                               #:savings-plans-utilization-detail
                               #:savings-plans-utilization-details
                               #:savings-plans-utilizations-by-time
-                              #:search-string #:service-specification
-                              #:sort-definition #:sort-definition-key
-                              #:sort-definitions #:sort-order
-                              #:start-commitment-purchase-analysis
+                              #:search-string
+                              #:service-quota-exceeded-exception
+                              #:service-specification #:sort-definition
+                              #:sort-definition-key #:sort-definitions
+                              #:sort-order #:start-commitment-purchase-analysis
                               #:start-cost-allocation-tag-backfill
                               #:start-savings-plans-purchase-recommendation-generation
                               #:subscriber #:subscriber-address
@@ -201,12 +209,16 @@
                               #:tag-values-list #:target-instance
                               #:target-instances-list #:term-in-years
                               #:terminate-recommendation-detail
-                              #:total-actual-hours #:total-actual-units
-                              #:total-amortized-fee #:total-impact-filter
-                              #:total-potential-risavings #:total-running-hours
+                              #:too-many-tags-exception #:total-actual-hours
+                              #:total-actual-units #:total-amortized-fee
+                              #:total-impact-filter #:total-potential-risavings
+                              #:total-running-hours
                               #:total-running-normalized-units
-                              #:unrealized-savings #:untag-resource
-                              #:unused-hours #:unused-units
+                              #:unknown-monitor-exception
+                              #:unknown-subscription-exception
+                              #:unrealized-savings
+                              #:unresolvable-usage-unit-exception
+                              #:untag-resource #:unused-hours #:unused-units
                               #:update-anomaly-monitor
                               #:update-anomaly-subscription
                               #:update-cost-allocation-tags-status
@@ -217,8 +229,13 @@
                               #:utilization-percentage
                               #:utilization-percentage-in-units
                               #:utilizations-by-time #:value #:values
-                              #:year-month-day #:zoned-date-time))
+                              #:year-month-day #:zoned-date-time
+                              #:cost-explorer-error))
 (common-lisp:in-package #:pira/cost-explorer)
+
+(common-lisp:define-condition cost-explorer-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsinsights-index-service :shape-name
                                    "AWSInsightsIndexService" :version
@@ -307,7 +324,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AnalysisNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-enum analysis-status
     common-lisp:nil
@@ -486,13 +504,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "BackfillLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-error bill-expiration-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "BillExpirationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-type billing-view-arn smithy/sdk/smithy-types:string)
 
@@ -1008,7 +1028,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DataUnavailableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-structure date-interval common-lisp:nil
                                     ((start :target-type year-month-day
@@ -1349,7 +1370,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "GenerationExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-enum generation-status
     common-lisp:nil
@@ -2163,7 +2185,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-type key smithy/sdk/smithy-types:string)
 
@@ -2173,7 +2196,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-input list-commitment-purchase-analyses-request
                                 common-lisp:nil
@@ -2632,7 +2656,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "RequestChangedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-structure reservation-aggregates common-lisp:nil
                                     ((utilization-percentage :target-type
@@ -2872,7 +2897,8 @@
                                  (resource-name :target-type arn :member-name
                                   "ResourceName"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-structure resource-tag common-lisp:nil
                                     ((key :target-type resource-tag-key
@@ -3373,7 +3399,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-structure service-specification common-lisp:nil
                                     ((ec2specification :target-type
@@ -3559,7 +3586,8 @@
                                  (resource-name :target-type arn :member-name
                                   "ResourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-type total-actual-hours
                                smithy/sdk/smithy-types:string)
@@ -3594,13 +3622,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "UnknownMonitorException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-error unknown-subscription-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "UnknownSubscriptionException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-type unrealized-savings
                                smithy/sdk/smithy-types:string)
@@ -3610,7 +3640,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "UnresolvableUsageUnitException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cost-explorer-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required

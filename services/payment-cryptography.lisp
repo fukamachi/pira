@@ -1,8 +1,9 @@
 (uiop/package:define-package #:pira/payment-cryptography (:use)
-                             (:export #:alias #:alias-name #:alias-resource
-                              #:aliases #:certificate-type #:create-alias
-                              #:create-key #:delete-alias #:delete-key
-                              #:derive-key-usage
+                             (:export #:access-denied-exception #:alias
+                              #:alias-name #:alias-resource #:aliases
+                              #:certificate-type #:conflict-exception
+                              #:create-alias #:create-key #:delete-alias
+                              #:delete-key #:derive-key-usage
                               #:diffie-hellman-derivation-data
                               #:even-hex-length-between16and32
                               #:export-attributes
@@ -18,11 +19,11 @@
                               #:import-key #:import-key-cryptogram
                               #:import-key-material #:import-token-id
                               #:import-tr31key-block #:import-tr34key-block
-                              #:key #:key-algorithm #:key-arn
-                              #:key-arn-or-key-alias-type #:key-attributes
-                              #:key-block-headers #:key-check-value
-                              #:key-check-value-algorithm #:key-class
-                              #:key-derivation-function
+                              #:internal-server-exception #:key #:key-algorithm
+                              #:key-arn #:key-arn-or-key-alias-type
+                              #:key-attributes #:key-block-headers
+                              #:key-check-value #:key-check-value-algorithm
+                              #:key-class #:key-derivation-function
                               #:key-derivation-hash-algorithm
                               #:key-exportability #:key-material
                               #:key-material-type #:key-modes-of-use
@@ -33,19 +34,26 @@
                               #:next-token #:optional-block-id
                               #:optional-block-value #:optional-blocks
                               #:payment-cryptography-control-plane
-                              #:resource-arn #:restore-key
-                              #:root-certificate-public-key
+                              #:resource-arn #:resource-not-found-exception
+                              #:restore-key #:root-certificate-public-key
+                              #:service-quota-exceeded-exception
+                              #:service-unavailable-exception
                               #:shared-information #:start-key-usage
                               #:stop-key-usage #:symmetric-key-algorithm #:tag
                               #:tag-key #:tag-keys #:tag-resource #:tag-value
-                              #:tags #:timestamp #:tr31wrapped-key-block
-                              #:tr34key-block-format #:tr34wrapped-key-block
+                              #:tags #:throttling-exception #:timestamp
+                              #:tr31wrapped-key-block #:tr34key-block-format
+                              #:tr34wrapped-key-block
                               #:trusted-certificate-public-key #:untag-resource
-                              #:update-alias #:wrapped-key
-                              #:wrapped-key-cryptogram
-                              #:wrapped-key-material-format
-                              #:wrapping-key-spec))
+                              #:update-alias #:validation-exception
+                              #:wrapped-key #:wrapped-key-cryptogram
+                              #:wrapped-key-material-format #:wrapping-key-spec
+                              #:payment-cryptography-error))
 (common-lisp:in-package #:pira/payment-cryptography)
+
+(common-lisp:define-condition payment-cryptography-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service payment-cryptography-control-plane
                                    :shape-name
@@ -75,7 +83,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class payment-cryptography-error))
 
 (smithy/sdk/shapes:define-structure alias common-lisp:nil
                                     ((alias-name :target-type alias-name
@@ -98,7 +107,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class payment-cryptography-error))
 
 (smithy/sdk/shapes:define-input create-alias-input common-lisp:nil
                                 ((alias-name :target-type alias-name :required
@@ -537,7 +547,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class payment-cryptography-error))
 
 (smithy/sdk/shapes:define-structure key common-lisp:nil
                                     ((key-arn :target-type key-arn :required
@@ -773,7 +784,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "ResourceId"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class payment-cryptography-error))
 
 (smithy/sdk/shapes:define-input restore-key-input common-lisp:nil
                                 ((key-identifier :target-type
@@ -801,14 +813,16 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class payment-cryptography-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class payment-cryptography-error))
 
 (smithy/sdk/shapes:define-type shared-information
                                smithy/sdk/smithy-types:string)
@@ -879,7 +893,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class payment-cryptography-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -935,7 +950,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class payment-cryptography-error))
 
 (smithy/sdk/shapes:define-structure wrapped-key common-lisp:nil
                                     ((wrapping-key-arn :target-type key-arn

@@ -1,18 +1,27 @@
 (uiop/package:define-package #:pira/appconfigdata (:use)
                              (:export #:app-config-data #:bad-request-details
-                              #:bad-request-reason #:configuration-session
+                              #:bad-request-exception #:bad-request-reason
+                              #:configuration-session
                               #:get-latest-configuration
                               #:get-latest-configuration-request
                               #:get-latest-configuration-response #:id
-                              #:identifier #:integer #:invalid-parameter-detail
+                              #:identifier #:integer
+                              #:internal-server-exception
+                              #:invalid-parameter-detail
                               #:invalid-parameter-map
                               #:invalid-parameter-problem
-                              #:optional-poll-seconds #:resource-type
+                              #:optional-poll-seconds
+                              #:resource-not-found-exception #:resource-type
                               #:sensitive-blob #:start-configuration-session
                               #:start-configuration-session-request
                               #:start-configuration-session-response #:string
-                              #:string-map #:token))
+                              #:string-map #:throttling-exception #:token
+                              #:appconfigdata-error))
 (common-lisp:in-package #:pira/appconfigdata)
+
+(common-lisp:define-condition appconfigdata-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service app-config-data :shape-name "AppConfigData"
                                    :version "2021-11-11" :title
@@ -43,7 +52,8 @@
                                  (details :target-type bad-request-details
                                   :member-name "Details"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class appconfigdata-error))
 
 (smithy/sdk/shapes:define-type bad-request-reason
                                smithy/sdk/smithy-types:string)
@@ -90,7 +100,8 @@ common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class appconfigdata-error))
 
 (smithy/sdk/shapes:define-structure invalid-parameter-detail common-lisp:nil
                                     ((problem :target-type
@@ -115,7 +126,8 @@ common-lisp:nil
                                  (referenced-by :target-type string-map
                                   :member-name "ReferencedBy"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class appconfigdata-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -156,7 +168,8 @@ common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class appconfigdata-error))
 
 (smithy/sdk/shapes:define-type token smithy/sdk/smithy-types:string)
 

@@ -1,6 +1,8 @@
 (uiop/package:define-package #:pira/resource-groups-tagging-api (:use)
                              (:export #:amazon-resource-type
                               #:compliance-details #:compliance-status
+                              #:concurrent-modification-exception
+                              #:constraint-violation-exception
                               #:describe-report-creation #:error-code
                               #:error-message #:exception-message
                               #:exclude-compliant-resources
@@ -8,10 +10,12 @@
                               #:get-compliance-summary #:get-resources
                               #:get-tag-keys #:get-tag-values #:group-by
                               #:group-by-attribute #:include-compliance-details
-                              #:last-updated
+                              #:internal-service-exception
+                              #:invalid-parameter-exception #:last-updated
                               #:max-results-get-compliance-summary
                               #:non-compliant-resources #:pagination-token
-                              #:region #:region-filter-list #:resource-arn
+                              #:pagination-token-expired-exception #:region
+                              #:region-filter-list #:resource-arn
                               #:resource-arnlist-for-get
                               #:resource-arnlist-for-tag-untag
                               #:resource-groups-tagging-api-20170126
@@ -27,8 +31,13 @@
                               #:tag-value-list #:tag-values-output-list
                               #:tags-per-page #:target-id
                               #:target-id-filter-list #:target-id-type
-                              #:untag-resources))
+                              #:throttled-exception #:untag-resources
+                              #:resource-groups-tagging-api-error))
 (common-lisp:in-package #:pira/resource-groups-tagging-api)
+
+(common-lisp:define-condition resource-groups-tagging-api-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service resource-groups-tagging-api-20170126
                                    :shape-name
@@ -78,13 +87,15 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class resource-groups-tagging-api-error))
 
 (smithy/sdk/shapes:define-error constraint-violation-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ConstraintViolationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class resource-groups-tagging-api-error))
 
 (smithy/sdk/shapes:define-input describe-report-creation-input common-lisp:nil
                                 common-lisp:nil
@@ -237,13 +248,15 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class resource-groups-tagging-api-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class resource-groups-tagging-api-error))
 
 (smithy/sdk/shapes:define-type last-updated smithy/sdk/smithy-types:string)
 
@@ -260,7 +273,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "PaginationTokenExpiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class resource-groups-tagging-api-error))
 
 (smithy/sdk/shapes:define-type region smithy/sdk/smithy-types:string)
 
@@ -395,7 +409,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class resource-groups-tagging-api-error))
 
 (smithy/sdk/shapes:define-input untag-resources-input common-lisp:nil
                                 ((resource-arnlist :target-type

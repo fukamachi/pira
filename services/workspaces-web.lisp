@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/workspaces-web (:use)
                              (:export #:arn #:awsermine-control-plane-service
-                              #:arn-list #:associate-browser-settings
+                              #:access-denied-exception #:arn-list
+                              #:associate-browser-settings
                               #:associate-data-protection-settings
                               #:associate-ip-access-settings
                               #:associate-network-settings
@@ -18,9 +19,9 @@
                               #:certificate-summary-list
                               #:certificate-thumbprint
                               #:certificate-thumbprint-list #:client-token
-                              #:confidence-level #:cookie-domain #:cookie-name
-                              #:cookie-path #:cookie-specification
-                              #:cookie-specifications
+                              #:confidence-level #:conflict-exception
+                              #:cookie-domain #:cookie-name #:cookie-path
+                              #:cookie-specification #:cookie-specifications
                               #:cookie-synchronization-configuration
                               #:create-browser-settings
                               #:create-data-protection-settings
@@ -77,8 +78,8 @@
                               #:inline-redaction-pattern
                               #:inline-redaction-patterns
                               #:inline-redaction-url #:inline-redaction-urls
-                              #:instance-type #:ip-access-settings
-                              #:ip-access-settings-list
+                              #:instance-type #:internal-server-exception
+                              #:ip-access-settings #:ip-access-settings-list
                               #:ip-access-settings-resource
                               #:ip-access-settings-summary #:ip-address
                               #:ip-address-list #:ip-range #:ip-rule
@@ -104,11 +105,13 @@
                               #:redaction-place-holder
                               #:redaction-place-holder-text
                               #:redaction-place-holder-type #:regex
-                              #:renderer-type #:resource-id #:resource-type
+                              #:renderer-type #:resource-id
+                              #:resource-not-found-exception #:resource-type
                               #:retry-after-seconds #:s3bucket #:s3bucket-owner
                               #:s3key-prefix #:s3log-configuration
                               #:saml-metadata #:security-group-id
-                              #:security-group-id-list #:service-code #:session
+                              #:security-group-id-list #:service-code
+                              #:service-quota-exceeded-exception #:session
                               #:session-id #:session-logger
                               #:session-logger-list #:session-logger-resource
                               #:session-logger-summary #:session-sort-by
@@ -117,7 +120,8 @@
                               #:string-type #:subnet-id #:subnet-id-list
                               #:subresource-arn #:tag #:tag-exception-message
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-value #:timestamp
+                              #:tag-resource #:tag-value #:throttling-exception
+                              #:timestamp #:too-many-tags-exception
                               #:toolbar-configuration #:toolbar-item
                               #:toolbar-type #:trust-store
                               #:trust-store-resource #:trust-store-summary
@@ -136,11 +140,16 @@
                               #:user-access-logging-settings-summary
                               #:user-settings #:user-settings-list
                               #:user-settings-resource #:user-settings-summary
-                              #:username #:validation-exception-field
+                              #:username #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:visual-mode
-                              #:vpc-id #:key-arn))
+                              #:vpc-id #:key-arn #:workspaces-web-error))
 (common-lisp:in-package #:pira/workspaces-web)
+
+(common-lisp:define-condition workspaces-web-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsermine-control-plane-service :shape-name
                                    "AWSErmineControlPlaneService" :version
@@ -168,7 +177,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class workspaces-web-error))
 
 (smithy/sdk/shapes:define-list arn-list :member arn)
 
@@ -433,7 +443,8 @@ common-lisp:nil
                                  (resource-type :target-type resource-type
                                   :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class workspaces-web-error))
 
 (smithy/sdk/shapes:define-type cookie-domain smithy/sdk/smithy-types:string)
 
@@ -1370,7 +1381,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class workspaces-web-error))
 
 (smithy/sdk/shapes:define-structure ip-access-settings common-lisp:nil
                                     ((ip-access-settings-arn :target-type arn
@@ -1868,7 +1880,8 @@ common-lisp:nil
                                  (resource-type :target-type resource-type
                                   :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class workspaces-web-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -1917,7 +1930,8 @@ common-lisp:nil
                                  (quota-code :target-type quota-code
                                   :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class workspaces-web-error))
 
 (smithy/sdk/shapes:define-structure session common-lisp:nil
                                     ((portal-arn :target-type arn :member-name
@@ -2064,7 +2078,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class workspaces-web-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -2074,7 +2089,8 @@ common-lisp:nil
                                  (resource-name :target-type arn :member-name
                                   "resourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-web-error))
 
 (smithy/sdk/shapes:define-structure toolbar-configuration common-lisp:nil
                                     ((toolbar-type :target-type toolbar-type
@@ -2498,7 +2514,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-web-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type field-name :required

@@ -1,18 +1,32 @@
 (uiop/package:define-package #:pira/organizations (:use)
-                             (:export #:awsorganizations-v20161128
-                              #:accept-handshake
+                             (:export #:awsorganizations-not-in-use-exception
+                              #:awsorganizations-v20161128 #:accept-handshake
+                              #:access-denied-exception
+                              #:access-denied-for-dependency-exception
                               #:access-denied-for-dependency-exception-reason
-                              #:account #:account-arn #:account-id
+                              #:account #:account-already-closed-exception
+                              #:account-already-registered-exception
+                              #:account-arn #:account-id
                               #:account-joined-method #:account-name
+                              #:account-not-found-exception
+                              #:account-not-registered-exception
+                              #:account-owner-not-verified-exception
                               #:account-status #:accounts #:action-type
+                              #:already-in-organization-exception
                               #:attach-policy #:aws-managed-policy
                               #:cancel-handshake #:child #:child-id
-                              #:child-type #:children #:close-account
+                              #:child-not-found-exception #:child-type
+                              #:children #:close-account
+                              #:concurrent-modification-exception
+                              #:conflict-exception
+                              #:constraint-violation-exception
                               #:constraint-violation-exception-reason
                               #:create-account #:create-account-failure-reason
                               #:create-account-name #:create-account-request-id
                               #:create-account-state #:create-account-states
-                              #:create-account-status #:create-account-statuses
+                              #:create-account-status
+                              #:create-account-status-not-found-exception
+                              #:create-account-statuses
                               #:create-gov-cloud-account #:create-organization
                               #:create-organizational-unit #:create-policy
                               #:decline-handshake #:delegated-administrator
@@ -26,24 +40,37 @@
                               #:describe-effective-policy #:describe-handshake
                               #:describe-organization
                               #:describe-organizational-unit #:describe-policy
-                              #:describe-resource-policy #:detach-policy
-                              #:disable-awsservice-access #:disable-policy-type
-                              #:effective-policy #:effective-policy-type
-                              #:email #:enable-awsservice-access
-                              #:enable-all-features #:enable-policy-type
-                              #:enabled-service-principal
+                              #:describe-resource-policy
+                              #:destination-parent-not-found-exception
+                              #:detach-policy #:disable-awsservice-access
+                              #:disable-policy-type
+                              #:duplicate-account-exception
+                              #:duplicate-handshake-exception
+                              #:duplicate-organizational-unit-exception
+                              #:duplicate-policy-attachment-exception
+                              #:duplicate-policy-exception #:effective-policy
+                              #:effective-policy-not-found-exception
+                              #:effective-policy-type #:email
+                              #:enable-awsservice-access #:enable-all-features
+                              #:enable-policy-type #:enabled-service-principal
                               #:enabled-service-principals #:exception-message
-                              #:exception-type #:generic-arn #:handshake
+                              #:exception-type
+                              #:finalizing-organization-exception #:generic-arn
+                              #:handshake
+                              #:handshake-already-in-state-exception
                               #:handshake-arn
+                              #:handshake-constraint-violation-exception
                               #:handshake-constraint-violation-exception-reason
                               #:handshake-filter #:handshake-id
-                              #:handshake-notes #:handshake-parties
-                              #:handshake-party #:handshake-party-id
-                              #:handshake-party-type #:handshake-resource
-                              #:handshake-resource-type
+                              #:handshake-not-found-exception #:handshake-notes
+                              #:handshake-parties #:handshake-party
+                              #:handshake-party-id #:handshake-party-type
+                              #:handshake-resource #:handshake-resource-type
                               #:handshake-resource-value #:handshake-resources
                               #:handshake-state #:handshakes
                               #:iamuser-access-to-billing
+                              #:invalid-handshake-transition-exception
+                              #:invalid-input-exception
                               #:invalid-input-exception-reason
                               #:invite-account-to-organization
                               #:leave-organization
@@ -58,33 +85,55 @@
                               #:list-parents #:list-policies
                               #:list-policies-for-target #:list-roots
                               #:list-tags-for-resource
-                              #:list-targets-for-policy #:max-results
-                              #:move-account #:next-token #:organization
-                              #:organization-arn #:organization-feature-set
-                              #:organization-id #:organizational-unit
-                              #:organizational-unit-arn
+                              #:list-targets-for-policy
+                              #:malformed-policy-document-exception
+                              #:master-cannot-leave-organization-exception
+                              #:max-results #:move-account #:next-token
+                              #:organization #:organization-arn
+                              #:organization-feature-set #:organization-id
+                              #:organization-not-empty-exception
+                              #:organizational-unit #:organizational-unit-arn
                               #:organizational-unit-id
-                              #:organizational-unit-name #:organizational-units
-                              #:parent #:parent-id #:parent-type #:parents
-                              #:policies #:policy #:policy-arn #:policy-content
-                              #:policy-description #:policy-id #:policy-name
-                              #:policy-summary #:policy-target-id
-                              #:policy-target-summary #:policy-targets
-                              #:policy-type #:policy-type-status
-                              #:policy-type-summary #:policy-types
-                              #:put-resource-policy
+                              #:organizational-unit-name
+                              #:organizational-unit-not-empty-exception
+                              #:organizational-unit-not-found-exception
+                              #:organizational-units #:parent #:parent-id
+                              #:parent-not-found-exception #:parent-type
+                              #:parents #:policies #:policy #:policy-arn
+                              #:policy-changes-in-progress-exception
+                              #:policy-content #:policy-description #:policy-id
+                              #:policy-in-use-exception #:policy-name
+                              #:policy-not-attached-exception
+                              #:policy-not-found-exception #:policy-summary
+                              #:policy-target-id #:policy-target-summary
+                              #:policy-targets #:policy-type
+                              #:policy-type-already-enabled-exception
+                              #:policy-type-not-available-for-organization-exception
+                              #:policy-type-not-enabled-exception
+                              #:policy-type-status #:policy-type-summary
+                              #:policy-types #:put-resource-policy
                               #:register-delegated-administrator
                               #:remove-account-from-organization
                               #:resource-policy #:resource-policy-arn
                               #:resource-policy-content #:resource-policy-id
+                              #:resource-policy-not-found-exception
                               #:resource-policy-summary #:role-name #:root
-                              #:root-arn #:root-id #:root-name #:roots
-                              #:service-principal #:tag #:tag-key #:tag-keys
-                              #:tag-resource #:tag-value #:taggable-resource-id
-                              #:tags #:target-name #:target-type #:timestamp
+                              #:root-arn #:root-id #:root-name
+                              #:root-not-found-exception #:roots
+                              #:service-exception #:service-principal
+                              #:source-parent-not-found-exception #:tag
+                              #:tag-key #:tag-keys #:tag-resource #:tag-value
+                              #:taggable-resource-id #:tags #:target-name
+                              #:target-not-found-exception #:target-type
+                              #:timestamp #:too-many-requests-exception
+                              #:unsupported-apiendpoint-exception
                               #:untag-resource #:update-organizational-unit
-                              #:update-policy))
+                              #:update-policy #:organizations-error))
 (common-lisp:in-package #:pira/organizations)
+
+(common-lisp:define-condition organizations-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsorganizations-v20161128 :shape-name
                                    "AWSOrganizationsV20161128" :version
@@ -150,7 +199,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "AWSOrganizationsNotInUseException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-input accept-handshake-request common-lisp:nil
                                 ((handshake-id :target-type handshake-id
@@ -167,7 +217,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error access-denied-for-dependency-exception
                                 common-lisp:nil
@@ -178,7 +229,8 @@
                                   :member-name "Reason"))
                                 (:shape-name
                                  "AccessDeniedForDependencyException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-enum access-denied-for-dependency-exception-reason
     common-lisp:nil
@@ -208,7 +260,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "AccountAlreadyClosedException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error account-already-registered-exception
                                 common-lisp:nil
@@ -216,7 +269,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "AccountAlreadyRegisteredException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-type account-arn smithy/sdk/smithy-types:string)
 
@@ -233,14 +287,16 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "AccountNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error account-not-registered-exception
                                 common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "AccountNotRegisteredException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error account-owner-not-verified-exception
                                 common-lisp:nil
@@ -248,7 +304,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "AccountOwnerNotVerifiedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-enum account-status
     common-lisp:nil
@@ -271,7 +328,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "AlreadyInOrganizationException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-input attach-policy-request common-lisp:nil
                                 ((policy-id :target-type policy-id :required
@@ -308,7 +366,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ChildNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-enum child-type
     common-lisp:nil
@@ -327,13 +386,15 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error constraint-violation-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -342,7 +403,8 @@
                                   constraint-violation-exception-reason
                                   :member-name "Reason"))
                                 (:shape-name "ConstraintViolationException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-enum constraint-violation-exception-reason
     common-lisp:nil
@@ -485,7 +547,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CreateAccountStatusNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-list create-account-statuses :member
                                create-account-status)
@@ -726,7 +789,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "DestinationParentNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-input detach-policy-request common-lisp:nil
                                 ((policy-id :target-type policy-id :required
@@ -759,13 +823,15 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "DuplicateAccountException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error duplicate-handshake-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "DuplicateHandshakeException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error duplicate-organizational-unit-exception
                                 common-lisp:nil
@@ -773,7 +839,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "DuplicateOrganizationalUnitException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error duplicate-policy-attachment-exception
                                 common-lisp:nil
@@ -781,13 +848,15 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "DuplicatePolicyAttachmentException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error duplicate-policy-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "DuplicatePolicyException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-structure effective-policy common-lisp:nil
                                     ((policy-content :target-type
@@ -809,7 +878,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "EffectivePolicyNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-enum effective-policy-type
     common-lisp:nil
@@ -870,7 +940,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "FinalizingOrganizationException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-type generic-arn smithy/sdk/smithy-types:string)
 
@@ -902,7 +973,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "HandshakeAlreadyInStateException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-type handshake-arn smithy/sdk/smithy-types:string)
 
@@ -915,7 +987,8 @@
                                   :member-name "Reason"))
                                 (:shape-name
                                  "HandshakeConstraintViolationException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-enum handshake-constraint-violation-exception-reason
     common-lisp:nil
@@ -950,7 +1023,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "HandshakeNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-type handshake-notes smithy/sdk/smithy-types:string)
 
@@ -1023,7 +1097,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "InvalidHandshakeTransitionException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error invalid-input-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -1032,7 +1107,8 @@
                                   invalid-input-exception-reason :member-name
                                   "Reason"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-enum invalid-input-exception-reason
     common-lisp:nil
@@ -1382,7 +1458,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "MalformedPolicyDocumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error master-cannot-leave-organization-exception
                                 common-lisp:nil
@@ -1390,7 +1467,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "MasterCannotLeaveOrganizationException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-type max-results smithy/sdk/smithy-types:integer)
 
@@ -1441,7 +1519,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "OrganizationNotEmptyException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-structure organizational-unit common-lisp:nil
                                     ((id :target-type organizational-unit-id
@@ -1468,7 +1547,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "OrganizationalUnitNotEmptyException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error organizational-unit-not-found-exception
                                 common-lisp:nil
@@ -1476,7 +1556,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "OrganizationalUnitNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-list organizational-units :member organizational-unit)
 
@@ -1493,7 +1574,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ParentNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-enum parent-type
     common-lisp:nil
@@ -1520,7 +1602,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "PolicyChangesInProgressException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-type policy-content smithy/sdk/smithy-types:string)
 
@@ -1533,7 +1616,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "PolicyInUseException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-type policy-name smithy/sdk/smithy-types:string)
 
@@ -1541,13 +1625,15 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "PolicyNotAttachedException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error policy-not-found-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "PolicyNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-structure policy-summary common-lisp:nil
                                     ((id :target-type policy-id :member-name
@@ -1598,20 +1684,22 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "PolicyTypeAlreadyEnabledException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error
  policy-type-not-available-for-organization-exception common-lisp:nil
  ((message :target-type exception-message :member-name "Message"))
  (:shape-name "PolicyTypeNotAvailableForOrganizationException")
- (:error-code 409))
+ (:error-code 409) (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error policy-type-not-enabled-exception
                                 common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "PolicyTypeNotEnabledException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-enum policy-type-status
     common-lisp:nil
@@ -1680,7 +1768,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ResourcePolicyNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-structure resource-policy-summary common-lisp:nil
                                     ((id :target-type resource-policy-id
@@ -1712,7 +1801,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "RootNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-list roots :member root)
 
@@ -1720,7 +1810,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-type service-principal smithy/sdk/smithy-types:string)
 
@@ -1729,7 +1820,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "SourceParentNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-structure tag common-lisp:nil
                                     ((key :target-type tag-key :required
@@ -1763,7 +1855,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "TargetNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-enum target-type
     common-lisp:nil
@@ -1779,14 +1872,16 @@
                                  (message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-error unsupported-apiendpoint-exception
                                 common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "UnsupportedAPIEndpointException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class organizations-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-id :target-type taggable-resource-id

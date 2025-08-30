@@ -26,20 +26,23 @@
                               #:error-message #:evaluation
                               #:evaluation-filter-variable #:evaluations
                               #:get-batch-prediction #:get-data-source
-                              #:get-evaluation #:get-mlmodel #:integer-type
-                              #:label #:long-type #:mlmodel
-                              #:mlmodel-filter-variable #:mlmodel-name
-                              #:mlmodel-type #:mlmodels #:message #:page-limit
-                              #:performance-metrics
+                              #:get-evaluation #:get-mlmodel
+                              #:idempotent-parameter-mismatch-exception
+                              #:integer-type #:internal-server-exception
+                              #:invalid-input-exception #:invalid-tag-exception
+                              #:label #:limit-exceeded-exception #:long-type
+                              #:mlmodel #:mlmodel-filter-variable
+                              #:mlmodel-name #:mlmodel-type #:mlmodels
+                              #:message #:page-limit #:performance-metrics
                               #:performance-metrics-properties
                               #:performance-metrics-property-key
                               #:performance-metrics-property-value #:predict
-                              #:prediction #:presigned-s3url #:rdsdata-spec
-                              #:rdsdatabase #:rdsdatabase-credentials
-                              #:rdsdatabase-name #:rdsdatabase-password
-                              #:rdsdatabase-username #:rdsinstance-identifier
-                              #:rdsmetadata #:rdsselect-sql-query
-                              #:realtime-endpoint-info
+                              #:prediction #:predictor-not-mounted-exception
+                              #:presigned-s3url #:rdsdata-spec #:rdsdatabase
+                              #:rdsdatabase-credentials #:rdsdatabase-name
+                              #:rdsdatabase-password #:rdsdatabase-username
+                              #:rdsinstance-identifier #:rdsmetadata
+                              #:rdsselect-sql-query #:realtime-endpoint-info
                               #:realtime-endpoint-status #:recipe #:record
                               #:redshift-cluster-identifier
                               #:redshift-data-spec #:redshift-database
@@ -47,17 +50,23 @@
                               #:redshift-database-name
                               #:redshift-database-password
                               #:redshift-database-username #:redshift-metadata
-                              #:redshift-select-sql-query #:role-arn
+                              #:redshift-select-sql-query
+                              #:resource-not-found-exception #:role-arn
                               #:s3data-spec #:s3url #:score-threshold
                               #:score-value #:score-value-per-label-map
                               #:sort-order #:string-type #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-value
-                              #:taggable-resource-type #:training-parameters
-                              #:update-batch-prediction #:update-data-source
-                              #:update-evaluation #:update-mlmodel
-                              #:variable-name #:variable-value #:verbose
-                              #:vip-url #:float-label))
+                              #:tag-key-list #:tag-limit-exceeded-exception
+                              #:tag-list #:tag-value #:taggable-resource-type
+                              #:training-parameters #:update-batch-prediction
+                              #:update-data-source #:update-evaluation
+                              #:update-mlmodel #:variable-name #:variable-value
+                              #:verbose #:vip-url #:float-label
+                              #:machine-learning-error))
 (common-lisp:in-package #:pira/machine-learning)
+
+(common-lisp:define-condition machine-learning-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-ml-20141212 :shape-name
                                    "AmazonML_20141212" :version "2014-12-12"
@@ -902,7 +911,8 @@
                                   "code"))
                                 (:shape-name
                                  "IdempotentParameterMismatchException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class machine-learning-error))
 
 (smithy/sdk/shapes:define-type integer-type smithy/sdk/smithy-types:integer)
 
@@ -912,7 +922,8 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class machine-learning-error))
 
 (smithy/sdk/shapes:define-error invalid-input-exception common-lisp:nil
                                 ((message :target-type error-message
@@ -920,13 +931,15 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class machine-learning-error))
 
 (smithy/sdk/shapes:define-error invalid-tag-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTagException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class machine-learning-error))
 
 (smithy/sdk/shapes:define-type label smithy/sdk/smithy-types:string)
 
@@ -936,7 +949,8 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 417))
+                                (:error-code 417)
+                                (:base-class machine-learning-error))
 
 (smithy/sdk/shapes:define-type long-type smithy/sdk/smithy-types:long)
 
@@ -1061,7 +1075,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "PredictorNotMountedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class machine-learning-error))
 
 (smithy/sdk/shapes:define-type presigned-s3url smithy/sdk/smithy-types:string)
 
@@ -1256,7 +1271,8 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class machine-learning-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -1305,7 +1321,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TagLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class machine-learning-error))
 
 (smithy/sdk/shapes:define-list tag-list :member tag)
 

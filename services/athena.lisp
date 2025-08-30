@@ -66,8 +66,9 @@
                               #:identity-center-application-arn
                               #:identity-center-configuration
                               #:identity-center-instance-arn #:import-notebook
-                              #:integer #:key-string #:kms-key
-                              #:list-application-dpusizes
+                              #:integer #:internal-server-exception
+                              #:invalid-request-exception #:key-string
+                              #:kms-key #:list-application-dpusizes
                               #:list-calculation-executions
                               #:list-capacity-reservations #:list-data-catalogs
                               #:list-databases #:list-engine-versions
@@ -91,7 +92,7 @@
                               #:max-query-executions-count #:max-query-results
                               #:max-sessions-count #:max-table-metadata-count
                               #:max-tags-count #:max-work-groups-count
-                              #:name-string #:named-query
+                              #:metadata-exception #:name-string #:named-query
                               #:named-query-description-string #:named-query-id
                               #:named-query-id-list #:named-query-list
                               #:notebook-id #:notebook-metadata
@@ -116,6 +117,7 @@
                               #:query-runtime-statistics-timeline #:query-stage
                               #:query-stage-plan-node #:query-stage-plan-nodes
                               #:query-stages #:query-string
+                              #:resource-not-found-exception
                               #:result-configuration
                               #:result-configuration-updates
                               #:result-output-location
@@ -123,8 +125,10 @@
                               #:result-reuse-configuration
                               #:result-reuse-information #:result-set
                               #:result-set-metadata #:role-arn #:row #:row-list
-                              #:s3acl-option #:s3uri #:session-configuration
-                              #:session-id #:session-idle-timeout-in-minutes
+                              #:s3acl-option #:s3uri
+                              #:session-already-exists-exception
+                              #:session-configuration #:session-id
+                              #:session-idle-timeout-in-minutes
                               #:session-manager-token #:session-state
                               #:session-statistics #:session-status
                               #:session-summary #:sessions-list
@@ -138,8 +142,8 @@
                               #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-value #:target-dpus-integer
                               #:terminate-session #:throttle-reason #:timestamp
-                              #:token #:type-string
-                              #:unprocessed-named-query-id
+                              #:token #:too-many-requests-exception
+                              #:type-string #:unprocessed-named-query-id
                               #:unprocessed-named-query-id-list
                               #:unprocessed-prepared-statement-name
                               #:unprocessed-prepared-statement-name-list
@@ -154,8 +158,12 @@
                               #:work-group-description-string #:work-group-name
                               #:work-group-names-list #:work-group-state
                               #:work-group-summary #:work-groups-list
-                              #:datum-list #:datum-string))
+                              #:datum-list #:datum-string #:athena-error))
 (common-lisp:in-package #:pira/athena)
+
+(common-lisp:define-condition athena-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-athena :shape-name "AmazonAthena"
                                    :version "2017-05-18" :title "Amazon Athena"
@@ -1288,7 +1296,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class athena-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((athena-error-code :target-type error-code
@@ -1296,7 +1304,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class athena-error))
 
 (smithy/sdk/shapes:define-type key-string smithy/sdk/smithy-types:string)
 
@@ -1698,7 +1706,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "MetadataException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class athena-error))
 
 (smithy/sdk/shapes:define-type name-string smithy/sdk/smithy-types:string)
 
@@ -2050,7 +2058,7 @@
                                   amazon-resource-name :member-name
                                   "ResourceName"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class athena-error))
 
 (smithy/sdk/shapes:define-structure result-configuration common-lisp:nil
                                     ((output-location :target-type
@@ -2154,7 +2162,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "SessionAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class athena-error))
 
 (smithy/sdk/shapes:define-structure session-configuration common-lisp:nil
                                     ((execution-role :target-type role-arn
@@ -2424,7 +2432,7 @@
                                  (reason :target-type throttle-reason
                                   :member-name "Reason"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class athena-error))
 
 (smithy/sdk/shapes:define-type type-string smithy/sdk/smithy-types:string)
 

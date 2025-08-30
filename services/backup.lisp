@@ -2,6 +2,7 @@
                              (:export #:arn #:account-id
                               #:advanced-backup-setting
                               #:advanced-backup-settings #:aggregation-period
+                              #:already-exists-exception
                               #:associate-backup-vault-mpa-approval-team
                               #:backup-job #:backup-job-child-jobs-in-state
                               #:backup-job-state #:backup-job-status
@@ -26,7 +27,7 @@
                               #:condition-key #:condition-parameter
                               #:condition-parameters #:condition-type
                               #:condition-value #:conditions
-                              #:control-input-parameter
+                              #:conflict-exception #:control-input-parameter
                               #:control-input-parameters #:control-name
                               #:control-scope #:copy-action #:copy-actions
                               #:copy-job #:copy-job-child-jobs-in-state
@@ -50,6 +51,7 @@
                               #:delete-report-plan
                               #:delete-restore-testing-plan
                               #:delete-restore-testing-selection
+                              #:dependency-failure-exception
                               #:describe-backup-job #:describe-backup-vault
                               #:describe-copy-job #:describe-framework
                               #:describe-global-settings
@@ -80,13 +82,17 @@
                               #:iampolicy #:iamrole-arn #:index #:index-action
                               #:index-actions #:index-status
                               #:indexed-recovery-point
-                              #:indexed-recovery-point-list #:is-enabled
+                              #:indexed-recovery-point-list
+                              #:invalid-parameter-value-exception
+                              #:invalid-request-exception
+                              #:invalid-resource-state-exception #:is-enabled
                               #:key-value #:key-value-list
                               #:latest-mpa-approval-team-update
                               #:latest-revoke-request #:legal-hold
                               #:legal-hold-status #:legal-holds-list
-                              #:lifecycle #:list-backup-job-summaries
-                              #:list-backup-jobs #:list-backup-plan-templates
+                              #:lifecycle #:limit-exceeded-exception
+                              #:list-backup-job-summaries #:list-backup-jobs
+                              #:list-backup-plan-templates
                               #:list-backup-plan-versions #:list-backup-plans
                               #:list-backup-selections #:list-backup-vaults
                               #:list-copy-job-summaries #:list-copy-jobs
@@ -108,6 +114,7 @@
                               #:list-tags #:long #:long2 #:max-framework-inputs
                               #:max-results #:message-category #:metadata
                               #:metadata-key #:metadata-value
+                              #:missing-parameter-value-exception
                               #:mpa-revoke-session-status #:mpa-session-status
                               #:parameter-name #:parameter-value
                               #:protected-resource
@@ -130,7 +137,8 @@
                               #:report-plan-description #:report-plan-list
                               #:report-plan-name #:report-setting
                               #:requester-comment #:resource-arns
-                              #:resource-identifiers #:resource-type
+                              #:resource-identifiers
+                              #:resource-not-found-exception #:resource-type
                               #:resource-type-list
                               #:resource-type-management-preference
                               #:resource-type-opt-in-preference
@@ -158,12 +166,13 @@
                               #:restore-testing-selections
                               #:restore-validation-status
                               #:revoke-restore-access-backup-vault
-                              #:sensitive-string-map #:start-backup-job
-                              #:start-copy-job #:start-report-job
-                              #:start-restore-job #:stop-backup-job
-                              #:storage-class #:tag-key #:tag-key-list
-                              #:tag-resource #:tag-value #:tags #:timezone
-                              #:untag-resource #:update-backup-plan
+                              #:sensitive-string-map
+                              #:service-unavailable-exception
+                              #:start-backup-job #:start-copy-job
+                              #:start-report-job #:start-restore-job
+                              #:stop-backup-job #:storage-class #:tag-key
+                              #:tag-key-list #:tag-resource #:tag-value #:tags
+                              #:timezone #:untag-resource #:update-backup-plan
                               #:update-framework #:update-global-settings
                               #:update-recovery-point-index-settings
                               #:update-recovery-point-lifecycle
@@ -172,8 +181,12 @@
                               #:update-restore-testing-selection #:vault-names
                               #:vault-state #:vault-type #:window-minutes
                               #:integer #:string #:string-list #:string-map
-                              #:timestamp))
+                              #:timestamp #:backup-error))
 (common-lisp:in-package #:pira/backup)
+
+(common-lisp:define-condition backup-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service cryo-controller-user-manager :shape-name
                                    "CryoControllerUserManager" :version
@@ -299,7 +312,7 @@
                                  (context :target-type string :member-name
                                   "Context"))
                                 (:shape-name "AlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class backup-error))
 
 (smithy/sdk/shapes:define-input associate-backup-vault-mpa-approval-team-input
                                 common-lisp:nil
@@ -762,7 +775,7 @@
                                   "Context"))
                                 (:shape-name "ConflictException")
                                 (:error-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class backup-error))
 
 (smithy/sdk/shapes:define-structure control-input-parameter common-lisp:nil
                                     ((parameter-name :target-type
@@ -1302,7 +1315,7 @@
                                  (context :target-type string :member-name
                                   "Context"))
                                 (:shape-name "DependencyFailureException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class backup-error))
 
 (smithy/sdk/shapes:define-input describe-backup-job-input common-lisp:nil
                                 ((backup-job-id :target-type string :required
@@ -2121,7 +2134,7 @@
                                  (context :target-type string :member-name
                                   "Context"))
                                 (:shape-name "InvalidParameterValueException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class backup-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((code :target-type string :member-name "Code")
@@ -2131,7 +2144,7 @@
                                  (context :target-type string :member-name
                                   "Context"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class backup-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-state-exception
                                 common-lisp:nil
@@ -2142,7 +2155,7 @@
                                  (context :target-type string :member-name
                                   "Context"))
                                 (:shape-name "InvalidResourceStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class backup-error))
 
 (smithy/sdk/shapes:define-type is-enabled smithy/sdk/smithy-types:boolean)
 
@@ -2230,7 +2243,7 @@
                                  (context :target-type string :member-name
                                   "Context"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class backup-error))
 
 (smithy/sdk/shapes:define-input list-backup-job-summaries-input common-lisp:nil
                                 ((account-id :target-type account-id
@@ -2964,7 +2977,7 @@
                                  (context :target-type string :member-name
                                   "Context"))
                                 (:shape-name "MissingParameterValueException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class backup-error))
 
 (smithy/sdk/shapes:define-enum mpa-revoke-session-status
     common-lisp:nil
@@ -3312,7 +3325,7 @@
                                  (context :target-type string :member-name
                                   "Context"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class backup-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -3754,7 +3767,7 @@
                                  (context :target-type string :member-name
                                   "Context"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class backup-error))
 
 (smithy/sdk/shapes:define-input start-backup-job-input common-lisp:nil
                                 ((backup-vault-name :target-type

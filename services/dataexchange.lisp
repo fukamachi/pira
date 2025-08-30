@@ -1,7 +1,8 @@
 (uiop/package:define-package #:pira/dataexchange (:use)
                              (:export #:accept-data-grant
                               #:acceptance-state-filter-value
-                              #:acceptance-state-filter-values #:action
+                              #:acceptance-state-filter-values
+                              #:access-denied-exception #:action
                               #:api-description #:api-gateway-api-asset #:arn
                               #:asset-destination-entry #:asset-details
                               #:asset-entry #:asset-name #:asset-source-entry
@@ -10,8 +11,8 @@
                               #:auto-export-revision-to-s3request-details
                               #:aws-account-id #:cancel-job
                               #:cancel-job-request #:client-token #:code
-                              #:create-data-grant #:create-data-set
-                              #:create-data-set-request
+                              #:conflict-exception #:create-data-grant
+                              #:create-data-set #:create-data-set-request
                               #:create-data-set-response #:create-event-action
                               #:create-event-action-request
                               #:create-event-action-response #:create-job
@@ -63,7 +64,8 @@
                               #:import-assets-from-redshift-data-shares-response-details
                               #:import-assets-from-s3request-details
                               #:import-assets-from-s3response-details
-                              #:job-entry #:job-error #:job-error-limit-name
+                              #:internal-server-exception #:job-entry
+                              #:job-error #:job-error-limit-name
                               #:job-error-resource-types #:kms-key-arn
                               #:kms-key-to-grant #:lfpermission
                               #:lfresource-details #:lfresource-type #:lftag
@@ -113,10 +115,10 @@
                               #:receiver-principal #:redshift-data-share-asset
                               #:redshift-data-share-asset-source-entry
                               #:redshift-data-share-details #:request-details
-                              #:resource-type #:response-details
-                              #:revision-destination-entry #:revision-entry
-                              #:revision-published #:revoke-revision
-                              #:revoke-revision-request
+                              #:resource-not-found-exception #:resource-type
+                              #:response-details #:revision-destination-entry
+                              #:revision-entry #:revision-published
+                              #:revoke-revision #:revoke-revision-request
                               #:revoke-revision-response #:role-arn
                               #:s3data-access-asset
                               #:s3data-access-asset-source-entry
@@ -127,25 +129,32 @@
                               #:send-api-asset #:send-api-asset-request
                               #:send-api-asset-response
                               #:send-data-set-notification #:sender-principal
-                              #:server-side-encryption-types #:start-job
+                              #:server-side-encryption-types
+                              #:service-limit-exceeded-exception #:start-job
                               #:start-job-request #:start-job-response #:state
                               #:table-lftag-policy
                               #:table-lftag-policy-and-permissions
                               #:table-tag-policy-lfpermission #:tag-resource
-                              #:tag-resource-request #:timestamp #:type
-                              #:untag-resource #:untag-resource-request
-                              #:update-asset #:update-asset-request
-                              #:update-asset-response #:update-data-set
-                              #:update-data-set-request
+                              #:tag-resource-request #:throttling-exception
+                              #:timestamp #:type #:untag-resource
+                              #:untag-resource-request #:update-asset
+                              #:update-asset-request #:update-asset-response
+                              #:update-data-set #:update-data-set-request
                               #:update-data-set-response #:update-event-action
                               #:update-event-action-request
                               #:update-event-action-response #:update-revision
                               #:update-revision-request
-                              #:update-revision-response #:boolean #:double
-                              #:double-min0 #:string #:string-min0max16384
-                              #:string-min0max4096 #:string-min10max512
-                              #:string-min24max24pattern-aza-z094aza-z092aza-z093))
+                              #:update-revision-response #:validation-exception
+                              #:boolean #:double #:double-min0 #:string
+                              #:string-min0max16384 #:string-min0max4096
+                              #:string-min10max512
+                              #:string-min24max24pattern-aza-z094aza-z092aza-z093
+                              #:dataexchange-error))
 (common-lisp:in-package #:pira/dataexchange)
+
+(common-lisp:define-condition dataexchange-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service data-exchange :shape-name "DataExchange"
                                    :version "2017-07-25" :title
@@ -231,7 +240,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class dataexchange-error))
 
 (smithy/sdk/shapes:define-structure action common-lisp:nil
                                     ((export-revision-to-s3 :target-type
@@ -375,7 +385,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "ResourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class dataexchange-error))
 
 (smithy/sdk/shapes:define-input create-data-grant-request common-lisp:nil
                                 ((name :target-type data-grant-name :required
@@ -1255,7 +1266,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class dataexchange-error))
 
 (smithy/sdk/shapes:define-structure job-entry common-lisp:nil
                                     ((arn :target-type arn :required
@@ -1743,7 +1755,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class dataexchange-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -2016,7 +2029,8 @@
                                  (message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ServiceLimitExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class dataexchange-error))
 
 (smithy/sdk/shapes:define-input start-job-request common-lisp:nil
                                 ((job-id :target-type id :required
@@ -2064,7 +2078,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class dataexchange-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -2211,7 +2226,8 @@
                                  (exception-cause :target-type exception-cause
                                   :member-name "ExceptionCause"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class dataexchange-error))
 
 (smithy/sdk/shapes:define-type boolean smithy/sdk/smithy-types:boolean)
 

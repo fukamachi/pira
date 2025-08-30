@@ -4,6 +4,7 @@
                               #:atimodel-performance
                               #:atitraining-metrics-value
                               #:awshawks-nest-service-facade
+                              #:access-denied-exception
                               #:aggregated-log-odds-metric
                               #:aggregated-variables-impact-explanation
                               #:aggregated-variables-importance-metrics
@@ -17,7 +18,7 @@
                               #:batch-prediction-list #:boolean
                               #:cancel-batch-import-job
                               #:cancel-batch-prediction-job
-                              #:create-batch-import-job
+                              #:conflict-exception #:create-batch-import-job
                               #:create-batch-prediction-job
                               #:create-detector-version #:create-list
                               #:create-model #:create-model-version
@@ -70,7 +71,8 @@
                               #:get-variables #:ingested-event-statistics
                               #:ingested-events-detail
                               #:ingested-events-time-window #:integer
-                              #:integer2 #:json-key-to-variable-map #:kmskey
+                              #:integer2 #:internal-server-exception
+                              #:json-key-to-variable-map #:kmskey
                               #:kms-encryption-key-arn #:label #:label-schema
                               #:language #:list-event-predictions
                               #:list-of-aggregated-log-odds-metrics
@@ -105,14 +107,18 @@
                               #:prediction-explanations #:prediction-time-range
                               #:put-detector #:put-entity-type #:put-event-type
                               #:put-external-model #:put-kmsencryption-key
-                              #:put-label #:put-outcome #:rule #:rule-detail
-                              #:rule-detail-list #:rule-execution-mode
-                              #:rule-list #:rule-result #:rules-max-results
-                              #:send-event #:tfimetric-data-point
+                              #:put-label #:put-outcome
+                              #:resource-not-found-exception
+                              #:resource-unavailable-exception #:rule
+                              #:rule-detail #:rule-detail-list
+                              #:rule-execution-mode #:rule-list #:rule-result
+                              #:rules-max-results #:send-event
+                              #:tfimetric-data-point
                               #:tfimetric-data-points-list
                               #:tfimodel-performance
                               #:tfitraining-metrics-value #:tag #:tag-resource
-                              #:tags-max-results #:training-data-schema
+                              #:tags-max-results #:throttling-exception
+                              #:training-data-schema
                               #:training-data-source-enum #:training-metrics
                               #:training-metrics-v2 #:training-result
                               #:training-result-v2 #:uncertainty-range
@@ -125,7 +131,8 @@
                               #:update-model-version-status
                               #:update-rule-metadata #:update-rule-version
                               #:update-variable #:use-event-variables
-                              #:variable #:variable-entry #:variable-entry-list
+                              #:validation-exception #:variable
+                              #:variable-entry #:variable-entry-list
                               #:variable-impact-explanation
                               #:variable-importance-metrics #:variable-list
                               #:variables-max-results #:attribute-key
@@ -153,8 +160,13 @@
                               #:tag-key-list #:tag-list #:tag-value #:time
                               #:utc-timestamp-iso8601 #:variable-name
                               #:variable-type #:variable-value
-                              #:whole-number-version-string))
+                              #:whole-number-version-string
+                              #:frauddetector-error))
 (common-lisp:in-package #:pira/frauddetector)
+
+(common-lisp:define-condition frauddetector-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awshawks-nest-service-facade :shape-name
                                    "AWSHawksNestServiceFacade" :version
@@ -251,7 +263,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class frauddetector-error))
 
 (smithy/sdk/shapes:define-structure aggregated-log-odds-metric common-lisp:nil
                                     ((variable-names :target-type
@@ -457,7 +470,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class frauddetector-error))
 
 (smithy/sdk/shapes:define-input create-batch-import-job-request common-lisp:nil
                                 ((job-id :target-type identifier :required
@@ -1673,7 +1687,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class frauddetector-error))
 
 (smithy/sdk/shapes:define-map json-key-to-variable-map :key string :value
                               string)
@@ -2181,13 +2196,15 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class frauddetector-error))
 
 (smithy/sdk/shapes:define-error resource-unavailable-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceUnavailableException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class frauddetector-error))
 
 (smithy/sdk/shapes:define-structure rule common-lisp:nil
                                     ((detector-id :target-type identifier
@@ -2327,7 +2344,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class frauddetector-error))
 
 (smithy/sdk/shapes:define-structure training-data-schema common-lisp:nil
                                     ((model-variables :target-type
@@ -2641,7 +2659,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class frauddetector-error))
 
 (smithy/sdk/shapes:define-structure variable common-lisp:nil
                                     ((name :target-type string :member-name

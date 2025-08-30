@@ -1,11 +1,12 @@
 (uiop/package:define-package #:pira/rbin (:use)
-                             (:export #:amazon-recycle-bin
+                             (:export #:amazon-recycle-bin #:conflict-exception
                               #:conflict-exception-reason #:create-rule
                               #:delete-rule #:description #:error-message
-                              #:exclude-resource-tags #:get-rule #:list-rules
+                              #:exclude-resource-tags #:get-rule
+                              #:internal-server-exception #:list-rules
                               #:list-tags-for-resource #:lock-configuration
                               #:lock-rule #:lock-state #:max-results
-                              #:next-token
+                              #:next-token #:resource-not-found-exception
                               #:resource-not-found-exception-reason
                               #:resource-tag #:resource-tag-key
                               #:resource-tag-value #:resource-tags
@@ -13,14 +14,20 @@
                               #:retention-period-unit #:retention-period-value
                               #:rule-arn #:rule-identifier #:rule-status
                               #:rule-summary #:rule-summary-list
+                              #:service-quota-exceeded-exception
                               #:service-quota-exceeded-exception-reason #:tag
                               #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-value #:time-stamp
                               #:unlock-delay #:unlock-delay-unit
                               #:unlock-delay-value #:unlock-rule
                               #:untag-resource #:update-rule
-                              #:validation-exception-reason))
+                              #:validation-exception
+                              #:validation-exception-reason #:rbin-error))
 (common-lisp:in-package #:pira/rbin)
+
+(common-lisp:define-condition rbin-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-recycle-bin :shape-name
                                    "AmazonRecycleBin" :version "2021-06-15"
@@ -45,7 +52,7 @@
                                  (reason :target-type conflict-exception-reason
                                   :member-name "Reason"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class rbin-error))
 
 (smithy/sdk/shapes:define-enum conflict-exception-reason
     common-lisp:nil
@@ -154,7 +161,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class rbin-error))
 
 (smithy/sdk/shapes:define-input list-rules-request common-lisp:nil
                                 ((max-results :target-type max-results
@@ -250,7 +257,7 @@
                                   resource-not-found-exception-reason
                                   :member-name "Reason"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class rbin-error))
 
 (smithy/sdk/shapes:define-enum resource-not-found-exception-reason
     common-lisp:nil
@@ -328,7 +335,7 @@
                                   service-quota-exceeded-exception-reason
                                   :member-name "Reason"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class rbin-error))
 
 (smithy/sdk/shapes:define-enum service-quota-exceeded-exception-reason
     common-lisp:nil
@@ -477,7 +484,7 @@
                                   validation-exception-reason :member-name
                                   "Reason"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class rbin-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-reason
     common-lisp:nil

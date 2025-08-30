@@ -4,9 +4,11 @@
                               #:additional-instance-configuration #:ami
                               #:ami-distribution-configuration #:ami-list
                               #:ami-name-string #:arn #:boolean #:build-type
+                              #:call-rate-limit-exceeded-exception
                               #:cancel-image-creation
-                              #:cancel-lifecycle-execution #:client-token
-                              #:component #:component-build-version-arn
+                              #:cancel-lifecycle-execution #:client-exception
+                              #:client-token #:component
+                              #:component-build-version-arn
                               #:component-configuration
                               #:component-configuration-list #:component-data
                               #:component-format #:component-parameter
@@ -62,8 +64,9 @@
                               #:fast-launch-launch-template-specification
                               #:fast-launch-snapshot-configuration #:filter
                               #:filter-list #:filter-name #:filter-value
-                              #:filter-values #:get-component
-                              #:get-component-policy #:get-container-recipe
+                              #:filter-values #:forbidden-exception
+                              #:get-component #:get-component-policy
+                              #:get-container-recipe
                               #:get-container-recipe-policy
                               #:get-distribution-configuration #:get-image
                               #:get-image-pipeline #:get-image-policy
@@ -74,7 +77,8 @@
                               #:get-workflow-execution
                               #:get-workflow-step-execution
                               #:http-put-response-hop-limit #:http-tokens
-                              #:image #:image-aggregation #:image-build-message
+                              #:idempotent-parameter-mismatch-exception #:image
+                              #:image-aggregation #:image-build-message
                               #:image-build-version-arn #:image-builder-arn
                               #:image-package #:image-package-list
                               #:image-pipeline #:image-pipeline-aggregation
@@ -110,6 +114,12 @@
                               #:instance-metadata-options
                               #:instance-profile-name-type #:instance-type
                               #:instance-type-list
+                              #:invalid-pagination-token-exception
+                              #:invalid-parameter-combination-exception
+                              #:invalid-parameter-exception
+                              #:invalid-parameter-value-exception
+                              #:invalid-request-exception
+                              #:invalid-version-number-exception
                               #:launch-permission-configuration
                               #:launch-template-configuration
                               #:launch-template-configuration-list
@@ -186,14 +196,20 @@
                               #:put-container-recipe-policy #:put-image-policy
                               #:put-image-recipe-policy #:region-list
                               #:remediation #:remediation-recommendation
-                              #:resource-name #:resource-policy-document
-                              #:resource-state
+                              #:resource-already-exists-exception
+                              #:resource-dependency-exception
+                              #:resource-in-use-exception #:resource-name
+                              #:resource-not-found-exception
+                              #:resource-policy-document #:resource-state
                               #:resource-state-update-exclusion-rules
                               #:resource-state-update-include-resources
                               #:resource-status #:resource-tag-map
                               #:restricted-integer #:role-name-or-arn
                               #:s3export-configuration #:s3logs #:schedule
                               #:security-group-ids #:send-workflow-step-action
+                              #:service-exception
+                              #:service-quota-exceeded-exception
+                              #:service-unavailable-exception
                               #:severity-count-number #:severity-counts
                               #:sns-topic-arn #:source-layer-hash
                               #:ssm-parameter-configuration
@@ -249,8 +265,13 @@
                               #:workflow-version-arn
                               #:workflow-version-arn-or-build-version-arn
                               #:workflow-version-list
-                              #:workflow-wildcard-version-arn #:imagebuilder))
+                              #:workflow-wildcard-version-arn #:imagebuilder
+                              #:imagebuilder-error))
 (common-lisp:in-package #:pira/imagebuilder)
+
+(common-lisp:define-condition imagebuilder-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service imagebuilder :shape-name "imagebuilder"
                                    :version "2019-12-02" :title
@@ -402,7 +423,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "CallRateLimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-input cancel-image-creation-request common-lisp:nil
                                 ((image-build-version-arn :target-type
@@ -447,7 +469,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ClientException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-type client-token smithy/sdk/smithy-types:string)
 
@@ -1546,7 +1569,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-input get-component-policy-request common-lisp:nil
                                 ((component-arn :target-type
@@ -1899,7 +1923,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "IdempotentParameterMismatchException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-structure image common-lisp:nil
                                     ((arn :target-type image-builder-arn
@@ -2589,7 +2614,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidPaginationTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-combination-exception
                                 common-lisp:nil
@@ -2597,33 +2623,38 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidParameterCombinationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterValueException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-error invalid-version-number-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidVersionNumberException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-structure launch-permission-configuration
                                     common-lisp:nil
@@ -3749,19 +3780,22 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-error resource-dependency-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceDependencyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-error resource-in-use-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-type resource-name smithy/sdk/smithy-types:string)
 
@@ -3769,7 +3803,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-type resource-policy-document
                                smithy/sdk/smithy-types:string)
@@ -3885,20 +3920,23 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-error service-quota-exceeded-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class imagebuilder-error))
 
 (smithy/sdk/shapes:define-type severity-count-number
                                smithy/sdk/smithy-types:long)

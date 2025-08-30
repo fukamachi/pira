@@ -1,13 +1,16 @@
 (uiop/package:define-package #:pira/pinpoint-email (:use)
-                             (:export #:amazon-pinpoint-email-service
-                              #:amazon-resource-name #:behavior-on-mx-failure
-                              #:blacklist-entries #:blacklist-entry
-                              #:blacklist-item-name #:blacklist-item-names
-                              #:blacklist-report #:blacklisting-description
-                              #:body #:campaign-id #:charset
-                              #:cloud-watch-destination
+                             (:export #:account-suspended-exception
+                              #:already-exists-exception
+                              #:amazon-pinpoint-email-service
+                              #:amazon-resource-name #:bad-request-exception
+                              #:behavior-on-mx-failure #:blacklist-entries
+                              #:blacklist-entry #:blacklist-item-name
+                              #:blacklist-item-names #:blacklist-report
+                              #:blacklisting-description #:body #:campaign-id
+                              #:charset #:cloud-watch-destination
                               #:cloud-watch-dimension-configuration
                               #:cloud-watch-dimension-configurations
+                              #:concurrent-modification-exception
                               #:configuration-set-name
                               #:configuration-set-name-list #:content
                               #:create-configuration-set
@@ -53,19 +56,23 @@
                               #:inbox-placement-tracking-option #:ip #:ip-list
                               #:isp-name #:isp-name-list #:isp-placement
                               #:isp-placements #:kinesis-firehose-destination
-                              #:last-fresh-start #:list-configuration-sets
+                              #:last-fresh-start #:limit-exceeded-exception
+                              #:list-configuration-sets
                               #:list-dedicated-ip-pools
                               #:list-deliverability-test-reports
                               #:list-domain-deliverability-campaigns
                               #:list-email-identities
                               #:list-of-dedicated-ip-pools
                               #:list-tags-for-resource #:mail-from-attributes
-                              #:mail-from-domain-name #:mail-from-domain-status
-                              #:max24hour-send #:max-items #:max-send-rate
-                              #:message #:message-content #:message-data
-                              #:message-tag #:message-tag-list
-                              #:message-tag-name #:message-tag-value
-                              #:next-token #:outbound-message-id
+                              #:mail-from-domain-name
+                              #:mail-from-domain-not-verified-exception
+                              #:mail-from-domain-status #:max24hour-send
+                              #:max-items #:max-send-rate #:message
+                              #:message-content #:message-data
+                              #:message-rejected #:message-tag
+                              #:message-tag-list #:message-tag-name
+                              #:message-tag-value #:next-token
+                              #:not-found-exception #:outbound-message-id
                               #:overall-volume #:percentage
                               #:percentage100wrapper #:pinpoint-destination
                               #:placement-statistics #:pool-name
@@ -84,15 +91,21 @@
                               #:raw-message #:raw-message-data #:rbl-name
                               #:report-id #:report-name #:reputation-options
                               #:send-email #:send-quota #:sending-options
-                              #:sending-pool-name #:sent-last24hours
-                              #:sns-destination #:subject #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-value #:template #:template-arn
-                              #:template-data #:timestamp #:tls-policy
+                              #:sending-paused-exception #:sending-pool-name
+                              #:sent-last24hours #:sns-destination #:subject
+                              #:tag #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:template
+                              #:template-arn #:template-data #:timestamp
+                              #:tls-policy #:too-many-requests-exception
                               #:tracking-options #:untag-resource
                               #:update-configuration-set-event-destination
-                              #:volume #:volume-statistics #:warmup-status))
+                              #:volume #:volume-statistics #:warmup-status
+                              #:pinpoint-email-error))
 (common-lisp:in-package #:pira/pinpoint-email)
+
+(common-lisp:define-condition pinpoint-email-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-pinpoint-email-service :shape-name
                                    "AmazonPinpointEmailService" :version
@@ -150,13 +163,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccountSuspendedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-email-error))
 
 (smithy/sdk/shapes:define-error already-exists-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-email-error))
 
 (smithy/sdk/shapes:define-type amazon-resource-name
                                smithy/sdk/smithy-types:string)
@@ -165,7 +180,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-email-error))
 
 (smithy/sdk/shapes:define-enum behavior-on-mx-failure
     common-lisp:nil
@@ -237,7 +253,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class pinpoint-email-error))
 
 (smithy/sdk/shapes:define-type configuration-set-name
                                smithy/sdk/smithy-types:string)
@@ -957,7 +974,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-email-error))
 
 (smithy/sdk/shapes:define-input list-configuration-sets-request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -1099,7 +1117,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MailFromDomainNotVerifiedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-email-error))
 
 (smithy/sdk/shapes:define-enum mail-from-domain-status
     common-lisp:nil
@@ -1129,7 +1148,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "MessageRejected")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-email-error))
 
 (smithy/sdk/shapes:define-structure message-tag common-lisp:nil
                                     ((name :target-type message-tag-name
@@ -1152,7 +1172,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class pinpoint-email-error))
 
 (smithy/sdk/shapes:define-type outbound-message-id
                                smithy/sdk/smithy-types:string)
@@ -1441,7 +1462,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "SendingPausedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-email-error))
 
 (smithy/sdk/shapes:define-type sending-pool-name smithy/sdk/smithy-types:string)
 
@@ -1504,7 +1526,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class pinpoint-email-error))
 
 (smithy/sdk/shapes:define-structure tracking-options common-lisp:nil
                                     ((custom-redirect-domain :target-type

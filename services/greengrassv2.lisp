@@ -1,5 +1,5 @@
 (uiop/package:define-package #:pira/greengrassv2 (:use)
-                             (:export
+                             (:export #:access-denied-exception
                               #:associate-client-device-with-core-device-entry
                               #:associate-client-device-with-core-device-entry-list
                               #:associate-client-device-with-core-device-error-entry
@@ -29,8 +29,9 @@
                               #:component-version-list-item
                               #:component-version-requirement-map
                               #:component-version-string
-                              #:component-visibility-scope #:connectivity-info
-                              #:core-device #:core-device-architecture-string
+                              #:component-visibility-scope #:conflict-exception
+                              #:connectivity-info #:core-device
+                              #:core-device-architecture-string
                               #:core-device-platform-string
                               #:core-device-runtime-string #:core-device-status
                               #:core-device-thing-name #:core-devices-list
@@ -70,8 +71,9 @@
                               #:installed-component-lifecycle-status-code-list
                               #:installed-component-list
                               #:installed-component-topology-filter
-                              #:io-tjob-arn #:io-tjob-abort-action
-                              #:io-tjob-abort-config #:io-tjob-abort-criteria
+                              #:internal-server-exception #:io-tjob-arn
+                              #:io-tjob-abort-action #:io-tjob-abort-config
+                              #:io-tjob-abort-criteria
                               #:io-tjob-abort-criteria-list
                               #:io-tjob-abort-threshold-percentage
                               #:io-tjob-execution-failure-type
@@ -111,20 +113,28 @@
                               #:optional-integer #:platform-attributes-map
                               #:port-number-int #:publisher-string #:reason
                               #:recipe-blob #:recipe-output-format
+                              #:request-already-in-progress-exception
                               #:resolve-component-candidates
                               #:resolved-component-version
                               #:resolved-component-versions-list
-                              #:retry-after-seconds #:s3endpoint-type #:string
+                              #:resource-not-found-exception
+                              #:retry-after-seconds #:s3endpoint-type
+                              #:service-quota-exceeded-exception #:string
                               #:string-map #:system-resource-limits #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
                               #:tag-value #:target-arn #:thing-group-arn
-                              #:timestamp #:topic-string #:untag-resource
-                              #:update-connectivity-info
+                              #:throttling-exception #:timestamp #:topic-string
+                              #:untag-resource #:update-connectivity-info
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vendor-guidance
-                              #:connectivity-info-list))
+                              #:connectivity-info-list #:greengrassv2-error))
 (common-lisp:in-package #:pira/greengrassv2)
+
+(common-lisp:define-condition greengrassv2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service greengrass-v2 :shape-name "GreengrassV2"
                                    :version "2020-11-30" :title
@@ -165,7 +175,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class greengrassv2-error))
 
 (smithy/sdk/shapes:define-structure
  associate-client-device-with-core-device-entry common-lisp:nil
@@ -450,7 +461,8 @@
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class greengrassv2-error))
 
 (smithy/sdk/shapes:define-structure connectivity-info common-lisp:nil
                                     ((id :target-type string :member-name "id"
@@ -1054,7 +1066,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class greengrassv2-error))
 
 (smithy/sdk/shapes:define-type io-tjob-arn smithy/sdk/smithy-types:string)
 
@@ -1535,7 +1548,8 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
                                  "RequestAlreadyInProgressException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class greengrassv2-error))
 
 (smithy/sdk/shapes:define-input resolve-component-candidates-request
                                 common-lisp:nil
@@ -1584,7 +1598,8 @@
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class greengrassv2-error))
 
 (smithy/sdk/shapes:define-type retry-after-seconds
                                smithy/sdk/smithy-types:integer)
@@ -1607,7 +1622,8 @@
                                  (service-code :target-type string :required
                                   common-lisp:t :member-name "serviceCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class greengrassv2-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -1657,7 +1673,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class greengrassv2-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -1707,7 +1724,8 @@
                                   validation-exception-field-list :member-name
                                   "fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class greengrassv2-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type string :required

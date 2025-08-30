@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/acm (:use)
-                             (:export #:add-tags-to-certificate #:arn
+                             (:export #:access-denied-exception
+                              #:add-tags-to-certificate #:arn
                               #:availability-error-message #:certificate-body
                               #:certificate-body-blob #:certificate-chain
                               #:certificate-chain-blob #:certificate-detail
@@ -8,10 +9,11 @@
                               #:certificate-status #:certificate-statuses
                               #:certificate-summary #:certificate-summary-list
                               #:certificate-transparency-logging-preference
-                              #:certificate-type #:delete-certificate
-                              #:describe-certificate #:domain-list
-                              #:domain-name-string #:domain-status
-                              #:domain-validation #:domain-validation-list
+                              #:certificate-type #:conflict-exception
+                              #:delete-certificate #:describe-certificate
+                              #:domain-list #:domain-name-string
+                              #:domain-status #:domain-validation
+                              #:domain-validation-list
                               #:domain-validation-option
                               #:domain-validation-option-list
                               #:expiry-events-configuration
@@ -23,28 +25,41 @@
                               #:filters #:get-account-configuration
                               #:get-certificate #:http-redirect
                               #:idempotency-token #:import-certificate
-                              #:in-use-list #:key-algorithm
-                              #:key-algorithm-list #:key-usage
+                              #:in-use-list #:invalid-args-exception
+                              #:invalid-arn-exception
+                              #:invalid-domain-validation-options-exception
+                              #:invalid-parameter-exception
+                              #:invalid-state-exception #:invalid-tag-exception
+                              #:key-algorithm #:key-algorithm-list #:key-usage
                               #:key-usage-filter-list #:key-usage-list
                               #:key-usage-name #:key-usage-names
-                              #:list-certificates #:list-tags-for-certificate
-                              #:max-items #:next-token #:nullable-boolean
-                              #:passphrase-blob #:pca-arn #:positive-integer
-                              #:private-key #:private-key-blob
-                              #:put-account-configuration #:record-type
-                              #:remove-tags-from-certificate
+                              #:limit-exceeded-exception #:list-certificates
+                              #:list-tags-for-certificate #:max-items
+                              #:next-token #:nullable-boolean #:passphrase-blob
+                              #:pca-arn #:positive-integer #:private-key
+                              #:private-key-blob #:put-account-configuration
+                              #:record-type #:remove-tags-from-certificate
                               #:renew-certificate #:renewal-eligibility
                               #:renewal-status #:renewal-summary
-                              #:request-certificate #:resend-validation-email
-                              #:resource-record #:revocation-reason
-                              #:revoke-certificate #:service-error-message
-                              #:sort-by #:sort-order #:string #:tstamp #:tag
-                              #:tag-key #:tag-list #:tag-value
+                              #:request-certificate
+                              #:request-in-progress-exception
+                              #:resend-validation-email
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception #:resource-record
+                              #:revocation-reason #:revoke-certificate
+                              #:service-error-message #:sort-by #:sort-order
+                              #:string #:tstamp #:tag #:tag-key #:tag-list
+                              #:tag-policy-exception #:tag-value
+                              #:throttling-exception #:too-many-tags-exception
                               #:update-certificate-options
-                              #:validation-email-list
+                              #:validation-email-list #:validation-exception
                               #:validation-exception-message
-                              #:validation-method))
+                              #:validation-method #:acm-error))
 (common-lisp:in-package #:pira/acm)
+
+(common-lisp:define-condition acm-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service certificate-manager :shape-name
                                    "CertificateManager" :version "2015-12-08"
@@ -74,7 +89,8 @@
                                 ((message :target-type service-error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-name "AccessDenied") (:error-code 403))
+                                (:error-name "AccessDenied") (:error-code 403)
+                                (:base-class acm-error))
 
 (smithy/sdk/shapes:define-input add-tags-to-certificate-request common-lisp:nil
                                 ((certificate-arn :target-type arn :required
@@ -265,7 +281,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-input delete-certificate-request common-lisp:nil
                                 ((certificate-arn :target-type arn :required
@@ -480,13 +496,13 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidArgsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-error invalid-arn-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidArnException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-error invalid-domain-validation-options-exception
                                 common-lisp:nil
@@ -494,25 +510,25 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidDomainValidationOptionsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-error invalid-tag-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidTagException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-enum key-algorithm
     common-lisp:nil
@@ -555,7 +571,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-input list-certificates-request common-lisp:nil
                                 ((certificate-statuses :target-type
@@ -703,7 +719,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "RequestInProgressException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-input resend-validation-email-request common-lisp:nil
                                 ((certificate-arn :target-type arn :required
@@ -720,13 +736,13 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-structure resource-record common-lisp:nil
                                     ((name :target-type string :required
@@ -795,7 +811,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TagPolicyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-type tag-value smithy/sdk/smithy-types:string)
 
@@ -804,13 +820,14 @@
                                   availability-error-message :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-name "Throttling") (:error-code 400))
+                                (:error-name "Throttling") (:error-code 400)
+                                (:base-class acm-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-input update-certificate-options-request
                                 common-lisp:nil
@@ -829,7 +846,7 @@
                                   "message"))
                                 (:shape-name "ValidationException")
                                 (:error-name "ValidationError")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-error))
 
 (smithy/sdk/shapes:define-type validation-exception-message
                                smithy/sdk/smithy-types:string)

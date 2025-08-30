@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/iotsitewise (:use)
                              (:export #:arn #:awsio-tsite-wise
+                              #:access-denied-exception
                               #:access-policy-summaries #:access-policy-summary
                               #:action-definition #:action-definitions
                               #:action-payload #:action-payload-string
@@ -136,8 +137,8 @@
                               #:computation-model-type #:compute-location
                               #:configuration-error-details
                               #:configuration-state #:configuration-status
-                              #:content #:conversation-id
-                              #:core-device-operating-system
+                              #:conflicting-operation-exception #:content
+                              #:conversation-id #:core-device-operating-system
                               #:core-device-thing-name #:create-access-policy
                               #:create-asset #:create-asset-model
                               #:create-asset-model-composite-model
@@ -219,15 +220,18 @@
                               #:interface-relationship-summaries
                               #:interface-relationship-summary
                               #:interface-summaries #:interface-summary
+                              #:internal-failure-exception
                               #:interpolated-asset-property-value
                               #:interpolated-asset-property-values
                               #:interpolation-type #:interval
                               #:interval-in-seconds
-                              #:interval-window-in-seconds #:invocation-output
+                              #:interval-window-in-seconds
+                              #:invalid-request-exception #:invocation-output
                               #:invoke-assistant #:iot-core-thing-name
                               #:job-configuration #:job-status #:job-summaries
                               #:job-summary #:kendra-source-detail #:kms-key-id
-                              #:list-access-policies #:list-actions
+                              #:limit-exceeded-exception #:list-access-policies
+                              #:list-actions
                               #:list-asset-model-composite-models
                               #:list-asset-model-properties
                               #:list-asset-model-properties-filter
@@ -263,10 +267,10 @@
                               #:portal-summaries #:portal-summary
                               #:portal-tools #:portal-type
                               #:portal-type-configuration #:portal-type-entry
-                              #:portal-type-key #:project-resource
-                              #:project-summaries #:project-summary #:property
-                              #:property-alias #:property-data-type
-                              #:property-mapping
+                              #:portal-type-key #:precondition-failed-exception
+                              #:project-resource #:project-summaries
+                              #:project-summary #:property #:property-alias
+                              #:property-data-type #:property-mapping
                               #:property-mapping-configuration
                               #:property-mappings #:property-notification
                               #:property-notification-state
@@ -282,24 +286,30 @@
                               #:put-default-encryption-configuration
                               #:put-logging-options #:put-storage-configuration
                               #:qualities #:quality #:query-statement
-                              #:raw-value-type #:reference #:resolution
-                              #:resolve-to #:resolve-to-resource-type
-                              #:resource #:resource-arn #:resource-id
-                              #:resource-type #:response-stream
-                              #:restricted-description #:restricted-name
-                              #:result-property #:retention-period #:row #:rows
+                              #:query-timeout-exception #:raw-value-type
+                              #:reference #:resolution #:resolve-to
+                              #:resolve-to-resource-type #:resource
+                              #:resource-already-exists-exception
+                              #:resource-arn #:resource-id
+                              #:resource-not-found-exception #:resource-type
+                              #:response-stream #:restricted-description
+                              #:restricted-name #:result-property
+                              #:retention-period #:row #:rows
                               #:ssoapplication-id #:scalar-type #:scalar-value
-                              #:select-all #:siemens-ie #:source
-                              #:source-detail #:storage-type #:string #:tag-key
-                              #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-value #:target-resource
-                              #:target-resource-type #:time-in-nanos
+                              #:select-all #:service-unavailable-exception
+                              #:siemens-ie #:source #:source-detail
+                              #:storage-type #:string #:tag-key #:tag-key-list
+                              #:tag-map #:tag-resource #:tag-value
+                              #:target-resource #:target-resource-type
+                              #:throttling-exception #:time-in-nanos
                               #:time-in-seconds #:time-ordering
                               #:time-series-id #:time-series-summaries
                               #:time-series-summary #:timestamp #:timestamps
-                              #:trace #:transform #:transform-processing-config
+                              #:too-many-tags-exception #:trace #:transform
+                              #:transform-processing-config
                               #:traversal-direction #:traversal-type
-                              #:tumbling-window #:unlimited #:untag-resource
+                              #:tumbling-window #:unauthorized-exception
+                              #:unlimited #:untag-resource
                               #:update-access-policy #:update-asset
                               #:update-asset-model
                               #:update-asset-model-composite-model
@@ -308,10 +318,15 @@
                               #:update-dataset #:update-gateway
                               #:update-gateway-capability-configuration
                               #:update-portal #:update-project #:url
-                              #:user-identity #:variable-name #:variable-value
-                              #:variant #:version #:warm-tier-retention-period
-                              #:warm-tier-state))
+                              #:user-identity #:validation-exception
+                              #:variable-name #:variable-value #:variant
+                              #:version #:warm-tier-retention-period
+                              #:warm-tier-state #:iotsitewise-error))
 (common-lisp:in-package #:pira/iotsitewise)
+
+(common-lisp:define-condition iotsitewise-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsio-tsite-wise :shape-name
                                    "AWSIoTSiteWise" :version "2019-12-02"
@@ -409,7 +424,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-list access-policy-summaries :member
                                access-policy-summary)
@@ -1831,7 +1847,8 @@
                                   :required common-lisp:t :member-name
                                   "resourceArn"))
                                 (:shape-name "ConflictingOperationException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-structure content common-lisp:nil
                                     ((text :target-type string :member-name
@@ -3891,7 +3908,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-structure interpolated-asset-property-value
                                     common-lisp:nil
@@ -3920,7 +3938,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-structure invocation-output common-lisp:nil
                                     ((message :target-type string :member-name
@@ -3992,7 +4011,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 410))
+                                (:error-code 410)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-input list-access-policies-request common-lisp:nil
                                 ((identity-type :target-type identity-type
@@ -4783,7 +4803,8 @@
                                   :required common-lisp:t :member-name
                                   "resourceArn"))
                                 (:shape-name "PreconditionFailedException")
-                                (:error-code 412))
+                                (:error-code 412)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-structure project-resource common-lisp:nil
                                     ((id :target-type id :required
@@ -5060,7 +5081,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "QueryTimeoutException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-enum raw-value-type
     common-lisp:nil
@@ -5104,7 +5126,8 @@
                                   :required common-lisp:t :member-name
                                   "resourceArn"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-type resource-arn smithy/sdk/smithy-types:string)
 
@@ -5114,7 +5137,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -5189,7 +5213,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-structure siemens-ie common-lisp:nil
                                     ((iot-core-thing-name :target-type
@@ -5254,7 +5279,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-structure time-in-nanos common-lisp:nil
                                     ((time-in-seconds :target-type
@@ -5314,7 +5340,8 @@
                                   amazon-resource-name :member-name
                                   "resourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-structure trace common-lisp:nil
                                     ((text :target-type string :member-name
@@ -5362,7 +5389,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-type unlimited smithy/sdk/smithy-types:boolean)
 
@@ -5699,7 +5727,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotsitewise-error))
 
 (smithy/sdk/shapes:define-type variable-name smithy/sdk/smithy-types:string)
 

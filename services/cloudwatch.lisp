@@ -15,11 +15,14 @@
                               #:anomaly-detector-type #:anomaly-detector-types
                               #:anomaly-detectors #:aws-query-error-message
                               #:batch-failures #:comparison-operator
-                              #:composite-alarm #:composite-alarms #:counts
-                              #:dashboard-arn #:dashboard-body
-                              #:dashboard-entries #:dashboard-entry
-                              #:dashboard-error-message #:dashboard-name
+                              #:composite-alarm #:composite-alarms
+                              #:concurrent-modification-exception
+                              #:conflict-exception #:counts #:dashboard-arn
+                              #:dashboard-body #:dashboard-entries
+                              #:dashboard-entry #:dashboard-error-message
+                              #:dashboard-invalid-input-error #:dashboard-name
                               #:dashboard-name-prefix #:dashboard-names
+                              #:dashboard-not-found-error
                               #:dashboard-validation-message
                               #:dashboard-validation-messages #:data-path
                               #:datapoint #:datapoint-value
@@ -81,8 +84,13 @@
                               #:insight-rule-unbound-double
                               #:insight-rule-unbound-integer
                               #:insight-rule-unbound-long #:insight-rules
-                              #:label-options #:last-modified #:list-dashboards
-                              #:list-managed-insight-rules
+                              #:internal-service-fault #:invalid-format-fault
+                              #:invalid-next-token
+                              #:invalid-parameter-combination-exception
+                              #:invalid-parameter-value-exception
+                              #:label-options #:last-modified
+                              #:limit-exceeded-exception #:limit-exceeded-fault
+                              #:list-dashboards #:list-managed-insight-rules
                               #:list-metric-streams
                               #:list-metric-streams-max-results #:list-metrics
                               #:list-tags-for-resource #:managed-rule
@@ -111,16 +119,19 @@
                               #:metric-stream-statistics-configurations
                               #:metric-stream-statistics-include-metrics
                               #:metric-stream-statistics-metric #:metric-widget
-                              #:metric-widget-image #:metrics #:namespace
-                              #:next-token #:output-format #:owning-accounts
-                              #:partial-failure #:period #:periodic-spikes
-                              #:put-anomaly-detector #:put-composite-alarm
-                              #:put-dashboard #:put-insight-rule
-                              #:put-managed-insight-rules #:put-metric-alarm
-                              #:put-metric-data #:put-metric-stream #:range
-                              #:recently-active #:resource-id #:resource-list
-                              #:resource-name #:resource-type #:return-data
-                              #:scan-by #:set-alarm-state
+                              #:metric-widget-image #:metrics
+                              #:missing-required-parameter-exception
+                              #:namespace #:next-token #:output-format
+                              #:owning-accounts #:partial-failure #:period
+                              #:periodic-spikes #:put-anomaly-detector
+                              #:put-composite-alarm #:put-dashboard
+                              #:put-insight-rule #:put-managed-insight-rules
+                              #:put-metric-alarm #:put-metric-data
+                              #:put-metric-stream #:range #:recently-active
+                              #:resource-id #:resource-list #:resource-name
+                              #:resource-not-found
+                              #:resource-not-found-exception #:resource-type
+                              #:return-data #:scan-by #:set-alarm-state
                               #:single-metric-anomaly-detector #:size
                               #:standard-unit #:start-metric-streams #:stat
                               #:state-reason #:state-reason-data #:state-value
@@ -131,8 +142,12 @@
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-value #:template-name #:threshold
                               #:timestamp #:timestamps #:treat-missing-data
-                              #:untag-resource #:values))
+                              #:untag-resource #:values #:cloudwatch-error))
 (common-lisp:in-package #:pira/cloudwatch)
+
+(common-lisp:define-condition cloudwatch-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service granite-service-version20100801 :shape-name
                                    "GraniteServiceVersion20100801" :version
@@ -375,13 +390,15 @@
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentModificationException")
                                 (:error-name "ConcurrentModificationException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-list counts :member datapoint-value)
 
@@ -414,7 +431,8 @@
                                   "dashboardValidationMessages"))
                                 (:shape-name "DashboardInvalidInputError")
                                 (:error-name "InvalidParameterInput")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-type dashboard-name smithy/sdk/smithy-types:string)
 
@@ -428,7 +446,8 @@
                                   :member-name "message"))
                                 (:shape-name "DashboardNotFoundError")
                                 (:error-name "ResourceNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-structure dashboard-validation-message
                                     common-lisp:nil
@@ -1123,20 +1142,23 @@
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceFault")
                                 (:error-name "InternalServiceError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-error invalid-format-fault common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidFormatFault")
-                                (:error-name "InvalidFormat") (:error-code 400))
+                                (:error-name "InvalidFormat") (:error-code 400)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidNextToken")
                                 (:error-name "InvalidNextToken")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-combination-exception
                                 common-lisp:nil
@@ -1145,7 +1167,8 @@
                                 (:shape-name
                                  "InvalidParameterCombinationException")
                                 (:error-name "InvalidParameterCombination")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
@@ -1153,7 +1176,8 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterValueException")
                                 (:error-name "InvalidParameterValue")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-structure label-options common-lisp:nil
                                     ((timezone :target-type
@@ -1168,13 +1192,15 @@
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
                                 (:error-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-fault common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededFault")
-                                (:error-name "LimitExceeded") (:error-code 400))
+                                (:error-name "LimitExceeded") (:error-code 400)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-input list-dashboards-input common-lisp:nil
                                 ((dashboard-name-prefix :target-type
@@ -1609,7 +1635,8 @@
                                 (:shape-name
                                  "MissingRequiredParameterException")
                                 (:error-name "MissingParameter")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-type namespace smithy/sdk/smithy-types:string)
 
@@ -1867,7 +1894,8 @@
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFound")
                                 (:error-name "ResourceNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((resource-type :target-type resource-type
@@ -1878,7 +1906,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudwatch-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -2309,7 +2338,8 @@
                                        (internal-service-fault
                                         invalid-parameter-combination-exception
                                         invalid-parameter-value-exception
-                                        missing-required-parameter-exception))
+                                        missing-required-parameter-exception)
+                                       :request-compression '#("gzip"))
 
 (smithy/sdk/operation:define-operation put-metric-stream :shape-name
                                        "PutMetricStream" :input

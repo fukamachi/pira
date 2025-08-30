@@ -1,5 +1,5 @@
 (uiop/package:define-package #:pira/bedrock-data-automation (:use)
-                             (:export
+                             (:export #:access-denied-exception
                               #:amazon-bedrock-keystone-build-time-service
                               #:audio-extraction-category
                               #:audio-extraction-category-type
@@ -16,7 +16,8 @@
                               #:blueprint-schema #:blueprint-stage
                               #:blueprint-stage-filter #:blueprint-summary
                               #:blueprint-version #:blueprints #:client-token
-                              #:create-blueprint #:create-blueprint-version
+                              #:conflict-exception #:create-blueprint
+                              #:create-blueprint-version
                               #:create-data-automation-project
                               #:custom-output-configuration
                               #:data-automation-project
@@ -58,19 +59,23 @@
                               #:image-standard-generative-field-type
                               #:image-standard-generative-field-types
                               #:image-standard-output-configuration
+                              #:internal-server-exception
                               #:kms-encryption-context #:kms-key-id
                               #:list-blueprints #:list-data-automation-projects
                               #:list-tags-for-resource #:max-results
                               #:modality-processing-configuration
                               #:modality-routing-configuration #:next-token
                               #:non-blank-string #:override-configuration
-                              #:resource-owner #:splitter-configuration
+                              #:resource-not-found-exception #:resource-owner
+                              #:service-quota-exceeded-exception
+                              #:splitter-configuration
                               #:standard-output-configuration #:state #:tag
                               #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-value
-                              #:taggable-resource-arn #:type #:untag-resource
-                              #:update-blueprint
+                              #:taggable-resource-arn #:throttling-exception
+                              #:type #:untag-resource #:update-blueprint
                               #:update-data-automation-project
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:video-bounding-box #:video-extraction-category
@@ -81,8 +86,13 @@
                               #:video-standard-generative-field
                               #:video-standard-generative-field-type
                               #:video-standard-generative-field-types
-                              #:video-standard-output-configuration))
+                              #:video-standard-output-configuration
+                              #:bedrock-data-automation-error))
 (common-lisp:in-package #:pira/bedrock-data-automation)
+
+(common-lisp:define-condition bedrock-data-automation-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-bedrock-keystone-build-time-service
                                    :shape-name
@@ -108,7 +118,8 @@
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class bedrock-data-automation-error))
 
 (smithy/sdk/shapes:define-structure audio-extraction-category common-lisp:nil
                                     ((state :target-type state :required
@@ -277,7 +288,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class bedrock-data-automation-error))
 
 (smithy/sdk/shapes:define-input create-blueprint-request common-lisp:nil
                                 ((blueprint-name :target-type blueprint-name
@@ -733,7 +745,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class bedrock-data-automation-error))
 
 (smithy/sdk/shapes:define-map kms-encryption-context :key
                               encryption-context-key :value
@@ -852,7 +865,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class bedrock-data-automation-error))
 
 (smithy/sdk/shapes:define-enum resource-owner
     common-lisp:nil
@@ -864,7 +878,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class bedrock-data-automation-error))
 
 (smithy/sdk/shapes:define-structure splitter-configuration common-lisp:nil
                                     ((state :target-type state :member-name
@@ -926,7 +941,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class bedrock-data-automation-error))
 
 (smithy/sdk/shapes:define-enum type
     common-lisp:nil
@@ -1015,7 +1031,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bedrock-data-automation-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type non-blank-string

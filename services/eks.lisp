@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/eks (:use)
                              (:export #:amitypes #:awswesley-frontend
-                              #:access-config-response #:access-entry
+                              #:access-config-response
+                              #:access-denied-exception #:access-entry
                               #:access-policies-list #:access-policy
                               #:access-scope #:access-scope-type
                               #:additional-info-map #:addon
@@ -20,14 +21,14 @@
                               #:associated-access-policies-list
                               #:associated-access-policy #:authentication-mode
                               #:auto-scaling-group #:auto-scaling-group-list
-                              #:block-storage #:boolean #:boxed-boolean
-                              #:boxed-integer #:capacity #:capacity-types
-                              #:category #:category-list #:certificate
-                              #:client-stat #:client-stats #:cluster
-                              #:cluster-health #:cluster-issue
-                              #:cluster-issue-code #:cluster-issue-list
-                              #:cluster-name #:cluster-status
-                              #:cluster-version-information
+                              #:bad-request-exception #:block-storage #:boolean
+                              #:boxed-boolean #:boxed-integer #:capacity
+                              #:capacity-types #:category #:category-list
+                              #:certificate #:client-exception #:client-stat
+                              #:client-stats #:cluster #:cluster-health
+                              #:cluster-issue #:cluster-issue-code
+                              #:cluster-issue-list #:cluster-name
+                              #:cluster-status #:cluster-version-information
                               #:cluster-version-list #:cluster-version-status
                               #:compatibilities #:compatibility
                               #:compute-config-request
@@ -92,8 +93,10 @@
                               #:insight-status-value
                               #:insight-status-value-list #:insight-summaries
                               #:insight-summary #:insights-filter #:integer
-                              #:ip-family #:issue #:issue-list
-                              #:kubernetes-network-config-request
+                              #:invalid-parameter-exception
+                              #:invalid-request-exception
+                              #:invalid-state-exception #:ip-family #:issue
+                              #:issue-list #:kubernetes-network-config-request
                               #:kubernetes-network-config-response
                               #:launch-template-specification #:license
                               #:license-list #:list-access-entries
@@ -124,7 +127,8 @@
                               #:nodegroup-scaling-config #:nodegroup-status
                               #:nodegroup-update-config
                               #:nodegroup-update-strategies #:non-zero-integer
-                              #:oidc #:oidc-identity-provider-config
+                              #:not-found-exception #:oidc
+                              #:oidc-identity-provider-config
                               #:oidc-identity-provider-config-request
                               #:outpost-config-request
                               #:outpost-config-response #:percent-capacity
@@ -136,12 +140,19 @@
                               #:remote-network-config-response
                               #:remote-node-network #:remote-node-network-list
                               #:remote-pod-network #:remote-pod-network-list
-                              #:resolve-conflicts #:role-arn
+                              #:resolve-conflicts #:resource-in-use-exception
+                              #:resource-limit-exceeded-exception
+                              #:resource-not-found-exception
+                              #:resource-propagation-delay-exception #:role-arn
+                              #:server-exception
+                              #:service-unavailable-exception
                               #:storage-config-request
                               #:storage-config-response #:string #:string-list
                               #:support-type #:tag-key #:tag-key-list #:tag-map
                               #:tag-resource #:tag-value #:taint #:taint-effect
-                              #:timestamp #:untag-resource #:update
+                              #:throttling-exception #:timestamp
+                              #:unsupported-availability-zone-exception
+                              #:untag-resource #:update
                               #:update-access-config-request
                               #:update-access-entry #:update-addon
                               #:update-cluster-config #:update-cluster-version
@@ -159,8 +170,13 @@
                               #:label-key #:label-value #:labels-key-list
                               #:labels-map #:required-claims-key
                               #:required-claims-map #:required-claims-value
-                              #:taint-key #:taint-value #:taints-list))
+                              #:taint-key #:taint-value #:taints-list
+                              #:eks-error))
 (common-lisp:in-package #:pira/eks)
+
+(common-lisp:define-condition eks-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awswesley-frontend :shape-name
                                    "AWSWesleyFrontend" :version "2017-11-01"
@@ -254,7 +270,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-structure access-entry common-lisp:nil
                                     ((cluster-name :target-type string
@@ -556,7 +572,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-structure block-storage common-lisp:nil
                                     ((enabled :target-type boxed-boolean
@@ -601,7 +617,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ClientException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-structure client-stat common-lisp:nil
                                     ((user-agent :target-type string
@@ -1865,7 +1881,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((cluster-name :target-type string :member-name
@@ -1879,7 +1895,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((cluster-name :target-type string :member-name
@@ -1887,7 +1903,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-enum ip-family
     common-lisp:nil
@@ -2456,7 +2472,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-structure oidc common-lisp:nil
                                     ((issuer :target-type string :member-name
@@ -2676,7 +2692,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-error resource-limit-exceeded-exception
                                 common-lisp:nil
@@ -2689,7 +2705,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((cluster-name :target-type string :member-name
@@ -2705,7 +2721,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-error resource-propagation-delay-exception
                                 common-lisp:nil
@@ -2713,7 +2729,7 @@
                                   "message"))
                                 (:shape-name
                                  "ResourcePropagationDelayException")
-                                (:error-code 428))
+                                (:error-code 428) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -2729,13 +2745,13 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-structure storage-config-request common-lisp:nil
                                     ((block-storage :target-type block-storage
@@ -2797,7 +2813,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -2813,7 +2829,7 @@
                                   :member-name "validZones"))
                                 (:shape-name
                                  "UnsupportedAvailabilityZoneException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class eks-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required

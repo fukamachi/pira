@@ -4,13 +4,20 @@
                               #:account-list-type #:account-name-type
                               #:email-address-type #:error-description
                               #:expiration-timestamp-type
-                              #:get-role-credentials #:list-account-roles
+                              #:get-role-credentials
+                              #:invalid-request-exception #:list-account-roles
                               #:list-accounts #:logout #:max-result-type
-                              #:next-token-type #:role-credentials #:role-info
-                              #:role-list-type #:role-name-type
-                              #:swbportal-service #:secret-access-key-type
-                              #:session-token-type))
+                              #:next-token-type #:resource-not-found-exception
+                              #:role-credentials #:role-info #:role-list-type
+                              #:role-name-type #:swbportal-service
+                              #:secret-access-key-type #:session-token-type
+                              #:too-many-requests-exception
+                              #:unauthorized-exception #:sso-error))
 (common-lisp:in-package #:pira/sso)
+
+(common-lisp:define-condition sso-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service swbportal-service :shape-name
                                    "SWBPortalService" :version "2019-06-10"
@@ -80,7 +87,7 @@
                                 ((message :target-type error-description
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-error))
 
 (smithy/sdk/shapes:define-input list-account-roles-request common-lisp:nil
                                 ((next-token :target-type next-token-type
@@ -140,7 +147,7 @@
                                 ((message :target-type error-description
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class sso-error))
 
 (smithy/sdk/shapes:define-structure role-credentials common-lisp:nil
                                     ((access-key-id :target-type
@@ -178,13 +185,13 @@
                                 ((message :target-type error-description
                                   :member-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class sso-error))
 
 (smithy/sdk/shapes:define-error unauthorized-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class sso-error))
 
 (smithy/sdk/operation:define-operation get-role-credentials :shape-name
                                        "GetRoleCredentials" :input

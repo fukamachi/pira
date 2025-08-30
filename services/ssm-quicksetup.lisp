@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/ssm-quicksetup (:use)
-                             (:export #:configuration-definition
+                             (:export #:access-denied-exception
+                              #:configuration-definition
                               #:configuration-definition-input
                               #:configuration-definition-summaries-list
                               #:configuration-definition-summary
@@ -9,23 +10,31 @@
                               #:configuration-manager-summary
                               #:configuration-parameters-map
                               #:configuration-summary #:configurations-list
+                              #:conflict-exception
                               #:create-configuration-manager
                               #:delete-configuration-manager #:filter
                               #:filter-values #:filters-list
                               #:get-configuration #:get-configuration-manager
                               #:get-service-settings #:iamrole-arn
+                              #:internal-server-exception
                               #:list-configuration-managers
                               #:list-configurations #:list-quick-setup-types
                               #:list-tags-for-resource #:quick-setup
                               #:quick-setup-type-list #:quick-setup-type-output
-                              #:service-settings #:status #:status-details
-                              #:status-summaries-list #:status-summary
-                              #:status-type #:tag-entry #:tag-keys
-                              #:tag-resource #:tags #:tags-map #:untag-resource
+                              #:resource-not-found-exception #:service-settings
+                              #:status #:status-details #:status-summaries-list
+                              #:status-summary #:status-type #:tag-entry
+                              #:tag-keys #:tag-resource #:tags #:tags-map
+                              #:throttling-exception #:untag-resource
                               #:update-configuration-definition
                               #:update-configuration-manager
-                              #:update-service-settings))
+                              #:update-service-settings #:validation-exception
+                              #:ssm-quicksetup-error))
 (common-lisp:in-package #:pira/ssm-quicksetup)
+
+(common-lisp:define-condition ssm-quicksetup-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service quick-setup :shape-name "QuickSetup"
                                    :version "2018-05-10" :title
@@ -60,7 +69,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class ssm-quicksetup-error))
 
 (smithy/sdk/shapes:define-structure configuration-definition common-lisp:nil
                                     ((type :target-type
@@ -203,7 +213,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class ssm-quicksetup-error))
 
 (smithy/sdk/shapes:define-input create-configuration-manager-input
                                 common-lisp:nil
@@ -345,7 +356,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class ssm-quicksetup-error))
 
 (smithy/sdk/shapes:define-input list-configuration-managers-input
                                 common-lisp:nil
@@ -431,7 +443,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class ssm-quicksetup-error))
 
 (smithy/sdk/shapes:define-structure service-settings common-lisp:nil
                                     ((explorer-enabling-role-arn :target-type
@@ -512,7 +525,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class ssm-quicksetup-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type
@@ -575,7 +589,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ssm-quicksetup-error))
 
 (smithy/sdk/operation:define-operation create-configuration-manager :shape-name
                                        "CreateConfigurationManager" :input

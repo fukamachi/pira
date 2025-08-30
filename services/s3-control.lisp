@@ -22,7 +22,9 @@
                               #:async-response-details
                               #:aws-lambda-transformation
                               #:aws-lambda-transformation-payload #:aws-org-arn
-                              #:boolean #:bucket-canned-acl
+                              #:bad-request-exception #:boolean
+                              #:bucket-already-exists
+                              #:bucket-already-owned-by-you #:bucket-canned-acl
                               #:bucket-identifier-string #:bucket-level
                               #:bucket-location-constraint #:bucket-name
                               #:bucket-versioning-status #:buckets
@@ -101,8 +103,12 @@
                               #:grant-read #:grant-read-acp #:grant-write
                               #:grant-write-acp #:grantee #:grantee-identifier
                               #:grantee-type #:iamrole-arn #:id
+                              #:idempotency-exception
                               #:identity-center-application-arn
-                              #:identity-center-arn #:include #:is-enabled
+                              #:identity-center-arn #:include
+                              #:internal-service-exception
+                              #:invalid-next-token-exception
+                              #:invalid-request-exception #:is-enabled
                               #:is-public #:job-arn #:job-creation-time
                               #:job-descriptor #:job-failure #:job-failure-code
                               #:job-failure-list #:job-failure-reason #:job-id
@@ -116,7 +122,8 @@
                               #:job-number-of-tasks-succeeded #:job-operation
                               #:job-priority #:job-progress-summary
                               #:job-report #:job-report-format
-                              #:job-report-scope #:job-status #:job-status-list
+                              #:job-report-scope #:job-status
+                              #:job-status-exception #:job-status-list
                               #:job-status-update-reason #:job-termination-date
                               #:job-time-in-state-seconds #:job-timers
                               #:job-total-number-of-tasks #:key-name-constraint
@@ -160,6 +167,7 @@
                               #:multi-region-access-point-status
                               #:multi-region-access-points-async-response
                               #:network-origin
+                              #:no-such-public-access-block-configuration
                               #:no-such-public-access-block-configuration-message
                               #:non-empty-max-length1024string
                               #:non-empty-max-length1024string-list
@@ -170,7 +178,8 @@
                               #:noncurrent-version-expiration
                               #:noncurrent-version-transition
                               #:noncurrent-version-transition-list
-                              #:object-age-value #:object-creation-time
+                              #:not-found-exception #:object-age-value
+                              #:object-creation-time
                               #:object-lambda-access-point
                               #:object-lambda-access-point-alias
                               #:object-lambda-access-point-alias-status
@@ -292,15 +301,20 @@
                               #:suffix #:suspended-cause #:suspended-date #:tag
                               #:tag-key-list #:tag-key-string #:tag-list
                               #:tag-resource #:tag-value-string #:tagging
-                              #:time-stamp #:traffic-dial-percentage
-                              #:transition #:transition-list
-                              #:transition-storage-class #:untag-resource
-                              #:update-access-grants-location
+                              #:time-stamp #:too-many-requests-exception
+                              #:too-many-tags-exception
+                              #:traffic-dial-percentage #:transition
+                              #:transition-list #:transition-storage-class
+                              #:untag-resource #:update-access-grants-location
                               #:update-job-priority #:update-job-status
                               #:update-storage-lens-group #:user-arguments
                               #:versioning-configuration #:vpc-configuration
-                              #:vpc-id))
+                              #:vpc-id #:s3-control-error))
 (common-lisp:in-package #:pira/s3-control)
+
+(common-lisp:define-condition s3-control-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awss3control-service-v20180820 :shape-name
                                    "AWSS3ControlServiceV20180820" :version
@@ -650,19 +664,22 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class s3-control-error))
 
 (smithy/sdk/shapes:define-type boolean smithy/sdk/smithy-types:boolean)
 
 (smithy/sdk/shapes:define-error bucket-already-exists common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "BucketAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class s3-control-error))
 
 (smithy/sdk/shapes:define-error bucket-already-owned-by-you common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "BucketAlreadyOwnedByYou")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class s3-control-error))
 
 (smithy/sdk/shapes:define-enum bucket-canned-acl
     common-lisp:nil
@@ -2102,7 +2119,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "IdempotencyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class s3-control-error))
 
 (smithy/sdk/shapes:define-type identity-center-application-arn
                                smithy/sdk/smithy-types:string)
@@ -2121,19 +2139,22 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class s3-control-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class s3-control-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class s3-control-error))
 
 (smithy/sdk/shapes:define-type is-enabled smithy/sdk/smithy-types:boolean)
 
@@ -2418,7 +2439,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "JobStatusException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class s3-control-error))
 
 (smithy/sdk/shapes:define-list job-status-list :member job-status)
 
@@ -3163,7 +3185,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "NoSuchPublicAccessBlockConfiguration")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class s3-control-error))
 
 (smithy/sdk/shapes:define-type
  no-such-public-access-block-configuration-message
@@ -3213,7 +3236,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class s3-control-error))
 
 (smithy/sdk/shapes:define-type object-age-value smithy/sdk/smithy-types:integer)
 
@@ -4585,13 +4609,15 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class s3-control-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class s3-control-error))
 
 (smithy/sdk/shapes:define-type traffic-dial-percentage
                                smithy/sdk/smithy-types:integer)

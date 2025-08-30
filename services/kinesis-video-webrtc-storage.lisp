@@ -1,8 +1,17 @@
 (uiop/package:define-package #:pira/kinesis-video-webrtc-storage (:use)
                              (:export #:awsacuity-routing-service-lambda
-                              #:channel-arn #:client-id #:join-storage-session
-                              #:join-storage-session-as-viewer))
+                              #:access-denied-exception #:channel-arn
+                              #:client-id #:client-limit-exceeded-exception
+                              #:invalid-argument-exception
+                              #:join-storage-session
+                              #:join-storage-session-as-viewer
+                              #:resource-not-found-exception
+                              #:kinesis-video-webrtc-storage-error))
 (common-lisp:in-package #:pira/kinesis-video-webrtc-storage)
+
+(common-lisp:define-condition kinesis-video-webrtc-storage-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsacuity-routing-service-lambda :shape-name
                                    "AWSAcuityRoutingServiceLambda" :version
@@ -26,7 +35,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class
+                                 kinesis-video-webrtc-storage-error))
 
 (smithy/sdk/shapes:define-type channel-arn smithy/sdk/smithy-types:string)
 
@@ -37,14 +48,18 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ClientLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 kinesis-video-webrtc-storage-error))
 
 (smithy/sdk/shapes:define-error invalid-argument-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 kinesis-video-webrtc-storage-error))
 
 (smithy/sdk/shapes:define-input join-storage-session-as-viewer-input
                                 common-lisp:nil
@@ -66,7 +81,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class
+                                 kinesis-video-webrtc-storage-error))
 
 (smithy/sdk/operation:define-operation join-storage-session :shape-name
                                        "JoinStorageSession" :input

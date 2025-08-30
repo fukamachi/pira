@@ -1,7 +1,8 @@
 (uiop/package:define-package #:pira/appflow (:use)
-                             (:export #:arn #:access-key-id #:access-token
-                              #:account-name #:aggregation-config
-                              #:aggregation-type #:amplitude-connector-operator
+                             (:export #:arn #:access-denied-exception
+                              #:access-key-id #:access-token #:account-name
+                              #:aggregation-config #:aggregation-type
+                              #:amplitude-connector-operator
                               #:amplitude-connector-profile-credentials
                               #:amplitude-connector-profile-properties
                               #:amplitude-metadata
@@ -18,7 +19,9 @@
                               #:catalog-type #:client-credentials-arn
                               #:client-id #:client-number #:client-secret
                               #:client-token #:cluster-identifier
-                              #:connection-mode #:connector-configuration
+                              #:conflict-exception #:connection-mode
+                              #:connector-authentication-exception
+                              #:connector-configuration
                               #:connector-configurations-map
                               #:connector-description #:connector-detail
                               #:connector-entity #:connector-entity-field
@@ -42,6 +45,7 @@
                               #:connector-runtime-setting-data-type
                               #:connector-runtime-setting-list
                               #:connector-runtime-setting-scope
+                              #:connector-server-exception
                               #:connector-supplied-value
                               #:connector-supplied-value-list
                               #:connector-supplied-value-option-list
@@ -116,7 +120,8 @@
                               #:infor-nexus-connector-profile-properties
                               #:infor-nexus-metadata
                               #:infor-nexus-source-properties #:instance-url
-                              #:java-boolean #:jwt-token #:kmsarn #:key #:label
+                              #:internal-server-exception #:java-boolean
+                              #:jwt-token #:kmsarn #:key #:label
                               #:lambda-connector-provisioning-config
                               #:list-connector-entities #:list-connectors
                               #:list-entities-max-results #:list-flows
@@ -162,7 +167,8 @@
                               #:redshift-metadata #:refresh-token #:region
                               #:region-list #:register-connector
                               #:registered-by #:registration-output
-                              #:reset-connector-metadata-cache #:role-arn
+                              #:reset-connector-metadata-cache
+                              #:resource-not-found-exception #:role-arn
                               #:s3connector-operator #:s3destination-properties
                               #:s3input-file-type #:s3input-format-config
                               #:s3metadata #:s3output-format-config
@@ -193,6 +199,7 @@
                               #:service-now-connector-profile-properties
                               #:service-now-metadata
                               #:service-now-source-properties
+                              #:service-quota-exceeded-exception
                               #:singular-connector-operator
                               #:singular-connector-profile-credentials
                               #:singular-connector-profile-properties
@@ -220,7 +227,8 @@
                               #:supported-write-operation-list #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
                               #:tag-value #:task #:task-properties-map
-                              #:task-type #:tasks #:timezone #:token-url
+                              #:task-type #:tasks #:throttling-exception
+                              #:timezone #:token-url
                               #:token-url-custom-properties #:token-url-list
                               #:trendmicro-connector-operator
                               #:trendmicro-connector-profile-credentials
@@ -229,13 +237,15 @@
                               #:trendmicro-source-properties #:trigger-config
                               #:trigger-properties #:trigger-type
                               #:trigger-type-list #:unregister-connector
+                              #:unsupported-operation-exception
                               #:untag-resource #:update-connector-profile
                               #:update-connector-registration #:update-flow
                               #:updated-by #:upsolver-bucket-name
                               #:upsolver-destination-properties
                               #:upsolver-metadata
                               #:upsolver-s3output-format-config #:username
-                              #:value #:veeva-connector-operator
+                              #:validation-exception #:value
+                              #:veeva-connector-operator
                               #:veeva-connector-profile-credentials
                               #:veeva-connector-profile-properties
                               #:veeva-metadata #:veeva-source-properties
@@ -245,8 +255,13 @@
                               #:zendesk-connector-profile-credentials
                               #:zendesk-connector-profile-properties
                               #:zendesk-destination-properties
-                              #:zendesk-metadata #:zendesk-source-properties))
+                              #:zendesk-metadata #:zendesk-source-properties
+                              #:appflow-error))
 (common-lisp:in-package #:pira/appflow)
+
+(common-lisp:define-condition appflow-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service sandstone-configuration-service-lambda
                                    :shape-name
@@ -285,7 +300,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class appflow-error))
 
 (smithy/sdk/shapes:define-type access-key-id smithy/sdk/smithy-types:string)
 
@@ -461,7 +476,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class appflow-error))
 
 (smithy/sdk/shapes:define-enum connection-mode
     common-lisp:nil
@@ -474,7 +489,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ConnectorAuthenticationException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class appflow-error))
 
 (smithy/sdk/shapes:define-structure connector-configuration common-lisp:nil
                                     ((can-use-as-source :target-type boolean
@@ -1005,7 +1020,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConnectorServerException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appflow-error))
 
 (smithy/sdk/shapes:define-type connector-supplied-value
                                smithy/sdk/smithy-types:string)
@@ -1985,7 +2000,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class appflow-error))
 
 (smithy/sdk/shapes:define-type java-boolean smithy/sdk/smithy-types:boolean)
 
@@ -2621,7 +2636,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class appflow-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -3036,7 +3051,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class appflow-error))
 
 (smithy/sdk/shapes:define-enum singular-connector-operator
     common-lisp:nil
@@ -3400,7 +3415,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class appflow-error))
 
 (smithy/sdk/shapes:define-type timezone smithy/sdk/smithy-types:string)
 
@@ -3490,7 +3505,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnsupportedOperationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appflow-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -3622,7 +3637,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appflow-error))
 
 (smithy/sdk/shapes:define-type value smithy/sdk/smithy-types:string)
 

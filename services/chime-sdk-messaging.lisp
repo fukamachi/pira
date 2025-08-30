@@ -1,7 +1,7 @@
 (uiop/package:define-package #:pira/chime-sdk-messaging (:use)
                              (:export #:allow-notifications
                               #:app-instance-user-membership-summary
-                              #:associate-channel-flow
+                              #:associate-channel-flow #:bad-request-exception
                               #:batch-channel-memberships
                               #:batch-create-channel-membership
                               #:batch-create-channel-membership-error
@@ -37,9 +37,9 @@
                               #:channel-privacy #:channel-summary
                               #:channel-summary-list #:chime-arn
                               #:chime-messaging-service #:client-request-token
-                              #:content #:content-type #:create-channel
-                              #:create-channel-ban #:create-channel-flow
-                              #:create-channel-membership
+                              #:conflict-exception #:content #:content-type
+                              #:create-channel #:create-channel-ban
+                              #:create-channel-flow #:create-channel-membership
                               #:create-channel-moderator #:delete-channel
                               #:delete-channel-ban #:delete-channel-flow
                               #:delete-channel-membership
@@ -56,7 +56,7 @@
                               #:elastic-channel-configuration #:error-code
                               #:expiration-criterion #:expiration-days
                               #:expiration-settings #:fallback-action
-                              #:filter-rule
+                              #:filter-rule #:forbidden-exception
                               #:get-channel-membership-preferences
                               #:get-channel-message
                               #:get-channel-message-status
@@ -82,9 +82,9 @@
                               #:messaging-session-endpoint #:metadata
                               #:minimum-membership-percentage #:next-token
                               #:non-empty-content #:non-empty-resource-name
-                              #:non-nullable-boolean #:processor
-                              #:processor-configuration #:processor-list
-                              #:push-notification-body
+                              #:non-nullable-boolean #:not-found-exception
+                              #:processor #:processor-configuration
+                              #:processor-list #:push-notification-body
                               #:push-notification-configuration
                               #:push-notification-preferences
                               #:push-notification-title
@@ -92,23 +92,32 @@
                               #:put-channel-expiration-settings
                               #:put-channel-membership-preferences
                               #:put-messaging-streaming-configurations
-                              #:redact-channel-message #:resource-name
-                              #:search-channels #:search-field
+                              #:redact-channel-message
+                              #:resource-limit-exceeded-exception
+                              #:resource-name #:search-channels #:search-field
                               #:search-field-key #:search-field-operator
                               #:search-field-value #:search-field-values
                               #:search-fields #:send-channel-message
-                              #:sort-order #:status-detail
-                              #:streaming-configuration
+                              #:service-failure-exception
+                              #:service-unavailable-exception #:sort-order
+                              #:status-detail #:streaming-configuration
                               #:streaming-configuration-list #:string
                               #:sub-channel-id #:sub-channel-summary
                               #:sub-channel-summary-list #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-value #:target #:target-list
-                              #:target-memberships-per-sub-channel #:timestamp
-                              #:untag-resource #:update-channel
-                              #:update-channel-flow #:update-channel-message
-                              #:update-channel-read-marker #:url-type))
+                              #:target-memberships-per-sub-channel
+                              #:throttled-client-exception #:timestamp
+                              #:unauthorized-client-exception #:untag-resource
+                              #:update-channel #:update-channel-flow
+                              #:update-channel-message
+                              #:update-channel-read-marker #:url-type
+                              #:chime-sdk-messaging-error))
 (common-lisp:in-package #:pira/chime-sdk-messaging)
+
+(common-lisp:define-condition chime-sdk-messaging-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service chime-messaging-service :shape-name
                                    "ChimeMessagingService" :version
@@ -202,7 +211,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class chime-sdk-messaging-error))
 
 (smithy/sdk/shapes:define-structure batch-channel-memberships common-lisp:nil
                                     ((invited-by :target-type identity
@@ -635,7 +645,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class chime-sdk-messaging-error))
 
 (smithy/sdk/shapes:define-type content smithy/sdk/smithy-types:string)
 
@@ -1048,7 +1059,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class chime-sdk-messaging-error))
 
 (smithy/sdk/shapes:define-input get-channel-membership-preferences-request
                                 common-lisp:nil
@@ -1492,7 +1504,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class chime-sdk-messaging-error))
 
 (smithy/sdk/shapes:define-structure processor common-lisp:nil
                                     ((name :target-type non-empty-resource-name
@@ -1654,7 +1667,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class chime-sdk-messaging-error))
 
 (smithy/sdk/shapes:define-type resource-name smithy/sdk/smithy-types:string)
 
@@ -1759,7 +1773,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class chime-sdk-messaging-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((code :target-type error-code :member-name
@@ -1767,7 +1782,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class chime-sdk-messaging-error))
 
 (smithy/sdk/shapes:define-enum sort-order
     common-lisp:nil
@@ -1842,7 +1858,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ThrottledClientException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class chime-sdk-messaging-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -1852,7 +1869,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnauthorizedClientException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class chime-sdk-messaging-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type chime-arn :required

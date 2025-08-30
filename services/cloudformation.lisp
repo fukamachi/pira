@@ -6,15 +6,16 @@
                               #:account-limit-list #:account-list
                               #:accounts-url #:activate-organizations-access
                               #:activate-type #:after-context #:after-value
-                              #:allowed-value #:allowed-values #:arn
+                              #:allowed-value #:allowed-values
+                              #:already-exists-exception #:arn
                               #:attribute-change-type #:auto-deployment
                               #:auto-deployment-nullable #:auto-update
                               #:batch-describe-type-configurations
                               #:batch-describe-type-configurations-error
                               #:batch-describe-type-configurations-errors
                               #:before-context #:before-value #:boxed-integer
-                              #:boxed-max-results #:call-as
-                              #:cancel-update-stack #:capabilities
+                              #:boxed-max-results #:cfnregistry-exception
+                              #:call-as #:cancel-update-stack #:capabilities
                               #:capabilities-reason #:capability #:category
                               #:causing-entity #:change #:change-action
                               #:change-set-hook
@@ -22,17 +23,20 @@
                               #:change-set-hook-target-details
                               #:change-set-hooks #:change-set-hooks-status
                               #:change-set-id #:change-set-name
-                              #:change-set-name-or-id #:change-set-status
-                              #:change-set-status-reason #:change-set-summaries
-                              #:change-set-summary #:change-set-type
-                              #:change-source #:change-type #:changes
-                              #:client-request-token #:client-token
+                              #:change-set-name-or-id
+                              #:change-set-not-found-exception
+                              #:change-set-status #:change-set-status-reason
+                              #:change-set-summaries #:change-set-summary
+                              #:change-set-type #:change-source #:change-type
+                              #:changes #:client-request-token #:client-token
                               #:cloud-formation #:concurrency-mode
+                              #:concurrent-resources-limit-exceeded-exception
                               #:configuration-schema #:connection-arn
                               #:continue-update-rollback #:create-change-set
                               #:create-generated-template #:create-stack
                               #:create-stack-instances #:create-stack-refactor
-                              #:create-stack-set #:creation-time
+                              #:create-stack-set
+                              #:created-but-modified-exception #:creation-time
                               #:deactivate-organizations-access
                               #:deactivate-type #:delete-change-set
                               #:delete-generated-template #:delete-stack
@@ -70,6 +74,7 @@
                               #:failure-tolerance-percentage
                               #:generated-template-deletion-policy
                               #:generated-template-id #:generated-template-name
+                              #:generated-template-not-found-exception
                               #:generated-template-resource-status
                               #:generated-template-status
                               #:generated-template-update-replace-policy
@@ -77,25 +82,31 @@
                               #:get-template #:get-template-summary
                               #:handler-error-code #:hook-failure-mode
                               #:hook-invocation-count #:hook-invocation-point
-                              #:hook-result-id #:hook-result-summaries
-                              #:hook-result-summary #:hook-status
-                              #:hook-status-reason #:hook-target-type
-                              #:hook-target-type-name #:hook-type
-                              #:hook-type-configuration-version-id
+                              #:hook-result-id
+                              #:hook-result-not-found-exception
+                              #:hook-result-summaries #:hook-result-summary
+                              #:hook-status #:hook-status-reason
+                              #:hook-target-type #:hook-target-type-name
+                              #:hook-type #:hook-type-configuration-version-id
                               #:hook-type-name #:hook-type-version-id
                               #:identity-provider #:import-existing-resources
                               #:import-stacks-to-stack-set #:imports
                               #:in-progress-stack-instances-count
                               #:in-sync-stack-instances-count
                               #:include-nested-stacks #:include-property-values
+                              #:insufficient-capabilities-exception
+                              #:invalid-change-set-status-exception
+                              #:invalid-operation-exception
+                              #:invalid-state-transition-exception
                               #:is-activated #:is-default-configuration
                               #:is-default-version #:jazz-logical-resource-ids
                               #:jazz-resource-identifier-properties
                               #:jazz-resource-identifier-property-key
                               #:jazz-resource-identifier-property-value #:key
-                              #:last-updated-time #:limit-name #:limit-value
-                              #:list-change-sets #:list-exports
-                              #:list-generated-templates #:list-hook-results
+                              #:last-updated-time #:limit-exceeded-exception
+                              #:limit-name #:limit-value #:list-change-sets
+                              #:list-exports #:list-generated-templates
+                              #:list-hook-results
                               #:list-hook-results-target-type #:list-imports
                               #:list-resource-scan-related-resources
                               #:list-resource-scan-resources
@@ -117,13 +128,19 @@
                               #:max-concurrent-count
                               #:max-concurrent-percentage #:max-results
                               #:metadata #:module-info
-                              #:monitoring-time-in-minutes #:next-token
+                              #:monitoring-time-in-minutes
+                              #:name-already-exists-exception #:next-token
                               #:no-echo #:notification-arn #:notification-arns
                               #:number-of-resources #:on-failure
-                              #:on-stack-failure #:operation-result-filter
+                              #:on-stack-failure
+                              #:operation-id-already-exists-exception
+                              #:operation-in-progress-exception
+                              #:operation-not-found-exception
+                              #:operation-result-filter
                               #:operation-result-filter-name
                               #:operation-result-filter-values
                               #:operation-result-filters #:operation-status
+                              #:operation-status-check-failed-exception
                               #:optional-secure-url #:organization-status
                               #:organizational-unit-id
                               #:organizational-unit-id-list #:output
@@ -164,6 +181,9 @@
                               #:resource-mapping #:resource-mappings
                               #:resource-model #:resource-properties
                               #:resource-property-path #:resource-scan-id
+                              #:resource-scan-in-progress-exception
+                              #:resource-scan-limit-exceeded-exception
+                              #:resource-scan-not-found-exception
                               #:resource-scan-status
                               #:resource-scan-status-reason
                               #:resource-scan-summaries #:resource-scan-summary
@@ -206,12 +226,14 @@
                               #:stack-instance-filter-name
                               #:stack-instance-filter-values
                               #:stack-instance-filters
+                              #:stack-instance-not-found-exception
                               #:stack-instance-resource-drifts-summaries
                               #:stack-instance-resource-drifts-summary
                               #:stack-instance-status
                               #:stack-instance-summaries
                               #:stack-instance-summary #:stack-name
-                              #:stack-name-or-id #:stack-policy-body
+                              #:stack-name-or-id #:stack-not-found-exception
+                              #:stack-policy-body
                               #:stack-policy-during-update-body
                               #:stack-policy-during-update-url
                               #:stack-policy-url #:stack-refactor-action
@@ -222,6 +244,7 @@
                               #:stack-refactor-execution-status
                               #:stack-refactor-execution-status-filter
                               #:stack-refactor-id
+                              #:stack-refactor-not-found-exception
                               #:stack-refactor-resource-identifier
                               #:stack-refactor-status
                               #:stack-refactor-status-reason
@@ -245,6 +268,8 @@
                               #:stack-set-drift-detection-status
                               #:stack-set-drift-status #:stack-set-id
                               #:stack-set-name #:stack-set-name-or-id
+                              #:stack-set-not-empty-exception
+                              #:stack-set-not-found-exception
                               #:stack-set-operation
                               #:stack-set-operation-action
                               #:stack-set-operation-preferences
@@ -260,8 +285,8 @@
                               #:stack-status #:stack-status-filter
                               #:stack-status-reason #:stack-summaries
                               #:stack-summary #:stacks #:stage-list
-                              #:start-resource-scan #:status-message
-                              #:stop-stack-set-operation
+                              #:stale-request-exception #:start-resource-scan
+                              #:status-message #:stop-stack-set-operation
                               #:supported-major-version
                               #:supported-major-versions #:tag #:tag-key
                               #:tag-value #:tags #:template-body
@@ -273,9 +298,9 @@
                               #:template-summary-config #:template-url
                               #:test-type #:third-party-type
                               #:third-party-type-arn #:timeout-minutes
-                              #:timestamp #:total-stack-instances-count
-                              #:total-warnings #:transform-name
-                              #:transforms-list
+                              #:timestamp #:token-already-exists-exception
+                              #:total-stack-instances-count #:total-warnings
+                              #:transform-name #:transforms-list
                               #:treat-unrecognized-resource-types-as-warnings
                               #:type #:type-arn #:type-configuration
                               #:type-configuration-alias
@@ -283,8 +308,10 @@
                               #:type-configuration-details
                               #:type-configuration-details-list
                               #:type-configuration-identifier
-                              #:type-configuration-identifiers #:type-filters
-                              #:type-hierarchy #:type-name #:type-name-prefix
+                              #:type-configuration-identifiers
+                              #:type-configuration-not-found-exception
+                              #:type-filters #:type-hierarchy #:type-name
+                              #:type-name-prefix #:type-not-found-exception
                               #:type-schema #:type-summaries #:type-summary
                               #:type-tests-status
                               #:type-tests-status-description #:type-version-id
@@ -297,8 +324,13 @@
                               #:validate-template #:value #:version
                               #:version-bump #:visibility #:warning-detail
                               #:warning-details #:warning-properties
-                              #:warning-property #:warning-type #:warnings))
+                              #:warning-property #:warning-type #:warnings
+                              #:cloudformation-error))
 (common-lisp:in-package #:pira/cloudformation)
+
+(common-lisp:define-condition cloudformation-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service cloud-formation :shape-name "CloudFormation"
                                    :version "2010-05-15" :title
@@ -475,7 +507,8 @@
                                   :member-name "Message"))
                                 (:shape-name "AlreadyExistsException")
                                 (:error-name "AlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
 
@@ -555,7 +588,8 @@
                                   :member-name "Message"))
                                 (:shape-name "CFNRegistryException")
                                 (:error-name "CFNRegistryException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-enum call-as
     common-lisp:nil
@@ -674,7 +708,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ChangeSetNotFoundException")
                                 (:error-name "ChangeSetNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-enum change-set-status
     common-lisp:nil
@@ -766,7 +801,8 @@
                                  "ConcurrentResourcesLimitExceededException")
                                 (:error-name
                                  "ConcurrentResourcesLimitExceeded")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-type configuration-schema
                                smithy/sdk/smithy-types:string)
@@ -1016,7 +1052,8 @@
                                   :member-name "Message"))
                                 (:shape-name "CreatedButModifiedException")
                                 (:error-name "CreatedButModifiedException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-type creation-time smithy/sdk/smithy-types:timestamp)
 
@@ -1867,7 +1904,8 @@
                                 (:shape-name
                                  "GeneratedTemplateNotFoundException")
                                 (:error-name "GeneratedTemplateNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-enum generated-template-resource-status
     common-lisp:nil
@@ -2022,7 +2060,8 @@
                                   :member-name "Message"))
                                 (:shape-name "HookResultNotFoundException")
                                 (:error-name "HookResultNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-list hook-result-summaries :member
                                hook-result-summary)
@@ -2138,7 +2177,8 @@
                                  "InsufficientCapabilitiesException")
                                 (:error-name
                                  "InsufficientCapabilitiesException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-error invalid-change-set-status-exception
                                 common-lisp:nil
@@ -2146,14 +2186,16 @@
                                   :member-name "Message"))
                                 (:shape-name "InvalidChangeSetStatusException")
                                 (:error-name "InvalidChangeSetStatus")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-error invalid-operation-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidOperationException")
                                 (:error-name "InvalidOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-error invalid-state-transition-exception
                                 common-lisp:nil
@@ -2161,7 +2203,8 @@
                                   :member-name "Message"))
                                 (:shape-name "InvalidStateTransitionException")
                                 (:error-name "InvalidStateTransition")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-type is-activated smithy/sdk/smithy-types:boolean)
 
@@ -2194,7 +2237,8 @@
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
                                 (:error-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-type limit-name smithy/sdk/smithy-types:string)
 
@@ -2722,7 +2766,8 @@
                                   :member-name "Message"))
                                 (:shape-name "NameAlreadyExistsException")
                                 (:error-name "NameAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
 
@@ -2755,21 +2800,24 @@
                                  "OperationIdAlreadyExistsException")
                                 (:error-name
                                  "OperationIdAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-error operation-in-progress-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "OperationInProgressException")
                                 (:error-name "OperationInProgressException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-error operation-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "OperationNotFoundException")
                                 (:error-name "OperationNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-structure operation-result-filter common-lisp:nil
                                     ((name :target-type
@@ -2804,7 +2852,8 @@
                                 (:shape-name
                                  "OperationStatusCheckFailedException")
                                 (:error-name "ConditionalCheckFailed")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-type optional-secure-url
                                smithy/sdk/smithy-types:string)
@@ -3273,7 +3322,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ResourceScanInProgressException")
                                 (:error-name "ResourceScanInProgress")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-error resource-scan-limit-exceeded-exception
                                 common-lisp:nil
@@ -3282,7 +3332,8 @@
                                 (:shape-name
                                  "ResourceScanLimitExceededException")
                                 (:error-name "ResourceScanLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-error resource-scan-not-found-exception
                                 common-lisp:nil
@@ -3290,7 +3341,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ResourceScanNotFoundException")
                                 (:error-name "ResourceScanNotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-enum resource-scan-status
     common-lisp:nil
@@ -3856,7 +3908,8 @@
                                   :member-name "Message"))
                                 (:shape-name "StackInstanceNotFoundException")
                                 (:error-name "StackInstanceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-list stack-instance-resource-drifts-summaries :member
                                stack-instance-resource-drifts-summary)
@@ -3939,7 +3992,8 @@
                                   :member-name "Message"))
                                 (:shape-name "StackNotFoundException")
                                 (:error-name "StackNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-type stack-policy-body smithy/sdk/smithy-types:string)
 
@@ -4024,7 +4078,8 @@
                                   :member-name "Message"))
                                 (:shape-name "StackRefactorNotFoundException")
                                 (:error-name "StackRefactorNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-type stack-refactor-resource-identifier
                                smithy/sdk/smithy-types:string)
@@ -4368,14 +4423,16 @@
                                   :member-name "Message"))
                                 (:shape-name "StackSetNotEmptyException")
                                 (:error-name "StackSetNotEmptyException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-error stack-set-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "StackSetNotFoundException")
                                 (:error-name "StackSetNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-structure stack-set-operation common-lisp:nil
                                     ((operation-id :target-type
@@ -4641,7 +4698,8 @@
                                   :member-name "Message"))
                                 (:shape-name "StaleRequestException")
                                 (:error-name "StaleRequestException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-input start-resource-scan-input common-lisp:nil
                                 ((client-request-token :target-type
@@ -4819,7 +4877,8 @@
                                   :member-name "Message"))
                                 (:shape-name "TokenAlreadyExistsException")
                                 (:error-name "TokenAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-type total-stack-instances-count
                                smithy/sdk/smithy-types:integer)
@@ -4896,7 +4955,8 @@
                                  "TypeConfigurationNotFoundException")
                                 (:error-name
                                  "TypeConfigurationNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-structure type-filters common-lisp:nil
                                     ((category :target-type category
@@ -4919,7 +4979,8 @@
                                   :member-name "Message"))
                                 (:shape-name "TypeNotFoundException")
                                 (:error-name "TypeNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudformation-error))
 
 (smithy/sdk/shapes:define-type type-schema smithy/sdk/smithy-types:string)
 

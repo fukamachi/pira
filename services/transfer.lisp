@@ -1,17 +1,18 @@
 (uiop/package:define-package #:pira/transfer (:use)
                              (:export #:cfn-ssh-public-keys
-                              #:cfn-user-properties #:address-allocation-id
-                              #:address-allocation-ids #:agreement-id
-                              #:agreement-resource #:agreement-status-type
-                              #:arn #:as2connector-config
-                              #:as2connector-secret-id #:as2id #:as2transport
-                              #:as2transports #:callback-token #:cert-date
-                              #:cert-serial #:certificate
-                              #:certificate-body-type #:certificate-chain-type
-                              #:certificate-id #:certificate-ids
-                              #:certificate-resource #:certificate-status-type
-                              #:certificate-type #:certificate-usage-type
-                              #:compression-enum
+                              #:cfn-user-properties #:access-denied-exception
+                              #:address-allocation-id #:address-allocation-ids
+                              #:agreement-id #:agreement-resource
+                              #:agreement-status-type #:arn
+                              #:as2connector-config #:as2connector-secret-id
+                              #:as2id #:as2transport #:as2transports
+                              #:callback-token #:cert-date #:cert-serial
+                              #:certificate #:certificate-body-type
+                              #:certificate-chain-type #:certificate-id
+                              #:certificate-ids #:certificate-resource
+                              #:certificate-status-type #:certificate-type
+                              #:certificate-usage-type #:compression-enum
+                              #:conflict-exception
                               #:connector-file-transfer-result
                               #:connector-file-transfer-results #:connector-id
                               #:connector-resource
@@ -69,7 +70,9 @@
                               #:identity-provider-details
                               #:identity-provider-type #:import-certificate
                               #:import-host-key #:import-ssh-public-key
-                              #:input-file-location #:ip-address-type
+                              #:input-file-location #:internal-service-error
+                              #:invalid-next-token-exception
+                              #:invalid-request-exception #:ip-address-type
                               #:list-accesses #:list-agreements
                               #:list-certificates #:list-connectors
                               #:list-executions #:list-file-transfer-results
@@ -103,8 +106,10 @@
                               #:private-key-type #:profile-id
                               #:profile-resource #:profile-type #:protocol
                               #:protocol-details #:protocols #:resource
-                              #:resource-type #:response #:retry-after-seconds
-                              #:role #:s3bucket #:s3etag #:s3file-location
+                              #:resource-exists-exception
+                              #:resource-not-found-exception #:resource-type
+                              #:response #:retry-after-seconds #:role
+                              #:s3bucket #:s3etag #:s3file-location
                               #:s3input-file-location #:s3key
                               #:s3storage-options #:s3tag #:s3tag-key
                               #:s3tag-value #:s3tags #:s3version-id
@@ -119,8 +124,9 @@
                               #:server-resource #:service-error-message
                               #:service-managed-egress-ip-address
                               #:service-managed-egress-ip-addresses
-                              #:service-metadata #:session-id #:set-stat-option
-                              #:sftp-authentication-methods
+                              #:service-metadata
+                              #:service-unavailable-exception #:session-id
+                              #:set-stat-option #:sftp-authentication-methods
                               #:sftp-connector-config
                               #:sftp-connector-connection-details
                               #:sftp-connector-host-key
@@ -137,7 +143,7 @@
                               #:subnet-id #:subnet-ids #:tag #:tag-key
                               #:tag-keys #:tag-resource #:tag-step-details
                               #:tag-value #:tags #:test-connection
-                              #:test-identity-provider
+                              #:test-identity-provider #:throttling-exception
                               #:tls-session-resumption-mode #:transfer-id
                               #:transfer-service #:transfer-table-status
                               #:untag-resource #:update-access
@@ -160,8 +166,12 @@
                               #:workflow-detail #:workflow-details
                               #:workflow-id #:workflow-resource #:workflow-step
                               #:workflow-step-name #:workflow-step-type
-                              #:workflow-steps))
+                              #:workflow-steps #:transfer-error))
 (common-lisp:in-package #:pira/transfer)
+
+(common-lisp:define-condition transfer-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service transfer-service :shape-name
                                    "TransferService" :version "2018-11-05"
@@ -205,7 +215,8 @@
                                 ((message :target-type service-error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-name "AccessDenied") (:error-code 403))
+                                (:error-name "AccessDenied") (:error-code 403)
+                                (:base-class transfer-error))
 
 (smithy/sdk/shapes:define-type address-allocation-id
                                smithy/sdk/smithy-types:string)
@@ -311,7 +322,7 @@ common-lisp:nil
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class transfer-error))
 
 (smithy/sdk/shapes:define-structure connector-file-transfer-result
                                     common-lisp:nil
@@ -1570,19 +1581,19 @@ common-lisp:nil
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServiceError")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class transfer-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class transfer-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class transfer-error))
 
 (smithy/sdk/shapes:define-enum ip-address-type
     common-lisp:nil
@@ -2155,7 +2166,7 @@ common-lisp:nil
                                   :required common-lisp:t :member-name
                                   "ResourceType"))
                                 (:shape-name "ResourceExistsException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class transfer-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type message :required
@@ -2166,7 +2177,7 @@ common-lisp:nil
                                   :required common-lisp:t :member-name
                                   "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class transfer-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -2300,7 +2311,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name "ServiceUnavailableException")
                                 (:error-name "ServiceUnavailable")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class transfer-error))
 
 (smithy/sdk/shapes:define-type session-id smithy/sdk/smithy-types:string)
 
@@ -2565,7 +2576,7 @@ common-lisp:nil
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class transfer-error))
 
 (smithy/sdk/shapes:define-enum tls-session-resumption-mode
     common-lisp:nil

@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/billingconductor (:use)
                              (:export #:awsbilling-conductor #:awscost
+                              #:access-denied-exception
                               #:account-associations-list
                               #:account-associations-list-element
                               #:account-email #:account-grouping #:account-id
@@ -34,7 +35,7 @@
                               #:billing-group-status-list
                               #:billing-group-status-reason #:billing-period
                               #:billing-period-range #:client-token
-                              #:computation-preference
+                              #:computation-preference #:conflict-exception
                               #:conflict-exception-reason
                               #:create-billing-group
                               #:create-billing-group-input
@@ -92,7 +93,7 @@
                               #:get-billing-group-cost-report
                               #:group-by-attribute-name
                               #:group-by-attributes-list #:instant
-                              #:line-item-filter
+                              #:internal-server-exception #:line-item-filter
                               #:line-item-filter-attribute-name
                               #:line-item-filter-value
                               #:line-item-filter-values-list
@@ -164,10 +165,12 @@
                               #:pricing-rule-description #:pricing-rule-list
                               #:pricing-rule-list-element #:pricing-rule-name
                               #:pricing-rule-scope #:pricing-rule-type
-                              #:proforma-cost #:retry-after-seconds #:service
-                              #:string #:tag-key #:tag-key-list #:tag-map
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tiering
+                              #:proforma-cost #:resource-not-found-exception
+                              #:retry-after-seconds #:service
+                              #:service-limit-exceeded-exception #:string
+                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-resource-request #:tag-resource-response
+                              #:tag-value #:throttling-exception #:tiering
                               #:tiering-activated #:token #:untag-resource
                               #:untag-resource-request
                               #:untag-resource-response #:update-billing-group
@@ -186,10 +189,16 @@
                               #:update-pricing-rule #:update-pricing-rule-input
                               #:update-pricing-rule-output
                               #:update-tiering-input #:usage-type
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason))
+                              #:validation-exception-reason
+                              #:billingconductor-error))
 (common-lisp:in-package #:pira/billingconductor)
+
+(common-lisp:define-condition billingconductor-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsbilling-conductor :shape-name
                                    "AWSBillingConductor" :version "2021-07-30"
@@ -231,7 +240,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class billingconductor-error))
 
 (smithy/sdk/shapes:define-list account-associations-list :member
                                account-associations-list-element)
@@ -514,7 +524,8 @@ common-lisp:nil
                                  (reason :target-type conflict-exception-reason
                                   :member-name "Reason"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class billingconductor-error))
 
 (smithy/sdk/shapes:define-type conflict-exception-reason
                                smithy/sdk/smithy-types:string)
@@ -976,7 +987,8 @@ common-lisp:nil
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class billingconductor-error))
 
 (smithy/sdk/shapes:define-structure line-item-filter common-lisp:nil
                                     ((attribute :target-type
@@ -1518,7 +1530,8 @@ common-lisp:nil
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class billingconductor-error))
 
 (smithy/sdk/shapes:define-type retry-after-seconds
                                smithy/sdk/smithy-types:integer)
@@ -1538,7 +1551,8 @@ common-lisp:nil
                                  (service-code :target-type string :required
                                   common-lisp:t :member-name "ServiceCode"))
                                 (:shape-name "ServiceLimitExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class billingconductor-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -1570,7 +1584,8 @@ common-lisp:nil
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class billingconductor-error))
 
 (smithy/sdk/shapes:define-structure tiering common-lisp:nil
                                     ((free-tier :target-type free-tier-config
@@ -1823,7 +1838,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "Fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class billingconductor-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type string :required

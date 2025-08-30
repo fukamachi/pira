@@ -5,424 +5,2486 @@
   :version (:read-file-form "version.sexp")
   :depends-on ("pira-core"))
 
-(defmacro define-service-system (service)
-  `(defsystem ,(format nil "pira/~A" service)
-     :depends-on ("smithy/sdk")
-     :pathname "services"
-     :components
-     ((:file ,service))))
+(defsystem "pira/accessanalyzer"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "accessanalyzer")))
 
-(define-service-system "accessanalyzer")
-(define-service-system "account")
-(define-service-system "acm-pca")
-(define-service-system "acm")
-(define-service-system "aiops")
-(define-service-system "amp")
-(define-service-system "amplify")
-(define-service-system "amplifybackend")
-(define-service-system "amplifyuibuilder")
-(define-service-system "api-gateway")
-(define-service-system "apigatewaymanagementapi")
-(define-service-system "apigatewayv2")
-(define-service-system "app-mesh")
-(define-service-system "appconfig")
-(define-service-system "appconfigdata")
-(define-service-system "appfabric")
-(define-service-system "appflow")
-(define-service-system "appintegrations")
-(define-service-system "application-auto-scaling")
-(define-service-system "application-discovery-service")
-(define-service-system "application-insights")
-(define-service-system "application-signals")
-(define-service-system "applicationcostprofiler")
-(define-service-system "apprunner")
-(define-service-system "appstream")
-(define-service-system "appsync")
-(define-service-system "apptest")
-(define-service-system "arc-region-switch")
-(define-service-system "arc-zonal-shift")
-(define-service-system "artifact")
-(define-service-system "athena")
-(define-service-system "auditmanager")
-(define-service-system "auto-scaling-plans")
-(define-service-system "auto-scaling")
-(define-service-system "b2bi")
-(define-service-system "backup-gateway")
-(define-service-system "backup")
-(define-service-system "backupsearch")
-(define-service-system "batch")
-(define-service-system "bcm-data-exports")
-(define-service-system "bcm-pricing-calculator")
-(define-service-system "bedrock-agent-runtime")
-(define-service-system "bedrock-agent")
-(define-service-system "bedrock-agentcore-control")
-(define-service-system "bedrock-agentcore")
-(define-service-system "bedrock-data-automation-runtime")
-(define-service-system "bedrock-data-automation")
-(define-service-system "bedrock-runtime")
-(define-service-system "bedrock")
-(define-service-system "billing")
-(define-service-system "billingconductor")
-(define-service-system "braket")
-(define-service-system "budgets")
-(define-service-system "chatbot")
-(define-service-system "chime-sdk-identity")
-(define-service-system "chime-sdk-media-pipelines")
-(define-service-system "chime-sdk-meetings")
-(define-service-system "chime-sdk-messaging")
-(define-service-system "chime-sdk-voice")
-(define-service-system "chime")
-(define-service-system "cleanrooms")
-(define-service-system "cleanroomsml")
-(define-service-system "cloud9")
-(define-service-system "cloudcontrol")
-(define-service-system "clouddirectory")
-(define-service-system "cloudformation")
-(define-service-system "cloudfront-keyvaluestore")
-(define-service-system "cloudfront")
-(define-service-system "cloudhsm-v2")
-(define-service-system "cloudhsm")
-(define-service-system "cloudsearch-domain")
-(define-service-system "cloudsearch")
-(define-service-system "cloudtrail-data")
-(define-service-system "cloudtrail")
-(define-service-system "cloudwatch-events")
-(define-service-system "cloudwatch-logs")
-(define-service-system "cloudwatch")
-(define-service-system "codeartifact")
-(define-service-system "codebuild")
-(define-service-system "codecatalyst")
-(define-service-system "codecommit")
-(define-service-system "codeconnections")
-(define-service-system "codedeploy")
-(define-service-system "codeguru-reviewer")
-(define-service-system "codeguru-security")
-(define-service-system "codeguruprofiler")
-(define-service-system "codepipeline")
-(define-service-system "codestar-connections")
-(define-service-system "codestar-notifications")
-(define-service-system "cognito-identity-provider")
-(define-service-system "cognito-identity")
-(define-service-system "cognito-sync")
-(define-service-system "comprehend")
-(define-service-system "comprehendmedical")
-(define-service-system "compute-optimizer")
-(define-service-system "config-service")
-(define-service-system "connect-contact-lens")
-(define-service-system "connect")
-(define-service-system "connectcampaigns")
-(define-service-system "connectcampaignsv2")
-(define-service-system "connectcases")
-(define-service-system "connectparticipant")
-(define-service-system "controlcatalog")
-(define-service-system "controltower")
-(define-service-system "cost-and-usage-report-service")
-(define-service-system "cost-explorer")
-(define-service-system "cost-optimization-hub")
-(define-service-system "customer-profiles")
-(define-service-system "data-pipeline")
-(define-service-system "database-migration-service")
-(define-service-system "databrew")
-(define-service-system "dataexchange")
-(define-service-system "datasync")
-(define-service-system "datazone")
-(define-service-system "dax")
-(define-service-system "deadline")
-(define-service-system "detective")
-(define-service-system "device-farm")
-(define-service-system "devops-guru")
-(define-service-system "direct-connect")
-(define-service-system "directory-service-data")
-(define-service-system "directory-service")
-(define-service-system "dlm")
-(define-service-system "docdb-elastic")
-(define-service-system "docdb")
-(define-service-system "drs")
-(define-service-system "dsql")
-(define-service-system "dynamodb-streams")
-(define-service-system "dynamodb")
-(define-service-system "ebs")
-(define-service-system "ec2-instance-connect")
-(define-service-system "ec2")
-(define-service-system "ecr-public")
-(define-service-system "ecr")
-(define-service-system "ecs")
-(define-service-system "efs")
-(define-service-system "eks-auth")
-(define-service-system "eks")
-(define-service-system "elastic-beanstalk")
-(define-service-system "elastic-load-balancing-v2")
-(define-service-system "elastic-load-balancing")
-(define-service-system "elastic-transcoder")
-(define-service-system "elasticache")
-(define-service-system "elasticsearch-service")
-(define-service-system "emr-containers")
-(define-service-system "emr-serverless")
-(define-service-system "emr")
-(define-service-system "entityresolution")
-(define-service-system "eventbridge")
-(define-service-system "evidently")
-(define-service-system "evs")
-(define-service-system "finspace-data")
-(define-service-system "finspace")
-(define-service-system "firehose")
-(define-service-system "fis")
-(define-service-system "fms")
-(define-service-system "forecast")
-(define-service-system "forecastquery")
-(define-service-system "frauddetector")
-(define-service-system "freetier")
-(define-service-system "fsx")
-(define-service-system "gamelift")
-(define-service-system "gameliftstreams")
-(define-service-system "geo-maps")
-(define-service-system "geo-places")
-(define-service-system "geo-routes")
-(define-service-system "glacier")
-(define-service-system "global-accelerator")
-(define-service-system "glue")
-(define-service-system "grafana")
-(define-service-system "greengrass")
-(define-service-system "greengrassv2")
-(define-service-system "groundstation")
-(define-service-system "guardduty")
-(define-service-system "health")
-(define-service-system "healthlake")
-(define-service-system "iam")
-(define-service-system "identitystore")
-(define-service-system "imagebuilder")
-(define-service-system "inspector-scan")
-(define-service-system "inspector")
-(define-service-system "inspector2")
-(define-service-system "internetmonitor")
-(define-service-system "invoicing")
-(define-service-system "iot-data-plane")
-(define-service-system "iot-events-data")
-(define-service-system "iot-events")
-(define-service-system "iot-jobs-data-plane")
-(define-service-system "iot-managed-integrations")
-(define-service-system "iot-wireless")
-(define-service-system "iot")
-(define-service-system "iotanalytics")
-(define-service-system "iotdeviceadvisor")
-(define-service-system "iotfleethub")
-(define-service-system "iotfleetwise")
-(define-service-system "iotsecuretunneling")
-(define-service-system "iotsitewise")
-(define-service-system "iotthingsgraph")
-(define-service-system "iottwinmaker")
-(define-service-system "ivs-realtime")
-(define-service-system "ivs")
-(define-service-system "ivschat")
-(define-service-system "kafka")
-(define-service-system "kafkaconnect")
-(define-service-system "kendra-ranking")
-(define-service-system "kendra")
-(define-service-system "keyspaces")
-(define-service-system "keyspacesstreams")
-(define-service-system "kinesis-analytics-v2")
-(define-service-system "kinesis-analytics")
-(define-service-system "kinesis-video-archived-media")
-(define-service-system "kinesis-video-media")
-(define-service-system "kinesis-video-signaling")
-(define-service-system "kinesis-video-webrtc-storage")
-(define-service-system "kinesis-video")
-(define-service-system "kinesis")
-(define-service-system "kms")
-(define-service-system "lakeformation")
-(define-service-system "lambda")
-(define-service-system "launch-wizard")
-(define-service-system "lex-model-building-service")
-(define-service-system "lex-models-v2")
-(define-service-system "lex-runtime-service")
-(define-service-system "lex-runtime-v2")
-(define-service-system "license-manager-linux-subscriptions")
-(define-service-system "license-manager-user-subscriptions")
-(define-service-system "license-manager")
-(define-service-system "lightsail")
-(define-service-system "location")
-(define-service-system "lookoutequipment")
-(define-service-system "lookoutmetrics")
-(define-service-system "lookoutvision")
-(define-service-system "m2")
-(define-service-system "machine-learning")
-(define-service-system "macie2")
-(define-service-system "mailmanager")
-(define-service-system "managedblockchain-query")
-(define-service-system "managedblockchain")
-(define-service-system "marketplace-agreement")
-(define-service-system "marketplace-catalog")
-(define-service-system "marketplace-commerce-analytics")
-(define-service-system "marketplace-deployment")
-(define-service-system "marketplace-entitlement-service")
-(define-service-system "marketplace-metering")
-(define-service-system "marketplace-reporting")
-(define-service-system "mediaconnect")
-(define-service-system "mediaconvert")
-(define-service-system "medialive")
-(define-service-system "mediapackage-vod")
-(define-service-system "mediapackage")
-(define-service-system "mediapackagev2")
-(define-service-system "mediastore-data")
-(define-service-system "mediastore")
-(define-service-system "mediatailor")
-(define-service-system "medical-imaging")
-(define-service-system "memorydb")
-(define-service-system "mgn")
-(define-service-system "migration-hub-refactor-spaces")
-(define-service-system "migration-hub")
-(define-service-system "migrationhub-config")
-(define-service-system "migrationhuborchestrator")
-(define-service-system "migrationhubstrategy")
-(define-service-system "mpa")
-(define-service-system "mq")
-(define-service-system "mturk")
-(define-service-system "mwaa")
-(define-service-system "neptune-graph")
-(define-service-system "neptune")
-(define-service-system "neptunedata")
-(define-service-system "network-firewall")
-(define-service-system "networkflowmonitor")
-(define-service-system "networkmanager")
-(define-service-system "networkmonitor")
-(define-service-system "notifications")
-(define-service-system "notificationscontacts")
-(define-service-system "oam")
-(define-service-system "observabilityadmin")
-(define-service-system "odb")
-(define-service-system "omics")
-(define-service-system "opensearch")
-(define-service-system "opensearchserverless")
-(define-service-system "opsworks")
-(define-service-system "opsworkscm")
-(define-service-system "organizations")
-(define-service-system "osis")
-(define-service-system "outposts")
-(define-service-system "panorama")
-(define-service-system "partnercentral-selling")
-(define-service-system "payment-cryptography-data")
-(define-service-system "payment-cryptography")
-(define-service-system "pca-connector-ad")
-(define-service-system "pca-connector-scep")
-(define-service-system "pcs")
-(define-service-system "personalize-events")
-(define-service-system "personalize-runtime")
-(define-service-system "personalize")
-(define-service-system "pi")
-(define-service-system "pinpoint-email")
-(define-service-system "pinpoint-sms-voice-v2")
-(define-service-system "pinpoint-sms-voice")
-(define-service-system "pinpoint")
-(define-service-system "pipes")
-(define-service-system "polly")
-(define-service-system "pricing")
-(define-service-system "privatenetworks")
-(define-service-system "proton")
-(define-service-system "qapps")
-(define-service-system "qbusiness")
-(define-service-system "qconnect")
-(define-service-system "qldb-session")
-(define-service-system "qldb")
-(define-service-system "quicksight")
-(define-service-system "ram")
-(define-service-system "rbin")
-(define-service-system "rds-data")
-(define-service-system "rds")
-(define-service-system "redshift-data")
-(define-service-system "redshift-serverless")
-(define-service-system "redshift")
-(define-service-system "rekognition")
-(define-service-system "repostspace")
-(define-service-system "resiliencehub")
-(define-service-system "resource-explorer-2")
-(define-service-system "resource-groups-tagging-api")
-(define-service-system "resource-groups")
-(define-service-system "robomaker")
-(define-service-system "rolesanywhere")
-(define-service-system "route-53-domains")
-(define-service-system "route-53")
-(define-service-system "route53-recovery-cluster")
-(define-service-system "route53-recovery-control-config")
-(define-service-system "route53-recovery-readiness")
-(define-service-system "route53profiles")
-(define-service-system "route53resolver")
-(define-service-system "rum")
-(define-service-system "s3-control")
-(define-service-system "s3")
-(define-service-system "s3outposts")
-(define-service-system "s3tables")
-(define-service-system "s3vectors")
-(define-service-system "sagemaker-a2i-runtime")
-(define-service-system "sagemaker-edge")
-(define-service-system "sagemaker-featurestore-runtime")
-(define-service-system "sagemaker-geospatial")
-(define-service-system "sagemaker-metrics")
-(define-service-system "sagemaker-runtime")
-(define-service-system "sagemaker")
-(define-service-system "savingsplans")
-(define-service-system "scheduler")
-(define-service-system "schemas")
-(define-service-system "secrets-manager")
-(define-service-system "security-ir")
-(define-service-system "securityhub")
-(define-service-system "securitylake")
-(define-service-system "serverlessapplicationrepository")
-(define-service-system "service-catalog-appregistry")
-(define-service-system "service-catalog")
-(define-service-system "service-quotas")
-(define-service-system "servicediscovery")
-(define-service-system "ses")
-(define-service-system "sesv2")
-(define-service-system "sfn")
-(define-service-system "shield")
-(define-service-system "signer")
-(define-service-system "simspaceweaver")
-(define-service-system "sms")
-(define-service-system "snow-device-management")
-(define-service-system "snowball")
-(define-service-system "sns")
-(define-service-system "socialmessaging")
-(define-service-system "sqs")
-(define-service-system "ssm-contacts")
-(define-service-system "ssm-guiconnect")
-(define-service-system "ssm-incidents")
-(define-service-system "ssm-quicksetup")
-(define-service-system "ssm-sap")
-(define-service-system "ssm")
-(define-service-system "sso-admin")
-(define-service-system "sso-oidc")
-(define-service-system "sso")
-(define-service-system "storage-gateway")
-(define-service-system "sts")
-(define-service-system "supplychain")
-(define-service-system "support-app")
-(define-service-system "support")
-(define-service-system "swf")
-(define-service-system "synthetics")
-(define-service-system "taxsettings")
-(define-service-system "textract")
-(define-service-system "timestream-influxdb")
-(define-service-system "timestream-query")
-(define-service-system "timestream-write")
-(define-service-system "tnb")
-(define-service-system "transcribe-streaming")
-(define-service-system "transcribe")
-(define-service-system "transfer")
-(define-service-system "translate")
-(define-service-system "trustedadvisor")
-(define-service-system "verifiedpermissions")
-(define-service-system "voice-id")
-(define-service-system "vpc-lattice")
-(define-service-system "waf-regional")
-(define-service-system "waf")
-(define-service-system "wafv2")
-(define-service-system "wellarchitected")
-(define-service-system "wisdom")
-(define-service-system "workdocs")
-(define-service-system "workmail")
-(define-service-system "workmailmessageflow")
-(define-service-system "workspaces-instances")
-(define-service-system "workspaces-thin-client")
-(define-service-system "workspaces-web")
-(define-service-system "workspaces")
-(define-service-system "xray")
+(defsystem "pira/account"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "account")))
+
+(defsystem "pira/acm-pca"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "acm-pca")))
+
+(defsystem "pira/acm"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "acm")))
+
+(defsystem "pira/aiops"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "aiops")))
+
+(defsystem "pira/amp"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "amp")))
+
+(defsystem "pira/amplify"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "amplify")))
+
+(defsystem "pira/amplifybackend"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "amplifybackend")))
+
+(defsystem "pira/amplifyuibuilder"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "amplifyuibuilder")))
+
+(defsystem "pira/api-gateway"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "api-gateway")))
+
+(defsystem "pira/apigatewaymanagementapi"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "apigatewaymanagementapi")))
+
+(defsystem "pira/apigatewayv2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "apigatewayv2")))
+
+(defsystem "pira/app-mesh"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "app-mesh")))
+
+(defsystem "pira/appconfig"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "appconfig")))
+
+(defsystem "pira/appconfigdata"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "appconfigdata")))
+
+(defsystem "pira/appfabric"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "appfabric")))
+
+(defsystem "pira/appflow"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "appflow")))
+
+(defsystem "pira/appintegrations"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "appintegrations")))
+
+(defsystem "pira/application-auto-scaling"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "application-auto-scaling")))
+
+(defsystem "pira/application-discovery-service"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "application-discovery-service")))
+
+(defsystem "pira/application-insights"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "application-insights")))
+
+(defsystem "pira/application-signals"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "application-signals")))
+
+(defsystem "pira/applicationcostprofiler"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "applicationcostprofiler")))
+
+(defsystem "pira/apprunner"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "apprunner")))
+
+(defsystem "pira/appstream"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "appstream")))
+
+(defsystem "pira/appsync"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "appsync")))
+
+(defsystem "pira/apptest"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "apptest")))
+
+(defsystem "pira/arc-region-switch"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "arc-region-switch")))
+
+(defsystem "pira/arc-zonal-shift"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "arc-zonal-shift")))
+
+(defsystem "pira/artifact"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "artifact")))
+
+(defsystem "pira/athena"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "athena")))
+
+(defsystem "pira/auditmanager"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "auditmanager")))
+
+(defsystem "pira/auto-scaling-plans"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "auto-scaling-plans")))
+
+(defsystem "pira/auto-scaling"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "auto-scaling")))
+
+(defsystem "pira/b2bi"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "b2bi")))
+
+(defsystem "pira/backup-gateway"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "backup-gateway")))
+
+(defsystem "pira/backup"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "backup")))
+
+(defsystem "pira/backupsearch"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "backupsearch")))
+
+(defsystem "pira/batch"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "batch")))
+
+(defsystem "pira/bcm-data-exports"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "bcm-data-exports")))
+
+(defsystem "pira/bcm-pricing-calculator"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "bcm-pricing-calculator")))
+
+(defsystem "pira/bedrock-agent-runtime"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "bedrock-agent-runtime")))
+
+(defsystem "pira/bedrock-agent"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "bedrock-agent")))
+
+(defsystem "pira/bedrock-agentcore-control"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "bedrock-agentcore-control")))
+
+(defsystem "pira/bedrock-agentcore"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "bedrock-agentcore")))
+
+(defsystem "pira/bedrock-data-automation-runtime"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "bedrock-data-automation-runtime")))
+
+(defsystem "pira/bedrock-data-automation"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "bedrock-data-automation")))
+
+(defsystem "pira/bedrock-runtime"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "bedrock-runtime")))
+
+(defsystem "pira/bedrock"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "bedrock")))
+
+(defsystem "pira/billing"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "billing")))
+
+(defsystem "pira/billingconductor"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "billingconductor")))
+
+(defsystem "pira/braket"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "braket")))
+
+(defsystem "pira/budgets"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "budgets")))
+
+(defsystem "pira/chatbot"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "chatbot")))
+
+(defsystem "pira/chime-sdk-identity"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "chime-sdk-identity")))
+
+(defsystem "pira/chime-sdk-media-pipelines"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "chime-sdk-media-pipelines")))
+
+(defsystem "pira/chime-sdk-meetings"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "chime-sdk-meetings")))
+
+(defsystem "pira/chime-sdk-messaging"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "chime-sdk-messaging")))
+
+(defsystem "pira/chime-sdk-voice"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "chime-sdk-voice")))
+
+(defsystem "pira/chime"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "chime")))
+
+(defsystem "pira/cleanrooms"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cleanrooms")))
+
+(defsystem "pira/cleanroomsml"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cleanroomsml")))
+
+(defsystem "pira/cloud9"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloud9")))
+
+(defsystem "pira/cloudcontrol"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudcontrol")))
+
+(defsystem "pira/clouddirectory"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "clouddirectory")))
+
+(defsystem "pira/cloudformation"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudformation")))
+
+(defsystem "pira/cloudfront-keyvaluestore"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudfront-keyvaluestore")))
+
+(defsystem "pira/cloudfront"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudfront")))
+
+(defsystem "pira/cloudhsm-v2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudhsm-v2")))
+
+(defsystem "pira/cloudhsm"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudhsm")))
+
+(defsystem "pira/cloudsearch-domain"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudsearch-domain")))
+
+(defsystem "pira/cloudsearch"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudsearch")))
+
+(defsystem "pira/cloudtrail-data"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudtrail-data")))
+
+(defsystem "pira/cloudtrail"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudtrail")))
+
+(defsystem "pira/cloudwatch-events"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudwatch-events")))
+
+(defsystem "pira/cloudwatch-logs"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudwatch-logs")))
+
+(defsystem "pira/cloudwatch"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cloudwatch")))
+
+(defsystem "pira/codeartifact"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "codeartifact")))
+
+(defsystem "pira/codebuild"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "codebuild")))
+
+(defsystem "pira/codecatalyst"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "codecatalyst")))
+
+(defsystem "pira/codecommit"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "codecommit")))
+
+(defsystem "pira/codeconnections"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "codeconnections")))
+
+(defsystem "pira/codedeploy"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "codedeploy")))
+
+(defsystem "pira/codeguru-reviewer"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "codeguru-reviewer")))
+
+(defsystem "pira/codeguru-security"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "codeguru-security")))
+
+(defsystem "pira/codeguruprofiler"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "codeguruprofiler")))
+
+(defsystem "pira/codepipeline"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "codepipeline")))
+
+(defsystem "pira/codestar-connections"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "codestar-connections")))
+
+(defsystem "pira/codestar-notifications"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "codestar-notifications")))
+
+(defsystem "pira/cognito-identity-provider"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cognito-identity-provider")))
+
+(defsystem "pira/cognito-identity"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cognito-identity")))
+
+(defsystem "pira/cognito-sync"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cognito-sync")))
+
+(defsystem "pira/comprehend"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "comprehend")))
+
+(defsystem "pira/comprehendmedical"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "comprehendmedical")))
+
+(defsystem "pira/compute-optimizer"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "compute-optimizer")))
+
+(defsystem "pira/config-service"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "config-service")))
+
+(defsystem "pira/connect-contact-lens"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "connect-contact-lens")))
+
+(defsystem "pira/connect"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "connect")))
+
+(defsystem "pira/connectcampaigns"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "connectcampaigns")))
+
+(defsystem "pira/connectcampaignsv2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "connectcampaignsv2")))
+
+(defsystem "pira/connectcases"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "connectcases")))
+
+(defsystem "pira/connectparticipant"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "connectparticipant")))
+
+(defsystem "pira/controlcatalog"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "controlcatalog")))
+
+(defsystem "pira/controltower"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "controltower")))
+
+(defsystem "pira/cost-and-usage-report-service"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cost-and-usage-report-service")))
+
+(defsystem "pira/cost-explorer"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cost-explorer")))
+
+(defsystem "pira/cost-optimization-hub"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "cost-optimization-hub")))
+
+(defsystem "pira/customer-profiles"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "customer-profiles")))
+
+(defsystem "pira/data-pipeline"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "data-pipeline")))
+
+(defsystem "pira/database-migration-service"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "database-migration-service")))
+
+(defsystem "pira/databrew"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "databrew")))
+
+(defsystem "pira/dataexchange"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "dataexchange")))
+
+(defsystem "pira/datasync"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "datasync")))
+
+(defsystem "pira/datazone"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "datazone")))
+
+(defsystem "pira/dax"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "dax")))
+
+(defsystem "pira/deadline"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "deadline")))
+
+(defsystem "pira/detective"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "detective")))
+
+(defsystem "pira/device-farm"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "device-farm")))
+
+(defsystem "pira/devops-guru"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "devops-guru")))
+
+(defsystem "pira/direct-connect"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "direct-connect")))
+
+(defsystem "pira/directory-service-data"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "directory-service-data")))
+
+(defsystem "pira/directory-service"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "directory-service")))
+
+(defsystem "pira/dlm"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "dlm")))
+
+(defsystem "pira/docdb-elastic"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "docdb-elastic")))
+
+(defsystem "pira/docdb"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "docdb")))
+
+(defsystem "pira/drs"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "drs")))
+
+(defsystem "pira/dsql"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "dsql")))
+
+(defsystem "pira/dynamodb-streams"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "dynamodb-streams")))
+
+(defsystem "pira/dynamodb"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "dynamodb")))
+
+(defsystem "pira/ebs"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ebs")))
+
+(defsystem "pira/ec2-instance-connect"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ec2-instance-connect")))
+
+(defsystem "pira/ec2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ec2")))
+
+(defsystem "pira/ecr-public"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ecr-public")))
+
+(defsystem "pira/ecr"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ecr")))
+
+(defsystem "pira/ecs"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ecs")))
+
+(defsystem "pira/efs"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "efs")))
+
+(defsystem "pira/eks-auth"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "eks-auth")))
+
+(defsystem "pira/eks"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "eks")))
+
+(defsystem "pira/elastic-beanstalk"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "elastic-beanstalk")))
+
+(defsystem "pira/elastic-load-balancing-v2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "elastic-load-balancing-v2")))
+
+(defsystem "pira/elastic-load-balancing"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "elastic-load-balancing")))
+
+(defsystem "pira/elastic-transcoder"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "elastic-transcoder")))
+
+(defsystem "pira/elasticache"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "elasticache")))
+
+(defsystem "pira/elasticsearch-service"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "elasticsearch-service")))
+
+(defsystem "pira/emr-containers"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "emr-containers")))
+
+(defsystem "pira/emr-serverless"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "emr-serverless")))
+
+(defsystem "pira/emr"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "emr")))
+
+(defsystem "pira/entityresolution"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "entityresolution")))
+
+(defsystem "pira/eventbridge"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "eventbridge")))
+
+(defsystem "pira/evidently"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "evidently")))
+
+(defsystem "pira/evs"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "evs")))
+
+(defsystem "pira/finspace-data"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "finspace-data")))
+
+(defsystem "pira/finspace"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "finspace")))
+
+(defsystem "pira/firehose"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "firehose")))
+
+(defsystem "pira/fis"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "fis")))
+
+(defsystem "pira/fms"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "fms")))
+
+(defsystem "pira/forecast"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "forecast")))
+
+(defsystem "pira/forecastquery"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "forecastquery")))
+
+(defsystem "pira/frauddetector"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "frauddetector")))
+
+(defsystem "pira/freetier"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "freetier")))
+
+(defsystem "pira/fsx"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "fsx")))
+
+(defsystem "pira/gamelift"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "gamelift")))
+
+(defsystem "pira/gameliftstreams"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "gameliftstreams")))
+
+(defsystem "pira/geo-maps"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "geo-maps")))
+
+(defsystem "pira/geo-places"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "geo-places")))
+
+(defsystem "pira/geo-routes"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "geo-routes")))
+
+(defsystem "pira/glacier"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "glacier")))
+
+(defsystem "pira/global-accelerator"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "global-accelerator")))
+
+(defsystem "pira/glue"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "glue")))
+
+(defsystem "pira/grafana"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "grafana")))
+
+(defsystem "pira/greengrass"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "greengrass")))
+
+(defsystem "pira/greengrassv2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "greengrassv2")))
+
+(defsystem "pira/groundstation"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "groundstation")))
+
+(defsystem "pira/guardduty"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "guardduty")))
+
+(defsystem "pira/health"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "health")))
+
+(defsystem "pira/healthlake"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "healthlake")))
+
+(defsystem "pira/iam"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iam")))
+
+(defsystem "pira/identitystore"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "identitystore")))
+
+(defsystem "pira/imagebuilder"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "imagebuilder")))
+
+(defsystem "pira/inspector-scan"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "inspector-scan")))
+
+(defsystem "pira/inspector"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "inspector")))
+
+(defsystem "pira/inspector2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "inspector2")))
+
+(defsystem "pira/internetmonitor"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "internetmonitor")))
+
+(defsystem "pira/invoicing"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "invoicing")))
+
+(defsystem "pira/iot-data-plane"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iot-data-plane")))
+
+(defsystem "pira/iot-events-data"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iot-events-data")))
+
+(defsystem "pira/iot-events"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iot-events")))
+
+(defsystem "pira/iot-jobs-data-plane"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iot-jobs-data-plane")))
+
+(defsystem "pira/iot-managed-integrations"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iot-managed-integrations")))
+
+(defsystem "pira/iot-wireless"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iot-wireless")))
+
+(defsystem "pira/iot"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iot")))
+
+(defsystem "pira/iotanalytics"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iotanalytics")))
+
+(defsystem "pira/iotdeviceadvisor"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iotdeviceadvisor")))
+
+(defsystem "pira/iotfleethub"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iotfleethub")))
+
+(defsystem "pira/iotfleetwise"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iotfleetwise")))
+
+(defsystem "pira/iotsecuretunneling"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iotsecuretunneling")))
+
+(defsystem "pira/iotsitewise"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iotsitewise")))
+
+(defsystem "pira/iotthingsgraph"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iotthingsgraph")))
+
+(defsystem "pira/iottwinmaker"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "iottwinmaker")))
+
+(defsystem "pira/ivs-realtime"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ivs-realtime")))
+
+(defsystem "pira/ivs"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ivs")))
+
+(defsystem "pira/ivschat"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ivschat")))
+
+(defsystem "pira/kafka"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kafka")))
+
+(defsystem "pira/kafkaconnect"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kafkaconnect")))
+
+(defsystem "pira/kendra-ranking"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kendra-ranking")))
+
+(defsystem "pira/kendra"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kendra")))
+
+(defsystem "pira/keyspaces"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "keyspaces")))
+
+(defsystem "pira/keyspacesstreams"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "keyspacesstreams")))
+
+(defsystem "pira/kinesis-analytics-v2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kinesis-analytics-v2")))
+
+(defsystem "pira/kinesis-analytics"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kinesis-analytics")))
+
+(defsystem "pira/kinesis-video-archived-media"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kinesis-video-archived-media")))
+
+(defsystem "pira/kinesis-video-media"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kinesis-video-media")))
+
+(defsystem "pira/kinesis-video-signaling"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kinesis-video-signaling")))
+
+(defsystem "pira/kinesis-video-webrtc-storage"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kinesis-video-webrtc-storage")))
+
+(defsystem "pira/kinesis-video"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kinesis-video")))
+
+(defsystem "pira/kinesis"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kinesis")))
+
+(defsystem "pira/kms"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "kms")))
+
+(defsystem "pira/lakeformation"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "lakeformation")))
+
+(defsystem "pira/lambda"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "lambda")))
+
+(defsystem "pira/launch-wizard"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "launch-wizard")))
+
+(defsystem "pira/lex-model-building-service"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "lex-model-building-service")))
+
+(defsystem "pira/lex-models-v2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "lex-models-v2")))
+
+(defsystem "pira/lex-runtime-service"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "lex-runtime-service")))
+
+(defsystem "pira/lex-runtime-v2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "lex-runtime-v2")))
+
+(defsystem "pira/license-manager-linux-subscriptions"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "license-manager-linux-subscriptions")))
+
+(defsystem "pira/license-manager-user-subscriptions"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "license-manager-user-subscriptions")))
+
+(defsystem "pira/license-manager"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "license-manager")))
+
+(defsystem "pira/lightsail"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "lightsail")))
+
+(defsystem "pira/location"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "location")))
+
+(defsystem "pira/lookoutequipment"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "lookoutequipment")))
+
+(defsystem "pira/lookoutmetrics"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "lookoutmetrics")))
+
+(defsystem "pira/lookoutvision"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "lookoutvision")))
+
+(defsystem "pira/m2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "m2")))
+
+(defsystem "pira/machine-learning"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "machine-learning")))
+
+(defsystem "pira/macie2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "macie2")))
+
+(defsystem "pira/mailmanager"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mailmanager")))
+
+(defsystem "pira/managedblockchain-query"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "managedblockchain-query")))
+
+(defsystem "pira/managedblockchain"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "managedblockchain")))
+
+(defsystem "pira/marketplace-agreement"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "marketplace-agreement")))
+
+(defsystem "pira/marketplace-catalog"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "marketplace-catalog")))
+
+(defsystem "pira/marketplace-commerce-analytics"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "marketplace-commerce-analytics")))
+
+(defsystem "pira/marketplace-deployment"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "marketplace-deployment")))
+
+(defsystem "pira/marketplace-entitlement-service"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "marketplace-entitlement-service")))
+
+(defsystem "pira/marketplace-metering"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "marketplace-metering")))
+
+(defsystem "pira/marketplace-reporting"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "marketplace-reporting")))
+
+(defsystem "pira/mediaconnect"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mediaconnect")))
+
+(defsystem "pira/mediaconvert"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mediaconvert")))
+
+(defsystem "pira/medialive"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "medialive")))
+
+(defsystem "pira/mediapackage-vod"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mediapackage-vod")))
+
+(defsystem "pira/mediapackage"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mediapackage")))
+
+(defsystem "pira/mediapackagev2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mediapackagev2")))
+
+(defsystem "pira/mediastore-data"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mediastore-data")))
+
+(defsystem "pira/mediastore"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mediastore")))
+
+(defsystem "pira/mediatailor"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mediatailor")))
+
+(defsystem "pira/medical-imaging"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "medical-imaging")))
+
+(defsystem "pira/memorydb"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "memorydb")))
+
+(defsystem "pira/mgn"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mgn")))
+
+(defsystem "pira/migration-hub-refactor-spaces"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "migration-hub-refactor-spaces")))
+
+(defsystem "pira/migration-hub"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "migration-hub")))
+
+(defsystem "pira/migrationhub-config"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "migrationhub-config")))
+
+(defsystem "pira/migrationhuborchestrator"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "migrationhuborchestrator")))
+
+(defsystem "pira/migrationhubstrategy"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "migrationhubstrategy")))
+
+(defsystem "pira/mpa"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mpa")))
+
+(defsystem "pira/mq"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mq")))
+
+(defsystem "pira/mturk"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mturk")))
+
+(defsystem "pira/mwaa"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "mwaa")))
+
+(defsystem "pira/neptune-graph"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "neptune-graph")))
+
+(defsystem "pira/neptune"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "neptune")))
+
+(defsystem "pira/neptunedata"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "neptunedata")))
+
+(defsystem "pira/network-firewall"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "network-firewall")))
+
+(defsystem "pira/networkflowmonitor"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "networkflowmonitor")))
+
+(defsystem "pira/networkmanager"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "networkmanager")))
+
+(defsystem "pira/networkmonitor"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "networkmonitor")))
+
+(defsystem "pira/notifications"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "notifications")))
+
+(defsystem "pira/notificationscontacts"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "notificationscontacts")))
+
+(defsystem "pira/oam"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "oam")))
+
+(defsystem "pira/observabilityadmin"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "observabilityadmin")))
+
+(defsystem "pira/odb"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "odb")))
+
+(defsystem "pira/omics"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "omics")))
+
+(defsystem "pira/opensearch"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "opensearch")))
+
+(defsystem "pira/opensearchserverless"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "opensearchserverless")))
+
+(defsystem "pira/opsworks"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "opsworks")))
+
+(defsystem "pira/opsworkscm"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "opsworkscm")))
+
+(defsystem "pira/organizations"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "organizations")))
+
+(defsystem "pira/osis"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "osis")))
+
+(defsystem "pira/outposts"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "outposts")))
+
+(defsystem "pira/panorama"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "panorama")))
+
+(defsystem "pira/partnercentral-selling"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "partnercentral-selling")))
+
+(defsystem "pira/payment-cryptography-data"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "payment-cryptography-data")))
+
+(defsystem "pira/payment-cryptography"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "payment-cryptography")))
+
+(defsystem "pira/pca-connector-ad"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "pca-connector-ad")))
+
+(defsystem "pira/pca-connector-scep"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "pca-connector-scep")))
+
+(defsystem "pira/pcs"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "pcs")))
+
+(defsystem "pira/personalize-events"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "personalize-events")))
+
+(defsystem "pira/personalize-runtime"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "personalize-runtime")))
+
+(defsystem "pira/personalize"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "personalize")))
+
+(defsystem "pira/pi"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "pi")))
+
+(defsystem "pira/pinpoint-email"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "pinpoint-email")))
+
+(defsystem "pira/pinpoint-sms-voice-v2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "pinpoint-sms-voice-v2")))
+
+(defsystem "pira/pinpoint-sms-voice"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "pinpoint-sms-voice")))
+
+(defsystem "pira/pinpoint"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "pinpoint")))
+
+(defsystem "pira/pipes"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "pipes")))
+
+(defsystem "pira/polly"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "polly")))
+
+(defsystem "pira/pricing"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "pricing")))
+
+(defsystem "pira/privatenetworks"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "privatenetworks")))
+
+(defsystem "pira/proton"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "proton")))
+
+(defsystem "pira/qapps"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "qapps")))
+
+(defsystem "pira/qbusiness"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "qbusiness")))
+
+(defsystem "pira/qconnect"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "qconnect")))
+
+(defsystem "pira/qldb-session"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "qldb-session")))
+
+(defsystem "pira/qldb"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "qldb")))
+
+(defsystem "pira/quicksight"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "quicksight")))
+
+(defsystem "pira/ram"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ram")))
+
+(defsystem "pira/rbin"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "rbin")))
+
+(defsystem "pira/rds-data"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "rds-data")))
+
+(defsystem "pira/rds"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "rds")))
+
+(defsystem "pira/redshift-data"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "redshift-data")))
+
+(defsystem "pira/redshift-serverless"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "redshift-serverless")))
+
+(defsystem "pira/redshift"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "redshift")))
+
+(defsystem "pira/rekognition"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "rekognition")))
+
+(defsystem "pira/repostspace"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "repostspace")))
+
+(defsystem "pira/resiliencehub"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "resiliencehub")))
+
+(defsystem "pira/resource-explorer-2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "resource-explorer-2")))
+
+(defsystem "pira/resource-groups-tagging-api"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "resource-groups-tagging-api")))
+
+(defsystem "pira/resource-groups"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "resource-groups")))
+
+(defsystem "pira/robomaker"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "robomaker")))
+
+(defsystem "pira/rolesanywhere"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "rolesanywhere")))
+
+(defsystem "pira/route-53-domains"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "route-53-domains")))
+
+(defsystem "pira/route-53"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "route-53")))
+
+(defsystem "pira/route53-recovery-cluster"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "route53-recovery-cluster")))
+
+(defsystem "pira/route53-recovery-control-config"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "route53-recovery-control-config")))
+
+(defsystem "pira/route53-recovery-readiness"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "route53-recovery-readiness")))
+
+(defsystem "pira/route53profiles"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "route53profiles")))
+
+(defsystem "pira/route53resolver"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "route53resolver")))
+
+(defsystem "pira/rum"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "rum")))
+
+(defsystem "pira/s3-control"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "s3-control")))
+
+(defsystem "pira/s3"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "s3")))
+
+(defsystem "pira/s3outposts"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "s3outposts")))
+
+(defsystem "pira/s3tables"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "s3tables")))
+
+(defsystem "pira/s3vectors"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "s3vectors")))
+
+(defsystem "pira/sagemaker-a2i-runtime"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sagemaker-a2i-runtime")))
+
+(defsystem "pira/sagemaker-edge"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sagemaker-edge")))
+
+(defsystem "pira/sagemaker-featurestore-runtime"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sagemaker-featurestore-runtime")))
+
+(defsystem "pira/sagemaker-geospatial"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sagemaker-geospatial")))
+
+(defsystem "pira/sagemaker-metrics"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sagemaker-metrics")))
+
+(defsystem "pira/sagemaker-runtime"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sagemaker-runtime")))
+
+(defsystem "pira/sagemaker"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sagemaker")))
+
+(defsystem "pira/savingsplans"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "savingsplans")))
+
+(defsystem "pira/scheduler"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "scheduler")))
+
+(defsystem "pira/schemas"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "schemas")))
+
+(defsystem "pira/secrets-manager"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "secrets-manager")))
+
+(defsystem "pira/security-ir"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "security-ir")))
+
+(defsystem "pira/securityhub"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "securityhub")))
+
+(defsystem "pira/securitylake"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "securitylake")))
+
+(defsystem "pira/serverlessapplicationrepository"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "serverlessapplicationrepository")))
+
+(defsystem "pira/service-catalog-appregistry"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "service-catalog-appregistry")))
+
+(defsystem "pira/service-catalog"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "service-catalog")))
+
+(defsystem "pira/service-quotas"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "service-quotas")))
+
+(defsystem "pira/servicediscovery"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "servicediscovery")))
+
+(defsystem "pira/ses"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ses")))
+
+(defsystem "pira/sesv2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sesv2")))
+
+(defsystem "pira/sfn"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sfn")))
+
+(defsystem "pira/shield"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "shield")))
+
+(defsystem "pira/signer"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "signer")))
+
+(defsystem "pira/simspaceweaver"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "simspaceweaver")))
+
+(defsystem "pira/sms"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sms")))
+
+(defsystem "pira/snow-device-management"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "snow-device-management")))
+
+(defsystem "pira/snowball"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "snowball")))
+
+(defsystem "pira/sns"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sns")))
+
+(defsystem "pira/socialmessaging"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "socialmessaging")))
+
+(defsystem "pira/sqs"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sqs")))
+
+(defsystem "pira/ssm-contacts"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ssm-contacts")))
+
+(defsystem "pira/ssm-guiconnect"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ssm-guiconnect")))
+
+(defsystem "pira/ssm-incidents"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ssm-incidents")))
+
+(defsystem "pira/ssm-quicksetup"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ssm-quicksetup")))
+
+(defsystem "pira/ssm-sap"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ssm-sap")))
+
+(defsystem "pira/ssm"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "ssm")))
+
+(defsystem "pira/sso-admin"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sso-admin")))
+
+(defsystem "pira/sso-oidc"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sso-oidc")))
+
+(defsystem "pira/sso"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sso")))
+
+(defsystem "pira/storage-gateway"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "storage-gateway")))
+
+(defsystem "pira/sts"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "sts")))
+
+(defsystem "pira/supplychain"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "supplychain")))
+
+(defsystem "pira/support-app"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "support-app")))
+
+(defsystem "pira/support"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "support")))
+
+(defsystem "pira/swf"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "swf")))
+
+(defsystem "pira/synthetics"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "synthetics")))
+
+(defsystem "pira/taxsettings"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "taxsettings")))
+
+(defsystem "pira/textract"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "textract")))
+
+(defsystem "pira/timestream-influxdb"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "timestream-influxdb")))
+
+(defsystem "pira/timestream-query"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "timestream-query")))
+
+(defsystem "pira/timestream-write"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "timestream-write")))
+
+(defsystem "pira/tnb"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "tnb")))
+
+(defsystem "pira/transcribe-streaming"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "transcribe-streaming")))
+
+(defsystem "pira/transcribe"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "transcribe")))
+
+(defsystem "pira/transfer"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "transfer")))
+
+(defsystem "pira/translate"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "translate")))
+
+(defsystem "pira/trustedadvisor"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "trustedadvisor")))
+
+(defsystem "pira/verifiedpermissions"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "verifiedpermissions")))
+
+(defsystem "pira/voice-id"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "voice-id")))
+
+(defsystem "pira/vpc-lattice"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "vpc-lattice")))
+
+(defsystem "pira/waf-regional"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "waf-regional")))
+
+(defsystem "pira/waf"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "waf")))
+
+(defsystem "pira/wafv2"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "wafv2")))
+
+(defsystem "pira/wellarchitected"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "wellarchitected")))
+
+(defsystem "pira/wisdom"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "wisdom")))
+
+(defsystem "pira/workdocs"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "workdocs")))
+
+(defsystem "pira/workmail"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "workmail")))
+
+(defsystem "pira/workmailmessageflow"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "workmailmessageflow")))
+
+(defsystem "pira/workspaces-instances"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "workspaces-instances")))
+
+(defsystem "pira/workspaces-thin-client"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "workspaces-thin-client")))
+
+(defsystem "pira/workspaces-web"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "workspaces-web")))
+
+(defsystem "pira/workspaces"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "workspaces")))
+
+(defsystem "pira/xray"
+  :depends-on ("smithy/sdk" "pira-core/error")
+  :pathname "services"
+  :components
+  ((:file "xray")))

@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/inspector2 (:use)
-                             (:export #:account #:account-aggregation
+                             (:export #:access-denied-exception #:account
+                              #:account-aggregation
                               #:account-aggregation-response #:account-id
                               #:account-id-filter-list #:account-id-set
                               #:account-list #:account-sort-by #:account-state
@@ -28,6 +29,7 @@
                               #:aws-eks-workload-info
                               #:aws-eks-workload-info-list
                               #:aws-lambda-function-details
+                              #:bad-request-exception
                               #:batch-associate-code-security-scan-configuration
                               #:batch-disassociate-code-security-scan-configuration
                               #:batch-get-account-status
@@ -126,6 +128,7 @@
                               #:code-vulnerability-details #:commit-id
                               #:component #:component-arn #:component-type
                               #:compute-platform #:configuration-level
+                              #:conflict-exception
                               #:continuous-integration-scan-configuration
                               #:continuous-integration-scan-event
                               #:continuous-integration-scan-supported-events
@@ -261,8 +264,8 @@
                               #:inspector2 #:inspector-score-details
                               #:instance-url #:integration-name
                               #:integration-status #:integration-summaries
-                              #:integration-type #:ip-v4address
-                              #:ip-v4address-list #:ip-v6address
+                              #:integration-type #:internal-server-exception
+                              #:ip-v4address #:ip-v4address-list #:ip-v6address
                               #:ip-v6address-list #:kms-key-arn
                               #:lambda-function-aggregation
                               #:lambda-function-aggregation-response
@@ -364,6 +367,7 @@
                               #:resource-id-filter-list #:resource-list
                               #:resource-map-comparison #:resource-map-filter
                               #:resource-map-filter-list
+                              #:resource-not-found-exception
                               #:resource-scan-metadata #:resource-scan-type
                               #:resource-state #:resource-status
                               #:resource-string-comparison
@@ -381,7 +385,8 @@
                               #:search-vulnerabilities-filter-criteria
                               #:security-group-id #:security-group-id-list
                               #:send-cis-session-health
-                              #:send-cis-session-telemetry #:service #:severity
+                              #:send-cis-session-telemetry #:service
+                              #:service-quota-exceeded-exception #:severity
                               #:severity-counts #:sort-criteria #:sort-field
                               #:sort-order #:source-layer-hash
                               #:start-cis-session #:start-cis-session-message
@@ -404,11 +409,11 @@
                               #:target-resource-tags-value
                               #:target-status-filter-list
                               #:target-status-reason-filter-list #:targets
-                              #:time #:time-of-day #:timezone
-                              #:title-aggregation #:title-aggregation-response
-                              #:title-filter-list #:title-sort-by #:tool
-                              #:tools #:ttp #:ttps #:uuid #:untag-resource
-                              #:untag-resource-request
+                              #:throttling-exception #:time #:time-of-day
+                              #:timezone #:title-aggregation
+                              #:title-aggregation-response #:title-filter-list
+                              #:title-sort-by #:tool #:tools #:ttp #:ttps
+                              #:uuid #:untag-resource #:untag-resource-request
                               #:untag-resource-response
                               #:update-cis-scan-configuration
                               #:update-cis-targets
@@ -430,7 +435,8 @@
                               #:usage #:usage-account-id
                               #:usage-account-id-list #:usage-list
                               #:usage-total #:usage-total-list #:usage-type
-                              #:usage-value #:validation-exception-field
+                              #:usage-value #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-fields
                               #:validation-exception-reason #:vendor
                               #:vendor-created-at #:vendor-severity
@@ -443,8 +449,12 @@
                               #:vulnerability-source #:vulnerability-source-url
                               #:vulnerable-package #:vulnerable-package-list
                               #:vulnerable-package-remediation
-                              #:weekly-schedule))
+                              #:weekly-schedule #:inspector2-error))
 (common-lisp:in-package #:pira/inspector2)
+
+(common-lisp:define-condition inspector2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service inspector2 :shape-name "Inspector2" :version
                                    "2020-06-08" :title "Inspector2" :operations
@@ -524,7 +534,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class inspector2-error))
 
 (smithy/sdk/shapes:define-structure account common-lisp:nil
                                     ((account-id :target-type account-id
@@ -968,7 +979,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class inspector2-error))
 
 (smithy/sdk/shapes:define-input
  batch-associate-code-security-scan-configuration-request common-lisp:nil
@@ -2021,7 +2033,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class inspector2-error))
 
 (smithy/sdk/shapes:define-structure continuous-integration-scan-configuration
                                     common-lisp:nil
@@ -3770,7 +3783,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class inspector2-error))
 
 (smithy/sdk/shapes:define-type ip-v4address smithy/sdk/smithy-types:string)
 
@@ -4836,7 +4850,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class inspector2-error))
 
 (smithy/sdk/shapes:define-structure resource-scan-metadata common-lisp:nil
                                     ((ecr-repository :target-type
@@ -5032,7 +5047,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceId"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class inspector2-error))
 
 (smithy/sdk/shapes:define-type severity smithy/sdk/smithy-types:string)
 
@@ -5318,7 +5334,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class inspector2-error))
 
 (smithy/sdk/shapes:define-structure time common-lisp:nil
                                     ((time-of-day :target-type time-of-day
@@ -5633,7 +5650,8 @@
                                   validation-exception-fields :member-name
                                   "fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class inspector2-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

@@ -17,19 +17,21 @@
                               #:batch-detect-targeted-sentiment
                               #:batch-detect-targeted-sentiment-item-result
                               #:batch-item-error #:batch-item-error-list
-                              #:block #:block-reference #:block-type
-                              #:bounding-box #:child-block
-                              #:classifier-evaluation-metrics
+                              #:batch-size-limit-exceeded-exception #:block
+                              #:block-reference #:block-type #:bounding-box
+                              #:child-block #:classifier-evaluation-metrics
                               #:classifier-metadata #:classify-document
                               #:client-request-token-string #:comprehend-arn
                               #:comprehend-arn-name #:comprehend-dataset-arn
                               #:comprehend-endpoint-arn
                               #:comprehend-endpoint-name
                               #:comprehend-flywheel-arn #:comprehend-model-arn
-                              #:comprehend-20171127 #:contains-pii-entities
-                              #:create-dataset #:create-document-classifier
-                              #:create-endpoint #:create-entity-recognizer
-                              #:create-flywheel #:customer-input-string
+                              #:comprehend-20171127
+                              #:concurrent-modification-exception
+                              #:contains-pii-entities #:create-dataset
+                              #:create-document-classifier #:create-endpoint
+                              #:create-entity-recognizer #:create-flywheel
+                              #:customer-input-string
                               #:customer-input-string-list
                               #:data-security-config
                               #:dataset-augmented-manifests-list
@@ -134,15 +136,19 @@
                               #:flywheel-summary-list #:geometry #:iam-role-arn
                               #:import-model #:inference-units-integer
                               #:input-data-config #:input-format #:integer
+                              #:internal-server-exception
+                              #:invalid-filter-exception
                               #:invalid-request-detail
                               #:invalid-request-detail-reason
+                              #:invalid-request-exception
                               #:invalid-request-reason #:job-id #:job-name
-                              #:job-status #:key-phrase
-                              #:key-phrases-detection-job-filter
+                              #:job-not-found-exception #:job-status
+                              #:key-phrase #:key-phrases-detection-job-filter
                               #:key-phrases-detection-job-properties
                               #:key-phrases-detection-job-properties-list
-                              #:kms-key-id #:label-delimiter #:label-list-item
-                              #:labels-list #:language-code #:list-datasets
+                              #:kms-key-id #:kms-key-validation-exception
+                              #:label-delimiter #:label-list-item #:labels-list
+                              #:language-code #:list-datasets
                               #:list-document-classification-jobs
                               #:list-document-classifier-summaries
                               #:list-document-classifiers
@@ -194,7 +200,11 @@
                               #:point #:policy #:policy-revision-id #:polygon
                               #:put-resource-policy #:redaction-config
                               #:relationship-type #:relationships-list-item
-                              #:s3uri #:security-group-id #:security-group-ids
+                              #:resource-in-use-exception
+                              #:resource-limit-exceeded-exception
+                              #:resource-not-found-exception
+                              #:resource-unavailable-exception #:s3uri
+                              #:security-group-id #:security-group-ids
                               #:semi-structured-document-blob
                               #:sentiment-detection-job-filter
                               #:sentiment-detection-job-properties
@@ -229,16 +239,25 @@
                               #:targeted-sentiment-entity
                               #:targeted-sentiment-entity-type
                               #:targeted-sentiment-mention #:task-config
-                              #:text-segment #:timestamp
+                              #:text-segment
+                              #:text-size-limit-exceeded-exception #:timestamp
+                              #:too-many-requests-exception
+                              #:too-many-tag-keys-exception
+                              #:too-many-tags-exception
                               #:topics-detection-job-filter
                               #:topics-detection-job-properties
                               #:topics-detection-job-properties-list
                               #:toxic-content #:toxic-content-type
-                              #:toxic-labels #:untag-resource
-                              #:update-data-security-config #:update-endpoint
-                              #:update-flywheel #:version-name #:vpc-config
-                              #:warnings-list-item))
+                              #:toxic-labels #:unsupported-language-exception
+                              #:untag-resource #:update-data-security-config
+                              #:update-endpoint #:update-flywheel
+                              #:version-name #:vpc-config #:warnings-list-item
+                              #:comprehend-error))
 (common-lisp:in-package #:pira/comprehend)
+
+(common-lisp:define-condition comprehend-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service comprehend-20171127 :shape-name
                                    "Comprehend_20171127" :version "2017-11-27"
@@ -552,7 +571,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "BatchSizeLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-structure block common-lisp:nil
                                     ((id :target-type string :member-name "Id")
@@ -699,7 +719,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-input contains-pii-entities-request common-lisp:nil
                                 ((text :target-type string :required
@@ -2479,13 +2500,15 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-error invalid-filter-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidFilterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-structure invalid-request-detail common-lisp:nil
                                     ((reason :target-type
@@ -2508,7 +2531,8 @@
                                  (detail :target-type invalid-request-detail
                                   :member-name "Detail"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-enum invalid-request-reason
     common-lisp:nil
@@ -2522,7 +2546,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "JobNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-enum job-status
     common-lisp:nil
@@ -2600,7 +2625,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "KmsKeyValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-type label-delimiter smithy/sdk/smithy-types:string)
 
@@ -3348,26 +3374,30 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-error resource-limit-exceeded-exception
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-error resource-unavailable-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceUnavailableException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-type s3uri smithy/sdk/smithy-types:string)
 
@@ -4146,7 +4176,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TextSizeLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -4154,19 +4185,22 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-error too-many-tag-keys-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyTagKeysException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-structure topics-detection-job-filter common-lisp:nil
                                     ((job-name :target-type job-name
@@ -4244,7 +4278,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnsupportedLanguageException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehend-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type comprehend-arn

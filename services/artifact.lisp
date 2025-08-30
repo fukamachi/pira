@@ -1,7 +1,8 @@
 (uiop/package:define-package #:pira/artifact (:use)
-                             (:export #:acceptance-type #:account-settings
+                             (:export #:acceptance-type
+                              #:access-denied-exception #:account-settings
                               #:account-settings-resource #:agreement-terms
-                              #:agreement-type #:artifact
+                              #:agreement-type #:artifact #:conflict-exception
                               #:customer-agreement-id-attribute
                               #:customer-agreement-list
                               #:customer-agreement-resource
@@ -9,6 +10,7 @@
                               #:customer-agreement-summary
                               #:get-account-settings #:get-report
                               #:get-report-metadata #:get-term-for-report
+                              #:internal-server-exception
                               #:list-customer-agreements #:list-reports
                               #:long-string-attribute #:max-results-attribute
                               #:next-token-attribute
@@ -16,14 +18,22 @@
                               #:published-state #:put-account-settings
                               #:report-detail #:report-id #:report-resource
                               #:report-summary #:reports-list
+                              #:resource-not-found-exception
                               #:sequence-number-attribute
+                              #:service-quota-exceeded-exception
                               #:short-string-attribute #:status-message
-                              #:term-id #:term-resource #:timestamp-attribute
-                              #:upload-state #:validation-exception-field
+                              #:term-id #:term-resource #:throttling-exception
+                              #:timestamp-attribute #:upload-state
+                              #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason
-                              #:version-attribute))
+                              #:validation-exception-reason #:version-attribute
+                              #:artifact-error))
 (common-lisp:in-package #:pira/artifact)
+
+(common-lisp:define-condition artifact-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service artifact :shape-name "Artifact" :version
                                    "2018-05-10" :title "AWS Artifact"
@@ -48,7 +58,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class artifact-error))
 
 (smithy/sdk/shapes:define-structure account-settings common-lisp:nil
                                     ((notification-subscription-status
@@ -79,7 +89,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class artifact-error))
 
 (smithy/sdk/shapes:define-type customer-agreement-id-attribute
                                smithy/sdk/smithy-types:string)
@@ -204,7 +214,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class artifact-error))
 
 (smithy/sdk/shapes:define-input list-customer-agreements-request
                                 common-lisp:nil
@@ -389,7 +399,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class artifact-error))
 
 (smithy/sdk/shapes:define-type sequence-number-attribute
                                smithy/sdk/smithy-types:long)
@@ -412,7 +422,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class artifact-error))
 
 (smithy/sdk/shapes:define-type short-string-attribute
                                smithy/sdk/smithy-types:string)
@@ -438,7 +448,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class artifact-error))
 
 (smithy/sdk/shapes:define-type timestamp-attribute
                                smithy/sdk/smithy-types:timestamp
@@ -462,7 +472,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class artifact-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

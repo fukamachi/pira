@@ -1,14 +1,14 @@
 (uiop/package:define-package #:pira/route53resolver (:use)
-                             (:export #:account-id #:action #:arn
-                              #:associate-firewall-rule-group
+                             (:export #:access-denied-exception #:account-id
+                              #:action #:arn #:associate-firewall-rule-group
                               #:associate-resolver-endpoint-ip-address
                               #:associate-resolver-query-log-config
                               #:associate-resolver-rule
                               #:autodefined-reverse-flag
                               #:block-override-dns-type #:block-override-domain
                               #:block-override-ttl #:block-response #:boolean
-                              #:confidence-threshold #:count
-                              #:create-firewall-domain-list
+                              #:confidence-threshold #:conflict-exception
+                              #:count #:create-firewall-domain-list
                               #:create-firewall-rule
                               #:create-firewall-rule-group
                               #:create-outpost-resolver
@@ -61,11 +61,17 @@
                               #:get-resolver-rule
                               #:get-resolver-rule-association
                               #:get-resolver-rule-policy
-                              #:import-firewall-domains #:instance-count #:ip
-                              #:ip-address-count #:ip-address-request
-                              #:ip-address-response #:ip-address-status
-                              #:ip-address-update #:ip-addresses-request
-                              #:ip-addresses-response #:ipv6
+                              #:import-firewall-domains #:instance-count
+                              #:internal-service-error-exception
+                              #:invalid-next-token-exception
+                              #:invalid-parameter-exception
+                              #:invalid-policy-document
+                              #:invalid-request-exception
+                              #:invalid-tag-exception #:ip #:ip-address-count
+                              #:ip-address-request #:ip-address-response
+                              #:ip-address-status #:ip-address-update
+                              #:ip-addresses-request #:ip-addresses-response
+                              #:ipv6 #:limit-exceeded-exception
                               #:list-domain-max-results #:list-firewall-configs
                               #:list-firewall-configs-max-result
                               #:list-firewall-domain-lists
@@ -114,14 +120,20 @@
                               #:resolver-rule-associations
                               #:resolver-rule-config #:resolver-rule-policy
                               #:resolver-rule-status #:resolver-rules
-                              #:resource-id #:rfc3339time-string
-                              #:route53resolver #:rule-type-option
-                              #:security-group-ids #:server-name-indication
-                              #:service-principle #:share-status #:sort-by-key
-                              #:sort-order #:status-message #:string
-                              #:subnet-id #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-value
-                              #:target-address #:target-list #:unsigned
+                              #:resource-exists-exception #:resource-id
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception
+                              #:resource-unavailable-exception
+                              #:rfc3339time-string #:route53resolver
+                              #:rule-type-option #:security-group-ids
+                              #:server-name-indication #:service-principle
+                              #:service-quota-exceeded-exception #:share-status
+                              #:sort-by-key #:sort-order #:status-message
+                              #:string #:subnet-id #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-resource
+                              #:tag-value #:target-address #:target-list
+                              #:throttling-exception
+                              #:unknown-resource-exception #:unsigned
                               #:untag-resource #:update-firewall-config
                               #:update-firewall-domains #:update-firewall-rule
                               #:update-firewall-rule-group-association
@@ -130,8 +142,13 @@
                               #:update-resolver-config
                               #:update-resolver-dnssec-config
                               #:update-resolver-endpoint #:update-resolver-rule
-                              #:validation))
+                              #:validation #:validation-exception
+                              #:route53resolver-error))
 (common-lisp:in-package #:pira/route53resolver)
+
+(common-lisp:define-condition route53resolver-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service route53resolver :shape-name
                                    "Route53Resolver" :version "2018-04-01"
@@ -217,7 +234,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -347,7 +365,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-type count smithy/sdk/smithy-types:integer)
 
@@ -1236,13 +1255,15 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceErrorException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -1251,25 +1272,29 @@
                                  (field-name :target-type string :member-name
                                   "FieldName"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-error invalid-policy-document common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidPolicyDocument")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-error invalid-tag-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidTagException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-type ip smithy/sdk/smithy-types:string)
 
@@ -1344,7 +1369,8 @@
                                  (resource-type :target-type string
                                   :member-name "ResourceType"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-type list-domain-max-results
                                smithy/sdk/smithy-types:integer)
@@ -2110,7 +2136,8 @@
                                  (resource-type :target-type string
                                   :member-name "ResourceType"))
                                 (:shape-name "ResourceExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-type resource-id smithy/sdk/smithy-types:string)
 
@@ -2120,7 +2147,8 @@
                                  (resource-type :target-type string
                                   :member-name "ResourceType"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -2128,7 +2156,8 @@
                                  (resource-type :target-type string
                                   :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-error resource-unavailable-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -2136,7 +2165,8 @@
                                  (resource-type :target-type string
                                   :member-name "ResourceType"))
                                 (:shape-name "ResourceUnavailableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-type rfc3339time-string
                                smithy/sdk/smithy-types:string)
@@ -2160,7 +2190,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-enum share-status
     common-lisp:nil
@@ -2226,13 +2257,15 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-error unknown-resource-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "UnknownResourceException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/shapes:define-type unsigned smithy/sdk/smithy-types:integer)
 
@@ -2463,7 +2496,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53resolver-error))
 
 (smithy/sdk/operation:define-operation associate-firewall-rule-group
                                        :shape-name "AssociateFirewallRuleGroup"

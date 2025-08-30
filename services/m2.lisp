@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/m2 (:use)
-                             (:export #:alternate-key #:alternate-key-list
-                              #:application #:application-deployment-lifecycle
+                             (:export #:access-denied-exception #:alternate-key
+                              #:alternate-key-list #:application
+                              #:application-deployment-lifecycle
                               #:application-lifecycle #:application-summary
                               #:application-summary-list
                               #:application-version-lifecycle
@@ -19,7 +20,8 @@
                               #:cancel-batch-job-execution-request
                               #:cancel-batch-job-execution-response
                               #:capacity-value #:client-token
-                              #:create-application #:create-application-request
+                              #:conflict-exception #:create-application
+                              #:create-application-request
                               #:create-application-response
                               #:create-data-set-export-task
                               #:create-data-set-import-task
@@ -57,7 +59,8 @@
                               #:entity-description #:entity-name
                               #:entity-name-list #:environment
                               #:environment-lifecycle #:environment-summary
-                              #:environment-summary-list #:external-location
+                              #:environment-summary-list
+                              #:execution-timeout-exception #:external-location
                               #:file-batch-job-definition
                               #:file-batch-job-identifier
                               #:fsx-storage-configuration #:gdg-attributes
@@ -80,7 +83,8 @@
                               #:get-environment-response
                               #:get-signed-bluinsights-url
                               #:high-availability-config #:identifier
-                              #:identifier-list #:integer #:job-identifier
+                              #:identifier-list #:integer
+                              #:internal-server-exception #:job-identifier
                               #:job-step #:job-step-restart-marker #:kmskey-id
                               #:list-application-versions #:list-applications
                               #:list-batch-job-definitions
@@ -102,11 +106,14 @@
                               #:pending-maintenance #:po-attributes
                               #:po-detail-attributes #:port-list #:primary-key
                               #:ps-attributes #:ps-detail-attributes
-                              #:record-length #:restart-batch-job-identifier
+                              #:record-length #:resource-not-found-exception
+                              #:restart-batch-job-identifier
                               #:s3batch-job-identifier
                               #:script-batch-job-definition
-                              #:script-batch-job-identifier #:start-application
-                              #:start-application-request
+                              #:script-batch-job-identifier
+                              #:service-quota-exceeded-exception
+                              #:service-unavailable-exception
+                              #:start-application #:start-application-request
                               #:start-application-response #:start-batch-job
                               #:start-batch-job-request
                               #:start-batch-job-response #:stop-application
@@ -118,18 +125,25 @@
                               #:string20list #:string50 #:string50list
                               #:string-free65000 #:tag-key #:tag-key-list
                               #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:timestamp
+                              #:tag-resource-response #:tag-value
+                              #:throttling-exception #:timestamp
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:update-application
                               #:update-application-request
                               #:update-application-response
                               #:update-environment #:update-environment-request
                               #:update-environment-response
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:version
-                              #:vsam-attributes #:vsam-detail-attributes))
+                              #:vsam-attributes #:vsam-detail-attributes
+                              #:m2-error))
 (common-lisp:in-package #:pira/m2)
+
+(common-lisp:define-condition m2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service aws-supernova-control-plane-service
                                    :shape-name
@@ -169,7 +183,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class m2-error))
 
 (smithy/sdk/shapes:define-structure alternate-key common-lisp:nil
                                     ((name :target-type
@@ -370,7 +384,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class m2-error))
 
 (smithy/sdk/shapes:define-structure create-application-request common-lisp:nil
                                     ((name :target-type entity-name :required
@@ -835,7 +849,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ExecutionTimeoutException")
-                                (:error-code 504))
+                                (:error-code 504) (:base-class m2-error))
 
 (smithy/sdk/shapes:define-union external-location common-lisp:nil
                                 ((s3location :target-type string2000
@@ -1247,7 +1261,7 @@ common-lisp:nil
                                   :member-name "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class m2-error))
 
 (smithy/sdk/shapes:define-union job-identifier common-lisp:nil
                                 ((file-name :target-type
@@ -1693,7 +1707,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class m2-error))
 
 (smithy/sdk/shapes:define-structure restart-batch-job-identifier
                                     common-lisp:nil
@@ -1748,14 +1762,14 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class m2-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class m2-error))
 
 (smithy/sdk/shapes:define-input start-application-request common-lisp:nil
                                 ((application-id :target-type identifier
@@ -1860,7 +1874,7 @@ common-lisp:nil
                                   :member-name "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class m2-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -1933,7 +1947,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class m2-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

@@ -1,19 +1,30 @@
 (uiop/package:define-package #:pira/route53-recovery-cluster (:use)
-                             (:export #:arn #:arns #:control-panel-name
+                             (:export #:access-denied-exception #:arn #:arns
+                              #:conflict-exception #:control-panel-name
+                              #:endpoint-temporarily-unavailable-exception
                               #:get-routing-control-state
+                              #:internal-server-exception
                               #:list-routing-controls #:max-results #:owner
-                              #:page-token #:retry-after-seconds
-                              #:routing-control #:routing-control-name
-                              #:routing-control-state #:routing-controls
-                              #:string #:toggle-customer-api
+                              #:page-token #:resource-not-found-exception
+                              #:retry-after-seconds #:routing-control
+                              #:routing-control-name #:routing-control-state
+                              #:routing-controls
+                              #:service-limit-exceeded-exception #:string
+                              #:throttling-exception #:toggle-customer-api
                               #:update-routing-control-state
                               #:update-routing-control-state-entries
                               #:update-routing-control-state-entry
                               #:update-routing-control-states
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason))
+                              #:validation-exception-reason
+                              #:route53-recovery-cluster-error))
 (common-lisp:in-package #:pira/route53-recovery-cluster)
+
+(common-lisp:define-condition route53-recovery-cluster-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service toggle-customer-api :shape-name
                                    "ToggleCustomerAPI" :version "2019-12-02"
@@ -42,7 +53,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class route53-recovery-cluster-error))
 
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
 
@@ -56,7 +68,8 @@
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class route53-recovery-cluster-error))
 
 (smithy/sdk/shapes:define-type control-panel-name
                                smithy/sdk/smithy-types:string)
@@ -67,7 +80,8 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
                                  "EndpointTemporarilyUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class route53-recovery-cluster-error))
 
 (smithy/sdk/shapes:define-input get-routing-control-state-request
                                 common-lisp:nil
@@ -98,7 +112,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class route53-recovery-cluster-error))
 
 (smithy/sdk/shapes:define-input list-routing-controls-request common-lisp:nil
                                 ((control-panel-arn :target-type arn
@@ -131,7 +146,8 @@
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class route53-recovery-cluster-error))
 
 (smithy/sdk/shapes:define-type retry-after-seconds
                                smithy/sdk/smithy-types:integer)
@@ -177,7 +193,8 @@
                                  (service-code :target-type string :required
                                   common-lisp:t :member-name "serviceCode"))
                                 (:shape-name "ServiceLimitExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class route53-recovery-cluster-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -189,7 +206,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class route53-recovery-cluster-error))
 
 (smithy/sdk/shapes:define-list update-routing-control-state-entries :member
                                update-routing-control-state-entry)
@@ -251,7 +269,8 @@
                                   validation-exception-field-list :member-name
                                   "fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53-recovery-cluster-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type string :required

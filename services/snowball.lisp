@@ -3,10 +3,12 @@
                               #:address #:address-id #:address-list
                               #:address-type #:ami-id #:boolean
                               #:cancel-cluster #:cancel-job #:cluster-id
+                              #:cluster-limit-exceeded-exception
                               #:cluster-list-entry #:cluster-list-entry-list
                               #:cluster-metadata #:cluster-state
                               #:compatible-image #:compatible-image-list
-                              #:create-address #:create-cluster #:create-job
+                              #:conflict-exception #:create-address
+                              #:create-cluster #:create-job
                               #:create-long-term-pricing
                               #:create-return-shipping-label #:data-transfer
                               #:dependent-service #:dependent-service-list
@@ -16,23 +18,29 @@
                               #:device-configuration #:device-pickup-id
                               #:device-service-name
                               #:ekson-device-service-configuration
-                              #:ec2ami-resource #:ec2ami-resource-list #:email
+                              #:ec2ami-resource #:ec2ami-resource-list
+                              #:ec2request-failed-exception #:email
                               #:event-trigger-definition
                               #:event-trigger-definition-list #:gstin
                               #:get-job-manifest #:get-job-unlock-code
                               #:get-snowball-usage #:get-software-updates
                               #:indtax-documents #:impact-level
-                              #:initial-cluster-size #:integer #:java-boolean
+                              #:initial-cluster-size #:integer
+                              #:invalid-address-exception
+                              #:invalid-input-combination-exception
+                              #:invalid-job-state-exception
+                              #:invalid-next-token-exception
+                              #:invalid-resource-exception #:java-boolean
                               #:job-id #:job-list-entry #:job-list-entry-list
                               #:job-logs #:job-metadata #:job-metadata-list
                               #:job-resource #:job-state #:job-state-list
-                              #:job-type #:key-range #:kms-key-arn
-                              #:lambda-resource #:lambda-resource-list
-                              #:list-cluster-jobs #:list-clusters
-                              #:list-compatible-images #:list-jobs #:list-limit
-                              #:list-long-term-pricing #:list-pickup-locations
-                              #:list-service-versions #:long
-                              #:long-term-pricing-associated-job-id-list
+                              #:job-type #:kmsrequest-failed-exception
+                              #:key-range #:kms-key-arn #:lambda-resource
+                              #:lambda-resource-list #:list-cluster-jobs
+                              #:list-clusters #:list-compatible-images
+                              #:list-jobs #:list-limit #:list-long-term-pricing
+                              #:list-pickup-locations #:list-service-versions
+                              #:long #:long-term-pricing-associated-job-id-list
                               #:long-term-pricing-entry-list
                               #:long-term-pricing-id
                               #:long-term-pricing-id-list
@@ -42,9 +50,10 @@
                               #:node-fault-tolerance #:notification
                               #:on-device-service-configuration #:phone-number
                               #:pickup-details #:remote-management
-                              #:resource-arn #:role-arn
-                              #:s3on-device-service-configuration #:s3resource
-                              #:s3resource-list #:s3storage-limit
+                              #:resource-arn
+                              #:return-shipping-label-already-exists-exception
+                              #:role-arn #:s3on-device-service-configuration
+                              #:s3resource #:s3resource-list #:s3storage-limit
                               #:service-name #:service-size #:service-version
                               #:service-version-list #:shipment
                               #:shipment-state #:shipping-details
@@ -55,10 +64,16 @@
                               #:tgwon-device-service-configuration
                               #:target-on-device-service
                               #:target-on-device-service-list #:tax-documents
-                              #:timestamp #:transfer-option #:update-cluster
+                              #:timestamp #:transfer-option
+                              #:unsupported-address-exception #:update-cluster
                               #:update-job #:update-job-shipment-state
-                              #:update-long-term-pricing #:wireless-connection))
+                              #:update-long-term-pricing #:wireless-connection
+                              #:snowball-error))
 (common-lisp:in-package #:pira/snowball)
+
+(common-lisp:define-condition snowball-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsiesnowball-job-management-service
                                    :shape-name
@@ -163,7 +178,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ClusterLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class snowball-error))
 
 (smithy/sdk/shapes:define-structure cluster-list-entry common-lisp:nil
                                     ((cluster-id :target-type string
@@ -240,7 +255,7 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class snowball-error))
 
 (smithy/sdk/shapes:define-input create-address-request common-lisp:nil
                                 ((address :target-type address :required
@@ -517,7 +532,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "Ec2RequestFailedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class snowball-error))
 
 (smithy/sdk/shapes:define-type email smithy/sdk/smithy-types:string)
 
@@ -595,7 +610,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidAddressException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class snowball-error))
 
 (smithy/sdk/shapes:define-error invalid-input-combination-exception
                                 common-lisp:nil
@@ -603,19 +618,19 @@
                                   "Message"))
                                 (:shape-name
                                  "InvalidInputCombinationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class snowball-error))
 
 (smithy/sdk/shapes:define-error invalid-job-state-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidJobStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class snowball-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class snowball-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -623,7 +638,7 @@
                                  (resource-type :target-type string
                                   :member-name "ResourceType"))
                                 (:shape-name "InvalidResourceException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class snowball-error))
 
 (smithy/sdk/shapes:define-type java-boolean smithy/sdk/smithy-types:boolean)
 
@@ -763,7 +778,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "KMSRequestFailedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class snowball-error))
 
 (smithy/sdk/shapes:define-structure key-range common-lisp:nil
                                     ((begin-marker :target-type string
@@ -1033,7 +1048,7 @@
                                   "Message"))
                                 (:shape-name
                                  "ReturnShippingLabelAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class snowball-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -1198,7 +1213,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnsupportedAddressException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class snowball-error))
 
 (smithy/sdk/shapes:define-input update-cluster-request common-lisp:nil
                                 ((cluster-id :target-type cluster-id :required

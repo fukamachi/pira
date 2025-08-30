@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/bcm-pricing-calculator (:use)
-                             (:export #:awsbcmpricing-calculator #:account-id
+                             (:export #:awsbcmpricing-calculator
+                              #:access-denied-exception #:account-id
                               #:add-reserved-instance-action
                               #:add-savings-plan-action #:arn
                               #:availability-zone
@@ -83,16 +84,18 @@
                               #:bill-scenario-usage-modification
                               #:bill-scenario-usage-modification-item
                               #:bill-scenario-usage-modification-items
-                              #:client-token #:cost-amount #:cost-difference
-                              #:create-bill-estimate #:create-bill-scenario
-                              #:create-workload-estimate #:currency-code
+                              #:client-token #:conflict-exception #:cost-amount
+                              #:cost-difference #:create-bill-estimate
+                              #:create-bill-scenario #:create-workload-estimate
+                              #:currency-code #:data-unavailable-exception
                               #:delete-bill-estimate #:delete-bill-scenario
                               #:delete-workload-estimate #:expression
                               #:expression-filter #:expression-list
                               #:filter-timestamp #:get-bill-estimate
                               #:get-bill-scenario #:get-preferences
                               #:get-workload-estimate #:historical-usage-entity
-                              #:key #:list-bill-estimate-commitments
+                              #:internal-server-exception #:key
+                              #:list-bill-estimate-commitments
                               #:list-bill-estimate-input-commitment-modifications
                               #:list-bill-estimate-input-usage-modifications
                               #:list-bill-estimate-line-items
@@ -125,17 +128,20 @@
                               #:negate-savings-plan-action #:next-page-token
                               #:operation #:purchase-agreement-type #:rate-type
                               #:rate-types #:reserved-instance-instance-count
-                              #:resource-id #:resource-tag-key
-                              #:resource-tag-keys #:resource-tag-value
-                              #:savings-plan-arns #:savings-plan-commitment
-                              #:service-code #:service-cost-difference-map
-                              #:string-list #:tag-resource #:tags
+                              #:resource-id #:resource-not-found-exception
+                              #:resource-tag-key #:resource-tag-keys
+                              #:resource-tag-value #:savings-plan-arns
+                              #:savings-plan-commitment #:service-code
+                              #:service-cost-difference-map
+                              #:service-quota-exceeded-exception #:string-list
+                              #:tag-resource #:tags #:throttling-exception
                               #:untag-resource #:update-bill-estimate
                               #:update-bill-scenario #:update-preferences
                               #:update-workload-estimate #:usage-amount
                               #:usage-amounts #:usage-group #:usage-quantities
                               #:usage-quantity #:usage-quantity-result
-                              #:usage-type #:uuid #:validation-exception-field
+                              #:usage-type #:uuid #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:workload-estimate
                               #:workload-estimate-cost-status
@@ -149,8 +155,13 @@
                               #:workload-estimate-usage-item
                               #:workload-estimate-usage-items
                               #:workload-estimate-usage-max-results
-                              #:workload-estimate-usage-quantity))
+                              #:workload-estimate-usage-quantity
+                              #:bcm-pricing-calculator-error))
 (common-lisp:in-package #:pira/bcm-pricing-calculator)
+
+(common-lisp:define-condition bcm-pricing-calculator-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsbcmpricing-calculator :shape-name
                                    "AWSBCMPricingCalculator" :version
@@ -205,7 +216,8 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
                                 (:error-name "AccessDeniedCode")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class bcm-pricing-calculator-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -1069,7 +1081,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-name "ConflictCode") (:error-code 409))
+                                (:error-name "ConflictCode") (:error-code 409)
+                                (:base-class bcm-pricing-calculator-error))
 
 (smithy/sdk/shapes:define-structure cost-amount common-lisp:nil
                                     ((amount :target-type
@@ -1202,7 +1215,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "DataUnavailableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bcm-pricing-calculator-error))
 
 (smithy/sdk/shapes:define-input delete-bill-estimate-request common-lisp:nil
                                 ((identifier :target-type resource-id :required
@@ -1405,7 +1419,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class bcm-pricing-calculator-error))
 
 (smithy/sdk/shapes:define-type key smithy/sdk/smithy-types:string)
 
@@ -1814,7 +1829,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFoundCode")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class bcm-pricing-calculator-error))
 
 (smithy/sdk/shapes:define-type resource-tag-key smithy/sdk/smithy-types:string)
 
@@ -1854,7 +1870,8 @@ common-lisp:nil
                                   "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
                                 (:error-name "ServiceQuotaCode")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class bcm-pricing-calculator-error))
 
 (smithy/sdk/shapes:define-list string-list :member
                                smithy/sdk/smithy-types:string)
@@ -1889,7 +1906,8 @@ common-lisp:nil
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
                                 (:error-name "ThrottlingCode")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class bcm-pricing-calculator-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((arn :target-type arn :required common-lisp:t
@@ -2083,7 +2101,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bcm-pricing-calculator-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

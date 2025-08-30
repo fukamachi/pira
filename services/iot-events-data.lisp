@@ -34,27 +34,37 @@
                               #:enable-alarm-action-requests
                               #:ephemeral-input-name #:epoch-milli-timestamp
                               #:error-code #:error-message #:event-type
-                              #:input-property-value #:iot-columbo-data-service
-                              #:key-value #:list-alarms #:list-detectors
-                              #:max-results #:message #:message-id #:messages
-                              #:next-token #:note #:payload #:request-id
+                              #:input-property-value
+                              #:internal-failure-exception
+                              #:invalid-request-exception
+                              #:iot-columbo-data-service #:key-value
+                              #:list-alarms #:list-detectors #:max-results
+                              #:message #:message-id #:messages #:next-token
+                              #:note #:payload #:request-id
                               #:reset-action-configuration
                               #:reset-alarm-action-request
-                              #:reset-alarm-action-requests #:rule-evaluation
-                              #:seconds #:severity #:simple-rule-evaluation
+                              #:reset-alarm-action-requests
+                              #:resource-not-found-exception #:rule-evaluation
+                              #:seconds #:service-unavailable-exception
+                              #:severity #:simple-rule-evaluation
                               #:snooze-action-configuration
                               #:snooze-alarm-action-request
                               #:snooze-alarm-action-requests #:snooze-duration
                               #:state-change-configuration #:state-name
-                              #:system-event #:threshold-value #:timer
-                              #:timer-definition #:timer-definitions
-                              #:timer-name #:timers #:timestamp
-                              #:timestamp-value #:trigger-type
+                              #:system-event #:threshold-value
+                              #:throttling-exception #:timer #:timer-definition
+                              #:timer-definitions #:timer-name #:timers
+                              #:timestamp #:timestamp-value #:trigger-type
                               #:update-detector-request
                               #:update-detector-requests #:variable
                               #:variable-definition #:variable-definitions
-                              #:variable-name #:variable-value #:variables))
+                              #:variable-name #:variable-value #:variables
+                              #:iot-events-data-error))
 (common-lisp:in-package #:pira/iot-events-data)
+
+(common-lisp:define-condition iot-events-data-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service iot-columbo-data-service :shape-name
                                    "IotColumboDataService" :version
@@ -553,13 +563,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iot-events-data-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iot-events-data-error))
 
 (smithy/sdk/shapes:define-type key-value smithy/sdk/smithy-types:string)
 
@@ -659,7 +671,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iot-events-data-error))
 
 (smithy/sdk/shapes:define-structure rule-evaluation common-lisp:nil
                                     ((simple-rule-evaluation :target-type
@@ -673,7 +686,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class iot-events-data-error))
 
 (smithy/sdk/shapes:define-type severity smithy/sdk/smithy-types:integer)
 
@@ -738,7 +752,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class iot-events-data-error))
 
 (smithy/sdk/shapes:define-structure timer common-lisp:nil
                                     ((name :target-type timer-name :required

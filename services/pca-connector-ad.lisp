@@ -1,7 +1,8 @@
 (uiop/package:define-package #:pira/pca-connector-ad (:use)
                              (:export #:access-control-entry
                               #:access-control-entry-list
-                              #:access-control-entry-summary #:access-right
+                              #:access-control-entry-summary
+                              #:access-denied-exception #:access-right
                               #:access-rights #:application-policies
                               #:application-policy #:application-policy-list
                               #:application-policy-type
@@ -9,10 +10,10 @@
                               #:certificate-validity #:client-compatibility-v2
                               #:client-compatibility-v3
                               #:client-compatibility-v4 #:client-token
-                              #:connector #:connector-arn #:connector-list
-                              #:connector-resource #:connector-status
-                              #:connector-status-reason #:connector-summary
-                              #:create-connector
+                              #:conflict-exception #:connector #:connector-arn
+                              #:connector-list #:connector-resource
+                              #:connector-status #:connector-status-reason
+                              #:connector-summary #:create-connector
                               #:create-directory-registration
                               #:create-service-principal-name #:create-template
                               #:create-template-group-access-control-entry
@@ -37,9 +38,9 @@
                               #:get-service-principal-name #:get-template
                               #:get-template-group-access-control-entry
                               #:group-security-identifier #:hash-algorithm
-                              #:ip-address-type #:key-spec #:key-usage
-                              #:key-usage-flags #:key-usage-property
-                              #:key-usage-property-flags
+                              #:internal-server-exception #:ip-address-type
+                              #:key-spec #:key-usage #:key-usage-flags
+                              #:key-usage-property #:key-usage-property-flags
                               #:key-usage-property-type #:list-connectors
                               #:list-directory-registrations
                               #:list-service-principal-names
@@ -51,13 +52,16 @@
                               #:private-key-attributes-v3
                               #:private-key-attributes-v4
                               #:private-key-flags-v2 #:private-key-flags-v3
-                              #:private-key-flags-v4 #:security-group-id
-                              #:security-group-id-list #:service-principal-name
+                              #:private-key-flags-v4
+                              #:resource-not-found-exception
+                              #:security-group-id #:security-group-id-list
+                              #:service-principal-name
                               #:service-principal-name-list
                               #:service-principal-name-resource
                               #:service-principal-name-status
                               #:service-principal-name-status-reason
                               #:service-principal-name-summary
+                              #:service-quota-exceeded-exception
                               #:subject-name-flags-v2 #:subject-name-flags-v3
                               #:subject-name-flags-v4 #:tag-key-list
                               #:tag-resource #:tags #:template #:template-arn
@@ -67,11 +71,18 @@
                               #:template-name-list #:template-resource
                               #:template-revision #:template-status
                               #:template-summary #:template-v2 #:template-v3
-                              #:template-v4 #:untag-resource #:update-template
+                              #:template-v4 #:throttling-exception
+                              #:untag-resource #:update-template
                               #:update-template-group-access-control-entry
+                              #:validation-exception
                               #:validation-exception-reason #:validity-period
-                              #:validity-period-type #:vpc-information))
+                              #:validity-period-type #:vpc-information
+                              #:pca-connector-ad-error))
 (common-lisp:in-package #:pira/pca-connector-ad)
+
+(common-lisp:define-condition pca-connector-ad-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service pca-connector-ad :shape-name
                                    "PcaConnectorAd" :version "2018-05-10"
@@ -137,7 +148,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class pca-connector-ad-error))
 
 (smithy/sdk/shapes:define-enum access-right
     common-lisp:nil
@@ -300,7 +312,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class pca-connector-ad-error))
 
 (smithy/sdk/shapes:define-structure connector common-lisp:nil
                                     ((arn :target-type connector-arn
@@ -809,7 +822,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class pca-connector-ad-error))
 
 (smithy/sdk/shapes:define-enum ip-address-type
     common-lisp:nil
@@ -1116,7 +1130,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class pca-connector-ad-error))
 
 (smithy/sdk/shapes:define-type security-group-id smithy/sdk/smithy-types:string)
 
@@ -1202,7 +1217,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "QuotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class pca-connector-ad-error))
 
 (smithy/sdk/shapes:define-structure subject-name-flags-v2 common-lisp:nil
                                     ((san-require-domain-dns :target-type
@@ -1524,7 +1540,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "QuotaCode"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class pca-connector-ad-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -1567,7 +1584,8 @@ common-lisp:nil
                                   validation-exception-reason :member-name
                                   "Reason"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pca-connector-ad-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-reason
     common-lisp:nil

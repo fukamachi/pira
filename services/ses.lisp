@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/ses (:use)
-                             (:export #:add-header-action #:address
-                              #:address-list #:amazon-resource-name
+                             (:export #:account-sending-paused-exception
+                              #:add-header-action #:address #:address-list
+                              #:already-exists-exception #:amazon-resource-name
                               #:arrival-date #:behavior-on-mxfailure #:body
                               #:bounce-action #:bounce-message
                               #:bounce-smtp-reply-code #:bounce-status-code
@@ -10,16 +11,21 @@
                               #:bulk-email-destination-list
                               #:bulk-email-destination-status
                               #:bulk-email-destination-status-list
-                              #:bulk-email-status #:charset #:cidr
-                              #:clone-receipt-rule-set
+                              #:bulk-email-status #:cannot-delete-exception
+                              #:charset #:cidr #:clone-receipt-rule-set
                               #:cloud-watch-destination
                               #:cloud-watch-dimension-configuration
                               #:cloud-watch-dimension-configurations
-                              #:configuration-set #:configuration-set-attribute
+                              #:configuration-set
+                              #:configuration-set-already-exists-exception
+                              #:configuration-set-attribute
                               #:configuration-set-attribute-list
-                              #:configuration-set-name #:configuration-sets
-                              #:connect-action #:connect-instance-arn #:content
-                              #:counter #:create-configuration-set
+                              #:configuration-set-does-not-exist-exception
+                              #:configuration-set-name
+                              #:configuration-set-sending-paused-exception
+                              #:configuration-sets #:connect-action
+                              #:connect-instance-arn #:content #:counter
+                              #:create-configuration-set
                               #:create-configuration-set-event-destination
                               #:create-configuration-set-tracking-options
                               #:create-custom-verification-email-template
@@ -27,7 +33,10 @@
                               #:create-receipt-rule-set #:create-template
                               #:custom-mail-from-status
                               #:custom-redirect-domain
+                              #:custom-verification-email-invalid-content-exception
                               #:custom-verification-email-template
+                              #:custom-verification-email-template-already-exists-exception
+                              #:custom-verification-email-template-does-not-exist-exception
                               #:custom-verification-email-templates
                               #:default-dimension-value
                               #:delete-configuration-set
@@ -47,11 +56,14 @@
                               #:dimension-value-source #:dkim-attributes
                               #:domain #:dsn-action #:dsn-status #:enabled
                               #:error #:error-message #:event-destination
+                              #:event-destination-already-exists-exception
+                              #:event-destination-does-not-exist-exception
                               #:event-destination-name #:event-destinations
                               #:event-type #:event-types #:explanation
                               #:extension-field #:extension-field-list
                               #:extension-field-name #:extension-field-value
                               #:failure-redirection-url #:from-address
+                              #:from-email-address-not-verified-exception
                               #:get-account-sending-enabled
                               #:get-custom-verification-email-template
                               #:get-identity-dkim-attributes
@@ -67,22 +79,39 @@
                               #:identity-notification-attributes
                               #:identity-type
                               #:identity-verification-attributes
+                              #:invalid-cloud-watch-destination-exception
+                              #:invalid-configuration-set-exception
+                              #:invalid-delivery-options-exception
+                              #:invalid-firehose-destination-exception
+                              #:invalid-lambda-function-exception
+                              #:invalid-policy-exception
+                              #:invalid-rendering-parameter-exception
+                              #:invalid-s3configuration-exception
+                              #:invalid-snsdestination-exception
+                              #:invalid-sns-topic-exception
+                              #:invalid-template-exception
+                              #:invalid-tracking-options-exception
                               #:invocation-type #:kinesis-firehose-destination
                               #:lambda-action #:last-attempt-date
-                              #:last-fresh-start #:list-configuration-sets
+                              #:last-fresh-start #:limit-exceeded-exception
+                              #:list-configuration-sets
                               #:list-custom-verification-email-templates
                               #:list-identities #:list-identity-policies
                               #:list-receipt-filters #:list-receipt-rule-sets
                               #:list-templates #:list-verified-email-addresses
                               #:mail-from-domain-attributes
-                              #:mail-from-domain-name #:max24hour-send
-                              #:max-items #:max-results #:max-send-rate
-                              #:message #:message-data #:message-dsn
-                              #:message-id #:message-tag #:message-tag-list
+                              #:mail-from-domain-name
+                              #:mail-from-domain-not-verified-exception
+                              #:max24hour-send #:max-items #:max-results
+                              #:max-send-rate #:message #:message-data
+                              #:message-dsn #:message-id #:message-rejected
+                              #:message-tag #:message-tag-list
                               #:message-tag-name #:message-tag-value
+                              #:missing-rendering-attribute-exception
                               #:next-token #:notification-attributes
                               #:notification-topic #:notification-type #:policy
                               #:policy-map #:policy-name #:policy-name-list
+                              #:production-access-not-granted-exception
                               #:put-configuration-set-delivery-options
                               #:put-identity-policy #:raw-message
                               #:raw-message-data #:receipt-action
@@ -97,9 +126,12 @@
                               #:recipient-dsn-fields #:recipients-list
                               #:remote-mta #:rendered-template
                               #:reorder-receipt-rule-set #:reporting-mta
-                              #:reputation-options #:rule-or-rule-set-name
-                              #:s3action #:s3bucket-name #:s3key-prefix
-                              #:snsaction #:snsaction-encoding #:snsdestination
+                              #:reputation-options
+                              #:rule-does-not-exist-exception
+                              #:rule-or-rule-set-name
+                              #:rule-set-does-not-exist-exception #:s3action
+                              #:s3bucket-name #:s3key-prefix #:snsaction
+                              #:snsaction-encoding #:snsdestination
                               #:send-bounce #:send-bulk-templated-email
                               #:send-custom-verification-email
                               #:send-data-point #:send-data-point-list
@@ -116,10 +148,13 @@
                               #:subject #:subject-part
                               #:success-redirection-url #:template
                               #:template-content #:template-data
+                              #:template-does-not-exist-exception
                               #:template-metadata #:template-metadata-list
                               #:template-name #:test-render-template
                               #:text-part #:timestamp #:tls-policy
                               #:tracking-options
+                              #:tracking-options-already-exists-exception
+                              #:tracking-options-does-not-exist-exception
                               #:update-account-sending-enabled
                               #:update-configuration-set-event-destination
                               #:update-configuration-set-reputation-metrics-enabled
@@ -131,8 +166,12 @@
                               #:verification-token #:verification-token-list
                               #:verify-domain-dkim #:verify-domain-identity
                               #:verify-email-address #:verify-email-identity
-                              #:workmail-action))
+                              #:workmail-action #:ses-error))
 (common-lisp:in-package #:pira/ses)
+
+(common-lisp:define-condition ses-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service simple-email-service :shape-name
                                    "SimpleEmailService" :version "2010-12-01"
@@ -216,7 +255,7 @@
                                   :member-name "message"))
                                 (:shape-name "AccountSendingPausedException")
                                 (:error-name "AccountSendingPausedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-structure add-header-action common-lisp:nil
                                     ((header-name :target-type header-name
@@ -237,7 +276,8 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AlreadyExistsException")
-                                (:error-name "AlreadyExists") (:error-code 400))
+                                (:error-name "AlreadyExists") (:error-code 400)
+                                (:base-class ses-error))
 
 (smithy/sdk/shapes:define-type amazon-resource-name
                                smithy/sdk/smithy-types:string)
@@ -358,7 +398,8 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "CannotDeleteException")
-                                (:error-name "CannotDelete") (:error-code 400))
+                                (:error-name "CannotDelete") (:error-code 400)
+                                (:base-class ses-error))
 
 (smithy/sdk/shapes:define-type charset smithy/sdk/smithy-types:string)
 
@@ -419,7 +460,7 @@
                                 (:shape-name
                                  "ConfigurationSetAlreadyExistsException")
                                 (:error-name "ConfigurationSetAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-enum configuration-set-attribute
     common-lisp:nil
@@ -441,7 +482,7 @@
                                 (:shape-name
                                  "ConfigurationSetDoesNotExistException")
                                 (:error-name "ConfigurationSetDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-type configuration-set-name
                                smithy/sdk/smithy-types:string)
@@ -457,7 +498,7 @@
                                  "ConfigurationSetSendingPausedException")
                                 (:error-name
                                  "ConfigurationSetSendingPausedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-list configuration-sets :member configuration-set)
 
@@ -589,7 +630,8 @@
  custom-verification-email-invalid-content-exception common-lisp:nil
  ((message :target-type error-message :member-name "message"))
  (:shape-name "CustomVerificationEmailInvalidContentException")
- (:error-name "CustomVerificationEmailInvalidContent") (:error-code 400))
+ (:error-name "CustomVerificationEmailInvalidContent") (:error-code 400)
+ (:base-class ses-error))
 
 (smithy/sdk/shapes:define-structure custom-verification-email-template
                                     common-lisp:nil
@@ -615,7 +657,8 @@
    :member-name "CustomVerificationEmailTemplateName")
   (message :target-type error-message :member-name "message"))
  (:shape-name "CustomVerificationEmailTemplateAlreadyExistsException")
- (:error-name "CustomVerificationEmailTemplateAlreadyExists") (:error-code 400))
+ (:error-name "CustomVerificationEmailTemplateAlreadyExists") (:error-code 400)
+ (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error
  custom-verification-email-template-does-not-exist-exception common-lisp:nil
@@ -623,7 +666,8 @@
    :member-name "CustomVerificationEmailTemplateName")
   (message :target-type error-message :member-name "message"))
  (:shape-name "CustomVerificationEmailTemplateDoesNotExistException")
- (:error-name "CustomVerificationEmailTemplateDoesNotExist") (:error-code 400))
+ (:error-name "CustomVerificationEmailTemplateDoesNotExist") (:error-code 400)
+ (:base-class ses-error))
 
 (smithy/sdk/shapes:define-list custom-verification-email-templates :member
                                custom-verification-email-template)
@@ -897,7 +941,7 @@
                                 (:shape-name
                                  "EventDestinationAlreadyExistsException")
                                 (:error-name "EventDestinationAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error event-destination-does-not-exist-exception
                                 common-lisp:nil
@@ -912,7 +956,7 @@
                                 (:shape-name
                                  "EventDestinationDoesNotExistException")
                                 (:error-name "EventDestinationDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-type event-destination-name
                                smithy/sdk/smithy-types:string)
@@ -965,7 +1009,7 @@
                                 (:shape-name
                                  "FromEmailAddressNotVerifiedException")
                                 (:error-name "FromEmailAddressNotVerified")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-output get-account-sending-enabled-response
                                  common-lisp:nil
@@ -1198,7 +1242,7 @@
                                 (:shape-name
                                  "InvalidCloudWatchDestinationException")
                                 (:error-name "InvalidCloudWatchDestination")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error invalid-configuration-set-exception
                                 common-lisp:nil
@@ -1207,7 +1251,7 @@
                                 (:shape-name
                                  "InvalidConfigurationSetException")
                                 (:error-name "InvalidConfigurationSet")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error invalid-delivery-options-exception
                                 common-lisp:nil
@@ -1215,7 +1259,7 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidDeliveryOptionsException")
                                 (:error-name "InvalidDeliveryOptions")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error invalid-firehose-destination-exception
                                 common-lisp:nil
@@ -1230,7 +1274,7 @@
                                 (:shape-name
                                  "InvalidFirehoseDestinationException")
                                 (:error-name "InvalidFirehoseDestination")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error invalid-lambda-function-exception
                                 common-lisp:nil
@@ -1241,13 +1285,14 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidLambdaFunctionException")
                                 (:error-name "InvalidLambdaFunction")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error invalid-policy-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidPolicyException")
-                                (:error-name "InvalidPolicy") (:error-code 400))
+                                (:error-name "InvalidPolicy") (:error-code 400)
+                                (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error invalid-rendering-parameter-exception
                                 common-lisp:nil
@@ -1258,7 +1303,7 @@
                                 (:shape-name
                                  "InvalidRenderingParameterException")
                                 (:error-name "InvalidRenderingParameter")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error invalid-s3configuration-exception
                                 common-lisp:nil
@@ -1268,7 +1313,7 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidS3ConfigurationException")
                                 (:error-name "InvalidS3Configuration")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error invalid-snsdestination-exception
                                 common-lisp:nil
@@ -1282,7 +1327,7 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidSNSDestinationException")
                                 (:error-name "InvalidSNSDestination")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error invalid-sns-topic-exception common-lisp:nil
                                 ((topic :target-type amazon-resource-name
@@ -1291,7 +1336,7 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidSnsTopicException")
                                 (:error-name "InvalidSnsTopic")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error invalid-template-exception common-lisp:nil
                                 ((template-name :target-type template-name
@@ -1300,7 +1345,7 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidTemplateException")
                                 (:error-name "InvalidTemplate")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error invalid-tracking-options-exception
                                 common-lisp:nil
@@ -1308,7 +1353,7 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidTrackingOptionsException")
                                 (:error-name "InvalidTrackingOptions")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-enum invocation-type
     common-lisp:nil
@@ -1348,7 +1393,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-name "LimitExceeded") (:error-code 400))
+                                (:error-name "LimitExceeded") (:error-code 400)
+                                (:base-class ses-error))
 
 (smithy/sdk/shapes:define-input list-configuration-sets-request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -1469,7 +1515,7 @@
                                  "MailFromDomainNotVerifiedException")
                                 (:error-name
                                  "MailFromDomainNotVerifiedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-type max24hour-send smithy/sdk/smithy-types:double)
 
@@ -1506,7 +1552,7 @@
                                   :member-name "message"))
                                 (:shape-name "MessageRejected")
                                 (:error-name "MessageRejected")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-structure message-tag common-lisp:nil
                                     ((name :target-type message-tag-name
@@ -1532,7 +1578,7 @@
                                 (:shape-name
                                  "MissingRenderingAttributeException")
                                 (:error-name "MissingRenderingAttribute")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
 
@@ -1563,7 +1609,7 @@
                                 (:shape-name
                                  "ProductionAccessNotGrantedException")
                                 (:error-name "ProductionAccessNotGranted")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-input put-configuration-set-delivery-options-request
                                 common-lisp:nil
@@ -1752,7 +1798,7 @@
                                   :member-name "message"))
                                 (:shape-name "RuleDoesNotExistException")
                                 (:error-name "RuleDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-type rule-or-rule-set-name
                                smithy/sdk/smithy-types:string)
@@ -1765,7 +1811,7 @@
                                   :member-name "message"))
                                 (:shape-name "RuleSetDoesNotExistException")
                                 (:error-name "RuleSetDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-structure s3action common-lisp:nil
                                     ((topic-arn :target-type
@@ -2142,7 +2188,7 @@
                                   :member-name "message"))
                                 (:shape-name "TemplateDoesNotExistException")
                                 (:error-name "TemplateDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-structure template-metadata common-lisp:nil
                                     ((name :target-type template-name
@@ -2196,7 +2242,7 @@
                                  "TrackingOptionsAlreadyExistsException")
                                 (:error-name
                                  "TrackingOptionsAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-error tracking-options-does-not-exist-exception
                                 common-lisp:nil
@@ -2209,7 +2255,7 @@
                                  "TrackingOptionsDoesNotExistException")
                                 (:error-name
                                  "TrackingOptionsDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ses-error))
 
 (smithy/sdk/shapes:define-input update-account-sending-enabled-request
                                 common-lisp:nil

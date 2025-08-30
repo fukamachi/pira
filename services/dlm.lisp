@@ -30,17 +30,22 @@
                               #:execution-role-arn #:extend-deletion
                               #:fast-restore-rule #:get-lifecycle-policies
                               #:get-lifecycle-policy
-                              #:gettable-policy-state-values #:interval
-                              #:interval-unit-values #:lifecycle-policy
+                              #:gettable-policy-state-values
+                              #:internal-server-exception #:interval
+                              #:interval-unit-values
+                              #:invalid-request-exception #:lifecycle-policy
                               #:lifecycle-policy-summary
                               #:lifecycle-policy-summary-list
+                              #:limit-exceeded-exception
                               #:list-tags-for-resource #:location-values
                               #:no-reboot #:parameter #:parameter-list
                               #:parameters #:policy-arn #:policy-description
                               #:policy-details #:policy-id #:policy-id-list
                               #:policy-language-values #:policy-type-values
                               #:resource-location-list
-                              #:resource-location-values #:resource-type-values
+                              #:resource-location-values
+                              #:resource-not-found-exception
+                              #:resource-type-values
                               #:resource-type-values-list #:retain-interval
                               #:retain-rule #:retention-archive-tier
                               #:retention-interval-unit-values #:schedule
@@ -59,8 +64,12 @@
                               #:target-tag-list #:target-tags-filter-list
                               #:time #:times-list #:timestamp #:untag-resource
                               #:update-lifecycle-policy #:variable-tags-list
-                              #:volume-type-values #:dlm-20180112))
+                              #:volume-type-values #:dlm-20180112 #:dlm-error))
 (common-lisp:in-package #:pira/dlm)
+
+(common-lisp:define-condition dlm-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service dlm-20180112 :shape-name "dlm_20180112"
                                    :version "2018-01-12" :title
@@ -429,7 +438,7 @@
                                  (code :target-type error-code :member-name
                                   "Code"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class dlm-error))
 
 (smithy/sdk/shapes:define-type interval smithy/sdk/smithy-types:integer)
 
@@ -449,7 +458,7 @@
                                   parameter-list :member-name
                                   "MutuallyExclusiveParameters"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dlm-error))
 
 (smithy/sdk/shapes:define-structure lifecycle-policy common-lisp:nil
                                     ((policy-id :target-type policy-id
@@ -512,7 +521,7 @@
                                  (resource-type :target-type string
                                   :member-name "ResourceType"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class dlm-error))
 
 (smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
                                 ((resource-arn :target-type policy-arn
@@ -632,7 +641,7 @@
                                  (resource-ids :target-type policy-id-list
                                   :member-name "ResourceIds"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class dlm-error))
 
 (smithy/sdk/shapes:define-enum resource-type-values
     common-lisp:nil

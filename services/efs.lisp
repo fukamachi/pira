@@ -1,19 +1,24 @@
 (uiop/package:define-package #:pira/efs (:use)
-                             (:export #:access-point-arn
-                              #:access-point-description
+                             (:export #:access-point-already-exists
+                              #:access-point-arn #:access-point-description
                               #:access-point-descriptions #:access-point-id
-                              #:availability-zone-id #:availability-zone-name
-                              #:aws-account-id #:backup #:backup-policy
-                              #:backup-policy-description
+                              #:access-point-limit-exceeded
+                              #:access-point-not-found #:availability-zone-id
+                              #:availability-zone-name
+                              #:availability-zones-mismatch #:aws-account-id
+                              #:backup #:backup-policy
+                              #:backup-policy-description #:bad-request
                               #:bypass-policy-lockout-safety-check
-                              #:client-token #:create-access-point
-                              #:create-file-system #:create-mount-target
+                              #:client-token #:conflict-exception
+                              #:create-access-point #:create-file-system
+                              #:create-mount-target
                               #:create-replication-configuration #:create-tags
                               #:creation-info #:creation-token
                               #:delete-access-point #:delete-file-system
                               #:delete-file-system-policy #:delete-mount-target
                               #:delete-replication-configuration #:delete-tags
-                              #:deletion-mode #:describe-access-points
+                              #:deletion-mode #:dependency-timeout
+                              #:describe-access-points
                               #:describe-account-preferences
                               #:describe-backup-policy
                               #:describe-file-system-policy
@@ -25,47 +30,70 @@
                               #:describe-tags #:destination
                               #:destination-to-create #:destinations
                               #:destinations-to-create #:encrypted #:error-code
-                              #:error-message #:file-system-arn
-                              #:file-system-description
+                              #:error-message #:file-system-already-exists
+                              #:file-system-arn #:file-system-description
                               #:file-system-descriptions #:file-system-id
+                              #:file-system-in-use #:file-system-limit-exceeded
+                              #:file-system-not-found
                               #:file-system-nullable-size-value
                               #:file-system-policy-description
                               #:file-system-protection-description
                               #:file-system-size #:file-system-size-value #:gid
-                              #:ip-address #:ip-address-type #:ipv6address
-                              #:kms-key-id #:life-cycle-state
+                              #:incorrect-file-system-life-cycle-state
+                              #:incorrect-mount-target-state
+                              #:insufficient-throughput-capacity
+                              #:internal-server-error
+                              #:invalid-policy-exception #:ip-address
+                              #:ip-address-in-use #:ip-address-type
+                              #:ipv6address #:kms-key-id #:life-cycle-state
                               #:lifecycle-configuration-description
                               #:lifecycle-policies #:lifecycle-policy
                               #:list-tags-for-resource
                               #:magnolio-apiservice-v20150201 #:marker
                               #:max-items #:max-results
                               #:modify-mount-target-security-groups
-                              #:mount-target-count #:mount-target-description
+                              #:mount-target-conflict #:mount-target-count
+                              #:mount-target-description
                               #:mount-target-descriptions #:mount-target-id
-                              #:name #:network-interface-id #:owner-gid
+                              #:mount-target-not-found #:name
+                              #:network-interface-id
+                              #:network-interface-limit-exceeded
+                              #:no-free-addresses-in-subnet #:owner-gid
                               #:owner-uid #:path #:performance-mode
-                              #:permissions #:policy #:posix-user
-                              #:provisioned-throughput-in-mibps
+                              #:permissions #:policy #:policy-not-found
+                              #:posix-user #:provisioned-throughput-in-mibps
                               #:put-account-preferences #:put-backup-policy
                               #:put-file-system-policy
                               #:put-lifecycle-configuration #:region-name
+                              #:replication-already-exists
                               #:replication-configuration-description
                               #:replication-configuration-descriptions
+                              #:replication-not-found
                               #:replication-overwrite-protection
                               #:replication-status #:resource #:resource-id
                               #:resource-id-preference #:resource-id-type
                               #:resources #:role-arn #:root-directory
                               #:secondary-gids #:security-group
-                              #:security-groups #:status #:status-message
-                              #:subnet-id #:tag #:tag-key #:tag-keys
+                              #:security-group-limit-exceeded
+                              #:security-group-not-found #:security-groups
+                              #:status #:status-message #:subnet-id
+                              #:subnet-not-found #:tag #:tag-key #:tag-keys
                               #:tag-resource #:tag-value #:tags
-                              #:throughput-mode #:timestamp #:token
+                              #:throttling-exception
+                              #:throughput-limit-exceeded #:throughput-mode
+                              #:timestamp #:token #:too-many-requests
                               #:transition-to-archive-rules
                               #:transition-to-iarules
                               #:transition-to-primary-storage-class-rules #:uid
-                              #:untag-resource #:update-file-system
-                              #:update-file-system-protection #:vpc-id))
+                              #:unsupported-availability-zone #:untag-resource
+                              #:update-file-system
+                              #:update-file-system-protection
+                              #:validation-exception #:vpc-id #:efs-error))
 (common-lisp:in-package #:pira/efs)
+
+(common-lisp:define-condition efs-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service magnolio-apiservice-v20150201 :shape-name
                                    "MagnolioAPIService_v20150201" :version
@@ -117,7 +145,7 @@
                                   :required common-lisp:t :member-name
                                   "AccessPointId"))
                                 (:shape-name "AccessPointAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-type access-point-arn smithy/sdk/smithy-types:string)
 
@@ -160,7 +188,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessPointLimitExceeded")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-error access-point-not-found common-lisp:nil
                                 ((error-code :target-type error-code :required
@@ -168,7 +196,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessPointNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-type availability-zone-id
                                smithy/sdk/smithy-types:string)
@@ -182,7 +210,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AvailabilityZonesMismatch")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-type aws-account-id smithy/sdk/smithy-types:string)
 
@@ -203,7 +231,8 @@
                                   common-lisp:t :member-name "ErrorCode")
                                  (message :target-type error-message
                                   :member-name "Message"))
-                                (:shape-name "BadRequest") (:error-code 400))
+                                (:shape-name "BadRequest") (:error-code 400)
+                                (:base-class efs-error))
 
 (smithy/sdk/shapes:define-type bypass-policy-lockout-safety-check
                                smithy/sdk/smithy-types:boolean)
@@ -216,7 +245,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-input create-access-point-request common-lisp:nil
                                 ((client-token :target-type client-token
@@ -362,7 +391,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DependencyTimeout")
-                                (:error-code 504))
+                                (:error-code 504) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-input describe-access-points-request common-lisp:nil
                                 ((max-results :target-type max-results
@@ -591,7 +620,7 @@
                                   :required common-lisp:t :member-name
                                   "FileSystemId"))
                                 (:shape-name "FileSystemAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-type file-system-arn smithy/sdk/smithy-types:string)
 
@@ -662,7 +691,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "FileSystemInUse")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-error file-system-limit-exceeded common-lisp:nil
                                 ((error-code :target-type error-code :required
@@ -670,7 +699,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "FileSystemLimitExceeded")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-error file-system-not-found common-lisp:nil
                                 ((error-code :target-type error-code :required
@@ -678,7 +707,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "FileSystemNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-type file-system-nullable-size-value
                                smithy/sdk/smithy-types:long)
@@ -732,7 +761,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "IncorrectFileSystemLifeCycleState")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-error incorrect-mount-target-state common-lisp:nil
                                 ((error-code :target-type error-code :required
@@ -740,7 +769,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "IncorrectMountTargetState")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-error insufficient-throughput-capacity
                                 common-lisp:nil
@@ -749,7 +778,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InsufficientThroughputCapacity")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-error internal-server-error common-lisp:nil
                                 ((error-code :target-type error-code :required
@@ -757,7 +786,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-error invalid-policy-exception common-lisp:nil
                                 ((error-code :target-type error-code
@@ -765,7 +794,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidPolicyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-type ip-address smithy/sdk/smithy-types:string)
 
@@ -775,7 +804,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "IpAddressInUse")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-enum ip-address-type
     common-lisp:nil
@@ -860,7 +889,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "MountTargetConflict")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-type mount-target-count
                                smithy/sdk/smithy-types:integer)
@@ -908,7 +937,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "MountTargetNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-type name smithy/sdk/smithy-types:string)
 
@@ -922,7 +951,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NetworkInterfaceLimitExceeded")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-error no-free-addresses-in-subnet common-lisp:nil
                                 ((error-code :target-type error-code :required
@@ -930,7 +959,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NoFreeAddressesInSubnet")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-type owner-gid smithy/sdk/smithy-types:long)
 
@@ -953,7 +982,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "PolicyNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-structure posix-user common-lisp:nil
                                     ((uid :target-type uid :required
@@ -1022,7 +1051,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ReplicationAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-structure replication-configuration-description
                                     common-lisp:nil
@@ -1060,7 +1089,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ReplicationNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-enum replication-overwrite-protection
     common-lisp:nil
@@ -1118,7 +1147,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "SecurityGroupLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-error security-group-not-found common-lisp:nil
                                 ((error-code :target-type error-code :required
@@ -1126,7 +1155,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "SecurityGroupNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-list security-groups :member security-group)
 
@@ -1147,7 +1176,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "SubnetNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-structure tag common-lisp:nil
                                     ((key :target-type tag-key :required
@@ -1178,7 +1207,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-error throughput-limit-exceeded common-lisp:nil
                                 ((error-code :target-type error-code :required
@@ -1186,7 +1215,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThroughputLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-enum throughput-mode
     common-lisp:nil
@@ -1204,7 +1233,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "TooManyRequests")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-enum transition-to-archive-rules
     common-lisp:nil
@@ -1242,7 +1271,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "UnsupportedAvailabilityZone")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-id :target-type resource-id
@@ -1281,7 +1310,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class efs-error))
 
 (smithy/sdk/shapes:define-type vpc-id smithy/sdk/smithy-types:string)
 

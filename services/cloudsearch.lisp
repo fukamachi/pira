@@ -5,8 +5,8 @@
                               #:analysis-scheme #:analysis-scheme-language
                               #:analysis-scheme-status
                               #:analysis-scheme-status-list
-                              #:availability-options-status #:boolean
-                              #:build-suggesters #:create-domain
+                              #:availability-options-status #:base-exception
+                              #:boolean #:build-suggesters #:create-domain
                               #:date-array-options #:date-options
                               #:define-analysis-scheme #:define-expression
                               #:define-index-field #:define-suggester
@@ -20,6 +20,7 @@
                               #:describe-scaling-parameters
                               #:describe-service-access-policies
                               #:describe-suggesters
+                              #:disabled-operation-exception
                               #:document-suggester-options
                               #:domain-endpoint-options
                               #:domain-endpoint-options-status #:domain-id
@@ -36,12 +37,16 @@
                               #:index-field-status #:index-field-status-list
                               #:index-field-type #:instance-count
                               #:int-array-options #:int-options
-                              #:lat-lon-options #:limits #:list-domain-names
+                              #:internal-exception #:invalid-type-exception
+                              #:lat-lon-options #:limit-exceeded-exception
+                              #:limits #:list-domain-names
                               #:literal-array-options #:literal-options #:long
                               #:maximum-partition-count
                               #:maximum-replication-count #:multi-az
                               #:option-state #:option-status #:partition-count
                               #:partition-instance-type #:policy-document
+                              #:resource-already-exists-exception
+                              #:resource-not-found-exception
                               #:scaling-parameters #:scaling-parameters-status
                               #:search-instance-type #:service-endpoint
                               #:service-url #:standard-name
@@ -53,8 +58,13 @@
                               #:update-domain-endpoint-options
                               #:update-scaling-parameters
                               #:update-service-access-policies
-                              #:update-timestamp #:word))
+                              #:update-timestamp #:validation-exception #:word
+                              #:cloudsearch-error))
 (common-lisp:in-package #:pira/cloudsearch)
+
+(common-lisp:define-condition cloudsearch-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service a9search-cloud-config-service2013
                                    :shape-name "A9SearchCloudConfigService2013"
@@ -205,7 +215,8 @@
                                   "Code")
                                  (message :target-type error-message
                                   :member-name "Message"))
-                                (:shape-name "BaseException") (:error-code 400))
+                                (:shape-name "BaseException") (:error-code 400)
+                                (:base-class cloudsearch-error))
 
 (smithy/sdk/shapes:define-type boolean smithy/sdk/smithy-types:boolean)
 
@@ -555,7 +566,8 @@
                                   :member-name "Message"))
                                 (:shape-name "DisabledOperationException")
                                 (:error-name "DisabledAction")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudsearch-error))
 
 (smithy/sdk/shapes:define-structure document-suggester-options common-lisp:nil
                                     ((source-field :target-type field-name
@@ -818,7 +830,8 @@
                                   :member-name "Message"))
                                 (:shape-name "InternalException")
                                 (:error-name "InternalException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class cloudsearch-error))
 
 (smithy/sdk/shapes:define-error invalid-type-exception common-lisp:nil
                                 ((code :target-type error-code :member-name
@@ -826,7 +839,8 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidTypeException")
-                                (:error-name "InvalidType") (:error-code 409))
+                                (:error-name "InvalidType") (:error-code 409)
+                                (:base-class cloudsearch-error))
 
 (smithy/sdk/shapes:define-structure lat-lon-options common-lisp:nil
                                     ((default-value :target-type field-value
@@ -849,7 +863,8 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-name "LimitExceeded") (:error-code 409))
+                                (:error-name "LimitExceeded") (:error-code 409)
+                                (:base-class cloudsearch-error))
 
 (smithy/sdk/shapes:define-structure limits common-lisp:nil
                                     ((maximum-replication-count :target-type
@@ -960,7 +975,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ResourceAlreadyExistsException")
                                 (:error-name "ResourceAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudsearch-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((code :target-type error-code :member-name
@@ -969,7 +985,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFound")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudsearch-error))
 
 (smithy/sdk/shapes:define-structure scaling-parameters common-lisp:nil
                                     ((desired-instance-type :target-type
@@ -1156,7 +1173,8 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudsearch-error))
 
 (smithy/sdk/shapes:define-type word smithy/sdk/smithy-types:string)
 

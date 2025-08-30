@@ -1,15 +1,26 @@
 (uiop/package:define-package #:pira/marketplace-deployment (:use)
                              (:export #:awsmpdeployment-parameters-service
-                              #:catalog #:client-token #:deployment-parameter
+                              #:access-denied-exception #:catalog
+                              #:client-token #:conflict-exception
+                              #:deployment-parameter
                               #:deployment-parameter-input
                               #:deployment-parameter-name
                               #:deployment-parameter-resource-identifier
+                              #:internal-server-exception
                               #:list-tags-for-resource
                               #:put-deployment-parameter #:resource-arn
-                              #:resource-id #:secret-string #:string-list
+                              #:resource-id #:resource-not-found-exception
+                              #:secret-string
+                              #:service-quota-exceeded-exception #:string-list
                               #:tag-key #:tag-resource #:tag-value #:tags
-                              #:tags-map #:untag-resource))
+                              #:tags-map #:throttling-exception
+                              #:untag-resource #:validation-exception
+                              #:marketplace-deployment-error))
 (common-lisp:in-package #:pira/marketplace-deployment)
+
+(common-lisp:define-condition marketplace-deployment-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsmpdeployment-parameters-service
                                    :shape-name
@@ -34,7 +45,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class marketplace-deployment-error))
 
 (smithy/sdk/shapes:define-type catalog smithy/sdk/smithy-types:string)
 
@@ -48,7 +60,8 @@
                                   :required common-lisp:t :member-name
                                   "resourceId"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class marketplace-deployment-error))
 
 common-lisp:nil
 
@@ -72,7 +85,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class marketplace-deployment-error))
 
 (smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -136,7 +150,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class marketplace-deployment-error))
 
 (smithy/sdk/shapes:define-type secret-string smithy/sdk/smithy-types:string)
 
@@ -146,7 +161,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class marketplace-deployment-error))
 
 (smithy/sdk/shapes:define-list string-list :member
                                smithy/sdk/smithy-types:string)
@@ -177,7 +193,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class marketplace-deployment-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -201,7 +218,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "fieldName"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-deployment-error))
 
 (smithy/sdk/operation:define-operation list-tags-for-resource :shape-name
                                        "ListTagsForResource" :input

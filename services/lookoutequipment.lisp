@@ -1,10 +1,12 @@
 (uiop/package:define-package #:pira/lookoutequipment (:use)
                              (:export #:awslookout-equipment-frontend-service
-                              #:amazon-resource-arn #:auto-promotion-result
+                              #:access-denied-exception #:amazon-resource-arn
+                              #:auto-promotion-result
                               #:auto-promotion-result-reason #:boolean
                               #:bounded-length-string #:categorical-values
                               #:comments #:component-name
-                              #:component-timestamp-delimiter #:count-percent
+                              #:component-timestamp-delimiter
+                              #:conflict-exception #:count-percent
                               #:create-dataset #:create-inference-scheduler
                               #:create-label #:create-label-group
                               #:create-model #:create-retraining-scheduler
@@ -54,12 +56,12 @@
                               #:ingestion-job-id #:ingestion-job-status
                               #:ingestion-s3input-configuration
                               #:inline-data-schema #:insufficient-sensor-data
-                              #:integer #:invalid-sensor-data #:key-pattern
-                              #:kms-key-arn #:label-group-arn
-                              #:label-group-name #:label-group-summaries
-                              #:label-group-summary #:label-id #:label-rating
-                              #:label-summaries #:label-summary
-                              #:labels-input-configuration
+                              #:integer #:internal-server-exception
+                              #:invalid-sensor-data #:key-pattern #:kms-key-arn
+                              #:label-group-arn #:label-group-name
+                              #:label-group-summaries #:label-group-summary
+                              #:label-id #:label-rating #:label-summaries
+                              #:label-summary #:labels-input-configuration
                               #:labels-s3input-configuration
                               #:large-timestamp-gaps #:latest-inference-result
                               #:list-data-ingestion-jobs #:list-datasets
@@ -85,6 +87,7 @@
                               #:name-or-arn #:next-token #:off-condition
                               #:policy #:policy-revision-id
                               #:put-resource-policy #:resource-arn
+                              #:resource-not-found-exception
                               #:retraining-frequency
                               #:retraining-scheduler-status
                               #:retraining-scheduler-summaries
@@ -93,6 +96,7 @@
                               #:sensor-statistics-summaries
                               #:sensor-statistics-summary
                               #:sensors-with-short-date-range
+                              #:service-quota-exceeded-exception
                               #:start-data-ingestion-job
                               #:start-inference-scheduler
                               #:start-retraining-scheduler
@@ -103,12 +107,17 @@
                               #:synthesized-json-model-metrics #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-value #:target-sampling-rate
-                              #:time-zone-offset #:timestamp
-                              #:unsupported-timestamps #:untag-resource
-                              #:update-active-model-version
+                              #:throttling-exception #:time-zone-offset
+                              #:timestamp #:unsupported-timestamps
+                              #:untag-resource #:update-active-model-version
                               #:update-inference-scheduler #:update-label-group
-                              #:update-model #:update-retraining-scheduler))
+                              #:update-model #:update-retraining-scheduler
+                              #:validation-exception #:lookoutequipment-error))
 (common-lisp:in-package #:pira/lookoutequipment)
+
+(common-lisp:define-condition lookoutequipment-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awslookout-equipment-frontend-service
                                    :shape-name
@@ -166,7 +175,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class lookoutequipment-error))
 
 (smithy/sdk/shapes:define-type amazon-resource-arn
                                smithy/sdk/smithy-types:string)
@@ -207,7 +217,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class lookoutequipment-error))
 
 (smithy/sdk/shapes:define-structure count-percent common-lisp:nil
                                     ((count :target-type integer :required
@@ -1374,7 +1385,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class lookoutequipment-error))
 
 (smithy/sdk/shapes:define-structure invalid-sensor-data common-lisp:nil
                                     ((affected-sensor-count :target-type
@@ -1965,7 +1977,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class lookoutequipment-error))
 
 (smithy/sdk/shapes:define-type retraining-frequency
                                smithy/sdk/smithy-types:string)
@@ -2067,7 +2080,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class lookoutequipment-error))
 
 (smithy/sdk/shapes:define-input start-data-ingestion-job-request
                                 common-lisp:nil
@@ -2239,7 +2253,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class lookoutequipment-error))
 
 (smithy/sdk/shapes:define-type time-zone-offset smithy/sdk/smithy-types:string)
 
@@ -2360,7 +2375,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lookoutequipment-error))
 
 (smithy/sdk/operation:define-operation create-dataset :shape-name
                                        "CreateDataset" :input

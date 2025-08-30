@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/lex-runtime-v2 (:use)
                              (:export #:awsdeep-sense-run-time-service-api2-0
-                              #:active-context #:active-context-name
+                              #:access-denied-exception #:active-context
+                              #:active-context-name
                               #:active-context-parameters-map
                               #:active-context-time-to-live
                               #:active-context-time-to-live-in-seconds
@@ -8,17 +9,19 @@
                               #:active-contexts-list #:attachment-title
                               #:attachment-url #:audio-chunk
                               #:audio-input-event #:audio-response-event
-                              #:blob-stream #:boolean #:bot-alias-identifier
-                              #:bot-identifier #:button #:button-text
-                              #:button-value #:buttons-list #:confidence-score
-                              #:configuration-event #:confirmation-state
+                              #:bad-gateway-exception #:blob-stream #:boolean
+                              #:bot-alias-identifier #:bot-identifier #:button
+                              #:button-text #:button-value #:buttons-list
+                              #:confidence-score #:configuration-event
+                              #:confirmation-state #:conflict-exception
                               #:conversation-mode #:dtmfinput-event #:dtmfregex
-                              #:delete-session #:dialog-action
-                              #:dialog-action-type #:disconnection-event
-                              #:double #:elicit-sub-slot #:epoch-millis
-                              #:event-id #:get-session #:heartbeat-event
-                              #:image-response-card #:input-mode #:intent
-                              #:intent-result-event #:intent-state
+                              #:delete-session #:dependency-failed-exception
+                              #:dialog-action #:dialog-action-type
+                              #:disconnection-event #:double #:elicit-sub-slot
+                              #:epoch-millis #:event-id #:get-session
+                              #:heartbeat-event #:image-response-card
+                              #:input-mode #:intent #:intent-result-event
+                              #:intent-state #:internal-server-exception
                               #:interpretation #:interpretation-source
                               #:interpretations #:locale-id #:message
                               #:message-content-type #:messages #:name
@@ -27,20 +30,28 @@
                               #:playback-interruption-event
                               #:playback-interruption-reason #:put-session
                               #:recognize-text #:recognize-utterance
-                              #:recognized-bot-member #:runtime-hint-details
-                              #:runtime-hint-phrase #:runtime-hint-value
-                              #:runtime-hint-values-list #:runtime-hints
-                              #:sensitive-non-empty-string #:sentiment-response
-                              #:sentiment-score #:sentiment-type #:session-id
-                              #:session-state #:shape #:slot
-                              #:slot-hints-intent-map #:slot-hints-slot-map
-                              #:slots #:start-conversation
+                              #:recognized-bot-member
+                              #:resource-not-found-exception
+                              #:runtime-hint-details #:runtime-hint-phrase
+                              #:runtime-hint-value #:runtime-hint-values-list
+                              #:runtime-hints #:sensitive-non-empty-string
+                              #:sentiment-response #:sentiment-score
+                              #:sentiment-type #:session-id #:session-state
+                              #:shape #:slot #:slot-hints-intent-map
+                              #:slot-hints-slot-map #:slots
+                              #:start-conversation
                               #:start-conversation-request-event-stream
                               #:start-conversation-response-event-stream
                               #:string #:string-list #:string-map #:style-type
                               #:text #:text-input-event #:text-response-event
-                              #:transcript-event #:value #:values))
+                              #:throttling-exception #:transcript-event
+                              #:validation-exception #:value #:values
+                              #:lex-runtime-v2-error))
 (common-lisp:in-package #:pira/lex-runtime-v2)
+
+(common-lisp:define-condition lex-runtime-v2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsdeep-sense-run-time-service-api2-0
                                    :shape-name
@@ -68,7 +79,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class lex-runtime-v2-error))
 
 (smithy/sdk/shapes:define-structure active-context common-lisp:nil
                                     ((name :target-type active-context-name
@@ -141,7 +153,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "BadGatewayException")
-                                (:error-code 502))
+                                (:error-code 502)
+                                (:base-class lex-runtime-v2-error))
 
 (smithy/sdk/shapes:define-type blob-stream smithy/sdk/smithy-types:blob
                                :streaming common-lisp:t)
@@ -201,7 +214,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class lex-runtime-v2-error))
 
 (smithy/sdk/shapes:define-enum conversation-mode
     common-lisp:nil
@@ -253,7 +267,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "DependencyFailedException")
-                                (:error-code 424))
+                                (:error-code 424)
+                                (:base-class lex-runtime-v2-error))
 
 (smithy/sdk/shapes:define-structure dialog-action common-lisp:nil
                                     ((type :target-type dialog-action-type
@@ -398,7 +413,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class lex-runtime-v2-error))
 
 (smithy/sdk/shapes:define-structure interpretation common-lisp:nil
                                     ((nlu-confidence :target-type
@@ -644,7 +660,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class lex-runtime-v2-error))
 
 (smithy/sdk/shapes:define-structure runtime-hint-details common-lisp:nil
                                     ((runtime-hint-values :target-type
@@ -882,7 +899,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class lex-runtime-v2-error))
 
 (smithy/sdk/shapes:define-structure transcript-event common-lisp:nil
                                     ((transcript :target-type string
@@ -895,7 +913,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lex-runtime-v2-error))
 
 (smithy/sdk/shapes:define-structure value common-lisp:nil
                                     ((original-value :target-type

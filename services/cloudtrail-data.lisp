@@ -2,13 +2,22 @@
                              (:export #:audit-event
                               #:audit-event-result-entries
                               #:audit-event-result-entry #:audit-events
-                              #:channel-arn #:cloud-trail-data-service
-                              #:error-code #:error-message #:external-id
-                              #:put-audit-events #:put-audit-events-request
+                              #:channel-arn #:channel-insufficient-permission
+                              #:channel-not-found #:channel-unsupported-schema
+                              #:cloud-trail-data-service
+                              #:duplicated-audit-event-id #:error-code
+                              #:error-message #:external-id
+                              #:invalid-channel-arn #:put-audit-events
+                              #:put-audit-events-request
                               #:put-audit-events-response
                               #:result-error-entries #:result-error-entry
-                              #:uuid))
+                              #:unsupported-operation-exception #:uuid
+                              #:cloudtrail-data-error))
 (common-lisp:in-package #:pira/cloudtrail-data)
+
+(common-lisp:define-condition cloudtrail-data-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service cloud-trail-data-service :shape-name
                                    "CloudTrailDataService" :version
@@ -52,28 +61,32 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ChannelInsufficientPermission")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-data-error))
 
 (smithy/sdk/shapes:define-error channel-not-found common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ChannelNotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-data-error))
 
 (smithy/sdk/shapes:define-error channel-unsupported-schema common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ChannelUnsupportedSchema")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-data-error))
 
 (smithy/sdk/shapes:define-error duplicated-audit-event-id common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "DuplicatedAuditEventId")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-data-error))
 
 (smithy/sdk/shapes:define-type error-code smithy/sdk/smithy-types:string)
 
@@ -86,7 +99,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InvalidChannelARN")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-data-error))
 
 (smithy/sdk/shapes:define-input put-audit-events-request common-lisp:nil
                                 ((audit-events :target-type audit-events
@@ -127,7 +141,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "UnsupportedOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-data-error))
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 

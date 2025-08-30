@@ -1,14 +1,15 @@
 (uiop/package:define-package #:pira/ssm-incidents (:use)
-                             (:export #:action #:actions-list
-                              #:add-region-action #:arn #:attribute-value-list
-                              #:automation-execution #:automation-execution-set
+                             (:export #:access-denied-exception #:action
+                              #:actions-list #:add-region-action #:arn
+                              #:attribute-value-list #:automation-execution
+                              #:automation-execution-set
                               #:batch-get-incident-findings
                               #:batch-get-incident-findings-error
                               #:batch-get-incident-findings-error-list
                               #:chat-channel #:chatbot-sns-configuration-set
                               #:client-token #:cloud-formation-stack-update
                               #:code-deploy-deployment #:condition
-                              #:create-replication-set
+                              #:conflict-exception #:create-replication-set
                               #:create-replication-set-input
                               #:create-replication-set-output
                               #:create-response-plan
@@ -58,9 +59,9 @@
                               #:incident-record-summary-list #:incident-source
                               #:incident-summary #:incident-template
                               #:incident-title #:integer-list #:integration
-                              #:integrations #:item-identifier #:item-type
-                              #:item-value #:list-incident-findings
-                              #:list-incident-records
+                              #:integrations #:internal-server-exception
+                              #:item-identifier #:item-type #:item-value
+                              #:list-incident-findings #:list-incident-records
                               #:list-incident-records-input
                               #:list-incident-records-output
                               #:list-related-items #:list-related-items-input
@@ -89,21 +90,23 @@
                               #:region-name #:region-status #:related-item
                               #:related-item-list #:related-items-update
                               #:replication-set #:replication-set-arn-list
-                              #:replication-set-status #:resource-policy
+                              #:replication-set-status
+                              #:resource-not-found-exception #:resource-policy
                               #:resource-policy-list #:resource-type
                               #:response-plan-display-name #:response-plan-name
                               #:response-plan-summary
                               #:response-plan-summary-list #:role-arn
                               #:ssmincidents #:service-code #:service-principal
-                              #:sns-arn #:sort-order #:sse-kms-key
-                              #:ssm-automation #:ssm-contacts-arn
-                              #:ssm-parameter-values #:ssm-parameters
-                              #:ssm-target-account #:start-incident
-                              #:start-incident-input #:start-incident-output
-                              #:string-list #:tag-key #:tag-key-list #:tag-map
-                              #:tag-map-update #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:timeline-event
+                              #:service-quota-exceeded-exception #:sns-arn
+                              #:sort-order #:sse-kms-key #:ssm-automation
+                              #:ssm-contacts-arn #:ssm-parameter-values
+                              #:ssm-parameters #:ssm-target-account
+                              #:start-incident #:start-incident-input
+                              #:start-incident-output #:string-list #:tag-key
+                              #:tag-key-list #:tag-map #:tag-map-update
+                              #:tag-resource #:tag-resource-request
+                              #:tag-resource-response #:tag-value
+                              #:throttling-exception #:timeline-event
                               #:timeline-event-sort #:timeline-event-type
                               #:trigger-details #:uuid #:untag-resource
                               #:untag-resource-request
@@ -127,8 +130,13 @@
                               #:update-timeline-event
                               #:update-timeline-event-input
                               #:update-timeline-event-output #:url
-                              #:variable-type))
+                              #:validation-exception #:variable-type
+                              #:ssm-incidents-error))
 (common-lisp:in-package #:pira/ssm-incidents)
+
+(common-lisp:define-condition ssm-incidents-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ssmincidents :shape-name "SSMIncidents"
                                    :version "2018-05-10" :title
@@ -170,7 +178,8 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class ssm-incidents-error))
 
 (smithy/sdk/shapes:define-union action common-lisp:nil
                                 ((ssm-automation :target-type ssm-automation
@@ -307,7 +316,8 @@
                                   smithy/sdk/smithy-types:timestamp
                                   :member-name "retryAfter"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class ssm-incidents-error))
 
 (smithy/sdk/shapes:define-structure create-replication-set-input
                                     common-lisp:nil
@@ -764,7 +774,8 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class ssm-incidents-error))
 
 (smithy/sdk/shapes:define-structure item-identifier common-lisp:nil
                                     ((value :target-type item-value :required
@@ -1072,7 +1083,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class ssm-incidents-error))
 
 (smithy/sdk/shapes:define-structure resource-policy common-lisp:nil
                                     ((policy-document :target-type policy
@@ -1134,7 +1146,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class ssm-incidents-error))
 
 (smithy/sdk/shapes:define-type sns-arn smithy/sdk/smithy-types:string)
 
@@ -1235,7 +1248,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class ssm-incidents-error))
 
 (smithy/sdk/shapes:define-structure timeline-event common-lisp:nil
                                     ((incident-record-arn :target-type arn
@@ -1458,7 +1472,8 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ssm-incidents-error))
 
 (smithy/sdk/shapes:define-type variable-type smithy/sdk/smithy-types:string)
 

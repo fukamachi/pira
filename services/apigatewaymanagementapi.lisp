@@ -1,9 +1,16 @@
 (uiop/package:define-package #:pira/apigatewaymanagementapi (:use)
                              (:export #:api-gateway-management-api #:data
-                              #:delete-connection #:get-connection #:identity
-                              #:post-to-connection #:string
-                              #:timestamp-iso8601))
+                              #:delete-connection #:forbidden-exception
+                              #:get-connection #:gone-exception #:identity
+                              #:limit-exceeded-exception
+                              #:payload-too-large-exception
+                              #:post-to-connection #:string #:timestamp-iso8601
+                              #:apigatewaymanagementapi-error))
 (common-lisp:in-package #:pira/apigatewaymanagementapi)
+
+(common-lisp:define-condition apigatewaymanagementapi-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service api-gateway-management-api :shape-name
                                    "ApiGatewayManagementApi" :version
@@ -35,7 +42,8 @@
 (smithy/sdk/shapes:define-error forbidden-exception common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class apigatewaymanagementapi-error))
 
 (smithy/sdk/shapes:define-input get-connection-request common-lisp:nil
                                 ((connection-id :target-type string :required
@@ -55,7 +63,8 @@
                                  (:shape-name "GetConnectionResponse"))
 
 (smithy/sdk/shapes:define-error gone-exception common-lisp:nil common-lisp:nil
-                                (:shape-name "GoneException") (:error-code 410))
+                                (:shape-name "GoneException") (:error-code 410)
+                                (:base-class apigatewaymanagementapi-error))
 
 (smithy/sdk/shapes:define-structure identity common-lisp:nil
                                     ((source-ip :target-type string :required
@@ -69,13 +78,15 @@
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class apigatewaymanagementapi-error))
 
 (smithy/sdk/shapes:define-error payload-too-large-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "PayloadTooLargeException")
-                                (:error-code 413))
+                                (:error-code 413)
+                                (:base-class apigatewaymanagementapi-error))
 
 (smithy/sdk/shapes:define-input post-to-connection-request common-lisp:nil
                                 ((data :target-type data :required

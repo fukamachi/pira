@@ -1,8 +1,9 @@
 (uiop/package:define-package #:pira/healthlake (:use)
-                             (:export #:amazon-resource-name
-                              #:authorization-strategy #:boolean
-                              #:bounded-length-string #:client-token-string
-                              #:cmk-type #:configuration-metadata
+                             (:export #:access-denied-exception
+                              #:amazon-resource-name #:authorization-strategy
+                              #:boolean #:bounded-length-string
+                              #:client-token-string #:cmk-type
+                              #:configuration-metadata #:conflict-exception
                               #:create-fhirdatastore #:datastore-arn
                               #:datastore-filter #:datastore-id
                               #:datastore-name #:datastore-properties
@@ -17,18 +18,27 @@
                               #:iam-role-arn #:identity-provider-configuration
                               #:import-job-properties
                               #:import-job-properties-list #:input-data-config
-                              #:job-id #:job-name #:job-progress-report
-                              #:job-status #:kms-encryption-config #:lambda-arn
+                              #:internal-server-exception #:job-id #:job-name
+                              #:job-progress-report #:job-status
+                              #:kms-encryption-config #:lambda-arn
                               #:list-fhirdatastores #:list-fhirexport-jobs
                               #:list-fhirimport-jobs #:list-tags-for-resource
                               #:max-results-integer #:message #:next-token
                               #:output-data-config #:preload-data-config
-                              #:preload-data-type #:s3configuration #:s3uri
-                              #:sse-configuration #:start-fhirexport-job
-                              #:start-fhirimport-job #:string #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-value #:timestamp #:untag-resource))
+                              #:preload-data-type
+                              #:resource-not-found-exception #:s3configuration
+                              #:s3uri #:sse-configuration
+                              #:start-fhirexport-job #:start-fhirimport-job
+                              #:string #:tag #:tag-key #:tag-key-list
+                              #:tag-list #:tag-resource #:tag-value
+                              #:throttling-exception #:timestamp
+                              #:untag-resource #:validation-exception
+                              #:healthlake-error))
 (common-lisp:in-package #:pira/healthlake)
+
+(common-lisp:define-condition healthlake-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service health-lake :shape-name "HealthLake"
                                    :version "2017-07-01" :title
@@ -57,7 +67,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class healthlake-error))
 
 (smithy/sdk/shapes:define-type amazon-resource-name
                                smithy/sdk/smithy-types:string)
@@ -88,7 +99,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class healthlake-error))
 
 (smithy/sdk/shapes:define-input create-fhirdatastore-request common-lisp:nil
                                 ((datastore-name :target-type datastore-name
@@ -378,7 +390,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class healthlake-error))
 
 (smithy/sdk/shapes:define-type job-id smithy/sdk/smithy-types:string)
 
@@ -542,7 +555,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class healthlake-error))
 
 (smithy/sdk/shapes:define-structure s3configuration common-lisp:nil
                                     ((s3uri :target-type s3uri :required
@@ -647,7 +661,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class healthlake-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -667,7 +682,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class healthlake-error))
 
 (smithy/sdk/operation:define-operation create-fhirdatastore :shape-name
                                        "CreateFHIRDatastore" :input

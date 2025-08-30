@@ -5,10 +5,11 @@
                               #:batch-get-secret-value #:boolean-type
                               #:cancel-rotate-secret
                               #:client-request-token-type #:create-secret
-                              #:created-date-type #:delete-resource-policy
-                              #:delete-secret #:deleted-date-type
-                              #:deletion-date-type #:describe-secret
-                              #:description-type #:duration-type #:error-code
+                              #:created-date-type #:decryption-failure
+                              #:delete-resource-policy #:delete-secret
+                              #:deleted-date-type #:deletion-date-type
+                              #:describe-secret #:description-type
+                              #:duration-type #:encryption-failure #:error-code
                               #:error-message #:exclude-characters-type
                               #:exclude-lowercase-type #:exclude-numbers-type
                               #:exclude-punctuation-type
@@ -18,17 +19,24 @@
                               #:filter-values-string-list #:filters-list-type
                               #:get-random-password #:get-resource-policy
                               #:get-secret-value #:include-space-type
+                              #:internal-service-error
+                              #:invalid-next-token-exception
+                              #:invalid-parameter-exception
+                              #:invalid-request-exception
                               #:kms-key-id-list-type #:kms-key-id-type
                               #:last-accessed-date-type
                               #:last-changed-date-type #:last-rotated-date-type
+                              #:limit-exceeded-exception
                               #:list-secret-version-ids #:list-secrets
+                              #:malformed-policy-document-exception
                               #:max-results-batch-type #:max-results-type
                               #:name-type #:next-rotation-date-type
                               #:next-token-type
                               #:non-empty-resource-policy-type
                               #:owning-service-type #:password-length-type
-                              #:put-resource-policy #:put-secret-value
-                              #:random-password-type
+                              #:precondition-not-met-exception
+                              #:public-policy-exception #:put-resource-policy
+                              #:put-secret-value #:random-password-type
                               #:recovery-window-in-days-type #:region-type
                               #:remove-regions-from-replication
                               #:remove-replica-region-list-type
@@ -37,15 +45,17 @@
                               #:replication-status-list-type
                               #:replication-status-type
                               #:require-each-included-type-type
-                              #:restore-secret #:rotate-secret
-                              #:rotation-enabled-type #:rotation-lambda-arntype
-                              #:rotation-rules-type #:rotation-token-type
-                              #:schedule-expression-type #:secret-arntype
-                              #:secret-binary-type #:secret-id-list-type
-                              #:secret-id-type #:secret-list-entry
-                              #:secret-list-type #:secret-name-type
-                              #:secret-string-type #:secret-value-entry
-                              #:secret-values-type #:secret-version-id-type
+                              #:resource-exists-exception
+                              #:resource-not-found-exception #:restore-secret
+                              #:rotate-secret #:rotation-enabled-type
+                              #:rotation-lambda-arntype #:rotation-rules-type
+                              #:rotation-token-type #:schedule-expression-type
+                              #:secret-arntype #:secret-binary-type
+                              #:secret-id-list-type #:secret-id-type
+                              #:secret-list-entry #:secret-list-type
+                              #:secret-name-type #:secret-string-type
+                              #:secret-value-entry #:secret-values-type
+                              #:secret-version-id-type
                               #:secret-version-stage-type
                               #:secret-version-stages-type
                               #:secret-versions-list-entry
@@ -59,8 +69,13 @@
                               #:update-secret-version-stage
                               #:validate-resource-policy
                               #:validation-errors-entry
-                              #:validation-errors-type #:secretsmanager))
+                              #:validation-errors-type #:secretsmanager
+                              #:secrets-manager-error))
 (common-lisp:in-package #:pira/secrets-manager)
+
+(common-lisp:define-condition secrets-manager-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service secretsmanager :shape-name "secretsmanager"
                                    :version "2017-10-17" :title
@@ -197,7 +212,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DecryptionFailure")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class secrets-manager-error))
 
 (smithy/sdk/shapes:define-input delete-resource-policy-request common-lisp:nil
                                 ((secret-id :target-type secret-id-type
@@ -304,7 +320,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "EncryptionFailure")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class secrets-manager-error))
 
 (smithy/sdk/shapes:define-type error-code smithy/sdk/smithy-types:string)
 
@@ -439,25 +456,29 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class secrets-manager-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class secrets-manager-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class secrets-manager-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class secrets-manager-error))
 
 (smithy/sdk/shapes:define-list kms-key-id-list-type :member kms-key-id-type)
 
@@ -476,7 +497,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class secrets-manager-error))
 
 (smithy/sdk/shapes:define-input list-secret-version-ids-request common-lisp:nil
                                 ((secret-id :target-type secret-id-type
@@ -530,7 +552,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "MalformedPolicyDocumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class secrets-manager-error))
 
 (smithy/sdk/shapes:define-type max-results-batch-type
                                smithy/sdk/smithy-types:integer)
@@ -557,13 +580,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "PreconditionNotMetException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class secrets-manager-error))
 
 (smithy/sdk/shapes:define-error public-policy-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "PublicPolicyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class secrets-manager-error))
 
 (smithy/sdk/shapes:define-input put-resource-policy-request common-lisp:nil
                                 ((secret-id :target-type secret-id-type
@@ -704,13 +729,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class secrets-manager-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class secrets-manager-error))
 
 (smithy/sdk/shapes:define-input restore-secret-request common-lisp:nil
                                 ((secret-id :target-type secret-id-type

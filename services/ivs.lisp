@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/ivs (:use)
-                             (:export #:amazon-interactive-video-service
+                             (:export #:access-denied-exception
+                              #:amazon-interactive-video-service
                               #:audio-configuration #:audio-configuration-list
                               #:batch-error #:batch-errors #:batch-get-channel
                               #:batch-get-channel-request
@@ -17,11 +18,12 @@
                               #:boolean #:channel #:channel-arn
                               #:channel-arn-list #:channel-latency-mode
                               #:channel-list #:channel-name
+                              #:channel-not-broadcasting
                               #:channel-playback-restriction-policy-arn
                               #:channel-recording-configuration-arn
                               #:channel-summary #:channel-type #:channels
-                              #:container-format #:create-channel
-                              #:create-channel-request
+                              #:conflict-exception #:container-format
+                              #:create-channel #:create-channel-request
                               #:create-channel-response
                               #:create-playback-restriction-policy
                               #:create-recording-configuration
@@ -57,9 +59,9 @@
                               #:import-playback-key-pair-response
                               #:ingest-configuration #:ingest-configurations
                               #:ingest-endpoint #:insecure-ingest #:integer
-                              #:is-authorized #:is-multitrack-input-enabled
-                              #:list-channels #:list-channels-request
-                              #:list-channels-response
+                              #:internal-server-exception #:is-authorized
+                              #:is-multitrack-input-enabled #:list-channels
+                              #:list-channels-request #:list-channels-response
                               #:list-playback-key-pairs
                               #:list-playback-key-pairs-request
                               #:list-playback-key-pairs-response
@@ -84,7 +86,8 @@
                               #:multitrack-input-configuration
                               #:multitrack-maximum-resolution
                               #:multitrack-policy #:pagination-token
-                              #:playback-key-pair #:playback-key-pair-arn
+                              #:pending-verification #:playback-key-pair
+                              #:playback-key-pair-arn
                               #:playback-key-pair-fingerprint
                               #:playback-key-pair-list #:playback-key-pair-name
                               #:playback-key-pair-summary
@@ -112,8 +115,10 @@
                               #:rendition-configuration-rendition
                               #:rendition-configuration-rendition-list
                               #:rendition-configuration-rendition-selection
-                              #:resource-arn #:s3destination-bucket-name
-                              #:s3destination-configuration #:srt
+                              #:resource-arn #:resource-not-found-exception
+                              #:s3destination-bucket-name
+                              #:s3destination-configuration
+                              #:service-quota-exceeded-exception #:srt
                               #:srt-endpoint #:srt-passphrase
                               #:start-viewer-session-revocation
                               #:start-viewer-session-revocation-request
@@ -128,11 +133,11 @@
                               #:stream-session #:stream-session-list
                               #:stream-session-summary #:stream-start-time
                               #:stream-state #:stream-summary
-                              #:stream-viewer-count #:string #:tag-key
-                              #:tag-key-list #:tag-resource
+                              #:stream-unavailable #:stream-viewer-count
+                              #:string #:tag-key #:tag-key-list #:tag-resource
                               #:tag-resource-request #:tag-resource-response
                               #:tag-value #:tags #:target-interval-seconds
-                              #:thumbnail-configuration
+                              #:throttling-exception #:thumbnail-configuration
                               #:thumbnail-configuration-resolution
                               #:thumbnail-configuration-storage
                               #:thumbnail-configuration-storage-list #:time
@@ -142,10 +147,15 @@
                               #:update-channel-request
                               #:update-channel-response
                               #:update-playback-restriction-policy
-                              #:video-configuration #:video-configuration-list
-                              #:viewer-id #:viewer-session-version #:error-code
-                              #:error-message))
+                              #:validation-exception #:video-configuration
+                              #:video-configuration-list #:viewer-id
+                              #:viewer-session-version #:error-code
+                              #:error-message #:ivs-error))
 (common-lisp:in-package #:pira/ivs)
+
+(common-lisp:define-condition ivs-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-interactive-video-service :shape-name
                                    "AmazonInteractiveVideoService" :version
@@ -190,7 +200,7 @@
                                 ((exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class ivs-error))
 
 (smithy/sdk/shapes:define-structure audio-configuration common-lisp:nil
                                     ((codec :target-type string :member-name
@@ -354,7 +364,7 @@
                                 ((exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "ChannelNotBroadcasting")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class ivs-error))
 
 (smithy/sdk/shapes:define-type channel-playback-restriction-policy-arn
                                smithy/sdk/smithy-types:string)
@@ -404,7 +414,7 @@
                                 ((exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class ivs-error))
 
 (smithy/sdk/shapes:define-type container-format smithy/sdk/smithy-types:string)
 
@@ -704,7 +714,7 @@
                                 ((exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class ivs-error))
 
 (smithy/sdk/shapes:define-type is-authorized smithy/sdk/smithy-types:boolean)
 
@@ -919,7 +929,7 @@
                                 ((exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "PendingVerification")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class ivs-error))
 
 (smithy/sdk/shapes:define-structure playback-key-pair common-lisp:nil
                                     ((arn :target-type playback-key-pair-arn
@@ -1139,7 +1149,7 @@
                                 ((exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class ivs-error))
 
 (smithy/sdk/shapes:define-type s3destination-bucket-name
                                smithy/sdk/smithy-types:string)
@@ -1155,7 +1165,7 @@
                                 ((exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class ivs-error))
 
 (smithy/sdk/shapes:define-structure srt common-lisp:nil
                                     ((endpoint :target-type srt-endpoint
@@ -1335,7 +1345,7 @@
                                 ((exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "StreamUnavailable")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class ivs-error))
 
 (smithy/sdk/shapes:define-type stream-viewer-count smithy/sdk/smithy-types:long)
 
@@ -1368,7 +1378,7 @@
                                 ((exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class ivs-error))
 
 (smithy/sdk/shapes:define-structure thumbnail-configuration common-lisp:nil
                                     ((recording-mode :target-type
@@ -1490,7 +1500,7 @@
                                 ((exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ivs-error))
 
 (smithy/sdk/shapes:define-structure video-configuration common-lisp:nil
                                     ((avc-profile :target-type string

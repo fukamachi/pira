@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/repostspace (:use)
-                             (:export #:accessor-id #:accessor-id-list
-                              #:admin-id #:allowed-domains-list #:arn
+                             (:export #:access-denied-exception #:accessor-id
+                              #:accessor-id-list #:admin-id
+                              #:allowed-domains-list #:arn
                               #:batch-add-channel-role-to-accessors
                               #:batch-add-role #:batch-error #:batch-error-list
                               #:batch-remove-channel-role-from-accessors
@@ -8,30 +9,39 @@
                               #:channel-description #:channel-id #:channel-name
                               #:channel-role #:channel-role-list
                               #:channel-roles #:channel-status #:channels-list
-                              #:client-id #:configuration-status #:content-size
+                              #:client-id #:configuration-status
+                              #:conflict-exception #:content-size
                               #:create-channel #:create-space #:delete-space
                               #:deregister-admin #:email-domain #:error-code
                               #:error-message #:feature-enable-parameter
                               #:feature-enable-status #:get-channel #:get-space
                               #:group-admins #:group-count #:identity-store-id
-                              #:invite-body #:invite-title #:kmskey
-                              #:list-channels #:list-channels-limit
-                              #:list-spaces #:list-spaces-limit
-                              #:list-tags-for-resource #:provisioning-status
-                              #:register-admin #:repost-space #:role
-                              #:role-list #:roles #:send-invites #:space-data
+                              #:internal-server-exception #:invite-body
+                              #:invite-title #:kmskey #:list-channels
+                              #:list-channels-limit #:list-spaces
+                              #:list-spaces-limit #:list-tags-for-resource
+                              #:provisioning-status #:register-admin
+                              #:repost-space #:resource-not-found-exception
+                              #:role #:role-list #:roles #:send-invites
+                              #:service-quota-exceeded-exception #:space-data
                               #:space-description #:space-id #:space-name
                               #:space-subdomain #:spaces-list #:storage-limit
                               #:supported-email-domains-parameters
                               #:supported-email-domains-status #:tag-key
                               #:tag-key-list #:tag-resource #:tag-value #:tags
-                              #:tier-level #:untag-resource #:update-channel
-                              #:update-space #:url #:user-admins #:user-count
+                              #:throttling-exception #:tier-level
+                              #:untag-resource #:update-channel #:update-space
+                              #:url #:user-admins #:user-count
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason
-                              #:vanity-domain-status))
+                              #:vanity-domain-status #:repostspace-error))
 (common-lisp:in-package #:pira/repostspace)
+
+(common-lisp:define-condition repostspace-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service repost-space :shape-name "RepostSpace"
                                    :version "2022-05-13" :title
@@ -61,7 +71,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class repostspace-error))
 
 (smithy/sdk/shapes:define-type accessor-id smithy/sdk/smithy-types:string)
 
@@ -259,7 +270,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class repostspace-error))
 
 (smithy/sdk/shapes:define-type content-size smithy/sdk/smithy-types:long)
 
@@ -454,7 +466,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class repostspace-error))
 
 (smithy/sdk/shapes:define-type invite-body smithy/sdk/smithy-types:string)
 
@@ -540,7 +553,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class repostspace-error))
 
 (smithy/sdk/shapes:define-enum role
     common-lisp:nil
@@ -584,7 +598,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class repostspace-error))
 
 (smithy/sdk/shapes:define-structure space-data common-lisp:nil
                                     ((space-id :target-type space-id :required
@@ -706,7 +721,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class repostspace-error))
 
 (smithy/sdk/shapes:define-enum tier-level
     common-lisp:nil
@@ -777,7 +793,8 @@
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class repostspace-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

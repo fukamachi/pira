@@ -1,8 +1,8 @@
 (uiop/package:define-package #:pira/textract (:use)
-                             (:export #:adapter #:adapter-description
-                              #:adapter-id #:adapter-list #:adapter-name
-                              #:adapter-overview #:adapter-page #:adapter-pages
-                              #:adapter-version
+                             (:export #:access-denied-exception #:adapter
+                              #:adapter-description #:adapter-id #:adapter-list
+                              #:adapter-name #:adapter-overview #:adapter-page
+                              #:adapter-pages #:adapter-version
                               #:adapter-version-dataset-config
                               #:adapter-version-evaluation-metric
                               #:adapter-version-evaluation-metrics
@@ -12,21 +12,22 @@
                               #:adapters-config #:amazon-resource-name
                               #:analyze-document #:analyze-expense #:analyze-id
                               #:analyze-iddetections #:angle #:auto-update
-                              #:block #:block-list #:block-type #:bounding-box
-                              #:client-request-token #:content-classifier
-                              #:content-classifiers #:create-adapter
-                              #:create-adapter-version #:date-time
-                              #:delete-adapter #:delete-adapter-version
-                              #:detect-document-text #:detected-signature
-                              #:detected-signature-list #:document
-                              #:document-group #:document-group-list
+                              #:bad-document-exception #:block #:block-list
+                              #:block-type #:bounding-box
+                              #:client-request-token #:conflict-exception
+                              #:content-classifier #:content-classifiers
+                              #:create-adapter #:create-adapter-version
+                              #:date-time #:delete-adapter
+                              #:delete-adapter-version #:detect-document-text
+                              #:detected-signature #:detected-signature-list
+                              #:document #:document-group #:document-group-list
                               #:document-location #:document-metadata
-                              #:document-pages #:entity-type #:entity-types
-                              #:error-code #:evaluation-metric
-                              #:expense-currency #:expense-detection
-                              #:expense-document #:expense-document-list
-                              #:expense-field #:expense-field-list
-                              #:expense-group-property
+                              #:document-pages #:document-too-large-exception
+                              #:entity-type #:entity-types #:error-code
+                              #:evaluation-metric #:expense-currency
+                              #:expense-detection #:expense-document
+                              #:expense-document-list #:expense-field
+                              #:expense-field-list #:expense-group-property
                               #:expense-group-property-list #:expense-type
                               #:extraction #:extraction-list #:feature-type
                               #:feature-types #:float #:flow-definition-arn
@@ -39,44 +40,62 @@
                               #:human-loop-activation-reason
                               #:human-loop-activation-reasons #:human-loop-arn
                               #:human-loop-config #:human-loop-data-attributes
-                              #:human-loop-name #:id-list #:identity-document
-                              #:identity-document-field
+                              #:human-loop-name
+                              #:human-loop-quota-exceeded-exception #:id-list
+                              #:idempotent-parameter-mismatch-exception
+                              #:identity-document #:identity-document-field
                               #:identity-document-field-list
-                              #:identity-document-list #:image-blob #:job-id
+                              #:identity-document-list #:image-blob
+                              #:internal-server-error
+                              #:invalid-job-id-exception
+                              #:invalid-kmskey-exception
+                              #:invalid-parameter-exception
+                              #:invalid-s3object-exception #:job-id
                               #:job-status #:job-tag #:kmskey-id
                               #:lending-detection #:lending-detection-list
                               #:lending-document #:lending-field
                               #:lending-field-list #:lending-result
                               #:lending-result-list #:lending-summary
-                              #:line-item-fields #:line-item-group
-                              #:line-item-group-list #:line-item-list
-                              #:list-adapter-versions #:list-adapters
-                              #:list-tags-for-resource #:max-results
-                              #:non-empty-string #:normalized-value
-                              #:notification-channel #:output-config
-                              #:page-classification #:page-list #:pages
-                              #:pagination-token #:percent #:point #:polygon
-                              #:prediction #:prediction-list #:queries
-                              #:queries-config #:query #:query-input
+                              #:limit-exceeded-exception #:line-item-fields
+                              #:line-item-group #:line-item-group-list
+                              #:line-item-list #:list-adapter-versions
+                              #:list-adapters #:list-tags-for-resource
+                              #:max-results #:non-empty-string
+                              #:normalized-value #:notification-channel
+                              #:output-config #:page-classification #:page-list
+                              #:pages #:pagination-token #:percent #:point
+                              #:polygon #:prediction #:prediction-list
+                              #:provisioned-throughput-exceeded-exception
+                              #:queries #:queries-config #:query #:query-input
                               #:query-page #:query-pages #:relationship
                               #:relationship-list #:relationship-type
-                              #:role-arn #:s3bucket #:s3object #:s3object-name
+                              #:resource-not-found-exception #:role-arn
+                              #:s3bucket #:s3object #:s3object-name
                               #:s3object-version #:snstopic-arn
-                              #:selection-status #:signature-detection
-                              #:signature-detection-list #:split-document
-                              #:split-document-list #:start-document-analysis
+                              #:selection-status
+                              #:service-quota-exceeded-exception
+                              #:signature-detection #:signature-detection-list
+                              #:split-document #:split-document-list
+                              #:start-document-analysis
                               #:start-document-text-detection
                               #:start-expense-analysis #:start-lending-analysis
                               #:status-message #:string #:string-list
                               #:synthesized-json-human-loop-activation-conditions-evaluation-results
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-value #:text-type #:textract #:uinteger
+                              #:tag-value #:text-type #:textract
+                              #:throttling-exception #:uinteger
                               #:undetected-document-type-list
                               #:undetected-signature
-                              #:undetected-signature-list #:untag-resource
-                              #:update-adapter #:value-type #:warning
-                              #:warnings))
+                              #:undetected-signature-list
+                              #:unsupported-document-exception #:untag-resource
+                              #:update-adapter #:validation-exception
+                              #:value-type #:warning #:warnings
+                              #:textract-error))
 (common-lisp:in-package #:pira/textract)
+
+(common-lisp:define-condition textract-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service textract :shape-name "Textract" :version
                                    "2018-06-27" :title "Amazon Textract"
@@ -113,7 +132,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-structure adapter common-lisp:nil
                                     ((adapter-id :target-type adapter-id
@@ -298,7 +317,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "BadDocumentException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-structure block common-lisp:nil
                                     ((block-type :target-type block-type
@@ -384,7 +403,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-enum content-classifier
     common-lisp:nil
@@ -531,7 +550,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "DocumentTooLargeException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-enum entity-type
     common-lisp:nil
@@ -923,7 +942,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "HumanLoopQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-list id-list :member non-empty-string)
 
@@ -935,7 +954,7 @@
                                   "Code"))
                                 (:shape-name
                                  "IdempotentParameterMismatchException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-structure identity-document common-lisp:nil
                                     ((document-index :target-type uinteger
@@ -968,7 +987,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-error invalid-job-id-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -976,7 +995,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "InvalidJobIdException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-error invalid-kmskey-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -984,7 +1003,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "InvalidKMSKeyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -992,7 +1011,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-error invalid-s3object-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -1000,7 +1019,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "InvalidS3ObjectException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-type job-id smithy/sdk/smithy-types:string)
 
@@ -1078,7 +1097,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-structure line-item-fields common-lisp:nil
                                     ((line-item-expense-fields :target-type
@@ -1216,7 +1235,7 @@
                                   "Code"))
                                 (:shape-name
                                  "ProvisionedThroughputExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-list queries :member query)
 
@@ -1267,7 +1286,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -1300,7 +1319,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-structure signature-detection common-lisp:nil
                                     ((confidence :target-type percent
@@ -1468,7 +1487,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-type uinteger smithy/sdk/smithy-types:integer)
 
@@ -1489,7 +1508,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "UnsupportedDocumentException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -1535,7 +1554,7 @@
                                  (code :target-type string :member-name
                                   "Code"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class textract-error))
 
 (smithy/sdk/shapes:define-enum value-type
     common-lisp:nil

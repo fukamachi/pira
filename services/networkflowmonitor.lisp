@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/networkflowmonitor (:use)
-                             (:export #:account-id #:arn #:availability-zone
-                              #:aws-region #:component #:component-type
+                             (:export #:access-denied-exception #:account-id
+                              #:arn #:availability-zone #:aws-region
+                              #:component #:component-type #:conflict-exception
                               #:create-monitor #:create-scope #:delete-monitor
                               #:delete-scope #:destination-category
                               #:get-monitor
@@ -11,11 +12,11 @@
                               #:get-query-status-workload-insights-top-contributors
                               #:get-query-status-workload-insights-top-contributors-data
                               #:get-scope #:instance-arn #:instance-id
-                              #:iso8601timestamp #:kubernetes-metadata #:limit
-                              #:list-monitors #:list-scopes
-                              #:list-tags-for-resource #:max-results
-                              #:metric-unit #:monitor-arn #:monitor-list
-                              #:monitor-local-resource
+                              #:internal-server-exception #:iso8601timestamp
+                              #:kubernetes-metadata #:limit #:list-monitors
+                              #:list-scopes #:list-tags-for-resource
+                              #:max-results #:metric-unit #:monitor-arn
+                              #:monitor-list #:monitor-local-resource
                               #:monitor-local-resource-type
                               #:monitor-local-resources #:monitor-metric
                               #:monitor-remote-resource
@@ -25,9 +26,10 @@
                               #:monitor-top-contributors-row
                               #:monitor-top-contributors-row-list
                               #:network-flow-monitor #:query-status
-                              #:resource-name #:scope-id #:scope-resource
-                              #:scope-status #:scope-summary
-                              #:scope-summary-list
+                              #:resource-name #:resource-not-found-exception
+                              #:scope-id #:scope-resource #:scope-status
+                              #:scope-summary #:scope-summary-list
+                              #:service-quota-exceeded-exception
                               #:start-query-monitor-top-contributors
                               #:start-query-workload-insights-top-contributors
                               #:start-query-workload-insights-top-contributors-data
@@ -38,17 +40,23 @@
                               #:tag-map #:tag-resource #:tag-value #:target-id
                               #:target-identifier #:target-resource
                               #:target-resource-list #:target-type
-                              #:traversed-component #:traversed-constructs-list
-                              #:untag-resource #:update-monitor #:update-scope
-                              #:uuid-string #:vpc-arn #:vpc-id
+                              #:throttling-exception #:traversed-component
+                              #:traversed-constructs-list #:untag-resource
+                              #:update-monitor #:update-scope #:uuid-string
+                              #:validation-exception #:vpc-arn #:vpc-id
                               #:workload-insights-metric
                               #:workload-insights-top-contributors-data-point
                               #:workload-insights-top-contributors-data-points
                               #:workload-insights-top-contributors-row
                               #:workload-insights-top-contributors-row-list
                               #:workload-insights-top-contributors-timestamps-list
-                              #:workload-insights-top-contributors-values-list))
+                              #:workload-insights-top-contributors-values-list
+                              #:networkflowmonitor-error))
 (common-lisp:in-package #:pira/networkflowmonitor)
+
+(common-lisp:define-condition networkflowmonitor-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service network-flow-monitor :shape-name
                                    "NetworkFlowMonitor" :version "2023-04-19"
@@ -93,7 +101,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class networkflowmonitor-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -112,7 +121,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class networkflowmonitor-error))
 
 (smithy/sdk/shapes:define-input create-monitor-input common-lisp:nil
                                 ((monitor-name :target-type resource-name
@@ -382,7 +392,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class networkflowmonitor-error))
 
 (smithy/sdk/shapes:define-type iso8601timestamp
                                smithy/sdk/smithy-types:timestamp)
@@ -646,7 +657,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class networkflowmonitor-error))
 
 (smithy/sdk/shapes:define-type scope-id smithy/sdk/smithy-types:string)
 
@@ -678,7 +690,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class networkflowmonitor-error))
 
 (smithy/sdk/shapes:define-input start-query-monitor-top-contributors-input
                                 common-lisp:nil
@@ -852,7 +865,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class networkflowmonitor-error))
 
 (smithy/sdk/shapes:define-structure traversed-component common-lisp:nil
                                     ((component-id :target-type component
@@ -960,7 +974,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class networkflowmonitor-error))
 
 (smithy/sdk/shapes:define-type vpc-arn smithy/sdk/smithy-types:string)
 

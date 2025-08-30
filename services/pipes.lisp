@@ -20,8 +20,8 @@
                               #:cloudwatch-log-group-arn
                               #:cloudwatch-logs-log-destination
                               #:cloudwatch-logs-log-destination-parameters
-                              #:create-pipe #:database #:db-user
-                              #:dead-letter-config #:delete-pipe
+                              #:conflict-exception #:create-pipe #:database
+                              #:db-user #:dead-letter-config #:delete-pipe
                               #:describe-pipe #:dimension-mapping
                               #:dimension-mappings #:dimension-name
                               #:dimension-value #:dimension-value-type
@@ -51,8 +51,9 @@
                               #:header-key #:header-parameters-map
                               #:header-value #:include-execution-data
                               #:include-execution-data-option #:input-template
-                              #:json-path #:kafka-bootstrap-servers
-                              #:kafka-topic-name #:kinesis-partition-key
+                              #:internal-exception #:json-path
+                              #:kafka-bootstrap-servers #:kafka-topic-name
+                              #:kinesis-partition-key
                               #:kinesis-stream-start-position
                               #:kms-key-identifier #:launch-type #:limit-max10
                               #:limit-max100 #:limit-max10000 #:limit-min1
@@ -72,7 +73,7 @@
                               #:multi-measure-attribute-name
                               #:multi-measure-mapping #:multi-measure-mappings
                               #:multi-measure-name #:network-configuration
-                              #:next-token
+                              #:next-token #:not-found-exception
                               #:on-partial-batch-item-failure-streams
                               #:optional-arn #:path-parameter
                               #:path-parameter-list #:pipe #:pipe-arn
@@ -128,6 +129,7 @@
                               #:self-managed-kafka-access-configuration-credentials
                               #:self-managed-kafka-access-configuration-vpc
                               #:self-managed-kafka-start-position
+                              #:service-quota-exceeded-exception
                               #:single-measure-mapping
                               #:single-measure-mappings #:sql #:sqls
                               #:start-pipe #:statement-name #:stop-pipe
@@ -136,9 +138,9 @@
                               #:tag-key-list #:tag-list #:tag-map
                               #:tag-resource #:tag-resource-request
                               #:tag-resource-response #:tag-value
-                              #:time-field-type #:time-value #:timestamp
-                              #:timestamp-format #:uri #:untag-resource
-                              #:untag-resource-request
+                              #:throttling-exception #:time-field-type
+                              #:time-value #:timestamp #:timestamp-format #:uri
+                              #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:update-pipe
                               #:update-pipe-source-active-mqbroker-parameters
                               #:update-pipe-source-dynamo-dbstream-parameters
@@ -148,10 +150,15 @@
                               #:update-pipe-source-rabbit-mqbroker-parameters
                               #:update-pipe-source-self-managed-kafka-parameters
                               #:update-pipe-source-sqs-queue-parameters
+                              #:validation-exception
                               #:validation-exception-field
-                              #:validation-exception-field-list
-                              #:version-value))
+                              #:validation-exception-field-list #:version-value
+                              #:pipes-error))
 (common-lisp:in-package #:pira/pipes)
+
+(common-lisp:define-condition pipes-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service pipes :shape-name "Pipes" :version
                                    "2015-10-07" :title
@@ -345,7 +352,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class pipes-error))
 
 (smithy/sdk/shapes:define-input create-pipe-request common-lisp:nil
                                 ((name :target-type pipe-name :required
@@ -688,7 +695,7 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class pipes-error))
 
 (smithy/sdk/shapes:define-type json-path smithy/sdk/smithy-types:string)
 
@@ -853,7 +860,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class pipes-error))
 
 (smithy/sdk/shapes:define-type on-partial-batch-item-failure-streams
                                smithy/sdk/smithy-types:string)
@@ -1567,7 +1574,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class pipes-error))
 
 (smithy/sdk/shapes:define-structure single-measure-mapping common-lisp:nil
                                     ((measure-value :target-type measure-value
@@ -1691,7 +1698,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class pipes-error))
 
 (smithy/sdk/shapes:define-type time-field-type smithy/sdk/smithy-types:string)
 
@@ -1896,7 +1903,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class pipes-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

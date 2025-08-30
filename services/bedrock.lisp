@@ -1,6 +1,6 @@
 (uiop/package:define-package #:pira/bedrock (:use)
-                             (:export #:accept-eula #:account-id
-                              #:acknowledgement-form-data-body
+                             (:export #:accept-eula #:access-denied-exception
+                              #:account-id #:acknowledgement-form-data-body
                               #:additional-model-request-fields
                               #:additional-model-request-fields-key
                               #:additional-model-request-fields-value
@@ -168,7 +168,7 @@
                               #:byte-content-doc
                               #:cancel-automated-reasoning-policy-build-workflow
                               #:cloud-watch-config #:commitment-duration
-                              #:content-type
+                              #:conflict-exception #:content-type
                               #:create-automated-reasoning-policy
                               #:create-automated-reasoning-policy-test-case
                               #:create-automated-reasoning-policy-version
@@ -384,6 +384,7 @@
                               #:inference-profile-type #:inference-type
                               #:inference-type-list #:instance-count
                               #:instance-type #:instruct-supported
+                              #:internal-server-exception
                               #:invocation-log-source #:invocation-logs-config
                               #:job-name #:job-status-details
                               #:kb-inference-config #:key-prefix #:kms-key-arn
@@ -488,7 +489,9 @@
                               #:request-metadata-map
                               #:reranking-metadata-selection-mode
                               #:reranking-metadata-selective-mode-configuration
-                              #:retrieval-filter #:retrieval-filter-list
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception #:retrieval-filter
+                              #:retrieval-filter-list
                               #:retrieve-and-generate-configuration
                               #:retrieve-and-generate-type #:retrieve-config
                               #:role-arn #:routing-criteria #:s3config
@@ -496,6 +499,8 @@
                               #:s3uri #:sage-maker-endpoint
                               #:sage-maker-flow-definition-arn #:search-type
                               #:security-group-id #:security-group-ids
+                              #:service-quota-exceeded-exception
+                              #:service-unavailable-exception
                               #:sort-by-provisioned-models #:sort-jobs-by
                               #:sort-models-by #:sort-order
                               #:start-automated-reasoning-policy-build-workflow
@@ -510,9 +515,11 @@
                               #:teacher-model-config #:teacher-model-identifier
                               #:temperature #:term-details
                               #:text-inference-config #:text-prompt-template
-                              #:timestamp #:top-p #:training-data-config
-                              #:training-details #:training-metrics
-                              #:training-resource #:untag-resource
+                              #:throttling-exception #:timestamp
+                              #:too-many-tags-exception #:top-p
+                              #:training-data-config #:training-details
+                              #:training-metrics #:training-resource
+                              #:untag-resource
                               #:update-automated-reasoning-policy
                               #:update-automated-reasoning-policy-annotations
                               #:update-automated-reasoning-policy-test-case
@@ -520,15 +527,19 @@
                               #:update-marketplace-model-endpoint
                               #:update-provisioned-model-throughput
                               #:use-prompt-response #:validation-data-config
-                              #:validation-details #:validation-metrics
-                              #:validator #:validator-metric #:validators
-                              #:validity-term
+                              #:validation-details #:validation-exception
+                              #:validation-metrics #:validator
+                              #:validator-metric #:validators #:validity-term
                               #:vector-search-bedrock-reranking-configuration
                               #:vector-search-bedrock-reranking-model-configuration
                               #:vector-search-reranking-configuration
                               #:vector-search-reranking-configuration-type
-                              #:vpc-config #:k-bs3uri))
+                              #:vpc-config #:k-bs3uri #:bedrock-error))
 (common-lisp:in-package #:pira/bedrock)
+
+(common-lisp:define-condition bedrock-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-bedrock-control-plane-service
                                    :shape-name
@@ -546,7 +557,7 @@
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class bedrock-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -1876,7 +1887,7 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class bedrock-error))
 
 (smithy/sdk/shapes:define-type content-type smithy/sdk/smithy-types:string)
 
@@ -5048,7 +5059,7 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class bedrock-error))
 
 (smithy/sdk/shapes:define-union invocation-log-source common-lisp:nil
                                 ((s3uri :target-type s3uri :member-name
@@ -6498,13 +6509,13 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class bedrock-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class bedrock-error))
 
 (smithy/sdk/shapes:define-union retrieval-filter common-lisp:nil
                                 ((equals :target-type filter-attribute
@@ -6639,13 +6650,13 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class bedrock-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class bedrock-error))
 
 (smithy/sdk/shapes:define-enum sort-by-provisioned-models
     common-lisp:nil
@@ -6853,7 +6864,7 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class bedrock-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -6865,7 +6876,7 @@ common-lisp:nil
                                   taggable-resources-arn :member-name
                                   "resourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class bedrock-error))
 
 (smithy/sdk/shapes:define-type top-p smithy/sdk/smithy-types:float)
 
@@ -7125,7 +7136,7 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class bedrock-error))
 
 (smithy/sdk/shapes:define-list validation-metrics :member validator-metric)
 

@@ -1,9 +1,10 @@
 (uiop/package:define-package #:pira/supplychain (:use)
-                             (:export #:asc-resource-arn #:aws-account-id
+                             (:export #:access-denied-exception
+                              #:asc-resource-arn #:aws-account-id
                               #:bill-of-materials-import-job
                               #:bill-of-materials-import-job-resource
                               #:client-token #:configuration-job-status
-                              #:configuration-s3uri
+                              #:configuration-s3uri #:conflict-exception
                               #:create-bill-of-materials-import-job
                               #:create-data-integration-flow
                               #:create-data-lake-dataset
@@ -106,20 +107,28 @@
                               #:instance-name #:instance-name-list
                               #:instance-next-token #:instance-resource
                               #:instance-state #:instance-state-list
-                              #:instance-web-app-dns-domain #:kms-key-arn
+                              #:instance-web-app-dns-domain
+                              #:internal-server-exception #:kms-key-arn
                               #:list-data-integration-events
                               #:list-data-integration-flow-executions
                               #:list-data-integration-flows
                               #:list-data-lake-datasets
                               #:list-data-lake-namespaces #:list-instances
-                              #:list-tags-for-resource #:s3bucket-name
-                              #:send-data-integration-event #:tag-key
+                              #:list-tags-for-resource
+                              #:resource-not-found-exception #:s3bucket-name
+                              #:send-data-integration-event
+                              #:service-quota-exceeded-exception #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-value #:uuid #:untag-resource
-                              #:update-data-integration-flow
+                              #:tag-value #:throttling-exception #:uuid
+                              #:untag-resource #:update-data-integration-flow
                               #:update-data-lake-dataset
-                              #:update-data-lake-namespace #:update-instance))
+                              #:update-data-lake-namespace #:update-instance
+                              #:validation-exception #:supplychain-error))
 (common-lisp:in-package #:pira/supplychain)
+
+(common-lisp:define-condition supplychain-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service galaxy-public-apigateway :shape-name
                                    "GalaxyPublicAPIGateway" :version
@@ -151,7 +160,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class supplychain-error))
 
 (smithy/sdk/shapes:define-type asc-resource-arn smithy/sdk/smithy-types:string)
 
@@ -194,7 +204,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class supplychain-error))
 
 (smithy/sdk/shapes:define-input create-bill-of-materials-import-job-request
                                 common-lisp:nil
@@ -1203,7 +1214,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class supplychain-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -1385,7 +1397,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class supplychain-error))
 
 (smithy/sdk/shapes:define-type s3bucket-name smithy/sdk/smithy-types:string)
 
@@ -1426,7 +1439,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class supplychain-error))
 
 (smithy/sdk/shapes:define-type tag-key smithy/sdk/smithy-types:string)
 
@@ -1453,7 +1467,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class supplychain-error))
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 
@@ -1564,7 +1579,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class supplychain-error))
 
 (smithy/sdk/operation:define-operation create-bill-of-materials-import-job
                                        :shape-name

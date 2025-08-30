@@ -31,8 +31,8 @@
                               #:certificate-based-auth-properties
                               #:certificate-based-auth-status
                               #:compute-capacity #:compute-capacity-status
-                              #:copy-image #:create-app-block
-                              #:create-app-block-builder
+                              #:concurrent-modification-exception #:copy-image
+                              #:create-app-block #:create-app-block-builder
                               #:create-app-block-builder-streaming-url
                               #:create-application #:create-directory-config
                               #:create-entitlement #:create-fleet
@@ -73,11 +73,13 @@
                               #:embed-host-domain #:embed-host-domains
                               #:enable-user #:entitled-application
                               #:entitled-application-list #:entitlement
+                              #:entitlement-already-exists-exception
                               #:entitlement-attribute
                               #:entitlement-attribute-list #:entitlement-list
-                              #:error-details #:error-details-list
-                              #:error-message #:expire-session #:feedback-url
-                              #:fleet #:fleet-attribute #:fleet-attributes
+                              #:entitlement-not-found-exception #:error-details
+                              #:error-details-list #:error-message
+                              #:expire-session #:feedback-url #:fleet
+                              #:fleet-attribute #:fleet-attributes
                               #:fleet-error #:fleet-error-code #:fleet-errors
                               #:fleet-list #:fleet-state #:fleet-type #:image
                               #:image-builder #:image-builder-list
@@ -87,22 +89,32 @@
                               #:image-list #:image-permissions
                               #:image-shared-with-others #:image-state
                               #:image-state-change-reason
-                              #:image-state-change-reason-code #:integer
+                              #:image-state-change-reason-code
+                              #:incompatible-image-exception #:integer
+                              #:invalid-account-status-exception
+                              #:invalid-parameter-combination-exception
+                              #:invalid-role-exception
                               #:last-report-generation-execution-error
                               #:last-report-generation-execution-errors
                               #:latest-appstream-agent-version
+                              #:limit-exceeded-exception
                               #:list-associated-fleets #:list-associated-stacks
                               #:list-entitled-applications
                               #:list-tags-for-resource #:long #:max-results
                               #:message-action #:metadata #:name
                               #:network-access-configuration
+                              #:operation-not-permitted-exception
                               #:organizational-unit-distinguished-name
                               #:organizational-unit-distinguished-names-list
                               #:packaging-type #:permission
                               #:photon-admin-proxy-service #:platform-type
                               #:platforms #:preferred-protocol #:redirect-url
-                              #:region-name #:resource-error #:resource-errors
-                              #:resource-identifier #:s3bucket #:s3key
+                              #:region-name #:request-limit-exceeded-exception
+                              #:resource-already-exists-exception
+                              #:resource-error #:resource-errors
+                              #:resource-identifier #:resource-in-use-exception
+                              #:resource-not-available-exception
+                              #:resource-not-found-exception #:s3bucket #:s3key
                               #:s3location #:script-details
                               #:security-group-id-list
                               #:service-account-credentials #:session
@@ -144,8 +156,12 @@
                               #:user-stack-association-error-code
                               #:user-stack-association-error-list
                               #:user-stack-association-list #:username
-                              #:visibility-type #:vpc-config))
+                              #:visibility-type #:vpc-config #:appstream-error))
 (common-lisp:in-package #:pira/appstream)
+
+(common-lisp:define-condition appstream-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service photon-admin-proxy-service :shape-name
                                    "PhotonAdminProxyService" :version
@@ -619,7 +635,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-input copy-image-request common-lisp:nil
                                 ((source-image-name :target-type name :required
@@ -1662,7 +1678,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "EntitlementAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-structure entitlement-attribute common-lisp:nil
                                     ((name :target-type string :required
@@ -1680,7 +1696,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "EntitlementNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-structure error-details common-lisp:nil
                                     ((error-code :target-type string
@@ -2027,7 +2043,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "IncompatibleImageException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
 
@@ -2036,7 +2052,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidAccountStatusException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-combination-exception
                                 common-lisp:nil
@@ -2044,13 +2060,13 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "InvalidParameterCombinationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-error invalid-role-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRoleException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-structure last-report-generation-execution-error
                                     common-lisp:nil
@@ -2074,7 +2090,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-input list-associated-fleets-request common-lisp:nil
                                 ((stack-name :target-type string :required
@@ -2162,7 +2178,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "OperationNotPermittedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-type organizational-unit-distinguished-name
                                smithy/sdk/smithy-types:string)
@@ -2206,14 +2222,14 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "RequestLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-error resource-already-exists-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-structure resource-error common-lisp:nil
                                     ((error-code :target-type fleet-error-code
@@ -2233,20 +2249,20 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-error resource-not-available-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotAvailableException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class appstream-error))
 
 (smithy/sdk/shapes:define-type s3bucket smithy/sdk/smithy-types:string)
 

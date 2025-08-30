@@ -1,9 +1,21 @@
 (uiop/package:define-package #:pira/eks-auth (:use)
-                             (:export #:assume-role-for-pod-identity
+                             (:export #:access-denied-exception
+                              #:assume-role-for-pod-identity
                               #:assumed-role-user #:cluster-name #:credentials
-                              #:eksauth-frontend #:jwt-token
-                              #:pod-identity-association #:subject))
+                              #:eksauth-frontend #:expired-token-exception
+                              #:internal-server-exception
+                              #:invalid-parameter-exception
+                              #:invalid-request-exception
+                              #:invalid-token-exception #:jwt-token
+                              #:pod-identity-association
+                              #:resource-not-found-exception
+                              #:service-unavailable-exception #:subject
+                              #:throttling-exception #:eks-auth-error))
 (common-lisp:in-package #:pira/eks-auth)
+
+(common-lisp:define-condition eks-auth-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service eksauth-frontend :shape-name
                                    "EKSAuthFrontend" :version "2023-11-26"
@@ -20,7 +32,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class eks-auth-error))
 
 (smithy/sdk/shapes:define-input assume-role-for-pod-identity-request
                                 common-lisp:nil
@@ -86,35 +98,35 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ExpiredTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class eks-auth-error))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class eks-auth-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class eks-auth-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class eks-auth-error))
 
 (smithy/sdk/shapes:define-error invalid-token-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InvalidTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class eks-auth-error))
 
 (smithy/sdk/shapes:define-type jwt-token smithy/sdk/smithy-types:string)
 
@@ -134,14 +146,14 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class eks-auth-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class eks-auth-error))
 
 (smithy/sdk/shapes:define-structure subject common-lisp:nil
                                     ((namespace :target-type
@@ -158,7 +170,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class eks-auth-error))
 
 (smithy/sdk/operation:define-operation assume-role-for-pod-identity :shape-name
                                        "AssumeRoleForPodIdentity" :input

@@ -1,14 +1,15 @@
 (uiop/package:define-package #:pira/sagemaker-geospatial (:use)
-                             (:export #:algorithm-name-cloud-removal
+                             (:export #:access-denied-exception
+                              #:algorithm-name-cloud-removal
                               #:algorithm-name-geo-mosaic
                               #:algorithm-name-resampling #:area-of-interest
                               #:area-of-interest-geometry #:arn #:asset-value
                               #:assets-map #:band-math-config-input
                               #:binary-file #:cloud-masking-config-input
                               #:cloud-removal-config-input
-                              #:comparison-operator #:custom-indices-input
-                              #:data-collection-arn #:data-collection-type
-                              #:data-collections-list
+                              #:comparison-operator #:conflict-exception
+                              #:custom-indices-input #:data-collection-arn
+                              #:data-collection-type #:data-collections-list
                               #:delete-earth-observation-job
                               #:delete-vector-enrichment-job
                               #:earth-observation-job
@@ -35,8 +36,9 @@
                               #:get-raster-data-collection-output #:get-tile
                               #:get-vector-enrichment-job #:group-by
                               #:image-source-band-list #:input-config-input
-                              #:input-config-output #:item-source
-                              #:item-source-list #:job-config-input #:kms-key
+                              #:input-config-output #:internal-server-exception
+                              #:item-source #:item-source-list
+                              #:job-config-input #:kms-key
                               #:land-cover-segmentation-config-input
                               #:landsat-cloud-cover-land-input #:linear-ring
                               #:linear-rings #:linear-rings-list
@@ -69,9 +71,11 @@
                               #:raster-data-collection-query-output
                               #:raster-data-collection-query-with-band-filter-input
                               #:resampling-config-input
+                              #:resource-not-found-exception
                               #:reverse-geocoding-config #:s3uri
                               #:sage-maker-geospatial
-                              #:search-raster-data-collection #:sort-order
+                              #:search-raster-data-collection
+                              #:service-quota-exceeded-exception #:sort-order
                               #:stack-config-input
                               #:start-earth-observation-job
                               #:start-earth-observation-job-output
@@ -84,11 +88,11 @@
                               #:tags #:target-options #:temporal-statistics
                               #:temporal-statistics-config-input
                               #:temporal-statistics-list-input
-                              #:time-range-filter-input
+                              #:throttling-exception #:time-range-filter-input
                               #:time-range-filter-output #:unit
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:user-defined
-                              #:vector-enrichment-job
+                              #:validation-exception #:vector-enrichment-job
                               #:vector-enrichment-job-arn
                               #:vector-enrichment-job-config
                               #:vector-enrichment-job-data-source-config-input
@@ -106,8 +110,13 @@
                               #:view-off-nadir-input #:view-sun-azimuth-input
                               #:view-sun-elevation-input #:zonal-statistics
                               #:zonal-statistics-config-input
-                              #:zonal-statistics-list-input))
+                              #:zonal-statistics-list-input
+                              #:sagemaker-geospatial-error))
 (common-lisp:in-package #:pira/sagemaker-geospatial)
+
+(common-lisp:define-condition sagemaker-geospatial-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service sage-maker-geospatial :shape-name
                                    "SageMakerGeospatial" :version "2020-05-27"
@@ -131,7 +140,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class sagemaker-geospatial-error))
 
 (smithy/sdk/shapes:define-type algorithm-name-cloud-removal
                                smithy/sdk/smithy-types:string)
@@ -208,7 +218,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "ResourceId"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class sagemaker-geospatial-error))
 
 (smithy/sdk/shapes:define-structure custom-indices-input common-lisp:nil
                                     ((operations :target-type
@@ -673,7 +684,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "ResourceId"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class sagemaker-geospatial-error))
 
 (smithy/sdk/shapes:define-structure item-source common-lisp:nil
                                     ((id :target-type
@@ -1148,7 +1160,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "ResourceId"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class sagemaker-geospatial-error))
 
 (smithy/sdk/shapes:define-structure reverse-geocoding-config common-lisp:nil
                                     ((yattribute-name :target-type
@@ -1197,7 +1210,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "ResourceId"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class sagemaker-geospatial-error))
 
 (smithy/sdk/shapes:define-type sort-order smithy/sdk/smithy-types:string)
 
@@ -1402,7 +1416,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "ResourceId"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class sagemaker-geospatial-error))
 
 (smithy/sdk/shapes:define-structure time-range-filter-input common-lisp:nil
                                     ((start-time :target-type
@@ -1458,7 +1473,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "ResourceId"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class sagemaker-geospatial-error))
 
 common-lisp:nil
 

@@ -4,11 +4,11 @@
                               #:agapreferred-protocol-for-directory
                               #:agapreferred-protocol-for-work-space #:arn
                               #:accept-account-link-invitation
-                              #:access-endpoint #:access-endpoint-config
-                              #:access-endpoint-list #:access-endpoint-type
-                              #:access-property-value #:account-link
-                              #:account-link-list #:account-link-status-enum
-                              #:account-modification
+                              #:access-denied-exception #:access-endpoint
+                              #:access-endpoint-config #:access-endpoint-list
+                              #:access-endpoint-type #:access-property-value
+                              #:account-link #:account-link-list
+                              #:account-link-status-enum #:account-modification
                               #:account-modification-list
                               #:active-directory-config #:active-user-sessions
                               #:actual-user-sessions #:add-in-name #:add-in-url
@@ -18,6 +18,7 @@
                               #:application-associated-resource-type
                               #:application-associated-resource-type-list
                               #:application-list
+                              #:application-not-supported-exception
                               #:application-resource-association
                               #:application-resource-association-list
                               #:application-settings-request
@@ -46,7 +47,8 @@
                               #:client-properties-list
                               #:client-properties-result #:client-token
                               #:client-url #:compute #:compute-list
-                              #:compute-type #:computer-name
+                              #:compute-not-compatible-exception #:compute-type
+                              #:computer-name #:conflict-exception
                               #:connect-client-add-in
                               #:connect-client-add-in-list #:connection-alias
                               #:connection-alias-association
@@ -152,8 +154,13 @@
                               #:image-resource-association
                               #:image-resource-association-list #:image-type
                               #:import-client-branding #:import-workspace-image
+                              #:incompatible-applications-exception
+                              #:internal-server-exception
                               #:internet-fallback-protocol
-                              #:internet-fallback-protocol-list #:ios2xlogo
+                              #:internet-fallback-protocol-list
+                              #:invalid-parameter-combination-exception
+                              #:invalid-parameter-values-exception
+                              #:invalid-resource-state-exception #:ios2xlogo
                               #:ios3xlogo #:ios-client-branding-attributes
                               #:ios-import-client-branding-attributes
                               #:ios-logo #:ip-address #:ip-group-desc
@@ -185,7 +192,11 @@
                               #:network-access-configuration #:non-empty-string
                               #:operating-system #:operating-system-name
                               #:operating-system-name-list
-                              #:operating-system-type #:pagination-token
+                              #:operating-system-not-compatible-exception
+                              #:operating-system-type
+                              #:operation-in-progress-exception
+                              #:operation-not-supported-exception
+                              #:pagination-token
                               #:pending-create-standby-workspaces-request
                               #:pending-create-standby-workspaces-request-list
                               #:pools-running-mode #:protocol #:protocol-list
@@ -197,7 +208,14 @@
                               #:registration-code
                               #:reject-account-link-invitation
                               #:related-workspace-properties
-                              #:related-workspaces #:resource-id-list
+                              #:related-workspaces
+                              #:resource-already-exists-exception
+                              #:resource-associated-exception
+                              #:resource-creation-failed-exception
+                              #:resource-id-list #:resource-in-use-exception
+                              #:resource-limit-exceeded-exception
+                              #:resource-not-found-exception
+                              #:resource-unavailable-exception
                               #:restore-workspace #:revoke-ip-rules
                               #:root-storage #:root-volume-size-gib
                               #:running-mode
@@ -231,6 +249,8 @@
                               #:terminate-workspaces-pool
                               #:terminate-workspaces-pool-session
                               #:timeout-settings #:timestamp
+                              #:unsupported-network-configuration-exception
+                              #:unsupported-workspace-configuration-exception
                               #:update-connect-client-add-in
                               #:update-connection-alias-permission
                               #:update-description #:update-result
@@ -242,7 +262,8 @@
                               #:user-setting-action-enum
                               #:user-setting-permission-enum #:user-settings
                               #:user-storage #:user-volume-size-gib
-                              #:volume-encryption-key #:work-space-application
+                              #:validation-exception #:volume-encryption-key
+                              #:work-space-application
                               #:work-space-application-deployment
                               #:work-space-application-id
                               #:work-space-application-id-list
@@ -278,6 +299,7 @@
                               #:workspace-resource-association
                               #:workspace-resource-association-list
                               #:workspace-state #:workspace-type
+                              #:workspaces-default-role-not-found-exception
                               #:workspaces-ip-group #:workspaces-ip-groups-list
                               #:workspaces-pool #:workspaces-pool-error
                               #:workspaces-pool-error-code
@@ -286,8 +308,13 @@
                               #:workspaces-pool-session
                               #:workspaces-pool-sessions
                               #:workspaces-pool-state #:workspaces-pool-user-id
-                              #:workspaces-pools #:workspaces-service))
+                              #:workspaces-pools #:workspaces-service
+                              #:workspaces-error))
 (common-lisp:in-package #:pira/workspaces)
+
+(common-lisp:define-condition workspaces-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service workspaces-service :shape-name
                                    "WorkspacesService" :version "2015-04-08"
@@ -426,7 +453,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-structure access-endpoint common-lisp:nil
                                     ((access-endpoint-type :target-type
@@ -554,7 +582,8 @@
                                 common-lisp:nil common-lisp:nil
                                 (:shape-name
                                  "ApplicationNotSupportedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-structure application-resource-association
                                     common-lisp:nil
@@ -869,7 +898,8 @@
 (smithy/sdk/shapes:define-error compute-not-compatible-exception
                                 common-lisp:nil common-lisp:nil
                                 (:shape-name "ComputeNotCompatibleException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-structure compute-type common-lisp:nil
                                     ((name :target-type compute :member-name
@@ -882,7 +912,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-structure connect-client-add-in common-lisp:nil
                                     ((add-in-id :target-type amazon-uuid
@@ -2313,13 +2344,15 @@
                                 common-lisp:nil common-lisp:nil
                                 (:shape-name
                                  "IncompatibleApplicationsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-enum internet-fallback-protocol
     common-lisp:nil
@@ -2334,21 +2367,24 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidParameterCombinationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-values-exception
                                 common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterValuesException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-state-exception
                                 common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidResourceStateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-type ios2xlogo smithy/sdk/smithy-types:blob)
 
@@ -2757,7 +2793,8 @@
                                 common-lisp:nil common-lisp:nil
                                 (:shape-name
                                  "OperatingSystemNotCompatibleException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-enum operating-system-type
     common-lisp:nil
@@ -2768,7 +2805,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "OperationInProgressException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-error operation-not-supported-exception
                                 common-lisp:nil
@@ -2777,7 +2815,8 @@
                                  (reason :target-type exception-error-code
                                   :member-name "reason"))
                                 (:shape-name "OperationNotSupportedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-type pagination-token smithy/sdk/smithy-types:string)
 
@@ -2943,20 +2982,23 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-error resource-associated-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ResourceAssociatedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-error resource-creation-failed-exception
                                 common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ResourceCreationFailedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-list resource-id-list :member non-empty-string)
 
@@ -2966,14 +3008,16 @@
                                  (resource-id :target-type non-empty-string
                                   :member-name "ResourceId"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-error resource-limit-exceeded-exception
                                 common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ResourceLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -2981,7 +3025,8 @@
                                  (resource-id :target-type non-empty-string
                                   :member-name "ResourceId"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-error resource-unavailable-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -2989,7 +3034,8 @@
                                  (resource-id :target-type non-empty-string
                                   :member-name "ResourceId"))
                                 (:shape-name "ResourceUnavailableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-input restore-workspace-request common-lisp:nil
                                 ((workspace-id :target-type workspace-id
@@ -3337,7 +3383,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "UnsupportedNetworkConfigurationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-error unsupported-workspace-configuration-exception
                                 common-lisp:nil
@@ -3345,7 +3392,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "UnsupportedWorkspaceConfigurationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-input update-connect-client-add-in-request
                                 common-lisp:nil
@@ -3510,7 +3558,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-type volume-encryption-key
                                smithy/sdk/smithy-types:string)
@@ -4101,7 +4150,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "WorkspacesDefaultRoleNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-error))
 
 (smithy/sdk/shapes:define-structure workspaces-ip-group common-lisp:nil
                                     ((group-id :target-type ip-group-id

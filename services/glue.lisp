@@ -1,9 +1,10 @@
 (uiop/package:define-package #:pira/glue (:use)
                              (:export #:awsglue
                               #:awsmanaged-client-application-reference
-                              #:access-token #:account-id #:action
-                              #:action-list #:additional-context-map
-                              #:additional-option-keys #:additional-options
+                              #:access-denied-exception #:access-token
+                              #:account-id #:action #:action-list
+                              #:additional-context-map #:additional-option-keys
+                              #:additional-options
                               #:additional-plan-options-map #:agg-function
                               #:aggregate #:aggregate-operation
                               #:aggregate-operations
@@ -12,6 +13,7 @@
                               #:allowed-value-description-string
                               #:allowed-value-value-string #:allowed-values
                               #:allowed-values-string-list
+                              #:already-exists-exception
                               #:amazon-redshift-advanced-option
                               #:amazon-redshift-advanced-options
                               #:amazon-redshift-node-data
@@ -112,10 +114,13 @@
                               #:column-statistics-errors
                               #:column-statistics-list
                               #:column-statistics-state
+                              #:column-statistics-task-not-running-exception
                               #:column-statistics-task-run
                               #:column-statistics-task-run-id-list
+                              #:column-statistics-task-running-exception
                               #:column-statistics-task-runs-list
                               #:column-statistics-task-settings
+                              #:column-statistics-task-stopping-exception
                               #:column-statistics-type #:column-type-string
                               #:column-value-string-list #:column-values-string
                               #:comment-string #:commit-id-string
@@ -128,11 +133,15 @@
                               #:compute-environment-configuration-map
                               #:compute-environment-list
                               #:compute-environment-name #:compute-environments
-                              #:condition #:condition-expression
+                              #:concurrent-modification-exception
+                              #:concurrent-runs-exceeded-exception #:condition
+                              #:condition-check-failure-exception
+                              #:condition-expression
                               #:condition-expression-list #:condition-list
                               #:config-value-string #:configuration-map
-                              #:configuration-object #:confusion-matrix
-                              #:connection #:connection-input #:connection-list
+                              #:configuration-object #:conflict-exception
+                              #:confusion-matrix #:connection
+                              #:connection-input #:connection-list
                               #:connection-name #:connection-options
                               #:connection-password-encryption
                               #:connection-properties #:connection-property-key
@@ -150,10 +159,13 @@
                               #:crawler-lineage-settings #:crawler-list
                               #:crawler-metrics #:crawler-metrics-list
                               #:crawler-name-list #:crawler-node-details
+                              #:crawler-not-running-exception
+                              #:crawler-running-exception
                               #:crawler-security-configuration #:crawler-state
-                              #:crawler-targets #:crawls-filter
-                              #:crawls-filter-list #:create-blueprint
-                              #:create-catalog #:create-classifier
+                              #:crawler-stopping-exception #:crawler-targets
+                              #:crawls-filter #:crawls-filter-list
+                              #:create-blueprint #:create-catalog
+                              #:create-classifier
                               #:create-column-statistics-task-settings
                               #:create-connection #:create-crawler
                               #:create-csv-classifier-request
@@ -281,10 +293,10 @@
                               #:encryption-at-rest #:encryption-configuration
                               #:entity #:entity-description #:entity-field-name
                               #:entity-label #:entity-list #:entity-name
-                              #:error-by-name #:error-code-string
-                              #:error-detail #:error-details
-                              #:error-message-string #:error-string
-                              #:evaluate-data-quality
+                              #:entity-not-found-exception #:error-by-name
+                              #:error-code-string #:error-detail
+                              #:error-details #:error-message-string
+                              #:error-string #:evaluate-data-quality
                               #:evaluate-data-quality-multi-frame
                               #:evaluated-metrics-map #:evaluation-metrics
                               #:event-batching-condition #:event-queue-arn
@@ -293,9 +305,12 @@
                               #:execution-time #:exist-condition
                               #:export-labels-task-run-properties
                               #:extended-string #:federated-catalog
-                              #:federated-database #:federated-table
-                              #:federation-identifier
-                              #:federation-source-error-code #:field
+                              #:federated-database
+                              #:federated-resource-already-exists-exception
+                              #:federated-table #:federation-identifier
+                              #:federation-source-error-code
+                              #:federation-source-exception
+                              #:federation-source-retryable-exception #:field
                               #:field-data-type #:field-description
                               #:field-filter-operator
                               #:field-filter-operators-list #:field-label
@@ -358,9 +373,9 @@
                               #:get-usage-profile #:get-user-defined-function
                               #:get-user-defined-functions #:get-workflow
                               #:get-workflow-run #:get-workflow-run-properties
-                              #:get-workflow-runs #:glue-policy
-                              #:glue-record-type #:glue-resource-arn
-                              #:glue-schema #:glue-schemas
+                              #:get-workflow-runs #:glue-encryption-exception
+                              #:glue-policy #:glue-record-type
+                              #:glue-resource-arn #:glue-schema #:glue-schemas
                               #:glue-studio-column-name-string
                               #:glue-studio-path-list
                               #:glue-studio-schema-column
@@ -391,7 +406,12 @@
                               #:iceberg-table-update-list #:iceberg-target
                               #:iceberg-target-compression-type
                               #:iceberg-target-list #:iceberg-transform-string
-                              #:id-string #:idle-timeout
+                              #:id-string
+                              #:idempotent-parameter-mismatch-exception
+                              #:idle-timeout
+                              #:illegal-blueprint-state-exception
+                              #:illegal-session-state-exception
+                              #:illegal-workflow-state-exception
                               #:import-catalog-to-glue
                               #:import-labels-task-run-properties
                               #:inbound-integration #:inbound-integrations-list
@@ -400,17 +420,25 @@
                               #:integer-flag #:integer-list #:integer-value
                               #:integration
                               #:integration-additional-encryption-context-map
-                              #:integration-config #:integration-description
-                              #:integration-error #:integration-error-list
+                              #:integration-config
+                              #:integration-conflict-operation-fault
+                              #:integration-description #:integration-error
+                              #:integration-error-list
                               #:integration-error-message #:integration-filter
                               #:integration-filter-list
                               #:integration-filter-values #:integration-integer
+                              #:integration-not-found-fault
                               #:integration-partition
                               #:integration-partition-spec-list
+                              #:integration-quota-exceeded-fault
                               #:integration-source-properties-map
                               #:integration-status #:integration-string
                               #:integration-tags-list #:integration-timestamp
-                              #:integrations-list #:is-parent-entity
+                              #:integrations-list #:internal-server-exception
+                              #:internal-service-exception
+                              #:invalid-input-exception
+                              #:invalid-integration-state-fault
+                              #:invalid-state-exception #:is-parent-entity
                               #:is-version-valid #:iso8601date-time
                               #:jdbcconnection-type #:jdbcconnector-options
                               #:jdbcconnector-source #:jdbcconnector-target
@@ -424,6 +452,7 @@
                               #:job-run-state #:job-update #:join #:join-column
                               #:join-columns #:join-type #:json-classifier
                               #:json-path #:json-value #:jwt-token
+                              #:kmskey-not-accessible-fault
                               #:kafka-streaming-source-options #:key-list
                               #:key-schema-element #:key-schema-element-list
                               #:key-string #:kinesis-streaming-source-options
@@ -456,6 +485,7 @@
                               #:logical #:logical-operator #:long
                               #:long-column-statistics-data #:long-value
                               #:long-value-string #:mltransform
+                              #:mltransform-not-ready-exception
                               #:mluser-data-encryption
                               #:mluser-data-encryption-mode-string
                               #:maintenance-window #:many-inputs #:map-value
@@ -476,20 +506,22 @@
                               #:mongo-dbtarget #:mongo-dbtarget-list
                               #:my-sqlcatalog-source #:my-sqlcatalog-target
                               #:name-string #:name-string-list #:new-rules
-                              #:next-token #:node #:node-id #:node-id-list
-                              #:node-list #:node-name #:node-type
-                              #:non-negative-double #:non-negative-int
-                              #:non-negative-integer #:non-negative-long
-                              #:notification-property #:notify-delay-after
-                              #:null-check-box-list #:null-value-field
-                              #:null-value-fields #:nullable-boolean
-                              #:nullable-double #:nullable-integer
-                              #:nullable-string
+                              #:next-token #:no-schedule-exception #:node
+                              #:node-id #:node-id-list #:node-list #:node-name
+                              #:node-type #:non-negative-double
+                              #:non-negative-int #:non-negative-integer
+                              #:non-negative-long #:notification-property
+                              #:notify-delay-after #:null-check-box-list
+                              #:null-value-field #:null-value-fields
+                              #:nullable-boolean #:nullable-double
+                              #:nullable-integer #:nullable-string
                               #:number-target-partitions-string
                               #:oauth2client-application #:oauth2credentials
                               #:oauth2grant-type #:oauth2properties
                               #:oauth2properties-input #:one-input
-                              #:open-table-format-input #:operation #:option
+                              #:open-table-format-input #:operation
+                              #:operation-not-supported-exception
+                              #:operation-timeout-exception #:option
                               #:option-key #:option-list #:option-value
                               #:oracle-sqlcatalog-source
                               #:oracle-sqlcatalog-target
@@ -523,6 +555,7 @@
                               #:password #:path #:path-list #:permission
                               #:permission-list #:permission-type
                               #:permission-type-list
+                              #:permission-type-mismatch-exception
                               #:physical-connection-requirements #:pii-type
                               #:policy-json-string #:polling-time
                               #:positive-integer #:positive-long
@@ -558,6 +591,9 @@
                               #:remove-schema-version-metadata #:rename-field
                               #:replace-boolean #:reset-job-bookmark
                               #:resource-action #:resource-arn-string
+                              #:resource-not-found-exception
+                              #:resource-not-ready-exception
+                              #:resource-number-limit-exceeded-exception
                               #:resource-share-type #:resource-state
                               #:resource-type #:resource-uri
                               #:resource-uri-list #:resume-workflow-run
@@ -583,6 +619,9 @@
                               #:s3target #:s3target-list
                               #:sample-size-percentage #:scala-code #:schedule
                               #:schedule-state #:schedule-type
+                              #:scheduler-not-running-exception
+                              #:scheduler-running-exception
+                              #:scheduler-transitioning-exception
                               #:schema-change-policy #:schema-checkpoint-number
                               #:schema-column #:schema-definition-diff
                               #:schema-definition-string #:schema-diff-type
@@ -660,14 +699,16 @@
                               #:tag-keys-list #:tag-resource #:tag-value
                               #:tags-map #:target-column #:target-format
                               #:target-processing-properties
-                              #:target-redshift-catalog #:target-table-config
+                              #:target-redshift-catalog
+                              #:target-resource-not-found #:target-table-config
                               #:task-run #:task-run-filter-criteria
                               #:task-run-list #:task-run-properties
                               #:task-run-sort-column-type
                               #:task-run-sort-criteria #:task-status-type
                               #:task-type #:test-connection
-                              #:test-connection-input #:timeout #:timestamp
-                              #:timestamp-filter #:timestamp-value
+                              #:test-connection-input #:throttling-exception
+                              #:timeout #:timestamp #:timestamp-filter
+                              #:timestamp-value
                               #:timestamped-inclusion-annotation #:token
                               #:token-url #:token-url-parameter-key
                               #:token-url-parameter-value
@@ -722,11 +763,13 @@
                               #:user-defined-function-list
                               #:user-managed-client-application-client-id
                               #:user-managed-client-application-client-secret
-                              #:username #:value-string #:value-string-list
-                              #:vendor #:version-id #:version-long-number
-                              #:version-string #:versions-string
-                              #:view-definition #:view-definition-input
-                              #:view-dialect #:view-dialect-version-string
+                              #:username #:validation-exception #:value-string
+                              #:value-string-list #:vendor #:version-id
+                              #:version-long-number
+                              #:version-mismatch-exception #:version-string
+                              #:versions-string #:view-definition
+                              #:view-definition-input #:view-dialect
+                              #:view-dialect-version-string
                               #:view-representation #:view-representation-input
                               #:view-representation-input-list
                               #:view-representation-list
@@ -741,8 +784,12 @@
                               #:database-name-string #:dpu-counts
                               #:dpu-duration-in-hour #:dpu-hours
                               #:glue-connection-name-string #:metric-counts
-                              #:table-name-string))
+                              #:table-name-string #:glue-error))
 (common-lisp:in-package #:pira/glue)
+
+(common-lisp:define-condition glue-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsglue :shape-name "AWSGlue" :version
                                    "2017-03-31" :title "AWS Glue" :operations
@@ -934,7 +981,7 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-type access-token smithy/sdk/smithy-types:string)
 
@@ -1046,7 +1093,7 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "AlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure amazon-redshift-advanced-option
                                     common-lisp:nil
@@ -2725,7 +2772,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ColumnStatisticsTaskNotRunningException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure column-statistics-task-run common-lisp:nil
                                     ((customer-id :target-type account-id
@@ -2786,7 +2833,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ColumnStatisticsTaskRunningException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-list column-statistics-task-runs-list :member
                                column-statistics-task-run)
@@ -2829,7 +2876,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ColumnStatisticsTaskStoppingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-enum column-statistics-type
     common-lisp:nil
@@ -2966,14 +3013,14 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error concurrent-runs-exceeded-exception
                                 common-lisp:nil
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentRunsExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure condition common-lisp:nil
                                     ((logical-operator :target-type
@@ -2994,7 +3041,7 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "ConditionCheckFailureException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure condition-expression common-lisp:nil
                                     ((condition :target-type databrew-condition
@@ -3038,7 +3085,7 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure confusion-matrix common-lisp:nil
                                     ((num-true-positives :target-type
@@ -3518,13 +3565,13 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "CrawlerNotRunningException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error crawler-running-exception common-lisp:nil
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "CrawlerRunningException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-type crawler-security-configuration
                                smithy/sdk/smithy-types:string)
@@ -3539,7 +3586,7 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "CrawlerStoppingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure crawler-targets common-lisp:nil
                                     ((s3targets :target-type s3target-list
@@ -6165,7 +6212,7 @@
                                   nullable-boolean :member-name
                                   "FromFederationSource"))
                                 (:shape-name "EntityNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-map error-by-name :key name-string :value
                               error-detail)
@@ -6331,7 +6378,7 @@
                                   "AssociatedGlueResource"))
                                 (:shape-name
                                  "FederatedResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure federated-table common-lisp:nil
                                     ((identifier :target-type
@@ -6369,7 +6416,7 @@
                                  (message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "FederationSourceException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error federation-source-retryable-exception
                                 common-lisp:nil
@@ -6377,7 +6424,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "FederationSourceRetryableException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure field common-lisp:nil
                                     ((field-name :target-type entity-field-name
@@ -8259,7 +8306,7 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "GlueEncryptionException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure glue-policy common-lisp:nil
                                     ((policy-in-json :target-type
@@ -8691,7 +8738,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "IdempotentParameterMismatchException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-type idle-timeout smithy/sdk/smithy-types:integer)
 
@@ -8700,20 +8747,20 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "IllegalBlueprintStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error illegal-session-state-exception common-lisp:nil
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "IllegalSessionStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error illegal-workflow-state-exception
                                 common-lisp:nil
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "IllegalWorkflowStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-input import-catalog-to-glue-request common-lisp:nil
                                 ((catalog-id :target-type catalog-id-string
@@ -8835,7 +8882,7 @@
                                   "Message"))
                                 (:shape-name
                                  "IntegrationConflictOperationFault")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-type integration-description
                                smithy/sdk/smithy-types:string)
@@ -8873,7 +8920,7 @@
                                   integration-error-message :member-name
                                   "Message"))
                                 (:shape-name "IntegrationNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure integration-partition common-lisp:nil
                                     ((field-name :target-type string128
@@ -8893,7 +8940,7 @@
                                   integration-error-message :member-name
                                   "Message"))
                                 (:shape-name "IntegrationQuotaExceededFault")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-map integration-source-properties-map :key
                               integration-string :value integration-string)
@@ -8923,13 +8970,13 @@
                                   integration-error-message :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error internal-service-exception common-lisp:nil
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error invalid-input-exception common-lisp:nil
                                 ((message :target-type message-string
@@ -8938,20 +8985,20 @@
                                   nullable-boolean :member-name
                                   "FromFederationSource"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error invalid-integration-state-fault common-lisp:nil
                                 ((message :target-type
                                   integration-error-message :member-name
                                   "Message"))
                                 (:shape-name "InvalidIntegrationStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-type is-parent-entity smithy/sdk/smithy-types:boolean)
 
@@ -9465,7 +9512,7 @@
                                   integration-error-message :member-name
                                   "Message"))
                                 (:shape-name "KMSKeyNotAccessibleFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure kafka-streaming-source-options
                                     common-lisp:nil
@@ -10282,7 +10329,7 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "MLTransformNotReadyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure mluser-data-encryption common-lisp:nil
                                     ((ml-user-data-encryption-mode :target-type
@@ -10552,7 +10599,7 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "NoScheduleException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure node common-lisp:nil
                                     ((type :target-type node-type :member-name
@@ -10717,13 +10764,13 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "OperationNotSupportedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error operation-timeout-exception common-lisp:nil
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "OperationTimeoutException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure option common-lisp:nil
                                     ((value :target-type
@@ -11051,7 +11098,7 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "PermissionTypeMismatchException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure physical-connection-requirements
                                     common-lisp:nil
@@ -11655,13 +11702,13 @@
                                   integration-error-message :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error resource-not-ready-exception common-lisp:nil
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotReadyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error resource-number-limit-exceeded-exception
                                 common-lisp:nil
@@ -11669,7 +11716,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ResourceNumberLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-enum resource-share-type
     common-lisp:nil
@@ -12418,20 +12465,20 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "SchedulerNotRunningException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error scheduler-running-exception common-lisp:nil
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "SchedulerRunningException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-error scheduler-transitioning-exception
                                 common-lisp:nil
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "SchedulerTransitioningException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure schema-change-policy common-lisp:nil
                                     ((update-behavior :target-type
@@ -13891,7 +13938,7 @@
                                   integration-error-message :member-name
                                   "Message"))
                                 (:shape-name "TargetResourceNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-structure target-table-config common-lisp:nil
                                     ((unnest-spec :target-type unnest-spec
@@ -14033,7 +14080,7 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-type timeout smithy/sdk/smithy-types:integer)
 
@@ -15074,7 +15121,7 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-type value-string smithy/sdk/smithy-types:string)
 
@@ -15090,7 +15137,7 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "VersionMismatchException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glue-error))
 
 (smithy/sdk/shapes:define-type version-string smithy/sdk/smithy-types:string)
 

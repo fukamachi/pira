@@ -1,5 +1,7 @@
 (uiop/package:define-package #:pira/directory-service (:use)
-                             (:export #:accept-shared-directory #:access-url
+                             (:export #:adassessment-limit-exceeded-exception
+                              #:accept-shared-directory
+                              #:access-denied-exception #:access-url
                               #:add-ip-routes #:add-region
                               #:add-tags-to-resource #:added-date-time
                               #:additional-regions #:alias-name #:assessment
@@ -20,11 +22,15 @@
                               #:assessment-validations #:assessment-version
                               #:assessments #:attribute #:attribute-name
                               #:attribute-value #:attributes
+                              #:authentication-failed-exception
                               #:availability-zone #:availability-zones
                               #:cancel-schema-extension #:certificate
+                              #:certificate-already-exists-exception
                               #:certificate-cn #:certificate-data
+                              #:certificate-does-not-exist-exception
                               #:certificate-expiry-date-time #:certificate-id
-                              #:certificate-info
+                              #:certificate-in-use-exception #:certificate-info
+                              #:certificate-limit-exceeded-exception
                               #:certificate-registered-date-time
                               #:certificate-state #:certificate-state-reason
                               #:certificate-type #:certificates-info #:cidr-ip
@@ -32,7 +38,7 @@
                               #:client-authentication-settings-info
                               #:client-authentication-status
                               #:client-authentication-type
-                              #:client-cert-auth-settings
+                              #:client-cert-auth-settings #:client-exception
                               #:cloud-only-directories-limit-reached #:computer
                               #:computer-name #:computer-password
                               #:conditional-forwarder #:conditional-forwarders
@@ -65,6 +71,8 @@
                               #:describe-snapshots #:describe-trusts
                               #:describe-update-directory #:description
                               #:desired-number-of-domain-controllers
+                              #:directory-already-in-region-exception
+                              #:directory-already-shared-exception
                               #:directory-configuration-setting-allowed-values
                               #:directory-configuration-setting-data-type
                               #:directory-configuration-setting-last-requested-date-time
@@ -78,11 +86,17 @@
                               #:directory-connect-settings
                               #:directory-connect-settings-description
                               #:directory-description #:directory-descriptions
+                              #:directory-does-not-exist-exception
                               #:directory-edition #:directory-id
-                              #:directory-ids #:directory-limits
-                              #:directory-name #:directory-service-20150416
+                              #:directory-ids
+                              #:directory-in-desired-state-exception
+                              #:directory-limit-exceeded-exception
+                              #:directory-limits #:directory-name
+                              #:directory-not-shared-exception
+                              #:directory-service-20150416
                               #:directory-short-name #:directory-size
                               #:directory-stage #:directory-type
+                              #:directory-unavailable-exception
                               #:directory-vpc-settings
                               #:directory-vpc-settings-description
                               #:disable-client-authentication
@@ -90,13 +104,16 @@
                               #:disable-radius #:disable-sso #:dns-ip-addrs
                               #:domain-controller #:domain-controller-id
                               #:domain-controller-ids
+                              #:domain-controller-limit-exceeded-exception
                               #:domain-controller-status
                               #:domain-controller-status-reason
                               #:domain-controllers
                               #:enable-client-authentication
                               #:enable-directory-data-access #:enable-ldaps
                               #:enable-radius #:enable-sso #:end-date-time
-                              #:event-topic #:event-topics #:exception-message
+                              #:entity-already-exists-exception
+                              #:entity-does-not-exist-exception #:event-topic
+                              #:event-topics #:exception-message
                               #:get-directory-limits #:get-snapshot-limits
                               #:hybrid-administrator-account-update
                               #:hybrid-customer-instances-settings
@@ -104,8 +121,18 @@
                               #:hybrid-update-activities
                               #:hybrid-update-info-entries
                               #:hybrid-update-info-entry #:hybrid-update-type
-                              #:hybrid-update-value #:initiated-by #:ip-addr
-                              #:ip-addrs #:ip-route #:ip-route-info
+                              #:hybrid-update-value
+                              #:incompatible-settings-exception #:initiated-by
+                              #:insufficient-permissions-exception
+                              #:invalid-certificate-exception
+                              #:invalid-client-auth-status-exception
+                              #:invalid-ldapsstatus-exception
+                              #:invalid-next-token-exception
+                              #:invalid-parameter-exception
+                              #:invalid-password-exception
+                              #:invalid-target-exception #:ip-addr #:ip-addrs
+                              #:ip-route #:ip-route-info
+                              #:ip-route-limit-exceeded-exception
                               #:ip-route-status-msg #:ip-route-status-reason
                               #:ip-routes #:ip-routes-info #:ldapssetting-info
                               #:ldapssettings-info #:ldapsstatus
@@ -118,47 +145,55 @@
                               #:log-group-name #:log-subscription
                               #:log-subscriptions
                               #:manual-snapshots-limit-reached #:next-token
-                              #:notes #:ocspurl #:osupdate-settings #:osversion
+                              #:no-available-certificate-exception #:notes
+                              #:ocspurl #:osupdate-settings #:osversion
                               #:organizational-unit-dn
+                              #:organizations-exception
                               #:owner-directory-description #:page-limit
                               #:password #:port-number
                               #:radius-authentication-protocol
                               #:radius-display-label #:radius-retries
                               #:radius-settings #:radius-shared-secret
                               #:radius-status #:radius-timeout
-                              #:region-description #:region-name #:region-type
-                              #:regions-description #:regions-info
-                              #:register-certificate #:register-event-topic
-                              #:reject-shared-directory #:remote-domain-name
-                              #:remote-domain-names #:remove-ip-routes
-                              #:remove-region #:remove-tags-from-resource
-                              #:replication-scope #:request-id
-                              #:reset-user-password #:resource-id
+                              #:region-description
+                              #:region-limit-exceeded-exception #:region-name
+                              #:region-type #:regions-description
+                              #:regions-info #:register-certificate
+                              #:register-event-topic #:reject-shared-directory
+                              #:remote-domain-name #:remote-domain-names
+                              #:remove-ip-routes #:remove-region
+                              #:remove-tags-from-resource #:replication-scope
+                              #:request-id #:reset-user-password #:resource-id
                               #:restore-from-snapshot #:sid
                               #:schema-extension-id #:schema-extension-info
                               #:schema-extension-status
                               #:schema-extension-status-reason
                               #:schema-extensions-info #:secret-arn
                               #:security-group-id #:security-group-ids
-                              #:selective-auth #:server #:servers #:setting
-                              #:setting-entries #:setting-entry #:settings
-                              #:share-directory #:share-method #:share-status
-                              #:share-target #:shared-directories
-                              #:shared-directory #:snapshot #:snapshot-id
-                              #:snapshot-ids #:snapshot-limits #:snapshot-name
+                              #:selective-auth #:server #:servers
+                              #:service-exception #:setting #:setting-entries
+                              #:setting-entry #:settings #:share-directory
+                              #:share-limit-exceeded-exception #:share-method
+                              #:share-status #:share-target
+                              #:shared-directories #:shared-directory
+                              #:snapshot #:snapshot-id #:snapshot-ids
+                              #:snapshot-limit-exceeded-exception
+                              #:snapshot-limits #:snapshot-name
                               #:snapshot-status #:snapshot-type #:snapshots
                               #:sso-enabled #:stage-reason #:start-adassessment
                               #:start-date-time #:start-schema-extension
                               #:start-time #:state-last-updated-date-time
                               #:subnet-id #:subnet-ids
                               #:subscription-created-date-time #:tag #:tag-key
-                              #:tag-keys #:tag-value #:tags #:target-id
-                              #:target-type #:topic-arn #:topic-name
-                              #:topic-names #:topic-status #:trust
-                              #:trust-direction #:trust-id #:trust-ids
-                              #:trust-password #:trust-state
-                              #:trust-state-reason #:trust-type #:trusts
-                              #:unshare-directory #:unshare-target
+                              #:tag-keys #:tag-limit-exceeded-exception
+                              #:tag-value #:tags #:target-id #:target-type
+                              #:topic-arn #:topic-name #:topic-names
+                              #:topic-status #:trust #:trust-direction
+                              #:trust-id #:trust-ids #:trust-password
+                              #:trust-state #:trust-state-reason #:trust-type
+                              #:trusts #:unshare-directory #:unshare-target
+                              #:unsupported-operation-exception
+                              #:unsupported-settings-exception
                               #:update-activities
                               #:update-conditional-forwarder
                               #:update-directory-setup #:update-hybrid-ad
@@ -169,9 +204,14 @@
                               #:update-settings #:update-status
                               #:update-status-reason #:update-trust
                               #:update-type #:update-value #:use-same-username
-                              #:user-name #:user-password #:verify-trust
-                              #:vpc-id))
+                              #:user-does-not-exist-exception #:user-name
+                              #:user-password #:verify-trust #:vpc-id
+                              #:directory-service-error))
 (common-lisp:in-package #:pira/directory-service)
+
+(common-lisp:define-condition directory-service-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service directory-service-20150416 :shape-name
                                    "DirectoryService_20150416" :version
@@ -251,7 +291,8 @@
                                   :member-name "RequestId"))
                                 (:shape-name
                                  "ADAssessmentLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-input accept-shared-directory-request common-lisp:nil
                                 ((shared-directory-id :target-type directory-id
@@ -271,7 +312,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type access-url smithy/sdk/smithy-types:string)
 
@@ -512,7 +554,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "AuthenticationFailedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type availability-zone smithy/sdk/smithy-types:string)
 
@@ -563,7 +606,8 @@
                                   :member-name "RequestId"))
                                 (:shape-name
                                  "CertificateAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type certificate-cn smithy/sdk/smithy-types:string)
 
@@ -577,7 +621,8 @@
                                   :member-name "RequestId"))
                                 (:shape-name
                                  "CertificateDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type certificate-expiry-date-time
                                smithy/sdk/smithy-types:timestamp)
@@ -590,7 +635,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "CertificateInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-structure certificate-info common-lisp:nil
                                     ((certificate-id :target-type
@@ -615,7 +661,8 @@
                                   :member-name "RequestId"))
                                 (:shape-name
                                  "CertificateLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type certificate-registered-date-time
                                smithy/sdk/smithy-types:timestamp)
@@ -681,7 +728,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "ClientException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type cloud-only-directories-limit-reached
                                smithy/sdk/smithy-types:boolean)
@@ -1354,7 +1402,8 @@
                                   :member-name "RequestId"))
                                 (:shape-name
                                  "DirectoryAlreadyInRegionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-error directory-already-shared-exception
                                 common-lisp:nil
@@ -1363,7 +1412,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "DirectoryAlreadySharedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type directory-configuration-setting-allowed-values
                                smithy/sdk/smithy-types:string)
@@ -1514,7 +1564,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "DirectoryDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-enum directory-edition
     common-lisp:nil
@@ -1533,7 +1584,8 @@
                                   :member-name "RequestId"))
                                 (:shape-name
                                  "DirectoryInDesiredStateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-error directory-limit-exceeded-exception
                                 common-lisp:nil
@@ -1542,7 +1594,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "DirectoryLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-structure directory-limits common-lisp:nil
                                     ((cloud-only-directories-limit :target-type
@@ -1588,7 +1641,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "DirectoryNotSharedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type directory-short-name
                                smithy/sdk/smithy-types:string)
@@ -1626,7 +1680,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "DirectoryUnavailableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-structure directory-vpc-settings common-lisp:nil
                                     ((vpc-id :target-type vpc-id :required
@@ -1760,7 +1815,8 @@
                                   :member-name "RequestId"))
                                 (:shape-name
                                  "DomainControllerLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-enum domain-controller-status
     common-lisp:nil
@@ -1853,7 +1909,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "EntityAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-error entity-does-not-exist-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -1861,7 +1918,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "EntityDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-structure event-topic common-lisp:nil
                                     ((directory-id :target-type directory-id
@@ -1985,7 +2043,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "IncompatibleSettingsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type initiated-by smithy/sdk/smithy-types:string)
 
@@ -1997,7 +2056,8 @@
                                   :member-name "RequestId"))
                                 (:shape-name
                                  "InsufficientPermissionsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-error invalid-certificate-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -2005,7 +2065,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "InvalidCertificateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-error invalid-client-auth-status-exception
                                 common-lisp:nil
@@ -2015,7 +2076,8 @@
                                   :member-name "RequestId"))
                                 (:shape-name
                                  "InvalidClientAuthStatusException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-error invalid-ldapsstatus-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -2023,7 +2085,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "InvalidLDAPSStatusException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -2031,7 +2094,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -2039,7 +2103,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-error invalid-password-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -2047,7 +2112,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "InvalidPasswordException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-error invalid-target-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -2055,7 +2121,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "InvalidTargetException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type ip-addr smithy/sdk/smithy-types:string)
 
@@ -2093,7 +2160,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "IpRouteLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-enum ip-route-status-msg
     common-lisp:nil
@@ -2281,7 +2349,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "NoAvailableCertificateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type notes smithy/sdk/smithy-types:string)
 
@@ -2306,7 +2375,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "OrganizationsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-structure owner-directory-description common-lisp:nil
                                     ((directory-id :target-type directory-id
@@ -2412,7 +2482,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "RegionLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type region-name smithy/sdk/smithy-types:string)
 
@@ -2615,7 +2686,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "ServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-structure setting common-lisp:nil
                                     ((name :target-type
@@ -2694,7 +2766,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "ShareLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-enum share-method
     common-lisp:nil
@@ -2774,7 +2847,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "SnapshotLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-structure snapshot-limits common-lisp:nil
                                     ((manual-snapshots-limit :target-type limit
@@ -2876,7 +2950,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "TagLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type tag-value smithy/sdk/smithy-types:string)
 
@@ -2997,7 +3072,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "UnsupportedOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-error unsupported-settings-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -3005,7 +3081,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "UnsupportedSettingsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-list update-activities :member update-info-entry)
 
@@ -3177,7 +3254,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "UserDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-error))
 
 (smithy/sdk/shapes:define-type user-name smithy/sdk/smithy-types:string)
 

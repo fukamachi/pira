@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/socialmessaging (:use)
-                             (:export #:add-contact-number
+                             (:export #:access-denied-by-meta-exception
+                              #:access-denied-exception #:add-contact-number
                               #:add-learn-more-link
                               #:add-security-recommendation
                               #:add-track-package-link #:arn
@@ -12,15 +13,19 @@
                               #:delete-all-languages
                               #:delete-whats-app-message-media
                               #:delete-whats-app-message-template
+                              #:dependency-exception
                               #:disassociate-whats-app-business-account
                               #:error-message #:event-destination-arn #:filter
                               #:get-linked-whats-app-business-account
                               #:get-linked-whats-app-business-account-phone-number
                               #:get-whats-app-message-media
                               #:get-whats-app-message-template #:headers
-                              #:iso-country-code #:library-template-body-inputs
+                              #:internal-service-exception
+                              #:invalid-parameters-exception #:iso-country-code
+                              #:library-template-body-inputs
                               #:library-template-button-input
                               #:library-template-button-list
+                              #:limit-exceeded-exception
                               #:linked-account-with-incomplete-setup
                               #:linked-whats-app-business-account
                               #:linked-whats-app-business-account-arn
@@ -53,13 +58,17 @@
                               #:otp-type #:phone-number
                               #:post-whats-app-message-media
                               #:put-whats-app-business-account-event-destinations
-                              #:registration-status #:role-arn #:s3file
-                              #:s3presigned-url #:send-whats-app-message
-                              #:social-messaging #:string-list #:supported-app
-                              #:supported-apps #:tag #:tag-list #:tag-resource
+                              #:registration-status
+                              #:resource-not-found-exception #:role-arn
+                              #:s3file #:s3presigned-url
+                              #:send-whats-app-message #:social-messaging
+                              #:string-list #:supported-app #:supported-apps
+                              #:tag #:tag-list #:tag-resource
                               #:template-summary #:template-summary-list
-                              #:two-factor-pin #:untag-resource
+                              #:throttled-request-exception #:two-factor-pin
+                              #:untag-resource
                               #:update-whats-app-message-template
+                              #:validation-exception
                               #:waba-phone-number-setup-finalization
                               #:waba-phone-number-setup-finalization-list
                               #:waba-setup-finalization
@@ -81,8 +90,13 @@
                               #:whats-app-setup-finalization
                               #:whats-app-signup-callback
                               #:whats-app-signup-callback-result
-                              #:zero-tap-terms-accepted))
+                              #:zero-tap-terms-accepted
+                              #:socialmessaging-error))
 (common-lisp:in-package #:pira/socialmessaging)
+
+(common-lisp:define-condition socialmessaging-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service social-messaging :shape-name
                                    "SocialMessaging" :version "2024-01-01"
@@ -138,13 +152,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedByMetaException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class socialmessaging-error))
 
 (smithy/sdk/shapes:define-error access-denied-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class socialmessaging-error))
 
 (smithy/sdk/shapes:define-type add-contact-number
                                smithy/sdk/smithy-types:boolean)
@@ -302,7 +318,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DependencyException")
-                                (:error-code 502))
+                                (:error-code 502)
+                                (:base-class socialmessaging-error))
 
 (smithy/sdk/shapes:define-input disassociate-whats-app-business-account-input
                                 common-lisp:nil
@@ -413,13 +430,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class socialmessaging-error))
 
 (smithy/sdk/shapes:define-error invalid-parameters-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParametersException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class socialmessaging-error))
 
 (smithy/sdk/shapes:define-type iso-country-code smithy/sdk/smithy-types:string)
 
@@ -485,7 +504,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class socialmessaging-error))
 
 (smithy/sdk/shapes:define-map linked-account-with-incomplete-setup :key
                               whats-app-business-account-id :value
@@ -840,7 +860,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class socialmessaging-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -939,7 +960,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottledRequestException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class socialmessaging-error))
 
 (smithy/sdk/shapes:define-type two-factor-pin smithy/sdk/smithy-types:string)
 
@@ -982,7 +1004,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class socialmessaging-error))
 
 (smithy/sdk/shapes:define-structure waba-phone-number-setup-finalization
                                     common-lisp:nil

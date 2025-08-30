@@ -1,9 +1,11 @@
 (uiop/package:define-package #:pira/chime-sdk-voice (:use)
-                             (:export #:address #:alexa-skill-id
-                              #:alexa-skill-id-list #:alexa-skill-status
-                              #:alpha2country-code #:area-code #:arn
+                             (:export #:access-denied-exception #:address
+                              #:alexa-skill-id #:alexa-skill-id-list
+                              #:alexa-skill-status #:alpha2country-code
+                              #:area-code #:arn
                               #:associate-phone-numbers-with-voice-connector
                               #:associate-phone-numbers-with-voice-connector-group
+                              #:bad-request-exception
                               #:batch-delete-phone-number
                               #:batch-update-phone-number #:boolean
                               #:call-details #:call-leg-type #:calling-name
@@ -12,7 +14,7 @@
                               #:candidate-address-list #:capability
                               #:capability-list #:chime-sdktelephony-service
                               #:client-request-id #:confidence-score
-                              #:contact-center-system-type
+                              #:conflict-exception #:contact-center-system-type
                               #:contact-center-system-type-list #:country
                               #:country-list #:cps-limit
                               #:create-phone-number-order
@@ -44,7 +46,8 @@
                               #:disassociate-phone-numbers-from-voice-connector-group
                               #:e164phone-number #:e164phone-number-list
                               #:emergency-calling-configuration #:error-code
-                              #:external-systems-configuration #:function-arn
+                              #:external-systems-configuration
+                              #:forbidden-exception #:function-arn
                               #:geo-match-level #:geo-match-params
                               #:get-global-settings #:get-phone-number
                               #:get-phone-number-order
@@ -64,8 +67,9 @@
                               #:get-voice-connector-termination
                               #:get-voice-connector-termination-health
                               #:get-voice-profile #:get-voice-profile-domain
-                              #:get-voice-tone-analysis-task #:guid-string
-                              #:integer #:iso8601timestamp #:language-code
+                              #:get-voice-tone-analysis-task #:gone-exception
+                              #:guid-string #:integer #:iso8601timestamp
+                              #:language-code
                               #:list-available-voice-connector-regions
                               #:list-phone-number-orders #:list-phone-numbers
                               #:list-proxy-sessions
@@ -80,8 +84,9 @@
                               #:media-insights-configuration
                               #:next-token-string #:non-empty-string
                               #:non-empty-string128 #:non-empty-string256
-                              #:non-empty-string-list #:notification-target
-                              #:nullable-boolean #:number-selection-behavior
+                              #:non-empty-string-list #:not-found-exception
+                              #:notification-target #:nullable-boolean
+                              #:number-selection-behavior
                               #:ordered-phone-number
                               #:ordered-phone-number-list
                               #:ordered-phone-number-status #:origination
@@ -116,6 +121,7 @@
                               #:put-voice-connector-streaming-configuration
                               #:put-voice-connector-termination
                               #:put-voice-connector-termination-credentials
+                              #:resource-limit-exceeded-exception
                               #:restore-phone-number #:result-max
                               #:smacreate-call-arguments-map
                               #:smaupdate-call-arguments-map
@@ -123,6 +129,8 @@
                               #:sensitive-non-empty-string #:sensitive-string
                               #:sensitive-string-list
                               #:server-side-encryption-configuration
+                              #:service-failure-exception
+                              #:service-unavailable-exception
                               #:session-border-controller-type
                               #:session-border-controller-type-list
                               #:sip-application-priority #:sip-headers-map
@@ -150,7 +158,9 @@
                               #:string128 #:string-list #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-value #:termination #:termination-health
-                              #:toll-free-prefix #:untag-resource
+                              #:throttled-client-exception #:toll-free-prefix
+                              #:unauthorized-client-exception
+                              #:unprocessable-entity-exception #:untag-resource
                               #:update-global-settings #:update-phone-number
                               #:update-phone-number-request-item
                               #:update-phone-number-request-item-list
@@ -181,8 +191,13 @@
                               #:voice-profile-domain-summary-list
                               #:voice-profile-summary
                               #:voice-profile-summary-list
-                              #:voice-tone-analysis-task))
+                              #:voice-tone-analysis-task
+                              #:chime-sdk-voice-error))
 (common-lisp:in-package #:pira/chime-sdk-voice)
+
+(common-lisp:define-condition chime-sdk-voice-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service chime-sdktelephony-service :shape-name
                                    "ChimeSDKTelephonyService" :version
@@ -290,7 +305,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class chime-sdk-voice-error))
 
 (smithy/sdk/shapes:define-structure address common-lisp:nil
                                     ((street-name :target-type
@@ -380,7 +396,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class chime-sdk-voice-error))
 
 (smithy/sdk/shapes:define-input batch-delete-phone-number-request
                                 common-lisp:nil
@@ -487,7 +504,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class chime-sdk-voice-error))
 
 (smithy/sdk/shapes:define-enum contact-center-system-type
     common-lisp:nil
@@ -932,7 +950,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class chime-sdk-voice-error))
 
 (smithy/sdk/shapes:define-type function-arn smithy/sdk/smithy-types:string)
 
@@ -1269,7 +1288,8 @@
                                   "Code")
                                  (message :target-type string :member-name
                                   "Message"))
-                                (:shape-name "GoneException") (:error-code 410))
+                                (:shape-name "GoneException") (:error-code 410)
+                                (:base-class chime-sdk-voice-error))
 
 (smithy/sdk/shapes:define-type guid-string smithy/sdk/smithy-types:string)
 
@@ -1542,7 +1562,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class chime-sdk-voice-error))
 
 (smithy/sdk/shapes:define-enum notification-target
     common-lisp:nil
@@ -2050,7 +2071,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class chime-sdk-voice-error))
 
 (smithy/sdk/shapes:define-input restore-phone-number-request common-lisp:nil
                                 ((phone-number-id :target-type
@@ -2128,7 +2150,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class chime-sdk-voice-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((code :target-type error-code :member-name
@@ -2136,7 +2159,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class chime-sdk-voice-error))
 
 (smithy/sdk/shapes:define-enum session-border-controller-type
     common-lisp:nil
@@ -2468,7 +2492,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ThrottledClientException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class chime-sdk-voice-error))
 
 (smithy/sdk/shapes:define-type toll-free-prefix smithy/sdk/smithy-types:string)
 
@@ -2478,7 +2503,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnauthorizedClientException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class chime-sdk-voice-error))
 
 (smithy/sdk/shapes:define-error unprocessable-entity-exception common-lisp:nil
                                 ((code :target-type error-code :member-name
@@ -2486,7 +2512,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnprocessableEntityException")
-                                (:error-code 422))
+                                (:error-code 422)
+                                (:base-class chime-sdk-voice-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required

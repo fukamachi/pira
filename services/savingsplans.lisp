@@ -8,11 +8,12 @@
                               #:describe-savings-plans-offering-rates
                               #:describe-savings-plans-offerings
                               #:durations-list #:ec2instance-family
-                              #:filter-values-list
+                              #:filter-values-list #:internal-server-exception
                               #:json-safe-filter-value-string #:list-of-strings
                               #:list-tags-for-resource #:max-results
                               #:page-size #:pagination-token
                               #:parent-savings-plan-offering #:region
+                              #:resource-not-found-exception
                               #:return-savings-plan #:savings-plan
                               #:savings-plan-arn #:savings-plan-arn-list
                               #:savings-plan-description
@@ -63,11 +64,17 @@
                               #:savings-plan-usage-type
                               #:savings-plan-usage-type-list
                               #:savings-plans-duration
-                              #:savings-plans-filter-name #:string #:tag-key
-                              #:tag-key-list #:tag-map #:tag-resource
+                              #:savings-plans-filter-name
+                              #:service-quota-exceeded-exception #:string
+                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
                               #:tag-value #:term-duration-in-seconds #:uuid
-                              #:uuids #:untag-resource))
+                              #:uuids #:untag-resource #:validation-exception
+                              #:savingsplans-error))
 (common-lisp:in-package #:pira/savingsplans)
+
+(common-lisp:define-condition savingsplans-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awssavings-plan :shape-name "AWSSavingsPlan"
                                    :version "2019-06-28" :title
@@ -294,7 +301,8 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
                                 (:error-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class savingsplans-error))
 
 (smithy/sdk/shapes:define-type json-safe-filter-value-string
                                smithy/sdk/smithy-types:string)
@@ -345,7 +353,8 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class savingsplans-error))
 
 (smithy/sdk/shapes:define-input return-savings-plan-request common-lisp:nil
                                 ((savings-plan-id :target-type savings-plan-id
@@ -758,7 +767,8 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
                                 (:error-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class savingsplans-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -806,7 +816,8 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
                                 (:error-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class savingsplans-error))
 
 (smithy/sdk/operation:define-operation create-savings-plan :shape-name
                                        "CreateSavingsPlan" :input

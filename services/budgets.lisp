@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/budgets (:use)
-                             (:export #:awsbudget-service-gateway #:account-id
-                              #:action #:action-histories #:action-history
+                             (:export #:awsbudget-service-gateway
+                              #:access-denied-exception #:account-id #:action
+                              #:action-histories #:action-history
                               #:action-history-details #:action-id
                               #:action-status #:action-sub-type
                               #:action-threshold #:action-type #:actions
@@ -16,10 +17,11 @@
                               #:cost-category-name #:cost-category-values
                               #:cost-filters #:cost-types #:create-budget
                               #:create-budget-action #:create-notification
-                              #:create-subscriber #:definition #:delete-budget
-                              #:delete-budget-action #:delete-notification
-                              #:delete-subscriber #:describe-budget
-                              #:describe-budget-action
+                              #:create-subscriber
+                              #:creation-limit-exceeded-exception #:definition
+                              #:delete-budget #:delete-budget-action
+                              #:delete-notification #:delete-subscriber
+                              #:describe-budget #:describe-budget-action
                               #:describe-budget-action-histories
                               #:describe-budget-actions-for-account
                               #:describe-budget-actions-for-budget
@@ -29,36 +31,48 @@
                               #:describe-notifications-for-budget
                               #:describe-subscribers-for-notification
                               #:dimension #:dimension-value #:dimension-values
-                              #:event-type #:execute-budget-action
-                              #:execution-type #:expression
+                              #:duplicate-record-exception #:event-type
+                              #:execute-budget-action #:execution-type
+                              #:expired-next-token-exception #:expression
                               #:expression-dimension-values #:expressions
                               #:generic-string #:generic-timestamp #:group
                               #:groups #:historical-options
                               #:iam-action-definition #:instance-id
-                              #:instance-ids #:list-tags-for-resource
-                              #:match-option #:match-options #:max-results
+                              #:instance-ids #:internal-error-exception
+                              #:invalid-next-token-exception
+                              #:invalid-parameter-exception
+                              #:list-tags-for-resource #:match-option
+                              #:match-options #:max-results
                               #:max-results-budget-notifications
                               #:max-results-describe-budgets #:metric #:metrics
-                              #:notification #:notification-state
-                              #:notification-threshold #:notification-type
+                              #:not-found-exception #:notification
+                              #:notification-state #:notification-threshold
+                              #:notification-type
                               #:notification-with-subscribers
                               #:notification-with-subscribers-list
                               #:notifications #:nullable-boolean
                               #:numeric-value #:planned-budget-limits
-                              #:policy-arn #:policy-id #:region #:resource-tag
+                              #:policy-arn #:policy-id #:region
+                              #:resource-locked-exception #:resource-tag
                               #:resource-tag-key #:resource-tag-key-list
                               #:resource-tag-list #:resource-tag-value #:role
                               #:role-arn #:roles #:scp-action-definition
-                              #:spend #:ssm-action-definition #:subscriber
+                              #:service-quota-exceeded-exception #:spend
+                              #:ssm-action-definition #:subscriber
                               #:subscriber-address #:subscribers
                               #:subscription-type #:tag-key #:tag-resource
                               #:tag-values #:target-id #:target-ids
-                              #:threshold-type #:time-period #:time-unit
-                              #:unit-value #:untag-resource #:update-budget
+                              #:threshold-type #:throttling-exception
+                              #:time-period #:time-unit #:unit-value
+                              #:untag-resource #:update-budget
                               #:update-budget-action #:update-notification
                               #:update-subscriber #:user #:users #:value
-                              #:values #:error-message))
+                              #:values #:error-message #:budgets-error))
 (common-lisp:in-package #:pira/budgets)
+
+(common-lisp:define-condition budgets-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsbudget-service-gateway :shape-name
                                    "AWSBudgetServiceGateway" :version
@@ -96,7 +110,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class budgets-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -474,7 +488,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "CreationLimitExceededException")
-                                (:error-code 405))
+                                (:error-code 405) (:base-class budgets-error))
 
 (smithy/sdk/shapes:define-structure definition common-lisp:nil
                                     ((iam-action-definition :target-type
@@ -816,7 +830,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DuplicateRecordException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class budgets-error))
 
 (smithy/sdk/shapes:define-enum event-type
     common-lisp:nil
@@ -863,7 +877,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ExpiredNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class budgets-error))
 
 (smithy/sdk/shapes:define-structure expression common-lisp:nil
                                     ((or :target-type expressions :member-name
@@ -931,19 +945,19 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class budgets-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class budgets-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class budgets-error))
 
 (smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -995,7 +1009,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class budgets-error))
 
 (smithy/sdk/shapes:define-structure notification common-lisp:nil
                                     ((notification-type :target-type
@@ -1061,7 +1075,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceLockedException")
-                                (:error-code 423))
+                                (:error-code 423) (:base-class budgets-error))
 
 (smithy/sdk/shapes:define-structure resource-tag common-lisp:nil
                                     ((key :target-type resource-tag-key
@@ -1101,7 +1115,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class budgets-error))
 
 (smithy/sdk/shapes:define-structure spend common-lisp:nil
                                     ((amount :target-type numeric-value
@@ -1178,7 +1192,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class budgets-error))
 
 (smithy/sdk/shapes:define-structure time-period common-lisp:nil
                                     ((start :target-type generic-timestamp

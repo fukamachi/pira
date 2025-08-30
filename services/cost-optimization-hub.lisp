@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/cost-optimization-hub (:use)
-                             (:export #:account-enrollment-status
+                             (:export #:access-denied-exception
+                              #:account-enrollment-status
                               #:account-enrollment-statuses #:account-id
                               #:account-id-list #:action-type
                               #:action-type-list #:allocation-strategy
@@ -28,7 +29,8 @@
                               #:filter #:get-preferences #:get-recommendation
                               #:implementation-effort
                               #:implementation-effort-list
-                              #:instance-configuration #:lambda-function
+                              #:instance-configuration
+                              #:internal-server-exception #:lambda-function
                               #:lambda-function-configuration
                               #:list-enrollment-statuses
                               #:list-recommendation-summaries
@@ -57,22 +59,27 @@
                               #:reserved-instances-cost-calculation
                               #:reserved-instances-pricing #:resource-arn-list
                               #:resource-cost-calculation #:resource-details
-                              #:resource-id-list #:resource-pricing
-                              #:resource-type #:resource-type-list
-                              #:sage-maker-savings-plans
+                              #:resource-id-list #:resource-not-found-exception
+                              #:resource-pricing #:resource-type
+                              #:resource-type-list #:sage-maker-savings-plans
                               #:sage-maker-savings-plans-configuration
                               #:savings-estimation-mode
                               #:savings-plans-cost-calculation
                               #:savings-plans-pricing #:source
                               #:storage-configuration #:summary-metrics
                               #:summary-metrics-list #:summary-metrics-result
-                              #:tag #:tag-list #:term
+                              #:tag #:tag-list #:term #:throttling-exception
                               #:update-enrollment-status #:update-preferences
-                              #:usage #:usage-list
+                              #:usage #:usage-list #:validation-exception
                               #:validation-exception-detail
                               #:validation-exception-details
-                              #:validation-exception-reason))
+                              #:validation-exception-reason
+                              #:cost-optimization-hub-error))
 (common-lisp:in-package #:pira/cost-optimization-hub)
+
+(common-lisp:define-condition cost-optimization-hub-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service cost-optimization-hub-service :shape-name
                                    "CostOptimizationHubService" :version
@@ -98,7 +105,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cost-optimization-hub-error))
 
 (smithy/sdk/shapes:define-structure account-enrollment-status common-lisp:nil
                                     ((account-id :target-type account-id
@@ -643,7 +651,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class cost-optimization-hub-error))
 
 (smithy/sdk/shapes:define-structure lambda-function common-lisp:nil
                                     ((configuration :target-type
@@ -1241,7 +1250,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceId"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cost-optimization-hub-error))
 
 (smithy/sdk/shapes:define-structure resource-pricing common-lisp:nil
                                     ((estimated-cost-before-discounts
@@ -1390,7 +1400,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class cost-optimization-hub-error))
 
 (smithy/sdk/shapes:define-input update-enrollment-status-request
                                 common-lisp:nil
@@ -1468,7 +1479,8 @@
                                   validation-exception-details :member-name
                                   "fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cost-optimization-hub-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-detail common-lisp:nil
                                     ((field-name :target-type

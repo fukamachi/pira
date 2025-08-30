@@ -1,10 +1,12 @@
 (uiop/package:define-package #:pira/ivschat (:use)
-                             (:export #:amazon-interactive-video-service-chat
+                             (:export #:access-denied-exception
+                              #:amazon-interactive-video-service-chat
                               #:bucket-name #:chat-token
                               #:chat-token-attributes #:chat-token-capabilities
                               #:chat-token-capability
                               #:cloud-watch-logs-destination-configuration
-                              #:create-chat-token #:create-chat-token-request
+                              #:conflict-exception #:create-chat-token
+                              #:create-chat-token-request
                               #:create-chat-token-response
                               #:create-logging-configuration
                               #:create-logging-configuration-request
@@ -26,7 +28,7 @@
                               #:get-logging-configuration-request
                               #:get-logging-configuration-response #:get-room
                               #:get-room-request #:get-room-response #:id
-                              #:lambda-arn #:limit
+                              #:internal-server-exception #:lambda-arn #:limit
                               #:list-logging-configurations
                               #:list-logging-configurations-request
                               #:list-logging-configurations-response
@@ -45,7 +47,8 @@
                               #:max-logging-configuration-results
                               #:max-room-results #:message-id
                               #:message-review-handler #:pagination-token
-                              #:reason #:resource-arn #:resource-id
+                              #:pending-verification #:reason #:resource-arn
+                              #:resource-id #:resource-not-found-exception
                               #:resource-type #:room-arn #:room-id
                               #:room-identifier #:room-list
                               #:room-max-message-length
@@ -53,11 +56,12 @@
                               #:room-summary #:s3destination-configuration
                               #:send-event #:send-event-request
                               #:send-event-response
+                              #:service-quota-exceeded-exception
                               #:session-duration-in-minutes #:string #:tag-key
                               #:tag-key-list #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:time #:untag-resource
-                              #:untag-resource-request
+                              #:tag-value #:tags #:throttling-exception #:time
+                              #:untag-resource #:untag-resource-request
                               #:untag-resource-response
                               #:update-logging-configuration
                               #:update-logging-configuration-request
@@ -65,10 +69,15 @@
                               #:update-logging-configuration-state
                               #:update-room #:update-room-request
                               #:update-room-response #:user-id
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason))
+                              #:validation-exception-reason #:ivschat-error))
 (common-lisp:in-package #:pira/ivschat)
+
+(common-lisp:define-condition ivschat-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-interactive-video-service-chat
                                    :shape-name
@@ -98,7 +107,7 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class ivschat-error))
 
 (smithy/sdk/shapes:define-type bucket-name smithy/sdk/smithy-types:string)
 
@@ -130,7 +139,7 @@
                                   :required common-lisp:t :member-name
                                   "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class ivschat-error))
 
 (smithy/sdk/shapes:define-structure create-chat-token-request common-lisp:nil
                                     ((room-identifier :target-type
@@ -407,7 +416,7 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class ivschat-error))
 
 (smithy/sdk/shapes:define-type lambda-arn smithy/sdk/smithy-types:string)
 
@@ -538,7 +547,7 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "PendingVerification")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class ivschat-error))
 
 (smithy/sdk/shapes:define-type reason smithy/sdk/smithy-types:string)
 
@@ -556,7 +565,7 @@
                                   :required common-lisp:t :member-name
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class ivschat-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -633,7 +642,7 @@
                                  (limit :target-type limit :required
                                   common-lisp:t :member-name "limit"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class ivschat-error))
 
 (smithy/sdk/shapes:define-type session-duration-in-minutes
                                smithy/sdk/smithy-types:integer)
@@ -672,7 +681,7 @@
                                  (limit :target-type limit :required
                                   common-lisp:t :member-name "limit"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class ivschat-error))
 
 (smithy/sdk/shapes:define-type time smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -800,7 +809,7 @@
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ivschat-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type field-name :required

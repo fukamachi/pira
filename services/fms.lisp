@@ -68,11 +68,15 @@
                               #:ipport-number-integer #:identifier
                               #:identifier-list #:integer-object
                               #:integer-object-minimum0
+                              #:internal-error-exception
+                              #:invalid-input-exception
                               #:invalid-network-acl-entries-violation
-                              #:issue-info-map
+                              #:invalid-operation-exception
+                              #:invalid-type-exception #:issue-info-map
                               #:length-bounded-non-empty-string
                               #:length-bounded-string
                               #:length-bounded-string-list
+                              #:limit-exceeded-exception
                               #:list-admin-accounts-for-organization
                               #:list-admins-managing-account #:list-apps-lists
                               #:list-compliance-status
@@ -140,7 +144,8 @@
                               #:resource #:resource-arn #:resource-arn-list
                               #:resource-count #:resource-description
                               #:resource-id #:resource-id-list #:resource-list
-                              #:resource-name #:resource-set #:resource-set-ids
+                              #:resource-name #:resource-not-found-exception
+                              #:resource-set #:resource-set-ids
                               #:resource-set-status #:resource-set-summary
                               #:resource-set-summary-list #:resource-tag
                               #:resource-tag-key
@@ -177,8 +182,13 @@
                               #:violation-detail #:violation-reason
                               #:violation-target
                               #:web-aclhas-incompatible-configuration-violation
-                              #:web-aclhas-out-of-scope-resources-violation))
+                              #:web-aclhas-out-of-scope-resources-violation
+                              #:fms-error))
 (common-lisp:in-package #:pira/fms)
+
+(common-lisp:define-condition fms-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsfms-20180101 :shape-name
                                    "AWSFMS_20180101" :version "2018-01-01"
@@ -1106,13 +1116,13 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalErrorException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fms-error))
 
 (smithy/sdk/shapes:define-error invalid-input-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fms-error))
 
 (smithy/sdk/shapes:define-structure invalid-network-acl-entries-violation
                                     common-lisp:nil
@@ -1136,13 +1146,13 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidOperationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fms-error))
 
 (smithy/sdk/shapes:define-error invalid-type-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidTypeException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fms-error))
 
 (smithy/sdk/shapes:define-map issue-info-map :key dependent-service-name :value
                               detailed-info)
@@ -1160,7 +1170,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fms-error))
 
 (smithy/sdk/shapes:define-input list-admin-accounts-for-organization-request
                                 common-lisp:nil
@@ -2137,7 +2147,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fms-error))
 
 (smithy/sdk/shapes:define-structure resource-set common-lisp:nil
                                     ((id :target-type base62id :member-name

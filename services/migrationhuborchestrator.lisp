@@ -1,6 +1,8 @@
 (uiop/package:define-package #:pira/migrationhuborchestrator (:use)
                              (:export #:awsmigration-hub-orchestrator
+                              #:access-denied-exception
                               #:application-configuration-name #:client-token
+                              #:conflict-exception
                               #:create-migration-workflow-request
                               #:create-migration-workflow-response
                               #:create-template #:create-workflow
@@ -34,6 +36,7 @@
                               #:get-workflow-step-group-response
                               #:get-workflow-step-request
                               #:get-workflow-step-response #:ipaddress
+                              #:internal-server-exception
                               #:list-migration-workflow-templates-request
                               #:list-migration-workflow-templates-response
                               #:list-migration-workflows-request
@@ -66,6 +69,7 @@
                               #:plugin #:plugin-health #:plugin-id
                               #:plugin-summaries #:plugin-summary
                               #:plugin-version #:resource-arn
+                              #:resource-not-found-exception
                               #:retry-workflow-step
                               #:retry-workflow-step-request
                               #:retry-workflow-step-response #:run-environment
@@ -97,8 +101,9 @@
                               #:template-step-group-summary-list
                               #:template-step-groups #:template-step-summary
                               #:template-step-summary-list #:template-summary
-                              #:template-summary-list #:tool #:tools-list
-                              #:untag-resource #:untag-resource-request
+                              #:template-summary-list #:throttling-exception
+                              #:tool #:tools-list #:untag-resource
+                              #:untag-resource-request
                               #:untag-resource-response
                               #:update-migration-workflow-request
                               #:update-migration-workflow-response
@@ -108,7 +113,8 @@
                               #:update-workflow-step-group-request
                               #:update-workflow-step-group-response
                               #:update-workflow-step-request
-                              #:update-workflow-step-response #:workflow-step
+                              #:update-workflow-step-response
+                              #:validation-exception #:workflow-step
                               #:workflow-step-automation-configuration
                               #:workflow-step-group
                               #:workflow-step-group-summary
@@ -118,8 +124,13 @@
                               #:workflow-step-output-name
                               #:workflow-step-output-union
                               #:workflow-step-summary
-                              #:workflow-steps-summary-list))
+                              #:workflow-steps-summary-list
+                              #:migrationhuborchestrator-error))
 (common-lisp:in-package #:pira/migrationhuborchestrator)
+
+(common-lisp:define-condition migrationhuborchestrator-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsmigration-hub-orchestrator :shape-name
                                    "AWSMigrationHubOrchestrator" :version
@@ -145,7 +156,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class migrationhuborchestrator-error))
 
 (smithy/sdk/shapes:define-type application-configuration-name
                                smithy/sdk/smithy-types:string)
@@ -157,7 +169,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class migrationhuborchestrator-error))
 
 (smithy/sdk/shapes:define-structure create-migration-workflow-request
                                     common-lisp:nil
@@ -734,7 +747,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class migrationhuborchestrator-error))
 
 (smithy/sdk/shapes:define-input list-migration-workflow-templates-request
                                 common-lisp:nil
@@ -1035,7 +1049,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class migrationhuborchestrator-error))
 
 (smithy/sdk/shapes:define-input retry-workflow-step-request common-lisp:nil
                                 ((workflow-id :target-type
@@ -1327,7 +1342,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class migrationhuborchestrator-error))
 
 (smithy/sdk/shapes:define-structure tool common-lisp:nil
                                     ((name :target-type
@@ -1537,7 +1553,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migrationhuborchestrator-error))
 
 common-lisp:nil
 

@@ -4,19 +4,27 @@
                               #:additional-artifact-list #:billing-view-arn
                               #:compression-format #:delete-report-definition
                               #:delete-response-message
-                              #:describe-report-definitions #:error-message
-                              #:generic-string #:last-delivery #:last-status
+                              #:describe-report-definitions
+                              #:duplicate-report-name-exception #:error-message
+                              #:generic-string #:internal-error-exception
+                              #:last-delivery #:last-status
                               #:list-tags-for-resource #:max-results
                               #:modify-report-definition
                               #:put-report-definition #:refresh-closed-reports
                               #:report-definition #:report-definition-list
-                              #:report-format #:report-name #:report-status
-                              #:report-versioning #:s3bucket #:s3prefix
-                              #:schema-element #:schema-element-list #:tag
-                              #:tag-key #:tag-key-list #:tag-list
+                              #:report-format #:report-limit-reached-exception
+                              #:report-name #:report-status #:report-versioning
+                              #:resource-not-found-exception #:s3bucket
+                              #:s3prefix #:schema-element #:schema-element-list
+                              #:tag #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-value #:time-unit
-                              #:untag-resource))
+                              #:untag-resource #:validation-exception
+                              #:cost-and-usage-report-service-error))
 (common-lisp:in-package #:pira/cost-and-usage-report-service)
+
+(common-lisp:define-condition cost-and-usage-report-service-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsorigami-service-gateway-service
                                    :shape-name
@@ -132,7 +140,9 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DuplicateReportNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 cost-and-usage-report-service-error))
 
 (smithy/sdk/shapes:define-type error-message smithy/sdk/smithy-types:string)
 
@@ -142,7 +152,9 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class
+                                 cost-and-usage-report-service-error))
 
 (smithy/sdk/shapes:define-type last-delivery smithy/sdk/smithy-types:string)
 
@@ -245,7 +257,9 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ReportLimitReachedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 cost-and-usage-report-service-error))
 
 (smithy/sdk/shapes:define-type report-name smithy/sdk/smithy-types:string)
 
@@ -265,7 +279,9 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 cost-and-usage-report-service-error))
 
 (smithy/sdk/shapes:define-type s3bucket smithy/sdk/smithy-types:string)
 
@@ -328,7 +344,9 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 cost-and-usage-report-service-error))
 
 (smithy/sdk/operation:define-operation delete-report-definition :shape-name
                                        "DeleteReportDefinition" :input

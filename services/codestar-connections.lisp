@@ -1,7 +1,11 @@
 (uiop/package:define-package #:pira/codestar-connections (:use)
-                             (:export #:account-id #:amazon-resource-name
-                              #:blocker-status #:blocker-type #:branch-name
-                              #:code-star-connections-20191201 #:connection
+                             (:export #:access-denied-exception #:account-id
+                              #:amazon-resource-name #:blocker-status
+                              #:blocker-type #:branch-name
+                              #:code-star-connections-20191201
+                              #:concurrent-modification-exception
+                              #:conditional-check-failed-exception
+                              #:conflict-exception #:connection
                               #:connection-arn #:connection-list
                               #:connection-name #:connection-status
                               #:create-connection #:create-host
@@ -19,9 +23,11 @@
                               #:get-sync-configuration #:host #:host-arn
                               #:host-list #:host-name #:host-status
                               #:host-status-message #:iam-role-arn #:id
-                              #:kms-key-arn #:latest-sync-blocker-list
-                              #:list-connections #:list-hosts
-                              #:list-repository-links
+                              #:internal-server-exception
+                              #:invalid-input-exception #:kms-key-arn
+                              #:latest-sync-blocker-list
+                              #:limit-exceeded-exception #:list-connections
+                              #:list-hosts #:list-repository-links
                               #:list-repository-sync-definitions
                               #:list-sync-configurations
                               #:list-tags-for-resource #:max-results
@@ -35,26 +41,40 @@
                               #:repository-sync-event
                               #:repository-sync-event-list
                               #:repository-sync-status #:resolved-reason
-                              #:resource-name #:resource-sync-attempt
-                              #:resource-sync-event #:resource-sync-event-list
-                              #:resource-sync-status #:revision #:sha
-                              #:security-group-id #:security-group-ids
+                              #:resource-already-exists-exception
+                              #:resource-name #:resource-not-found-exception
+                              #:resource-sync-attempt #:resource-sync-event
+                              #:resource-sync-event-list #:resource-sync-status
+                              #:resource-unavailable-exception
+                              #:retry-latest-commit-failed-exception #:revision
+                              #:sha #:security-group-id #:security-group-ids
                               #:sharp-next-token #:subnet-id #:subnet-ids
                               #:sync-blocker #:sync-blocker-context
                               #:sync-blocker-context-key
                               #:sync-blocker-context-list
                               #:sync-blocker-context-value
+                              #:sync-blocker-does-not-exist-exception
                               #:sync-blocker-summary #:sync-configuration
                               #:sync-configuration-list
+                              #:sync-configuration-still-exists-exception
                               #:sync-configuration-type #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-value #:target #:timestamp
-                              #:tls-certificate #:trigger-resource-update-on
-                              #:type #:untag-resource #:update-host
+                              #:tag-value #:target #:throttling-exception
+                              #:timestamp #:tls-certificate
+                              #:trigger-resource-update-on #:type
+                              #:unsupported-operation-exception
+                              #:unsupported-provider-type-exception
+                              #:untag-resource #:update-host
+                              #:update-out-of-sync-exception
                               #:update-repository-link #:update-sync-blocker
                               #:update-sync-configuration #:url
-                              #:vpc-configuration #:vpc-id))
+                              #:vpc-configuration #:vpc-id
+                              #:codestar-connections-error))
 (common-lisp:in-package #:pira/codestar-connections)
+
+(common-lisp:define-condition codestar-connections-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service code-star-connections-20191201 :shape-name
                                    "CodeStar_connections_20191201" :version
@@ -96,7 +116,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -119,20 +140,23 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-error conditional-check-failed-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConditionalCheckFailedException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-structure connection common-lisp:nil
                                     ((connection-name :target-type
@@ -466,13 +490,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-error invalid-input-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -482,7 +508,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-input list-connections-input common-lisp:nil
                                 ((provider-type-filter :target-type
@@ -701,7 +728,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-type resource-name smithy/sdk/smithy-types:string)
 
@@ -709,7 +737,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-structure resource-sync-attempt common-lisp:nil
                                     ((events :target-type
@@ -756,7 +785,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceUnavailableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-error retry-latest-commit-failed-exception
                                 common-lisp:nil
@@ -764,7 +794,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "RetryLatestCommitFailedException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-structure revision common-lisp:nil
                                     ((branch :target-type branch-name :required
@@ -844,7 +875,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "SyncBlockerDoesNotExistException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-structure sync-blocker-summary common-lisp:nil
                                     ((resource-name :target-type resource-name
@@ -902,7 +934,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "SyncConfigurationStillExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-enum sync-configuration-type
     common-lisp:nil
@@ -941,7 +974,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -958,7 +992,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "UnsupportedOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-error unsupported-provider-type-exception
                                 common-lisp:nil
@@ -966,7 +1001,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "UnsupportedProviderTypeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type
@@ -998,7 +1034,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "UpdateOutOfSyncException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codestar-connections-error))
 
 (smithy/sdk/shapes:define-input update-repository-link-input common-lisp:nil
                                 ((connection-arn :target-type connection-arn

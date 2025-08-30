@@ -1,7 +1,8 @@
 (uiop/package:define-package #:pira/timestream-influxdb (:use)
-                             (:export #:allocated-storage
-                              #:amazon-timestream-influx-db #:arn #:bucket
-                              #:cluster-deployment-type #:cluster-status
+                             (:export #:access-denied-exception
+                              #:allocated-storage #:amazon-timestream-influx-db
+                              #:arn #:bucket #:cluster-deployment-type
+                              #:cluster-status #:conflict-exception
                               #:create-db-cluster #:create-db-instance
                               #:create-db-parameter-group #:db-cluster-id
                               #:db-cluster-name #:db-cluster-resource
@@ -22,23 +23,31 @@
                               #:duration-type #:failover-mode #:get-db-cluster
                               #:get-db-instance #:get-db-parameter-group
                               #:influx-dbv2parameters #:instance-mode
-                              #:list-db-clusters #:list-db-instances
+                              #:internal-server-exception #:list-db-clusters
+                              #:list-db-instances
                               #:list-db-instances-for-cluster
                               #:list-db-parameter-groups
                               #:list-tags-for-resource
                               #:log-delivery-configuration #:log-level
                               #:max-results #:network-type #:next-token
                               #:organization #:parameters #:password #:port
-                              #:request-tag-map #:response-tag-map
-                              #:s3configuration #:status #:tag-key #:tag-keys
-                              #:tag-resource #:tag-value #:tracing-type
+                              #:request-tag-map #:resource-not-found-exception
+                              #:response-tag-map #:s3configuration
+                              #:service-quota-exceeded-exception #:status
+                              #:tag-key #:tag-keys #:tag-resource #:tag-value
+                              #:throttling-exception #:tracing-type
                               #:untag-resource #:update-db-cluster
                               #:update-db-instance #:username
+                              #:validation-exception
                               #:validation-exception-reason
                               #:vpc-security-group-id
                               #:vpc-security-group-id-list #:vpc-subnet-id
-                              #:vpc-subnet-id-list))
+                              #:vpc-subnet-id-list #:timestream-influxdb-error))
 (common-lisp:in-package #:pira/timestream-influxdb)
+
+(common-lisp:define-condition timestream-influxdb-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-timestream-influx-db :shape-name
                                    "AmazonTimestreamInfluxDB" :version
@@ -81,7 +90,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class timestream-influxdb-error))
 
 (smithy/sdk/shapes:define-type allocated-storage
                                smithy/sdk/smithy-types:integer)
@@ -114,7 +124,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class timestream-influxdb-error))
 
 (smithy/sdk/shapes:define-input create-db-cluster-input common-lisp:nil
                                 ((name :target-type db-cluster-name :required
@@ -830,7 +841,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class timestream-influxdb-error))
 
 (smithy/sdk/shapes:define-input list-db-clusters-input common-lisp:nil
                                 ((next-token :target-type next-token
@@ -957,7 +969,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class timestream-influxdb-error))
 
 (smithy/sdk/shapes:define-map response-tag-map :key tag-key :value tag-value)
 
@@ -976,7 +989,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class timestream-influxdb-error))
 
 (smithy/sdk/shapes:define-enum status
     common-lisp:nil
@@ -1012,7 +1026,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class timestream-influxdb-error))
 
 (smithy/sdk/shapes:define-enum tracing-type
     common-lisp:nil
@@ -1140,7 +1155,8 @@ common-lisp:nil
                                   validation-exception-reason :required
                                   common-lisp:t :member-name "reason"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class timestream-influxdb-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-reason
     common-lisp:nil

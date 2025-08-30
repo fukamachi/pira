@@ -1,7 +1,10 @@
 (uiop/package:define-package #:pira/sqs (:use)
                              (:export #:awsaccount-id-list #:action-name-list
                               #:add-permission #:amazon-sqs
-                              #:attribute-name-list #:batch-result-error-entry
+                              #:attribute-name-list
+                              #:batch-entry-ids-not-distinct
+                              #:batch-request-too-long
+                              #:batch-result-error-entry
                               #:batch-result-error-entry-list #:binary
                               #:binary-list #:boolean #:boxed-integer
                               #:cancel-message-move-task
@@ -17,9 +20,17 @@
                               #:delete-message-batch-request-entry-list
                               #:delete-message-batch-result-entry
                               #:delete-message-batch-result-entry-list
-                              #:delete-queue #:exception-message
-                              #:get-queue-attributes #:get-queue-url
-                              #:list-dead-letter-source-queues
+                              #:delete-queue #:empty-batch-request
+                              #:exception-message #:get-queue-attributes
+                              #:get-queue-url #:invalid-address
+                              #:invalid-attribute-name
+                              #:invalid-attribute-value
+                              #:invalid-batch-entry-id #:invalid-id-format
+                              #:invalid-message-contents #:invalid-security
+                              #:kms-access-denied #:kms-disabled
+                              #:kms-invalid-key-usage #:kms-invalid-state
+                              #:kms-not-found #:kms-opt-in-required
+                              #:kms-throttled #:list-dead-letter-source-queues
                               #:list-message-move-tasks
                               #:list-message-move-tasks-result-entry
                               #:list-message-move-tasks-result-entry-list
@@ -29,15 +40,20 @@
                               #:message-attribute-value
                               #:message-body-attribute-map
                               #:message-body-system-attribute-map
-                              #:message-list #:message-system-attribute-list
+                              #:message-list #:message-not-inflight
+                              #:message-system-attribute-list
                               #:message-system-attribute-map
                               #:message-system-attribute-name
                               #:message-system-attribute-name-for-sends
                               #:message-system-attribute-value
-                              #:nullable-integer #:nullable-long #:purge-queue
+                              #:nullable-integer #:nullable-long #:over-limit
+                              #:purge-queue #:purge-queue-in-progress
                               #:queue-attribute-map #:queue-attribute-name
-                              #:queue-url-list #:receive-message
-                              #:remove-permission #:send-message
+                              #:queue-deleted-recently #:queue-does-not-exist
+                              #:queue-name-exists #:queue-url-list
+                              #:receipt-handle-is-invalid #:receive-message
+                              #:remove-permission #:request-throttled
+                              #:resource-not-found-exception #:send-message
                               #:send-message-batch
                               #:send-message-batch-request-entry
                               #:send-message-batch-request-entry-list
@@ -46,8 +62,14 @@
                               #:set-queue-attributes #:start-message-move-task
                               #:string #:string-list #:tag-key #:tag-key-list
                               #:tag-map #:tag-queue #:tag-value #:token
-                              #:untag-queue))
+                              #:too-many-entries-in-batch-request
+                              #:unsupported-operation #:untag-queue
+                              #:sqs-error))
 (common-lisp:in-package #:pira/sqs)
+
+(common-lisp:define-condition sqs-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-sqs :shape-name "AmazonSQS" :version
                                    "2012-11-05" :title
@@ -104,7 +126,7 @@
                                 (:shape-name "BatchEntryIdsNotDistinct")
                                 (:error-name
                                  "AWS.SimpleQueueService.BatchEntryIdsNotDistinct")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error batch-request-too-long common-lisp:nil
                                 ((message :target-type exception-message
@@ -112,7 +134,7 @@
                                 (:shape-name "BatchRequestTooLong")
                                 (:error-name
                                  "AWS.SimpleQueueService.BatchRequestTooLong")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-structure batch-result-error-entry common-lisp:nil
                                     ((id :target-type string :required
@@ -295,7 +317,7 @@
                                 (:shape-name "EmptyBatchRequest")
                                 (:error-name
                                  "AWS.SimpleQueueService.EmptyBatchRequest")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-type exception-message smithy/sdk/smithy-types:string)
 
@@ -331,19 +353,19 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidAddress")
                                 (:error-name "InvalidAddress")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error invalid-attribute-name common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidAttributeName")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error invalid-attribute-value common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidAttributeValue")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error invalid-batch-entry-id common-lisp:nil
                                 ((message :target-type exception-message
@@ -351,73 +373,73 @@
                                 (:shape-name "InvalidBatchEntryId")
                                 (:error-name
                                  "AWS.SimpleQueueService.InvalidBatchEntryId")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error invalid-id-format common-lisp:nil
                                 common-lisp:nil (:shape-name "InvalidIdFormat")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error invalid-message-contents common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidMessageContents")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error invalid-security common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSecurity")
                                 (:error-name "InvalidSecurity")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error kms-access-denied common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KmsAccessDenied")
                                 (:error-name "KMS.AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error kms-disabled common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KmsDisabled")
                                 (:error-name "KMS.DisabledException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error kms-invalid-key-usage common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KmsInvalidKeyUsage")
                                 (:error-name "KMS.InvalidKeyUsageException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error kms-invalid-state common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KmsInvalidState")
                                 (:error-name "KMS.InvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error kms-not-found common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KmsNotFound")
                                 (:error-name "KMS.NotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error kms-opt-in-required common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KmsOptInRequired")
                                 (:error-name "KMS.OptInRequired")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error kms-throttled common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KmsThrottled")
                                 (:error-name "KMS.ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-input list-dead-letter-source-queues-request
                                 common-lisp:nil
@@ -583,7 +605,7 @@
                                 (:shape-name "MessageNotInflight")
                                 (:error-name
                                  "AWS.SimpleQueueService.MessageNotInflight")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-list message-system-attribute-list :member
                                message-system-attribute-name)
@@ -637,7 +659,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "OverLimit")
-                                (:error-name "OverLimit") (:error-code 403))
+                                (:error-name "OverLimit") (:error-code 403)
+                                (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error purge-queue-in-progress common-lisp:nil
                                 ((message :target-type exception-message
@@ -645,7 +668,7 @@
                                 (:shape-name "PurgeQueueInProgress")
                                 (:error-name
                                  "AWS.SimpleQueueService.PurgeQueueInProgress")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-input purge-queue-request common-lisp:nil
                                 ((queue-url :target-type string :required
@@ -688,7 +711,7 @@
                                 (:shape-name "QueueDeletedRecently")
                                 (:error-name
                                  "AWS.SimpleQueueService.QueueDeletedRecently")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error queue-does-not-exist common-lisp:nil
                                 ((message :target-type exception-message
@@ -696,14 +719,14 @@
                                 (:shape-name "QueueDoesNotExist")
                                 (:error-name
                                  "AWS.SimpleQueueService.NonExistentQueue")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error queue-name-exists common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "QueueNameExists")
                                 (:error-name "QueueAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-list queue-url-list :member string)
 
@@ -712,7 +735,7 @@
                                   :member-name "message"))
                                 (:shape-name "ReceiptHandleIsInvalid")
                                 (:error-name "ReceiptHandleIsInvalid")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-input receive-message-request common-lisp:nil
                                 ((queue-url :target-type string :required
@@ -762,14 +785,14 @@
                                   :member-name "message"))
                                 (:shape-name "RequestThrottled")
                                 (:error-name "RequestThrottled")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-input send-message-batch-request common-lisp:nil
                                 ((queue-url :target-type string :required
@@ -941,7 +964,7 @@
                                 (:shape-name "TooManyEntriesInBatchRequest")
                                 (:error-name
                                  "AWS.SimpleQueueService.TooManyEntriesInBatchRequest")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-error unsupported-operation common-lisp:nil
                                 ((message :target-type exception-message
@@ -949,7 +972,7 @@
                                 (:shape-name "UnsupportedOperation")
                                 (:error-name
                                  "AWS.SimpleQueueService.UnsupportedOperation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sqs-error))
 
 (smithy/sdk/shapes:define-input untag-queue-request common-lisp:nil
                                 ((queue-url :target-type string :required

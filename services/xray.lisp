@@ -53,19 +53,27 @@
                               #:insight-state #:insight-state-list
                               #:insight-summary #:insight-summary-list
                               #:insight-summary-text #:insights-configuration
-                              #:instance-id-detail #:integer #:links-list
+                              #:instance-id-detail #:integer
+                              #:invalid-policy-revision-id-exception
+                              #:invalid-request-exception #:links-list
                               #:list-resource-policies #:list-retrieved-traces
-                              #:list-tags-for-resource #:nullable-boolean
-                              #:nullable-double #:nullable-integer
-                              #:nullable-long #:policy-document #:policy-name
-                              #:policy-revision-id #:priority
+                              #:list-tags-for-resource
+                              #:lockout-prevention-exception
+                              #:malformed-policy-document-exception
+                              #:nullable-boolean #:nullable-double
+                              #:nullable-integer #:nullable-long
+                              #:policy-count-limit-exceeded-exception
+                              #:policy-document #:policy-name
+                              #:policy-revision-id
+                              #:policy-size-limit-exceeded-exception #:priority
                               #:probabilistic-rule-value
                               #:probabilistic-rule-value-update
                               #:put-encryption-config #:put-resource-policy
                               #:put-telemetry-records #:put-trace-segments
                               #:request-count #:request-impact-statistics
                               #:reservoir-size #:resource-arn
-                              #:resource-arndetail #:resource-policy
+                              #:resource-arndetail
+                              #:resource-not-found-exception #:resource-policy
                               #:resource-policy-list
                               #:resource-policy-next-token
                               #:response-time-root-cause
@@ -77,7 +85,8 @@
                               #:retrieval-token #:retrieved-service
                               #:retrieved-services-list #:retrieved-trace
                               #:root-cause-exception #:root-cause-exceptions
-                              #:rule-name #:sampled-count #:sampling-rule
+                              #:rule-limit-exceeded-exception #:rule-name
+                              #:sampled-count #:sampling-rule
                               #:sampling-rule-record
                               #:sampling-rule-record-list
                               #:sampling-rule-update
@@ -96,11 +105,13 @@
                               #:start-trace-retrieval #:string #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-value #:telemetry-record
-                              #:telemetry-record-list #:time-range-type
+                              #:telemetry-record-list #:throttled-exception
+                              #:time-range-type
                               #:time-series-service-statistics
                               #:time-series-service-statistics-list #:timestamp
-                              #:token #:trace #:trace-availability-zones
-                              #:trace-format-type #:trace-id #:trace-id-list
+                              #:token #:too-many-tags-exception #:trace
+                              #:trace-availability-zones #:trace-format-type
+                              #:trace-id #:trace-id-list
                               #:trace-id-list-for-retrieval
                               #:trace-instance-ids #:trace-list
                               #:trace-resource-arns #:trace-segment-destination
@@ -117,8 +128,12 @@
                               #:update-sampling-rule
                               #:update-trace-segment-destination
                               #:value-with-service-ids
-                              #:values-with-service-ids #:version))
+                              #:values-with-service-ids #:version #:xray-error))
 (common-lisp:in-package #:pira/xray)
+
+(common-lisp:define-condition xray-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsxray :shape-name "AWSXRay" :version
                                    "2016-04-12" :title "AWS X-Ray" :operations
@@ -1109,13 +1124,13 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "InvalidPolicyRevisionIdException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class xray-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class xray-error))
 
 (smithy/sdk/shapes:define-list links-list :member graph-link)
 
@@ -1176,7 +1191,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LockoutPreventionException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class xray-error))
 
 (smithy/sdk/shapes:define-error malformed-policy-document-exception
                                 common-lisp:nil
@@ -1184,7 +1199,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "MalformedPolicyDocumentException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class xray-error))
 
 (smithy/sdk/shapes:define-type nullable-boolean smithy/sdk/smithy-types:boolean)
 
@@ -1200,7 +1215,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "PolicyCountLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class xray-error))
 
 (smithy/sdk/shapes:define-type policy-document smithy/sdk/smithy-types:string)
 
@@ -1215,7 +1230,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "PolicySizeLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class xray-error))
 
 (smithy/sdk/shapes:define-type priority smithy/sdk/smithy-types:integer)
 
@@ -1326,7 +1341,7 @@
                                   amazon-resource-name :member-name
                                   "ResourceName"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class xray-error))
 
 (smithy/sdk/shapes:define-structure resource-policy common-lisp:nil
                                     ((policy-name :target-type policy-name
@@ -1436,7 +1451,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "RuleLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class xray-error))
 
 (smithy/sdk/shapes:define-type rule-name smithy/sdk/smithy-types:string)
 
@@ -1753,7 +1768,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottledException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class xray-error))
 
 (smithy/sdk/shapes:define-enum time-range-type
     common-lisp:nil
@@ -1793,7 +1808,7 @@
                                   amazon-resource-name :member-name
                                   "ResourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class xray-error))
 
 (smithy/sdk/shapes:define-structure trace common-lisp:nil
                                     ((id :target-type trace-id :member-name

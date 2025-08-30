@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/networkmanager (:use)
                              (:export #:awsaccount-id #:awslocation
-                              #:accept-attachment #:account-id #:account-status
+                              #:accept-attachment #:access-denied-exception
+                              #:account-id #:account-status
                               #:account-status-list #:action
                               #:associate-connect-peer
                               #:associate-customer-gateway #:associate-link
@@ -11,9 +12,9 @@
                               #:attachment-state #:attachment-type #:bandwidth
                               #:bgp-options #:boolean #:change-action
                               #:change-set-state #:change-status #:change-type
-                              #:client-token #:connect-attachment
-                              #:connect-attachment-options #:connect-peer
-                              #:connect-peer-association
+                              #:client-token #:conflict-exception
+                              #:connect-attachment #:connect-attachment-options
+                              #:connect-peer #:connect-peer-association
                               #:connect-peer-association-list
                               #:connect-peer-association-state
                               #:connect-peer-bgp-configuration
@@ -43,6 +44,7 @@
                               #:core-network-policy-document
                               #:core-network-policy-error
                               #:core-network-policy-error-list
+                              #:core-network-policy-exception
                               #:core-network-policy-version
                               #:core-network-policy-version-list
                               #:core-network-segment
@@ -109,10 +111,11 @@
                               #:global-network-arn #:global-network-id
                               #:global-network-id-list #:global-network-list
                               #:global-network-state #:ipaddress #:integer
-                              #:link #:link-arn #:link-association
-                              #:link-association-list #:link-association-state
-                              #:link-id #:link-id-list #:link-list #:link-state
-                              #:list-attachments #:list-connect-peers
+                              #:internal-server-exception #:link #:link-arn
+                              #:link-association #:link-association-list
+                              #:link-association-state #:link-id #:link-id-list
+                              #:link-list #:link-state #:list-attachments
+                              #:list-connect-peers
                               #:list-core-network-policy-versions
                               #:list-core-networks
                               #:list-organization-service-access-status
@@ -144,6 +147,7 @@
                               #:reason-context-value #:register-transit-gateway
                               #:reject-attachment #:relationship
                               #:relationship-list #:resource-arn
+                              #:resource-not-found-exception
                               #:restore-core-network-policy-version
                               #:retry-after-seconds #:route-analysis
                               #:route-analysis-completion
@@ -160,17 +164,18 @@
                               #:send-via-mode #:server-side-string
                               #:service-insertion-action
                               #:service-insertion-action-list
-                              #:service-insertion-segments #:site #:site-arn
-                              #:site-id #:site-id-list #:site-list #:site-state
-                              #:site-to-site-vpn-attachment
+                              #:service-insertion-segments
+                              #:service-quota-exceeded-exception #:site
+                              #:site-arn #:site-id #:site-id-list #:site-list
+                              #:site-state #:site-to-site-vpn-attachment
                               #:start-organization-service-access-update
                               #:start-route-analysis #:subnet-arn
                               #:subnet-arn-list
                               #:synthesized-json-core-network-policy-document
                               #:synthesized-json-resource-policy-document #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-value #:transit-gateway-arn
-                              #:transit-gateway-arn-list
+                              #:tag-resource #:tag-value #:throttling-exception
+                              #:transit-gateway-arn #:transit-gateway-arn-list
                               #:transit-gateway-attachment-arn
                               #:transit-gateway-attachment-id
                               #:transit-gateway-connect-peer-arn
@@ -192,15 +197,20 @@
                               #:update-direct-connect-gateway-attachment
                               #:update-global-network #:update-link
                               #:update-network-resource-metadata #:update-site
-                              #:update-vpc-attachment
+                              #:update-vpc-attachment #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:via #:vpc-arn
                               #:vpc-attachment #:vpc-options
                               #:vpn-connection-arn #:when-sent-to
                               #:when-sent-to-segments-list
-                              #:with-edge-overrides-list))
+                              #:with-edge-overrides-list
+                              #:networkmanager-error))
 (common-lisp:in-package #:pira/networkmanager)
+
+(common-lisp:define-condition networkmanager-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service network-manager :shape-name "NetworkManager"
                                    :version "2019-07-05" :title
@@ -307,7 +317,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class networkmanager-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -578,7 +589,8 @@
                                   :required common-lisp:t :member-name
                                   "ResourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class networkmanager-error))
 
 (smithy/sdk/shapes:define-structure connect-attachment common-lisp:nil
                                     ((attachment :target-type attachment
@@ -1033,7 +1045,8 @@
                                   core-network-policy-error-list :member-name
                                   "Errors"))
                                 (:shape-name "CoreNetworkPolicyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class networkmanager-error))
 
 (smithy/sdk/shapes:define-structure core-network-policy-version common-lisp:nil
                                     ((core-network-id :target-type
@@ -2496,7 +2509,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class networkmanager-error))
 
 (smithy/sdk/shapes:define-structure link common-lisp:nil
                                     ((link-id :target-type link-id :member-name
@@ -3115,7 +3129,8 @@
                                  (context :target-type exception-context-map
                                   :member-name "Context"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class networkmanager-error))
 
 (smithy/sdk/shapes:define-input restore-core-network-policy-version-request
                                 common-lisp:nil
@@ -3332,7 +3347,8 @@
                                   :required common-lisp:t :member-name
                                   "ServiceCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class networkmanager-error))
 
 (smithy/sdk/shapes:define-structure site common-lisp:nil
                                     ((site-id :target-type site-id :member-name
@@ -3461,7 +3477,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class networkmanager-error))
 
 (smithy/sdk/shapes:define-type transit-gateway-arn
                                smithy/sdk/smithy-types:string)
@@ -3784,7 +3801,8 @@
                                   validation-exception-field-list :member-name
                                   "Fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class networkmanager-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type server-side-string

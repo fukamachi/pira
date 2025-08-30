@@ -1,6 +1,6 @@
 (uiop/package:define-package #:pira/backup-gateway (:use)
-                             (:export #:activation-key
-                              #:associate-gateway-to-server
+                             (:export #:access-denied-exception
+                              #:activation-key #:associate-gateway-to-server
                               #:associate-gateway-to-server-input
                               #:associate-gateway-to-server-output
                               #:average-upload-rate-limit
@@ -8,11 +8,12 @@
                               #:bandwidth-rate-limit-interval
                               #:bandwidth-rate-limit-intervals
                               #:bandwidth-rate-limit-schedule-resource
-                              #:create-gateway #:create-gateway-input
-                              #:create-gateway-output #:day-of-month
-                              #:day-of-week #:days-of-week #:delete-gateway
-                              #:delete-gateway-input #:delete-gateway-output
-                              #:delete-hypervisor #:delete-hypervisor-input
+                              #:conflict-exception #:create-gateway
+                              #:create-gateway-input #:create-gateway-output
+                              #:day-of-month #:day-of-week #:days-of-week
+                              #:delete-gateway #:delete-gateway-input
+                              #:delete-gateway-output #:delete-hypervisor
+                              #:delete-hypervisor-input
                               #:delete-hypervisor-output
                               #:disassociate-gateway-from-server
                               #:disassociate-gateway-from-server-input
@@ -37,9 +38,10 @@
                               #:import-hypervisor-configuration
                               #:import-hypervisor-configuration-input
                               #:import-hypervisor-configuration-output
-                              #:kms-key-arn #:list-gateways
-                              #:list-gateways-input #:list-gateways-output
-                              #:list-hypervisors #:list-hypervisors-input
+                              #:internal-server-exception #:kms-key-arn
+                              #:list-gateways #:list-gateways-input
+                              #:list-gateways-output #:list-hypervisors
+                              #:list-hypervisors-input
                               #:list-hypervisors-output
                               #:list-tags-for-resource
                               #:list-tags-for-resource-input
@@ -58,7 +60,8 @@
                               #:put-maintenance-start-time
                               #:put-maintenance-start-time-input
                               #:put-maintenance-start-time-output
-                              #:resource-arn #:server-arn
+                              #:resource-arn #:resource-not-found-exception
+                              #:server-arn
                               #:start-virtual-machines-metadata-sync
                               #:start-virtual-machines-metadata-sync-input
                               #:start-virtual-machines-metadata-sync-output
@@ -67,9 +70,9 @@
                               #:tag-resource-output #:tag-value #:tags
                               #:test-hypervisor-configuration
                               #:test-hypervisor-configuration-input
-                              #:test-hypervisor-configuration-output #:time
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output
+                              #:test-hypervisor-configuration-output
+                              #:throttling-exception #:time #:untag-resource
+                              #:untag-resource-input #:untag-resource-output
                               #:update-gateway-information
                               #:update-gateway-information-input
                               #:update-gateway-information-output
@@ -78,13 +81,18 @@
                               #:update-gateway-software-now-output
                               #:update-hypervisor #:update-hypervisor-input
                               #:update-hypervisor-output #:username
-                              #:virtual-machine #:virtual-machine-details
+                              #:validation-exception #:virtual-machine
+                              #:virtual-machine-details
                               #:virtual-machine-resource #:virtual-machines
                               #:vmware-category #:vmware-tag #:vmware-tag-name
                               #:vmware-tags #:vmware-to-aws-tag-mapping
                               #:vmware-to-aws-tag-mappings #:vpc-endpoint
-                              #:string))
+                              #:string #:backup-gateway-error))
 (common-lisp:in-package #:pira/backup-gateway)
+
+(common-lisp:define-condition backup-gateway-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service backup-on-premises-v20210101 :shape-name
                                    "BackupOnPremises_v20210101" :version
@@ -113,7 +121,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class backup-gateway-error))
 
 (smithy/sdk/shapes:define-type activation-key smithy/sdk/smithy-types:string)
 
@@ -172,7 +181,8 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class backup-gateway-error))
 
 (smithy/sdk/shapes:define-structure create-gateway-input common-lisp:nil
                                     ((activation-key :target-type
@@ -436,7 +446,8 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class backup-gateway-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -603,7 +614,8 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class backup-gateway-error))
 
 (smithy/sdk/shapes:define-type server-arn smithy/sdk/smithy-types:string)
 
@@ -678,7 +690,8 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class backup-gateway-error))
 
 (smithy/sdk/shapes:define-type time smithy/sdk/smithy-types:timestamp)
 
@@ -756,7 +769,8 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class backup-gateway-error))
 
 (smithy/sdk/shapes:define-structure virtual-machine common-lisp:nil
                                     ((host-name :target-type name :member-name

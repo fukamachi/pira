@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/iot-wireless (:use)
-                             (:export #:abp-v1-0-x #:abp-v1-1 #:account-linked
+                             (:export #:abp-v1-0-x #:abp-v1-1
+                              #:access-denied-exception #:account-linked
                               #:accuracy #:ack-mode-retry-duration-secs
                               #:add-gw-metadata #:aggregation-period
                               #:amazon-id #:amazon-resource-name #:ap-id
@@ -26,7 +27,8 @@
                               #:cell-towers #:certificate-list
                               #:certificate-pem #:certificate-value
                               #:channel-mask #:class-btimeout #:class-ctimeout
-                              #:client-request-token #:connection-status
+                              #:client-request-token #:conflict-exception
+                              #:connection-status
                               #:connection-status-event-configuration
                               #:connection-status-resource-type-event-configuration
                               #:coordinate #:crc #:create-destination
@@ -132,9 +134,9 @@
                               #:imported-wireless-device
                               #:imported-wireless-device-count
                               #:imported-wireless-device-list #:integer
-                              #:iot-certificate-id #:ip #:join-eui
-                              #:join-eui-filters #:join-eui-range
-                              #:join-event-configuration
+                              #:internal-server-exception #:iot-certificate-id
+                              #:ip #:join-eui #:join-eui-filters
+                              #:join-eui-range #:join-event-configuration
                               #:join-resource-type-event-configuration #:lac
                               #:last-update-time #:list-destinations
                               #:list-device-profiles
@@ -240,10 +242,12 @@
                               #:report-dev-status-margin
                               #:reset-all-resource-log-levels
                               #:reset-resource-log-level #:resource-id
-                              #:resource-identifier #:resource-type #:result
-                              #:rf-region #:role #:role-arn #:rx-data-rate2
-                              #:rx-delay1 #:rx-dr-offset1 #:rx-freq2 #:rx-level
-                              #:snwk-sint-key #:semtech-gnss-configuration
+                              #:resource-identifier
+                              #:resource-not-found-exception #:resource-type
+                              #:result #:rf-region #:role #:role-arn
+                              #:rx-data-rate2 #:rx-delay1 #:rx-dr-offset1
+                              #:rx-freq2 #:rx-level #:snwk-sint-key
+                              #:semtech-gnss-configuration
                               #:semtech-gnss-detail
                               #:send-data-to-multicast-group
                               #:send-data-to-wireless-device #:seq
@@ -289,7 +293,8 @@
                               #:tdscdma-local-id #:tdscdma-nmr-list
                               #:tdscdma-nmr-obj #:tdscdma-obj
                               #:tdscdma-timing-advance #:test-wireless-device
-                              #:thing-arn #:thing-name #:trace-content
+                              #:thing-arn #:thing-name #:throttling-exception
+                              #:too-many-tags-exception #:trace-content
                               #:transmission-interval
                               #:transmission-interval-multicast #:transmit-mode
                               #:tx-power-index-max #:tx-power-index-min
@@ -311,11 +316,11 @@
                               #:update-wireless-gateway
                               #:update-wireless-gateway-task-create
                               #:update-wireless-gateway-task-entry
-                              #:use2dsolver #:utran-cid #:vertical-accuracy
-                              #:wcdma-list #:wcdma-local-id #:wcdma-nmr-list
-                              #:wcdma-nmr-obj #:wcdma-obj #:wi-fi-access-point
-                              #:wi-fi-access-points #:wireless-device-arn
-                              #:wireless-device-event
+                              #:use2dsolver #:utran-cid #:validation-exception
+                              #:vertical-accuracy #:wcdma-list #:wcdma-local-id
+                              #:wcdma-nmr-list #:wcdma-nmr-obj #:wcdma-obj
+                              #:wi-fi-access-point #:wi-fi-access-points
+                              #:wireless-device-arn #:wireless-device-event
                               #:wireless-device-event-log-option
                               #:wireless-device-event-log-option-list
                               #:wireless-device-frame-info #:wireless-device-id
@@ -348,8 +353,12 @@
                               #:wireless-gateway-task-name
                               #:wireless-gateway-task-status
                               #:wireless-gateway-type #:wireless-metadata
-                              #:iotwireless))
+                              #:iotwireless #:iot-wireless-error))
 (common-lisp:in-package #:pira/iot-wireless)
+
+(common-lisp:define-condition iot-wireless-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service iotwireless :shape-name "iotwireless"
                                    :version "2020-11-22" :title
@@ -488,7 +497,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class iot-wireless-error))
 
 (smithy/sdk/shapes:define-type account-linked smithy/sdk/smithy-types:boolean)
 
@@ -799,7 +809,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "ResourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iot-wireless-error))
 
 (smithy/sdk/shapes:define-enum connection-status
     common-lisp:nil
@@ -2541,7 +2552,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iot-wireless-error))
 
 (smithy/sdk/shapes:define-type iot-certificate-id
                                smithy/sdk/smithy-types:string)
@@ -3923,7 +3935,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iot-wireless-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -4548,7 +4561,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class iot-wireless-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type message :member-name
@@ -4557,7 +4571,8 @@
                                   amazon-resource-name :member-name
                                   "ResourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iot-wireless-error))
 
 (smithy/sdk/shapes:define-structure trace-content common-lisp:nil
                                     ((wireless-device-frame-info :target-type
@@ -4976,7 +4991,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iot-wireless-error))
 
 (smithy/sdk/shapes:define-type vertical-accuracy smithy/sdk/smithy-types:float)
 

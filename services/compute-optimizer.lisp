@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/compute-optimizer (:use)
-                             (:export #:account-enrollment-status
+                             (:export #:access-denied-exception
+                              #:account-enrollment-status
                               #:account-enrollment-statuses #:account-id
                               #:account-ids #:allocated-storage
                               #:allocation-strategy #:asg-type
@@ -159,7 +160,9 @@
                               #:instance-savings-estimation-mode
                               #:instance-savings-estimation-mode-source
                               #:instance-savings-opportunity-after-discounts
-                              #:instance-state #:instance-type #:job-filter
+                              #:instance-state #:instance-type
+                              #:internal-server-exception
+                              #:invalid-parameter-value-exception #:job-filter
                               #:job-filter-name #:job-filters #:job-id
                               #:job-ids #:job-status
                               #:lambda-effective-recommendation-preferences
@@ -196,6 +199,7 @@
                               #:license-recommendation-option
                               #:license-recommendation-options
                               #:license-recommendations #:license-version
+                              #:limit-exceeded-exception
                               #:look-back-period-in-days
                               #:look-back-period-preference #:low
                               #:lower-bound-value #:max-results #:max-size
@@ -206,6 +210,7 @@
                               #:metric-source-provider #:metric-statistic
                               #:metric-value #:metric-values #:metrics-source
                               #:migration-effort #:min-size
+                              #:missing-authentication-token
                               #:mixed-instance-type #:mixed-instance-types
                               #:next-token #:nullable-cpu
                               #:nullable-estimated-instance-hour-reduction-percentage
@@ -215,10 +220,10 @@
                               #:nullable-storage-throughput #:number-of-cores
                               #:number-of-invocations
                               #:number-of-member-accounts-opted-in
-                              #:operating-system #:order #:order-by
-                              #:performance-risk #:period #:platform-difference
-                              #:platform-differences #:preferred-resource
-                              #:preferred-resource-name
+                              #:operating-system #:opt-in-required-exception
+                              #:order #:order-by #:performance-risk #:period
+                              #:platform-difference #:platform-differences
+                              #:preferred-resource #:preferred-resource-name
                               #:preferred-resource-value
                               #:preferred-resource-values #:preferred-resources
                               #:projected-metric #:projected-metrics
@@ -276,16 +281,18 @@
                               #:recommended-option-projected-metric
                               #:recommended-option-projected-metrics
                               #:resource-arn #:resource-arns #:resource-id
-                              #:resource-type #:root-volume #:s3destination
+                              #:resource-not-found-exception #:resource-type
+                              #:root-volume #:s3destination
                               #:s3destination-config #:savings-estimation-mode
                               #:savings-opportunity
                               #:savings-opportunity-percentage #:scope
                               #:scope-name #:scope-value #:service-arn
-                              #:service-arns #:service-configuration #:status
+                              #:service-arns #:service-configuration
+                              #:service-unavailable-exception #:status
                               #:status-reason #:storage-type #:summaries
                               #:summary #:summary-value #:tag #:tag-key
                               #:tag-value #:tags #:task-definition-arn
-                              #:timestamp #:timestamps
+                              #:throttling-exception #:timestamp #:timestamps
                               #:update-enrollment-status #:upper-bound-value
                               #:utilization-metric #:utilization-metrics
                               #:utilization-preference
@@ -297,8 +304,12 @@
                               #:volume-recommendation-option
                               #:volume-recommendation-options
                               #:volume-recommendations #:volume-size
-                              #:volume-type))
+                              #:volume-type #:compute-optimizer-error))
 (common-lisp:in-package #:pira/compute-optimizer)
+
+(common-lisp:define-condition compute-optimizer-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service compute-optimizer-service :shape-name
                                    "ComputeOptimizerService" :version
@@ -349,7 +360,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class compute-optimizer-error))
 
 (smithy/sdk/shapes:define-structure account-enrollment-status common-lisp:nil
                                     ((account-id :target-type account-id
@@ -2839,14 +2851,16 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class compute-optimizer-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterValueException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class compute-optimizer-error))
 
 (smithy/sdk/shapes:define-structure job-filter common-lisp:nil
                                     ((name :target-type job-filter-name
@@ -3210,7 +3224,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class compute-optimizer-error))
 
 (smithy/sdk/shapes:define-type look-back-period-in-days
                                smithy/sdk/smithy-types:double)
@@ -3307,7 +3322,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "MissingAuthenticationToken")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class compute-optimizer-error))
 
 (smithy/sdk/shapes:define-type mixed-instance-type
                                smithy/sdk/smithy-types:string)
@@ -3352,7 +3368,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "OptInRequiredException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class compute-optimizer-error))
 
 (smithy/sdk/shapes:define-enum order
     common-lisp:nil
@@ -3996,7 +4013,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class compute-optimizer-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -4088,7 +4106,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class compute-optimizer-error))
 
 (smithy/sdk/shapes:define-enum status
     common-lisp:nil
@@ -4135,7 +4154,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class compute-optimizer-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 

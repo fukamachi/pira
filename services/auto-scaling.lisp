@@ -5,11 +5,13 @@
                               #:accelerator-names
                               #:accelerator-total-memory-mi-brequest
                               #:accelerator-type #:accelerator-types
+                              #:active-instance-refresh-not-found-fault
                               #:activities #:activities-type #:activity
                               #:activity-ids #:activity-type #:adjustment-type
                               #:adjustment-types #:alarm #:alarm-list
                               #:alarm-specification #:alarms
                               #:allowed-instance-type #:allowed-instance-types
+                              #:already-exists-fault
                               #:any-printable-ascii-string-max-len4000
                               #:ascii-string-max-len255
                               #:associate-public-ip-address #:attach-instances
@@ -172,6 +174,7 @@
                               #:instance-metadata-options #:instance-monitoring
                               #:instance-protected #:instance-refresh
                               #:instance-refresh-ids
+                              #:instance-refresh-in-progress-fault
                               #:instance-refresh-live-pool-progress
                               #:instance-refresh-progress-details
                               #:instance-refresh-status
@@ -181,7 +184,9 @@
                               #:instances-distribution #:instances-to-update
                               #:int-percent #:int-percent100to200
                               #:int-percent100to200resettable
-                              #:int-percent-resettable #:launch-configuration
+                              #:int-percent-resettable #:invalid-next-token
+                              #:irreversible-instance-refresh-fault
+                              #:launch-configuration
                               #:launch-configuration-name-type
                               #:launch-configuration-names
                               #:launch-configuration-names-type
@@ -196,8 +201,8 @@
                               #:lifecycle-hook-specification
                               #:lifecycle-hook-specifications #:lifecycle-hooks
                               #:lifecycle-state #:lifecycle-transition
-                              #:load-balancer-names #:load-balancer-state
-                              #:load-balancer-states
+                              #:limit-exceeded-fault #:load-balancer-names
+                              #:load-balancer-state #:load-balancer-states
                               #:load-balancer-target-group-state
                               #:load-balancer-target-group-states
                               #:load-forecast #:load-forecasts #:local-storage
@@ -273,13 +278,15 @@
                               #:record-lifecycle-action-heartbeat-answer
                               #:record-lifecycle-action-heartbeat-type
                               #:refresh-instance-warmup #:refresh-preferences
-                              #:refresh-strategy #:resource-name
+                              #:refresh-strategy #:resource-contention-fault
+                              #:resource-in-use-fault #:resource-name
                               #:resume-processes #:return-data
                               #:reuse-on-scale-in #:rollback-details
                               #:rollback-instance-refresh
                               #:rollback-instance-refresh-answer
                               #:rollback-instance-refresh-type
                               #:scale-in-protected-instances
+                              #:scaling-activity-in-progress-fault
                               #:scaling-activity-status-code #:scaling-policies
                               #:scaling-policy #:scaling-policy-enabled
                               #:scaling-process-query #:scheduled-action-names
@@ -288,7 +295,8 @@
                               #:scheduled-update-group-action-request
                               #:scheduled-update-group-action-requests
                               #:scheduled-update-group-actions
-                              #:security-groups #:set-desired-capacity
+                              #:security-groups #:service-linked-role-failure
+                              #:set-desired-capacity
                               #:set-desired-capacity-type #:set-instance-health
                               #:set-instance-health-query
                               #:set-instance-protection
@@ -329,8 +337,12 @@
                               #:xml-string-max-len5000 #:xml-string-max-len511
                               #:xml-string-max-len64 #:xml-string-metric-label
                               #:xml-string-metric-stat #:xml-string-user-data
-                              #:zonal-shift-enabled))
+                              #:zonal-shift-enabled #:auto-scaling-error))
 (common-lisp:in-package #:pira/auto-scaling)
+
+(common-lisp:define-condition auto-scaling-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service auto-scaling-2011-01-01 :shape-name
                                    "AutoScaling_2011_01_01" :version
@@ -465,7 +477,8 @@
                                 (:shape-name
                                  "ActiveInstanceRefreshNotFoundFault")
                                 (:error-name "ActiveInstanceRefreshNotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class auto-scaling-error))
 
 (smithy/sdk/shapes:define-list activities :member activity)
 
@@ -555,7 +568,8 @@
                                 ((message :target-type xml-string-max-len255
                                   :member-name "message"))
                                 (:shape-name "AlreadyExistsFault")
-                                (:error-name "AlreadyExists") (:error-code 400))
+                                (:error-name "AlreadyExists") (:error-code 400)
+                                (:base-class auto-scaling-error))
 
 (smithy/sdk/shapes:define-type any-printable-ascii-string-max-len4000
                                smithy/sdk/smithy-types:string)
@@ -2067,7 +2081,8 @@
                                   :member-name "message"))
                                 (:shape-name "InstanceRefreshInProgressFault")
                                 (:error-name "InstanceRefreshInProgress")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class auto-scaling-error))
 
 (smithy/sdk/shapes:define-structure instance-refresh-live-pool-progress
                                     common-lisp:nil
@@ -2248,7 +2263,8 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidNextToken")
                                 (:error-name "InvalidNextToken")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class auto-scaling-error))
 
 (smithy/sdk/shapes:define-error irreversible-instance-refresh-fault
                                 common-lisp:nil
@@ -2257,7 +2273,8 @@
                                 (:shape-name
                                  "IrreversibleInstanceRefreshFault")
                                 (:error-name "IrreversibleInstanceRefresh")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class auto-scaling-error))
 
 (smithy/sdk/shapes:define-structure launch-configuration common-lisp:nil
                                     ((launch-configuration-name :target-type
@@ -2506,7 +2523,8 @@
                                 ((message :target-type xml-string-max-len255
                                   :member-name "message"))
                                 (:shape-name "LimitExceededFault")
-                                (:error-name "LimitExceeded") (:error-code 400))
+                                (:error-name "LimitExceeded") (:error-code 400)
+                                (:base-class auto-scaling-error))
 
 (smithy/sdk/shapes:define-list load-balancer-names :member
                                xml-string-max-len255)
@@ -3226,13 +3244,15 @@
                                   :member-name "message"))
                                 (:shape-name "ResourceContentionFault")
                                 (:error-name "ResourceContention")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class auto-scaling-error))
 
 (smithy/sdk/shapes:define-error resource-in-use-fault common-lisp:nil
                                 ((message :target-type xml-string-max-len255
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseFault")
-                                (:error-name "ResourceInUse") (:error-code 400))
+                                (:error-name "ResourceInUse") (:error-code 400)
+                                (:base-class auto-scaling-error))
 
 (smithy/sdk/shapes:define-type resource-name smithy/sdk/smithy-types:string)
 
@@ -3289,7 +3309,8 @@
                                   :member-name "message"))
                                 (:shape-name "ScalingActivityInProgressFault")
                                 (:error-name "ScalingActivityInProgress")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class auto-scaling-error))
 
 (smithy/sdk/shapes:define-enum scaling-activity-status-code
     common-lisp:nil
@@ -3462,7 +3483,8 @@
                                   :member-name "message"))
                                 (:shape-name "ServiceLinkedRoleFailure")
                                 (:error-name "ServiceLinkedRoleFailure")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class auto-scaling-error))
 
 (smithy/sdk/shapes:define-structure set-desired-capacity-type common-lisp:nil
                                     ((auto-scaling-group-name :target-type

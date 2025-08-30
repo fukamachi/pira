@@ -1,18 +1,32 @@
 (uiop/package:define-package #:pira/iot-data-plane (:use)
-                             (:export #:content-type #:correlation-data
-                              #:delete-thing-shadow #:get-retained-message
-                              #:get-thing-shadow #:iot-moonraker-service
-                              #:json-document #:list-named-shadows-for-thing
+                             (:export #:conflict-exception #:content-type
+                              #:correlation-data #:delete-thing-shadow
+                              #:get-retained-message #:get-thing-shadow
+                              #:internal-failure-exception
+                              #:invalid-request-exception
+                              #:iot-moonraker-service #:json-document
+                              #:list-named-shadows-for-thing
                               #:list-retained-messages #:max-results
-                              #:message-expiry #:named-shadow-list #:next-token
-                              #:page-size #:payload #:payload-format-indicator
-                              #:payload-size #:publish #:qos #:response-topic
+                              #:message-expiry #:method-not-allowed-exception
+                              #:named-shadow-list #:next-token #:page-size
+                              #:payload #:payload-format-indicator
+                              #:payload-size #:publish #:qos
+                              #:request-entity-too-large-exception
+                              #:resource-not-found-exception #:response-topic
                               #:retain #:retained-message-list
-                              #:retained-message-summary #:shadow-name
+                              #:retained-message-summary
+                              #:service-unavailable-exception #:shadow-name
                               #:synthesized-json-user-properties #:thing-name
-                              #:timestamp #:topic #:update-thing-shadow
-                              #:user-properties-blob #:error-message))
+                              #:throttling-exception #:timestamp #:topic
+                              #:unauthorized-exception
+                              #:unsupported-document-encoding-exception
+                              #:update-thing-shadow #:user-properties-blob
+                              #:error-message #:iot-data-plane-error))
 (common-lisp:in-package #:pira/iot-data-plane)
+
+(common-lisp:define-condition iot-data-plane-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service iot-moonraker-service :shape-name
                                    "IotMoonrakerService" :version "2015-05-28"
@@ -38,7 +52,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iot-data-plane-error))
 
 (smithy/sdk/shapes:define-type content-type smithy/sdk/smithy-types:string)
 
@@ -97,13 +112,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iot-data-plane-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iot-data-plane-error))
 
 (smithy/sdk/shapes:define-type json-document smithy/sdk/smithy-types:blob)
 
@@ -156,7 +173,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "MethodNotAllowedException")
-                                (:error-code 405))
+                                (:error-code 405)
+                                (:base-class iot-data-plane-error))
 
 (smithy/sdk/shapes:define-list named-shadow-list :member shadow-name)
 
@@ -213,13 +231,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "RequestEntityTooLargeException")
-                                (:error-code 413))
+                                (:error-code 413)
+                                (:base-class iot-data-plane-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iot-data-plane-error))
 
 (smithy/sdk/shapes:define-type response-topic smithy/sdk/smithy-types:string)
 
@@ -242,7 +262,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class iot-data-plane-error))
 
 (smithy/sdk/shapes:define-type shadow-name smithy/sdk/smithy-types:string)
 
@@ -256,7 +277,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class iot-data-plane-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:long)
 
@@ -266,7 +288,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class iot-data-plane-error))
 
 (smithy/sdk/shapes:define-error unsupported-document-encoding-exception
                                 common-lisp:nil
@@ -274,7 +297,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "UnsupportedDocumentEncodingException")
-                                (:error-code 415))
+                                (:error-code 415)
+                                (:base-class iot-data-plane-error))
 
 (smithy/sdk/shapes:define-input update-thing-shadow-request common-lisp:nil
                                 ((thing-name :target-type thing-name :required

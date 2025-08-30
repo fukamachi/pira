@@ -1,18 +1,20 @@
 (uiop/package:define-package #:pira/ssm-contacts (:use)
                              (:export #:accept-code #:accept-code-validation
                               #:accept-page #:accept-type
+                              #:access-denied-exception
                               #:activate-contact-channel #:activation-code
                               #:activation-status #:amazon-resource-name
                               #:channel-name #:channel-target-info
-                              #:channel-type #:contact #:contact-alias
-                              #:contact-channel #:contact-channel-address
-                              #:contact-channel-list #:contact-name
-                              #:contact-target-info #:contact-type
-                              #:contacts-list #:content #:coverage-time
-                              #:coverage-times #:create-contact
+                              #:channel-type #:conflict-exception #:contact
+                              #:contact-alias #:contact-channel
+                              #:contact-channel-address #:contact-channel-list
+                              #:contact-name #:contact-target-info
+                              #:contact-type #:contacts-list #:content
+                              #:coverage-time #:coverage-times #:create-contact
                               #:create-contact-channel #:create-rotation
                               #:create-rotation-override #:daily-settings
-                              #:date-time #:day-of-month #:day-of-week
+                              #:data-encryption-exception #:date-time
+                              #:day-of-month #:day-of-week
                               #:deactivate-contact-channel #:defer-activation
                               #:delete-contact #:delete-contact-channel
                               #:delete-rotation #:delete-rotation-override
@@ -22,10 +24,11 @@
                               #:get-contact-channel #:get-contact-policy
                               #:get-rotation #:get-rotation-override
                               #:hand-off-time #:hour-of-day #:idempotency-token
-                              #:incident-id #:is-essential
-                              #:list-contact-channels #:list-contacts
-                              #:list-engagements #:list-page-receipts
-                              #:list-page-resolutions #:list-pages-by-contact
+                              #:incident-id #:internal-server-exception
+                              #:is-essential #:list-contact-channels
+                              #:list-contacts #:list-engagements
+                              #:list-page-receipts #:list-page-resolutions
+                              #:list-pages-by-contact
                               #:list-pages-by-engagement
                               #:list-preview-rotation-shifts
                               #:list-rotation-overrides #:list-rotation-shifts
@@ -39,6 +42,7 @@
                               #:receipt-info #:receipt-type #:receipts-list
                               #:recurrence-multiplier #:recurrence-settings
                               #:resolution-contact #:resolution-list
+                              #:resource-not-found-exception
                               #:retry-after-seconds #:retry-interval-in-minutes
                               #:rotation #:rotation-contacts-arn-list
                               #:rotation-name #:rotation-override
@@ -48,6 +52,7 @@
                               #:rotation-preview-member-list #:rotation-shift
                               #:rotation-shifts #:rotations #:ssmcontacts
                               #:send-activation-code #:sender
+                              #:service-quota-exceeded-exception
                               #:shift-coverages-map #:shift-details
                               #:shift-type #:simple-address #:ssm-contacts-arn
                               #:ssm-contacts-arn-list #:stage
@@ -56,14 +61,19 @@
                               #:stop-engagement #:stop-reason #:string
                               #:subject #:tag #:tag-key #:tag-key-list
                               #:tag-resource #:tag-value #:tags-list #:target
-                              #:targets-list #:time-range #:time-zone-id
-                              #:untag-resource #:update-contact
-                              #:update-contact-channel #:update-rotation #:uuid
+                              #:targets-list #:throttling-exception
+                              #:time-range #:time-zone-id #:untag-resource
+                              #:update-contact #:update-contact-channel
+                              #:update-rotation #:uuid #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:weekly-setting
-                              #:weekly-settings))
+                              #:weekly-settings #:ssm-contacts-error))
 (common-lisp:in-package #:pira/ssm-contacts)
+
+(common-lisp:define-condition ssm-contacts-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ssmcontacts :shape-name "SSMContacts"
                                    :version "2021-05-03" :title
@@ -144,7 +154,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class ssm-contacts-error))
 
 (smithy/sdk/shapes:define-input activate-contact-channel-request
                                 common-lisp:nil
@@ -198,7 +209,8 @@
                                   dependent-entity-list :member-name
                                   "DependentEntities"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class ssm-contacts-error))
 
 (smithy/sdk/shapes:define-structure contact common-lisp:nil
                                     ((contact-arn :target-type ssm-contacts-arn
@@ -376,7 +388,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "DataEncryptionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ssm-contacts-error))
 
 (smithy/sdk/shapes:define-type date-time smithy/sdk/smithy-types:timestamp)
 
@@ -679,7 +692,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class ssm-contacts-error))
 
 (smithy/sdk/shapes:define-type is-essential smithy/sdk/smithy-types:boolean)
 
@@ -1069,7 +1083,8 @@
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class ssm-contacts-error))
 
 (smithy/sdk/shapes:define-type retry-after-seconds
                                smithy/sdk/smithy-types:integer)
@@ -1172,7 +1187,8 @@
                                  (service-code :target-type string :required
                                   common-lisp:t :member-name "ServiceCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class ssm-contacts-error))
 
 (smithy/sdk/shapes:define-map shift-coverages-map :key day-of-week :value
                               coverage-times)
@@ -1307,7 +1323,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class ssm-contacts-error))
 
 (smithy/sdk/shapes:define-structure time-range common-lisp:nil
                                     ((start-time :target-type date-time
@@ -1390,7 +1407,8 @@
                                   validation-exception-field-list :member-name
                                   "Fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ssm-contacts-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type string :required

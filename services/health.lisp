@@ -2,7 +2,9 @@
                              (:export #:awshealth-20160804
                               #:account-entity-aggregate
                               #:account-entity-aggregates-list
-                              #:affected-entity #:date-time-range
+                              #:affected-entity
+                              #:concurrent-modification-exception
+                              #:date-time-range
                               #:describe-affected-accounts-for-organization
                               #:describe-affected-entities
                               #:describe-affected-entities-for-organization
@@ -31,6 +33,7 @@
                               #:event-list #:event-type #:event-type2
                               #:event-type-category-list #:event-type-code-list
                               #:event-type-filter #:event-type-list
+                              #:invalid-pagination-token
                               #:organization-account-ids-list
                               #:organization-affected-entities-error-item
                               #:organization-entity-account-filters-list
@@ -43,11 +46,11 @@
                               #:organization-event-details
                               #:organization-event-details-error-item
                               #:organization-event-filter
-                              #:organization-event-list #:account-id
-                              #:affected-accounts-list #:aggregate-value
-                              #:availability-zone #:availability-zones
-                              #:aws-account-ids-list #:count
-                              #:date-time-range-list #:entity-arn
+                              #:organization-event-list #:unsupported-locale
+                              #:account-id #:affected-accounts-list
+                              #:aggregate-value #:availability-zone
+                              #:availability-zones #:aws-account-ids-list
+                              #:count #:date-time-range-list #:entity-arn
                               #:entity-arn-list #:entity-metadata
                               #:entity-metadata-key #:entity-metadata-value
                               #:entity-status-code #:entity-status-code-list
@@ -63,8 +66,12 @@
                               #:metadata-key #:metadata-value #:next-token
                               #:region #:region-list #:service #:service-list
                               #:string #:tag-filter #:tag-key #:tag-set
-                              #:tag-value #:timestamp))
+                              #:tag-value #:timestamp #:health-error))
 (common-lisp:in-package #:pira/health)
+
+(common-lisp:define-condition health-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awshealth-20160804 :shape-name
                                    "AWSHealth_20160804" :version "2016-08-04"
@@ -134,7 +141,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class health-error))
 
 (smithy/sdk/shapes:define-structure date-time-range common-lisp:nil
                                     ((from :target-type timestamp :member-name
@@ -571,7 +578,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidPaginationToken")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class health-error))
 
 (smithy/sdk/shapes:define-list organization-account-ids-list :member account-id)
 
@@ -706,7 +713,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "UnsupportedLocale")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class health-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 

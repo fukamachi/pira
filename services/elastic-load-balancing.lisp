@@ -1,9 +1,10 @@
 (uiop/package:define-package #:pira/elastic-load-balancing (:use)
                              (:export #:access-log #:access-log-enabled
                               #:access-log-interval #:access-log-prefix
-                              #:access-point-name #:access-point-port
-                              #:add-tags #:additional-attribute
-                              #:additional-attribute-key
+                              #:access-point-name
+                              #:access-point-not-found-exception
+                              #:access-point-port #:add-tags
+                              #:additional-attribute #:additional-attribute-key
                               #:additional-attribute-value
                               #:additional-attributes
                               #:app-cookie-stickiness-policies
@@ -14,6 +15,7 @@
                               #:attribute-value #:availability-zone
                               #:availability-zones #:backend-server-description
                               #:backend-server-descriptions #:cardinality
+                              #:certificate-not-found-exception
                               #:configure-health-check #:connection-draining
                               #:connection-draining-enabled
                               #:connection-draining-timeout
@@ -29,6 +31,7 @@
                               #:default-value #:delete-load-balancer
                               #:delete-load-balancer-listeners
                               #:delete-load-balancer-policy
+                              #:dependency-throttle-exception
                               #:deregister-instances-from-load-balancer
                               #:describe-account-limits
                               #:describe-instance-health
@@ -38,6 +41,10 @@
                               #:describe-load-balancers #:describe-tags
                               #:description #:detach-load-balancer-from-subnets
                               #:disable-availability-zones-for-load-balancer
+                              #:duplicate-access-point-name-exception
+                              #:duplicate-listener-exception
+                              #:duplicate-policy-name-exception
+                              #:duplicate-tag-keys-exception
                               #:elastic-load-balancing-v7
                               #:enable-availability-zones-for-load-balancer
                               #:end-point-port #:error-description
@@ -46,27 +53,37 @@
                               #:healthy-threshold #:idle-timeout #:instance
                               #:instance-id #:instance-port #:instance-state
                               #:instance-states #:instances
+                              #:invalid-configuration-request-exception
+                              #:invalid-end-point-exception
+                              #:invalid-scheme-exception
+                              #:invalid-security-group-exception
+                              #:invalid-subnet-exception
                               #:lbcookie-stickiness-policies
                               #:lbcookie-stickiness-policy #:limit #:limits
                               #:listener #:listener-description
-                              #:listener-descriptions #:listeners
+                              #:listener-descriptions
+                              #:listener-not-found-exception #:listeners
+                              #:load-balancer-attribute-not-found-exception
                               #:load-balancer-attributes
                               #:load-balancer-description
                               #:load-balancer-descriptions
                               #:load-balancer-names #:load-balancer-names-max20
                               #:load-balancer-scheme #:marker #:max
                               #:modify-load-balancer-attributes #:name
-                              #:page-size #:policies #:policy-attribute
+                              #:operation-not-permitted-exception #:page-size
+                              #:policies #:policy-attribute
                               #:policy-attribute-description
                               #:policy-attribute-descriptions
                               #:policy-attribute-type-description
                               #:policy-attribute-type-descriptions
                               #:policy-attributes #:policy-description
                               #:policy-descriptions #:policy-name
-                              #:policy-names #:policy-type-description
+                              #:policy-names #:policy-not-found-exception
+                              #:policy-type-description
                               #:policy-type-descriptions #:policy-type-name
-                              #:policy-type-names #:ports #:protocol
-                              #:reason-code
+                              #:policy-type-names
+                              #:policy-type-not-found-exception #:ports
+                              #:protocol #:reason-code
                               #:register-instances-with-load-balancer
                               #:remove-tags #:s3bucket-name #:sslcertificate-id
                               #:security-group-id #:security-group-name
@@ -75,11 +92,19 @@
                               #:set-load-balancer-policies-for-backend-server
                               #:set-load-balancer-policies-of-listener
                               #:source-security-group #:state #:subnet-id
-                              #:subnets #:tag #:tag-description
-                              #:tag-descriptions #:tag-key #:tag-key-list
-                              #:tag-key-only #:tag-list #:tag-value
-                              #:unhealthy-threshold #:vpcid))
+                              #:subnet-not-found-exception #:subnets #:tag
+                              #:tag-description #:tag-descriptions #:tag-key
+                              #:tag-key-list #:tag-key-only #:tag-list
+                              #:tag-value #:too-many-access-points-exception
+                              #:too-many-policies-exception
+                              #:too-many-tags-exception #:unhealthy-threshold
+                              #:unsupported-protocol-exception #:vpcid
+                              #:elastic-load-balancing-error))
 (common-lisp:in-package #:pira/elastic-load-balancing)
+
+(common-lisp:define-condition elastic-load-balancing-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service elastic-load-balancing-v7 :shape-name
                                    "ElasticLoadBalancing_v7" :version
@@ -163,7 +188,8 @@
                                   :member-name "Message"))
                                 (:shape-name "AccessPointNotFoundException")
                                 (:error-name "LoadBalancerNotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-type access-point-port
                                smithy/sdk/smithy-types:integer)
@@ -284,7 +310,8 @@
                                   :member-name "Message"))
                                 (:shape-name "CertificateNotFoundException")
                                 (:error-name "CertificateNotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-input configure-health-check-input common-lisp:nil
                                 ((load-balancer-name :target-type
@@ -482,7 +509,8 @@
                                   :member-name "Message"))
                                 (:shape-name "DependencyThrottleException")
                                 (:error-name "DependencyThrottle")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-input deregister-end-points-input common-lisp:nil
                                 ((load-balancer-name :target-type
@@ -632,28 +660,32 @@
                                 (:shape-name
                                  "DuplicateAccessPointNameException")
                                 (:error-name "DuplicateLoadBalancerName")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-error duplicate-listener-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "DuplicateListenerException")
                                 (:error-name "DuplicateListener")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-error duplicate-policy-name-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "DuplicatePolicyNameException")
                                 (:error-name "DuplicatePolicyName")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-error duplicate-tag-keys-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "DuplicateTagKeysException")
                                 (:error-name "DuplicateTagKeys")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-type end-point-port smithy/sdk/smithy-types:integer)
 
@@ -723,20 +755,23 @@
                                 (:shape-name
                                  "InvalidConfigurationRequestException")
                                 (:error-name "InvalidConfigurationRequest")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-error invalid-end-point-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "InvalidEndPointException")
                                 (:error-name "InvalidInstance")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-error invalid-scheme-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "InvalidSchemeException")
-                                (:error-name "InvalidScheme") (:error-code 400))
+                                (:error-name "InvalidScheme") (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-error invalid-security-group-exception
                                 common-lisp:nil
@@ -744,13 +779,15 @@
                                   :member-name "Message"))
                                 (:shape-name "InvalidSecurityGroupException")
                                 (:error-name "InvalidSecurityGroup")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-error invalid-subnet-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "InvalidSubnetException")
-                                (:error-name "InvalidSubnet") (:error-code 400))
+                                (:error-name "InvalidSubnet") (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-list lbcookie-stickiness-policies :member
                                lbcookie-stickiness-policy)
@@ -802,7 +839,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ListenerNotFoundException")
                                 (:error-name "ListenerNotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-list listeners :member listener)
 
@@ -813,7 +851,8 @@
                                 (:shape-name
                                  "LoadBalancerAttributeNotFoundException")
                                 (:error-name "LoadBalancerAttributeNotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-structure load-balancer-attributes common-lisp:nil
                                     ((cross-zone-load-balancing :target-type
@@ -921,7 +960,8 @@
                                   :member-name "Message"))
                                 (:shape-name "OperationNotPermittedException")
                                 (:error-name "OperationNotPermitted")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-type page-size smithy/sdk/smithy-types:integer)
 
@@ -1006,7 +1046,8 @@
                                   :member-name "Message"))
                                 (:shape-name "PolicyNotFoundException")
                                 (:error-name "PolicyNotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-structure policy-type-description common-lisp:nil
                                     ((policy-type-name :target-type
@@ -1033,7 +1074,8 @@
                                   :member-name "Message"))
                                 (:shape-name "PolicyTypeNotFoundException")
                                 (:error-name "PolicyTypeNotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-list ports :member access-point-port)
 
@@ -1165,7 +1207,8 @@
                                   :member-name "Message"))
                                 (:shape-name "SubnetNotFoundException")
                                 (:error-name "SubnetNotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-list subnets :member subnet-id)
 
@@ -1205,20 +1248,23 @@
                                   :member-name "Message"))
                                 (:shape-name "TooManyAccessPointsException")
                                 (:error-name "TooManyLoadBalancers")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-error too-many-policies-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyPoliciesException")
                                 (:error-name "TooManyPolicies")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-name "TooManyTags") (:error-code 400))
+                                (:error-name "TooManyTags") (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-type unhealthy-threshold
                                smithy/sdk/smithy-types:integer)
@@ -1228,7 +1274,8 @@
                                   :member-name "Message"))
                                 (:shape-name "UnsupportedProtocolException")
                                 (:error-name "UnsupportedProtocol")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-load-balancing-error))
 
 (smithy/sdk/shapes:define-type vpcid smithy/sdk/smithy-types:string)
 

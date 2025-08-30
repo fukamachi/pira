@@ -1,16 +1,26 @@
 (uiop/package:define-package #:pira/sagemaker-a2i-runtime (:use)
                              (:export #:amazon-sage-maker-a2iruntime
-                              #:content-classifier #:content-classifiers
-                              #:delete-human-loop #:describe-human-loop
-                              #:failure-reason #:flow-definition-arn
-                              #:human-loop-arn #:human-loop-data-attributes
-                              #:human-loop-input #:human-loop-name
-                              #:human-loop-output #:human-loop-status
-                              #:human-loop-summaries #:human-loop-summary
-                              #:input-content #:list-human-loops #:max-results
-                              #:next-token #:sort-order #:start-human-loop
-                              #:stop-human-loop #:string #:timestamp))
+                              #:conflict-exception #:content-classifier
+                              #:content-classifiers #:delete-human-loop
+                              #:describe-human-loop #:failure-reason
+                              #:flow-definition-arn #:human-loop-arn
+                              #:human-loop-data-attributes #:human-loop-input
+                              #:human-loop-name #:human-loop-output
+                              #:human-loop-status #:human-loop-summaries
+                              #:human-loop-summary #:input-content
+                              #:internal-server-exception #:list-human-loops
+                              #:max-results #:next-token
+                              #:resource-not-found-exception
+                              #:service-quota-exceeded-exception #:sort-order
+                              #:start-human-loop #:stop-human-loop #:string
+                              #:throttling-exception #:timestamp
+                              #:validation-exception
+                              #:sagemaker-a2i-runtime-error))
 (common-lisp:in-package #:pira/sagemaker-a2i-runtime)
+
+(common-lisp:define-condition sagemaker-a2i-runtime-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-sage-maker-a2iruntime :shape-name
                                    "AmazonSageMakerA2IRuntime" :version
@@ -36,7 +46,8 @@
                                 ((message :target-type failure-reason
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class sagemaker-a2i-runtime-error))
 
 (smithy/sdk/shapes:define-enum content-classifier
     common-lisp:nil
@@ -148,7 +159,8 @@
                                 ((message :target-type failure-reason
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class sagemaker-a2i-runtime-error))
 
 (smithy/sdk/shapes:define-input list-human-loops-request common-lisp:nil
                                 ((creation-time-after :target-type timestamp
@@ -188,14 +200,16 @@
                                 ((message :target-type failure-reason
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class sagemaker-a2i-runtime-error))
 
 (smithy/sdk/shapes:define-error service-quota-exceeded-exception
                                 common-lisp:nil
                                 ((message :target-type failure-reason
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class sagemaker-a2i-runtime-error))
 
 (smithy/sdk/shapes:define-enum sort-order
     common-lisp:nil
@@ -238,7 +252,8 @@
                                 ((message :target-type failure-reason
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class sagemaker-a2i-runtime-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -247,7 +262,8 @@
                                 ((message :target-type failure-reason
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class sagemaker-a2i-runtime-error))
 
 (smithy/sdk/operation:define-operation delete-human-loop :shape-name
                                        "DeleteHumanLoop" :input

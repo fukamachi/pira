@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/freetier (:use)
-                             (:export #:awsfree-tier-service #:account-id
+                             (:export #:awsfree-tier-service
+                              #:access-denied-exception #:account-id
                               #:account-plan-status #:account-plan-type
                               #:activities #:activity-id #:activity-reward
                               #:activity-status #:activity-summary
@@ -9,11 +10,18 @@
                               #:free-tier-usages #:generic-double
                               #:generic-string #:get-account-activity
                               #:get-account-plan-state #:get-free-tier-usage
-                              #:language-code #:list-account-activities
-                              #:match-option #:match-options #:max-results
-                              #:monetary-amount #:next-page-token
-                              #:upgrade-account-plan #:value #:values))
+                              #:internal-server-exception #:language-code
+                              #:list-account-activities #:match-option
+                              #:match-options #:max-results #:monetary-amount
+                              #:next-page-token #:resource-not-found-exception
+                              #:throttling-exception #:upgrade-account-plan
+                              #:validation-exception #:value #:values
+                              #:freetier-error))
 (common-lisp:in-package #:pira/freetier)
+
+(common-lisp:define-condition freetier-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsfree-tier-service :shape-name
                                    "AWSFreeTierService" :version "2023-09-07"
@@ -32,7 +40,7 @@
                                 ((message :target-type generic-string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class freetier-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -237,7 +245,7 @@
                                 ((message :target-type generic-string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class freetier-error))
 
 (smithy/sdk/shapes:define-enum language-code
     common-lisp:nil
@@ -301,13 +309,13 @@
                                 ((message :target-type generic-string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class freetier-error))
 
 (smithy/sdk/shapes:define-error throttling-exception common-lisp:nil
                                 ((message :target-type generic-string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class freetier-error))
 
 (smithy/sdk/shapes:define-input upgrade-account-plan-request common-lisp:nil
                                 ((account-plan-type :target-type
@@ -330,7 +338,7 @@
                                 ((message :target-type generic-string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class freetier-error))
 
 (smithy/sdk/shapes:define-type value smithy/sdk/smithy-types:string)
 

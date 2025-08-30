@@ -1,8 +1,16 @@
 (uiop/package:define-package #:pira/marketplace-reporting (:use)
-                             (:export #:awsmarketplace-reporting #:dashboard
-                              #:dashboard-identifier #:embedding-domain
-                              #:embedding-domains #:get-buyer-dashboard))
+                             (:export #:awsmarketplace-reporting
+                              #:access-denied-exception #:bad-request-exception
+                              #:dashboard #:dashboard-identifier
+                              #:embedding-domain #:embedding-domains
+                              #:get-buyer-dashboard #:internal-server-exception
+                              #:unauthorized-exception
+                              #:marketplace-reporting-error))
 (common-lisp:in-package #:pira/marketplace-reporting)
+
+(common-lisp:define-condition marketplace-reporting-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsmarketplace-reporting :shape-name
                                    "AWSMarketplaceReporting" :version
@@ -25,14 +33,16 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class marketplace-reporting-error))
 
 (smithy/sdk/shapes:define-error bad-request-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-reporting-error))
 
 common-lisp:nil
 
@@ -69,14 +79,16 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class marketplace-reporting-error))
 
 (smithy/sdk/shapes:define-error unauthorized-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class marketplace-reporting-error))
 
 (smithy/sdk/operation:define-operation get-buyer-dashboard :shape-name
                                        "GetBuyerDashboard" :input

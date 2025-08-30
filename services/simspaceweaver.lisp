@@ -1,16 +1,17 @@
 (uiop/package:define-package #:pira/simspaceweaver (:use)
-                             (:export #:app-port-mappings #:bucket-name
-                              #:client-token #:clock-status
-                              #:clock-target-status
-                              #:cloud-watch-logs-log-group #:create-snapshot
-                              #:delete-app #:delete-app-input
+                             (:export #:access-denied-exception
+                              #:app-port-mappings #:bucket-name #:client-token
+                              #:clock-status #:clock-target-status
+                              #:cloud-watch-logs-log-group #:conflict-exception
+                              #:create-snapshot #:delete-app #:delete-app-input
                               #:delete-app-output #:delete-simulation
                               #:delete-simulation-input
                               #:delete-simulation-output #:describe-app
                               #:describe-app-input #:describe-app-output
                               #:describe-simulation #:describe-simulation-input
                               #:describe-simulation-output #:description
-                              #:domain #:domain-list #:launch-command-list
+                              #:domain #:domain-list
+                              #:internal-server-exception #:launch-command-list
                               #:launch-overrides
                               #:lifecycle-management-strategy #:list-apps
                               #:list-apps-input #:list-apps-output
@@ -24,9 +25,10 @@
                               #:logging-configuration #:non-empty-string
                               #:object-key #:object-key-prefix
                               #:optional-string #:port-number
-                              #:positive-integer #:role-arn #:s3destination
-                              #:s3location #:sim-space-weaver
-                              #:sim-space-weaver-arn
+                              #:positive-integer #:resource-not-found-exception
+                              #:role-arn #:s3destination #:s3location
+                              #:service-quota-exceeded-exception
+                              #:sim-space-weaver #:sim-space-weaver-arn
                               #:sim-space-weaver-long-resource-name
                               #:sim-space-weaver-resource-name #:simulation
                               #:simulation-app-endpoint-info
@@ -48,10 +50,15 @@
                               #:stop-simulation-output #:tag-key #:tag-key-list
                               #:tag-map #:tag-resource #:tag-resource-input
                               #:tag-resource-output #:tag-value
-                              #:time-to-live-string #:timestamp #:uuid
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output))
+                              #:time-to-live-string #:timestamp
+                              #:too-many-tags-exception #:uuid #:untag-resource
+                              #:untag-resource-input #:untag-resource-output
+                              #:validation-exception #:simspaceweaver-error))
 (common-lisp:in-package #:pira/simspaceweaver)
+
+(common-lisp:define-condition simspaceweaver-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service sim-space-weaver :shape-name
                                    "SimSpaceWeaver" :version "2022-10-28"
@@ -95,7 +102,8 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class simspaceweaver-error))
 
 (smithy/sdk/shapes:define-list app-port-mappings :member
                                simulation-app-port-mapping)
@@ -118,7 +126,8 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class simspaceweaver-error))
 
 (smithy/sdk/shapes:define-input create-snapshot-input common-lisp:nil
                                 ((simulation :target-type
@@ -266,7 +275,8 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class simspaceweaver-error))
 
 (smithy/sdk/shapes:define-list launch-command-list :member non-empty-string)
 
@@ -370,7 +380,8 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class simspaceweaver-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -397,7 +408,8 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class simspaceweaver-error))
 
 (smithy/sdk/shapes:define-type sim-space-weaver-arn
                                smithy/sdk/smithy-types:string)
@@ -622,7 +634,8 @@ common-lisp:nil
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class simspaceweaver-error))
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 
@@ -644,7 +657,8 @@ common-lisp:nil
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class simspaceweaver-error))
 
 (smithy/sdk/operation:define-operation create-snapshot :shape-name
                                        "CreateSnapshot" :input

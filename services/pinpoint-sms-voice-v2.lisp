@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/pinpoint-sms-voice-v2 (:use)
-                             (:export #:access-denied-exception-reason
+                             (:export #:access-denied-exception
+                              #:access-denied-exception-reason
                               #:account-attribute #:account-attribute-list
                               #:account-attribute-name #:account-limit
                               #:account-limit-list #:account-limit-name
@@ -17,8 +18,8 @@
                               #:configuration-set-name
                               #:configuration-set-name-list
                               #:configuration-set-name-or-arn
-                              #:conflict-exception-reason #:context-key
-                              #:context-map #:context-value
+                              #:conflict-exception #:conflict-exception-reason
+                              #:context-key #:context-map #:context-value
                               #:create-configuration-set
                               #:create-event-destination #:create-opt-out-list
                               #:create-pool #:create-protect-configuration
@@ -74,12 +75,12 @@
                               #:filter-value-list
                               #:get-protect-configuration-country-rule-set
                               #:get-resource-policy #:iam-role-arn
-                              #:iso-country-code #:keyword #:keyword-action
-                              #:keyword-filter #:keyword-filter-list
-                              #:keyword-filter-name #:keyword-information
-                              #:keyword-information-list #:keyword-list
-                              #:keyword-message #:kinesis-firehose-destination
-                              #:language-code
+                              #:internal-server-exception #:iso-country-code
+                              #:keyword #:keyword-action #:keyword-filter
+                              #:keyword-filter-list #:keyword-filter-name
+                              #:keyword-information #:keyword-information-list
+                              #:keyword-list #:keyword-message
+                              #:kinesis-firehose-destination #:language-code
                               #:list-pool-origination-identities
                               #:list-protect-configuration-rule-set-number-override-filter
                               #:list-protect-configuration-rule-set-number-overrides
@@ -188,7 +189,8 @@
                               #:release-phone-number #:release-sender-id
                               #:request-phone-number #:request-sender-id
                               #:requestable-number-type #:resource-id-or-arn
-                              #:resource-policy #:resource-type #:section-path
+                              #:resource-not-found-exception #:resource-policy
+                              #:resource-type #:section-path
                               #:section-path-list #:select-choice
                               #:select-choice-list #:select-option-description
                               #:select-option-descriptions-list
@@ -201,6 +203,7 @@
                               #:sender-id-information
                               #:sender-id-information-list #:sender-id-list
                               #:sender-id-or-arn
+                              #:service-quota-exceeded-exception
                               #:service-quota-exceeded-exception-reason
                               #:set-account-default-protect-configuration
                               #:set-default-message-feedback-enabled
@@ -218,12 +221,14 @@
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-value #:text-message-body
                               #:text-message-origination-identity
-                              #:text-validation #:text-value #:time-to-live
+                              #:text-validation #:text-value
+                              #:throttling-exception #:time-to-live
                               #:two-way-channel-arn #:untag-resource
                               #:update-event-destination #:update-phone-number
                               #:update-pool #:update-protect-configuration
                               #:update-protect-configuration-country-rule-set
-                              #:update-sender-id #:validation-exception-field
+                              #:update-sender-id #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason
                               #:verification-channel #:verification-code
@@ -239,8 +244,13 @@
                               #:verify-destination-number #:voice-id
                               #:voice-message-body
                               #:voice-message-body-text-type
-                              #:voice-message-origination-identity))
+                              #:voice-message-origination-identity
+                              #:pinpoint-sms-voice-v2-error))
 (common-lisp:in-package #:pira/pinpoint-sms-voice-v2)
+
+(common-lisp:define-condition pinpoint-sms-voice-v2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service pinpoint-smsvoice-v2 :shape-name
                                    "PinpointSMSVoiceV2" :version "2022-03-31"
@@ -339,7 +349,8 @@
                                   access-denied-exception-reason :member-name
                                   "Reason"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-sms-voice-v2-error))
 
 (smithy/sdk/shapes:define-type access-denied-exception-reason
                                smithy/sdk/smithy-types:string)
@@ -543,7 +554,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "ResourceId"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-sms-voice-v2-error))
 
 (smithy/sdk/shapes:define-type conflict-exception-reason
                                smithy/sdk/smithy-types:string)
@@ -2056,7 +2068,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "RequestId"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class pinpoint-sms-voice-v2-error))
 
 (smithy/sdk/shapes:define-type iso-country-code smithy/sdk/smithy-types:string)
 
@@ -3462,7 +3475,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "ResourceId"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-sms-voice-v2-error))
 
 (smithy/sdk/shapes:define-type resource-policy smithy/sdk/smithy-types:string)
 
@@ -3718,7 +3732,8 @@
                                   service-quota-exceeded-exception-reason
                                   :member-name "Reason"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-sms-voice-v2-error))
 
 (smithy/sdk/shapes:define-type service-quota-exceeded-exception-reason
                                smithy/sdk/smithy-types:string)
@@ -3992,7 +4007,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-sms-voice-v2-error))
 
 (smithy/sdk/shapes:define-type time-to-live smithy/sdk/smithy-types:integer)
 
@@ -4298,7 +4314,8 @@
                                   validation-exception-field-list :member-name
                                   "Fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-sms-voice-v2-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

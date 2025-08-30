@@ -8,6 +8,7 @@
                               #:application-id #:application-ids-list
                               #:application-name #:application-wave
                               #:associate-configuration-items-to-application
+                              #:authorization-error-exception
                               #:batch-delete-agent-error
                               #:batch-delete-agent-errors #:batch-delete-agents
                               #:batch-delete-configuration-task
@@ -23,6 +24,7 @@
                               #:configuration-tag #:configuration-tag-set
                               #:configurations #:configurations-download-url
                               #:configurations-export-id
+                              #:conflict-error-exception
                               #:continuous-export-description
                               #:continuous-export-descriptions
                               #:continuous-export-ids
@@ -62,20 +64,28 @@
                               #:failed-configuration-list #:file-classification
                               #:filter #:filter-name #:filter-value
                               #:filter-values #:filters #:get-discovery-summary
-                              #:import-status #:import-task
-                              #:import-task-filter #:import-task-filter-name
+                              #:home-region-not-set-exception #:import-status
+                              #:import-task #:import-task-filter
+                              #:import-task-filter-name
                               #:import-task-filter-value
                               #:import-task-filter-value-list
                               #:import-task-identifier #:import-task-list
                               #:import-task-name #:import-url #:integer
-                              #:list-configurations #:list-server-neighbors
-                              #:long #:message #:neighbor-connection-detail
+                              #:invalid-parameter-exception
+                              #:invalid-parameter-value-exception
+                              #:limit-exceeded-exception #:list-configurations
+                              #:list-server-neighbors #:long #:message
+                              #:neighbor-connection-detail
                               #:neighbor-details-list #:next-token
-                              #:offering-class #:order-by-element
-                              #:order-by-element-field-name #:order-by-list
-                              #:purchasing-option #:reserved-instance-options
-                              #:s3bucket #:s3presigned-url
-                              #:schema-storage-config
+                              #:offering-class
+                              #:operation-not-permitted-exception
+                              #:order-by-element #:order-by-element-field-name
+                              #:order-by-list #:purchasing-option
+                              #:reserved-instance-options
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception #:s3bucket
+                              #:s3presigned-url #:schema-storage-config
+                              #:server-internal-error-exception
                               #:start-batch-delete-configuration-task
                               #:start-continuous-export
                               #:start-data-collection-by-agent-ids
@@ -90,8 +100,13 @@
                               #:usage-metric-basis-name
                               #:usage-metric-percentage-adjust
                               #:user-preferred-region #:warning-code
-                              #:warning-text #:order-string))
+                              #:warning-text #:order-string
+                              #:application-discovery-service-error))
 (common-lisp:in-package #:pira/application-discovery-service)
+
+(common-lisp:define-condition application-discovery-service-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsposeidon-service-v2015-11-01 :shape-name
                                    "AWSPoseidonService_V2015_11_01" :version
@@ -228,7 +243,9 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "AuthorizationErrorException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class
+                                 application-discovery-service-error))
 
 (smithy/sdk/shapes:define-structure batch-delete-agent-error common-lisp:nil
                                     ((agent-id :target-type agent-id :required
@@ -386,7 +403,9 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ConflictErrorException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class
+                                 application-discovery-service-error))
 
 (smithy/sdk/shapes:define-structure continuous-export-description
                                     common-lisp:nil
@@ -963,7 +982,9 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "HomeRegionNotSetException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 application-discovery-service-error))
 
 (smithy/sdk/shapes:define-enum import-status
     common-lisp:nil
@@ -1058,20 +1079,26 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 application-discovery-service-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterValueException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 application-discovery-service-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 application-discovery-service-error))
 
 (smithy/sdk/shapes:define-input list-configurations-request common-lisp:nil
                                 ((configuration-type :target-type
@@ -1156,7 +1183,9 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "OperationNotPermittedException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class
+                                 application-discovery-service-error))
 
 (smithy/sdk/shapes:define-structure order-by-element common-lisp:nil
                                     ((field-name :target-type
@@ -1193,13 +1222,17 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 application-discovery-service-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 application-discovery-service-error))
 
 (smithy/sdk/shapes:define-type s3bucket smithy/sdk/smithy-types:string)
 
@@ -1212,7 +1245,9 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ServerInternalErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class
+                                 application-discovery-service-error))
 
 (smithy/sdk/shapes:define-input start-batch-delete-configuration-task-request
                                 common-lisp:nil

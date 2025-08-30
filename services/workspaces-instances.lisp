@@ -1,12 +1,14 @@
 (uiop/package:define-package #:pira/workspaces-instances (:use)
-                             (:export #:arn #:amd-sev-snp-enum
-                              #:associate-volume #:auto-recovery-enum
-                              #:availability-zone #:bandwidth-weighting-enum
+                             (:export #:arn #:access-denied-exception
+                              #:amd-sev-snp-enum #:associate-volume
+                              #:auto-recovery-enum #:availability-zone
+                              #:bandwidth-weighting-enum
                               #:block-device-mapping-request
                               #:block-device-mappings
                               #:capacity-reservation-preference-enum
                               #:capacity-reservation-specification
                               #:capacity-reservation-target #:client-token
+                              #:conflict-exception
                               #:connection-tracking-specification-request
                               #:cpu-credits-enum #:cpu-options-request
                               #:create-volume #:create-workspace-instance
@@ -35,11 +37,12 @@
                               #:instance-network-performance-options-request
                               #:instance-type #:instance-type-info
                               #:instance-types #:interface-type-enum
-                              #:ipv4address #:ipv4prefix
-                              #:ipv4prefix-specification-request #:ipv4prefixes
-                              #:ipv6address #:ipv6addresses #:ipv6prefix
-                              #:ipv6prefix-specification-request #:ipv6prefixes
-                              #:kms-key-id #:license-configuration-request
+                              #:internal-server-exception #:ipv4address
+                              #:ipv4prefix #:ipv4prefix-specification-request
+                              #:ipv4prefixes #:ipv6address #:ipv6addresses
+                              #:ipv6prefix #:ipv6prefix-specification-request
+                              #:ipv6prefixes #:kms-key-id
+                              #:license-configuration-request
                               #:license-specifications #:list-instance-types
                               #:list-regions #:list-tags-for-resource
                               #:list-workspace-instances
@@ -52,24 +55,32 @@
                               #:private-ip-address-specification
                               #:private-ip-addresses #:provision-state-enum
                               #:provision-states #:region #:region-list
-                              #:region-name #:resource-type-enum
+                              #:region-name #:resource-not-found-exception
+                              #:resource-type-enum
                               #:run-instances-monitoring-enabled
                               #:security-group-id #:security-group-ids
                               #:security-group-name #:security-group-names
-                              #:snapshot-id #:spot-instance-type-enum
-                              #:spot-market-options #:string128 #:string64
-                              #:subnet-id #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-specification
+                              #:service-quota-exceeded-exception #:snapshot-id
+                              #:spot-instance-type-enum #:spot-market-options
+                              #:string128 #:string64 #:subnet-id #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-specification
                               #:tag-specifications #:tag-value #:tenancy-enum
-                              #:untag-resource #:user-data
+                              #:throttling-exception #:untag-resource
+                              #:user-data #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:virtual-name
                               #:volume-id #:volume-type-enum
                               #:workspace-instance #:workspace-instance-error
                               #:workspace-instance-errors
-                              #:workspace-instance-id #:workspace-instances))
+                              #:workspace-instance-id #:workspace-instances
+                              #:workspaces-instances-error))
 (common-lisp:in-package #:pira/workspaces-instances)
+
+(common-lisp:define-condition workspaces-instances-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service eucmifrontend-apiservice :shape-name
                                    "EUCMIFrontendAPIService" :version
@@ -125,7 +136,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class workspaces-instances-error))
 
 (smithy/sdk/shapes:define-enum amd-sev-snp-enum
     common-lisp:nil
@@ -215,7 +227,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class workspaces-instances-error))
 
 (smithy/sdk/shapes:define-structure connection-tracking-specification-request
                                     common-lisp:nil
@@ -629,7 +642,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class workspaces-instances-error))
 
 (smithy/sdk/shapes:define-type ipv4address smithy/sdk/smithy-types:string)
 
@@ -931,7 +945,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class workspaces-instances-error))
 
 (smithy/sdk/shapes:define-enum resource-type-enum
     common-lisp:nil
@@ -975,7 +990,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "QuotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class workspaces-instances-error))
 
 (smithy/sdk/shapes:define-type snapshot-id smithy/sdk/smithy-types:string)
 
@@ -1067,7 +1083,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class workspaces-instances-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((workspace-instance-id :target-type
@@ -1094,7 +1111,8 @@
                                   validation-exception-field-list :member-name
                                   "FieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-instances-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

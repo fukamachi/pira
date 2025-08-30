@@ -10,10 +10,15 @@
                               #:edge-metric #:edge-metrics #:entity-name
                               #:error-message #:failure-handling-policy
                               #:get-deployments #:get-device-registration
-                              #:metric #:model #:model-name #:model-state
-                              #:models #:s3uri #:send-heartbeat #:string
-                              #:timestamp #:value #:version))
+                              #:internal-service-exception #:metric #:model
+                              #:model-name #:model-state #:models #:s3uri
+                              #:send-heartbeat #:string #:timestamp #:value
+                              #:version #:sagemaker-edge-error))
 (common-lisp:in-package #:pira/sagemaker-edge)
+
+(common-lisp:define-condition sagemaker-edge-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-sage-maker-edge :shape-name
                                    "AmazonSageMakerEdge" :version "2020-09-23"
@@ -191,7 +196,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class sagemaker-edge-error))
 
 (smithy/sdk/shapes:define-type metric smithy/sdk/smithy-types:string)
 

@@ -1,8 +1,9 @@
 (uiop/package:define-package #:pira/connectcases (:use)
-                             (:export #:amazon-connect-cases #:arn
-                              #:association-time #:audit-event
-                              #:audit-event-date-time #:audit-event-field
-                              #:audit-event-field-id #:audit-event-field-list
+                             (:export #:access-denied-exception
+                              #:amazon-connect-cases #:arn #:association-time
+                              #:audit-event #:audit-event-date-time
+                              #:audit-event-field #:audit-event-field-id
+                              #:audit-event-field-list
                               #:audit-event-field-value-union #:audit-event-id
                               #:audit-event-performed-by #:audit-event-type
                               #:audit-events-list #:basic-layout
@@ -28,16 +29,16 @@
                               #:case-summary #:case-summary-list #:channel
                               #:channel-list #:comment-body
                               #:comment-body-text-type #:comment-content
-                              #:comment-filter #:connected-to-system-time
-                              #:contact #:contact-arn #:contact-content
-                              #:contact-filter #:create-case
-                              #:create-case-request #:create-case-response
-                              #:create-case-rule #:create-domain
-                              #:create-domain-request #:create-domain-response
-                              #:create-field #:create-field-request
-                              #:create-field-response #:create-layout
-                              #:create-layout-request #:create-layout-response
-                              #:create-related-item
+                              #:comment-filter #:conflict-exception
+                              #:connected-to-system-time #:contact
+                              #:contact-arn #:contact-content #:contact-filter
+                              #:create-case #:create-case-request
+                              #:create-case-response #:create-case-rule
+                              #:create-domain #:create-domain-request
+                              #:create-domain-response #:create-field
+                              #:create-field-request #:create-field-response
+                              #:create-layout #:create-layout-request
+                              #:create-layout-response #:create-related-item
                               #:create-related-item-request
                               #:create-related-item-response #:create-template
                               #:create-template-request
@@ -73,11 +74,12 @@
                               #:get-layout-request #:get-layout-response
                               #:get-template #:get-template-request
                               #:get-template-response #:iam-principal-arn
-                              #:last-modified-time #:layout #:layout-arn
-                              #:layout-configuration #:layout-content
-                              #:layout-id #:layout-name #:layout-sections
-                              #:layout-summary #:layout-summary-list
-                              #:list-case-rules #:list-cases-for-contact
+                              #:internal-server-exception #:last-modified-time
+                              #:layout #:layout-arn #:layout-configuration
+                              #:layout-content #:layout-id #:layout-name
+                              #:layout-sections #:layout-summary
+                              #:layout-summary-list #:list-case-rules
+                              #:list-cases-for-contact
                               #:list-cases-for-contact-request
                               #:list-cases-for-contact-response #:list-domains
                               #:list-domains-request #:list-domains-response
@@ -101,7 +103,8 @@
                               #:related-item-input-content #:related-item-type
                               #:related-item-type-filter #:required-case-rule
                               #:required-field #:required-field-list
-                              #:rule-type #:search-cases #:search-cases-request
+                              #:resource-not-found-exception #:rule-type
+                              #:search-cases #:search-cases-request
                               #:search-cases-response
                               #:search-cases-response-item
                               #:search-cases-response-item-list
@@ -110,29 +113,36 @@
                               #:search-related-items-response
                               #:search-related-items-response-item
                               #:search-related-items-response-item-list
-                              #:section #:sections-list #:sla-completion-time
-                              #:sla-configuration #:sla-content
-                              #:sla-field-value-union-list #:sla-filter
-                              #:sla-input-configuration #:sla-input-content
-                              #:sla-name #:sla-status #:sla-target-time
-                              #:sla-type #:sort #:sort-list #:tag-key
-                              #:tag-key-list #:tag-resource
+                              #:section #:sections-list
+                              #:service-quota-exceeded-exception
+                              #:sla-completion-time #:sla-configuration
+                              #:sla-content #:sla-field-value-union-list
+                              #:sla-filter #:sla-input-configuration
+                              #:sla-input-content #:sla-name #:sla-status
+                              #:sla-target-time #:sla-type #:sort #:sort-list
+                              #:tag-key #:tag-key-list #:tag-resource
                               #:tag-resource-request #:tags
                               #:target-sla-minutes #:template #:template-arn
                               #:template-case-rule-list #:template-description
                               #:template-id #:template-name #:template-rule
                               #:template-status #:template-status-filters
                               #:template-summary #:template-summary-list
-                              #:untag-resource #:untag-resource-request
-                              #:update-case #:update-case-request
-                              #:update-case-response #:update-case-rule
-                              #:update-field #:update-field-request
-                              #:update-field-response #:update-layout
-                              #:update-layout-request #:update-layout-response
-                              #:update-template #:update-template-request
+                              #:throttling-exception #:untag-resource
+                              #:untag-resource-request #:update-case
+                              #:update-case-request #:update-case-response
+                              #:update-case-rule #:update-field
+                              #:update-field-request #:update-field-response
+                              #:update-layout #:update-layout-request
+                              #:update-layout-response #:update-template
+                              #:update-template-request
                               #:update-template-response #:user-arn
-                              #:user-union #:value #:values-list))
+                              #:user-union #:validation-exception #:value
+                              #:values-list #:connectcases-error))
 (common-lisp:in-package #:pira/connectcases)
+
+(common-lisp:define-condition connectcases-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-connect-cases :shape-name
                                    "AmazonConnectCases" :version "2022-10-03"
@@ -154,7 +164,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class connectcases-error))
 
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
 
@@ -451,7 +462,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class connectcases-error))
 
 (smithy/sdk/shapes:define-type connected-to-system-time
                                smithy/sdk/smithy-types:timestamp
@@ -1174,7 +1186,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class connectcases-error))
 
 (smithy/sdk/shapes:define-type last-modified-time
                                smithy/sdk/smithy-types:timestamp
@@ -1497,7 +1510,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class connectcases-error))
 
 (smithy/sdk/shapes:define-type rule-type smithy/sdk/smithy-types:string)
 
@@ -1608,7 +1622,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class connectcases-error))
 
 (smithy/sdk/shapes:define-type sla-completion-time
                                smithy/sdk/smithy-types:timestamp
@@ -1753,7 +1768,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class connectcases-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((arn :target-type arn :required common-lisp:t
@@ -1876,7 +1892,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class connectcases-error))
 
 (smithy/sdk/shapes:define-type value smithy/sdk/smithy-types:string)
 

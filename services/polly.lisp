@@ -1,28 +1,53 @@
 (uiop/package:define-package #:pira/polly (:use)
                              (:export #:alphabet #:audio-stream #:content-type
                               #:date-time #:delete-lexicon #:describe-voices
-                              #:engine #:engine-list #:error-message #:gender
-                              #:get-lexicon #:get-speech-synthesis-task
+                              #:engine #:engine-list
+                              #:engine-not-supported-exception #:error-message
+                              #:gender #:get-lexicon
+                              #:get-speech-synthesis-task
                               #:include-additional-language-codes
-                              #:language-code #:language-code-list
-                              #:language-name #:last-modified #:lexemes-count
-                              #:lexicon #:lexicon-arn #:lexicon-attributes
+                              #:invalid-lexicon-exception
+                              #:invalid-next-token-exception
+                              #:invalid-s3bucket-exception
+                              #:invalid-s3key-exception
+                              #:invalid-sample-rate-exception
+                              #:invalid-sns-topic-arn-exception
+                              #:invalid-ssml-exception
+                              #:invalid-task-id-exception #:language-code
+                              #:language-code-list #:language-name
+                              #:language-not-supported-exception
+                              #:last-modified #:lexemes-count #:lexicon
+                              #:lexicon-arn #:lexicon-attributes
                               #:lexicon-content #:lexicon-description
                               #:lexicon-description-list #:lexicon-name
-                              #:lexicon-name-list #:list-lexicons
-                              #:list-speech-synthesis-tasks #:max-results
-                              #:next-token #:output-format
+                              #:lexicon-name-list #:lexicon-not-found-exception
+                              #:lexicon-size-exceeded-exception #:list-lexicons
+                              #:list-speech-synthesis-tasks
+                              #:marks-not-supported-for-format-exception
+                              #:max-lexeme-length-exceeded-exception
+                              #:max-lexicons-number-exceeded-exception
+                              #:max-results #:next-token #:output-format
                               #:output-s3bucket-name #:output-s3key-prefix
                               #:output-uri #:parrot-v1 #:put-lexicon
-                              #:request-characters #:sample-rate #:size
+                              #:request-characters #:sample-rate
+                              #:service-failure-exception #:size
                               #:sns-topic-arn #:speech-mark-type
                               #:speech-mark-type-list
+                              #:ssml-marks-not-supported-for-text-type-exception
                               #:start-speech-synthesis-task #:synthesis-task
+                              #:synthesis-task-not-found-exception
                               #:synthesis-tasks #:synthesize-speech #:task-id
                               #:task-status #:task-status-reason #:text
-                              #:text-type #:voice #:voice-id #:voice-list
-                              #:voice-name))
+                              #:text-length-exceeded-exception #:text-type
+                              #:unsupported-pls-alphabet-exception
+                              #:unsupported-pls-language-exception #:voice
+                              #:voice-id #:voice-list #:voice-name
+                              #:polly-error))
 (common-lisp:in-package #:pira/polly)
+
+(common-lisp:define-condition polly-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service parrot-v1 :shape-name "Parrot_v1" :version
                                    "2016-06-10" :title "Amazon Polly"
@@ -100,7 +125,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "EngineNotSupportedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-type error-message smithy/sdk/smithy-types:string)
 
@@ -142,49 +167,49 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidLexiconException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-error invalid-s3bucket-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidS3BucketException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-error invalid-s3key-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidS3KeyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-error invalid-sample-rate-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSampleRateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-error invalid-sns-topic-arn-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSnsTopicArnException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-error invalid-ssml-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSsmlException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-error invalid-task-id-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTaskIdException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-enum language-code
     common-lisp:nil
@@ -240,7 +265,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LanguageNotSupportedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-type last-modified smithy/sdk/smithy-types:timestamp)
 
@@ -291,13 +316,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LexiconNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-error lexicon-size-exceeded-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LexiconSizeExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-input list-lexicons-input common-lisp:nil
                                 ((next-token :target-type next-token
@@ -339,7 +364,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MarksNotSupportedForFormatException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-error max-lexeme-length-exceeded-exception
                                 common-lisp:nil
@@ -347,7 +372,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MaxLexemeLengthExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-error max-lexicons-number-exceeded-exception
                                 common-lisp:nil
@@ -355,7 +380,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MaxLexiconsNumberExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-type max-results smithy/sdk/smithy-types:integer)
 
@@ -398,7 +423,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceFailureException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-type size smithy/sdk/smithy-types:integer)
 
@@ -416,7 +441,8 @@
 (smithy/sdk/shapes:define-error
  ssml-marks-not-supported-for-text-type-exception common-lisp:nil
  ((message :target-type error-message :member-name "message"))
- (:shape-name "SsmlMarksNotSupportedForTextTypeException") (:error-code 400))
+ (:shape-name "SsmlMarksNotSupportedForTextTypeException") (:error-code 400)
+ (:base-class polly-error))
 
 (smithy/sdk/shapes:define-input start-speech-synthesis-task-input
                                 common-lisp:nil
@@ -498,7 +524,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "SynthesisTaskNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-list synthesis-tasks :member synthesis-task)
 
@@ -556,7 +582,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TextLengthExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-enum text-type
     common-lisp:nil
@@ -568,14 +594,14 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnsupportedPlsAlphabetException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-error unsupported-pls-language-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnsupportedPlsLanguageException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class polly-error))
 
 (smithy/sdk/shapes:define-structure voice common-lisp:nil
                                     ((gender :target-type gender :member-name

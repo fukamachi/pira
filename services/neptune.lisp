@@ -3,9 +3,11 @@
                               #:add-source-identifier-to-subscription
                               #:add-tags-to-resource #:amazon-rdsv19
                               #:apply-method #:apply-pending-maintenance-action
-                              #:attribute-value-list #:availability-zone
-                              #:availability-zone-list #:availability-zones
-                              #:boolean #:boolean-optional #:character-set
+                              #:attribute-value-list
+                              #:authorization-not-found-fault
+                              #:availability-zone #:availability-zone-list
+                              #:availability-zones #:boolean #:boolean-optional
+                              #:certificate-not-found-fault #:character-set
                               #:cloudwatch-logs-export-configuration
                               #:cluster-pending-modified-values
                               #:copy-dbcluster-parameter-group
@@ -18,34 +20,59 @@
                               #:create-dbsubnet-group
                               #:create-event-subscription
                               #:create-global-cluster #:dbcluster
-                              #:dbcluster-endpoint #:dbcluster-endpoint-list
+                              #:dbcluster-already-exists-fault
+                              #:dbcluster-endpoint
+                              #:dbcluster-endpoint-already-exists-fault
+                              #:dbcluster-endpoint-list
+                              #:dbcluster-endpoint-not-found-fault
+                              #:dbcluster-endpoint-quota-exceeded-fault
                               #:dbcluster-list #:dbcluster-member
                               #:dbcluster-member-list
+                              #:dbcluster-not-found-fault
                               #:dbcluster-option-group-memberships
                               #:dbcluster-option-group-status
                               #:dbcluster-parameter-group
                               #:dbcluster-parameter-group-details
                               #:dbcluster-parameter-group-list
                               #:dbcluster-parameter-group-name-message
-                              #:dbcluster-role #:dbcluster-roles
-                              #:dbcluster-snapshot
+                              #:dbcluster-parameter-group-not-found-fault
+                              #:dbcluster-quota-exceeded-fault #:dbcluster-role
+                              #:dbcluster-role-already-exists-fault
+                              #:dbcluster-role-not-found-fault
+                              #:dbcluster-role-quota-exceeded-fault
+                              #:dbcluster-roles #:dbcluster-snapshot
+                              #:dbcluster-snapshot-already-exists-fault
                               #:dbcluster-snapshot-attribute
                               #:dbcluster-snapshot-attribute-list
                               #:dbcluster-snapshot-attributes-result
-                              #:dbcluster-snapshot-list #:dbengine-version
-                              #:dbengine-version-list #:dbinstance
-                              #:dbinstance-list #:dbinstance-status-info
+                              #:dbcluster-snapshot-list
+                              #:dbcluster-snapshot-not-found-fault
+                              #:dbengine-version #:dbengine-version-list
+                              #:dbinstance #:dbinstance-already-exists-fault
+                              #:dbinstance-list #:dbinstance-not-found-fault
+                              #:dbinstance-status-info
                               #:dbinstance-status-info-list #:dbparameter-group
+                              #:dbparameter-group-already-exists-fault
                               #:dbparameter-group-details
                               #:dbparameter-group-list
                               #:dbparameter-group-name-message
+                              #:dbparameter-group-not-found-fault
+                              #:dbparameter-group-quota-exceeded-fault
                               #:dbparameter-group-status
                               #:dbparameter-group-status-list
                               #:dbsecurity-group-membership
                               #:dbsecurity-group-membership-list
-                              #:dbsecurity-group-name-list #:dbsubnet-group
-                              #:dbsubnet-groups #:delete-dbcluster
-                              #:delete-dbcluster-endpoint
+                              #:dbsecurity-group-name-list
+                              #:dbsecurity-group-not-found-fault
+                              #:dbsnapshot-already-exists-fault
+                              #:dbsnapshot-not-found-fault #:dbsubnet-group
+                              #:dbsubnet-group-already-exists-fault
+                              #:dbsubnet-group-does-not-cover-enough-azs
+                              #:dbsubnet-group-not-found-fault
+                              #:dbsubnet-group-quota-exceeded-fault
+                              #:dbsubnet-groups #:dbsubnet-quota-exceeded-fault
+                              #:dbupgrade-dependency-failure-fault
+                              #:delete-dbcluster #:delete-dbcluster-endpoint
                               #:delete-dbcluster-parameter-group
                               #:delete-dbcluster-snapshot #:delete-dbinstance
                               #:delete-dbparameter-group
@@ -72,20 +99,44 @@
                               #:describe-pending-maintenance-actions
                               #:describe-valid-dbinstance-modifications
                               #:domain-membership #:domain-membership-list
-                              #:double #:double-optional #:double-range
+                              #:domain-not-found-fault #:double
+                              #:double-optional #:double-range
                               #:double-range-list #:endpoint #:engine-defaults
                               #:event #:event-categories-list
                               #:event-categories-map
                               #:event-categories-map-list #:event-list
-                              #:event-subscription #:event-subscriptions-list
-                              #:exception-message #:failover-dbcluster
-                              #:failover-global-cluster #:failover-state
-                              #:failover-status #:filter #:filter-list
-                              #:filter-value-list #:global-cluster
+                              #:event-subscription
+                              #:event-subscription-quota-exceeded-fault
+                              #:event-subscriptions-list #:exception-message
+                              #:failover-dbcluster #:failover-global-cluster
+                              #:failover-state #:failover-status #:filter
+                              #:filter-list #:filter-value-list
+                              #:global-cluster
+                              #:global-cluster-already-exists-fault
                               #:global-cluster-identifier #:global-cluster-list
                               #:global-cluster-member
-                              #:global-cluster-member-list #:integer
-                              #:integer-optional #:key-list
+                              #:global-cluster-member-list
+                              #:global-cluster-not-found-fault
+                              #:global-cluster-quota-exceeded-fault
+                              #:instance-quota-exceeded-fault
+                              #:insufficient-dbcluster-capacity-fault
+                              #:insufficient-dbinstance-capacity-fault
+                              #:insufficient-storage-cluster-capacity-fault
+                              #:integer #:integer-optional
+                              #:invalid-dbcluster-endpoint-state-fault
+                              #:invalid-dbcluster-snapshot-state-fault
+                              #:invalid-dbcluster-state-fault
+                              #:invalid-dbinstance-state-fault
+                              #:invalid-dbparameter-group-state-fault
+                              #:invalid-dbsecurity-group-state-fault
+                              #:invalid-dbsnapshot-state-fault
+                              #:invalid-dbsubnet-group-state-fault
+                              #:invalid-dbsubnet-state-fault
+                              #:invalid-event-subscription-state-fault
+                              #:invalid-global-cluster-state-fault
+                              #:invalid-restore-fault #:invalid-subnet
+                              #:invalid-vpcnetwork-state-fault
+                              #:kmskey-not-accessible-fault #:key-list
                               #:list-tags-for-resource #:log-type-list
                               #:modify-dbcluster #:modify-dbcluster-endpoint
                               #:modify-dbcluster-parameter-group
@@ -95,6 +146,7 @@
                               #:modify-event-subscription
                               #:modify-global-cluster #:option-group-membership
                               #:option-group-membership-list
+                              #:option-group-not-found-fault
                               #:orderable-dbinstance-option
                               #:orderable-dbinstance-options-list #:parameter
                               #:parameters-list
@@ -103,8 +155,9 @@
                               #:pending-maintenance-action-details
                               #:pending-maintenance-actions
                               #:pending-modified-values
-                              #:promote-read-replica-dbcluster #:range
-                              #:range-list
+                              #:promote-read-replica-dbcluster
+                              #:provisioned-iops-not-available-in-azfault
+                              #:range #:range-list
                               #:read-replica-dbcluster-identifier-list
                               #:read-replica-dbinstance-identifier-list
                               #:read-replica-identifier-list #:readers-arn-list
@@ -114,15 +167,26 @@
                               #:remove-tags-from-resource
                               #:reset-dbcluster-parameter-group
                               #:reset-dbparameter-group
+                              #:resource-not-found-fault
                               #:resource-pending-maintenance-actions
                               #:restore-dbcluster-from-snapshot
                               #:restore-dbcluster-to-point-in-time
-                              #:sensitive-string
+                              #:snsinvalid-topic-fault
+                              #:snsno-authorization-fault
+                              #:snstopic-arn-not-found-fault #:sensitive-string
                               #:serverless-v2scaling-configuration
                               #:serverless-v2scaling-configuration-info
-                              #:source-ids-list #:source-type #:start-dbcluster
-                              #:stop-dbcluster #:string #:string-list #:subnet
+                              #:shared-snapshot-quota-exceeded-fault
+                              #:snapshot-quota-exceeded-fault #:source-ids-list
+                              #:source-not-found-fault #:source-type
+                              #:start-dbcluster #:stop-dbcluster
+                              #:storage-quota-exceeded-fault
+                              #:storage-type-not-supported-fault #:string
+                              #:string-list #:subnet #:subnet-already-in-use
                               #:subnet-identifier-list #:subnet-list
+                              #:subscription-already-exist-fault
+                              #:subscription-category-not-found-fault
+                              #:subscription-not-found-fault
                               #:supported-character-sets-list
                               #:supported-timezones-list
                               #:switchover-global-cluster #:tstamp #:tag
@@ -133,8 +197,13 @@
                               #:valid-upgrade-target-list
                               #:vpc-security-group-id-list
                               #:vpc-security-group-membership
-                              #:vpc-security-group-membership-list))
+                              #:vpc-security-group-membership-list
+                              #:neptune-error))
 (common-lisp:in-package #:pira/neptune)
+
+(common-lisp:define-condition neptune-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-rdsv19 :shape-name "AmazonRDSv19"
                                    :version "2014-10-31" :title
@@ -285,7 +354,7 @@
                                   :member-name "message"))
                                 (:shape-name "AuthorizationNotFoundFault")
                                 (:error-name "AuthorizationNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure availability-zone common-lisp:nil
                                     ((name :target-type string :member-name
@@ -307,7 +376,7 @@
                                   :member-name "message"))
                                 (:shape-name "CertificateNotFoundFault")
                                 (:error-name "CertificateNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure character-set common-lisp:nil
                                     ((character-set-name :target-type string
@@ -929,7 +998,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBClusterAlreadyExistsFault")
                                 (:error-name "DBClusterAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure dbcluster-endpoint common-lisp:nil
                                     ((dbcluster-endpoint-identifier
@@ -965,7 +1034,7 @@
                                  "DBClusterEndpointAlreadyExistsFault")
                                 (:error-name
                                  "DBClusterEndpointAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-list dbcluster-endpoint-list :member
                                (dbcluster-endpoint :xml-name
@@ -985,7 +1054,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBClusterEndpointNotFoundFault")
                                 (:error-name "DBClusterEndpointNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error dbcluster-endpoint-quota-exceeded-fault
                                 common-lisp:nil
@@ -995,7 +1064,7 @@
                                  "DBClusterEndpointQuotaExceededFault")
                                 (:error-name
                                  "DBClusterEndpointQuotaExceededFault")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-list dbcluster-list :member
                                (dbcluster :xml-name "DBCluster"))
@@ -1028,7 +1097,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBClusterNotFoundFault")
                                 (:error-name "DBClusterNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-list dbcluster-option-group-memberships :member
                                (dbcluster-option-group-status :xml-name
@@ -1085,7 +1154,7 @@
                                 (:shape-name
                                  "DBClusterParameterGroupNotFoundFault")
                                 (:error-name "DBClusterParameterGroupNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-output dbcluster-parameter-groups-message
                                  common-lisp:nil
@@ -1102,7 +1171,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBClusterQuotaExceededFault")
                                 (:error-name "DBClusterQuotaExceededFault")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure dbcluster-role common-lisp:nil
                                     ((role-arn :target-type string :member-name
@@ -1119,14 +1188,14 @@
                                   :member-name "message"))
                                 (:shape-name "DBClusterRoleAlreadyExistsFault")
                                 (:error-name "DBClusterRoleAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error dbcluster-role-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "DBClusterRoleNotFoundFault")
                                 (:error-name "DBClusterRoleNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error dbcluster-role-quota-exceeded-fault
                                 common-lisp:nil
@@ -1134,7 +1203,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBClusterRoleQuotaExceededFault")
                                 (:error-name "DBClusterRoleQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-list dbcluster-roles :member
                                (dbcluster-role :xml-name "DBClusterRole"))
@@ -1197,7 +1266,7 @@
                                  "DBClusterSnapshotAlreadyExistsFault")
                                 (:error-name
                                  "DBClusterSnapshotAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure dbcluster-snapshot-attribute
                                     common-lisp:nil
@@ -1243,7 +1312,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBClusterSnapshotNotFoundFault")
                                 (:error-name "DBClusterSnapshotNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure dbengine-version common-lisp:nil
                                     ((engine :target-type string :member-name
@@ -1440,7 +1509,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBInstanceAlreadyExistsFault")
                                 (:error-name "DBInstanceAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-list dbinstance-list :member
                                (dbinstance :xml-name "DBInstance"))
@@ -1457,7 +1526,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBInstanceNotFoundFault")
                                 (:error-name "DBInstanceNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure dbinstance-status-info common-lisp:nil
                                     ((status-type :target-type string
@@ -1494,7 +1563,7 @@
                                 (:shape-name
                                  "DBParameterGroupAlreadyExistsFault")
                                 (:error-name "DBParameterGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure dbparameter-group-details common-lisp:nil
                                     ((parameters :target-type parameters-list
@@ -1519,7 +1588,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBParameterGroupNotFoundFault")
                                 (:error-name "DBParameterGroupNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error dbparameter-group-quota-exceeded-fault
                                 common-lisp:nil
@@ -1528,7 +1597,7 @@
                                 (:shape-name
                                  "DBParameterGroupQuotaExceededFault")
                                 (:error-name "DBParameterGroupQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure dbparameter-group-status common-lisp:nil
                                     ((dbparameter-group-name :target-type
@@ -1571,21 +1640,21 @@
                                   :member-name "message"))
                                 (:shape-name "DBSecurityGroupNotFoundFault")
                                 (:error-name "DBSecurityGroupNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error dbsnapshot-already-exists-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "DBSnapshotAlreadyExistsFault")
                                 (:error-name "DBSnapshotAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error dbsnapshot-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "DBSnapshotNotFoundFault")
                                 (:error-name "DBSnapshotNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure dbsubnet-group common-lisp:nil
                                     ((dbsubnet-group-name :target-type string
@@ -1609,7 +1678,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBSubnetGroupAlreadyExistsFault")
                                 (:error-name "DBSubnetGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error dbsubnet-group-does-not-cover-enough-azs
                                 common-lisp:nil
@@ -1619,7 +1688,7 @@
                                  "DBSubnetGroupDoesNotCoverEnoughAZs")
                                 (:error-name
                                  "DBSubnetGroupDoesNotCoverEnoughAZs")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-output dbsubnet-group-message common-lisp:nil
                                  ((marker :target-type string :member-name
@@ -1633,7 +1702,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBSubnetGroupNotFoundFault")
                                 (:error-name "DBSubnetGroupNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error dbsubnet-group-quota-exceeded-fault
                                 common-lisp:nil
@@ -1641,7 +1710,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBSubnetGroupQuotaExceededFault")
                                 (:error-name "DBSubnetGroupQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-list dbsubnet-groups :member
                                (dbsubnet-group :xml-name "DBSubnetGroup"))
@@ -1651,7 +1720,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBSubnetQuotaExceededFault")
                                 (:error-name "DBSubnetQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error dbupgrade-dependency-failure-fault
                                 common-lisp:nil
@@ -1659,7 +1728,7 @@
                                   :member-name "message"))
                                 (:shape-name "DBUpgradeDependencyFailureFault")
                                 (:error-name "DBUpgradeDependencyFailure")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-input delete-dbcluster-endpoint-message
                                 common-lisp:nil
@@ -2118,7 +2187,7 @@
                                   :member-name "message"))
                                 (:shape-name "DomainNotFoundFault")
                                 (:error-name "DomainNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-type double smithy/sdk/smithy-types:double)
 
@@ -2226,7 +2295,7 @@
                                 (:shape-name
                                  "EventSubscriptionQuotaExceededFault")
                                 (:error-name "EventSubscriptionQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-list event-subscriptions-list :member
                                (event-subscription :xml-name
@@ -2346,7 +2415,7 @@
                                   :member-name "message"))
                                 (:shape-name "GlobalClusterAlreadyExistsFault")
                                 (:error-name "GlobalClusterAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-type global-cluster-identifier
                                smithy/sdk/smithy-types:string)
@@ -2372,7 +2441,7 @@
                                   :member-name "message"))
                                 (:shape-name "GlobalClusterNotFoundFault")
                                 (:error-name "GlobalClusterNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error global-cluster-quota-exceeded-fault
                                 common-lisp:nil
@@ -2380,7 +2449,7 @@
                                   :member-name "message"))
                                 (:shape-name "GlobalClusterQuotaExceededFault")
                                 (:error-name "GlobalClusterQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-output global-clusters-message common-lisp:nil
                                  ((marker :target-type string :member-name
@@ -2395,7 +2464,7 @@
                                   :member-name "message"))
                                 (:shape-name "InstanceQuotaExceededFault")
                                 (:error-name "InstanceQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error insufficient-dbcluster-capacity-fault
                                 common-lisp:nil
@@ -2405,7 +2474,7 @@
                                  "InsufficientDBClusterCapacityFault")
                                 (:error-name
                                  "InsufficientDBClusterCapacityFault")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error insufficient-dbinstance-capacity-fault
                                 common-lisp:nil
@@ -2414,7 +2483,7 @@
                                 (:shape-name
                                  "InsufficientDBInstanceCapacityFault")
                                 (:error-name "InsufficientDBInstanceCapacity")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error insufficient-storage-cluster-capacity-fault
                                 common-lisp:nil
@@ -2424,7 +2493,7 @@
                                  "InsufficientStorageClusterCapacityFault")
                                 (:error-name
                                  "InsufficientStorageClusterCapacity")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
 
@@ -2438,7 +2507,7 @@
                                  "InvalidDBClusterEndpointStateFault")
                                 (:error-name
                                  "InvalidDBClusterEndpointStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-dbcluster-snapshot-state-fault
                                 common-lisp:nil
@@ -2448,21 +2517,21 @@
                                  "InvalidDBClusterSnapshotStateFault")
                                 (:error-name
                                  "InvalidDBClusterSnapshotStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-dbcluster-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidDBClusterStateFault")
                                 (:error-name "InvalidDBClusterStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-dbinstance-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidDBInstanceStateFault")
                                 (:error-name "InvalidDBInstanceState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-dbparameter-group-state-fault
                                 common-lisp:nil
@@ -2471,7 +2540,7 @@
                                 (:shape-name
                                  "InvalidDBParameterGroupStateFault")
                                 (:error-name "InvalidDBParameterGroupState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-dbsecurity-group-state-fault
                                 common-lisp:nil
@@ -2480,14 +2549,14 @@
                                 (:shape-name
                                  "InvalidDBSecurityGroupStateFault")
                                 (:error-name "InvalidDBSecurityGroupState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-dbsnapshot-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidDBSnapshotStateFault")
                                 (:error-name "InvalidDBSnapshotState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-dbsubnet-group-state-fault
                                 common-lisp:nil
@@ -2495,14 +2564,14 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidDBSubnetGroupStateFault")
                                 (:error-name "InvalidDBSubnetGroupStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-dbsubnet-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidDBSubnetStateFault")
                                 (:error-name "InvalidDBSubnetStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-event-subscription-state-fault
                                 common-lisp:nil
@@ -2511,7 +2580,7 @@
                                 (:shape-name
                                  "InvalidEventSubscriptionStateFault")
                                 (:error-name "InvalidEventSubscriptionState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-global-cluster-state-fault
                                 common-lisp:nil
@@ -2519,34 +2588,35 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidGlobalClusterStateFault")
                                 (:error-name "InvalidGlobalClusterStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-restore-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRestoreFault")
                                 (:error-name "InvalidRestoreFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-subnet common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSubnet")
-                                (:error-name "InvalidSubnet") (:error-code 400))
+                                (:error-name "InvalidSubnet") (:error-code 400)
+                                (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error invalid-vpcnetwork-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidVPCNetworkStateFault")
                                 (:error-name "InvalidVPCNetworkStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error kmskey-not-accessible-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KMSKeyNotAccessibleFault")
                                 (:error-name "KMSKeyNotAccessibleFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-list key-list :member string)
 
@@ -2889,7 +2959,7 @@
                                   :member-name "message"))
                                 (:shape-name "OptionGroupNotFoundFault")
                                 (:error-name "OptionGroupNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure orderable-dbinstance-option common-lisp:nil
                                     ((engine :target-type string :member-name
@@ -3094,7 +3164,7 @@
                                  "ProvisionedIopsNotAvailableInAZFault")
                                 (:error-name
                                  "ProvisionedIopsNotAvailableInAZFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure range common-lisp:nil
                                     ((from :target-type integer :member-name
@@ -3210,7 +3280,7 @@
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundFault")
                                 (:error-name "ResourceNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-structure resource-pending-maintenance-actions
                                     common-lisp:nil
@@ -3348,21 +3418,21 @@
                                   :member-name "message"))
                                 (:shape-name "SNSInvalidTopicFault")
                                 (:error-name "SNSInvalidTopic")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error snsno-authorization-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SNSNoAuthorizationFault")
                                 (:error-name "SNSNoAuthorization")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error snstopic-arn-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SNSTopicArnNotFoundFault")
                                 (:error-name "SNSTopicArnNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-type sensitive-string smithy/sdk/smithy-types:string)
 
@@ -3391,14 +3461,14 @@
                                 (:shape-name
                                  "SharedSnapshotQuotaExceededFault")
                                 (:error-name "SharedSnapshotQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error snapshot-quota-exceeded-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SnapshotQuotaExceededFault")
                                 (:error-name "SnapshotQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-list source-ids-list :member
                                (string :xml-name "SourceId"))
@@ -3408,7 +3478,7 @@
                                   :member-name "message"))
                                 (:shape-name "SourceNotFoundFault")
                                 (:error-name "SourceNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-enum source-type
     common-lisp:nil
@@ -3446,7 +3516,7 @@
                                   :member-name "message"))
                                 (:shape-name "StorageQuotaExceededFault")
                                 (:error-name "StorageQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error storage-type-not-supported-fault
                                 common-lisp:nil
@@ -3454,7 +3524,7 @@
                                   :member-name "message"))
                                 (:shape-name "StorageTypeNotSupportedFault")
                                 (:error-name "StorageTypeNotSupported")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -3475,7 +3545,7 @@
                                   :member-name "message"))
                                 (:shape-name "SubnetAlreadyInUse")
                                 (:error-name "SubnetAlreadyInUse")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-list subnet-identifier-list :member
                                (string :xml-name "SubnetIdentifier"))
@@ -3488,7 +3558,7 @@
                                   :member-name "message"))
                                 (:shape-name "SubscriptionAlreadyExistFault")
                                 (:error-name "SubscriptionAlreadyExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error subscription-category-not-found-fault
                                 common-lisp:nil
@@ -3497,14 +3567,14 @@
                                 (:shape-name
                                  "SubscriptionCategoryNotFoundFault")
                                 (:error-name "SubscriptionCategoryNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-error subscription-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SubscriptionNotFoundFault")
                                 (:error-name "SubscriptionNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class neptune-error))
 
 (smithy/sdk/shapes:define-list supported-character-sets-list :member
                                (character-set :xml-name "CharacterSet"))

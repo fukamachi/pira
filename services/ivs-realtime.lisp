@@ -1,5 +1,5 @@
 (uiop/package:define-package #:pira/ivs-realtime (:use)
-                             (:export
+                             (:export #:access-denied-exception
                               #:amazon-interactive-video-service-real-time
                               #:attribute-key
                               #:auto-participant-recording-configuration
@@ -13,6 +13,7 @@
                               #:composition-summary-list
                               #:composition-thumbnail-configuration
                               #:composition-thumbnail-configuration-list
+                              #:conflict-exception
                               #:create-encoder-configuration
                               #:create-ingest-configuration
                               #:create-participant-token
@@ -56,8 +57,9 @@
                               #:ingest-configuration-stage-arn
                               #:ingest-configuration-state
                               #:ingest-configuration-summary #:ingest-protocol
-                              #:insecure-ingest #:layout-configuration
-                              #:list-compositions #:list-encoder-configurations
+                              #:insecure-ingest #:internal-server-exception
+                              #:layout-configuration #:list-compositions
+                              #:list-encoder-configurations
                               #:list-ingest-configurations
                               #:list-participant-events
                               #:list-participant-replicas #:list-participants
@@ -103,7 +105,8 @@
                               #:participant-token-expiration-time
                               #:participant-token-id #:participant-token-list
                               #:participant-token-string
-                              #:participant-token-user-id #:pip-behavior
+                              #:participant-token-user-id
+                              #:pending-verification #:pip-behavior
                               #:pip-configuration #:pip-height #:pip-offset
                               #:pip-position #:pip-width #:public-key
                               #:public-key-arn #:public-key-fingerprint
@@ -114,11 +117,12 @@
                               #:recording-configuration
                               #:recording-configuration-format #:replica
                               #:replication-state #:replication-type
-                              #:resource-arn #:s3bucket-name
-                              #:s3destination-configuration #:s3detail
-                              #:s3storage-configuration #:stage #:stage-arn
-                              #:stage-endpoint #:stage-endpoints #:stage-name
-                              #:stage-session #:stage-session-id
+                              #:resource-arn #:resource-not-found-exception
+                              #:s3bucket-name #:s3destination-configuration
+                              #:s3detail #:s3storage-configuration
+                              #:service-quota-exceeded-exception #:stage
+                              #:stage-arn #:stage-endpoint #:stage-endpoints
+                              #:stage-name #:stage-session #:stage-session-id
                               #:stage-session-list #:stage-session-summary
                               #:stage-summary #:stage-summary-list
                               #:start-composition
@@ -139,9 +143,14 @@
                               #:untag-resource-response
                               #:update-ingest-configuration #:update-stage
                               #:update-stage-request #:update-stage-response
-                              #:user-id #:video #:video-aspect-ratio
-                              #:video-fill-mode #:width #:error-message))
+                              #:user-id #:validation-exception #:video
+                              #:video-aspect-ratio #:video-fill-mode #:width
+                              #:error-message #:ivs-realtime-error))
 (common-lisp:in-package #:pira/ivs-realtime)
+
+(common-lisp:define-condition ivs-realtime-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-interactive-video-service-real-time
                                    :shape-name
@@ -217,7 +226,8 @@
                                  (exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class ivs-realtime-error))
 
 (smithy/sdk/shapes:define-type attribute-key smithy/sdk/smithy-types:string)
 
@@ -382,7 +392,8 @@
                                  (exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class ivs-realtime-error))
 
 (smithy/sdk/shapes:define-input create-encoder-configuration-request
                                 common-lisp:nil
@@ -966,7 +977,8 @@
                                  (exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class ivs-realtime-error))
 
 (smithy/sdk/shapes:define-structure layout-configuration common-lisp:nil
                                     ((grid :target-type grid-configuration
@@ -1522,7 +1534,8 @@
                                  (exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "PendingVerification")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class ivs-realtime-error))
 
 (smithy/sdk/shapes:define-enum pip-behavior
     common-lisp:nil
@@ -1663,7 +1676,8 @@
                                  (exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class ivs-realtime-error))
 
 (smithy/sdk/shapes:define-type s3bucket-name smithy/sdk/smithy-types:string)
 
@@ -1727,7 +1741,8 @@
                                  (exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class ivs-realtime-error))
 
 (smithy/sdk/shapes:define-structure stage common-lisp:nil
                                     ((arn :target-type stage-arn :required
@@ -2080,7 +2095,8 @@
                                  (exception-message :target-type error-message
                                   :member-name "exceptionMessage"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ivs-realtime-error))
 
 (smithy/sdk/shapes:define-structure video common-lisp:nil
                                     ((width :target-type width :member-name

@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/vpc-lattice (:use)
-                             (:export #:access-log-destination-arn
+                             (:export #:access-denied-exception
+                              #:access-log-destination-arn
                               #:access-log-subscription
                               #:access-log-subscription-arn
                               #:access-log-subscription-id
@@ -11,6 +12,7 @@
                               #:batch-update-rule #:batch-update-rule-request
                               #:batch-update-rule-response #:boolean
                               #:certificate-arn #:client-token
+                              #:conflict-exception
                               #:create-access-log-subscription
                               #:create-access-log-subscription-request
                               #:create-access-log-subscription-response
@@ -99,7 +101,8 @@
                               #:health-check-timeout-seconds
                               #:healthy-threshold-count #:http-code-matcher
                               #:http-match #:http-method #:http-status-code
-                              #:ip-address #:ip-address-type #:ip-resource
+                              #:internal-server-exception #:ip-address
+                              #:ip-address-type #:ip-resource
                               #:lambda-event-structure-version
                               #:list-access-log-subscriptions
                               #:list-access-log-subscriptions-request
@@ -166,10 +169,12 @@
                               #:resource-gateway-list #:resource-gateway-name
                               #:resource-gateway-status
                               #:resource-gateway-summary #:resource-id
-                              #:resource-identifier #:rule #:rule-action
-                              #:rule-arn #:rule-id #:rule-identifier
-                              #:rule-match #:rule-name #:rule-priority
-                              #:rule-summary #:rule-summary-list #:rule-update
+                              #:resource-identifier
+                              #:resource-not-found-exception #:rule
+                              #:rule-action #:rule-arn #:rule-id
+                              #:rule-identifier #:rule-match #:rule-name
+                              #:rule-priority #:rule-summary
+                              #:rule-summary-list #:rule-update
                               #:rule-update-failure #:rule-update-failure-list
                               #:rule-update-list #:rule-update-success
                               #:rule-update-success-list #:security-group-id
@@ -209,6 +214,7 @@
                               #:service-network-vpc-association-status
                               #:service-network-vpc-association-summary
                               #:service-network-vpc-endpoint-association-list
+                              #:service-quota-exceeded-exception
                               #:service-status #:service-summary
                               #:sharing-config #:subnet-id #:subnet-list
                               #:tag-key #:tag-keys #:tag-map #:tag-resource
@@ -223,9 +229,9 @@
                               #:target-group-status #:target-group-summary
                               #:target-group-type #:target-group-weight
                               #:target-list #:target-status #:target-summary
-                              #:target-summary-list #:timestamp
-                              #:unhealthy-threshold-count #:untag-resource
-                              #:untag-resource-request
+                              #:target-summary-list #:throttling-exception
+                              #:timestamp #:unhealthy-threshold-count
+                              #:untag-resource #:untag-resource-request
                               #:untag-resource-response
                               #:update-access-log-subscription
                               #:update-access-log-subscription-request
@@ -245,13 +251,19 @@
                               #:update-service-response #:update-target-group
                               #:update-target-group-request
                               #:update-target-group-response
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vpc-endpoint-id
                               #:vpc-endpoint-owner #:vpc-id
                               #:weighted-target-group
-                              #:weighted-target-group-list #:wildcard-arn))
+                              #:weighted-target-group-list #:wildcard-arn
+                              #:vpc-lattice-error))
 (common-lisp:in-package #:pira/vpc-lattice)
+
+(common-lisp:define-condition vpc-lattice-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service mercury-control-plane :shape-name
                                    "MercuryControlPlane" :version "2022-11-30"
@@ -279,7 +291,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class vpc-lattice-error))
 
 (smithy/sdk/shapes:define-type access-log-destination-arn
                                smithy/sdk/smithy-types:string)
@@ -383,7 +396,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class vpc-lattice-error))
 
 (smithy/sdk/shapes:define-structure create-access-log-subscription-request
                                     common-lisp:nil
@@ -1639,7 +1653,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class vpc-lattice-error))
 
 (smithy/sdk/shapes:define-type ip-address smithy/sdk/smithy-types:string)
 
@@ -2288,7 +2303,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class vpc-lattice-error))
 
 common-lisp:nil
 
@@ -2655,7 +2671,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class vpc-lattice-error))
 
 (smithy/sdk/shapes:define-type service-status smithy/sdk/smithy-types:string)
 
@@ -2852,7 +2869,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class vpc-lattice-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -3181,7 +3199,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class vpc-lattice-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

@@ -1,11 +1,13 @@
 (uiop/package:define-package #:pira/docdb-elastic (:use)
-                             (:export #:apply-pending-maintenance-action #:arn
-                              #:auth #:chimera-db-lionfish-service-lambda
-                              #:cluster #:cluster-in-list #:cluster-list
+                             (:export #:access-denied-exception
+                              #:apply-pending-maintenance-action #:arn #:auth
+                              #:chimera-db-lionfish-service-lambda #:cluster
+                              #:cluster-in-list #:cluster-list
                               #:cluster-snapshot #:cluster-snapshot-in-list
-                              #:cluster-snapshot-list #:copy-cluster-snapshot
-                              #:create-cluster #:create-cluster-input
-                              #:create-cluster-output #:create-cluster-snapshot
+                              #:cluster-snapshot-list #:conflict-exception
+                              #:copy-cluster-snapshot #:create-cluster
+                              #:create-cluster-input #:create-cluster-output
+                              #:create-cluster-snapshot
                               #:create-cluster-snapshot-input
                               #:create-cluster-snapshot-output #:delete-cluster
                               #:delete-cluster-input #:delete-cluster-output
@@ -17,6 +19,7 @@
                               #:get-cluster-snapshot-input
                               #:get-cluster-snapshot-output
                               #:get-pending-maintenance-action #:input-string
+                              #:internal-server-exception
                               #:list-cluster-snapshots
                               #:list-cluster-snapshots-input
                               #:list-cluster-snapshots-output #:list-clusters
@@ -28,23 +31,31 @@
                               #:pagination-token #:password
                               #:pending-maintenance-action-details
                               #:pending-maintenance-action-details-list
+                              #:resource-not-found-exception
                               #:resource-pending-maintenance-action
                               #:resource-pending-maintenance-action-list
                               #:restore-cluster-from-snapshot
                               #:restore-cluster-from-snapshot-input
-                              #:restore-cluster-from-snapshot-output #:shard
+                              #:restore-cluster-from-snapshot-output
+                              #:service-quota-exceeded-exception #:shard
                               #:shard-list #:snapshot-type #:start-cluster
                               #:status #:stop-cluster #:string-list #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:untag-resource
-                              #:untag-resource-request
+                              #:tag-value #:throttling-exception
+                              #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:update-cluster
                               #:update-cluster-input #:update-cluster-output
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason))
+                              #:validation-exception-reason
+                              #:docdb-elastic-error))
 (common-lisp:in-package #:pira/docdb-elastic)
+
+(common-lisp:define-condition docdb-elastic-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service chimera-db-lionfish-service-lambda
                                    :shape-name "ChimeraDbLionfishServiceLambda"
@@ -78,7 +89,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class docdb-elastic-error))
 
 (smithy/sdk/shapes:define-input apply-pending-maintenance-action-input
                                 common-lisp:nil
@@ -249,7 +261,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class docdb-elastic-error))
 
 (smithy/sdk/shapes:define-input copy-cluster-snapshot-input common-lisp:nil
                                 ((snapshot-arn :target-type
@@ -425,7 +438,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class docdb-elastic-error))
 
 (smithy/sdk/shapes:define-input list-cluster-snapshots-input common-lisp:nil
                                 ((cluster-arn :target-type
@@ -545,7 +559,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class docdb-elastic-error))
 
 (smithy/sdk/shapes:define-structure resource-pending-maintenance-action
                                     common-lisp:nil
@@ -603,7 +618,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class docdb-elastic-error))
 
 (smithy/sdk/shapes:define-structure shard common-lisp:nil
                                     ((shard-id :target-type
@@ -678,7 +694,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class docdb-elastic-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -746,7 +763,8 @@
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class docdb-elastic-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/mediapackagev2 (:use)
-                             (:export #:ad-marker-dash #:ad-marker-hls
+                             (:export #:access-denied-exception
+                              #:ad-marker-dash #:ad-marker-hls
                               #:cancel-harvest-job #:cdn-auth-configuration
                               #:cdn-identifier-secret-arn
                               #:cdn-identifier-secret-arns
@@ -7,7 +8,7 @@
                               #:channel-group-resource #:channel-groups-list
                               #:channel-list #:channel-list-configuration
                               #:channel-policy-resource #:channel-resource
-                              #:cmaf-encryption-method
+                              #:cmaf-encryption-method #:conflict-exception
                               #:conflict-exception-type #:container-type
                               #:create-channel #:create-channel-group
                               #:create-dash-manifest-configuration
@@ -61,6 +62,7 @@
                               #:idempotency-token #:ingest-endpoint
                               #:ingest-endpoint-list
                               #:input-switch-configuration #:input-type
+                              #:internal-server-exception
                               #:ism-encryption-method #:list-channel-groups
                               #:list-channels
                               #:list-dash-manifest-configuration
@@ -84,17 +86,25 @@
                               #:reset-channel-state
                               #:reset-origin-endpoint-state
                               #:resource-description #:resource-name
+                              #:resource-not-found-exception
                               #:resource-type-not-found #:s3bucket-name
                               #:s3destination-config #:s3destination-path
                               #:scte #:scte-dash #:scte-filter
                               #:scte-filter-list #:scte-hls #:segment
+                              #:service-quota-exceeded-exception
                               #:speke-key-provider #:start-tag #:tag-arn
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-value #:ts-encryption-method
-                              #:untag-resource #:update-channel
-                              #:update-channel-group #:update-origin-endpoint
-                              #:validation-exception-type #:mediapackagev2))
+                              #:tag-value #:throttling-exception
+                              #:ts-encryption-method #:untag-resource
+                              #:update-channel #:update-channel-group
+                              #:update-origin-endpoint #:validation-exception
+                              #:validation-exception-type #:mediapackagev2
+                              #:mediapackagev2-error))
 (common-lisp:in-package #:pira/mediapackagev2)
+
+(common-lisp:define-condition mediapackagev2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service mediapackagev2 :shape-name "mediapackagev2"
                                    :version "2022-12-25" :title
@@ -139,7 +149,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class mediapackagev2-error))
 
 (smithy/sdk/shapes:define-enum ad-marker-dash
     common-lisp:nil
@@ -263,7 +274,8 @@ common-lisp:nil
                                   conflict-exception-type :member-name
                                   "ConflictExceptionType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class mediapackagev2-error))
 
 (smithy/sdk/shapes:define-enum conflict-exception-type
     common-lisp:nil
@@ -1556,7 +1568,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class mediapackagev2-error))
 
 (smithy/sdk/shapes:define-enum ism-encryption-method
     common-lisp:nil
@@ -1929,7 +1942,8 @@ common-lisp:nil
                                   resource-type-not-found :member-name
                                   "ResourceTypeNotFound"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class mediapackagev2-error))
 
 (smithy/sdk/shapes:define-enum resource-type-not-found
     common-lisp:nil
@@ -2013,7 +2027,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class mediapackagev2-error))
 
 (smithy/sdk/shapes:define-structure speke-key-provider common-lisp:nil
                                     ((encryption-contract-configuration
@@ -2068,7 +2083,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class mediapackagev2-error))
 
 (smithy/sdk/shapes:define-enum ts-encryption-method
     common-lisp:nil
@@ -2279,7 +2295,8 @@ common-lisp:nil
                                   validation-exception-type :member-name
                                   "ValidationExceptionType"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class mediapackagev2-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-type
     common-lisp:nil

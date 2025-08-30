@@ -1,12 +1,13 @@
 (uiop/package:define-package #:pira/codeguru-security (:use)
-                             (:export #:account-findings-metric #:analysis-type
+                             (:export #:access-denied-exception
+                              #:account-findings-metric #:analysis-type
                               #:aws-code-guru-security #:batch-get-findings
                               #:batch-get-findings-error
                               #:batch-get-findings-errors
                               #:categories-with-most-findings
                               #:category-with-finding-num #:client-token
-                              #:code-line #:code-snippet #:create-scan
-                              #:create-upload-url #:detector-tags
+                              #:code-line #:code-snippet #:conflict-exception
+                              #:create-scan #:create-upload-url #:detector-tags
                               #:encryption-config #:error-code #:error-message
                               #:file-path #:finding #:finding-identifier
                               #:finding-identifiers
@@ -14,12 +15,13 @@
                               #:findings-metric-list
                               #:get-account-configuration #:get-findings
                               #:get-metrics-summary #:get-scan #:header-key
-                              #:header-value #:kms-key-arn
-                              #:list-findings-metrics #:list-scans
-                              #:list-tags-for-resource #:metrics-summary
-                              #:next-token #:recommendation #:reference-urls
-                              #:related-vulnerabilities #:remediation
-                              #:request-header-map #:resource #:resource-id
+                              #:header-value #:internal-server-exception
+                              #:kms-key-arn #:list-findings-metrics
+                              #:list-scans #:list-tags-for-resource
+                              #:metrics-summary #:next-token #:recommendation
+                              #:reference-urls #:related-vulnerabilities
+                              #:remediation #:request-header-map #:resource
+                              #:resource-id #:resource-not-found-exception
                               #:s3url #:scan-name #:scan-name-arn
                               #:scan-name-with-finding-num #:scan-state
                               #:scan-summaries #:scan-summary #:scan-type
@@ -27,12 +29,18 @@
                               #:scans-with-most-open-findings #:severity
                               #:status #:suggested-fix #:suggested-fixes
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-value #:untag-resource
-                              #:update-account-configuration #:uuid
+                              #:tag-value #:throttling-exception
+                              #:untag-resource #:update-account-configuration
+                              #:uuid #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason #:vulnerability))
+                              #:validation-exception-reason #:vulnerability
+                              #:codeguru-security-error))
 (common-lisp:in-package #:pira/codeguru-security)
+
+(common-lisp:define-condition codeguru-security-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service aws-code-guru-security :shape-name
                                    "AwsCodeGuruSecurity" :version "2018-05-10"
@@ -70,7 +78,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceType"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class codeguru-security-error))
 
 (smithy/sdk/shapes:define-structure account-findings-metric common-lisp:nil
                                     ((date :target-type
@@ -167,7 +176,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codeguru-security-error))
 
 (smithy/sdk/shapes:define-input create-scan-request common-lisp:nil
                                 ((client-token :target-type client-token
@@ -421,7 +431,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class codeguru-security-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -558,7 +569,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class codeguru-security-error))
 
 (smithy/sdk/shapes:define-type s3url smithy/sdk/smithy-types:string)
 
@@ -673,7 +685,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "quotaCode"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class codeguru-security-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type scan-name-arn
@@ -720,7 +733,8 @@
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codeguru-security-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/mwaa (:use)
-                             (:export #:airflow-configuration-options
+                             (:export #:access-denied-exception
+                              #:airflow-configuration-options
                               #:airflow-identity #:airflow-version
                               #:amazon-mwaa #:celery-executor-queue
                               #:cloud-watch-log-group-arn #:config-key
@@ -19,7 +20,8 @@
                               #:environment-status #:error-code #:error-message
                               #:get-environment #:get-environment-input
                               #:get-environment-output #:hostname
-                              #:iam-identity #:iam-role-arn #:invoke-rest-api
+                              #:iam-identity #:iam-role-arn
+                              #:internal-server-exception #:invoke-rest-api
                               #:kms-key #:last-update #:list-environments
                               #:list-environments-input
                               #:list-environments-output
@@ -35,8 +37,10 @@
                               #:network-configuration #:next-token
                               #:publish-metrics #:publish-metrics-input
                               #:publish-metrics-output #:relative-path
-                              #:rest-api-method #:rest-api-path
-                              #:rest-api-request-body #:rest-api-response
+                              #:resource-not-found-exception
+                              #:rest-api-client-exception #:rest-api-method
+                              #:rest-api-path #:rest-api-request-body
+                              #:rest-api-response #:rest-api-server-exception
                               #:s3bucket-arn #:s3object-version #:schedulers
                               #:security-group-id #:security-group-list
                               #:statistic-set #:subnet-id #:subnet-list
@@ -49,11 +53,16 @@
                               #:update-environment-output #:update-error
                               #:update-network-configuration-input
                               #:update-source #:update-status
+                              #:validation-exception
                               #:vpc-endpoint-service-name
                               #:webserver-access-mode #:webserver-url
                               #:weekly-maintenance-window-start
-                              #:worker-replacement-strategy))
+                              #:worker-replacement-strategy #:mwaa-error))
 (common-lisp:in-package #:pira/mwaa)
+
+(common-lisp:define-condition mwaa-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-mwaa :shape-name "AmazonMWAA"
                                    :version "2020-07-01" :title "AmazonMWAA"
@@ -75,7 +84,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class mwaa-error))
 
 (smithy/sdk/shapes:define-map airflow-configuration-options :key config-key
                               :value config-value)
@@ -364,7 +373,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class mwaa-error))
 
 (smithy/sdk/shapes:define-input invoke-rest-api-request common-lisp:nil
                                 ((name :target-type environment-name :required
@@ -558,7 +567,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class mwaa-error))
 
 (smithy/sdk/shapes:define-error rest-api-client-exception common-lisp:nil
                                 ((rest-api-status-code :target-type
@@ -568,7 +577,7 @@
                                   rest-api-response :member-name
                                   "RestApiResponse"))
                                 (:shape-name "RestApiClientException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class mwaa-error))
 
 (smithy/sdk/shapes:define-type rest-api-method smithy/sdk/smithy-types:string)
 
@@ -588,7 +597,7 @@
                                   rest-api-response :member-name
                                   "RestApiResponse"))
                                 (:shape-name "RestApiServerException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class mwaa-error))
 
 (smithy/sdk/shapes:define-type s3bucket-arn smithy/sdk/smithy-types:string)
 
@@ -751,7 +760,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class mwaa-error))
 
 (smithy/sdk/shapes:define-type vpc-endpoint-service-name
                                smithy/sdk/smithy-types:string)

@@ -1,8 +1,9 @@
 (uiop/package:define-package #:pira/cloudwatch-logs (:use)
-                             (:export #:access-policy #:account-id
-                              #:account-ids #:account-policies #:account-policy
-                              #:account-policy-document #:add-key-entries
-                              #:add-key-entry #:add-key-value #:add-keys
+                             (:export #:access-denied-exception #:access-policy
+                              #:account-id #:account-ids #:account-policies
+                              #:account-policy #:account-policy-document
+                              #:add-key-entries #:add-key-entry #:add-key-value
+                              #:add-keys
                               #:allowed-action-for-allow-vended-logs-delivery-for-resource
                               #:allowed-field-delimiters #:allowed-fields
                               #:amazon-resource-name #:anomalies #:anomaly
@@ -15,12 +16,14 @@
                               #:collection-retention-days #:column #:columns
                               #:configuration-template
                               #:configuration-template-delivery-config-values
-                              #:configuration-templates #:copy-value
-                              #:copy-value-entries #:copy-value-entry #:count
-                              #:create-delivery #:create-export-task
+                              #:configuration-templates #:conflict-exception
+                              #:copy-value #:copy-value-entries
+                              #:copy-value-entry #:count #:create-delivery
+                              #:create-export-task
                               #:create-log-anomaly-detector #:create-log-group
                               #:create-log-stream #:dashboard-viewer-principals
-                              #:data #:data-protection-policy-document
+                              #:data #:data-already-accepted-exception
+                              #:data-protection-policy-document
                               #:data-protection-status #:date-time-converter
                               #:days #:default-value #:delete-account-policy
                               #:delete-data-protection-policy #:delete-delivery
@@ -107,11 +110,16 @@
                               #:integration-name #:integration-name-prefix
                               #:integration-status #:integration-status-message
                               #:integration-summaries #:integration-summary
-                              #:integration-type #:interleaved #:is-sampled
+                              #:integration-type #:interleaved
+                              #:internal-streaming-exception
+                              #:invalid-operation-exception
+                              #:invalid-parameter-exception
+                              #:invalid-sequence-token-exception #:is-sampled
                               #:key #:key-prefix #:key-value-delimiter
-                              #:kms-key-id #:list-anomalies
-                              #:list-anomalies-limit #:list-integrations
-                              #:list-limit #:list-log-anomaly-detectors
+                              #:kms-key-id #:limit-exceeded-exception
+                              #:list-anomalies #:list-anomalies-limit
+                              #:list-integrations #:list-limit
+                              #:list-log-anomaly-detectors
                               #:list-log-anomaly-detectors-limit
                               #:list-log-groups #:list-log-groups-for-query
                               #:list-log-groups-for-query-max-results
@@ -134,8 +142,9 @@
                               #:log-stream-searched-completely #:log-streams
                               #:log-type #:log-types #:logs-20140328
                               #:lower-case-string #:lower-case-string-with-keys
-                              #:match-pattern #:match-patterns #:message
-                              #:metric-filter #:metric-filter-match-record
+                              #:malformed-query-exception #:match-pattern
+                              #:match-patterns #:message #:metric-filter
+                              #:metric-filter-match-record
                               #:metric-filter-matches #:metric-filters
                               #:metric-name #:metric-namespace
                               #:metric-transformation #:metric-transformations
@@ -159,7 +168,8 @@
                               #:open-search-resource-status
                               #:open-search-resource-status-type
                               #:open-search-workspace
-                              #:open-search-workspace-id #:order-by
+                              #:open-search-workspace-id
+                              #:operation-aborted-exception #:order-by
                               #:output-format #:output-formats
                               #:output-log-event #:output-log-events
                               #:overwrite-if-exists #:parse-cloudfront
@@ -190,18 +200,24 @@
                               #:rejected-entity-info #:rejected-log-events-info
                               #:rename-key-entries #:rename-key-entry
                               #:rename-keys #:rename-to #:request-id
+                              #:resource-already-exists-exception
                               #:resource-arns #:resource-config
-                              #:resource-identifier #:resource-policies
-                              #:resource-policy #:resource-type
-                              #:resource-types #:result-field #:result-rows
-                              #:role-arn #:s3delivery-configuration #:scope
+                              #:resource-identifier
+                              #:resource-not-found-exception
+                              #:resource-policies #:resource-policy
+                              #:resource-type #:resource-types #:result-field
+                              #:result-rows #:role-arn
+                              #:s3delivery-configuration #:scope
                               #:searched-log-stream #:searched-log-streams
                               #:selection-criteria #:sequence-token #:service
-                              #:session-id #:source #:source-timezone
-                              #:split-string #:split-string-delimiter
-                              #:split-string-entries #:split-string-entry
-                              #:standard-unit #:start-from-head
-                              #:start-live-tail
+                              #:service-quota-exceeded-exception
+                              #:service-unavailable-exception #:session-id
+                              #:session-streaming-exception
+                              #:session-timeout-exception #:source
+                              #:source-timezone #:split-string
+                              #:split-string-delimiter #:split-string-entries
+                              #:split-string-entry #:standard-unit
+                              #:start-from-head #:start-live-tail
                               #:start-live-tail-log-group-identifiers
                               #:start-live-tail-response-stream #:start-query
                               #:state #:stats-value #:stop-query #:stored-bytes
@@ -214,19 +230,26 @@
                               #:tag-resource #:tag-value #:tags #:target
                               #:target-arn #:target-format #:target-timezone
                               #:test-event-messages #:test-metric-filter
-                              #:test-transformer #:time #:timestamp #:to-key
-                              #:token #:token-string #:token-value
+                              #:test-transformer #:throttling-exception #:time
+                              #:timestamp #:to-key #:token #:token-string
+                              #:token-value #:too-many-tags-exception
                               #:transformed-event-message
                               #:transformed-log-record #:transformed-logs
                               #:trim-string #:trim-string-with-keys #:type
                               #:type-converter #:type-converter-entries
-                              #:type-converter-entry #:unmask #:untag-log-group
+                              #:type-converter-entry #:unmask
+                              #:unrecognized-client-exception #:untag-log-group
                               #:untag-resource #:update-anomaly
                               #:update-delivery-configuration
                               #:update-log-anomaly-detector #:upper-case-string
-                              #:upper-case-string-with-keys #:value #:value-key
-                              #:with-key))
+                              #:upper-case-string-with-keys
+                              #:validation-exception #:value #:value-key
+                              #:with-key #:cloudwatch-logs-error))
 (common-lisp:in-package #:pira/cloudwatch-logs)
+
+(common-lisp:define-condition cloudwatch-logs-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service logs-20140328 :shape-name "Logs_20140328"
                                    :version "2014-03-28" :title
@@ -314,7 +337,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-type access-policy smithy/sdk/smithy-types:string)
 
@@ -580,7 +604,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-structure copy-value common-lisp:nil
                                     ((entries :target-type copy-value-entries
@@ -709,7 +734,8 @@
                                  (message :target-type message :member-name
                                   "message"))
                                 (:shape-name "DataAlreadyAcceptedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-type data-protection-policy-document
                                smithy/sdk/smithy-types:string)
@@ -1998,19 +2024,22 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InternalStreamingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-error invalid-operation-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-error invalid-sequence-token-exception
                                 common-lisp:nil
@@ -2020,7 +2049,8 @@
                                  (message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidSequenceTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-type is-sampled smithy/sdk/smithy-types:boolean)
 
@@ -2037,7 +2067,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-type list-anomalies-limit
                                smithy/sdk/smithy-types:integer)
@@ -2391,7 +2422,8 @@
                                  (message :target-type message :member-name
                                   "message"))
                                 (:shape-name "MalformedQueryException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-type match-pattern smithy/sdk/smithy-types:string)
 
@@ -2652,7 +2684,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "OperationAbortedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-enum order-by
     common-lisp:nil
@@ -3320,7 +3353,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-list resource-arns :member arn)
 
@@ -3337,7 +3371,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-list resource-policies :member resource-policy)
 
@@ -3409,13 +3444,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-type session-id smithy/sdk/smithy-types:string)
 
@@ -3423,13 +3460,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "SessionStreamingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-error session-timeout-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "SessionTimeoutException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-type source smithy/sdk/smithy-types:string)
 
@@ -3710,7 +3749,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-type time smithy/sdk/smithy-types:string)
 
@@ -3731,7 +3771,8 @@
                                   amazon-resource-name :member-name
                                   "resourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-type transformed-event-message
                                smithy/sdk/smithy-types:string)
@@ -3785,7 +3826,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "UnrecognizedClientException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-input untag-log-group-request common-lisp:nil
                                 ((log-group-name :target-type log-group-name
@@ -3869,7 +3911,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-logs-error))
 
 (smithy/sdk/shapes:define-type value smithy/sdk/smithy-types:string)
 

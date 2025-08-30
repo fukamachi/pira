@@ -1,6 +1,6 @@
 (uiop/package:define-package #:pira/keyspaces (:use)
-                             (:export #:arn #:auto-scaling-policy
-                              #:auto-scaling-settings
+                             (:export #:arn #:access-denied-exception
+                              #:auto-scaling-policy #:auto-scaling-settings
                               #:auto-scaling-specification #:boolean-object
                               #:capacity-specification
                               #:capacity-specification-summary #:capacity-units
@@ -10,7 +10,8 @@
                               #:client-side-timestamps-status #:clustering-key
                               #:clustering-key-list #:column-definition
                               #:column-definition-list #:comment
-                              #:create-keyspace #:create-keyspace-request
+                              #:conflict-exception #:create-keyspace
+                              #:create-keyspace-request
                               #:create-keyspace-response #:create-table
                               #:create-table-request #:create-table-response
                               #:create-type #:default-time-to-live
@@ -24,7 +25,8 @@
                               #:get-keyspace-response #:get-table
                               #:get-table-auto-scaling-settings
                               #:get-table-request #:get-table-response
-                              #:get-type #:integer-object #:keyspace-name
+                              #:get-type #:integer-object
+                              #:internal-server-exception #:keyspace-name
                               #:keyspace-status #:keyspace-summary
                               #:keyspace-summary-list #:keyspaces-service
                               #:list-keyspaces #:list-keyspaces-request
@@ -45,12 +47,14 @@
                               #:replica-specification-summary-list
                               #:replication-group-status
                               #:replication-group-status-list
-                              #:replication-specification #:restore-table
+                              #:replication-specification
+                              #:resource-not-found-exception #:restore-table
                               #:restore-table-request #:restore-table-response
-                              #:schema-definition #:sort-order #:static-column
-                              #:static-column-list #:stream-arn #:table-name
-                              #:table-name-list #:table-status #:table-summary
-                              #:table-summary-list
+                              #:schema-definition
+                              #:service-quota-exceeded-exception #:sort-order
+                              #:static-column #:static-column-list #:stream-arn
+                              #:table-name #:table-name-list #:table-status
+                              #:table-summary #:table-summary-list
                               #:tables-replication-progress #:tag #:tag-key
                               #:tag-list #:tag-resource #:tag-resource-request
                               #:tag-resource-response #:tag-value
@@ -61,9 +65,14 @@
                               #:untag-resource-request
                               #:untag-resource-response #:update-keyspace
                               #:update-table #:update-table-request
-                              #:update-table-response #:view-type #:kms-key-arn
-                              #:region #:rs))
+                              #:update-table-response #:validation-exception
+                              #:view-type #:kms-key-arn #:region #:rs
+                              #:keyspaces-error))
 (common-lisp:in-package #:pira/keyspaces)
+
+(common-lisp:define-condition keyspaces-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service keyspaces-service :shape-name
                                    "KeyspacesService" :version "2022-02-10"
@@ -94,7 +103,7 @@
                                   "message"))
                                 (:shape-name "AccessDeniedException")
                                 (:error-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class keyspaces-error))
 
 (smithy/sdk/shapes:define-structure auto-scaling-policy common-lisp:nil
                                     ((target-tracking-scaling-policy-configuration
@@ -226,7 +235,7 @@
                                   "message"))
                                 (:shape-name "ConflictException")
                                 (:error-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class keyspaces-error))
 
 (smithy/sdk/shapes:define-structure create-keyspace-request common-lisp:nil
                                     ((keyspace-name :target-type keyspace-name
@@ -526,7 +535,7 @@
                                   "message"))
                                 (:shape-name "InternalServerException")
                                 (:error-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class keyspaces-error))
 
 (smithy/sdk/shapes:define-type keyspace-name smithy/sdk/smithy-types:string)
 
@@ -719,7 +728,7 @@
                                   "resourceArn"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class keyspaces-error))
 
 (smithy/sdk/shapes:define-structure restore-table-request common-lisp:nil
                                     ((source-keyspace-name :target-type
@@ -787,7 +796,7 @@
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
                                 (:error-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class keyspaces-error))
 
 (smithy/sdk/shapes:define-type sort-order smithy/sdk/smithy-types:string)
 
@@ -957,7 +966,7 @@
                                   "message"))
                                 (:shape-name "ValidationException")
                                 (:error-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class keyspaces-error))
 
 (smithy/sdk/shapes:define-type view-type smithy/sdk/smithy-types:string)
 

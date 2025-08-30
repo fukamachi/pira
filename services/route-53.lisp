@@ -11,11 +11,16 @@
                               #:change-status #:change-tags-for-resource
                               #:changes #:checker-ip-ranges
                               #:child-health-check-list #:cidr
+                              #:cidr-block-in-use-exception
                               #:cidr-block-summaries #:cidr-block-summary
-                              #:cidr-collection #:cidr-collection-change
+                              #:cidr-collection
+                              #:cidr-collection-already-exists-exception
+                              #:cidr-collection-change
                               #:cidr-collection-change-action
-                              #:cidr-collection-changes #:cidr-list
-                              #:cidr-location-name-default-allowed
+                              #:cidr-collection-changes
+                              #:cidr-collection-in-use-exception
+                              #:cidr-collection-version-mismatch-exception
+                              #:cidr-list #:cidr-location-name-default-allowed
                               #:cidr-location-name-default-not-allowed
                               #:cidr-nonce #:cidr-routing-config
                               #:cloud-watch-alarm-configuration
@@ -23,6 +28,8 @@
                               #:cloud-watch-region #:collection-name
                               #:collection-summaries #:collection-summary
                               #:collection-version #:comparison-operator
+                              #:concurrent-modification
+                              #:conflicting-domain-exists #:conflicting-types
                               #:coordinates #:create-cidr-collection
                               #:create-health-check #:create-hosted-zone
                               #:create-key-signing-key
@@ -32,9 +39,14 @@
                               #:create-traffic-policy-instance
                               #:create-traffic-policy-version
                               #:create-vpcassociation-authorization #:dnsname
-                              #:dnsrcode #:dnssecstatus
+                              #:dnsrcode #:dnssecnot-found #:dnssecstatus
                               #:deactivate-key-signing-key #:delegation-set
-                              #:delegation-set-name-servers #:delegation-sets
+                              #:delegation-set-already-created
+                              #:delegation-set-already-reusable
+                              #:delegation-set-in-use
+                              #:delegation-set-name-servers
+                              #:delegation-set-not-available
+                              #:delegation-set-not-reusable #:delegation-sets
                               #:delete-cidr-collection #:delete-health-check
                               #:delete-hosted-zone #:delete-key-signing-key
                               #:delete-query-logging-config
@@ -71,22 +83,41 @@
                               #:get-traffic-policy
                               #:get-traffic-policy-instance
                               #:get-traffic-policy-instance-count
-                              #:health-check #:health-check-config
-                              #:health-check-count #:health-check-id
+                              #:health-check #:health-check-already-exists
+                              #:health-check-config #:health-check-count
+                              #:health-check-id #:health-check-in-use
                               #:health-check-nonce #:health-check-observation
                               #:health-check-observations #:health-check-region
                               #:health-check-region-list #:health-check-type
-                              #:health-check-version #:health-checks
+                              #:health-check-version
+                              #:health-check-version-mismatch #:health-checks
                               #:health-threshold #:hosted-zone
-                              #:hosted-zone-config #:hosted-zone-count
-                              #:hosted-zone-limit #:hosted-zone-limit-type
+                              #:hosted-zone-already-exists #:hosted-zone-config
+                              #:hosted-zone-count #:hosted-zone-limit
+                              #:hosted-zone-limit-type #:hosted-zone-not-empty
+                              #:hosted-zone-not-found #:hosted-zone-not-private
                               #:hosted-zone-owner #:hosted-zone-owning-service
+                              #:hosted-zone-partially-delegated
                               #:hosted-zone-rrset-count #:hosted-zone-summaries
                               #:hosted-zone-summary #:hosted-zone-type
                               #:hosted-zones #:ipaddress #:ipaddress-cidr
-                              #:insufficient-data-health-status #:inverted
-                              #:is-private-zone #:key-signing-key
-                              #:key-signing-keys #:latitude #:limit-value
+                              #:incompatible-version
+                              #:insufficient-cloud-watch-logs-resource-policy
+                              #:insufficient-data-health-status
+                              #:invalid-argument #:invalid-change-batch
+                              #:invalid-domain-name #:invalid-input
+                              #:invalid-kmsarn #:invalid-key-signing-key-name
+                              #:invalid-key-signing-key-status
+                              #:invalid-pagination-token
+                              #:invalid-signing-status
+                              #:invalid-traffic-policy-document #:invalid-vpcid
+                              #:inverted #:is-private-zone #:key-signing-key
+                              #:key-signing-key-already-exists
+                              #:key-signing-key-in-parent-dsrecord
+                              #:key-signing-key-in-use
+                              #:key-signing-key-with-active-status-not-found
+                              #:key-signing-keys #:last-vpcassociation
+                              #:latitude #:limit-value #:limits-exceeded
                               #:linked-service #:list-cidr-blocks
                               #:list-cidr-collections #:list-cidr-locations
                               #:list-geo-locations #:list-health-checks
@@ -105,12 +136,26 @@
                               #:local-zone-group #:location-summaries
                               #:location-summary #:longitude #:measure-latency
                               #:message #:metric-name #:nameserver #:namespace
-                              #:nonce #:page-marker #:page-truncated
-                              #:pagination-token #:period #:port
-                              #:query-logging-config #:query-logging-config-id
-                              #:query-logging-configs #:rdata #:rrtype
-                              #:record-data #:record-data-entry
-                              #:request-interval #:resettable-element-name
+                              #:no-such-change
+                              #:no-such-cidr-collection-exception
+                              #:no-such-cidr-location-exception
+                              #:no-such-cloud-watch-logs-log-group
+                              #:no-such-delegation-set #:no-such-geo-location
+                              #:no-such-health-check #:no-such-hosted-zone
+                              #:no-such-key-signing-key
+                              #:no-such-query-logging-config
+                              #:no-such-traffic-policy
+                              #:no-such-traffic-policy-instance #:nonce
+                              #:not-authorized-exception #:page-marker
+                              #:page-truncated #:pagination-token #:period
+                              #:port #:prior-request-not-complete
+                              #:public-zone-vpcassociation
+                              #:query-logging-config
+                              #:query-logging-config-already-exists
+                              #:query-logging-config-id #:query-logging-configs
+                              #:rdata #:rrtype #:record-data
+                              #:record-data-entry #:request-interval
+                              #:resettable-element-name
                               #:resettable-element-name-list
                               #:resource-description #:resource-id
                               #:resource-path #:resource-record
@@ -134,10 +179,19 @@
                               #:tag-key-list #:tag-list #:tag-resource-id
                               #:tag-resource-id-list #:tag-resource-type
                               #:tag-value #:test-dnsanswer #:threshold
-                              #:time-stamp #:traffic-policies #:traffic-policy
+                              #:throttling-exception #:time-stamp
+                              #:too-many-health-checks #:too-many-hosted-zones
+                              #:too-many-key-signing-keys
+                              #:too-many-traffic-policies
+                              #:too-many-traffic-policy-instances
+                              #:too-many-traffic-policy-versions-for-current-policy
+                              #:too-many-vpcassociation-authorizations
+                              #:traffic-policies #:traffic-policy
+                              #:traffic-policy-already-exists
                               #:traffic-policy-comment
                               #:traffic-policy-document #:traffic-policy-id
-                              #:traffic-policy-instance
+                              #:traffic-policy-in-use #:traffic-policy-instance
+                              #:traffic-policy-instance-already-exists
                               #:traffic-policy-instance-count
                               #:traffic-policy-instance-id
                               #:traffic-policy-instance-state
@@ -149,8 +203,14 @@
                               #:update-hosted-zone-comment
                               #:update-traffic-policy-comment
                               #:update-traffic-policy-instance #:usage-count
-                              #:vpc #:vpcid #:vpcregion #:vpcs))
+                              #:vpc #:vpcassociation-authorization-not-found
+                              #:vpcassociation-not-found #:vpcid #:vpcregion
+                              #:vpcs #:route-53-error))
 (common-lisp:in-package #:pira/route-53)
+
+(common-lisp:define-condition route-53-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsdns-v20130401 :shape-name
                                    "AWSDnsV20130401" :version "2013-04-01"
@@ -428,7 +488,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "CidrBlockInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-list cidr-block-summaries :member cidr-block-summary)
 
@@ -455,7 +515,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CidrCollectionAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-structure cidr-collection-change common-lisp:nil
                                     ((location-name :target-type
@@ -483,7 +543,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "CidrCollectionInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error cidr-collection-version-mismatch-exception
                                 common-lisp:nil
@@ -491,7 +551,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CidrCollectionVersionMismatchException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-list cidr-list :member (cidr :xml-name "Cidr"))
 
@@ -617,19 +677,19 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConcurrentModification")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error conflicting-domain-exists common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictingDomainExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error conflicting-types common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictingTypes")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-structure coordinates common-lisp:nil
                                     ((latitude :target-type latitude :required
@@ -876,7 +936,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DNSSECNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-structure dnssecstatus common-lisp:nil
                                     ((serve-signature :target-type
@@ -920,19 +980,19 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DelegationSetAlreadyCreated")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error delegation-set-already-reusable common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DelegationSetAlreadyReusable")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error delegation-set-in-use common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DelegationSetInUse")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-list delegation-set-name-servers :member
                                (dnsname :xml-name "NameServer"))
@@ -941,13 +1001,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DelegationSetNotAvailable")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error delegation-set-not-reusable common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DelegationSetNotReusable")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-list delegation-sets :member
                                (delegation-set :xml-name "DelegationSet"))
@@ -1505,7 +1565,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "HealthCheckAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-structure health-check-config common-lisp:nil
                                     ((ipaddress :target-type ipaddress
@@ -1567,7 +1627,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "HealthCheckInUse")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-type health-check-nonce
                                smithy/sdk/smithy-types:string)
@@ -1617,7 +1677,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "HealthCheckVersionMismatch")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-list health-checks :member
                                (health-check :xml-name "HealthCheck"))
@@ -1646,7 +1706,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "HostedZoneAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-structure hosted-zone-config common-lisp:nil
                                     ((comment :target-type resource-description
@@ -1674,19 +1734,19 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "HostedZoneNotEmpty")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error hosted-zone-not-found common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "HostedZoneNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error hosted-zone-not-private common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "HostedZoneNotPrivate")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-structure hosted-zone-owner common-lisp:nil
                                     ((owning-account :target-type awsaccount-id
@@ -1703,7 +1763,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "HostedZonePartiallyDelegated")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-type hosted-zone-rrset-count
                                smithy/sdk/smithy-types:long)
@@ -1738,7 +1798,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "IncompatibleVersion")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error insufficient-cloud-watch-logs-resource-policy
                                 common-lisp:nil
@@ -1746,7 +1806,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InsufficientCloudWatchLogsResourcePolicy")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-enum insufficient-data-health-status
     common-lisp:nil
@@ -1758,7 +1818,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidArgument")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error invalid-change-batch common-lisp:nil
                                 ((messages :target-type error-messages
@@ -1766,58 +1826,61 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidChangeBatch")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error invalid-domain-name common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidDomainName")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error invalid-input common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "InvalidInput") (:error-code 400))
+                                (:shape-name "InvalidInput") (:error-code 400)
+                                (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error invalid-kmsarn common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "InvalidKMSArn") (:error-code 400))
+                                (:shape-name "InvalidKMSArn") (:error-code 400)
+                                (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error invalid-key-signing-key-name common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidKeySigningKeyName")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error invalid-key-signing-key-status common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidKeySigningKeyStatus")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error invalid-pagination-token common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidPaginationToken")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error invalid-signing-status common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSigningStatus")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error invalid-traffic-policy-document common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTrafficPolicyDocument")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error invalid-vpcid common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "InvalidVPCId") (:error-code 400))
+                                (:shape-name "InvalidVPCId") (:error-code 400)
+                                (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-type inverted smithy/sdk/smithy-types:boolean)
 
@@ -1871,20 +1934,20 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "KeySigningKeyAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error key-signing-key-in-parent-dsrecord
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "KeySigningKeyInParentDSRecord")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error key-signing-key-in-use common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "KeySigningKeyInUse")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error key-signing-key-with-active-status-not-found
                                 common-lisp:nil
@@ -1892,7 +1955,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "KeySigningKeyWithActiveStatusNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-list key-signing-keys :member key-signing-key)
 
@@ -1900,7 +1963,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LastVPCAssociation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-type latitude smithy/sdk/smithy-types:string)
 
@@ -1910,7 +1973,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitsExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-structure linked-service common-lisp:nil
                                     ((service-principal :target-type
@@ -2485,75 +2548,76 @@
 (smithy/sdk/shapes:define-error no-such-change common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "NoSuchChange") (:error-code 404))
+                                (:shape-name "NoSuchChange") (:error-code 404)
+                                (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error no-such-cidr-collection-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NoSuchCidrCollectionException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error no-such-cidr-location-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NoSuchCidrLocationException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error no-such-cloud-watch-logs-log-group
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchCloudWatchLogsLogGroup")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error no-such-delegation-set common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchDelegationSet")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error no-such-geo-location common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchGeoLocation")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error no-such-health-check common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchHealthCheck")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error no-such-hosted-zone common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchHostedZone")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error no-such-key-signing-key common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchKeySigningKey")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error no-such-query-logging-config common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchQueryLoggingConfig")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error no-such-traffic-policy common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchTrafficPolicy")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error no-such-traffic-policy-instance common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchTrafficPolicyInstance")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-type nonce smithy/sdk/smithy-types:string)
 
@@ -2561,7 +2625,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NotAuthorizedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-type page-marker smithy/sdk/smithy-types:string)
 
@@ -2577,13 +2641,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "PriorRequestNotComplete")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error public-zone-vpcassociation common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "PublicZoneVPCAssociation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-structure query-logging-config common-lisp:nil
                                     ((id :target-type query-logging-config-id
@@ -2604,7 +2668,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "QueryLoggingConfigAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-type query-logging-config-id
                                smithy/sdk/smithy-types:string)
@@ -2915,7 +2979,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-type time-stamp smithy/sdk/smithy-types:timestamp)
 
@@ -2923,37 +2987,38 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyHealthChecks")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error too-many-hosted-zones common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyHostedZones")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error too-many-key-signing-keys common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyKeySigningKeys")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error too-many-traffic-policies common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyTrafficPolicies")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error too-many-traffic-policy-instances
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyTrafficPolicyInstances")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error
  too-many-traffic-policy-versions-for-current-policy common-lisp:nil
  ((message :target-type error-message :member-name "message"))
- (:shape-name "TooManyTrafficPolicyVersionsForCurrentPolicy") (:error-code 400))
+ (:shape-name "TooManyTrafficPolicyVersionsForCurrentPolicy") (:error-code 400)
+ (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error too-many-vpcassociation-authorizations
                                 common-lisp:nil
@@ -2961,7 +3026,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "TooManyVPCAssociationAuthorizations")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-list traffic-policies :member
                                (traffic-policy :xml-name "TrafficPolicy"))
@@ -2990,7 +3055,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TrafficPolicyAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-type traffic-policy-comment
                                smithy/sdk/smithy-types:string)
@@ -3004,7 +3069,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TrafficPolicyInUse")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-structure traffic-policy-instance common-lisp:nil
                                     ((id :target-type
@@ -3040,7 +3105,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "TrafficPolicyInstanceAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-type traffic-policy-instance-count
                                smithy/sdk/smithy-types:integer)
@@ -3223,13 +3288,13 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "VPCAssociationAuthorizationNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-error vpcassociation-not-found common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "VPCAssociationNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class route-53-error))
 
 (smithy/sdk/shapes:define-type vpcid smithy/sdk/smithy-types:string)
 

@@ -11,8 +11,13 @@
                               #:raw-metric-data #:raw-metric-data-list
                               #:sage-maker-metrics-service
                               #:sage-maker-resource-arn #:step #:timestamp
-                              #:xaxis-type #:xaxis-values))
+                              #:xaxis-type #:xaxis-values
+                              #:sagemaker-metrics-error))
 (common-lisp:in-package #:pira/sagemaker-metrics)
+
+(common-lisp:define-condition sagemaker-metrics-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service sage-maker-metrics-service :shape-name
                                    "SageMakerMetricsService" :version

@@ -1,18 +1,22 @@
 (uiop/package:define-package #:pira/sfn (:use)
                              (:export #:awsstep-functions
-                              #:activity-failed-event-details #:activity-list
+                              #:activity-already-exists
+                              #:activity-does-not-exist
+                              #:activity-failed-event-details
+                              #:activity-limit-exceeded #:activity-list
                               #:activity-list-item
                               #:activity-schedule-failed-event-details
                               #:activity-scheduled-event-details
                               #:activity-started-event-details
                               #:activity-succeeded-event-details
                               #:activity-timed-out-event-details
+                              #:activity-worker-limit-exceeded
                               #:alias-description #:arn #:assigned-variables
                               #:assigned-variables-details #:billed-duration
                               #:billed-memory-used #:billing-details
                               #:character-restricted-name #:client-token
                               #:cloud-watch-events-execution-data-details
-                              #:cloud-watch-logs-log-group
+                              #:cloud-watch-logs-log-group #:conflict-exception
                               #:connector-parameters #:create-activity
                               #:create-state-machine
                               #:create-state-machine-alias #:definition
@@ -27,8 +31,12 @@
                               #:error-message #:evaluation-failed-event-details
                               #:evaluation-failure-location #:event-id
                               #:execution-aborted-event-details
-                              #:execution-failed-event-details #:execution-list
-                              #:execution-list-item #:execution-redrive-filter
+                              #:execution-already-exists
+                              #:execution-does-not-exist
+                              #:execution-failed-event-details
+                              #:execution-limit-exceeded #:execution-list
+                              #:execution-list-item #:execution-not-redrivable
+                              #:execution-redrive-filter
                               #:execution-redrive-status
                               #:execution-redriven-event-details
                               #:execution-started-event-details
@@ -46,8 +54,16 @@
                               #:included-data #:inspection-data
                               #:inspection-data-request
                               #:inspection-data-response #:inspection-level
-                              #:kms-data-key-reuse-period-seconds #:kms-key-id
-                              #:kms-key-state
+                              #:invalid-arn #:invalid-definition
+                              #:invalid-encryption-configuration
+                              #:invalid-execution-input
+                              #:invalid-logging-configuration #:invalid-name
+                              #:invalid-output #:invalid-token
+                              #:invalid-tracing-configuration
+                              #:kms-access-denied-exception
+                              #:kms-data-key-reuse-period-seconds
+                              #:kms-invalid-state-exception #:kms-key-id
+                              #:kms-key-state #:kms-throttling-exception
                               #:lambda-function-failed-event-details
                               #:lambda-function-schedule-failed-event-details
                               #:lambda-function-scheduled-event-details
@@ -69,42 +85,50 @@
                               #:map-run-redriven-event-details
                               #:map-run-started-event-details #:map-run-status
                               #:map-state-started-event-details
-                              #:max-concurrency #:name #:page-size #:page-token
-                              #:publish #:publish-state-machine-version
-                              #:redrive-count #:redrive-execution
+                              #:max-concurrency #:missing-required-parameter
+                              #:name #:page-size #:page-token #:publish
+                              #:publish-state-machine-version #:redrive-count
+                              #:redrive-execution #:resource-not-found
                               #:reveal-secrets #:reverse-order #:revision-id
                               #:routing-configuration-list
                               #:routing-configuration-list-item
                               #:send-task-failure #:send-task-heartbeat
                               #:send-task-success #:sensitive-cause
                               #:sensitive-data #:sensitive-data-job-input
-                              #:sensitive-error #:start-execution
-                              #:start-sync-execution
+                              #:sensitive-error
+                              #:service-quota-exceeded-exception
+                              #:start-execution #:start-sync-execution
                               #:state-entered-event-details
                               #:state-exited-event-details
                               #:state-machine-alias-list
                               #:state-machine-alias-list-item
+                              #:state-machine-already-exists
+                              #:state-machine-deleting
+                              #:state-machine-does-not-exist
+                              #:state-machine-limit-exceeded
                               #:state-machine-list #:state-machine-list-item
                               #:state-machine-status #:state-machine-type
+                              #:state-machine-type-not-supported
                               #:state-machine-version-list
                               #:state-machine-version-list-item #:state-name
                               #:stop-execution #:sync-execution-status #:tag
                               #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-value #:task-credentials
-                              #:task-failed-event-details
+                              #:task-does-not-exist #:task-failed-event-details
                               #:task-scheduled-event-details
                               #:task-start-failed-event-details
                               #:task-started-event-details
                               #:task-submit-failed-event-details
                               #:task-submitted-event-details
-                              #:task-succeeded-event-details
+                              #:task-succeeded-event-details #:task-timed-out
                               #:task-timed-out-event-details #:task-token
                               #:test-execution-status #:test-state
                               #:timeout-in-seconds #:timestamp
                               #:tolerated-failure-count
-                              #:tolerated-failure-percentage #:trace-header
-                              #:tracing-configuration #:url #:unsigned-integer
-                              #:unsigned-long #:untag-resource #:update-map-run
+                              #:tolerated-failure-percentage #:too-many-tags
+                              #:trace-header #:tracing-configuration #:url
+                              #:unsigned-integer #:unsigned-long
+                              #:untag-resource #:update-map-run
                               #:update-state-machine
                               #:update-state-machine-alias
                               #:validate-state-machine-definition
@@ -117,11 +141,17 @@
                               #:validate-state-machine-definition-result-code
                               #:validate-state-machine-definition-severity
                               #:validate-state-machine-definition-truncated
+                              #:validation-exception
                               #:validation-exception-reason #:variable-name
                               #:variable-name-list #:variable-references
                               #:variable-value #:version-description
-                              #:version-weight #:included-details #:truncated))
+                              #:version-weight #:included-details #:truncated
+                              #:sfn-error))
 (common-lisp:in-package #:pira/sfn)
+
+(common-lisp:define-condition sfn-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsstep-functions :shape-name
                                    "AWSStepFunctions" :version "2016-11-23"
@@ -169,13 +199,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ActivityAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error activity-does-not-exist common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ActivityDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-structure activity-failed-event-details
                                     common-lisp:nil
@@ -189,7 +219,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ActivityLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-list activity-list :member activity-list-item)
 
@@ -259,7 +289,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ActivityWorkerLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-type alias-description smithy/sdk/smithy-types:string)
 
@@ -307,7 +337,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-type connector-parameters
                                smithy/sdk/smithy-types:string)
@@ -712,13 +742,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ExecutionAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error execution-does-not-exist common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ExecutionDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-structure execution-failed-event-details
                                     common-lisp:nil
@@ -732,7 +762,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ExecutionLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-list execution-list :member execution-list-item)
 
@@ -772,7 +802,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ExecutionNotRedrivable")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-enum execution-redrive-filter
     common-lisp:nil
@@ -1213,59 +1243,63 @@
 (smithy/sdk/shapes:define-error invalid-arn common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "InvalidArn") (:error-code 400))
+                                (:shape-name "InvalidArn") (:error-code 400)
+                                (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error invalid-definition common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidDefinition")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error invalid-encryption-configuration
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidEncryptionConfiguration")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error invalid-execution-input common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidExecutionInput")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error invalid-logging-configuration common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidLoggingConfiguration")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error invalid-name common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "InvalidName") (:error-code 400))
+                                (:shape-name "InvalidName") (:error-code 400)
+                                (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error invalid-output common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "InvalidOutput") (:error-code 400))
+                                (:shape-name "InvalidOutput") (:error-code 400)
+                                (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error invalid-token common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "InvalidToken") (:error-code 400))
+                                (:shape-name "InvalidToken") (:error-code 400)
+                                (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error invalid-tracing-configuration common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTracingConfiguration")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error kms-access-denied-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "KmsAccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-type kms-data-key-reuse-period-seconds
                                smithy/sdk/smithy-types:integer)
@@ -1276,7 +1310,7 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "KmsInvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-type kms-key-id smithy/sdk/smithy-types:string)
 
@@ -1292,7 +1326,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "KmsThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-structure lambda-function-failed-event-details
                                     common-lisp:nil
@@ -1643,7 +1677,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "MissingRequiredParameter")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-type name smithy/sdk/smithy-types:string)
 
@@ -1695,7 +1729,7 @@
                                  (resource-name :target-type arn :member-name
                                   "resourceName"))
                                 (:shape-name "ResourceNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-type reveal-secrets smithy/sdk/smithy-types:boolean)
 
@@ -1764,7 +1798,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-input start-execution-input common-lisp:nil
                                 ((state-machine-arn :target-type arn :required
@@ -1871,25 +1905,25 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "StateMachineAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error state-machine-deleting common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "StateMachineDeleting")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error state-machine-does-not-exist common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "StateMachineDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-error state-machine-limit-exceeded common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "StateMachineLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-list state-machine-list :member
                                state-machine-list-item)
@@ -1923,7 +1957,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "StateMachineTypeNotSupported")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-list state-machine-version-list :member
                                state-machine-version-list-item)
@@ -1995,7 +2029,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TaskDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-structure task-failed-event-details common-lisp:nil
                                     ((resource-type :target-type name :required
@@ -2098,7 +2132,8 @@
 (smithy/sdk/shapes:define-error task-timed-out common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "TaskTimedOut") (:error-code 400))
+                                (:shape-name "TaskTimedOut") (:error-code 400)
+                                (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-structure task-timed-out-event-details
                                     common-lisp:nil
@@ -2168,7 +2203,8 @@
                                   :member-name "message")
                                  (resource-name :target-type arn :member-name
                                   "resourceName"))
-                                (:shape-name "TooManyTags") (:error-code 400))
+                                (:shape-name "TooManyTags") (:error-code 400)
+                                (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-type trace-header smithy/sdk/smithy-types:string)
 
@@ -2340,7 +2376,7 @@
                                   validation-exception-reason :member-name
                                   "reason"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sfn-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-reason
     common-lisp:nil

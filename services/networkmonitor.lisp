@@ -1,10 +1,12 @@
 (uiop/package:define-package #:pira/networkmonitor (:use)
-                             (:export #:address-family #:aggregation-period
-                              #:arn #:create-monitor
+                             (:export #:access-denied-exception
+                              #:address-family #:aggregation-period #:arn
+                              #:conflict-exception #:create-monitor
                               #:create-monitor-probe-input
                               #:create-monitor-probe-input-list #:create-probe
                               #:delete-monitor #:delete-probe #:destination
-                              #:get-monitor #:get-probe #:iso8601timestamp
+                              #:get-monitor #:get-probe
+                              #:internal-server-exception #:iso8601timestamp
                               #:list-monitors #:list-tags-for-resource
                               #:max-results #:monitor-arn #:monitor-list
                               #:monitor-resource #:monitor-state
@@ -12,10 +14,18 @@
                               #:pagination-token #:port #:probe #:probe-id
                               #:probe-input #:probe-list #:probe-resource
                               #:probe-state #:protocol #:resource-name
-                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-value #:untag-resource #:update-monitor
-                              #:update-probe #:vpc-id))
+                              #:resource-not-found-exception
+                              #:service-quota-exceeded-exception #:tag-key
+                              #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-value #:throttling-exception
+                              #:untag-resource #:update-monitor #:update-probe
+                              #:validation-exception #:vpc-id
+                              #:networkmonitor-error))
 (common-lisp:in-package #:pira/networkmonitor)
+
+(common-lisp:define-condition networkmonitor-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service network-monitor :shape-name "NetworkMonitor"
                                    :version "2023-08-01" :title
@@ -60,7 +70,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class networkmonitor-error))
 
 (smithy/sdk/shapes:define-enum address-family
     common-lisp:nil
@@ -76,7 +87,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class networkmonitor-error))
 
 (smithy/sdk/shapes:define-input create-monitor-input common-lisp:nil
                                 ((monitor-name :target-type resource-name
@@ -272,7 +284,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class networkmonitor-error))
 
 (smithy/sdk/shapes:define-type iso8601timestamp
                                smithy/sdk/smithy-types:timestamp)
@@ -421,7 +434,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class networkmonitor-error))
 
 (smithy/sdk/shapes:define-error service-quota-exceeded-exception
                                 common-lisp:nil
@@ -429,7 +443,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class networkmonitor-error))
 
 (smithy/sdk/shapes:define-type tag-key smithy/sdk/smithy-types:string)
 
@@ -456,7 +471,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class networkmonitor-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -550,7 +566,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class networkmonitor-error))
 
 (smithy/sdk/shapes:define-type vpc-id smithy/sdk/smithy-types:string)
 

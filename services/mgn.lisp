@@ -1,9 +1,9 @@
 (uiop/package:define-package #:pira/mgn (:use)
-                             (:export #:arn #:account-id #:account-resource
-                              #:action-category #:action-description
-                              #:action-id #:action-ids #:action-name
-                              #:appliance-id #:appliance-resource #:application
-                              #:application-aggregated-status
+                             (:export #:arn #:access-denied-exception
+                              #:account-id #:account-resource #:action-category
+                              #:action-description #:action-id #:action-ids
+                              #:action-name #:appliance-id #:appliance-resource
+                              #:application #:application-aggregated-status
                               #:application-description
                               #:application-health-status #:application-id
                               #:application-ids #:application-ids-filter
@@ -26,7 +26,7 @@
                               #:change-server-life-cycle-state-source-server-lifecycle
                               #:change-server-life-cycle-state-source-server-lifecycle-state
                               #:client-idempotency-token
-                              #:cloud-watch-log-group-name
+                              #:cloud-watch-log-group-name #:conflict-exception
                               #:conflict-exception-errors #:connector
                               #:connector-arn #:connector-id
                               #:connector-ids-filter #:connector-name
@@ -121,9 +121,9 @@
                               #:import-task-summary-waves #:initialize-service
                               #:initialize-service-request
                               #:initialize-service-response #:initiated-by
-                              #:iops #:jmes-path-string #:job #:job-id
-                              #:job-log #:job-log-event #:job-log-event-data
-                              #:job-logs
+                              #:internal-server-exception #:iops
+                              #:jmes-path-string #:job #:job-id #:job-log
+                              #:job-log-event #:job-log-event-data #:job-logs
                               #:job-post-launch-actions-launch-status
                               #:job-resource #:job-status #:job-type
                               #:jobs-list #:large-bounded-string
@@ -207,10 +207,12 @@
                               #:replication-configuration-templates
                               #:replication-servers-security-groups-ids
                               #:replication-type #:replication-types
+                              #:resource-not-found-exception
                               #:resume-replication #:retry-data-replication
                               #:retry-data-replication-request #:s3bucket-name
                               #:s3bucket-source #:s3key #:s3log-bucket-name
                               #:secret-arn #:security-group-id
+                              #:service-quota-exceeded-exception
                               #:small-bounded-string #:source-properties
                               #:source-server #:source-server-action-document
                               #:source-server-action-documents
@@ -247,12 +249,14 @@
                               #:terminate-target-instances-request
                               #:terminate-target-instances-request-source-server-ids
                               #:terminate-target-instances-response
-                              #:throughput #:unarchive-application
+                              #:throttling-exception #:throughput
+                              #:unarchive-application
                               #:unarchive-application-request #:unarchive-wave
-                              #:unarchive-wave-request #:untag-resource
-                              #:untag-resource-request #:update-application
-                              #:update-application-request #:update-connector
-                              #:update-launch-configuration
+                              #:unarchive-wave-request
+                              #:uninitialized-account-exception
+                              #:untag-resource #:untag-resource-request
+                              #:update-application #:update-application-request
+                              #:update-connector #:update-launch-configuration
                               #:update-launch-configuration-request
                               #:update-launch-configuration-template
                               #:update-launch-configuration-template-request
@@ -264,6 +268,7 @@
                               #:update-source-server-replication-type
                               #:update-source-server-replication-type-request
                               #:update-wave #:update-wave-request
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vcenter-client
@@ -272,8 +277,12 @@
                               #:wave-aggregated-status #:wave-description
                               #:wave-health-status #:wave-id #:wave-ids-filter
                               #:wave-name #:wave-progress-status
-                              #:wave-resource #:waves-list))
+                              #:wave-resource #:waves-list #:mgn-error))
 (common-lisp:in-package #:pira/mgn)
+
+(common-lisp:define-condition mgn-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service application-migration-service :shape-name
                                    "ApplicationMigrationService" :version
@@ -299,7 +308,7 @@
                                  (code :target-type large-bounded-string
                                   :member-name "code"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class mgn-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -499,7 +508,7 @@ common-lisp:nil
                                  (errors :target-type conflict-exception-errors
                                   :member-name "errors"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class mgn-error))
 
 (smithy/sdk/shapes:define-list conflict-exception-errors :member error-details)
 
@@ -1297,7 +1306,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class mgn-error))
 
 (smithy/sdk/shapes:define-type iops smithy/sdk/smithy-types:long)
 
@@ -2276,7 +2285,7 @@ common-lisp:nil
                                   large-bounded-string :member-name
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class mgn-error))
 
 (smithy/sdk/shapes:define-input resume-replication-request common-lisp:nil
                                 ((source-server-id :target-type
@@ -2335,7 +2344,7 @@ common-lisp:nil
                                   strictly-positive-integer :member-name
                                   "quotaValue"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class mgn-error))
 
 (smithy/sdk/shapes:define-type small-bounded-string
                                smithy/sdk/smithy-types:string)
@@ -2719,7 +2728,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class mgn-error))
 
 (smithy/sdk/shapes:define-type throughput smithy/sdk/smithy-types:long)
 
@@ -2745,7 +2754,7 @@ common-lisp:nil
                                  (code :target-type large-bounded-string
                                   :member-name "code"))
                                 (:shape-name "UninitializedAccountException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class mgn-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -2991,7 +3000,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class mgn-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type large-bounded-string

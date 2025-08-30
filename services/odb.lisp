@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/odb (:use)
                              (:export #:accept-marketplace-registration
-                              #:access #:autonomous-virtual-machine-list
+                              #:access #:access-denied-exception
+                              #:autonomous-virtual-machine-list
                               #:autonomous-virtual-machine-summary
                               #:cloud-autonomous-vm-cluster
                               #:cloud-autonomous-vm-cluster-list
@@ -16,6 +17,7 @@
                               #:cloud-vm-cluster #:cloud-vm-cluster-list
                               #:cloud-vm-cluster-resource
                               #:cloud-vm-cluster-summary #:compute-model
+                              #:conflict-exception
                               #:create-cloud-autonomous-vm-cluster
                               #:create-cloud-exadata-infrastructure
                               #:create-cloud-vm-cluster #:create-odb-network
@@ -43,6 +45,7 @@
                               #:get-odb-network #:get-odb-peering-connection
                               #:gi-version-list #:gi-version-summary
                               #:hours-of-day #:initialize-service
+                              #:internal-server-exception
                               #:iorm-lifecycle-state #:license-model
                               #:list-autonomous-virtual-machines
                               #:list-cloud-autonomous-vm-clusters
@@ -67,20 +70,27 @@
                               #:preference-type #:reboot-db-node
                               #:request-tag-map #:resource-arn
                               #:resource-display-name #:resource-id
-                              #:resource-id-or-arn #:resource-status
+                              #:resource-id-or-arn
+                              #:resource-not-found-exception #:resource-status
                               #:response-tag-map #:s3access #:sensitive-string
                               #:sensitive-string-list
-                              #:service-network-endpoint #:shape-type
+                              #:service-network-endpoint
+                              #:service-quota-exceeded-exception #:shape-type
                               #:start-db-node #:stop-db-node #:string-list
                               #:system-version-list #:system-version-summary
                               #:tag-key #:tag-keys #:tag-resource #:tag-value
-                              #:untag-resource
+                              #:throttling-exception #:untag-resource
                               #:update-cloud-exadata-infrastructure
-                              #:update-odb-network #:validation-exception-field
+                              #:update-odb-network #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vpc-endpoint-type
-                              #:weeks-of-month #:zero-etl-access))
+                              #:weeks-of-month #:zero-etl-access #:odb-error))
 (common-lisp:in-package #:pira/odb)
+
+(common-lisp:define-condition odb-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service odb :shape-name "Odb" :version "2024-08-20"
                                    :title "odb" :operations
@@ -139,7 +149,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class odb-error))
 
 (smithy/sdk/shapes:define-list autonomous-virtual-machine-list :member
                                autonomous-virtual-machine-summary)
@@ -1091,7 +1101,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class odb-error))
 
 (smithy/sdk/shapes:define-input create-cloud-autonomous-vm-cluster-input
                                 common-lisp:nil
@@ -2110,7 +2120,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class odb-error))
 
 (smithy/sdk/shapes:define-enum iorm-lifecycle-state
     common-lisp:nil
@@ -2782,7 +2792,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class odb-error))
 
 (smithy/sdk/shapes:define-enum resource-status
     common-lisp:nil
@@ -2838,7 +2848,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class odb-error))
 
 (smithy/sdk/shapes:define-enum shape-type
     common-lisp:nil
@@ -2931,7 +2941,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class odb-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type resource-arn
@@ -3022,7 +3032,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class odb-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

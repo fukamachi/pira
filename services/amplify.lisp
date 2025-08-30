@@ -11,12 +11,12 @@
                               #:auto-sub-domain-creation-patterns
                               #:auto-sub-domain-iamrole #:backend
                               #:backend-environment #:backend-environment-arn
-                              #:backend-environments #:basic-auth-credentials
-                              #:branch #:branch-arn #:branch-name #:branches
-                              #:build-compute-type #:build-spec #:cache-config
-                              #:cache-config-type #:certificate
-                              #:certificate-arn #:certificate-settings
-                              #:certificate-type
+                              #:backend-environments #:bad-request-exception
+                              #:basic-auth-credentials #:branch #:branch-arn
+                              #:branch-name #:branches #:build-compute-type
+                              #:build-spec #:cache-config #:cache-config-type
+                              #:certificate #:certificate-arn
+                              #:certificate-settings #:certificate-type
                               #:certificate-verification-dnsrecord #:code
                               #:commit-id #:commit-message #:commit-time
                               #:compute-role-arn #:condition #:context
@@ -28,8 +28,10 @@
                               #:dnsrecord #:default-domain #:delete-app
                               #:delete-backend-environment #:delete-branch
                               #:delete-domain-association #:delete-job
-                              #:delete-webhook #:deployment-artifacts
-                              #:description #:display-name #:domain-association
+                              #:delete-webhook
+                              #:dependent-service-failure-exception
+                              #:deployment-artifacts #:description
+                              #:display-name #:domain-association
                               #:domain-association-arn #:domain-associations
                               #:domain-name #:domain-prefix #:domain-status
                               #:enable-auto-branch-creation #:enable-auto-build
@@ -45,37 +47,44 @@
                               #:framework #:generate-access-logs #:get-app
                               #:get-artifact-url #:get-backend-environment
                               #:get-branch #:get-domain-association #:get-job
-                              #:get-webhook #:job #:job-arn #:job-config
-                              #:job-id #:job-reason #:job-status
-                              #:job-summaries #:job-summary #:job-type
-                              #:last-deploy-time #:list-apps #:list-artifacts
-                              #:list-backend-environments #:list-branches
-                              #:list-domain-associations #:list-jobs
-                              #:list-tags-for-resource #:list-webhooks
-                              #:log-url #:md5hash #:max-results
+                              #:get-webhook #:internal-failure-exception #:job
+                              #:job-arn #:job-config #:job-id #:job-reason
+                              #:job-status #:job-summaries #:job-summary
+                              #:job-type #:last-deploy-time
+                              #:limit-exceeded-exception #:list-apps
+                              #:list-artifacts #:list-backend-environments
+                              #:list-branches #:list-domain-associations
+                              #:list-jobs #:list-tags-for-resource
+                              #:list-webhooks #:log-url #:md5hash #:max-results
                               #:max-results-for-list-apps #:name #:next-token
-                              #:oauth-token #:platform #:production-branch
+                              #:not-found-exception #:oauth-token #:platform
+                              #:production-branch
                               #:pull-request-environment-name #:repository
                               #:repository-clone-method #:resource-arn
-                              #:screenshots #:service-role-arn #:source
-                              #:source-url #:source-url-type #:stack-arn
-                              #:stack-name #:stage #:start-deployment
-                              #:start-job #:start-time #:status #:status-reason
-                              #:step #:step-name #:steps #:stop-job
-                              #:sub-domain #:sub-domain-setting
-                              #:sub-domain-settings #:sub-domains #:ttl
-                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-value #:target #:test-artifacts-url
-                              #:test-config-url #:thumbnail-name
-                              #:thumbnail-url #:total-number-of-jobs
+                              #:resource-not-found-exception #:screenshots
+                              #:service-role-arn #:source #:source-url
+                              #:source-url-type #:stack-arn #:stack-name
+                              #:stage #:start-deployment #:start-job
+                              #:start-time #:status #:status-reason #:step
+                              #:step-name #:steps #:stop-job #:sub-domain
+                              #:sub-domain-setting #:sub-domain-settings
+                              #:sub-domains #:ttl #:tag-key #:tag-key-list
+                              #:tag-map #:tag-resource #:tag-value #:target
+                              #:test-artifacts-url #:test-config-url
+                              #:thumbnail-name #:thumbnail-url
+                              #:total-number-of-jobs #:unauthorized-exception
                               #:untag-resource #:update-app #:update-branch
                               #:update-domain-association #:update-status
                               #:update-time #:update-webhook #:upload-url
                               #:verified #:waf-configuration #:waf-status
                               #:web-acl-arn #:webhook #:webhook-arn
                               #:webhook-id #:webhook-url #:webhooks
-                              #:webhook-create-time))
+                              #:webhook-create-time #:amplify-error))
 (common-lisp:in-package #:pira/amplify)
+
+(common-lisp:define-condition amplify-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amplify :shape-name "Amplify" :version
                                    "2017-07-25" :title "AWS Amplify"
@@ -313,7 +322,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class amplify-error))
 
 (smithy/sdk/shapes:define-type basic-auth-credentials
                                smithy/sdk/smithy-types:string)
@@ -819,7 +828,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "DependentServiceFailureException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class amplify-error))
 
 (smithy/sdk/shapes:define-type deployment-artifacts
                                smithy/sdk/smithy-types:string)
@@ -1062,7 +1071,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class amplify-error))
 
 (smithy/sdk/shapes:define-structure job common-lisp:nil
                                     ((summary :target-type job-summary
@@ -1142,7 +1151,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class amplify-error))
 
 (smithy/sdk/shapes:define-input list-apps-request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -1323,7 +1332,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class amplify-error))
 
 (smithy/sdk/shapes:define-type oauth-token smithy/sdk/smithy-types:string)
 
@@ -1364,7 +1373,7 @@
                                  (message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class amplify-error))
 
 (smithy/sdk/shapes:define-map screenshots :key thumbnail-name :value
                               thumbnail-url)
@@ -1562,7 +1571,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class amplify-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type resource-arn

@@ -1,19 +1,36 @@
 (uiop/package:define-package #:pira/sso-oidc (:use)
-                             (:export #:awsssooidcservice #:access-token
+                             (:export #:awsssooidcservice
+                              #:access-denied-exception #:access-token
                               #:arn-type #:assertion #:auth-code
+                              #:authorization-pending-exception
                               #:aws-additional-details #:client-id
                               #:client-name #:client-secret #:client-type
                               #:code-verifier #:create-token
                               #:create-token-with-iam #:device-code #:error
                               #:error-description #:expiration-in-seconds
-                              #:grant-type #:grant-types #:id-token
-                              #:identity-context #:interval-in-seconds
-                              #:location #:long-time-stamp-type #:redirect-uris
+                              #:expired-token-exception #:grant-type
+                              #:grant-types #:id-token #:identity-context
+                              #:internal-server-exception #:interval-in-seconds
+                              #:invalid-client-exception
+                              #:invalid-client-metadata-exception
+                              #:invalid-grant-exception
+                              #:invalid-redirect-uri-exception
+                              #:invalid-request-exception
+                              #:invalid-request-region-exception
+                              #:invalid-scope-exception #:location
+                              #:long-time-stamp-type #:redirect-uris
                               #:refresh-token #:region #:register-client
-                              #:scope #:scopes #:start-device-authorization
-                              #:subject-token #:token-type #:token-type-uri
-                              #:uri #:user-code))
+                              #:scope #:scopes #:slow-down-exception
+                              #:start-device-authorization #:subject-token
+                              #:token-type #:token-type-uri #:uri
+                              #:unauthorized-client-exception
+                              #:unsupported-grant-type-exception #:user-code
+                              #:sso-oidc-error))
 (common-lisp:in-package #:pira/sso-oidc)
+
+(common-lisp:define-condition sso-oidc-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsssooidcservice :shape-name
                                    "AWSSSOOIDCService" :version "2019-06-10"
@@ -38,7 +55,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-type access-token smithy/sdk/smithy-types:string)
 
@@ -55,7 +72,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "AuthorizationPendingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-structure aws-additional-details common-lisp:nil
                                     ((identity-context :target-type
@@ -174,7 +191,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "ExpiredTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-type grant-type smithy/sdk/smithy-types:string)
 
@@ -191,7 +208,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-type interval-in-seconds
                                smithy/sdk/smithy-types:integer)
@@ -203,7 +220,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "InvalidClientException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-error invalid-client-metadata-exception
                                 common-lisp:nil
@@ -213,7 +230,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "InvalidClientMetadataException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-error invalid-grant-exception common-lisp:nil
                                 ((error :target-type error :member-name
@@ -222,7 +239,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "InvalidGrantException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-error invalid-redirect-uri-exception common-lisp:nil
                                 ((error :target-type error :member-name
@@ -231,7 +248,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "InvalidRedirectUriException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((error :target-type error :member-name
@@ -240,7 +257,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-error invalid-request-region-exception
                                 common-lisp:nil
@@ -254,7 +271,7 @@
                                  (region :target-type region :member-name
                                   "region"))
                                 (:shape-name "InvalidRequestRegionException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-error invalid-scope-exception common-lisp:nil
                                 ((error :target-type error :member-name
@@ -263,7 +280,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "InvalidScopeException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-type location smithy/sdk/smithy-types:string)
 
@@ -324,7 +341,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "SlowDownException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-input start-device-authorization-request
                                 common-lisp:nil
@@ -370,7 +387,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "UnauthorizedClientException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-error unsupported-grant-type-exception
                                 common-lisp:nil
@@ -380,7 +397,7 @@
                                   error-description :member-name
                                   "error_description"))
                                 (:shape-name "UnsupportedGrantTypeException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-oidc-error))
 
 (smithy/sdk/shapes:define-type user-code smithy/sdk/smithy-types:string)
 

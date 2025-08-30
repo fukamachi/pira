@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/elasticsearch-service (:use)
                              (:export #:arn #:awsaccount
                               #:accept-inbound-cross-cluster-search-connection
+                              #:access-denied-exception
                               #:access-policies-status #:add-tags
                               #:additional-limit #:additional-limit-list
                               #:advanced-options #:advanced-options-status
@@ -20,7 +21,7 @@
                               #:auto-tune-options-output
                               #:auto-tune-options-status #:auto-tune-state
                               #:auto-tune-status #:auto-tune-type
-                              #:backend-role #:boolean
+                              #:backend-role #:base-exception #:boolean
                               #:cancel-domain-config-change
                               #:cancel-elasticsearch-service-software-update
                               #:cancelled-change-property
@@ -35,7 +36,8 @@
                               #:cold-storage-options #:commit-message
                               #:compatible-elasticsearch-versions-list
                               #:compatible-versions-map #:config-change-status
-                              #:connection-alias #:create-elasticsearch-domain
+                              #:conflict-exception #:connection-alias
+                              #:create-elasticsearch-domain
                               #:create-outbound-cross-cluster-search-connection
                               #:create-package #:create-vpc-endpoint
                               #:created-at #:cross-cluster-search-connection-id
@@ -63,8 +65,10 @@
                               #:describe-reserved-elasticsearch-instance-offerings
                               #:describe-reserved-elasticsearch-instances
                               #:describe-vpc-endpoints #:description
-                              #:disable-timestamp #:dissociate-package
-                              #:domain-arn #:domain-endpoint-options
+                              #:disable-timestamp
+                              #:disabled-operation-exception
+                              #:dissociate-package #:domain-arn
+                              #:domain-endpoint-options
                               #:domain-endpoint-options-status #:domain-id
                               #:domain-info #:domain-info-list
                               #:domain-information #:domain-name
@@ -101,8 +105,12 @@
                               #:inbound-cross-cluster-search-connections
                               #:initiated-by #:instance-count
                               #:instance-count-limits #:instance-limits
-                              #:instance-role #:integer #:integer-class #:issue
-                              #:issues #:kms-key-id #:last-updated #:limit-name
+                              #:instance-role #:integer #:integer-class
+                              #:internal-exception
+                              #:invalid-pagination-token-exception
+                              #:invalid-type-exception #:issue #:issues
+                              #:kms-key-id #:last-updated
+                              #:limit-exceeded-exception #:limit-name
                               #:limit-value #:limit-value-list #:limits
                               #:limits-by-role #:list-domain-names
                               #:list-domains-for-package
@@ -143,6 +151,8 @@
                               #:reserved-elasticsearch-instance-offering
                               #:reserved-elasticsearch-instance-offering-list
                               #:reserved-elasticsearch-instance-payment-option
+                              #:resource-already-exists-exception
+                              #:resource-not-found-exception
                               #:revoke-vpc-endpoint-access #:role-arn
                               #:rollback-on-disable #:s3bucket-name #:s3key
                               #:samlentity-id #:samlidp #:samlmetadata
@@ -170,14 +180,20 @@
                               #:upgrade-step-item #:upgrade-steps-list
                               #:user-pool-id #:username #:vpcderived-info
                               #:vpcderived-info-status #:vpcoptions
-                              #:value-string-list #:volume-type #:vpc-endpoint
-                              #:vpc-endpoint-error #:vpc-endpoint-error-code
+                              #:validation-exception #:value-string-list
+                              #:volume-type #:vpc-endpoint #:vpc-endpoint-error
+                              #:vpc-endpoint-error-code
                               #:vpc-endpoint-error-list #:vpc-endpoint-id
                               #:vpc-endpoint-id-list #:vpc-endpoint-status
                               #:vpc-endpoint-summary
                               #:vpc-endpoint-summary-list #:vpc-endpoints
-                              #:zone-awareness-config))
+                              #:zone-awareness-config
+                              #:elasticsearch-service-error))
 (common-lisp:in-package #:pira/elasticsearch-service)
+
+(common-lisp:define-condition elasticsearch-service-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-elasticsearch-service2015 :shape-name
                                    "AmazonElasticsearchService2015" :version
@@ -263,7 +279,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class elasticsearch-service-error))
 
 (smithy/sdk/shapes:define-structure access-policies-status common-lisp:nil
                                     ((options :target-type policy-document
@@ -505,7 +522,8 @@
 (smithy/sdk/shapes:define-error base-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "BaseException") (:error-code 400))
+                                (:shape-name "BaseException") (:error-code 400)
+                                (:base-class elasticsearch-service-error))
 
 (smithy/sdk/shapes:define-type boolean smithy/sdk/smithy-types:boolean)
 
@@ -683,7 +701,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class elasticsearch-service-error))
 
 (smithy/sdk/shapes:define-type connection-alias smithy/sdk/smithy-types:string)
 
@@ -1129,7 +1148,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DisabledOperationException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class elasticsearch-service-error))
 
 (smithy/sdk/shapes:define-input dissociate-package-request common-lisp:nil
                                 ((package-id :target-type package-id :required
@@ -1755,20 +1775,23 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class elasticsearch-service-error))
 
 (smithy/sdk/shapes:define-error invalid-pagination-token-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidPaginationTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticsearch-service-error))
 
 (smithy/sdk/shapes:define-error invalid-type-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTypeException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class elasticsearch-service-error))
 
 (smithy/sdk/shapes:define-type issue smithy/sdk/smithy-types:string)
 
@@ -1782,7 +1805,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class elasticsearch-service-error))
 
 (smithy/sdk/shapes:define-type limit-name smithy/sdk/smithy-types:string)
 
@@ -2359,13 +2383,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class elasticsearch-service-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class elasticsearch-service-error))
 
 (smithy/sdk/shapes:define-input revoke-vpc-endpoint-access-request
                                 common-lisp:nil
@@ -2784,7 +2810,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticsearch-service-error))
 
 (smithy/sdk/shapes:define-list value-string-list :member non-empty-string)
 

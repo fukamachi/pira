@@ -116,6 +116,7 @@
                               #:canceled-checks-count #:canceled-findings-count
                               #:canceled-things #:canned-access-control-list
                               #:certificate #:certificate-arn
+                              #:certificate-conflict-exception
                               #:certificate-description #:certificate-id
                               #:certificate-mode #:certificate-name
                               #:certificate-path-on-device #:certificate-pem
@@ -127,8 +128,11 @@
                               #:certificate-provider-summary
                               #:certificate-providers
                               #:certificate-signing-request
-                              #:certificate-status #:certificate-validity
-                              #:certificates #:channel-name #:check-compliant
+                              #:certificate-state-exception
+                              #:certificate-status
+                              #:certificate-validation-exception
+                              #:certificate-validity #:certificates
+                              #:channel-name #:check-compliant
                               #:check-custom-configuration #:cidr #:cidrs
                               #:clear-default-authorizer
                               #:client-certificate-callback-arn
@@ -161,7 +165,9 @@
                               #:configuration #:configuration-details
                               #:configuration-status
                               #:confirm-topic-rule-destination
-                              #:confirmation-token #:connection-attribute-name
+                              #:confirmation-token #:conflict-exception
+                              #:conflicting-resource-update-exception
+                              #:connection-attribute-name
                               #:connectivity-api-thing-name
                               #:connectivity-timestamp
                               #:consecutive-datapoints-to-alarm
@@ -201,8 +207,10 @@
                               #:delete-billing-group #:delete-cacertificate
                               #:delete-certificate
                               #:delete-certificate-provider #:delete-command
-                              #:delete-command-execution #:delete-custom-metric
-                              #:delete-dimension #:delete-domain-configuration
+                              #:delete-command-execution
+                              #:delete-conflict-exception
+                              #:delete-custom-metric #:delete-dimension
+                              #:delete-domain-configuration
                               #:delete-dynamic-thing-group
                               #:delete-fleet-metric #:delete-job
                               #:delete-job-execution #:delete-job-template
@@ -341,13 +349,21 @@
                               #:in-progress-checks-count #:in-progress-things
                               #:in-progress-timeout-in-minutes
                               #:increment-factor #:index-name
-                              #:index-names-list #:index-schema #:index-status
-                              #:indexing-filter #:inline-document #:input-name
-                              #:integer-parameter-value #:iot-analytics-action
-                              #:iot-events-action #:iot-site-wise-action
-                              #:is-authenticated #:is-default-version
-                              #:is-disabled #:is-suppressed
-                              #:issuer-certificate-identifier
+                              #:index-names-list #:index-not-ready-exception
+                              #:index-schema #:index-status #:indexing-filter
+                              #:inline-document #:input-name
+                              #:integer-parameter-value #:internal-exception
+                              #:internal-failure-exception
+                              #:internal-server-exception
+                              #:invalid-aggregation-exception
+                              #:invalid-query-exception
+                              #:invalid-request-exception
+                              #:invalid-response-exception
+                              #:invalid-state-transition-exception
+                              #:iot-analytics-action #:iot-events-action
+                              #:iot-site-wise-action #:is-authenticated
+                              #:is-default-version #:is-disabled
+                              #:is-suppressed #:issuer-certificate-identifier
                               #:issuer-certificate-serial-number
                               #:issuer-certificate-subject #:issuer-id #:job
                               #:job-arn #:job-description #:job-document
@@ -374,6 +390,7 @@
                               #:kms-access-role-arn #:kms-key-arn
                               #:lambda-action #:laser-max-results
                               #:last-modified-date #:last-updated-at-date
+                              #:limit-exceeded-exception
                               #:list-active-violations #:list-attached-policies
                               #:list-audit-findings
                               #:list-audit-mitigation-actions-executions
@@ -430,6 +447,7 @@
                               #:long-parameter-value
                               #:machine-learning-detection-config
                               #:maintenance-window #:maintenance-windows
+                              #:malformed-policy-exception
                               #:managed-job-template-name
                               #:managed-job-template-summary
                               #:managed-job-templates-summary-list
@@ -460,12 +478,13 @@
                               #:next-token #:non-compliant-checks-count
                               #:non-compliant-resource
                               #:non-compliant-resources-count
-                              #:nullable-boolean #:number #:number-list
-                              #:number-of-retries #:number-of-things
-                              #:ocsplambda-arn #:otaupdate-arn
-                              #:otaupdate-description #:otaupdate-error-message
-                              #:otaupdate-file #:otaupdate-file-version
-                              #:otaupdate-files #:otaupdate-id #:otaupdate-info
+                              #:not-configured-exception #:nullable-boolean
+                              #:number #:number-list #:number-of-retries
+                              #:number-of-things #:ocsplambda-arn
+                              #:otaupdate-arn #:otaupdate-description
+                              #:otaupdate-error-message #:otaupdate-file
+                              #:otaupdate-file-version #:otaupdate-files
+                              #:otaupdate-id #:otaupdate-info
                               #:otaupdate-status #:otaupdate-summary
                               #:otaupdates-summary #:open-search-action
                               #:optional #:optional-version
@@ -520,6 +539,7 @@
                               #:register-cacertificate #:register-certificate
                               #:register-certificate-without-ca
                               #:register-thing #:registration-code
+                              #:registration-code-validation-exception
                               #:registration-config #:registry-max-results
                               #:registry-s3bucket-name #:registry-s3key-name
                               #:reject-certificate-transfer #:rejected-things
@@ -533,12 +553,16 @@
                               #:replace-topic-rule #:report-type
                               #:republish-action
                               #:reserved-domain-configuration-name #:resource
+                              #:resource-already-exists-exception
                               #:resource-arn #:resource-arns
                               #:resource-attribute-key
                               #:resource-attribute-value #:resource-attributes
                               #:resource-description #:resource-identifier
-                              #:resource-logical-id #:resource-type #:resources
-                              #:response-topic #:retry-attempt #:retry-criteria
+                              #:resource-logical-id
+                              #:resource-not-found-exception
+                              #:resource-registration-failure-exception
+                              #:resource-type #:resources #:response-topic
+                              #:retry-attempt #:retry-criteria
                               #:retry-criteria-list #:retryable-failure-type
                               #:role-alias #:role-alias-arn
                               #:role-alias-description #:role-aliases
@@ -576,9 +600,10 @@
                               #:server-certificate-status-detail
                               #:server-certificate-summary
                               #:server-certificates #:server-name
-                              #:service-name #:service-type #:set-as-active
-                              #:set-as-active-flag #:set-as-default
-                              #:set-default-authorizer
+                              #:service-name #:service-quota-exceeded-exception
+                              #:service-type #:service-unavailable-exception
+                              #:set-as-active #:set-as-active-flag
+                              #:set-as-default #:set-default-authorizer
                               #:set-default-policy-version
                               #:set-logging-options #:set-v2logging-level
                               #:set-v2logging-options #:shadow-name
@@ -588,7 +613,7 @@
                               #:signing-profile-parameter #:signing-region
                               #:skipped-findings-count #:skyfall-max-results
                               #:sns-action #:sns-topic-arn #:sort-order
-                              #:sqs-action
+                              #:sql-parse-exception #:sqs-action
                               #:start-audit-mitigation-actions-task
                               #:start-detect-mitigation-actions-task
                               #:start-on-demand-audit-task
@@ -617,8 +642,8 @@
                               #:target-field-name #:target-field-order
                               #:target-selection
                               #:target-violation-ids-for-detect-mitigation-actions
-                              #:targets #:task-id #:task-id-list
-                              #:task-statistics
+                              #:targets #:task-already-exists-exception
+                              #:task-id #:task-id-list #:task-statistics
                               #:task-statistics-for-audit-check #:template-arn
                               #:template-body #:template-description
                               #:template-name #:template-type
@@ -645,9 +670,10 @@
                               #:thing-type-description #:thing-type-id
                               #:thing-type-list #:thing-type-metadata
                               #:thing-type-name #:thing-type-properties
-                              #:time-filter #:timed-out-things #:timeout-config
-                              #:timestamp #:timestream-action
-                              #:timestream-database-name #:timestream-dimension
+                              #:throttling-exception #:time-filter
+                              #:timed-out-things #:timeout-config #:timestamp
+                              #:timestream-action #:timestream-database-name
+                              #:timestream-dimension
                               #:timestream-dimension-list
                               #:timestream-dimension-name
                               #:timestream-dimension-value
@@ -666,8 +692,11 @@
                               #:topic-rule-list #:topic-rule-list-item
                               #:topic-rule-max-results #:topic-rule-payload
                               #:total-checks-count #:total-findings-count
-                              #:total-resources-count #:transfer-certificate
-                              #:transfer-data #:undo-deprecate
+                              #:total-resources-count
+                              #:transfer-already-completed-exception
+                              #:transfer-certificate
+                              #:transfer-conflict-exception #:transfer-data
+                              #:unauthorized-exception #:undo-deprecate
                               #:unset-default-version #:unsigned-long
                               #:unsigned-long-parameter-value #:untag-resource
                               #:update-account-audit-configuration
@@ -698,11 +727,14 @@
                               #:user-property-key #:user-property-key-name
                               #:user-property-value #:valid
                               #:validate-security-profile-behaviors
-                              #:validation-error #:validation-errors #:value
-                              #:variance #:verification-state
+                              #:validation-error #:validation-errors
+                              #:validation-exception #:value #:variance
+                              #:verification-state
                               #:verification-state-description #:version
-                              #:version-name #:version-number
-                              #:version-update-by-jobs-config #:violation-event
+                              #:version-conflict-exception #:version-name
+                              #:version-number #:version-update-by-jobs-config
+                              #:versions-limit-exceeded-exception
+                              #:violation-event
                               #:violation-event-additional-info
                               #:violation-event-occurrence-range
                               #:violation-event-type #:violation-events
@@ -711,8 +743,12 @@
                               #:vpc-destination-summary #:vpc-id
                               #:waiting-for-data-collection-checks-count
                               #:resource-id #:string-value
-                              #:use-prefix-attribute-value))
+                              #:use-prefix-attribute-value #:iot-error))
 (common-lisp:in-package #:pira/iot)
+
+(common-lisp:define-condition iot-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsiot-service :shape-name "AWSIotService"
                                    :version "2015-05-28" :title "AWS IoT"
@@ -2214,7 +2250,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "CertificateConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-structure certificate-description common-lisp:nil
                                     ((certificate-arn :target-type
@@ -2306,7 +2342,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "CertificateStateException")
-                                (:error-code 406))
+                                (:error-code 406) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-enum certificate-status
     common-lisp:nil
@@ -2322,7 +2358,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "CertificateValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-structure certificate-validity common-lisp:nil
                                     ((not-before :target-type date-type
@@ -2665,7 +2701,7 @@
                                  (resource-id :target-type resource-id
                                   :member-name "resourceId"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-error conflicting-resource-update-exception
                                 common-lisp:nil
@@ -2673,7 +2709,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ConflictingResourceUpdateException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-type connection-attribute-name
                                smithy/sdk/smithy-types:string)
@@ -3812,7 +3848,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "DeleteConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-input delete-custom-metric-request common-lisp:nil
                                 ((metric-name :target-type metric-name
@@ -6244,7 +6280,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "IndexNotReadyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-type index-schema smithy/sdk/smithy-types:string)
 
@@ -6274,50 +6310,50 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "InternalException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-error internal-failure-exception common-lisp:nil
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-error invalid-aggregation-exception common-lisp:nil
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "InvalidAggregationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-error invalid-query-exception common-lisp:nil
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "InvalidQueryException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-error invalid-response-exception common-lisp:nil
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "InvalidResponseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-error invalid-state-transition-exception
                                 common-lisp:nil
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "InvalidStateTransitionException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-structure iot-analytics-action common-lisp:nil
                                     ((channel-arn :target-type aws-arn
@@ -6747,7 +6783,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 410))
+                                (:error-code 410) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-input list-active-violations-request common-lisp:nil
                                 ((thing-name :target-type
@@ -8344,7 +8380,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "MalformedPolicyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-type managed-job-template-name
                                smithy/sdk/smithy-types:string)
@@ -8628,7 +8664,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "NotConfiguredException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-type nullable-boolean smithy/sdk/smithy-types:boolean)
 
@@ -9251,7 +9287,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "RegistrationCodeValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-structure registration-config common-lisp:nil
                                     ((template-body :target-type template-body
@@ -9396,7 +9432,7 @@
                                  (resource-arn :target-type resource-arn
                                   :member-name "resourceArn"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-type resource-arn smithy/sdk/smithy-types:string)
 
@@ -9454,7 +9490,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-error resource-registration-failure-exception
                                 common-lisp:nil
@@ -9462,7 +9498,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ResourceRegistrationFailureException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -9810,7 +9846,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-enum service-type
     common-lisp:nil
@@ -9822,7 +9858,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-type set-as-active smithy/sdk/smithy-types:boolean)
 
@@ -9944,7 +9980,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "SqlParseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-structure sqs-action common-lisp:nil
                                     ((role-arn :target-type aws-arn :required
@@ -10310,7 +10346,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "TaskAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-type task-id smithy/sdk/smithy-types:string)
 
@@ -10682,7 +10718,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-structure time-filter common-lisp:nil
                                     ((after :target-type string-date-time
@@ -10920,7 +10956,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "TransferAlreadyCompletedException")
-                                (:error-code 410))
+                                (:error-code 410) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-input transfer-certificate-request common-lisp:nil
                                 ((certificate-id :target-type certificate-id
@@ -10944,7 +10980,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "TransferConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-structure transfer-data common-lisp:nil
                                     ((transfer-message :target-type message
@@ -10963,7 +10999,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-type undo-deprecate smithy/sdk/smithy-types:boolean)
 
@@ -11784,7 +11820,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-type value smithy/sdk/smithy-types:string)
 
@@ -11806,7 +11842,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "VersionConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-type version-name smithy/sdk/smithy-types:string)
 
@@ -11825,7 +11861,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "VersionsLimitExceededException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iot-error))
 
 (smithy/sdk/shapes:define-structure violation-event common-lisp:nil
                                     ((violation-id :target-type violation-id

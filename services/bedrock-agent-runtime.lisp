@@ -1,6 +1,6 @@
 (uiop/package:define-package #:pira/bedrock-agent-runtime (:use)
                              (:export #:apischema #:awsresource-arn
-                              #:action-group-executor
+                              #:access-denied-exception #:action-group-executor
                               #:action-group-invocation-input
                               #:action-group-invocation-output
                               #:action-group-name #:action-group-output-string
@@ -24,7 +24,8 @@
                               #:api-invocation-input #:api-parameter
                               #:api-parameters #:api-path #:api-request-body
                               #:api-result #:attribute-type #:attribution
-                              #:base-prompt-template #:bedrock-model-arn
+                              #:bad-gateway-exception #:base-prompt-template
+                              #:bedrock-model-arn
                               #:bedrock-model-configurations
                               #:bedrock-reranking-configuration
                               #:bedrock-reranking-model-arn
@@ -40,18 +41,18 @@
                               #:collaborator-configuration
                               #:collaborator-configurations #:collaborators
                               #:condition-result-event #:confirmation-state
-                              #:content-block #:content-blocks #:content-body
-                              #:content-map #:content-type
-                              #:conversation-history #:conversation-role
-                              #:create-invocation #:create-session
-                              #:creation-mode #:custom-control-method
-                              #:custom-orchestration
+                              #:conflict-exception #:content-block
+                              #:content-blocks #:content-body #:content-map
+                              #:content-type #:conversation-history
+                              #:conversation-role #:create-invocation
+                              #:create-session #:creation-mode
+                              #:custom-control-method #:custom-orchestration
                               #:custom-orchestration-trace
                               #:custom-orchestration-trace-event
                               #:date-timestamp #:delete-agent-memory
-                              #:delete-session #:end-session #:execution-type
-                              #:external-source #:external-source-type
-                              #:external-sources
+                              #:delete-session #:dependency-failed-exception
+                              #:end-session #:execution-type #:external-source
+                              #:external-source-type #:external-sources
                               #:external-sources-generation-configuration
                               #:external-sources-retrieve-and-generate-configuration
                               #:failure-reason-string #:failure-trace
@@ -150,11 +151,12 @@
                               #:inline-bedrock-model-configurations
                               #:inline-session-state #:input-file #:input-files
                               #:input-prompt #:input-query-type #:input-text
-                              #:instruction #:invocation-description
-                              #:invocation-identifier #:invocation-input
-                              #:invocation-input-member #:invocation-inputs
-                              #:invocation-resource #:invocation-result-member
-                              #:invocation-step #:invocation-step-payload
+                              #:instruction #:internal-server-exception
+                              #:invocation-description #:invocation-identifier
+                              #:invocation-input #:invocation-input-member
+                              #:invocation-inputs #:invocation-resource
+                              #:invocation-result-member #:invocation-step
+                              #:invocation-step-payload
                               #:invocation-step-resource
                               #:invocation-step-summaries
                               #:invocation-step-summary #:invocation-summaries
@@ -187,6 +189,7 @@
                               #:metadata-configuration-for-reranking
                               #:mime-type #:model-identifier
                               #:model-invocation-input
+                              #:model-not-ready-exception
                               #:model-performance-configuration #:name
                               #:next-token #:node-error-code
                               #:node-execution-content #:node-failure-event
@@ -240,9 +243,9 @@
                               #:reranking-metadata-selection-mode
                               #:reranking-metadata-selective-mode-configuration
                               #:resource-description #:resource-name
-                              #:response-body #:response-state
-                              #:response-stream #:retrieval-filter
-                              #:retrieval-filter-list
+                              #:resource-not-found-exception #:response-body
+                              #:response-state #:response-stream
+                              #:retrieval-filter #:retrieval-filter-list
                               #:retrieval-result-confluence-location
                               #:retrieval-result-content
                               #:retrieval-result-content-column
@@ -280,13 +283,14 @@
                               #:s3identifier #:s3location #:s3object-doc
                               #:s3object-file #:s3object-key #:s3uri
                               #:satisfied-condition #:satisfied-conditions
-                              #:search-type #:session-arn
-                              #:session-attributes-map #:session-id
-                              #:session-identifier #:session-metadata-key
-                              #:session-metadata-map #:session-metadata-value
-                              #:session-resource #:session-state
-                              #:session-status #:session-summaries
-                              #:session-summary #:session-ttl #:source #:span
+                              #:search-type #:service-quota-exceeded-exception
+                              #:session-arn #:session-attributes-map
+                              #:session-id #:session-identifier
+                              #:session-metadata-key #:session-metadata-map
+                              #:session-metadata-value #:session-resource
+                              #:session-state #:session-status
+                              #:session-summaries #:session-summary
+                              #:session-ttl #:source #:span
                               #:start-flow-execution #:stop-flow-execution
                               #:stop-sequences #:streaming-configurations
                               #:summary-text #:tag-key #:tag-key-list
@@ -297,16 +301,21 @@
                               #:text-response-part #:text-to-sql-configuration
                               #:text-to-sql-configuration-type
                               #:text-to-sql-knowledge-base-configuration
-                              #:top-k #:top-p #:trace #:trace-id
-                              #:trace-knowledge-base-id #:trace-part
+                              #:throttling-exception #:top-k #:top-p #:trace
+                              #:trace-id #:trace-knowledge-base-id #:trace-part
                               #:transformation-configuration #:type
                               #:untag-resource #:update-session #:usage #:uuid
+                              #:validation-exception
                               #:vector-search-bedrock-reranking-configuration
                               #:vector-search-bedrock-reranking-model-configuration
                               #:vector-search-reranking-configuration
                               #:vector-search-reranking-configuration-type
-                              #:verb #:version))
+                              #:verb #:version #:bedrock-agent-runtime-error))
 (common-lisp:in-package #:pira/bedrock-agent-runtime)
+
+(common-lisp:define-condition bedrock-agent-runtime-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-bedrock-agent-run-time-service
                                    :shape-name
@@ -337,7 +346,8 @@
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class bedrock-agent-runtime-error))
 
 (smithy/sdk/shapes:define-union action-group-executor common-lisp:nil
                                 ((lambda :target-type lambda-resource-arn
@@ -611,7 +621,8 @@
                                  (resource-name :target-type non-blank-string
                                   :member-name "resourceName"))
                                 (:shape-name "BadGatewayException")
-                                (:error-code 502))
+                                (:error-code 502)
+                                (:base-class bedrock-agent-runtime-error))
 
 (smithy/sdk/shapes:define-type base-prompt-template
                                smithy/sdk/smithy-types:string)
@@ -827,7 +838,8 @@
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class bedrock-agent-runtime-error))
 
 (smithy/sdk/shapes:define-union content-block common-lisp:nil
                                 ((text :target-type
@@ -975,7 +987,8 @@
                                  (resource-name :target-type non-blank-string
                                   :member-name "resourceName"))
                                 (:shape-name "DependencyFailedException")
-                                (:error-code 424))
+                                (:error-code 424)
+                                (:base-class bedrock-agent-runtime-error))
 
 (smithy/sdk/shapes:define-input end-session-request common-lisp:nil
                                 ((session-identifier :target-type
@@ -2338,7 +2351,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "reason"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class bedrock-agent-runtime-error))
 
 (smithy/sdk/shapes:define-type invocation-description
                                smithy/sdk/smithy-types:string)
@@ -3015,7 +3029,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ModelNotReadyException")
-                                (:error-code 424))
+                                (:error-code 424)
+                                (:base-class bedrock-agent-runtime-error))
 
 (smithy/sdk/shapes:define-structure model-performance-configuration
                                     common-lisp:nil
@@ -3748,7 +3763,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class bedrock-agent-runtime-error))
 
 (smithy/sdk/shapes:define-map response-body :key smithy/sdk/smithy-types:string
                               :value content-body)
@@ -4286,7 +4302,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bedrock-agent-runtime-error))
 
 (smithy/sdk/shapes:define-type session-arn smithy/sdk/smithy-types:string)
 
@@ -4525,7 +4542,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class bedrock-agent-runtime-error))
 
 (smithy/sdk/shapes:define-type top-k smithy/sdk/smithy-types:integer)
 
@@ -4654,7 +4672,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bedrock-agent-runtime-error))
 
 (smithy/sdk/shapes:define-structure
  vector-search-bedrock-reranking-configuration common-lisp:nil

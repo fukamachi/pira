@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/kinesis (:use)
-                             (:export #:add-tags-to-stream #:boolean-object
+                             (:export #:access-denied-exception
+                              #:add-tags-to-stream #:boolean-object
                               #:child-shard #:child-shard-list #:consumer
                               #:consumer-arn #:consumer-count-object
                               #:consumer-description #:consumer-list
@@ -14,12 +15,21 @@
                               #:enable-enhanced-monitoring #:encryption-type
                               #:enhanced-metrics #:enhanced-monitoring-list
                               #:enhanced-monitoring-output #:error-code
-                              #:error-message #:get-records
+                              #:error-message #:expired-iterator-exception
+                              #:expired-next-token-exception #:get-records
                               #:get-records-input-limit #:get-resource-policy
                               #:get-shard-iterator #:hash-key #:hash-key-range
-                              #:increase-stream-retention-period #:key-id
-                              #:kinesis-20131202 #:list-shards
-                              #:list-shards-input-limit #:list-stream-consumers
+                              #:increase-stream-retention-period
+                              #:internal-failure-exception
+                              #:invalid-argument-exception
+                              #:kmsaccess-denied-exception
+                              #:kmsdisabled-exception
+                              #:kmsinvalid-state-exception
+                              #:kmsnot-found-exception #:kmsopt-in-required
+                              #:kmsthrottling-exception #:key-id
+                              #:kinesis-20131202 #:limit-exceeded-exception
+                              #:list-shards #:list-shards-input-limit
+                              #:list-stream-consumers
                               #:list-stream-consumers-input-limit
                               #:list-streams #:list-streams-input-limit
                               #:list-tags-for-resource #:list-tags-for-stream
@@ -28,14 +38,18 @@
                               #:millis-behind-latest #:next-token
                               #:on-demand-stream-count-limit-object
                               #:on-demand-stream-count-object #:partition-key
-                              #:policy #:positive-integer-object #:put-record
-                              #:put-records #:put-records-request-entry
+                              #:policy #:positive-integer-object
+                              #:provisioned-throughput-exceeded-exception
+                              #:put-record #:put-records
+                              #:put-records-request-entry
                               #:put-records-request-entry-list
                               #:put-records-result-entry
                               #:put-records-result-entry-list
                               #:put-resource-policy #:record #:record-list
                               #:register-stream-consumer
                               #:remove-tags-from-stream #:resource-arn
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception
                               #:retention-period-hours #:scaling-type
                               #:sequence-number #:sequence-number-range #:shard
                               #:shard-count-object #:shard-filter
@@ -53,8 +67,13 @@
                               #:tag-key-list #:tag-list #:tag-map
                               #:tag-resource #:tag-value #:timestamp
                               #:untag-resource #:update-shard-count
-                              #:update-stream-mode))
+                              #:update-stream-mode #:validation-exception
+                              #:kinesis-error))
 (common-lisp:in-package #:pira/kinesis)
+
+(common-lisp:define-condition kinesis-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service kinesis-20131202 :shape-name
                                    "Kinesis_20131202" :version "2013-12-02"
@@ -99,7 +118,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-input add-tags-to-stream-input common-lisp:nil
                                 ((stream-name :target-type stream-name
@@ -359,13 +378,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ExpiredIteratorException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-error expired-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ExpiredNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-input get-records-input common-lisp:nil
                                 ((shard-iterator :target-type shard-iterator
@@ -454,49 +473,49 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-error invalid-argument-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-error kmsaccess-denied-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "KMSAccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-error kmsdisabled-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "KMSDisabledException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-error kmsinvalid-state-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "KMSInvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-error kmsnot-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "KMSNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-error kmsopt-in-required common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "KMSOptInRequired")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-error kmsthrottling-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "KMSThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-type key-id smithy/sdk/smithy-types:string)
 
@@ -504,7 +523,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-input list-shards-input common-lisp:nil
                                 ((stream-name :target-type stream-name
@@ -670,7 +689,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ProvisionedThroughputExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-input put-record-input common-lisp:nil
                                 ((stream-name :target-type stream-name
@@ -806,13 +825,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/shapes:define-type retention-period-hours
                                smithy/sdk/smithy-types:integer)
@@ -1194,7 +1213,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kinesis-error))
 
 (smithy/sdk/operation:define-operation add-tags-to-stream :shape-name
                                        "AddTagsToStream" :input

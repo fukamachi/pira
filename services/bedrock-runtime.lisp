@@ -1,5 +1,5 @@
 (uiop/package:define-package #:pira/bedrock-runtime (:use)
-                             (:export #:account-id
+                             (:export #:access-denied-exception #:account-id
                               #:additional-model-response-field-paths
                               #:amazon-bedrock-frontend-service
                               #:any-tool-choice #:apply-guardrail
@@ -22,9 +22,10 @@
                               #:citation-source-content-list
                               #:citation-source-content-list-delta #:citations
                               #:citations-config #:citations-content-block
-                              #:citations-delta #:content-block
-                              #:content-block-delta #:content-block-delta-event
-                              #:content-block-start #:content-block-start-event
+                              #:citations-delta #:conflict-exception
+                              #:content-block #:content-block-delta
+                              #:content-block-delta-event #:content-block-start
+                              #:content-block-start-event
                               #:content-block-stop-event #:content-blocks
                               #:conversation-role #:conversational-model-id
                               #:converse #:converse-metrics #:converse-output
@@ -141,8 +142,8 @@
                               #:image-block #:image-format #:image-source
                               #:images-guarded #:images-total
                               #:inference-configuration #:inference-resource
-                              #:invocation-arn #:invoke-model
-                              #:invoke-model-identifier
+                              #:internal-server-exception #:invocation-arn
+                              #:invoke-model #:invoke-model-identifier
                               #:invoke-model-with-bidirectional-stream
                               #:invoke-model-with-bidirectional-stream-input
                               #:invoke-model-with-bidirectional-stream-output
@@ -150,8 +151,10 @@
                               #:invoked-model-id #:kms-key-id
                               #:list-async-invokes #:max-results #:message
                               #:message-start-event #:message-stop-event
-                              #:messages #:mime-type #:model-input-payload
-                              #:model-outputs #:non-blank-string
+                              #:messages #:mime-type #:model-error-exception
+                              #:model-input-payload #:model-not-ready-exception
+                              #:model-outputs #:model-stream-error-exception
+                              #:model-timeout-exception #:non-blank-string
                               #:non-empty-string #:non-empty-string-list
                               #:non-negative-integer #:pagination-token
                               #:part-body #:payload-part
@@ -161,23 +164,32 @@
                               #:reasoning-content-block
                               #:reasoning-content-block-delta
                               #:reasoning-text-block #:request-metadata
-                              #:response-stream #:s3location #:s3uri
+                              #:resource-not-found-exception #:response-stream
+                              #:s3location #:s3uri
+                              #:service-quota-exceeded-exception
+                              #:service-unavailable-exception
                               #:sort-async-invocation-by #:sort-order
                               #:specific-tool-choice #:start-async-invoke
                               #:status-code #:stop-reason
                               #:system-content-block #:system-content-blocks
                               #:tag #:tag-key #:tag-list #:tag-value
                               #:text-characters-guarded #:text-characters-total
-                              #:timestamp #:token-usage #:tool #:tool-choice
-                              #:tool-configuration #:tool-input-schema
-                              #:tool-name #:tool-result-block
-                              #:tool-result-content-block
+                              #:throttling-exception #:timestamp #:token-usage
+                              #:tool #:tool-choice #:tool-configuration
+                              #:tool-input-schema #:tool-name
+                              #:tool-result-block #:tool-result-content-block
                               #:tool-result-content-blocks #:tool-result-status
                               #:tool-specification #:tool-use-block
                               #:tool-use-block-delta #:tool-use-block-start
-                              #:tool-use-id #:tools #:trace #:video-block
-                              #:video-format #:video-source))
+                              #:tool-use-id #:tools #:trace
+                              #:validation-exception #:video-block
+                              #:video-format #:video-source
+                              #:bedrock-runtime-error))
 (common-lisp:in-package #:pira/bedrock-runtime)
+
+(common-lisp:define-condition bedrock-runtime-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-bedrock-frontend-service :shape-name
                                    "AmazonBedrockFrontendService" :version
@@ -198,7 +210,8 @@
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class bedrock-runtime-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -431,7 +444,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bedrock-runtime-error))
 
 (smithy/sdk/shapes:define-union content-block common-lisp:nil
                                 ((text :target-type
@@ -1701,7 +1715,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class bedrock-runtime-error))
 
 (smithy/sdk/shapes:define-type invocation-arn smithy/sdk/smithy-types:string)
 
@@ -1921,7 +1936,8 @@ common-lisp:nil
                                  (resource-name :target-type non-blank-string
                                   :member-name "resourceName"))
                                 (:shape-name "ModelErrorException")
-                                (:error-code 424))
+                                (:error-code 424)
+                                (:base-class bedrock-runtime-error))
 
 (smithy/sdk/shapes:define-type model-input-payload
                                smithy/sdk/smithy-types:document)
@@ -1930,7 +1946,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ModelNotReadyException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class bedrock-runtime-error))
 
 (smithy/sdk/shapes:define-list model-outputs :member guardrail-output-text)
 
@@ -1943,13 +1960,15 @@ common-lisp:nil
                                   non-blank-string :member-name
                                   "originalMessage"))
                                 (:shape-name "ModelStreamErrorException")
-                                (:error-code 424))
+                                (:error-code 424)
+                                (:base-class bedrock-runtime-error))
 
 (smithy/sdk/shapes:define-error model-timeout-exception common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ModelTimeoutException")
-                                (:error-code 408))
+                                (:error-code 408)
+                                (:base-class bedrock-runtime-error))
 
 (smithy/sdk/shapes:define-type non-blank-string smithy/sdk/smithy-types:string)
 
@@ -2034,7 +2053,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class bedrock-runtime-error))
 
 (smithy/sdk/shapes:define-union response-stream common-lisp:nil
                                 ((chunk :target-type payload-part :member-name
@@ -2073,13 +2093,15 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bedrock-runtime-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class bedrock-runtime-error))
 
 (smithy/sdk/shapes:define-enum sort-async-invocation-by
     common-lisp:nil
@@ -2166,7 +2188,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class bedrock-runtime-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -2305,7 +2328,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bedrock-runtime-error))
 
 (smithy/sdk/shapes:define-structure video-block common-lisp:nil
                                     ((format :target-type video-format

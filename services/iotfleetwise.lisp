@@ -1,6 +1,6 @@
 (uiop/package:define-package #:pira/iotfleetwise (:use)
-                             (:export #:actuator #:amazon-resource-name
-                              #:associate-vehicle-fleet
+                             (:export #:access-denied-exception #:actuator
+                              #:amazon-resource-name #:associate-vehicle-fleet
                               #:associate-vehicle-fleet-request
                               #:associate-vehicle-fleet-response #:attribute
                               #:batch-create-vehicle
@@ -17,7 +17,8 @@
                               #:cloud-watch-log-group-name #:collection-scheme
                               #:compression #:condition-based-collection-scheme
                               #:condition-based-signal-fetch-config
-                              #:create-campaign #:create-campaign-request
+                              #:conflict-exception #:create-campaign
+                              #:create-campaign-request
                               #:create-campaign-response
                               #:create-decoder-manifest
                               #:create-decoder-manifest-request
@@ -47,6 +48,7 @@
                               #:data-partition-upload-options #:data-partitions
                               #:decoder-manifest-resource
                               #:decoder-manifest-summary
+                              #:decoder-manifest-validation-exception
                               #:default-for-unmapped-signals-type
                               #:delete-campaign #:delete-campaign-request
                               #:delete-campaign-response
@@ -98,11 +100,15 @@
                               #:import-signal-catalog
                               #:import-signal-catalog-request
                               #:import-signal-catalog-response #:interface-id
-                              #:interface-ids #:invalid-network-interface
-                              #:invalid-network-interfaces #:invalid-signal
+                              #:interface-ids #:internal-server-exception
+                              #:invalid-network-interface
+                              #:invalid-network-interfaces
+                              #:invalid-node-exception #:invalid-signal
                               #:invalid-signal-decoder
                               #:invalid-signal-decoders #:invalid-signals
-                              #:io-tautobahn-control-plane #:list-campaigns
+                              #:invalid-signals-exception
+                              #:io-tautobahn-control-plane
+                              #:limit-exceeded-exception #:list-campaigns
                               #:list-campaigns-request
                               #:list-campaigns-response
                               #:list-decoder-manifest-network-interfaces
@@ -163,9 +169,11 @@
                               #:ros2primitive-type #:register-account
                               #:register-account-request
                               #:register-account-response #:registration-status
-                              #:resource-identifier #:resource-unique-id
-                              #:retry-after-seconds #:s3bucket-arn #:s3config
-                              #:sensor #:signal-catalog-resource
+                              #:resource-identifier
+                              #:resource-not-found-exception
+                              #:resource-unique-id #:retry-after-seconds
+                              #:s3bucket-arn #:s3config #:sensor
+                              #:signal-catalog-resource
                               #:signal-catalog-summary #:signal-decoder
                               #:signal-decoder-failure-reason
                               #:signal-decoder-type #:signal-decoders
@@ -197,7 +205,8 @@
                               #:structured-message-list-type #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:time-based-collection-scheme
+                              #:tag-value #:throttling-exception
+                              #:time-based-collection-scheme
                               #:time-based-signal-fetch-config #:time-period
                               #:time-unit #:timestream-config
                               #:timestream-database-name
@@ -225,6 +234,7 @@
                               #:update-vehicle-request-item
                               #:update-vehicle-response
                               #:update-vehicle-response-item
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason
@@ -258,8 +268,12 @@
                               #:update-vehicle-request-items
                               #:update-vehicle-response-items #:vehicle-name
                               #:vehicle-summaries #:vehicles
-                              #:wildcard-signal-name))
+                              #:wildcard-signal-name #:iotfleetwise-error))
 (common-lisp:in-package #:pira/iotfleetwise)
+
+(common-lisp:define-condition iotfleetwise-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service io-tautobahn-control-plane :shape-name
                                    "IoTAutobahnControlPlane" :version
@@ -285,7 +299,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class iotfleetwise-error))
 
 (smithy/sdk/shapes:define-structure actuator common-lisp:nil
                                     ((fully-qualified-name :target-type string
@@ -556,7 +571,8 @@ common-lisp:nil
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iotfleetwise-error))
 
 (smithy/sdk/shapes:define-input create-campaign-request common-lisp:nil
                                 ((name :target-type campaign-name :required
@@ -956,7 +972,8 @@ common-lisp:nil
                                   "message"))
                                 (:shape-name
                                  "DecoderManifestValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotfleetwise-error))
 
 (smithy/sdk/shapes:define-enum default-for-unmapped-signals-type
     common-lisp:nil
@@ -1503,7 +1520,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iotfleetwise-error))
 
 (smithy/sdk/shapes:define-structure invalid-network-interface common-lisp:nil
                                     ((interface-id :target-type interface-id
@@ -1524,7 +1542,8 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidNodeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotfleetwise-error))
 
 (smithy/sdk/shapes:define-structure invalid-signal common-lisp:nil
                                     ((name :target-type fully-qualified-name
@@ -1554,7 +1573,8 @@ common-lisp:nil
                                  (invalid-signals :target-type invalid-signals
                                   :member-name "invalidSignals"))
                                 (:shape-name "InvalidSignalsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotfleetwise-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type string :required
@@ -1564,7 +1584,8 @@ common-lisp:nil
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotfleetwise-error))
 
 (smithy/sdk/shapes:define-input list-campaigns-request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -2270,7 +2291,8 @@ common-lisp:nil
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iotfleetwise-error))
 
 (smithy/sdk/shapes:define-type resource-unique-id
                                smithy/sdk/smithy-types:string)
@@ -2647,7 +2669,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class iotfleetwise-error))
 
 (smithy/sdk/shapes:define-structure time-based-collection-scheme
                                     common-lisp:nil
@@ -2993,7 +3016,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotfleetwise-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

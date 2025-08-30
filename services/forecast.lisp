@@ -71,9 +71,12 @@
                               #:hyper-parameter-tuning-job-config #:import-mode
                               #:input-data-config #:integer
                               #:integer-parameter-range
-                              #:integer-parameter-ranges #:kmskey-arn
-                              #:list-dataset-groups #:list-dataset-import-jobs
-                              #:list-datasets #:list-explainabilities
+                              #:integer-parameter-ranges
+                              #:invalid-input-exception
+                              #:invalid-next-token-exception #:kmskey-arn
+                              #:limit-exceeded-exception #:list-dataset-groups
+                              #:list-dataset-import-jobs #:list-datasets
+                              #:list-explainabilities
                               #:list-explainability-exports
                               #:list-forecast-export-jobs #:list-forecasts
                               #:list-monitor-evaluations #:list-monitors
@@ -100,7 +103,10 @@
                               #:predictor-monitor-evaluation
                               #:predictor-monitor-evaluations
                               #:predictor-summary #:predictors
-                              #:reference-predictor-summary #:resume-resource
+                              #:reference-predictor-summary
+                              #:resource-already-exists-exception
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception #:resume-resource
                               #:s3config #:s3path #:scaling-type #:schema
                               #:schema-attribute #:schema-attributes #:state
                               #:statistics #:status #:stop-resource #:string
@@ -128,8 +134,12 @@
                               #:what-if-forecast-export-summary
                               #:what-if-forecast-exports
                               #:what-if-forecast-summary #:what-if-forecasts
-                              #:window-summary))
+                              #:window-summary #:forecast-error))
 (common-lisp:in-package #:pira/forecast)
+
+(common-lisp:define-condition forecast-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-forecast :shape-name "AmazonForecast"
                                    :version "2018-06-26" :title
@@ -1677,13 +1687,13 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class forecast-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class forecast-error))
 
 (smithy/sdk/shapes:define-type kmskey-arn smithy/sdk/smithy-types:string)
 
@@ -1691,7 +1701,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class forecast-error))
 
 (smithy/sdk/shapes:define-input list-dataset-groups-request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -2207,19 +2217,19 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class forecast-error))
 
 (smithy/sdk/shapes:define-error resource-in-use-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class forecast-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class forecast-error))
 
 (smithy/sdk/shapes:define-input resume-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required

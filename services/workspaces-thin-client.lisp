@@ -1,6 +1,8 @@
 (uiop/package:define-package #:pira/workspaces-thin-client (:use)
-                             (:export #:activation-code #:apply-time-of #:arn
-                              #:client-token #:create-environment #:day-of-week
+                             (:export #:access-denied-exception
+                              #:activation-code #:apply-time-of #:arn
+                              #:client-token #:conflict-exception
+                              #:create-environment #:day-of-week
                               #:day-of-week-list #:delete-device
                               #:delete-environment #:deregister-device
                               #:desktop-endpoint #:desktop-type #:device
@@ -15,13 +17,16 @@
                               #:environment-software-set-compliance-status
                               #:environment-summary #:exception-message
                               #:field-name #:get-device #:get-environment
-                              #:get-software-set #:hour #:kms-key-arn
+                              #:get-software-set #:hour
+                              #:internal-server-exception #:kms-key-arn
                               #:list-devices #:list-environments
                               #:list-software-sets #:list-tags-for-resource
                               #:maintenance-window #:maintenance-window-type
                               #:max-results #:minute #:pagination-token
-                              #:quota-code #:resource-id #:resource-type
-                              #:retry-after-seconds #:service-code #:software
+                              #:quota-code #:resource-id
+                              #:resource-not-found-exception #:resource-type
+                              #:retry-after-seconds #:service-code
+                              #:service-quota-exceeded-exception #:software
                               #:software-list #:software-set #:software-set-id
                               #:software-set-id-or-empty-string
                               #:software-set-list #:software-set-summary
@@ -30,13 +35,19 @@
                               #:software-set-update-status
                               #:software-set-validation-status #:tag-keys
                               #:tag-resource #:tags-map #:target-device-status
-                              #:thin-client #:timestamp #:untag-resource
-                              #:update-device #:update-environment
-                              #:update-software-set #:user-id
+                              #:thin-client #:throttling-exception #:timestamp
+                              #:untag-resource #:update-device
+                              #:update-environment #:update-software-set
+                              #:user-id #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason))
+                              #:validation-exception-reason
+                              #:workspaces-thin-client-error))
 (common-lisp:in-package #:pira/workspaces-thin-client)
+
+(common-lisp:define-condition workspaces-thin-client-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service thin-client :shape-name "ThinClient"
                                    :version "2023-08-22" :title
@@ -62,7 +73,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class workspaces-thin-client-error))
 
 (smithy/sdk/shapes:define-type activation-code smithy/sdk/smithy-types:string)
 
@@ -83,7 +95,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class workspaces-thin-client-error))
 
 (smithy/sdk/shapes:define-input create-environment-request common-lisp:nil
                                 ((name :target-type environment-name
@@ -458,7 +471,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class workspaces-thin-client-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -565,7 +579,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class workspaces-thin-client-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -587,7 +602,8 @@
                                  (quota-code :target-type quota-code
                                   :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class workspaces-thin-client-error))
 
 (smithy/sdk/shapes:define-structure software common-lisp:nil
                                     ((name :target-type
@@ -697,7 +713,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class workspaces-thin-client-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -793,7 +810,8 @@
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workspaces-thin-client-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type field-name :required

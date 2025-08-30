@@ -82,7 +82,8 @@
                               #:configuration-recorder-status-list
                               #:configuration-recorder-summaries
                               #:configuration-recorder-summary
-                              #:configuration-state-id #:conformance-pack-arn
+                              #:configuration-state-id #:conflict-exception
+                              #:conformance-pack-arn
                               #:conformance-pack-compliance-filters
                               #:conformance-pack-compliance-resource-ids
                               #:conformance-pack-compliance-score
@@ -109,9 +110,11 @@
                               #:conformance-pack-state
                               #:conformance-pack-status-detail
                               #:conformance-pack-status-details-list
-                              #:conformance-pack-status-reason #:controls-list
-                              #:cosmos-page-limit #:custom-policy-details
-                              #:date #:debug-log-delivery-accounts
+                              #:conformance-pack-status-reason
+                              #:conformance-pack-template-validation-exception
+                              #:controls-list #:cosmos-page-limit
+                              #:custom-policy-details #:date
+                              #:debug-log-delivery-accounts
                               #:delete-aggregation-authorization
                               #:delete-config-rule
                               #:delete-configuration-aggregator
@@ -206,8 +209,26 @@
                               #:get-stored-query #:group-by-apilimit
                               #:grouped-resource-count
                               #:grouped-resource-count-list
-                              #:include-global-resource-types #:integer
+                              #:idempotent-parameter-mismatch
+                              #:include-global-resource-types
+                              #:insufficient-delivery-policy-exception
+                              #:insufficient-permissions-exception #:integer
+                              #:invalid-configuration-recorder-name-exception
+                              #:invalid-delivery-channel-name-exception
+                              #:invalid-expression-exception
+                              #:invalid-limit-exception
+                              #:invalid-next-token-exception
+                              #:invalid-parameter-value-exception
+                              #:invalid-recording-group-exception
+                              #:invalid-result-token-exception
+                              #:invalid-role-exception
+                              #:invalid-s3key-prefix-exception
+                              #:invalid-s3kms-key-arn-exception
+                              #:invalid-snstopic-arnexception
+                              #:invalid-time-range-exception
+                              #:last-delivery-channel-delete-failed-exception
                               #:last-updated-time #:later-time #:limit
+                              #:limit-exceeded-exception
                               #:list-aggregate-discovered-resources
                               #:list-configuration-recorders
                               #:list-conformance-pack-compliance-scores
@@ -215,12 +236,38 @@
                               #:list-resource-evaluations
                               #:list-resource-evaluations-page-item-limit
                               #:list-stored-queries #:list-tags-for-resource
-                              #:long #:max-results
-                              #:maximum-execution-frequency
+                              #:long #:max-active-resources-exceeded-exception
+                              #:max-number-of-config-rules-exceeded-exception
+                              #:max-number-of-configuration-recorders-exceeded-exception
+                              #:max-number-of-conformance-packs-exceeded-exception
+                              #:max-number-of-delivery-channels-exceeded-exception
+                              #:max-number-of-organization-config-rules-exceeded-exception
+                              #:max-number-of-organization-conformance-packs-exceeded-exception
+                              #:max-number-of-retention-configurations-exceeded-exception
+                              #:max-results #:maximum-execution-frequency
                               #:member-account-rule-status
                               #:member-account-status #:message-type #:name
-                              #:next-token #:ordering-timestamp
+                              #:next-token
+                              #:no-available-configuration-recorder-exception
+                              #:no-available-delivery-channel-exception
+                              #:no-available-organization-exception
+                              #:no-running-configuration-recorder-exception
+                              #:no-such-bucket-exception
+                              #:no-such-config-rule-exception
+                              #:no-such-config-rule-in-conformance-pack-exception
+                              #:no-such-configuration-aggregator-exception
+                              #:no-such-configuration-recorder-exception
+                              #:no-such-conformance-pack-exception
+                              #:no-such-delivery-channel-exception
+                              #:no-such-organization-config-rule-exception
+                              #:no-such-organization-conformance-pack-exception
+                              #:no-such-remediation-configuration-exception
+                              #:no-such-remediation-exception-exception
+                              #:no-such-retention-configuration-exception
+                              #:ordering-timestamp
+                              #:organization-access-denied-exception
                               #:organization-aggregation-source
+                              #:organization-all-features-not-enabled-exception
                               #:organization-config-rule
                               #:organization-config-rule-detailed-status
                               #:organization-config-rule-name
@@ -239,6 +286,7 @@
                               #:organization-conformance-pack-names
                               #:organization-conformance-pack-status
                               #:organization-conformance-pack-statuses
+                              #:organization-conformance-pack-template-validation-exception
                               #:organization-conformance-packs
                               #:organization-custom-policy-rule-metadata
                               #:organization-custom-policy-rule-metadata-no-policy
@@ -247,7 +295,8 @@
                               #:organization-resource-detailed-status
                               #:organization-resource-detailed-status-filters
                               #:organization-resource-status
-                              #:organization-rule-status #:owner
+                              #:organization-rule-status
+                              #:oversized-configuration-item-exception #:owner
                               #:page-size-limit #:parameter-name
                               #:parameter-value #:pending-aggregation-request
                               #:pending-aggregation-request-list #:percentage
@@ -289,9 +338,11 @@
                               #:remediation-execution-step
                               #:remediation-execution-step-state
                               #:remediation-execution-steps
+                              #:remediation-in-progress-exception
                               #:remediation-parameter-value
                               #:remediation-parameters
                               #:remediation-target-type
+                              #:resource-concurrent-modification-exception
                               #:resource-configuration
                               #:resource-configuration-schema-type
                               #:resource-count #:resource-count-filters
@@ -304,8 +355,11 @@
                               #:resource-evaluations #:resource-filters
                               #:resource-id #:resource-id-list
                               #:resource-identifier #:resource-identifier-list
-                              #:resource-identifiers-list #:resource-key
-                              #:resource-keys #:resource-name #:resource-type
+                              #:resource-identifiers-list
+                              #:resource-in-use-exception #:resource-key
+                              #:resource-keys #:resource-name
+                              #:resource-not-discovered-exception
+                              #:resource-not-found-exception #:resource-type
                               #:resource-type-list #:resource-type-string
                               #:resource-type-value #:resource-type-value-list
                               #:resource-types #:resource-types-scope
@@ -347,9 +401,16 @@
                               #:tag-resource #:tag-value #:tags #:tags-list
                               #:template-body #:template-s3uri
                               #:template-ssmdocument-details #:time-window
+                              #:too-many-tags-exception
+                              #:unmodifiable-entity-exception
                               #:unprocessed-resource-identifier-list
-                              #:untag-resource #:value #:version))
+                              #:untag-resource #:validation-exception #:value
+                              #:version #:config-service-error))
 (common-lisp:in-package #:pira/config-service)
+
+(common-lisp:define-condition config-service-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service starling-dove-service :shape-name
                                    "StarlingDoveService" :version "2014-11-12"
@@ -1320,7 +1381,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-type conformance-pack-arn
                                smithy/sdk/smithy-types:string)
@@ -1568,7 +1630,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ConformancePackTemplateValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-list controls-list :member string-with-char-limit128)
 
@@ -2975,7 +3038,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "IdempotentParameterMismatch")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-type include-global-resource-types
                                smithy/sdk/smithy-types:boolean)
@@ -2986,7 +3050,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InsufficientDeliveryPolicyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error insufficient-permissions-exception
                                 common-lisp:nil
@@ -2994,7 +3059,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InsufficientPermissionsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
 
@@ -3004,7 +3070,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidConfigurationRecorderNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error invalid-delivery-channel-name-exception
                                 common-lisp:nil
@@ -3012,75 +3079,87 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidDeliveryChannelNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error invalid-expression-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidExpressionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error invalid-limit-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidLimitException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterValueException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error invalid-recording-group-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRecordingGroupException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error invalid-result-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidResultTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error invalid-role-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRoleException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error invalid-s3key-prefix-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidS3KeyPrefixException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error invalid-s3kms-key-arn-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidS3KmsKeyArnException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error invalid-snstopic-arnexception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSNSTopicARNException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error invalid-time-range-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTimeRangeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error last-delivery-channel-delete-failed-exception
                                 common-lisp:nil
@@ -3088,7 +3167,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "LastDeliveryChannelDeleteFailedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-type last-updated-time
                                smithy/sdk/smithy-types:timestamp)
@@ -3101,7 +3181,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-input list-aggregate-discovered-resources-request
                                 common-lisp:nil
@@ -3273,7 +3354,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MaxActiveResourcesExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error max-number-of-config-rules-exceeded-exception
                                 common-lisp:nil
@@ -3281,41 +3363,44 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MaxNumberOfConfigRulesExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error
  max-number-of-configuration-recorders-exceeded-exception common-lisp:nil
  ((message :target-type error-message :member-name "message"))
  (:shape-name "MaxNumberOfConfigurationRecordersExceededException")
- (:error-code 400))
+ (:error-code 400) (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error
  max-number-of-conformance-packs-exceeded-exception common-lisp:nil
  ((message :target-type error-message :member-name "message"))
- (:shape-name "MaxNumberOfConformancePacksExceededException") (:error-code 400))
+ (:shape-name "MaxNumberOfConformancePacksExceededException") (:error-code 400)
+ (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error
  max-number-of-delivery-channels-exceeded-exception common-lisp:nil
  ((message :target-type error-message :member-name "message"))
- (:shape-name "MaxNumberOfDeliveryChannelsExceededException") (:error-code 400))
+ (:shape-name "MaxNumberOfDeliveryChannelsExceededException") (:error-code 400)
+ (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error
  max-number-of-organization-config-rules-exceeded-exception common-lisp:nil
  ((message :target-type error-message :member-name "message"))
  (:shape-name "MaxNumberOfOrganizationConfigRulesExceededException")
- (:error-code 400))
+ (:error-code 400) (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error
  max-number-of-organization-conformance-packs-exceeded-exception
  common-lisp:nil ((message :target-type error-message :member-name "message"))
  (:shape-name "MaxNumberOfOrganizationConformancePacksExceededException")
- (:error-code 400))
+ (:error-code 400) (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error
  max-number-of-retention-configurations-exceeded-exception common-lisp:nil
  ((message :target-type error-message :member-name "message"))
  (:shape-name "MaxNumberOfRetentionConfigurationsExceededException")
- (:error-code 400))
+ (:error-code 400) (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-type max-results smithy/sdk/smithy-types:integer)
 
@@ -3379,7 +3464,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "NoAvailableConfigurationRecorderException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-available-delivery-channel-exception
                                 common-lisp:nil
@@ -3387,7 +3473,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "NoAvailableDeliveryChannelException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-available-organization-exception
                                 common-lisp:nil
@@ -3395,7 +3482,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "NoAvailableOrganizationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-running-configuration-recorder-exception
                                 common-lisp:nil
@@ -3403,24 +3491,28 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "NoRunningConfigurationRecorderException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-such-bucket-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchBucketException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-such-config-rule-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchConfigRuleException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error
  no-such-config-rule-in-conformance-pack-exception common-lisp:nil
  ((message :target-type error-message :member-name "message"))
- (:shape-name "NoSuchConfigRuleInConformancePackException") (:error-code 400))
+ (:shape-name "NoSuchConfigRuleInConformancePackException") (:error-code 400)
+ (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-such-configuration-aggregator-exception
                                 common-lisp:nil
@@ -3428,7 +3520,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "NoSuchConfigurationAggregatorException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-such-configuration-recorder-exception
                                 common-lisp:nil
@@ -3436,21 +3529,24 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "NoSuchConfigurationRecorderException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-such-conformance-pack-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchConformancePackException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-such-delivery-channel-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchDeliveryChannelException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-such-organization-config-rule-exception
                                 common-lisp:nil
@@ -3458,7 +3554,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "NoSuchOrganizationConfigRuleException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-such-organization-conformance-pack-exception
                                 common-lisp:nil
@@ -3466,7 +3563,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "NoSuchOrganizationConformancePackException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-such-remediation-configuration-exception
                                 common-lisp:nil
@@ -3474,7 +3572,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "NoSuchRemediationConfigurationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-such-remediation-exception-exception
                                 common-lisp:nil
@@ -3482,7 +3581,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "NoSuchRemediationExceptionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error no-such-retention-configuration-exception
                                 common-lisp:nil
@@ -3490,7 +3590,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "NoSuchRetentionConfigurationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-type ordering-timestamp
                                smithy/sdk/smithy-types:timestamp)
@@ -3501,7 +3602,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "OrganizationAccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-structure organization-aggregation-source
                                     common-lisp:nil
@@ -3521,7 +3623,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "OrganizationAllFeaturesNotEnabledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-structure organization-config-rule common-lisp:nil
                                     ((organization-config-rule-name
@@ -3691,7 +3794,7 @@
  organization-conformance-pack-template-validation-exception common-lisp:nil
  ((message :target-type error-message :member-name "message"))
  (:shape-name "OrganizationConformancePackTemplateValidationException")
- (:error-code 400))
+ (:error-code 400) (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-list organization-conformance-packs :member
                                organization-conformance-pack)
@@ -3874,7 +3977,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "OversizedConfigurationItemException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-enum owner
     common-lisp:nil
@@ -4455,7 +4559,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "RemediationInProgressException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-structure remediation-parameter-value common-lisp:nil
                                     ((resource-value :target-type
@@ -4479,7 +4584,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ResourceConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-type resource-configuration
                                smithy/sdk/smithy-types:string)
@@ -4610,7 +4716,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-structure resource-key common-lisp:nil
                                     ((resource-type :target-type resource-type
@@ -4630,13 +4737,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotDiscoveredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -5499,13 +5608,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-error unmodifiable-entity-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnmodifiableEntityException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-list unprocessed-resource-identifier-list :member
                                aggregate-resource-identifier)
@@ -5522,7 +5633,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class config-service-error))
 
 (smithy/sdk/shapes:define-type value smithy/sdk/smithy-types:string)
 

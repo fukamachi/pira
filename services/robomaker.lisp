@@ -10,6 +10,7 @@
                               #:cancel-world-generation-job
                               #:client-request-token #:command #:command-list
                               #:compute #:compute-response #:compute-type
+                              #:concurrent-deployment-exception
                               #:create-deployment-job #:create-fleet
                               #:create-robot #:create-robot-application
                               #:create-robot-application-version
@@ -52,12 +53,17 @@
                               #:finished-worlds-summary #:fleet #:fleets
                               #:floorplan-count #:gpuunit #:generic-integer
                               #:generic-string #:get-world-template-body
-                              #:iam-role #:id #:image-digest #:integer
-                              #:interior-count-per-floorplan #:job-duration
+                              #:iam-role #:id
+                              #:idempotent-parameter-mismatch-exception
+                              #:image-digest #:integer
+                              #:interior-count-per-floorplan
+                              #:internal-server-exception
+                              #:invalid-parameter-exception #:job-duration
                               #:json #:last-started-at #:last-updated-at
-                              #:launch-config #:list-deployment-jobs
-                              #:list-fleets #:list-robot-applications
-                              #:list-robots #:list-simulation-applications
+                              #:launch-config #:limit-exceeded-exception
+                              #:list-deployment-jobs #:list-fleets
+                              #:list-robot-applications #:list-robots
+                              #:list-simulation-applications
                               #:list-simulation-job-batches
                               #:list-simulation-jobs #:list-tags-for-resource
                               #:list-world-export-jobs
@@ -72,6 +78,8 @@
                               #:progress-detail #:register-robot
                               #:rendering-engine #:rendering-engine-type
                               #:rendering-engine-version-type #:repository-url
+                              #:resource-already-exists-exception
+                              #:resource-not-found-exception
                               #:restart-simulation-job #:revision-id #:robot
                               #:robot-application-config
                               #:robot-application-configs
@@ -86,6 +94,7 @@
                               #:s3etags #:s3key #:s3key-or-prefix
                               #:s3key-output #:s3key-outputs
                               #:s3keys-or-prefixes #:s3object #:security-groups
+                              #:service-unavailable-exception
                               #:simulation-application-config
                               #:simulation-application-configs
                               #:simulation-application-names
@@ -108,8 +117,9 @@
                               #:sync-deployment-job #:tag-key #:tag-key-list
                               #:tag-map #:tag-resource #:tag-value
                               #:template-location #:template-name
-                              #:template-summaries #:template-summary #:tool
-                              #:tools #:unrestricted-command #:untag-resource
+                              #:template-summaries #:template-summary
+                              #:throttling-exception #:tool #:tools
+                              #:unrestricted-command #:untag-resource
                               #:update-robot-application
                               #:update-simulation-application
                               #:update-world-template #:upload-behavior
@@ -126,8 +136,13 @@
                               #:world-generation-job-status
                               #:world-generation-job-summaries
                               #:world-generation-job-summary #:world-summaries
-                              #:world-summary #:error-message #:robomaker))
+                              #:world-summary #:error-message #:robomaker
+                              #:robomaker-error))
 (common-lisp:in-package #:pira/robomaker)
+
+(common-lisp:define-condition robomaker-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service robomaker :shape-name "robomaker" :version
                                    "2018-06-29" :title "AWS RoboMaker"
@@ -322,7 +337,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConcurrentDeploymentException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class robomaker-error))
 
 (smithy/sdk/shapes:define-input create-deployment-job-request common-lisp:nil
                                 ((deployment-config :target-type
@@ -1456,7 +1471,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "IdempotentParameterMismatchException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class robomaker-error))
 
 (smithy/sdk/shapes:define-type image-digest smithy/sdk/smithy-types:string)
 
@@ -1469,13 +1484,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class robomaker-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class robomaker-error))
 
 (smithy/sdk/shapes:define-type job-duration smithy/sdk/smithy-types:long)
 
@@ -1508,7 +1523,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class robomaker-error))
 
 (smithy/sdk/shapes:define-input list-deployment-jobs-request common-lisp:nil
                                 ((filters :target-type filters :member-name
@@ -1838,13 +1853,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class robomaker-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class robomaker-error))
 
 (smithy/sdk/shapes:define-input restart-simulation-job-request common-lisp:nil
                                 ((job :target-type arn :required common-lisp:t
@@ -2025,7 +2040,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class robomaker-error))
 
 (smithy/sdk/shapes:define-structure simulation-application-config
                                     common-lisp:nil
@@ -2461,7 +2476,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class robomaker-error))
 
 (smithy/sdk/shapes:define-structure tool common-lisp:nil
                                     ((stream-ui :target-type boxed-boolean

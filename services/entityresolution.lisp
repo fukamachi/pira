@@ -1,8 +1,9 @@
 (uiop/package:define-package #:pira/entityresolution (:use)
                              (:export #:awsvenice-service
-                              #:add-policy-statement #:attribute-matching-model
-                              #:attribute-name #:aws-account-id
-                              #:aws-account-id-list #:batch-delete-unique-id
+                              #:access-denied-exception #:add-policy-statement
+                              #:attribute-matching-model #:attribute-name
+                              #:aws-account-id #:aws-account-id-list
+                              #:batch-delete-unique-id #:conflict-exception
                               #:create-id-mapping-workflow
                               #:create-id-namespace #:create-matching-workflow
                               #:create-schema-mapping
@@ -17,14 +18,14 @@
                               #:disconnected-unique-ids-list #:entity-name
                               #:entity-name-or-id-mapping-workflow-arn
                               #:entity-name-or-id-namespace-arn #:error-details
-                              #:error-message #:failed-record
-                              #:failed-records-list #:generate-match-id
-                              #:get-id-mapping-job #:get-id-mapping-workflow
-                              #:get-id-namespace #:get-match-id
-                              #:get-matching-job #:get-matching-workflow
-                              #:get-policy #:get-provider-service
-                              #:get-schema-mapping #:header-safe-unique-id
-                              #:id-mapping-job-metrics
+                              #:error-message #:exceeds-limit-exception
+                              #:failed-record #:failed-records-list
+                              #:generate-match-id #:get-id-mapping-job
+                              #:get-id-mapping-workflow #:get-id-namespace
+                              #:get-match-id #:get-matching-job
+                              #:get-matching-workflow #:get-policy
+                              #:get-provider-service #:get-schema-mapping
+                              #:header-safe-unique-id #:id-mapping-job-metrics
                               #:id-mapping-job-output-source
                               #:id-mapping-job-output-source-config
                               #:id-mapping-role-arn
@@ -49,8 +50,9 @@
                               #:id-namespace-type #:incremental-run-config
                               #:incremental-run-type #:input-source
                               #:input-source-config
-                              #:intermediate-source-configuration #:job-id
-                              #:job-list #:job-metrics #:job-output-source
+                              #:intermediate-source-configuration
+                              #:internal-server-exception #:job-id #:job-list
+                              #:job-metrics #:job-output-source
                               #:job-output-source-config #:job-status
                               #:job-summary #:kmsarn #:list-id-mapping-jobs
                               #:list-id-mapping-workflows #:list-id-namespaces
@@ -84,10 +86,11 @@
                               #:record-matching-model-list
                               #:required-bucket-actions-list
                               #:resolution-techniques #:resolution-type
-                              #:role-arn #:rule #:rule-based-properties
-                              #:rule-condition #:rule-condition-list
-                              #:rule-condition-properties #:rule-list #:s3path
-                              #:schema-attribute-type #:schema-input-attribute
+                              #:resource-not-found-exception #:role-arn #:rule
+                              #:rule-based-properties #:rule-condition
+                              #:rule-condition-list #:rule-condition-properties
+                              #:rule-list #:s3path #:schema-attribute-type
+                              #:schema-input-attribute
                               #:schema-input-attributes #:schema-list
                               #:schema-mapping-arn #:schema-mapping-list
                               #:schema-mapping-summary #:schemas #:service-type
@@ -97,11 +100,17 @@
                               #:statement-id #:statement-principal
                               #:statement-principal-list #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-value #:unique-id #:unique-id-list
-                              #:untag-resource #:update-id-mapping-workflow
+                              #:tag-value #:throttling-exception #:unique-id
+                              #:unique-id-list #:untag-resource
+                              #:update-id-mapping-workflow
                               #:update-id-namespace #:update-matching-workflow
-                              #:update-schema-mapping #:venice-global-arn))
+                              #:update-schema-mapping #:validation-exception
+                              #:venice-global-arn #:entityresolution-error))
 (common-lisp:in-package #:pira/entityresolution)
+
+(common-lisp:define-condition entityresolution-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsvenice-service :shape-name
                                    "AWSVeniceService" :version "2018-05-10"
@@ -148,7 +157,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class entityresolution-error))
 
 (smithy/sdk/shapes:define-input add-policy-statement-input common-lisp:nil
                                 ((arn :target-type venice-global-arn :required
@@ -222,7 +232,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class entityresolution-error))
 
 (smithy/sdk/shapes:define-input create-id-mapping-workflow-input
                                 common-lisp:nil
@@ -533,7 +544,8 @@
                                   smithy/sdk/smithy-types:integer :member-name
                                   "quotaValue"))
                                 (:shape-name "ExceedsLimitException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class entityresolution-error))
 
 (smithy/sdk/shapes:define-structure failed-record common-lisp:nil
                                     ((input-source-arn :target-type
@@ -1129,7 +1141,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class entityresolution-error))
 
 (smithy/sdk/shapes:define-type job-id smithy/sdk/smithy-types:string)
 
@@ -1647,7 +1660,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class entityresolution-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -1849,7 +1863,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class entityresolution-error))
 
 (smithy/sdk/shapes:define-type unique-id smithy/sdk/smithy-types:string)
 
@@ -2036,7 +2051,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class entityresolution-error))
 
 (smithy/sdk/shapes:define-type venice-global-arn smithy/sdk/smithy-types:string)
 

@@ -27,6 +27,7 @@
                               #:branch-order #:build-configuration #:builder
                               #:cpuutilization #:cause #:causes
                               #:check-dnsavailability #:cname-availability
+                              #:code-build-not-in-service-region-exception
                               #:compose-environments #:compute-type
                               #:configuration-deployment-status
                               #:configuration-option-default-value
@@ -71,7 +72,9 @@
                               #:describe-instances-health
                               #:describe-platform-version #:description
                               #:disassociate-environment-operations-role
-                              #:ec2instance-id #:endpoint-url #:environment-arn
+                              #:ec2instance-id
+                              #:elastic-beanstalk-service-exception
+                              #:endpoint-url #:environment-arn
                               #:environment-description
                               #:environment-descriptions-list
                               #:environment-descriptions-message
@@ -97,7 +100,9 @@
                               #:instance #:instance-health-list
                               #:instance-health-summary #:instance-id
                               #:instance-list #:instances-health-attribute
-                              #:instances-health-attributes #:integer #:latency
+                              #:instances-health-attributes
+                              #:insufficient-privileges-exception #:integer
+                              #:invalid-request-exception #:latency
                               #:launch-configuration
                               #:launch-configuration-list #:launch-template
                               #:launch-template-list #:launched-at
@@ -112,13 +117,15 @@
                               #:managed-action-history-item
                               #:managed-action-history-items
                               #:managed-action-history-max-items
+                              #:managed-action-invalid-state-exception
                               #:managed-actions #:max-age-rule #:max-count-rule
                               #:max-records #:message #:next-token
                               #:non-empty-string #:nullable-double
                               #:nullable-integer #:nullable-long
                               #:operating-system-name
-                              #:operating-system-version #:operations-role
-                              #:option-namespace
+                              #:operating-system-version
+                              #:operation-in-progress-exception
+                              #:operations-role #:option-namespace
                               #:option-restriction-max-length
                               #:option-restriction-max-value
                               #:option-restriction-min-value
@@ -139,14 +146,19 @@
                               #:platform-programming-languages
                               #:platform-status #:platform-summary
                               #:platform-summary-list #:platform-version
+                              #:platform-version-still-referenced-exception
                               #:queue #:queue-list #:rebuild-environment
                               #:refreshed-at #:regex-label #:regex-pattern
                               #:request-count #:request-environment-info
                               #:request-id #:resource-arn #:resource-id
-                              #:resource-name #:resource-quota
-                              #:resource-quotas #:restart-app-server
-                              #:retrieve-environment-info #:s3bucket #:s3key
-                              #:s3location #:sample-timestamp #:search-filter
+                              #:resource-name #:resource-not-found-exception
+                              #:resource-quota #:resource-quotas
+                              #:resource-type-not-supported-exception
+                              #:restart-app-server #:retrieve-environment-info
+                              #:s3bucket #:s3key #:s3location
+                              #:s3location-not-in-service-region-exception
+                              #:s3subscription-required-exception
+                              #:sample-timestamp #:search-filter
                               #:search-filter-attribute
                               #:search-filter-operator #:search-filter-value
                               #:search-filter-values #:search-filters
@@ -154,6 +166,7 @@
                               #:solution-stack-description
                               #:solution-stack-file-type-list
                               #:solution-stack-name #:source-build-information
+                              #:source-bundle-deletion-exception
                               #:source-configuration #:source-location
                               #:source-repository #:source-type #:status-codes
                               #:string #:supported-addon #:supported-addon-list
@@ -164,8 +177,14 @@
                               #:terminate-environment
                               #:terminate-environment-resources
                               #:time-filter-end #:time-filter-start #:timestamp
-                              #:token #:trigger #:trigger-list
-                              #:update-application
+                              #:token #:too-many-application-versions-exception
+                              #:too-many-applications-exception
+                              #:too-many-buckets-exception
+                              #:too-many-configuration-templates-exception
+                              #:too-many-environments-exception
+                              #:too-many-platforms-exception
+                              #:too-many-tags-exception #:trigger
+                              #:trigger-list #:update-application
                               #:update-application-resource-lifecycle
                               #:update-application-version
                               #:update-configuration-template #:update-date
@@ -175,8 +194,13 @@
                               #:validation-message #:validation-message-string
                               #:validation-messages-list #:validation-severity
                               #:version-label #:version-labels
-                              #:version-labels-list #:virtualization-type))
+                              #:version-labels-list #:virtualization-type
+                              #:elastic-beanstalk-error))
 (common-lisp:in-package #:pira/elastic-beanstalk)
+
+(common-lisp:define-condition elastic-beanstalk-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awselastic-beanstalk-service :shape-name
                                    "AWSElasticBeanstalkService" :version
@@ -552,7 +576,8 @@
                                  "CodeBuildNotInServiceRegionException")
                                 (:error-name
                                  "CodeBuildNotInServiceRegionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-input compose-environments-message common-lisp:nil
                                 ((application-name :target-type
@@ -1202,7 +1227,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ElasticBeanstalkServiceException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-type endpoint-url smithy/sdk/smithy-types:string)
 
@@ -1540,7 +1566,8 @@
                                   :member-name "message"))
                                 (:shape-name "InsufficientPrivilegesException")
                                 (:error-name "InsufficientPrivilegesException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
 
@@ -1549,7 +1576,8 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
                                 (:error-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-structure latency common-lisp:nil
                                     ((p999 :target-type nullable-double
@@ -1719,7 +1747,8 @@
                                  "ManagedActionInvalidStateException")
                                 (:error-name
                                  "ManagedActionInvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-list managed-actions :member managed-action)
 
@@ -1770,7 +1799,8 @@
                                   :member-name "message"))
                                 (:shape-name "OperationInProgressException")
                                 (:error-name "OperationInProgressFailure")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-type operations-role smithy/sdk/smithy-types:string)
 
@@ -2010,7 +2040,8 @@
                                  "PlatformVersionStillReferencedException")
                                 (:error-name
                                  "PlatformVersionStillReferencedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-structure queue common-lisp:nil
                                     ((name :target-type string :member-name
@@ -2062,7 +2093,8 @@
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-structure resource-quota common-lisp:nil
                                     ((maximum :target-type boxed-int
@@ -2103,7 +2135,8 @@
                                  "ResourceTypeNotSupportedException")
                                 (:error-name
                                  "ResourceTypeNotSupportedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-input restart-app-server-message common-lisp:nil
                                 ((environment-id :target-type environment-id
@@ -2152,7 +2185,8 @@
                                  "S3LocationNotInServiceRegionException")
                                 (:error-name
                                  "S3LocationNotInServiceRegionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-error s3subscription-required-exception
                                 common-lisp:nil
@@ -2160,7 +2194,8 @@
                                   :member-name "message"))
                                 (:shape-name "S3SubscriptionRequiredException")
                                 (:error-name "S3SubscriptionRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-type sample-timestamp
                                smithy/sdk/smithy-types:timestamp)
@@ -2246,7 +2281,8 @@
                                   :member-name "message"))
                                 (:shape-name "SourceBundleDeletionException")
                                 (:error-name "SourceBundleDeletionFailure")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-structure source-configuration common-lisp:nil
                                     ((application-name :target-type
@@ -2365,21 +2401,24 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "TooManyApplicationVersionsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-error too-many-applications-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TooManyApplicationsException")
                                 (:error-name "TooManyApplicationsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-error too-many-buckets-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TooManyBucketsException")
                                 (:error-name "TooManyBucketsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-error too-many-configuration-templates-exception
                                 common-lisp:nil
@@ -2389,28 +2428,32 @@
                                  "TooManyConfigurationTemplatesException")
                                 (:error-name
                                  "TooManyConfigurationTemplatesException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-error too-many-environments-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TooManyEnvironmentsException")
                                 (:error-name "TooManyEnvironmentsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-error too-many-platforms-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TooManyPlatformsException")
                                 (:error-name "TooManyPlatformsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TooManyTagsException")
                                 (:error-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elastic-beanstalk-error))
 
 (smithy/sdk/shapes:define-structure trigger common-lisp:nil
                                     ((name :target-type resource-id

@@ -1,8 +1,10 @@
 (uiop/package:define-package #:pira/apigatewayv2 (:use)
-                             (:export #:access-log-settings #:api
-                              #:api-gateway-v2 #:api-mapping #:arn
-                              #:authorization-scopes #:authorization-type
-                              #:authorizer #:authorizer-type #:connection-type
+                             (:export #:access-denied-exception
+                              #:access-log-settings #:api #:api-gateway-v2
+                              #:api-mapping #:arn #:authorization-scopes
+                              #:authorization-type #:authorizer
+                              #:authorizer-type #:bad-request-exception
+                              #:conflict-exception #:connection-type
                               #:content-handling-strategy #:cors
                               #:cors-header-list #:cors-method-list
                               #:cors-origin-list #:create-api
@@ -47,8 +49,9 @@
                               #:list-routing-rules #:logging-level
                               #:max-results #:model #:mutual-tls-authentication
                               #:mutual-tls-authentication-input #:next-token
-                              #:parameter-constraints #:passthrough-behavior
-                              #:protocol-type #:put-routing-rule #:reimport-api
+                              #:not-found-exception #:parameter-constraints
+                              #:passthrough-behavior #:protocol-type
+                              #:put-routing-rule #:reimport-api
                               #:reset-authorizers-cache #:response-parameters
                               #:route #:route-models #:route-parameters
                               #:route-response #:route-settings
@@ -73,10 +76,10 @@
                               #:string-with-length-between1and64
                               #:subnet-id-list #:tag-resource #:tags
                               #:template-map #:tls-config #:tls-config-input
-                              #:untag-resource #:update-api
-                              #:update-api-mapping #:update-authorizer
-                              #:update-deployment #:update-domain-name
-                              #:update-integration
+                              #:too-many-requests-exception #:untag-resource
+                              #:update-api #:update-api-mapping
+                              #:update-authorizer #:update-deployment
+                              #:update-domain-name #:update-integration
                               #:update-integration-response #:update-model
                               #:update-route #:update-route-response
                               #:update-stage #:update-vpc-link
@@ -94,8 +97,12 @@
                               #:list-of-routing-rule-match-header-value
                               #:list-of-selection-key #:list-of-stage
                               #:list-of-vpc-link #:list-of-string #:string
-                              #:timestamp-iso8601))
+                              #:timestamp-iso8601 #:apigatewayv2-error))
 (common-lisp:in-package #:pira/apigatewayv2)
+
+(common-lisp:define-condition apigatewayv2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service api-gateway-v2 :shape-name "ApiGatewayV2"
                                    :version "2018-11-29" :title
@@ -154,7 +161,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class apigatewayv2-error))
 
 (smithy/sdk/shapes:define-structure access-log-settings common-lisp:nil
                                     ((destination-arn :target-type arn
@@ -318,13 +326,15 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class apigatewayv2-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class apigatewayv2-error))
 
 (smithy/sdk/shapes:define-enum connection-type
     common-lisp:nil
@@ -2655,7 +2665,8 @@
                                   :member-name "ResourceType" :json-name
                                   "resourceType"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class apigatewayv2-error))
 
 (smithy/sdk/shapes:define-structure parameter-constraints common-lisp:nil
                                     ((required :target-type boolean
@@ -3116,7 +3127,8 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class apigatewayv2-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required

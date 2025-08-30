@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/lookoutmetrics (:use)
-                             (:export #:action #:activate-anomaly-detector
+                             (:export #:access-denied-exception #:action
+                              #:activate-anomaly-detector
                               #:aggregation-function #:alert
                               #:alert-description #:alert-filters #:alert-name
                               #:alert-status #:alert-summary
@@ -32,10 +33,10 @@
                               #:binary-list-attribute-value #:boolean
                               #:csvfile-compression #:charset
                               #:cloud-watch-config #:column-name #:confidence
-                              #:contribution-matrix #:create-alert
-                              #:create-anomaly-detector #:create-metric-set
-                              #:csv-format-descriptor #:data-item
-                              #:data-quality-metric
+                              #:conflict-exception #:contribution-matrix
+                              #:create-alert #:create-anomaly-detector
+                              #:create-metric-set #:csv-format-descriptor
+                              #:data-item #:data-quality-metric
                               #:data-quality-metric-description
                               #:data-quality-metric-list
                               #:data-quality-metric-type #:database-host
@@ -70,6 +71,7 @@
                               #:historical-data-path-list #:integer
                               #:inter-metric-impact-details
                               #:inter-metric-impact-list
+                              #:internal-server-exception
                               #:itemized-metric-stats
                               #:itemized-metric-stats-list
                               #:json-file-compression #:json-format-descriptor
@@ -99,12 +101,14 @@
                               #:rdssource-config #:redshift-cluster-identifier
                               #:redshift-database-name #:redshift-source-config
                               #:related-column-name #:relationship-type
-                              #:resource-id #:resource-type #:s3source-config
+                              #:resource-id #:resource-not-found-exception
+                              #:resource-type #:s3source-config
                               #:snsconfiguration #:sample-data-s3source-config
                               #:sample-row #:sample-rows #:score
                               #:security-group-id #:security-group-id-list
                               #:sensitivity-threshold #:service-code
-                              #:sns-format #:string-attribute-value
+                              #:service-quota-exceeded-exception #:sns-format
+                              #:string-attribute-value
                               #:string-list-attribute-value #:subnet-id
                               #:subnet-id-list #:table-name #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
@@ -114,13 +118,19 @@
                               #:time-series-feedback-list #:time-series-id
                               #:time-series-list #:timestamp #:timestamp-column
                               #:timestamp-list #:timestamp-string #:timezone
-                              #:uuid #:untag-resource #:update-alert
+                              #:too-many-requests-exception #:uuid
+                              #:untag-resource #:update-alert
                               #:update-anomaly-detector #:update-metric-set
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason
-                              #:vpc-configuration))
+                              #:validation-exception-reason #:vpc-configuration
+                              #:lookoutmetrics-error))
 (common-lisp:in-package #:pira/lookoutmetrics)
+
+(common-lisp:define-condition lookoutmetrics-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service lookout-metrics :shape-name "LookoutMetrics"
                                    :version "2017-07-25" :title
@@ -160,7 +170,8 @@
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class lookoutmetrics-error))
 
 (smithy/sdk/shapes:define-structure action common-lisp:nil
                                     ((snsconfiguration :target-type
@@ -558,7 +569,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "ResourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class lookoutmetrics-error))
 
 (smithy/sdk/shapes:define-structure contribution-matrix common-lisp:nil
                                     ((dimension-contribution-list :target-type
@@ -1153,7 +1165,8 @@
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class lookoutmetrics-error))
 
 (smithy/sdk/shapes:define-structure itemized-metric-stats common-lisp:nil
                                     ((metric-name :target-type column-name
@@ -1560,7 +1573,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lookoutmetrics-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -1630,7 +1644,8 @@
                                  (service-code :target-type service-code
                                   :member-name "ServiceCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class lookoutmetrics-error))
 
 (smithy/sdk/shapes:define-enum sns-format
     common-lisp:nil
@@ -1724,7 +1739,8 @@
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class lookoutmetrics-error))
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 
@@ -1821,7 +1837,8 @@
                                   validation-exception-field-list :member-name
                                   "Fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lookoutmetrics-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type field-name :required

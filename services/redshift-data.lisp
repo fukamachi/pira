@@ -1,18 +1,24 @@
 (uiop/package:define-package #:pira/redshift-data (:use)
-                             (:export #:batch-execute-statement #:blob
+                             (:export #:active-sessions-exceeded-exception
+                              #:active-statements-exceeded-exception
+                              #:batch-execute-statement
+                              #:batch-execute-statement-exception #:blob
                               #:boxed-boolean #:boxed-double #:boxed-long
                               #:cancel-statement #:client-token
                               #:cluster-identifier-string #:column-list
                               #:column-metadata #:column-metadata-list
-                              #:database-list #:db-group-list
-                              #:describe-statement #:describe-table
-                              #:execute-statement #:field #:field-list
-                              #:formatted-sql-records #:get-statement-result
-                              #:get-statement-result-v2 #:integer
+                              #:database-connection-exception #:database-list
+                              #:db-group-list #:describe-statement
+                              #:describe-table #:execute-statement
+                              #:execute-statement-exception #:field
+                              #:field-list #:formatted-sql-records
+                              #:get-statement-result #:get-statement-result-v2
+                              #:integer #:internal-server-exception
                               #:list-databases #:list-schemas #:list-statements
                               #:list-statements-limit #:list-tables #:long
                               #:page-size #:parameter-name #:parameter-value
-                              #:query-records #:redshift-data
+                              #:query-records #:query-timeout-exception
+                              #:redshift-data #:resource-not-found-exception
                               #:result-format-string #:schema-list #:secret-arn
                               #:session-alive-seconds #:sql-list
                               #:sql-parameter #:sql-parameters-list
@@ -21,8 +27,14 @@
                               #:statement-string #:statement-string-list
                               #:status-string #:string #:sub-statement-data
                               #:sub-statement-list #:table-list #:table-member
-                              #:uuid #:workgroup-name-string #:bool))
+                              #:uuid #:validation-exception
+                              #:workgroup-name-string #:bool
+                              #:redshift-data-error))
 (common-lisp:in-package #:pira/redshift-data)
+
+(common-lisp:define-condition redshift-data-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service redshift-data :shape-name "RedshiftData"
                                    :version "2019-12-20" :title
@@ -45,7 +57,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ActiveSessionsExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class redshift-data-error))
 
 (smithy/sdk/shapes:define-error active-statements-exceeded-exception
                                 common-lisp:nil
@@ -53,7 +66,8 @@
                                   "Message"))
                                 (:shape-name
                                  "ActiveStatementsExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class redshift-data-error))
 
 (smithy/sdk/shapes:define-error batch-execute-statement-exception
                                 common-lisp:nil
@@ -62,7 +76,8 @@
                                  (statement-id :target-type string :required
                                   common-lisp:t :member-name "StatementId"))
                                 (:shape-name "BatchExecuteStatementException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class redshift-data-error))
 
 (smithy/sdk/shapes:define-input batch-execute-statement-input common-lisp:nil
                                 ((sqls :target-type sql-list :required
@@ -181,7 +196,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "DatabaseConnectionException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class redshift-data-error))
 
 (smithy/sdk/shapes:define-list database-list :member string)
 
@@ -284,7 +300,8 @@
                                  (statement-id :target-type string :required
                                   common-lisp:t :member-name "StatementId"))
                                 (:shape-name "ExecuteStatementException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class redshift-data-error))
 
 (smithy/sdk/shapes:define-input execute-statement-input common-lisp:nil
                                 ((sql :target-type statement-string :required
@@ -412,7 +429,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class redshift-data-error))
 
 (smithy/sdk/shapes:define-input list-databases-request common-lisp:nil
                                 ((cluster-identifier :target-type
@@ -554,7 +572,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "QueryTimeoutException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class redshift-data-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :required
@@ -562,7 +581,8 @@
                                  (resource-id :target-type string :required
                                   common-lisp:t :member-name "ResourceId"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class redshift-data-error))
 
 (smithy/sdk/shapes:define-type result-format-string
                                smithy/sdk/smithy-types:string)
@@ -689,7 +709,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class redshift-data-error))
 
 (smithy/sdk/shapes:define-type workgroup-name-string
                                smithy/sdk/smithy-types:string)

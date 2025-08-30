@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/migration-hub (:use)
-                             (:export #:awsmigration-hub #:application-id
+                             (:export #:awsmigration-hub
+                              #:access-denied-exception #:application-id
                               #:application-ids #:application-state
                               #:application-state-list #:application-status
                               #:associate-created-artifact
@@ -17,7 +18,10 @@
                               #:discovered-resource
                               #:discovered-resource-description
                               #:discovered-resource-list #:dry-run
-                              #:error-message #:import-migration-task
+                              #:dry-run-operation #:error-message
+                              #:home-region-not-set-exception
+                              #:import-migration-task #:internal-server-error
+                              #:invalid-input-exception
                               #:latest-resource-attribute-list
                               #:list-application-states
                               #:list-created-artifacts
@@ -34,7 +38,8 @@
                               #:migration-task-update
                               #:migration-task-update-list
                               #:next-update-seconds #:notify-application-state
-                              #:notify-migration-task-state #:progress-percent
+                              #:notify-migration-task-state
+                              #:policy-error-exception #:progress-percent
                               #:progress-update-stream
                               #:progress-update-stream-summary
                               #:progress-update-stream-summary-list
@@ -42,12 +47,20 @@
                               #:resource-attribute-list
                               #:resource-attribute-type
                               #:resource-attribute-value #:resource-name
-                              #:retry-after-seconds #:source-resource
+                              #:resource-not-found-exception
+                              #:retry-after-seconds
+                              #:service-unavailable-exception #:source-resource
                               #:source-resource-description
                               #:source-resource-list #:source-resource-name
-                              #:status #:status-detail #:task #:token
-                              #:update-date-time #:update-type))
+                              #:status #:status-detail #:task
+                              #:throttling-exception #:token
+                              #:unauthorized-operation #:update-date-time
+                              #:update-type #:migration-hub-error))
 (common-lisp:in-package #:pira/migration-hub)
+
+(common-lisp:define-condition migration-hub-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsmigration-hub :shape-name
                                    "AWSMigrationHub" :version "2017-05-31"
@@ -89,7 +102,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migration-hub-error))
 
 (smithy/sdk/shapes:define-type application-id smithy/sdk/smithy-types:string)
 
@@ -347,7 +361,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DryRunOperation")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migration-hub-error))
 
 (smithy/sdk/shapes:define-type error-message smithy/sdk/smithy-types:string)
 
@@ -355,7 +370,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "HomeRegionNotSetException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migration-hub-error))
 
 (smithy/sdk/shapes:define-input import-migration-task-request common-lisp:nil
                                 ((progress-update-stream :target-type
@@ -377,13 +393,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class migration-hub-error))
 
 (smithy/sdk/shapes:define-error invalid-input-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migration-hub-error))
 
 (smithy/sdk/shapes:define-list latest-resource-attribute-list :member
                                resource-attribute)
@@ -655,7 +673,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "PolicyErrorException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migration-hub-error))
 
 (smithy/sdk/shapes:define-type progress-percent smithy/sdk/smithy-types:integer)
 
@@ -726,7 +745,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migration-hub-error))
 
 (smithy/sdk/shapes:define-type retry-after-seconds
                                smithy/sdk/smithy-types:integer)
@@ -735,7 +755,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class migration-hub-error))
 
 (smithy/sdk/shapes:define-structure source-resource common-lisp:nil
                                     ((name :target-type source-resource-name
@@ -783,7 +804,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class migration-hub-error))
 
 (smithy/sdk/shapes:define-type token smithy/sdk/smithy-types:string)
 
@@ -791,7 +813,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "UnauthorizedOperation")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migration-hub-error))
 
 (smithy/sdk/shapes:define-type update-date-time
                                smithy/sdk/smithy-types:timestamp)

@@ -1,28 +1,29 @@
 (uiop/package:define-package #:pira/resource-explorer-2 (:use)
-                             (:export #:awsservice-access-status #:account-id
+                             (:export #:awsservice-access-status
+                              #:access-denied-exception #:account-id
                               #:account-id-list #:associate-default-view
                               #:associate-default-view-input
                               #:associate-default-view-output #:batch-get-view
                               #:batch-get-view-error #:batch-get-view-errors
                               #:batch-get-view-input #:batch-get-view-output
-                              #:cfn-index #:cfn-view #:create-index
-                              #:create-index-input #:create-index-output
-                              #:create-view #:create-view-input
-                              #:create-view-output #:default-view-association
-                              #:delete-index #:delete-index-input
-                              #:delete-index-output #:delete-view
-                              #:delete-view-input #:delete-view-output
-                              #:disassociate-default-view
+                              #:cfn-index #:cfn-view #:conflict-exception
+                              #:create-index #:create-index-input
+                              #:create-index-output #:create-view
+                              #:create-view-input #:create-view-output
+                              #:default-view-association #:delete-index
+                              #:delete-index-input #:delete-index-output
+                              #:delete-view #:delete-view-input
+                              #:delete-view-output #:disassociate-default-view
                               #:get-account-level-service-configuration
                               #:get-default-view #:get-default-view-output
                               #:get-index #:get-index-output #:get-managed-view
                               #:get-view #:get-view-input #:get-view-output
                               #:included-property #:included-property-list
                               #:index #:index-list #:index-state #:index-type
-                              #:list-indexes #:list-indexes-for-members
-                              #:list-indexes-input #:list-indexes-output
-                              #:list-managed-views #:list-resources
-                              #:list-supported-resource-types
+                              #:internal-server-exception #:list-indexes
+                              #:list-indexes-for-members #:list-indexes-input
+                              #:list-indexes-output #:list-managed-views
+                              #:list-resources #:list-supported-resource-types
                               #:list-supported-resource-types-input
                               #:list-supported-resource-types-output
                               #:list-tags-for-resource
@@ -33,21 +34,29 @@
                               #:member-index #:member-index-list
                               #:org-configuration #:query-string #:region-list
                               #:resource #:resource-count #:resource-explorer
-                              #:resource-list #:resource-property
-                              #:resource-property-list #:resource-type-list
-                              #:search #:search-filter #:search-input
-                              #:search-output #:string-list
+                              #:resource-list #:resource-not-found-exception
+                              #:resource-property #:resource-property-list
+                              #:resource-type-list #:search #:search-filter
+                              #:search-input #:search-output
+                              #:service-quota-exceeded-exception #:string-list
                               #:supported-resource-type #:tag-map
                               #:tag-resource #:tag-resource-input
-                              #:tag-resource-output #:untag-resource
+                              #:tag-resource-output #:throttling-exception
+                              #:unauthorized-exception #:untag-resource
                               #:untag-resource-input #:untag-resource-output
                               #:update-index-type #:update-index-type-input
                               #:update-index-type-output #:update-view
                               #:update-view-input #:update-view-output
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list #:view
-                              #:view-arn-list #:view-list #:view-name))
+                              #:view-arn-list #:view-list #:view-name
+                              #:resource-explorer-2-error))
 (common-lisp:in-package #:pira/resource-explorer-2)
+
+(common-lisp:define-condition resource-explorer-2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service resource-explorer :shape-name
                                    "ResourceExplorer" :version "2022-07-28"
@@ -78,7 +87,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class resource-explorer-2-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -132,7 +142,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class resource-explorer-2-error))
 
 (smithy/sdk/shapes:define-structure create-index-input common-lisp:nil
                                     ((client-token :target-type
@@ -302,7 +313,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class resource-explorer-2-error))
 
 (smithy/sdk/shapes:define-input list-indexes-for-members-input common-lisp:nil
                                 ((account-id-list :target-type account-id-list
@@ -552,7 +564,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class resource-explorer-2-error))
 
 (smithy/sdk/shapes:define-structure resource-property common-lisp:nil
                                     ((name :target-type
@@ -619,7 +632,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Value"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class resource-explorer-2-error))
 
 (smithy/sdk/shapes:define-list string-list :member
                                smithy/sdk/smithy-types:string)
@@ -654,14 +668,16 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class resource-explorer-2-error))
 
 (smithy/sdk/shapes:define-error unauthorized-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class resource-explorer-2-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type
@@ -723,7 +739,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "FieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class resource-explorer-2-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

@@ -23,7 +23,8 @@
                               #:delete-app-validation-configuration
                               #:delete-replication-job #:delete-server-catalog
                               #:description #:disassociate-connector
-                              #:ec2key-name #:encrypted #:error-message
+                              #:dry-run-operation-exception #:ec2key-name
+                              #:encrypted #:error-message
                               #:execution-timeout-seconds
                               #:force-stop-app-replication
                               #:force-terminate-app #:frequency
@@ -35,23 +36,31 @@
                               #:get-replication-jobs #:get-replication-runs
                               #:get-servers #:import-app-catalog
                               #:import-server-catalog #:imported-app-id
-                              #:instance-id #:instance-type #:ip-address
+                              #:instance-id #:instance-type #:internal-error
+                              #:invalid-parameter-exception #:ip-address
                               #:kms-key-id #:launch-app #:launch-details
                               #:launch-order #:license-type #:list-apps
                               #:logical-id #:mac-address #:max-results
-                              #:next-token #:non-empty-string-with-max-len255
+                              #:missing-required-parameter-exception
+                              #:next-token #:no-connectors-available-exception
+                              #:non-empty-string-with-max-len255
                               #:notification-context
                               #:notify-app-validation-output
-                              #:number-of-recent-amis-to-keep #:output-format
-                              #:put-app-launch-configuration
+                              #:number-of-recent-amis-to-keep
+                              #:operation-not-permitted-exception
+                              #:output-format #:put-app-launch-configuration
                               #:put-app-replication-configuration
                               #:put-app-validation-configuration
-                              #:replication-job #:replication-job-id
-                              #:replication-job-list #:replication-job-state
+                              #:replication-job
+                              #:replication-job-already-exists-exception
+                              #:replication-job-id #:replication-job-list
+                              #:replication-job-not-found-exception
+                              #:replication-job-state
                               #:replication-job-status-message
                               #:replication-job-terminated #:replication-run
-                              #:replication-run-id #:replication-run-list
-                              #:replication-run-stage
+                              #:replication-run-id
+                              #:replication-run-limit-exceeded-exception
+                              #:replication-run-list #:replication-run-stage
                               #:replication-run-stage-details
                               #:replication-run-stage-progress
                               #:replication-run-state
@@ -60,6 +69,7 @@
                               #:s3bucket-name #:s3key-name #:s3location
                               #:ssmoutput #:ssmvalidation-parameters
                               #:script-type #:security-group #:server
+                              #:server-cannot-be-replicated-exception
                               #:server-catalog-status #:server-group
                               #:server-group-id
                               #:server-group-launch-configuration
@@ -83,17 +93,25 @@
                               #:start-on-demand-app-replication
                               #:start-on-demand-replication-run
                               #:stop-app-replication #:subnet #:tag #:tag-key
-                              #:tag-value #:tags #:terminate-app #:timestamp
-                              #:total-server-groups #:total-servers
-                              #:update-app #:update-replication-job #:user-data
+                              #:tag-value #:tags
+                              #:temporarily-unavailable-exception
+                              #:terminate-app #:timestamp #:total-server-groups
+                              #:total-servers
+                              #:unauthorized-operation-exception #:update-app
+                              #:update-replication-job #:user-data
                               #:user-data-validation-parameters #:vpc
                               #:validation-id #:validation-output
                               #:validation-output-list #:validation-status
                               #:validation-status-message #:vm-id
                               #:vm-manager-id #:vm-manager-name
                               #:vm-manager-type #:vm-name #:vm-path #:vm-server
-                              #:vm-server-address #:vm-server-address-list))
+                              #:vm-server-address #:vm-server-address-list
+                              #:sms-error))
 (common-lisp:in-package #:pira/sms)
+
+(common-lisp:define-condition sms-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsserver-migration-service-v2016-10-24
                                    :shape-name
@@ -500,7 +518,7 @@
                                   :member-name "message"))
                                 (:shape-name "DryRunOperationException")
                                 (:error-name "DryRunOperationException")
-                                (:error-code 412))
+                                (:error-code 412) (:base-class sms-error))
 
 (smithy/sdk/shapes:define-type ec2key-name smithy/sdk/smithy-types:string)
 
@@ -732,14 +750,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalError")
-                                (:error-name "InternalError") (:error-code 500))
+                                (:error-name "InternalError") (:error-code 500)
+                                (:base-class sms-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterException")
                                 (:error-name "InvalidParameter")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sms-error))
 
 (smithy/sdk/shapes:define-type ip-address smithy/sdk/smithy-types:string)
 
@@ -798,7 +817,7 @@
                                 (:shape-name
                                  "MissingRequiredParameterException")
                                 (:error-name "MissingRequiredParameter")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sms-error))
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
 
@@ -808,7 +827,7 @@
                                   :member-name "message"))
                                 (:shape-name "NoConnectorsAvailableException")
                                 (:error-name "NoConnectorsAvailable")
-                                (:error-code 430))
+                                (:error-code 430) (:base-class sms-error))
 
 (smithy/sdk/shapes:define-type non-empty-string-with-max-len255
                                smithy/sdk/smithy-types:string)
@@ -847,7 +866,7 @@
                                   :member-name "message"))
                                 (:shape-name "OperationNotPermittedException")
                                 (:error-name "OperationNotPermitted")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sms-error))
 
 (smithy/sdk/shapes:define-enum output-format
     common-lisp:nil
@@ -965,7 +984,7 @@
                                 (:shape-name
                                  "ReplicationJobAlreadyExistsException")
                                 (:error-name "ReplicationJobAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sms-error))
 
 (smithy/sdk/shapes:define-type replication-job-id
                                smithy/sdk/smithy-types:string)
@@ -979,7 +998,7 @@
                                   :member-name "message"))
                                 (:shape-name "ReplicationJobNotFoundException")
                                 (:error-name "ReplicationJobNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class sms-error))
 
 (smithy/sdk/shapes:define-enum replication-job-state
     common-lisp:nil
@@ -1037,7 +1056,7 @@
                                 (:shape-name
                                  "ReplicationRunLimitExceededException")
                                 (:error-name "ReplicationRunLimitExceeded")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class sms-error))
 
 (smithy/sdk/shapes:define-list replication-run-list :member
                                (replication-run :xml-name "item"))
@@ -1141,7 +1160,7 @@
                                 (:shape-name
                                  "ServerCannotBeReplicatedException")
                                 (:error-name "ServerCannotBeReplicated")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sms-error))
 
 (smithy/sdk/shapes:define-enum server-catalog-status
     common-lisp:nil
@@ -1401,7 +1420,7 @@
                                 common-lisp:nil common-lisp:nil
                                 (:shape-name "TemporarilyUnavailableException")
                                 (:error-name "TemporarilyUnavailable")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class sms-error))
 
 (smithy/sdk/shapes:define-input terminate-app-request common-lisp:nil
                                 ((app-id :target-type app-id :member-name
@@ -1425,7 +1444,7 @@
                                   :member-name "message"))
                                 (:shape-name "UnauthorizedOperationException")
                                 (:error-name "UnauthorizedOperation")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sms-error))
 
 (smithy/sdk/shapes:define-input update-app-request common-lisp:nil
                                 ((app-id :target-type app-id :member-name

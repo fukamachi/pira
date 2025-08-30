@@ -20,7 +20,7 @@
                               #:collection-status #:collection-summaries
                               #:collection-summary #:collection-type
                               #:config-description #:config-name
-                              #:create-access-policy
+                              #:conflict-exception #:create-access-policy
                               #:create-access-policy-request
                               #:create-access-policy-response
                               #:create-collection #:create-collection-detail
@@ -78,7 +78,8 @@
                               #:iam-identity-center-group-attribute
                               #:iam-identity-center-instance-arn
                               #:iam-identity-center-user-attribute
-                              #:indexing-capacity-value #:lifecycle-policy
+                              #:indexing-capacity-value
+                              #:internal-server-exception #:lifecycle-policy
                               #:lifecycle-policy-detail
                               #:lifecycle-policy-details
                               #:lifecycle-policy-error-detail
@@ -108,13 +109,14 @@
                               #:list-tags-for-resource-response
                               #:list-vpc-endpoints #:list-vpc-endpoints-request
                               #:list-vpc-endpoints-response
+                              #:ocu-limit-exceeded-exception
                               #:open-search-serverless #:policy-description
                               #:policy-document #:policy-name #:policy-version
                               #:resource #:resource-filter #:resource-name
-                              #:resource-type #:saml-config-options
-                              #:search-capacity-value #:security-config
-                              #:security-config-detail #:security-config-id
-                              #:security-config-stats
+                              #:resource-not-found-exception #:resource-type
+                              #:saml-config-options #:search-capacity-value
+                              #:security-config #:security-config-detail
+                              #:security-config-id #:security-config-stats
                               #:security-config-summaries
                               #:security-config-summary #:security-config-type
                               #:security-group-id #:security-group-ids
@@ -122,6 +124,7 @@
                               #:security-policy-stats
                               #:security-policy-summaries
                               #:security-policy-summary #:security-policy-type
+                              #:service-quota-exceeded-exception
                               #:standby-replicas #:subnet-id #:subnet-ids #:tag
                               #:tag-key #:tag-keys #:tag-resource
                               #:tag-resource-request #:tag-resource-response
@@ -147,7 +150,8 @@
                               #:update-vpc-endpoint
                               #:update-vpc-endpoint-detail
                               #:update-vpc-endpoint-request
-                              #:update-vpc-endpoint-response #:vpc-endpoint
+                              #:update-vpc-endpoint-response
+                              #:validation-exception #:vpc-endpoint
                               #:vpc-endpoint-detail #:vpc-endpoint-details
                               #:vpc-endpoint-error-detail
                               #:vpc-endpoint-error-details
@@ -159,8 +163,13 @@
                               #:iam-federation-user-attribute
                               #:open-search-serverless-entity-id
                               #:saml-group-attribute #:saml-metadata
-                              #:saml-user-attribute))
+                              #:saml-user-attribute
+                              #:opensearchserverless-error))
 (common-lisp:in-package #:pira/opensearchserverless)
+
+(common-lisp:define-condition opensearchserverless-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service open-search-serverless :shape-name
                                    "OpenSearchServerless" :version "2021-11-01"
@@ -438,7 +447,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class opensearchserverless-error))
 
 (smithy/sdk/shapes:define-structure create-access-policy-request
                                     common-lisp:nil
@@ -911,7 +921,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class opensearchserverless-error))
 
 common-lisp:nil
 
@@ -1177,7 +1188,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "OcuLimitExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class opensearchserverless-error))
 
 (smithy/sdk/shapes:define-type policy-description
                                smithy/sdk/smithy-types:string)
@@ -1199,7 +1211,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class opensearchserverless-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -1370,7 +1383,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class opensearchserverless-error))
 
 (smithy/sdk/shapes:define-type standby-replicas smithy/sdk/smithy-types:string)
 
@@ -1637,7 +1651,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class opensearchserverless-error))
 
 common-lisp:nil
 

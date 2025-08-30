@@ -1,15 +1,23 @@
 (uiop/package:define-package #:pira/migrationhub-config (:use)
                              (:export #:awsmigration-hub-multi-account-service
-                              #:control-id #:create-home-region-control
+                              #:access-denied-exception #:control-id
+                              #:create-home-region-control
                               #:delete-home-region-control
                               #:describe-home-region-controls
                               #:describe-home-region-controls-max-results
-                              #:dry-run #:error-message #:get-home-region
-                              #:home-region #:home-region-control
-                              #:home-region-controls #:requested-time
-                              #:retry-after-seconds #:target #:target-id
-                              #:target-type #:token))
+                              #:dry-run #:dry-run-operation #:error-message
+                              #:get-home-region #:home-region
+                              #:home-region-control #:home-region-controls
+                              #:internal-server-error #:invalid-input-exception
+                              #:requested-time #:retry-after-seconds
+                              #:service-unavailable-exception #:target
+                              #:target-id #:target-type #:throttling-exception
+                              #:token #:migrationhub-config-error))
 (common-lisp:in-package #:pira/migrationhub-config)
+
+(common-lisp:define-condition migrationhub-config-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsmigration-hub-multi-account-service
                                    :shape-name
@@ -37,7 +45,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migrationhub-config-error))
 
 (smithy/sdk/shapes:define-type control-id smithy/sdk/smithy-types:string)
 
@@ -104,7 +113,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DryRunOperation")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migrationhub-config-error))
 
 (smithy/sdk/shapes:define-type error-message smithy/sdk/smithy-types:string)
 
@@ -137,13 +147,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class migrationhub-config-error))
 
 (smithy/sdk/shapes:define-error invalid-input-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migrationhub-config-error))
 
 (smithy/sdk/shapes:define-type requested-time smithy/sdk/smithy-types:timestamp)
 
@@ -154,7 +166,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class migrationhub-config-error))
 
 (smithy/sdk/shapes:define-structure target common-lisp:nil
                                     ((type :target-type target-type :required
@@ -177,7 +190,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class migrationhub-config-error))
 
 (smithy/sdk/shapes:define-type token smithy/sdk/smithy-types:string)
 

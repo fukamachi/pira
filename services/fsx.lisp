@@ -1,8 +1,10 @@
 (uiop/package:define-package #:pira/fsx (:use)
                              (:export #:awsaccount-id
                               #:awssimba-apiservice-v20180301
+                              #:access-point-already-owned-by-you
                               #:access-point-policy
                               #:active-directory-backup-attributes
+                              #:active-directory-error
                               #:active-directory-error-type
                               #:active-directory-fully-qualified-name
                               #:admin-password #:administrative-action
@@ -19,9 +21,11 @@
                               #:autocommit-period-type
                               #:autocommit-period-value
                               #:automatic-backup-retention-days #:backup
-                              #:backup-failure-details #:backup-id #:backup-ids
-                              #:backup-lifecycle #:backup-type #:backups
-                              #:batch-import-meta-data-on-create
+                              #:backup-being-copied #:backup-failure-details
+                              #:backup-id #:backup-ids #:backup-in-progress
+                              #:backup-lifecycle #:backup-not-found
+                              #:backup-restoring #:backup-type #:backups
+                              #:bad-request #:batch-import-meta-data-on-create
                               #:cancel-data-repository-task
                               #:capacity-to-release #:client-request-token
                               #:completion-report #:cooling-period
@@ -55,11 +59,14 @@
                               #:data-repository-association
                               #:data-repository-association-id
                               #:data-repository-association-ids
+                              #:data-repository-association-not-found
                               #:data-repository-associations
                               #:data-repository-configuration
                               #:data-repository-failure-details
                               #:data-repository-lifecycle
                               #:data-repository-task
+                              #:data-repository-task-ended
+                              #:data-repository-task-executing
                               #:data-repository-task-failure-details
                               #:data-repository-task-filter
                               #:data-repository-task-filter-name
@@ -67,6 +74,7 @@
                               #:data-repository-task-filter-values
                               #:data-repository-task-filters
                               #:data-repository-task-lifecycle
+                              #:data-repository-task-not-found
                               #:data-repository-task-path
                               #:data-repository-task-paths
                               #:data-repository-task-status
@@ -115,7 +123,8 @@
                               #:file-cache-lustre-configuration
                               #:file-cache-lustre-deployment-type
                               #:file-cache-lustre-metadata-configuration
-                              #:file-cache-nfsconfiguration #:file-cache-type
+                              #:file-cache-nfsconfiguration
+                              #:file-cache-not-found #:file-cache-type
                               #:file-caches #:file-system
                               #:file-system-administrators-group-name
                               #:file-system-endpoint #:file-system-endpoints
@@ -125,15 +134,26 @@
                               #:file-system-lustre-metadata-configuration
                               #:file-system-maintenance-operation
                               #:file-system-maintenance-operations
+                              #:file-system-not-found
                               #:file-system-secondary-gids #:file-system-type
                               #:file-system-type-version #:file-system-uid
                               #:file-systems #:filter #:filter-name
                               #:filter-value #:filter-values #:filters #:flag
                               #:flex-cache-endpoint-type #:general-arn
                               #:hapairs #:include-shared
+                              #:incompatible-parameter-error
+                              #:incompatible-region-for-multi-az
                               #:input-ontap-volume-type #:integer-no-max
                               #:integer-no-max-from-negative-one
-                              #:integer-record-size-ki-b #:iops #:ip-address
+                              #:integer-record-size-ki-b
+                              #:internal-server-error #:invalid-access-point
+                              #:invalid-data-repository-type
+                              #:invalid-destination-kms-key
+                              #:invalid-export-path #:invalid-import-path
+                              #:invalid-network-settings
+                              #:invalid-per-unit-storage-throughput
+                              #:invalid-region #:invalid-request
+                              #:invalid-source-kms-key #:iops #:ip-address
                               #:ip-address-range #:junction-path #:kms-key-id
                               #:last-updated-time #:lifecycle-transition-reason
                               #:limited-max-results #:list-tags-for-resource
@@ -151,10 +171,14 @@
                               #:megabytes #:megabytes-per-second
                               #:metadata-configuration-mode #:metadata-iops
                               #:metadata-storage-capacity
+                              #:missing-file-cache-configuration
+                              #:missing-file-system-configuration
+                              #:missing-volume-configuration
                               #:nfsdata-repository-configuration #:namespace
                               #:net-bios-alias #:network-interface-id
                               #:network-interface-ids #:next-token
-                              #:nfs-version #:ontap-deployment-type
+                              #:nfs-version #:not-service-resource-error
+                              #:ontap-deployment-type
                               #:ontap-endpoint-ip-addresses
                               #:ontap-file-system-configuration
                               #:ontap-volume-configuration #:ontap-volume-type
@@ -186,7 +210,9 @@
                               #:released-capacity #:remaining-transfer-bytes
                               #:report-format #:report-scope
                               #:repository-dns-ips #:request-time
-                              #:resource-arn #:resource-type
+                              #:resource-arn
+                              #:resource-does-not-support-tagging
+                              #:resource-not-found #:resource-type
                               #:restore-open-zfsvolume-option
                               #:restore-open-zfsvolume-options
                               #:restore-volume-from-snapshot #:retention-period
@@ -197,6 +223,7 @@
                               #:s3access-point-attachment-lifecycle
                               #:s3access-point-attachment-name
                               #:s3access-point-attachment-names
+                              #:s3access-point-attachment-not-found
                               #:s3access-point-attachment-type
                               #:s3access-point-attachments
                               #:s3access-point-attachments-filter
@@ -212,15 +239,16 @@
                               #:self-managed-active-directory-attributes
                               #:self-managed-active-directory-configuration
                               #:self-managed-active-directory-configuration-updates
-                              #:service-limit #:size-in-bytes
-                              #:snaplock-configuration
+                              #:service-limit #:service-limit-exceeded
+                              #:size-in-bytes #:snaplock-configuration
                               #:snaplock-retention-period #:snaplock-type
                               #:snapshot #:snapshot-filter
                               #:snapshot-filter-name #:snapshot-filter-value
                               #:snapshot-filter-values #:snapshot-filters
                               #:snapshot-id #:snapshot-ids #:snapshot-lifecycle
-                              #:snapshot-name #:snapshot-policy #:snapshots
-                              #:source-backup-id
+                              #:snapshot-name #:snapshot-not-found
+                              #:snapshot-policy #:snapshots #:source-backup-id
+                              #:source-backup-unavailable
                               #:start-misconfigured-state-recovery #:start-time
                               #:status #:storage-capacity #:storage-type
                               #:storage-virtual-machine
@@ -233,6 +261,7 @@
                               #:storage-virtual-machine-ids
                               #:storage-virtual-machine-lifecycle
                               #:storage-virtual-machine-name
+                              #:storage-virtual-machine-not-found
                               #:storage-virtual-machine-root-volume-security-style
                               #:storage-virtual-machine-subtype
                               #:storage-virtual-machines
@@ -243,9 +272,10 @@
                               #:tag-keys #:tag-resource #:tag-value #:tags
                               #:task-id #:task-ids #:throughput-capacity-mbps
                               #:throughput-capacity-per-hapair #:tiering-policy
-                              #:tiering-policy-name #:total-constituents
-                              #:total-count #:total-transfer-bytes #:uuid
-                              #:unit #:untag-resource
+                              #:tiering-policy-name #:too-many-access-points
+                              #:total-constituents #:total-count
+                              #:total-transfer-bytes #:uuid #:unit
+                              #:unsupported-operation #:untag-resource
                               #:update-data-repository-association
                               #:update-file-cache
                               #:update-file-cache-lustre-configuration
@@ -268,14 +298,19 @@
                               #:volume-filter #:volume-filter-name
                               #:volume-filter-value #:volume-filter-values
                               #:volume-filters #:volume-id #:volume-ids
-                              #:volume-lifecycle #:volume-name #:volume-path
-                              #:volume-style #:volume-type #:volumes #:vpc-id
-                              #:weekly-time #:windows-access-audit-log-level
+                              #:volume-lifecycle #:volume-name
+                              #:volume-not-found #:volume-path #:volume-style
+                              #:volume-type #:volumes #:vpc-id #:weekly-time
+                              #:windows-access-audit-log-level
                               #:windows-audit-log-configuration
                               #:windows-audit-log-create-configuration
                               #:windows-deployment-type
-                              #:windows-file-system-configuration))
+                              #:windows-file-system-configuration #:fsx-error))
 (common-lisp:in-package #:pira/fsx)
+
+(common-lisp:define-condition fsx-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awssimba-apiservice-v20180301 :shape-name
                                    "AWSSimbaAPIService_v20180301" :version
@@ -340,7 +375,8 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessPointAlreadyOwnedByYou")
-                                (:error-code 409) (:xml-name "Error"))
+                                (:error-code 409) (:base-class fsx-error)
+                                (:xml-name "Error"))
 
 (smithy/sdk/shapes:define-type access-point-policy
                                smithy/sdk/smithy-types:string)
@@ -367,7 +403,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ActiveDirectoryError")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-enum active-directory-error-type
     common-lisp:nil
@@ -589,7 +625,7 @@
                                  (backup-id :target-type backup-id :member-name
                                   "BackupId"))
                                 (:shape-name "BackupBeingCopied")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-structure backup-failure-details common-lisp:nil
                                     ((message :target-type error-message
@@ -604,7 +640,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "BackupInProgress")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-enum backup-lifecycle
     common-lisp:nil
@@ -620,7 +656,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "BackupNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error backup-restoring common-lisp:nil
                                 ((message :target-type error-message
@@ -628,7 +664,7 @@
                                  (file-system-id :target-type file-system-id
                                   :member-name "FileSystemId"))
                                 (:shape-name "BackupRestoring")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-enum backup-type
     common-lisp:nil
@@ -641,7 +677,8 @@
 (smithy/sdk/shapes:define-error bad-request common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
-                                (:shape-name "BadRequest") (:error-code 400))
+                                (:shape-name "BadRequest") (:error-code 400)
+                                (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-type batch-import-meta-data-on-create
                                smithy/sdk/smithy-types:boolean)
@@ -1500,7 +1537,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "DataRepositoryAssociationNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-list data-repository-associations :member
                                data-repository-association)
@@ -1589,13 +1626,13 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DataRepositoryTaskEnded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error data-repository-task-executing common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DataRepositoryTaskExecuting")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-structure data-repository-task-failure-details
                                     common-lisp:nil
@@ -1642,7 +1679,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DataRepositoryTaskNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-type data-repository-task-path
                                smithy/sdk/smithy-types:string)
@@ -2431,7 +2468,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "FileCacheNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-enum file-cache-type
     common-lisp:nil
@@ -2559,7 +2596,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "FileSystemNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-list file-system-secondary-gids :member
                                file-system-gid)
@@ -2621,14 +2658,14 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "IncompatibleParameterError")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error incompatible-region-for-multi-az
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "IncompatibleRegionForMultiAZ")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-enum input-ontap-volume-type
     common-lisp:nil
@@ -2647,7 +2684,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error invalid-access-point common-lisp:nil
                                 ((error-code :target-type error-code
@@ -2655,31 +2692,32 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidAccessPoint")
-                                (:error-code 400) (:xml-name "Error"))
+                                (:error-code 400) (:base-class fsx-error)
+                                (:xml-name "Error"))
 
 (smithy/sdk/shapes:define-error invalid-data-repository-type common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidDataRepositoryType")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error invalid-destination-kms-key common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidDestinationKmsKey")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error invalid-export-path common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidExportPath")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error invalid-import-path common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidImportPath")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error invalid-network-settings common-lisp:nil
                                 ((message :target-type error-message
@@ -2693,19 +2731,20 @@
                                   route-table-id :member-name
                                   "InvalidRouteTableId"))
                                 (:shape-name "InvalidNetworkSettings")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error invalid-per-unit-storage-throughput
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidPerUnitStorageThroughput")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error invalid-region common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
-                                (:shape-name "InvalidRegion") (:error-code 400))
+                                (:shape-name "InvalidRegion") (:error-code 400)
+                                (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error invalid-request common-lisp:nil
                                 ((error-code :target-type error-code
@@ -2713,13 +2752,14 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequest")
-                                (:error-code 400) (:xml-name "Error"))
+                                (:error-code 400) (:base-class fsx-error)
+                                (:xml-name "Error"))
 
 (smithy/sdk/shapes:define-error invalid-source-kms-key common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidSourceKmsKey")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-type iops smithy/sdk/smithy-types:long)
 
@@ -2909,20 +2949,20 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "MissingFileCacheConfiguration")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error missing-file-system-configuration
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "MissingFileSystemConfiguration")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error missing-volume-configuration common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "MissingVolumeConfiguration")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-structure nfsdata-repository-configuration
                                     common-lisp:nil
@@ -2960,7 +3000,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NotServiceResourceError")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-enum ontap-deployment-type
     common-lisp:nil
@@ -3384,7 +3424,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceDoesNotSupportTagging")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-error resource-not-found common-lisp:nil
                                 ((resource-arn :target-type resource-arn
@@ -3393,7 +3433,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -3517,7 +3557,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "S3AccessPointAttachmentNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-enum s3access-point-attachment-type
     common-lisp:nil
@@ -3675,7 +3715,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-type size-in-bytes smithy/sdk/smithy-types:long)
 
@@ -3776,7 +3816,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "SnapshotNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-type snapshot-policy smithy/sdk/smithy-types:string)
 
@@ -3790,7 +3830,7 @@
                                  (backup-id :target-type backup-id :member-name
                                   "BackupId"))
                                 (:shape-name "SourceBackupUnavailable")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-input start-misconfigured-state-recovery-request
                                 common-lisp:nil
@@ -3914,7 +3954,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "StorageVirtualMachineNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-enum storage-virtual-machine-root-volume-security-style
     common-lisp:nil
@@ -4029,7 +4069,8 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "TooManyAccessPoints")
-                                (:error-code 400) (:xml-name "Error"))
+                                (:error-code 400) (:base-class fsx-error)
+                                (:xml-name "Error"))
 
 (smithy/sdk/shapes:define-type total-constituents
                                smithy/sdk/smithy-types:integer)
@@ -4049,7 +4090,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "UnsupportedOperation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type resource-arn
@@ -4556,7 +4597,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "VolumeNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fsx-error))
 
 (smithy/sdk/shapes:define-type volume-path smithy/sdk/smithy-types:string)
 

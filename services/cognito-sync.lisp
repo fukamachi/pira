@@ -1,30 +1,49 @@
 (uiop/package:define-package #:pira/cognito-sync (:use)
                              (:export #:awscognito-sync-service
-                              #:application-arn #:application-arn-list
-                              #:assume-role-arn #:boolean #:bulk-publish
-                              #:bulk-publish-status #:client-context
-                              #:cognito-event-type #:cognito-streams #:dataset
+                              #:already-streamed-exception #:application-arn
+                              #:application-arn-list #:assume-role-arn
+                              #:boolean #:bulk-publish #:bulk-publish-status
+                              #:client-context #:cognito-event-type
+                              #:cognito-streams
+                              #:concurrent-modification-exception #:dataset
                               #:dataset-list #:dataset-name #:date
                               #:delete-dataset #:describe-dataset
                               #:describe-identity-pool-usage
-                              #:describe-identity-usage #:device-id #:events
+                              #:describe-identity-usage #:device-id
+                              #:duplicate-request-exception #:events
                               #:exception-message #:get-bulk-publish-details
                               #:get-cognito-events
                               #:get-identity-pool-configuration #:identity-id
                               #:identity-pool-id #:identity-pool-usage
                               #:identity-pool-usage-list #:identity-usage
-                              #:integer #:integer-string #:lambda-function-arn
-                              #:list-datasets #:list-identity-pool-usage
-                              #:list-records #:long #:merged-dataset-name-list
-                              #:operation #:platform #:push-sync #:push-token
-                              #:record #:record-key #:record-list
-                              #:record-patch #:record-patch-list #:record-value
-                              #:register-device #:set-cognito-events
+                              #:integer #:integer-string
+                              #:internal-error-exception
+                              #:invalid-configuration-exception
+                              #:invalid-lambda-function-output-exception
+                              #:invalid-parameter-exception
+                              #:lambda-function-arn
+                              #:lambda-throttled-exception
+                              #:limit-exceeded-exception #:list-datasets
+                              #:list-identity-pool-usage #:list-records #:long
+                              #:merged-dataset-name-list
+                              #:not-authorized-exception #:operation #:platform
+                              #:push-sync #:push-token #:record #:record-key
+                              #:record-list #:record-patch #:record-patch-list
+                              #:record-value #:register-device
+                              #:resource-conflict-exception
+                              #:resource-not-found-exception
+                              #:set-cognito-events
                               #:set-identity-pool-configuration #:stream-name
                               #:streaming-status #:string
                               #:subscribe-to-dataset #:sync-session-token
-                              #:unsubscribe-from-dataset #:update-records))
+                              #:too-many-requests-exception
+                              #:unsubscribe-from-dataset #:update-records
+                              #:cognito-sync-error))
 (common-lisp:in-package #:pira/cognito-sync)
+
+(common-lisp:define-condition cognito-sync-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awscognito-sync-service :shape-name
                                    "AWSCognitoSyncService" :version
@@ -65,7 +84,8 @@
                                   "message"))
                                 (:shape-name "AlreadyStreamedException")
                                 (:error-name "AlreadyStreamed")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-type application-arn smithy/sdk/smithy-types:string)
 
@@ -116,7 +136,8 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConcurrentModificationException")
                                 (:error-name "ConcurrentModification")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-structure dataset common-lisp:nil
                                     ((identity-id :target-type identity-id
@@ -218,7 +239,8 @@
                                   "message"))
                                 (:shape-name "DuplicateRequestException")
                                 (:error-name "DuplicateRequest")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-map events :key cognito-event-type :value
                               lambda-function-arn)
@@ -324,7 +346,8 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "InternalErrorException")
-                                (:error-name "InternalError") (:error-code 500))
+                                (:error-name "InternalError") (:error-code 500)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-error invalid-configuration-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -332,7 +355,8 @@
                                   "message"))
                                 (:shape-name "InvalidConfigurationException")
                                 (:error-name "InvalidConfiguration")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-error invalid-lambda-function-output-exception
                                 common-lisp:nil
@@ -342,7 +366,8 @@
                                 (:shape-name
                                  "InvalidLambdaFunctionOutputException")
                                 (:error-name "InvalidLambdaFunctionOutput")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -350,7 +375,8 @@
                                   "message"))
                                 (:shape-name "InvalidParameterException")
                                 (:error-name "InvalidParameter")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-type lambda-function-arn
                                smithy/sdk/smithy-types:string)
@@ -361,14 +387,16 @@
                                   "message"))
                                 (:shape-name "LambdaThrottledException")
                                 (:error-name "LambdaThrottled")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-name "LimitExceeded") (:error-code 400))
+                                (:error-name "LimitExceeded") (:error-code 400)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-input list-datasets-request common-lisp:nil
                                 ((identity-pool-id :target-type
@@ -474,7 +502,8 @@
                                   "message"))
                                 (:shape-name "NotAuthorizedException")
                                 (:error-name "NotAuthorizedError")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-enum operation
     common-lisp:nil
@@ -561,7 +590,8 @@
                                   "message"))
                                 (:shape-name "ResourceConflictException")
                                 (:error-name "ResourceConflict")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -569,7 +599,8 @@
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-input set-cognito-events-request common-lisp:nil
                                 ((identity-pool-id :target-type
@@ -643,7 +674,8 @@
                                   "message"))
                                 (:shape-name "TooManyRequestsException")
                                 (:error-name "TooManyRequests")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class cognito-sync-error))
 
 (smithy/sdk/shapes:define-input unsubscribe-from-dataset-request
                                 common-lisp:nil

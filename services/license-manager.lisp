@@ -1,14 +1,16 @@
 (uiop/package:define-package #:pira/license-manager (:use)
                              (:export #:awslicense-manager #:accept-grant
+                              #:access-denied-exception
                               #:activation-override-behavior
                               #:allowed-operation #:allowed-operation-list
-                              #:arn #:arn-list
+                              #:arn #:arn-list #:authorization-exception
                               #:automated-discovery-information #:boolean
                               #:borrow-configuration #:box-boolean
                               #:box-integer #:box-long #:check-in-license
                               #:checkout-borrow-license #:checkout-license
                               #:checkout-type #:client-request-token
-                              #:client-token #:consumed-license-summary
+                              #:client-token #:conflict-exception
+                              #:consumed-license-summary
                               #:consumed-license-summary-list
                               #:consumption-configuration #:create-grant
                               #:create-grant-version #:create-license
@@ -22,20 +24,25 @@
                               #:delete-token #:digital-signature-method
                               #:entitlement #:entitlement-data
                               #:entitlement-data-list #:entitlement-data-unit
-                              #:entitlement-list #:entitlement-unit
-                              #:entitlement-usage #:entitlement-usage-list
-                              #:extend-license-consumption #:filter
-                              #:filter-list #:filter-name #:filter-value
-                              #:filter-values #:filters #:get-access-token
-                              #:get-grant #:get-license
-                              #:get-license-configuration
+                              #:entitlement-list
+                              #:entitlement-not-allowed-exception
+                              #:entitlement-unit #:entitlement-usage
+                              #:entitlement-usage-list
+                              #:extend-license-consumption
+                              #:failed-dependency-exception #:filter
+                              #:filter-limit-exceeded-exception #:filter-list
+                              #:filter-name #:filter-value #:filter-values
+                              #:filters #:get-access-token #:get-grant
+                              #:get-license #:get-license-configuration
                               #:get-license-conversion-task
                               #:get-license-manager-report-generator
                               #:get-license-usage #:get-service-settings
                               #:grant #:grant-list #:grant-status
                               #:granted-license #:granted-license-list
-                              #:iso8601date-time #:integer #:inventory-filter
-                              #:inventory-filter-condition
+                              #:iso8601date-time #:integer
+                              #:invalid-parameter-value-exception
+                              #:invalid-resource-state-exception
+                              #:inventory-filter #:inventory-filter-condition
                               #:inventory-filter-list #:issuer #:issuer-details
                               #:license #:license-configuration
                               #:license-configuration-association
@@ -54,6 +61,7 @@
                               #:license-operation-failure-list
                               #:license-specification #:license-specifications
                               #:license-status #:license-usage
+                              #:license-usage-exception
                               #:list-associations-for-license-configuration
                               #:list-distributed-grants
                               #:list-failures-for-license-configuration-operations
@@ -72,7 +80,8 @@
                               #:long #:managed-resource-summary
                               #:managed-resource-summary-list #:max-size100
                               #:max-size3string-list #:message #:metadata
-                              #:metadata-list #:options
+                              #:metadata-list
+                              #:no-entitlements-allowed-exception #:options
                               #:organization-configuration #:principal-arn-list
                               #:product-code-id #:product-code-list
                               #:product-code-list-item #:product-code-type
@@ -80,23 +89,33 @@
                               #:product-information-filter
                               #:product-information-filter-list
                               #:product-information-list
-                              #:provisional-configuration #:received-metadata
-                              #:received-status #:reject-grant #:renew-type
+                              #:provisional-configuration
+                              #:rate-limit-exceeded-exception
+                              #:received-metadata #:received-status
+                              #:redirect-exception #:reject-grant #:renew-type
                               #:report-context #:report-frequency
                               #:report-frequency-type #:report-generator
                               #:report-generator-list #:report-generator-name
                               #:report-type #:report-type-list
                               #:resource-inventory #:resource-inventory-list
-                              #:resource-type #:s3location #:signed-token
-                              #:status-reason-message #:string #:string-list
-                              #:tag #:tag-key-list #:tag-list #:tag-resource
-                              #:token-data #:token-list #:token-string
-                              #:token-type #:untag-resource
-                              #:update-license-configuration
+                              #:resource-limit-exceeded-exception
+                              #:resource-not-found-exception #:resource-type
+                              #:s3location #:server-internal-exception
+                              #:signed-token #:status-reason-message #:string
+                              #:string-list #:tag #:tag-key-list #:tag-list
+                              #:tag-resource #:token-data #:token-list
+                              #:token-string #:token-type
+                              #:unsupported-digital-signature-method-exception
+                              #:untag-resource #:update-license-configuration
                               #:update-license-manager-report-generator
                               #:update-license-specifications-for-resource
-                              #:update-service-settings #:usage-operation))
+                              #:update-service-settings #:usage-operation
+                              #:validation-exception #:license-manager-error))
 (common-lisp:in-package #:pira/license-manager)
+
+(common-lisp:define-condition license-manager-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awslicense-manager :shape-name
                                    "AWSLicenseManager" :version "2018-08-01"
@@ -173,7 +192,8 @@
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
                                 (:error-name "ServiceAccessDenied")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-enum activation-override-behavior
     common-lisp:nil
@@ -201,7 +221,8 @@
                                   "Message"))
                                 (:shape-name "AuthorizationException")
                                 (:error-name "AuthorizationFailure")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-structure automated-discovery-information
                                     common-lisp:nil
@@ -336,7 +357,8 @@
                                   "Message"))
                                 (:shape-name "ConflictException")
                                 (:error-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-structure consumed-license-summary common-lisp:nil
                                     ((resource-type :target-type resource-type
@@ -754,7 +776,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "EntitlementNotAllowedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-enum entitlement-unit
     common-lisp:nil
@@ -827,7 +850,8 @@
                                   "ErrorCode"))
                                 (:shape-name "FailedDependencyException")
                                 (:error-name "FailedDependency")
-                                (:error-code 424))
+                                (:error-code 424)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-structure filter common-lisp:nil
                                     ((name :target-type filter-name
@@ -841,7 +865,8 @@
                                   "Message"))
                                 (:shape-name "FilterLimitExceededException")
                                 (:error-name "FilterLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-list filter-list :member filter)
 
@@ -1121,7 +1146,8 @@
                                   "Message"))
                                 (:shape-name "InvalidParameterValueException")
                                 (:error-name "InvalidParameterValueProvided")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-state-exception
                                 common-lisp:nil
@@ -1129,7 +1155,8 @@
                                   "Message"))
                                 (:shape-name "InvalidResourceStateException")
                                 (:error-name "InvalidResourceState")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-structure inventory-filter common-lisp:nil
                                     ((name :target-type string :required
@@ -1410,7 +1437,8 @@
                                   "Message"))
                                 (:shape-name "LicenseUsageException")
                                 (:error-name "LicenseUsageFailure")
-                                (:error-code 412))
+                                (:error-code 412)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-input
  list-associations-for-license-configuration-request common-lisp:nil
@@ -1757,7 +1785,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "NoEntitlementsAllowedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-structure options common-lisp:nil
                                     ((activation-override-behavior :target-type
@@ -1832,7 +1861,8 @@
                                   "Message"))
                                 (:shape-name "RateLimitExceededException")
                                 (:error-name "RateLimitExceeded")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-structure received-metadata common-lisp:nil
                                     ((received-status :target-type
@@ -1863,7 +1893,8 @@
                                  (message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "RedirectException")
-                                (:error-code 308))
+                                (:error-code 308)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-input reject-grant-request common-lisp:nil
                                 ((grant-arn :target-type arn :required
@@ -1976,14 +2007,16 @@
                                   "Message"))
                                 (:shape-name "ResourceLimitExceededException")
                                 (:error-name "ResourceLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "InvalidResource.NotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -2004,7 +2037,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ServerInternalException")
-                                (:error-name "InternalError") (:error-code 500))
+                                (:error-name "InternalError") (:error-code 500)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-type signed-token smithy/sdk/smithy-types:string)
 
@@ -2070,7 +2104,8 @@
                                   "Message"))
                                 (:shape-name
                                  "UnsupportedDigitalSignatureMethodException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required
@@ -2181,7 +2216,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class license-manager-error))
 
 (smithy/sdk/operation:define-operation accept-grant :shape-name "AcceptGrant"
                                        :input accept-grant-request :output

@@ -12,9 +12,9 @@
                               #:component-id-list #:component-info
                               #:component-info-list #:component-status
                               #:component-summary #:component-summary-list
-                              #:component-type #:connected-entity-type
-                              #:credential-type #:database
-                              #:database-connection
+                              #:component-type #:conflict-exception
+                              #:connected-entity-type #:credential-type
+                              #:database #:database-connection
                               #:database-connection-method #:database-id
                               #:database-id-list #:database-name
                               #:database-status #:database-summary
@@ -36,9 +36,9 @@
                               #:get-resource-permission-input
                               #:get-resource-permission-output #:host
                               #:host-list #:host-role #:instance-id
-                              #:instance-list #:ip-address-list
-                              #:ip-address-member #:list-applications
-                              #:list-applications-input
+                              #:instance-list #:internal-server-exception
+                              #:ip-address-list #:ip-address-member
+                              #:list-applications #:list-applications-input
                               #:list-applications-output #:list-components
                               #:list-components-input #:list-components-output
                               #:list-databases #:list-databases-input
@@ -62,18 +62,24 @@
                               #:register-application-input
                               #:register-application-output #:replication-mode
                               #:resilience #:resource #:resource-id
-                              #:resource-type #:sapinstance-number #:sid
-                              #:secret-id #:ssm-sap #:ssm-sap-arn
-                              #:start-application #:start-application-refresh
-                              #:stop-application #:tag-key #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:resource-not-found-exception #:resource-type
+                              #:sapinstance-number #:sid #:secret-id #:ssm-sap
+                              #:ssm-sap-arn #:start-application
+                              #:start-application-refresh #:stop-application
+                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-resource-request #:tag-resource-response
+                              #:tag-value #:unauthorized-exception
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response
                               #:update-application-settings
                               #:update-application-settings-input
-                              #:update-application-settings-output))
+                              #:update-application-settings-output
+                              #:validation-exception #:ssm-sap-error))
 (common-lisp:in-package #:pira/ssm-sap)
+
+(common-lisp:define-condition ssm-sap-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ssm-sap :shape-name "SsmSap" :version
                                    "2018-05-10" :title
@@ -351,7 +357,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class ssm-sap-error))
 
 (smithy/sdk/shapes:define-enum connected-entity-type
     common-lisp:nil
@@ -622,7 +628,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class ssm-sap-error))
 
 (smithy/sdk/shapes:define-list ip-address-list :member ip-address-member)
 
@@ -930,7 +936,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class ssm-sap-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -1008,7 +1014,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class ssm-sap-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type ssm-sap-arn
@@ -1057,7 +1063,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-sap-error))
 
 (smithy/sdk/operation:define-operation delete-resource-permission :shape-name
                                        "DeleteResourcePermission" :input

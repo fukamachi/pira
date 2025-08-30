@@ -11,19 +11,24 @@
                               #:describe-packaging-group #:egress-access-logs
                               #:egress-endpoint
                               #:encryption-contract-configuration
-                              #:encryption-method #:hls-encryption
-                              #:hls-manifest #:hls-package #:list-assets
+                              #:encryption-method #:forbidden-exception
+                              #:hls-encryption #:hls-manifest #:hls-package
+                              #:internal-server-error-exception #:list-assets
                               #:list-packaging-configurations
                               #:list-packaging-groups #:list-tags-for-resource
                               #:manifest-layout #:max-results
                               #:media-package-vod #:mss-encryption
                               #:mss-manifest #:mss-package
-                              #:packaging-configuration #:packaging-group
-                              #:preset-speke20audio #:preset-speke20video
-                              #:profile #:scte-markers-source
-                              #:segment-template-format #:speke-key-provider
-                              #:stream-order #:stream-selection #:tag-resource
-                              #:tags #:untag-resource #:update-packaging-group
+                              #:not-found-exception #:packaging-configuration
+                              #:packaging-group #:preset-speke20audio
+                              #:preset-speke20video #:profile
+                              #:scte-markers-source #:segment-template-format
+                              #:service-unavailable-exception
+                              #:speke-key-provider #:stream-order
+                              #:stream-selection #:tag-resource #:tags
+                              #:too-many-requests-exception
+                              #:unprocessable-entity-exception #:untag-resource
+                              #:update-packaging-group
                               #:period-triggers-element #:boolean #:integer
                               #:list-of-asset-shallow #:list-of-dash-manifest
                               #:list-of-egress-endpoint #:list-of-hls-manifest
@@ -31,8 +36,13 @@
                               #:list-of-packaging-configuration
                               #:list-of-packaging-group
                               #:list-of-period-triggers-element
-                              #:list-of-string #:map-of-string #:string))
+                              #:list-of-string #:map-of-string #:string
+                              #:mediapackage-vod-error))
 (common-lisp:in-package #:pira/mediapackage-vod)
+
+(common-lisp:define-condition mediapackage-vod-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service media-package-vod :shape-name
                                    "MediaPackageVod" :version "2018-11-07"
@@ -535,7 +545,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class mediapackage-vod-error))
 
 (smithy/sdk/shapes:define-structure hls-encryption common-lisp:nil
                                     ((constant-initialization-vector
@@ -604,7 +615,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class mediapackage-vod-error))
 
 (smithy/sdk/shapes:define-input list-assets-request common-lisp:nil
                                 ((max-results :target-type max-results
@@ -720,7 +732,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class mediapackage-vod-error))
 
 (smithy/sdk/shapes:define-structure packaging-configuration common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -816,7 +829,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class mediapackage-vod-error))
 
 (smithy/sdk/shapes:define-structure speke-key-provider common-lisp:nil
                                     ((encryption-contract-configuration
@@ -872,13 +886,15 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class mediapackage-vod-error))
 
 (smithy/sdk/shapes:define-error unprocessable-entity-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "UnprocessableEntityException")
-                                (:error-code 422))
+                                (:error-code 422)
+                                (:base-class mediapackage-vod-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required

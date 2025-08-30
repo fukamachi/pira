@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/synthetics (:use)
-                             (:export #:artifact-config-input
-                              #:artifact-config-output #:associate-resource
+                             (:export #:access-denied-exception
+                              #:artifact-config-input #:artifact-config-output
+                              #:associate-resource #:bad-request-exception
                               #:base-screenshot
                               #:base-screenshot-config-ignore-coordinate
                               #:base-screenshot-ignore-coordinates
@@ -17,10 +18,10 @@
                               #:canary-schedule-input #:canary-schedule-output
                               #:canary-state #:canary-state-reason-code
                               #:canary-status #:canary-timeline #:code-handler
-                              #:create-canary #:create-group #:delete-canary
-                              #:delete-group #:dependencies #:dependency
-                              #:dependency-type #:describe-canaries
-                              #:describe-canaries-last-run
+                              #:conflict-exception #:create-canary
+                              #:create-group #:delete-canary #:delete-group
+                              #:dependencies #:dependency #:dependency-type
+                              #:describe-canaries #:describe-canaries-last-run
                               #:describe-canaries-last-run-name-filter
                               #:describe-canaries-name-filter
                               #:describe-runtime-versions
@@ -32,31 +33,41 @@
                               #:function-arn #:get-canary #:get-canary-runs
                               #:get-group #:group #:group-arn
                               #:group-identifier #:group-name #:group-summary
-                              #:group-summary-list #:kms-key-arn
+                              #:group-summary-list #:internal-failure-exception
+                              #:internal-server-exception #:kms-key-arn
                               #:list-associated-groups #:list-group-resources
                               #:list-groups #:list-tags-for-resource
                               #:max-canary-results
                               #:max-fifteen-minutes-in-seconds
                               #:max-group-results #:max-one-year-in-seconds
                               #:max-retries #:max-size100 #:max-size1024
-                              #:max-size3008 #:nullable-boolean
-                              #:pagination-token
+                              #:max-size3008 #:not-found-exception
+                              #:nullable-boolean #:pagination-token
                               #:provisioned-resource-cleanup-setting
-                              #:resource-arn #:resource-list #:resource-to-tag
+                              #:request-entity-too-large-exception
+                              #:resource-arn #:resource-list
+                              #:resource-not-found-exception #:resource-to-tag
                               #:retry-attempt #:retry-config-input
                               #:retry-config-output #:role-arn #:run-type
                               #:runtime-version #:runtime-version-list
                               #:s3encryption-config #:security-group-id
-                              #:security-group-ids #:start-canary
+                              #:security-group-ids
+                              #:service-quota-exceeded-exception #:start-canary
                               #:start-canary-dry-run #:stop-canary #:string
                               #:string-list #:subnet-id #:subnet-ids
                               #:synthetics #:tag-key #:tag-key-list #:tag-map
                               #:tag-resource #:tag-value #:timestamp #:token
-                              #:uuid #:untag-resource #:update-canary
-                              #:visual-reference-input
+                              #:too-many-requests-exception #:uuid
+                              #:untag-resource #:update-canary
+                              #:validation-exception #:visual-reference-input
                               #:visual-reference-output #:vpc-config-input
-                              #:vpc-config-output #:vpc-id #:boolean))
+                              #:vpc-config-output #:vpc-id #:boolean
+                              #:synthetics-error))
 (common-lisp:in-package #:pira/synthetics)
+
+(common-lisp:define-condition synthetics-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service synthetics :shape-name "Synthetics" :version
                                    "2017-10-11" :title "Synthetics" :operations
@@ -87,7 +98,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class synthetics-error))
 
 (smithy/sdk/shapes:define-structure artifact-config-input common-lisp:nil
                                     ((s3encryption :target-type
@@ -119,7 +131,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class synthetics-error))
 
 (smithy/sdk/shapes:define-structure base-screenshot common-lisp:nil
                                     ((screenshot-name :target-type string
@@ -403,7 +416,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class synthetics-error))
 
 (smithy/sdk/shapes:define-input create-canary-request common-lisp:nil
                                 ((name :target-type canary-name :required
@@ -685,13 +699,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class synthetics-error))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class synthetics-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -781,7 +797,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class synthetics-error))
 
 (smithy/sdk/shapes:define-type nullable-boolean smithy/sdk/smithy-types:boolean)
 
@@ -797,7 +814,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "RequestEntityTooLargeException")
-                                (:error-code 413))
+                                (:error-code 413)
+                                (:base-class synthetics-error))
 
 (smithy/sdk/shapes:define-type resource-arn smithy/sdk/smithy-types:string)
 
@@ -807,7 +825,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class synthetics-error))
 
 (smithy/sdk/shapes:define-enum resource-to-tag
     common-lisp:nil
@@ -863,7 +882,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class synthetics-error))
 
 (smithy/sdk/shapes:define-input start-canary-dry-run-request common-lisp:nil
                                 ((name :target-type canary-name :required
@@ -961,7 +981,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class synthetics-error))
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 
@@ -1024,7 +1045,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class synthetics-error))
 
 (smithy/sdk/shapes:define-structure visual-reference-input common-lisp:nil
                                     ((base-screenshots :target-type

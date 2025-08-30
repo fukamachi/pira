@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/appfabric (:use)
-                             (:export #:api-key-credential #:app-authorization
+                             (:export #:access-denied-exception
+                              #:api-key-credential #:app-authorization
                               #:app-authorization-status
                               #:app-authorization-summary
                               #:app-authorization-summary-list #:app-bundle
@@ -8,7 +9,7 @@
                               #:audit-log-processing-configuration
                               #:auth-request #:auth-type
                               #:batch-get-user-access-tasks
-                              #:connect-app-authorization
+                              #:conflict-exception #:connect-app-authorization
                               #:create-app-authorization #:create-app-bundle
                               #:create-ingestion #:create-ingestion-destination
                               #:credential #:date-time
@@ -24,28 +25,35 @@
                               #:ingestion-destination-summary #:ingestion-list
                               #:ingestion-state #:ingestion-summary
                               #:ingestion-type #:integer
+                              #:internal-server-exception
                               #:list-app-authorizations #:list-app-bundles
                               #:list-ingestion-destinations #:list-ingestions
                               #:list-tags-for-resource #:max-results
                               #:oauth2credential #:persona
                               #:processing-configuration #:redirect-uri
-                              #:result-status #:s3bucket #:schema
-                              #:sensitive-string2048 #:start-ingestion
-                              #:start-user-access-tasks #:stop-ingestion
-                              #:string120 #:string2048 #:string255 #:string63
-                              #:string64 #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-value
-                              #:task-error #:task-id-list #:tenant
-                              #:tenant-identifier #:uuid #:untag-resource
-                              #:update-app-authorization
+                              #:resource-not-found-exception #:result-status
+                              #:s3bucket #:schema #:sensitive-string2048
+                              #:service-quota-exceeded-exception
+                              #:start-ingestion #:start-user-access-tasks
+                              #:stop-ingestion #:string120 #:string2048
+                              #:string255 #:string63 #:string64 #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-resource
+                              #:tag-value #:task-error #:task-id-list #:tenant
+                              #:tenant-identifier #:throttling-exception #:uuid
+                              #:untag-resource #:update-app-authorization
                               #:update-ingestion-destination
                               #:user-access-result-item
                               #:user-access-results-list
                               #:user-access-task-item #:user-access-tasks-list
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason))
+                              #:validation-exception-reason #:appfabric-error))
 (common-lisp:in-package #:pira/appfabric)
+
+(common-lisp:define-condition appfabric-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service fabric-front-end-service :shape-name
                                    "FabricFrontEndService" :version
@@ -78,7 +86,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class appfabric-error))
 
 (smithy/sdk/shapes:define-structure api-key-credential common-lisp:nil
                                     ((api-key :target-type sensitive-string2048
@@ -222,7 +230,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class appfabric-error))
 
 (smithy/sdk/shapes:define-input connect-app-authorization-request
                                 common-lisp:nil
@@ -620,7 +628,7 @@
                                   :member-name "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class appfabric-error))
 
 (smithy/sdk/shapes:define-input list-app-authorizations-request common-lisp:nil
                                 ((app-bundle-identifier :target-type identifier
@@ -764,7 +772,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class appfabric-error))
 
 (smithy/sdk/shapes:define-enum result-status
     common-lisp:nil
@@ -807,7 +815,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class appfabric-error))
 
 (smithy/sdk/shapes:define-input start-ingestion-request common-lisp:nil
                                 ((ingestion-identifier :target-type identifier
@@ -927,7 +935,7 @@
                                   :member-name "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class appfabric-error))
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 
@@ -1058,7 +1066,7 @@
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appfabric-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

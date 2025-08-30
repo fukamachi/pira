@@ -1,7 +1,7 @@
 (uiop/package:define-package #:pira/application-signals (:use)
-                             (:export #:account-id #:amazon-resource-name
-                              #:application-signals #:attainment
-                              #:attainment-goal #:attribute-map
+                             (:export #:access-denied-exception #:account-id
+                              #:amazon-resource-name #:application-signals
+                              #:attainment #:attainment-goal #:attribute-map
                               #:attribute-maps #:attributes #:aws-account-id
                               #:batch-get-service-level-objective-budget-report
                               #:batch-update-exclusion-windows
@@ -13,6 +13,7 @@
                               #:burn-rate-configurations
                               #:burn-rate-look-back-window-minutes
                               #:calendar-interval #:calendar-interval-duration
+                              #:conflict-exception
                               #:create-service-level-objective
                               #:delete-service-level-objective
                               #:dependency-config #:dimension #:dimension-name
@@ -50,12 +51,13 @@
                               #:request-based-service-level-indicator-config
                               #:request-based-service-level-indicator-metric
                               #:request-based-service-level-indicator-metric-config
-                              #:resource-id #:resource-type #:return-data
-                              #:rolling-interval #:rolling-interval-duration
-                              #:sliperiod-seconds #:service
-                              #:service-dependencies #:service-dependency
-                              #:service-dependent #:service-dependents
-                              #:service-error-message #:service-level-indicator
+                              #:resource-id #:resource-not-found-exception
+                              #:resource-type #:return-data #:rolling-interval
+                              #:rolling-interval-duration #:sliperiod-seconds
+                              #:service #:service-dependencies
+                              #:service-dependency #:service-dependent
+                              #:service-dependents #:service-error-message
+                              #:service-level-indicator
                               #:service-level-indicator-comparison-operator
                               #:service-level-indicator-config
                               #:service-level-indicator-metric
@@ -80,15 +82,22 @@
                               #:service-level-objective-summaries
                               #:service-level-objective-summary
                               #:service-operation #:service-operations
+                              #:service-quota-exceeded-exception
                               #:service-summaries #:service-summary
                               #:standard-unit #:start-discovery #:stat #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-value
+                              #:tag-resource #:tag-value #:throttling-exception
                               #:total-budget-requests #:total-budget-seconds
                               #:untag-resource #:update-service-level-objective
+                              #:validation-exception
                               #:validation-exception-message
-                              #:warning-threshold #:window))
+                              #:warning-threshold #:window
+                              #:application-signals-error))
 (common-lisp:in-package #:pira/application-signals)
+
+(common-lisp:define-condition application-signals-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service application-signals :shape-name
                                    "ApplicationSignals" :version "2024-04-15"
@@ -119,7 +128,8 @@
                                 ((message :target-type service-error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-name "AccessDenied") (:error-code 403))
+                                (:error-name "AccessDenied") (:error-code 403)
+                                (:base-class application-signals-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -242,7 +252,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class application-signals-error))
 
 (smithy/sdk/shapes:define-input create-service-level-objective-input
                                 common-lisp:nil
@@ -825,7 +836,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class application-signals-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -1170,7 +1182,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class application-signals-error))
 
 (smithy/sdk/shapes:define-list service-summaries :member service-summary)
 
@@ -1258,7 +1271,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class application-signals-error))
 
 (smithy/sdk/shapes:define-type total-budget-requests
                                smithy/sdk/smithy-types:integer)
@@ -1312,7 +1326,8 @@ common-lisp:nil
                                   "message"))
                                 (:shape-name "ValidationException")
                                 (:error-name "ValidationError")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class application-signals-error))
 
 (smithy/sdk/shapes:define-type validation-exception-message
                                smithy/sdk/smithy-types:string)

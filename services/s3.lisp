@@ -18,8 +18,9 @@
                               #:analytics-id #:analytics-s3bucket-destination
                               #:analytics-s3export-file-format #:archive-status
                               #:body #:bucket #:bucket-accelerate-status
-                              #:bucket-canned-acl #:bucket-info
-                              #:bucket-key-enabled
+                              #:bucket-already-exists
+                              #:bucket-already-owned-by-you #:bucket-canned-acl
+                              #:bucket-info #:bucket-key-enabled
                               #:bucket-lifecycle-configuration
                               #:bucket-location-constraint
                               #:bucket-location-name #:bucket-logging-status
@@ -83,7 +84,8 @@
                               #:directory-bucket-token #:display-name #:etag
                               #:email-address #:enable-request-progress
                               #:encoding-type #:encryption
-                              #:encryption-configuration #:end #:end-event
+                              #:encryption-configuration
+                              #:encryption-type-mismatch #:end #:end-event
                               #:error #:error-code #:error-details
                               #:error-document #:error-message #:errors #:event
                               #:event-bridge-configuration #:event-list
@@ -128,7 +130,8 @@
                               #:grant-read-acp #:grant-write #:grant-write-acp
                               #:grantee #:grants #:head-bucket #:head-object
                               #:host-name #:http-error-code-returned-equals
-                              #:http-redirect-code #:id #:if-match
+                              #:http-redirect-code #:id
+                              #:idempotency-parameter-mismatch #:if-match
                               #:if-match-initiated-time
                               #:if-match-last-modified-time #:if-match-size
                               #:if-modified-since #:if-none-match
@@ -142,7 +145,8 @@
                               #:intelligent-tiering-filter
                               #:intelligent-tiering-id
                               #:intelligent-tiering-status
-                              #:inventory-configuration
+                              #:invalid-object-state #:invalid-request
+                              #:invalid-write-offset #:inventory-configuration
                               #:inventory-configuration-list
                               #:inventory-configuration-state
                               #:inventory-destination #:inventory-encryption
@@ -201,17 +205,20 @@
                               #:multipart-upload-list #:next-key-marker
                               #:next-marker #:next-part-number-marker
                               #:next-token #:next-upload-id-marker
-                              #:next-version-id-marker
+                              #:next-version-id-marker #:no-such-bucket
+                              #:no-such-key #:no-such-upload
                               #:noncurrent-version-expiration
                               #:noncurrent-version-transition
-                              #:noncurrent-version-transition-list
+                              #:noncurrent-version-transition-list #:not-found
                               #:notification-configuration
                               #:notification-configuration-filter
-                              #:notification-id #:object #:object-attributes
-                              #:object-attributes-list #:object-canned-acl
-                              #:object-identifier #:object-identifier-list
-                              #:object-key #:object-list
-                              #:object-lock-configuration #:object-lock-enabled
+                              #:notification-id #:object
+                              #:object-already-in-active-tier-error
+                              #:object-attributes #:object-attributes-list
+                              #:object-canned-acl #:object-identifier
+                              #:object-identifier-list #:object-key
+                              #:object-list #:object-lock-configuration
+                              #:object-lock-enabled
                               #:object-lock-enabled-for-bucket
                               #:object-lock-legal-hold
                               #:object-lock-legal-hold-status
@@ -219,8 +226,9 @@
                               #:object-lock-retain-until-date
                               #:object-lock-retention
                               #:object-lock-retention-mode #:object-lock-rule
-                              #:object-lock-token #:object-ownership
-                              #:object-part #:object-size
+                              #:object-lock-token
+                              #:object-not-in-active-tier-error
+                              #:object-ownership #:object-part #:object-size
                               #:object-size-greater-than-bytes
                               #:object-size-less-than-bytes
                               #:object-storage-class #:object-version
@@ -319,9 +327,9 @@
                               #:tagging-directive #:tagging-header
                               #:target-bucket #:target-grant #:target-grants
                               #:target-object-key-format #:target-prefix #:tier
-                              #:tiering #:tiering-list #:token #:topic-arn
-                              #:topic-configuration #:topic-configuration-list
-                              #:transition
+                              #:tiering #:tiering-list #:token #:too-many-parts
+                              #:topic-arn #:topic-configuration
+                              #:topic-configuration-list #:transition
                               #:transition-default-minimum-object-size
                               #:transition-list #:transition-storage-class
                               #:type #:uri
@@ -334,8 +342,12 @@
                               #:website-configuration
                               #:website-redirect-location
                               #:write-get-object-response #:write-offset-bytes
-                              #:years))
+                              #:years #:s3-error))
 (common-lisp:in-package #:pira/s3)
+
+(common-lisp:define-condition s3-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-s3 :shape-name "AmazonS3" :version
                                    "2006-03-01" :title
@@ -605,12 +617,12 @@
 (smithy/sdk/shapes:define-error bucket-already-exists common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "BucketAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class s3-error))
 
 (smithy/sdk/shapes:define-error bucket-already-owned-by-you common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "BucketAlreadyOwnedByYou")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class s3-error))
 
 (smithy/sdk/shapes:define-enum bucket-canned-acl
     common-lisp:nil
@@ -2019,7 +2031,7 @@
 (smithy/sdk/shapes:define-error encryption-type-mismatch common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "EncryptionTypeMismatch")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class s3-error))
 
 (smithy/sdk/shapes:define-type end smithy/sdk/smithy-types:long)
 
@@ -3337,7 +3349,7 @@
 (smithy/sdk/shapes:define-error idempotency-parameter-mismatch common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "IdempotencyParameterMismatch")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class s3-error))
 
 (smithy/sdk/shapes:define-type if-match smithy/sdk/smithy-types:string)
 
@@ -3447,16 +3459,16 @@
                                   intelligent-tiering-access-tier :member-name
                                   "AccessTier"))
                                 (:shape-name "InvalidObjectState")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class s3-error))
 
 (smithy/sdk/shapes:define-error invalid-request common-lisp:nil common-lisp:nil
                                 (:shape-name "InvalidRequest")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class s3-error))
 
 (smithy/sdk/shapes:define-error invalid-write-offset common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "InvalidWriteOffset")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class s3-error))
 
 (smithy/sdk/shapes:define-structure inventory-configuration common-lisp:nil
                                     ((destination :target-type
@@ -4532,13 +4544,16 @@
                                smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-error no-such-bucket common-lisp:nil common-lisp:nil
-                                (:shape-name "NoSuchBucket") (:error-code 404))
+                                (:shape-name "NoSuchBucket") (:error-code 404)
+                                (:base-class s3-error))
 
 (smithy/sdk/shapes:define-error no-such-key common-lisp:nil common-lisp:nil
-                                (:shape-name "NoSuchKey") (:error-code 404))
+                                (:shape-name "NoSuchKey") (:error-code 404)
+                                (:base-class s3-error))
 
 (smithy/sdk/shapes:define-error no-such-upload common-lisp:nil common-lisp:nil
-                                (:shape-name "NoSuchUpload") (:error-code 404))
+                                (:shape-name "NoSuchUpload") (:error-code 404)
+                                (:base-class s3-error))
 
 (smithy/sdk/shapes:define-structure noncurrent-version-expiration
                                     common-lisp:nil
@@ -4565,7 +4580,8 @@
                                noncurrent-version-transition)
 
 (smithy/sdk/shapes:define-error not-found common-lisp:nil common-lisp:nil
-                                (:shape-name "NotFound") (:error-code 400))
+                                (:shape-name "NotFound") (:error-code 400)
+                                (:base-class s3-error))
 
 (smithy/sdk/shapes:define-structure notification-configuration common-lisp:nil
                                     ((topic-configurations :target-type
@@ -4627,7 +4643,7 @@
 (smithy/sdk/shapes:define-error object-already-in-active-tier-error
                                 common-lisp:nil common-lisp:nil
                                 (:shape-name "ObjectAlreadyInActiveTierError")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class s3-error))
 
 (smithy/sdk/shapes:define-enum object-attributes
     common-lisp:nil
@@ -4728,7 +4744,7 @@
 (smithy/sdk/shapes:define-error object-not-in-active-tier-error common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "ObjectNotInActiveTierError")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class s3-error))
 
 (smithy/sdk/shapes:define-enum object-ownership
     common-lisp:nil
@@ -6623,7 +6639,8 @@
 (smithy/sdk/shapes:define-type token smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-error too-many-parts common-lisp:nil common-lisp:nil
-                                (:shape-name "TooManyParts") (:error-code 400))
+                                (:shape-name "TooManyParts") (:error-code 400)
+                                (:base-class s3-error))
 
 (smithy/sdk/shapes:define-type topic-arn smithy/sdk/smithy-types:string)
 

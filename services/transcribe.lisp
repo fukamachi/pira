@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/transcribe (:use)
-                             (:export #:absolute-time-range #:base-model-name
+                             (:export #:absolute-time-range
+                              #:bad-request-exception #:base-model-name
                               #:boolean #:clmlanguage-code
                               #:call-analytics-feature #:call-analytics-job
                               #:call-analytics-job-details
@@ -15,7 +16,7 @@
                               #:category-properties-list #:channel-definition
                               #:channel-definitions #:channel-id
                               #:clinical-note-generation-settings
-                              #:content-redaction
+                              #:conflict-exception #:content-redaction
                               #:create-call-analytics-category
                               #:create-language-model
                               #:create-medical-vocabulary #:create-vocabulary
@@ -35,13 +36,13 @@
                               #:get-medical-vocabulary #:get-transcription-job
                               #:get-vocabulary #:get-vocabulary-filter
                               #:identified-language-score #:input-data-config
-                              #:input-type #:interruption-filter
-                              #:job-execution-settings
+                              #:input-type #:internal-failure-exception
+                              #:interruption-filter #:job-execution-settings
                               #:kmsencryption-context-map #:kmskey-id
                               #:language-code #:language-code-item
                               #:language-code-list #:language-id-settings
                               #:language-id-settings-map #:language-model
-                              #:language-options
+                              #:language-options #:limit-exceeded-exception
                               #:list-call-analytics-categories
                               #:list-call-analytics-jobs #:list-language-models
                               #:list-medical-scribe-jobs
@@ -71,13 +72,13 @@
                               #:medical-transcription-setting #:model-name
                               #:model-settings #:model-status #:models
                               #:next-token #:non-empty-string
-                              #:non-talk-time-filter #:output-bucket-name
-                              #:output-key #:output-location-type
-                              #:participant-role #:percentage #:phrase
-                              #:phrases #:pii-entity-type #:pii-entity-types
-                              #:redaction-output #:redaction-type
-                              #:relative-time-range #:rule #:rule-list
-                              #:sentiment-filter #:sentiment-value
+                              #:non-talk-time-filter #:not-found-exception
+                              #:output-bucket-name #:output-key
+                              #:output-location-type #:participant-role
+                              #:percentage #:phrase #:phrases #:pii-entity-type
+                              #:pii-entity-types #:redaction-output
+                              #:redaction-type #:relative-time-range #:rule
+                              #:rule-list #:sentiment-filter #:sentiment-value
                               #:sentiment-value-list #:settings #:specialty
                               #:start-call-analytics-job
                               #:start-medical-scribe-job
@@ -105,8 +106,13 @@
                               #:vocabulary-filter-method
                               #:vocabulary-filter-name #:vocabulary-filters
                               #:vocabulary-info #:vocabulary-name
-                              #:vocabulary-state #:word #:words))
+                              #:vocabulary-state #:word #:words
+                              #:transcribe-error))
 (common-lisp:in-package #:pira/transcribe)
+
+(common-lisp:define-condition transcribe-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service transcribe :shape-name "Transcribe" :version
                                    "2017-10-26" :title
@@ -177,7 +183,8 @@
                                 ((message :target-type failure-reason
                                   :member-name "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class transcribe-error))
 
 (smithy/sdk/shapes:define-enum base-model-name
     common-lisp:nil
@@ -378,7 +385,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class transcribe-error))
 
 (smithy/sdk/shapes:define-structure content-redaction common-lisp:nil
                                     ((redaction-type :target-type
@@ -809,7 +817,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class transcribe-error))
 
 (smithy/sdk/shapes:define-structure interruption-filter common-lisp:nil
                                     ((threshold :target-type
@@ -1006,7 +1015,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class transcribe-error))
 
 (smithy/sdk/shapes:define-input list-call-analytics-categories-request
                                 common-lisp:nil
@@ -1565,7 +1575,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class transcribe-error))
 
 (smithy/sdk/shapes:define-type output-bucket-name
                                smithy/sdk/smithy-types:string)

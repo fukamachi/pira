@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/backupsearch (:use)
-                             (:export #:backup-creation-time-filter
-                              #:cryo-backup-search-service
+                             (:export #:access-denied-exception
+                              #:backup-creation-time-filter
+                              #:conflict-exception #:cryo-backup-search-service
                               #:current-search-progress #:ebsitem-filter
                               #:ebsitem-filters #:ebsresult-item
                               #:encryption-key-arn #:export-job-arn
@@ -8,30 +9,38 @@
                               #:export-job-summary #:export-specification
                               #:file-path #:generic-id #:get-search-job
                               #:get-search-result-export-job #:iam-role-arn
-                              #:item-filters #:list-search-job-backups
+                              #:internal-server-exception #:item-filters
+                              #:list-search-job-backups
                               #:list-search-job-results #:list-search-jobs
                               #:list-search-result-export-jobs
                               #:list-tags-for-resource #:long-condition
                               #:long-condition-list #:long-condition-operator
                               #:object-key #:recovery-point
                               #:recovery-point-arn-list #:resource-arn-list
-                              #:resource-type #:resource-type-list
-                              #:result-item #:results #:s3export-specification
-                              #:s3item-filter #:s3item-filters #:s3result-item
-                              #:search-job #:search-job-arn
-                              #:search-job-backups-result
+                              #:resource-not-found-exception #:resource-type
+                              #:resource-type-list #:result-item #:results
+                              #:s3export-specification #:s3item-filter
+                              #:s3item-filters #:s3result-item #:search-job
+                              #:search-job-arn #:search-job-backups-result
                               #:search-job-backups-results #:search-job-state
                               #:search-job-summary #:search-jobs
                               #:search-result-export-job #:search-scope
-                              #:search-scope-summary #:start-search-job
+                              #:search-scope-summary
+                              #:service-quota-exceeded-exception
+                              #:start-search-job
                               #:start-search-result-export-job
                               #:stop-search-job #:string-condition
                               #:string-condition-list
                               #:string-condition-operator #:tag-keys #:tag-map
-                              #:tag-resource #:time-condition
-                              #:time-condition-list #:time-condition-operator
-                              #:untag-resource))
+                              #:tag-resource #:throttling-exception
+                              #:time-condition #:time-condition-list
+                              #:time-condition-operator #:untag-resource
+                              #:validation-exception #:backupsearch-error))
 (common-lisp:in-package #:pira/backupsearch)
+
+(common-lisp:define-condition backupsearch-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service cryo-backup-search-service :shape-name
                                    "CryoBackupSearchService" :version
@@ -65,7 +74,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class backupsearch-error))
 
 (smithy/sdk/shapes:define-structure backup-creation-time-filter common-lisp:nil
                                     ((created-after :target-type
@@ -87,7 +97,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class backupsearch-error))
 
 (smithy/sdk/shapes:define-structure current-search-progress common-lisp:nil
                                     ((recovery-points-scanned-count
@@ -281,7 +292,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class backupsearch-error))
 
 (smithy/sdk/shapes:define-structure item-filters common-lisp:nil
                                     ((s3item-filters :target-type
@@ -432,7 +444,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class backupsearch-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -619,7 +632,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class backupsearch-error))
 
 (smithy/sdk/shapes:define-input start-search-job-input common-lisp:nil
                                 ((tags :target-type tag-map :member-name
@@ -744,7 +758,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class backupsearch-error))
 
 (smithy/sdk/shapes:define-structure time-condition common-lisp:nil
                                     ((value :target-type
@@ -784,7 +799,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class backupsearch-error))
 
 (smithy/sdk/operation:define-operation get-search-job :shape-name
                                        "GetSearchJob" :input

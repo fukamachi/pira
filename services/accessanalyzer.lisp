@@ -2,7 +2,8 @@
                              (:export #:access #:access-analyzer
                               #:access-check-policy-document
                               #:access-check-policy-type
-                              #:access-check-resource-type #:access-list
+                              #:access-check-resource-type
+                              #:access-denied-exception #:access-list
                               #:access-point-arn #:access-point-policy
                               #:access-preview #:access-preview-finding
                               #:access-preview-finding-id
@@ -35,7 +36,7 @@
                               #:cloud-trail-details #:cloud-trail-properties
                               #:condition-key-map #:configuration
                               #:configurations-map #:configurations-map-key
-                              #:create-access-preview
+                              #:conflict-exception #:create-access-preview
                               #:create-access-preview-request
                               #:create-access-preview-response
                               #:create-analyzer #:create-analyzer-request
@@ -98,12 +99,14 @@
                               #:internal-access-findings-statistics
                               #:internal-access-resource-type-details
                               #:internal-access-resource-type-statistics-map
-                              #:internal-access-type #:internet-configuration
-                              #:issue-code #:issuing-account #:job-details
-                              #:job-error #:job-error-code #:job-id
-                              #:job-status #:kms-constraints-key
-                              #:kms-constraints-map #:kms-constraints-value
-                              #:kms-grant-configuration
+                              #:internal-access-type
+                              #:internal-server-exception
+                              #:internet-configuration
+                              #:invalid-parameter-exception #:issue-code
+                              #:issuing-account #:job-details #:job-error
+                              #:job-error-code #:job-id #:job-status
+                              #:kms-constraints-key #:kms-constraints-map
+                              #:kms-constraints-value #:kms-grant-configuration
                               #:kms-grant-configurations-list
                               #:kms-grant-constraints #:kms-grant-operation
                               #:kms-grant-operations-list
@@ -158,8 +161,8 @@
                               #:region-list #:resource #:resource-arn
                               #:resource-arns-list
                               #:resource-control-policy-restriction
-                              #:resource-type #:resource-type-details
-                              #:resource-type-list
+                              #:resource-not-found-exception #:resource-type
+                              #:resource-type-details #:resource-type-list
                               #:resource-type-statistics-map #:resources-list
                               #:retiring-principal #:role-arn
                               #:s3access-point-configuration
@@ -177,6 +180,7 @@
                               #:secrets-manager-secret-kms-id
                               #:secrets-manager-secret-policy
                               #:service-control-policy-restriction
+                              #:service-quota-exceeded-exception
                               #:shared-via-list #:sns-topic-configuration
                               #:sns-topic-policy #:sort-criteria #:span
                               #:sqs-queue-configuration #:sqs-queue-policy
@@ -188,9 +192,11 @@
                               #:status-reason #:substring #:tag-keys
                               #:tag-resource #:tag-resource-request
                               #:tag-resource-response #:tags-list #:tags-map
-                              #:timestamp #:token #:trail #:trail-list
-                              #:trail-properties #:trail-properties-list #:type
-                              #:untag-resource #:untag-resource-request
+                              #:throttling-exception #:timestamp #:token
+                              #:trail #:trail-list #:trail-properties
+                              #:trail-properties-list #:type
+                              #:unprocessable-entity-exception #:untag-resource
+                              #:untag-resource-request
                               #:untag-resource-response
                               #:unused-access-configuration
                               #:unused-access-findings-statistics
@@ -210,12 +216,17 @@
                               #:validate-policy-finding-type
                               #:validate-policy-request
                               #:validate-policy-resource-type
-                              #:validate-policy-response
+                              #:validate-policy-response #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:value-list
-                              #:vpc-configuration #:vpc-id))
+                              #:vpc-configuration #:vpc-id
+                              #:accessanalyzer-error))
 (common-lisp:in-package #:pira/accessanalyzer)
+
+(common-lisp:define-condition accessanalyzer-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service access-analyzer :shape-name "AccessAnalyzer"
                                    :version "2019-11-01" :title
@@ -270,7 +281,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class accessanalyzer-error))
 
 (smithy/sdk/shapes:define-list access-list :member access)
 
@@ -740,7 +752,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class accessanalyzer-error))
 
 (smithy/sdk/shapes:define-structure create-access-preview-request
                                     common-lisp:nil
@@ -1533,7 +1546,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class accessanalyzer-error))
 
 (smithy/sdk/shapes:define-structure internet-configuration common-lisp:nil
                                     common-lisp:nil
@@ -1544,7 +1558,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class accessanalyzer-error))
 
 (smithy/sdk/shapes:define-type issue-code smithy/sdk/smithy-types:string)
 
@@ -2056,7 +2071,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class accessanalyzer-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -2204,7 +2220,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class accessanalyzer-error))
 
 (smithy/sdk/shapes:define-list shared-via-list :member
                                smithy/sdk/smithy-types:string)
@@ -2319,7 +2336,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class accessanalyzer-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -2359,7 +2377,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "UnprocessableEntityException")
-                                (:error-code 422))
+                                (:error-code 422)
+                                (:base-class accessanalyzer-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -2590,7 +2609,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class accessanalyzer-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

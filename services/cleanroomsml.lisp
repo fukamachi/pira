@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/cleanroomsml (:use)
-                             (:export #:awsstark-control-service #:account-id
+                             (:export #:awsstark-control-service
+                              #:access-denied-exception #:account-id
                               #:account-id-list #:algorithm-image
                               #:analysis-template-arn #:audience-destination
                               #:audience-export-job #:audience-export-job-arn
@@ -48,8 +49,9 @@
                               #:configured-model-algorithm-association-summary
                               #:configured-model-algorithm-list
                               #:configured-model-algorithm-summary
-                              #:container-argument #:container-arguments
-                              #:container-config #:container-entrypoint
+                              #:conflict-exception #:container-argument
+                              #:container-arguments #:container-config
+                              #:container-entrypoint
                               #:container-entrypoint-string
                               #:create-audience-model
                               #:create-configured-audience-model
@@ -97,7 +99,8 @@
                               #:inference-receiver-members
                               #:inference-resource-config #:input-channel
                               #:input-channel-data-source #:instance-type
-                              #:kms-key-arn #:list-audience-export-jobs
+                              #:internal-service-exception #:kms-key-arn
+                              #:list-audience-export-jobs
                               #:list-audience-generation-jobs
                               #:list-audience-models
                               #:list-collaboration-configured-model-algorithm-associations
@@ -136,9 +139,11 @@
                               #:put-configured-audience-model-policy
                               #:put-mlconfiguration #:relevance-metric
                               #:relevance-metrics #:resource-config
-                              #:resource-description #:resource-policy
+                              #:resource-description
+                              #:resource-not-found-exception #:resource-policy
                               #:result-format #:s3config-map
                               #:s3data-distribution-type #:s3path
+                              #:service-quota-exceeded-exception
                               #:shared-audience-metrics
                               #:start-audience-export-job
                               #:start-audience-generation-job
@@ -147,7 +152,8 @@
                               #:status-details #:stopping-condition #:tag-key
                               #:tag-keys #:tag-map #:tag-on-create-policy
                               #:tag-resource #:tag-value #:taggable-arn
-                              #:trained-model #:trained-model-arn
+                              #:throttling-exception #:trained-model
+                              #:trained-model-arn
                               #:trained-model-artifact-max-size
                               #:trained-model-artifact-max-size-unit-type
                               #:trained-model-artifact-max-size-value
@@ -180,9 +186,14 @@
                               #:training-dataset-summary #:training-input-mode
                               #:uuid #:untag-resource
                               #:update-configured-audience-model
+                              #:validation-exception
                               #:worker-compute-configuration
-                              #:worker-compute-type))
+                              #:worker-compute-type #:cleanroomsml-error))
 (common-lisp:in-package #:pira/cleanroomsml)
+
+(common-lisp:define-condition cleanroomsml-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsstark-control-service :shape-name
                                    "AWSStarkControlService" :version
@@ -210,7 +221,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cleanroomsml-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -806,7 +818,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cleanroomsml-error))
 
 (smithy/sdk/shapes:define-type container-argument
                                smithy/sdk/smithy-types:string)
@@ -2258,7 +2271,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class cleanroomsml-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -2938,7 +2952,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cleanroomsml-error))
 
 (smithy/sdk/shapes:define-type resource-policy smithy/sdk/smithy-types:string)
 
@@ -2971,7 +2986,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:double :member-name
                                   "quotaValue"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class cleanroomsml-error))
 
 (smithy/sdk/shapes:define-enum shared-audience-metrics
     common-lisp:nil
@@ -3149,7 +3165,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class cleanroomsml-error))
 
 common-lisp:nil
 
@@ -3524,7 +3541,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cleanroomsml-error))
 
 (smithy/sdk/shapes:define-structure worker-compute-configuration
                                     common-lisp:nil

@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/bedrock-data-automation-runtime (:use)
-                             (:export #:amazon-bedrock-keystone-runtime-service
+                             (:export #:access-denied-exception
+                              #:amazon-bedrock-keystone-runtime-service
                               #:asset-processing-configuration
                               #:automation-job-resource #:automation-job-status
                               #:blueprint #:blueprint-arn #:blueprint-list
@@ -13,17 +14,26 @@
                               #:encryption-context-value
                               #:event-bridge-configuration
                               #:get-data-automation-status #:idempotency-token
-                              #:input-configuration #:invocation-arn
-                              #:invoke-data-automation-async #:kmskey-id
-                              #:list-tags-for-resource #:non-blank-string
-                              #:notification-configuration
-                              #:output-configuration #:s3uri #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-value #:taggable-resource-arn
+                              #:input-configuration #:internal-server-exception
+                              #:invocation-arn #:invoke-data-automation-async
+                              #:kmskey-id #:list-tags-for-resource
+                              #:non-blank-string #:notification-configuration
+                              #:output-configuration
+                              #:resource-not-found-exception #:s3uri
+                              #:service-quota-exceeded-exception #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value
+                              #:taggable-resource-arn #:throttling-exception
                               #:timestamp-segment #:untag-resource
+                              #:validation-exception
                               #:video-asset-processing-configuration
-                              #:video-segment-configuration))
+                              #:video-segment-configuration
+                              #:bedrock-data-automation-runtime-error))
 (common-lisp:in-package #:pira/bedrock-data-automation-runtime)
+
+(common-lisp:define-condition bedrock-data-automation-runtime-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-bedrock-keystone-runtime-service
                                    :shape-name
@@ -49,7 +59,9 @@
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class
+                                 bedrock-data-automation-runtime-error))
 
 (smithy/sdk/shapes:define-structure asset-processing-configuration
                                     common-lisp:nil
@@ -176,7 +188,9 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class
+                                 bedrock-data-automation-runtime-error))
 
 (smithy/sdk/shapes:define-type invocation-arn smithy/sdk/smithy-types:string)
 
@@ -250,7 +264,9 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class
+                                 bedrock-data-automation-runtime-error))
 
 (smithy/sdk/shapes:define-type s3uri smithy/sdk/smithy-types:string)
 
@@ -259,7 +275,9 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class
+                                 bedrock-data-automation-runtime-error))
 
 (smithy/sdk/shapes:define-structure tag common-lisp:nil
                                     ((key :target-type tag-key :required
@@ -295,7 +313,9 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class
+                                 bedrock-data-automation-runtime-error))
 
 (smithy/sdk/shapes:define-structure timestamp-segment common-lisp:nil
                                     ((start-time-millis :target-type
@@ -324,7 +344,9 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 bedrock-data-automation-runtime-error))
 
 (smithy/sdk/shapes:define-structure video-asset-processing-configuration
                                     common-lisp:nil

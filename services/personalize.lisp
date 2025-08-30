@@ -86,7 +86,9 @@
                               #:integer #:integer-hyper-parameter-range
                               #:integer-hyper-parameter-ranges
                               #:integer-max-value #:integer-min-value
-                              #:item-attribute #:kms-key-arn
+                              #:invalid-input-exception
+                              #:invalid-next-token-exception #:item-attribute
+                              #:kms-key-arn #:limit-exceeded-exception
                               #:list-batch-inference-jobs
                               #:list-batch-segment-jobs #:list-campaigns
                               #:list-data-deletion-jobs
@@ -113,9 +115,12 @@
                               #:recommender #:recommender-config
                               #:recommender-summary
                               #:recommender-update-summary #:recommenders
-                              #:resource-config #:role-arn #:s3data-config
-                              #:s3location #:scheduling-expression #:schemas
-                              #:solution #:solution-config #:solution-summary
+                              #:resource-already-exists-exception
+                              #:resource-config #:resource-in-use-exception
+                              #:resource-not-found-exception #:role-arn
+                              #:s3data-config #:s3location
+                              #:scheduling-expression #:schemas #:solution
+                              #:solution-config #:solution-summary
                               #:solution-update-config
                               #:solution-update-summary #:solution-version
                               #:solution-version-summary #:solution-versions
@@ -123,15 +128,21 @@
                               #:stop-recommender
                               #:stop-solution-version-creation #:tag #:tag-key
                               #:tag-keys #:tag-resource #:tag-value #:tags
-                              #:theme-generation-config #:tracking-id
+                              #:theme-generation-config
+                              #:too-many-tag-keys-exception
+                              #:too-many-tags-exception #:tracking-id
                               #:training-data-config #:training-hours
                               #:training-input-mode #:training-mode
                               #:training-type #:transactions-per-second
                               #:tunable #:tuned-hpoparams #:untag-resource
                               #:update-campaign #:update-dataset
                               #:update-metric-attribution #:update-recommender
-                              #:update-solution))
+                              #:update-solution #:personalize-error))
 (common-lisp:in-package #:pira/personalize)
+
+(common-lisp:define-condition personalize-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-personalize :shape-name
                                    "AmazonPersonalize" :version "2018-05-22"
@@ -1724,13 +1735,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class personalize-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class personalize-error))
 
 (smithy/sdk/shapes:define-type item-attribute smithy/sdk/smithy-types:string)
 
@@ -1740,7 +1753,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class personalize-error))
 
 (smithy/sdk/shapes:define-input list-batch-inference-jobs-request
                                 common-lisp:nil
@@ -2285,7 +2299,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class personalize-error))
 
 (smithy/sdk/shapes:define-map resource-config :key parameter-name :value
                               parameter-value)
@@ -2294,13 +2309,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class personalize-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class personalize-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -2559,13 +2576,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyTagKeysException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class personalize-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class personalize-error))
 
 (smithy/sdk/shapes:define-type tracking-id smithy/sdk/smithy-types:string)
 

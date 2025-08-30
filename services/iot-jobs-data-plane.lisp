@@ -2,12 +2,13 @@
                              (:export #:approximate-seconds-before-timed-out
                               #:binary-blob #:binary-parameter-value
                               #:boolean-parameter-value
+                              #:certificate-validation-exception
                               #:client-request-token-v2 #:command-arn
                               #:command-execution-id
                               #:command-execution-parameter-map
                               #:command-execution-timeout-in-seconds
                               #:command-parameter-name
-                              #:command-parameter-value
+                              #:command-parameter-value #:conflict-exception
                               #:describe-job-execution
                               #:describe-job-execution-job-id #:details-key
                               #:details-map #:details-value
@@ -15,20 +16,33 @@
                               #:expected-version #:get-pending-job-executions
                               #:include-execution-state #:include-job-document
                               #:integer-parameter-value
+                              #:internal-server-exception
+                              #:invalid-request-exception
+                              #:invalid-state-transition-exception
                               #:iot-laser-thing-job-manager-external-service
                               #:job-document #:job-execution
                               #:job-execution-state #:job-execution-status
                               #:job-execution-summary
                               #:job-execution-summary-list #:job-id
                               #:last-updated-at #:long-parameter-value
-                              #:queued-at #:start-command-execution
+                              #:queued-at #:resource-not-found-exception
+                              #:service-quota-exceeded-exception
+                              #:service-unavailable-exception
+                              #:start-command-execution
                               #:start-next-pending-job-execution #:started-at
                               #:step-timeout-in-minutes
                               #:string-parameter-value #:target-arn
-                              #:thing-name #:unsigned-long-parameter-value
-                              #:update-job-execution #:version-number
-                              #:error-message #:resource-id))
+                              #:terminal-state-exception #:thing-name
+                              #:throttling-exception
+                              #:unsigned-long-parameter-value
+                              #:update-job-execution #:validation-exception
+                              #:version-number #:error-message #:resource-id
+                              #:iot-jobs-data-plane-error))
 (common-lisp:in-package #:pira/iot-jobs-data-plane)
+
+(common-lisp:define-condition iot-jobs-data-plane-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service iot-laser-thing-job-manager-external-service
                                    :shape-name
@@ -70,7 +84,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "CertificateValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iot-jobs-data-plane-error))
 
 (smithy/sdk/shapes:define-type client-request-token-v2
                                smithy/sdk/smithy-types:string)
@@ -114,7 +129,8 @@
                                  (resource-id :target-type resource-id
                                   :member-name "resourceId"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iot-jobs-data-plane-error))
 
 (smithy/sdk/shapes:define-type describe-job-execution-job-id
                                smithy/sdk/smithy-types:string)
@@ -187,20 +203,23 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iot-jobs-data-plane-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iot-jobs-data-plane-error))
 
 (smithy/sdk/shapes:define-error invalid-state-transition-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidStateTransitionException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iot-jobs-data-plane-error))
 
 (smithy/sdk/shapes:define-type job-document smithy/sdk/smithy-types:string)
 
@@ -290,20 +309,23 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iot-jobs-data-plane-error))
 
 (smithy/sdk/shapes:define-error service-quota-exceeded-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class iot-jobs-data-plane-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class iot-jobs-data-plane-error))
 
 (smithy/sdk/shapes:define-input start-command-execution-request common-lisp:nil
                                 ((target-arn :target-type target-arn :required
@@ -363,7 +385,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TerminalStateException")
-                                (:error-code 410))
+                                (:error-code 410)
+                                (:base-class iot-jobs-data-plane-error))
 
 (smithy/sdk/shapes:define-type thing-name smithy/sdk/smithy-types:string)
 
@@ -373,7 +396,8 @@
                                  (payload :target-type binary-blob :member-name
                                   "payload"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class iot-jobs-data-plane-error))
 
 (smithy/sdk/shapes:define-type unsigned-long-parameter-value
                                smithy/sdk/smithy-types:string)
@@ -419,7 +443,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iot-jobs-data-plane-error))
 
 (smithy/sdk/shapes:define-type version-number smithy/sdk/smithy-types:long)
 

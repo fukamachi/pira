@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/marketplace-catalog (:use)
                              (:export #:arn #:awsmpseymour
+                              #:access-denied-exception
                               #:ami-product-entity-id-filter
                               #:ami-product-entity-id-filter-value-list
                               #:ami-product-entity-id-string
@@ -64,8 +65,9 @@
                               #:exception-message-content #:failure-code
                               #:filter #:filter-list #:filter-name
                               #:filter-value-content #:get-resource-policy
-                              #:identifier #:intent #:json #:json-document-type
-                              #:list-change-sets
+                              #:identifier #:intent
+                              #:internal-service-exception #:json
+                              #:json-document-type #:list-change-sets
                               #:list-change-sets-max-result-integer
                               #:list-entities
                               #:list-entities-max-result-integer
@@ -164,6 +166,9 @@
                               #:resale-authorization-status-string
                               #:resale-authorization-summary #:resource-arn
                               #:resource-id #:resource-id-list
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception
+                              #:resource-not-supported-exception
                               #:resource-policy-json
                               #:saa-sproduct-entity-id-filter
                               #:saa-sproduct-entity-id-filter-value-list
@@ -178,12 +183,19 @@
                               #:saa-sproduct-title-string
                               #:saa-sproduct-visibility-filter
                               #:saa-sproduct-visibility-filter-value-list
-                              #:saa-sproduct-visibility-string #:sort #:sort-by
-                              #:sort-order #:start-change-set #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-value #:untag-resource #:value-list
-                              #:visibility-value))
+                              #:saa-sproduct-visibility-string
+                              #:service-quota-exceeded-exception #:sort
+                              #:sort-by #:sort-order #:start-change-set #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:throttling-exception
+                              #:untag-resource #:validation-exception
+                              #:value-list #:visibility-value
+                              #:marketplace-catalog-error))
 (common-lisp:in-package #:pira/marketplace-catalog)
+
+(common-lisp:define-condition marketplace-catalog-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsmpseymour :shape-name "AWSMPSeymour"
                                    :version "2018-09-17" :title
@@ -217,7 +229,8 @@
                                   exception-message-content :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class marketplace-catalog-error))
 
 (smithy/sdk/shapes:define-structure ami-product-entity-id-filter
                                     common-lisp:nil
@@ -900,7 +913,8 @@
                                   exception-message-content :member-name
                                   "Message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class marketplace-catalog-error))
 
 (smithy/sdk/shapes:define-type json smithy/sdk/smithy-types:string)
 
@@ -1698,14 +1712,16 @@
                                   exception-message-content :member-name
                                   "Message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 423))
+                                (:error-code 423)
+                                (:base-class marketplace-catalog-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type
                                   exception-message-content :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class marketplace-catalog-error))
 
 (smithy/sdk/shapes:define-error resource-not-supported-exception
                                 common-lisp:nil
@@ -1713,7 +1729,8 @@
                                   exception-message-content :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotSupportedException")
-                                (:error-code 415))
+                                (:error-code 415)
+                                (:base-class marketplace-catalog-error))
 
 (smithy/sdk/shapes:define-type resource-policy-json
                                smithy/sdk/smithy-types:string)
@@ -1821,7 +1838,8 @@
                                   exception-message-content :member-name
                                   "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class marketplace-catalog-error))
 
 (smithy/sdk/shapes:define-structure sort common-lisp:nil
                                     ((sort-by :target-type sort-by :member-name
@@ -1893,7 +1911,8 @@
                                   exception-message-content :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class marketplace-catalog-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type resource-arn
@@ -1912,7 +1931,8 @@
                                   exception-message-content :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 422))
+                                (:error-code 422)
+                                (:base-class marketplace-catalog-error))
 
 (smithy/sdk/shapes:define-list value-list :member filter-value-content)
 

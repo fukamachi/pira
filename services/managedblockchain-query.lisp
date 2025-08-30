@@ -1,7 +1,7 @@
 (uiop/package:define-package #:pira/managedblockchain-query (:use)
-                             (:export #:address-identifier-filter
-                              #:asset-contract #:asset-contract-list
-                              #:batch-get-token-balance
+                             (:export #:access-denied-exception
+                              #:address-identifier-filter #:asset-contract
+                              #:asset-contract-list #:batch-get-token-balance
                               #:batch-get-token-balance-error-item
                               #:batch-get-token-balance-errors
                               #:batch-get-token-balance-input-item
@@ -16,6 +16,7 @@
                               #:exception-message #:execution-status
                               #:get-asset-contract #:get-token-balance
                               #:get-token-balance-input-list #:get-transaction
+                              #:internal-server-exception
                               #:list-asset-contracts
                               #:list-filtered-transaction-events
                               #:list-filtered-transaction-events-sort
@@ -27,18 +28,25 @@
                               #:query-token-id #:query-token-standard
                               #:query-transaction-event-type
                               #:query-transaction-hash #:query-transaction-id
-                              #:quota-code #:resource-id #:resource-type
-                              #:service-code #:sort-order
+                              #:quota-code #:resource-id
+                              #:resource-not-found-exception #:resource-type
+                              #:service-code #:service-quota-exceeded-exception
+                              #:sort-order #:throttling-exception
                               #:tieton-chain-query-service #:time-filter
                               #:token-balance #:token-balance-list
                               #:token-filter #:token-identifier #:transaction
                               #:transaction-event #:transaction-event-list
                               #:transaction-output-item
-                              #:transaction-output-list
+                              #:transaction-output-list #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason #:vout-filter))
+                              #:validation-exception-reason #:vout-filter
+                              #:managedblockchain-query-error))
 (common-lisp:in-package #:pira/managedblockchain-query)
+
+(common-lisp:define-condition managedblockchain-query-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service tieton-chain-query-service :shape-name
                                    "TietonChainQueryService" :version
@@ -65,7 +73,8 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class managedblockchain-query-error))
 
 (smithy/sdk/shapes:define-structure address-identifier-filter common-lisp:nil
                                     ((transaction-event-to-address :target-type
@@ -315,7 +324,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class managedblockchain-query-error))
 
 (smithy/sdk/shapes:define-input list-asset-contracts-input common-lisp:nil
                                 ((contract-filter :target-type contract-filter
@@ -518,7 +528,8 @@
                                   :required common-lisp:t :member-name
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class managedblockchain-query-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -541,7 +552,8 @@
                                  (quota-code :target-type quota-code :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class managedblockchain-query-error))
 
 (smithy/sdk/shapes:define-type sort-order smithy/sdk/smithy-types:string)
 
@@ -559,7 +571,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class managedblockchain-query-error))
 
 (smithy/sdk/shapes:define-structure time-filter common-lisp:nil
                                     ((from :target-type blockchain-instant
@@ -760,7 +773,8 @@
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class managedblockchain-query-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

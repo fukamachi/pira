@@ -23,7 +23,10 @@
                               #:icd10cmtrait #:icd10cmtrait-list
                               #:icd10cmtrait-name #:iam-role-arn
                               #:infer-icd10cm #:infer-rx-norm #:infer-snomedct
-                              #:input-data-config #:integer #:job-id #:job-name
+                              #:input-data-config #:integer
+                              #:internal-server-exception
+                              #:invalid-encoding-exception
+                              #:invalid-request-exception #:job-id #:job-name
                               #:job-status #:kmskey #:language-code
                               #:list-entities-detection-v2jobs
                               #:list-icd10cminference-jobs
@@ -34,6 +37,7 @@
                               #:model-version
                               #:ontology-linking-bounded-length-string
                               #:output-data-config #:relationship-type
+                              #:resource-not-found-exception
                               #:rx-norm-attribute #:rx-norm-attribute-list
                               #:rx-norm-attribute-type #:rx-norm-concept
                               #:rx-norm-concept-list #:rx-norm-entity
@@ -48,6 +52,7 @@
                               #:snomedctentity-type #:snomedctrelationship-type
                               #:snomedcttrait #:snomedcttrait-list
                               #:snomedcttrait-name
+                              #:service-unavailable-exception
                               #:start-entities-detection-v2job
                               #:start-icd10cminference-job
                               #:start-phidetection-job
@@ -57,10 +62,17 @@
                               #:stop-icd10cminference-job
                               #:stop-phidetection-job
                               #:stop-rx-norm-inference-job
-                              #:stop-snomedctinference-job #:string #:timestamp
-                              #:trait #:trait-list #:unmapped-attribute
-                              #:unmapped-attribute-list))
+                              #:stop-snomedctinference-job #:string
+                              #:text-size-limit-exceeded-exception #:timestamp
+                              #:too-many-requests-exception #:trait
+                              #:trait-list #:unmapped-attribute
+                              #:unmapped-attribute-list #:validation-exception
+                              #:comprehendmedical-error))
 (common-lisp:in-package #:pira/comprehendmedical)
+
+(common-lisp:define-condition comprehendmedical-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service comprehend-medical-20181030 :shape-name
                                    "ComprehendMedical_20181030" :version
@@ -599,19 +611,22 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class comprehendmedical-error))
 
 (smithy/sdk/shapes:define-error invalid-encoding-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidEncodingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehendmedical-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehendmedical-error))
 
 (smithy/sdk/shapes:define-type job-id smithy/sdk/smithy-types:string)
 
@@ -795,7 +810,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class comprehendmedical-error))
 
 (smithy/sdk/shapes:define-structure rx-norm-attribute common-lisp:nil
                                     ((type :target-type rx-norm-attribute-type
@@ -1031,7 +1047,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class comprehendmedical-error))
 
 (smithy/sdk/shapes:define-input start-entities-detection-v2job-request
                                 common-lisp:nil
@@ -1252,7 +1269,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TextSizeLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehendmedical-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -1260,7 +1278,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class comprehendmedical-error))
 
 (smithy/sdk/shapes:define-structure trait common-lisp:nil
                                     ((name :target-type attribute-name
@@ -1285,7 +1304,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class comprehendmedical-error))
 
 (smithy/sdk/operation:define-operation describe-entities-detection-v2job
                                        :shape-name

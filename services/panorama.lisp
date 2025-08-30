@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/panorama (:use)
-                             (:export #:alternate-software-metadata
+                             (:export #:access-denied-exception
+                              #:alternate-software-metadata
                               #:alternate-softwares #:application-instance
                               #:application-instance-arn
                               #:application-instance-health-status
@@ -9,6 +10,7 @@
                               #:application-instance-status-description
                               #:application-instances #:boolean #:bucket
                               #:bucket-name #:certificates #:client-token
+                              #:conflict-exception
                               #:conflict-exception-error-argument
                               #:conflict-exception-error-argument-list
                               #:connection-type #:create-application-instance
@@ -66,9 +68,9 @@
                               #:device-status #:device-type #:dns #:dns-list
                               #:ethernet-payload #:ethernet-status #:hw-address
                               #:image-version #:input-port-list
-                              #:iot-thing-name #:ip-address
-                              #:ip-address-or-server-name #:job #:job-id
-                              #:job-list #:job-resource-tags
+                              #:internal-server-exception #:iot-thing-name
+                              #:ip-address #:ip-address-or-server-name #:job
+                              #:job-id #:job-list #:job-resource-tags
                               #:job-resource-type #:job-tags-list #:job-type
                               #:last-updated-time #:latest-alternate-software
                               #:latest-device-job #:latest-software
@@ -148,8 +150,10 @@
                               #:remove-application-instance-response
                               #:reported-runtime-context-state
                               #:reported-runtime-context-states #:resource-arn
+                              #:resource-not-found-exception
                               #:retry-after-seconds #:runtime-context-name
                               #:runtime-role-arn #:s3location
+                              #:service-quota-exceeded-exception
                               #:signal-application-instance-node-instances
                               #:signal-application-instance-node-instances-request
                               #:signal-application-instance-node-instances-response
@@ -165,13 +169,18 @@
                               #:update-device-metadata
                               #:update-device-metadata-request
                               #:update-device-metadata-response
-                              #:update-progress
+                              #:update-progress #:validation-exception
                               #:validation-exception-error-argument
                               #:validation-exception-error-argument-list
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason #:version))
+                              #:validation-exception-reason #:version
+                              #:panorama-error))
 (common-lisp:in-package #:pira/panorama)
+
+(common-lisp:define-condition panorama-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service omni-cloud-service-lambda :shape-name
                                    "OmniCloudServiceLambda" :version
@@ -214,7 +223,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class panorama-error))
 
 (smithy/sdk/shapes:define-structure alternate-software-metadata common-lisp:nil
                                     ((version :target-type version :member-name
@@ -305,7 +314,7 @@
                                   conflict-exception-error-argument-list
                                   :member-name "ErrorArguments"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class panorama-error))
 
 (smithy/sdk/shapes:define-structure conflict-exception-error-argument
                                     common-lisp:nil
@@ -1045,7 +1054,7 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class panorama-error))
 
 (smithy/sdk/shapes:define-type iot-thing-name smithy/sdk/smithy-types:string)
 
@@ -1813,7 +1822,7 @@
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class panorama-error))
 
 (smithy/sdk/shapes:define-type retry-after-seconds
                                smithy/sdk/smithy-types:integer)
@@ -1847,7 +1856,7 @@
                                  (service-code :target-type string :required
                                   common-lisp:t :member-name "ServiceCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class panorama-error))
 
 (smithy/sdk/shapes:define-input
  signal-application-instance-node-instances-request common-lisp:nil
@@ -1981,7 +1990,7 @@
                                   validation-exception-field-list :member-name
                                   "Fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class panorama-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-error-argument
                                     common-lisp:nil

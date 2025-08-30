@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/partnercentral-selling (:use)
                              (:export #:awspartner-central-selling
-                              #:accept-engagement-invitation #:account
+                              #:accept-engagement-invitation
+                              #:access-denied-exception #:account
                               #:account-receiver #:account-summary #:address
                               #:address-part #:address-summary #:alias
                               #:apn-programs #:assign-opportunity
@@ -23,8 +24,8 @@
                               #:aws-team-member #:catalog-identifier #:channel
                               #:channels #:client-token #:closed-lost-reason
                               #:company-name #:company-website-url
-                              #:competitor-name #:contact #:country-code
-                              #:create-engagement
+                              #:competitor-name #:conflict-exception #:contact
+                              #:country-code #:create-engagement
                               #:create-engagement-invitation
                               #:create-opportunity #:create-resource-snapshot
                               #:create-resource-snapshot-job #:currency-code
@@ -73,8 +74,9 @@
                               #:get-resource-snapshot
                               #:get-resource-snapshot-job
                               #:get-selling-system-settings #:industry
-                              #:invitation #:invitation-message
-                              #:invitation-status #:invitation-status-list
+                              #:internal-server-exception #:invitation
+                              #:invitation-message #:invitation-status
+                              #:invitation-status-list
                               #:involvement-type-change-reason #:job-title
                               #:last-modified-date #:life-cycle
                               #:life-cycle-for-view #:life-cycle-summary
@@ -120,8 +122,10 @@
                               #:rejection-reason-string
                               #:related-entity-identifiers
                               #:related-entity-type #:resource-arn
-                              #:resource-identifier #:resource-snapshot
-                              #:resource-snapshot-arn #:resource-snapshot-job
+                              #:resource-identifier
+                              #:resource-not-found-exception
+                              #:resource-snapshot #:resource-snapshot-arn
+                              #:resource-snapshot-job
                               #:resource-snapshot-job-arn
                               #:resource-snapshot-job-identifier
                               #:resource-snapshot-job-role-arn
@@ -138,6 +142,7 @@
                               #:sales-activities #:sales-activity
                               #:sales-involvement-type #:sender-contact
                               #:sender-contact-email #:sender-contact-list
+                              #:service-quota-exceeded-exception
                               #:software-revenue #:solution #:solution-arn
                               #:solution-base #:solution-identifier
                               #:solution-identifiers #:solution-list
@@ -153,13 +158,19 @@
                               #:tag-value #:taggable-resource-arn #:task-arn
                               #:task-arn-or-identifier #:task-identifier
                               #:task-identifiers #:task-status #:task-statuses
-                              #:untag-resource #:update-opportunity #:use-cases
+                              #:throttling-exception #:untag-resource
+                              #:update-opportunity #:use-cases
+                              #:validation-exception
                               #:validation-exception-error
                               #:validation-exception-error-code
                               #:validation-exception-error-list
                               #:validation-exception-reason #:visibility
-                              #:website-url))
+                              #:website-url #:partnercentral-selling-error))
 (common-lisp:in-package #:pira/partnercentral-selling)
+
+(common-lisp:define-condition partnercentral-selling-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awspartner-central-selling :shape-name
                                    "AWSPartnerCentralSelling" :version
@@ -233,7 +244,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class partnercentral-selling-error))
 
 (smithy/sdk/shapes:define-structure account common-lisp:nil
                                     ((industry :target-type industry
@@ -597,7 +609,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class partnercentral-selling-error))
 
 (smithy/sdk/shapes:define-structure contact common-lisp:nil
                                     ((email :target-type email :member-name
@@ -1880,7 +1893,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class partnercentral-selling-error))
 
 (smithy/sdk/shapes:define-structure invitation common-lisp:nil
                                     ((message :target-type invitation-message
@@ -2791,7 +2805,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class partnercentral-selling-error))
 
 common-lisp:nil
 
@@ -2934,7 +2949,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class partnercentral-selling-error))
 
 (smithy/sdk/shapes:define-structure software-revenue common-lisp:nil
                                     ((delivery-model :target-type revenue-model
@@ -3185,7 +3201,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class partnercentral-selling-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -3255,7 +3272,8 @@ common-lisp:nil
                                   validation-exception-error-list :member-name
                                   "ErrorList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class partnercentral-selling-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-error common-lisp:nil
                                     ((field-name :target-type

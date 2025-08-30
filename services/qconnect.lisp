@@ -25,6 +25,7 @@
                               #:aiprompt-template-type #:aiprompt-type
                               #:aiprompt-version-summaries-list
                               #:aiprompt-version-summary
+                              #:access-denied-exception
                               #:activate-message-template #:agent-attributes
                               #:amazon-connect-guide-association-data
                               #:and-conditions
@@ -52,8 +53,8 @@
                               #:chunking-configuration #:chunking-strategy
                               #:citation-span #:citation-span-offset
                               #:client-token #:configuration
-                              #:connect-configuration #:contact-attribute-key
-                              #:contact-attribute-keys
+                              #:conflict-exception #:connect-configuration
+                              #:contact-attribute-key #:contact-attribute-keys
                               #:contact-attribute-value #:contact-attributes
                               #:content #:content-association
                               #:content-association-contents
@@ -246,8 +247,9 @@
                               #:or-conditions #:order #:origin
                               #:parsing-configuration #:parsing-prompt
                               #:parsing-prompt-text #:parsing-strategy
-                              #:participant #:priority #:put-feedback
-                              #:query-assistant #:query-assistant-request
+                              #:participant #:precondition-failed-exception
+                              #:priority #:put-feedback #:query-assistant
+                              #:query-assistant-request
                               #:query-assistant-response #:query-condition
                               #:query-condition-comparison-operator
                               #:query-condition-expression
@@ -293,7 +295,9 @@
                               #:remove-knowledge-base-template-uri-request
                               #:remove-knowledge-base-template-uri-response
                               #:render-message-template
-                              #:rendering-configuration #:result-data
+                              #:rendering-configuration
+                              #:request-timeout-exception
+                              #:resource-not-found-exception #:result-data
                               #:runtime-session-data
                               #:runtime-session-data-list
                               #:runtime-session-data-value
@@ -310,7 +314,8 @@
                               #:self-service-conversation-history-list
                               #:semantic-chunking-configuration #:send-message
                               #:sensitive-string
-                              #:server-side-encryption-configuration #:session
+                              #:server-side-encryption-configuration
+                              #:service-quota-exceeded-exception #:session
                               #:session-data #:session-data-namespace
                               #:session-integration-configuration
                               #:session-summaries #:session-summary
@@ -327,7 +332,9 @@
                               #:tag-value #:tags #:target-type #:text-aiprompt
                               #:text-data
                               #:text-full-aiprompt-edit-template-configuration
-                              #:text-message #:time-to-live #:untag-resource
+                              #:text-message #:throttling-exception
+                              #:time-to-live #:too-many-tags-exception
+                              #:unauthorized-exception #:untag-resource
                               #:untag-resource-request
                               #:untag-resource-response #:update-aiagent
                               #:update-aiguardrail #:update-aiprompt
@@ -344,12 +351,17 @@
                               #:url-configuration #:url-filter-list
                               #:url-filter-pattern #:uuid #:uuid-or-arn
                               #:uuid-or-arn-or-either-with-qualifier
-                              #:uuid-with-qualifier
+                              #:uuid-with-qualifier #:validation-exception
                               #:vector-ingestion-configuration #:version
                               #:visibility-status #:wait-time-seconds
                               #:web-crawler-configuration #:web-crawler-limits
-                              #:web-scope-type #:web-url #:wisdom-service))
+                              #:web-scope-type #:web-url #:wisdom-service
+                              #:qconnect-error))
 (common-lisp:in-package #:pira/qconnect)
+
+(common-lisp:define-condition qconnect-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service wisdom-service :shape-name "WisdomService"
                                    :version "2020-10-19" :title
@@ -749,7 +761,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class qconnect-error))
 
 (smithy/sdk/shapes:define-input activate-message-template-request
                                 common-lisp:nil
@@ -1092,7 +1104,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class qconnect-error))
 
 (smithy/sdk/shapes:define-structure connect-configuration common-lisp:nil
                                     ((instance-id :target-type non-empty-string
@@ -4065,7 +4077,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "PreconditionFailedException")
-                                (:error-code 412))
+                                (:error-code 412) (:base-class qconnect-error))
 
 (smithy/sdk/shapes:define-type priority smithy/sdk/smithy-types:string)
 
@@ -4613,7 +4625,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "RequestTimeoutException")
-                                (:error-code 408))
+                                (:error-code 408) (:base-class qconnect-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type
@@ -4623,7 +4635,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceName"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class qconnect-error))
 
 (smithy/sdk/shapes:define-structure result-data common-lisp:nil
                                     ((result-id :target-type uuid :required
@@ -4886,7 +4898,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class qconnect-error))
 
 common-lisp:nil
 
@@ -5105,7 +5117,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class qconnect-error))
 
 (smithy/sdk/shapes:define-type time-to-live smithy/sdk/smithy-types:integer)
 
@@ -5117,14 +5129,14 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class qconnect-error))
 
 (smithy/sdk/shapes:define-error unauthorized-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class qconnect-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -5480,7 +5492,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class qconnect-error))
 
 (smithy/sdk/shapes:define-structure vector-ingestion-configuration
                                     common-lisp:nil

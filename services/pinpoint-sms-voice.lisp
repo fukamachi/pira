@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/pinpoint-sms-voice (:use)
-                             (:export #:boolean
+                             (:export #:already-exists-exception
+                              #:bad-request-exception #:boolean
                               #:call-instructions-message-type
                               #:cloud-watch-logs-destination
                               #:configuration-sets #:create-configuration-set
@@ -10,15 +11,24 @@
                               #:event-destination-definition
                               #:event-destinations #:event-type #:event-types
                               #:get-configuration-set-event-destinations
+                              #:internal-service-error-exception
                               #:kinesis-firehose-destination
+                              #:limit-exceeded-exception
                               #:list-configuration-sets #:next-token-string
-                              #:non-empty-string #:pinpoint-smsvoice
-                              #:plain-text-message-type #:ssmlmessage-type
-                              #:send-voice-message #:sns-destination #:string
+                              #:non-empty-string #:not-found-exception
+                              #:pinpoint-smsvoice #:plain-text-message-type
+                              #:ssmlmessage-type #:send-voice-message
+                              #:sns-destination #:string
+                              #:too-many-requests-exception
                               #:update-configuration-set-event-destination
                               #:voice-message-content
-                              #:word-characters-with-delimiters #:string))
+                              #:word-characters-with-delimiters #:string
+                              #:pinpoint-sms-voice-error))
 (common-lisp:in-package #:pira/pinpoint-sms-voice)
+
+(common-lisp:define-condition pinpoint-sms-voice-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service pinpoint-smsvoice :shape-name
                                    "PinpointSMSVoice" :version "2018-09-05"
@@ -49,13 +59,15 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "AlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class pinpoint-sms-voice-error))
 
 (smithy/sdk/shapes:define-error bad-request-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pinpoint-sms-voice-error))
 
 (smithy/sdk/shapes:define-type boolean smithy/sdk/smithy-types:boolean)
 
@@ -193,7 +205,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InternalServiceErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class pinpoint-sms-voice-error))
 
 (smithy/sdk/shapes:define-structure kinesis-firehose-destination
                                     common-lisp:nil
@@ -207,7 +220,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 412))
+                                (:error-code 412)
+                                (:base-class pinpoint-sms-voice-error))
 
 (smithy/sdk/shapes:define-input list-configuration-sets-request common-lisp:nil
                                 ((next-token :target-type string :member-name
@@ -233,7 +247,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class pinpoint-sms-voice-error))
 
 (smithy/sdk/shapes:define-structure plain-text-message-type common-lisp:nil
                                     ((language-code :target-type string
@@ -285,7 +300,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class pinpoint-sms-voice-error))
 
 (smithy/sdk/shapes:define-input
  update-configuration-set-event-destination-request common-lisp:nil

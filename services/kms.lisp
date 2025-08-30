@@ -1,36 +1,50 @@
 (uiop/package:define-package #:pira/kms (:use)
                              (:export #:awsaccount-id-type #:algorithm-spec
                               #:alias-list #:alias-list-entry #:alias-name-type
-                              #:arn-type #:attestation-document-type
+                              #:already-exists-exception #:arn-type
+                              #:attestation-document-type
                               #:backing-key-id-response-type
                               #:backing-key-id-type #:boolean-type
                               #:cancel-key-deletion #:ciphertext-type
                               #:cloud-hsm-cluster-id-type
-                              #:connect-custom-key-store
+                              #:cloud-hsm-cluster-in-use-exception
+                              #:cloud-hsm-cluster-invalid-configuration-exception
+                              #:cloud-hsm-cluster-not-active-exception
+                              #:cloud-hsm-cluster-not-found-exception
+                              #:cloud-hsm-cluster-not-related-exception
+                              #:conflict-exception #:connect-custom-key-store
                               #:connection-error-code-type
                               #:connection-state-type #:create-alias
                               #:create-custom-key-store #:create-grant
-                              #:create-key #:custom-key-store-id-type
+                              #:create-key
+                              #:custom-key-store-has-cmks-exception
+                              #:custom-key-store-id-type
+                              #:custom-key-store-invalid-state-exception
+                              #:custom-key-store-name-in-use-exception
                               #:custom-key-store-name-type
+                              #:custom-key-store-not-found-exception
                               #:custom-key-store-type #:custom-key-stores-list
                               #:custom-key-stores-list-entry
                               #:customer-master-key-spec #:data-key-pair-spec
                               #:data-key-spec #:date-type #:decrypt
                               #:delete-alias #:delete-custom-key-store
                               #:delete-imported-key-material
+                              #:dependency-timeout-exception
                               #:derive-shared-secret
                               #:describe-custom-key-stores #:describe-key
                               #:description-type #:disable-key
-                              #:disable-key-rotation
-                              #:disconnect-custom-key-store #:enable-key
+                              #:disable-key-rotation #:disabled-exception
+                              #:disconnect-custom-key-store
+                              #:dry-run-operation-exception #:enable-key
                               #:enable-key-rotation #:encrypt
                               #:encryption-algorithm-spec
                               #:encryption-algorithm-spec-list
                               #:encryption-context-key
                               #:encryption-context-type
                               #:encryption-context-value #:error-message-type
-                              #:expiration-model-type #:generate-data-key
-                              #:generate-data-key-pair
+                              #:expiration-model-type
+                              #:expired-import-token-exception
+                              #:generate-data-key #:generate-data-key-pair
                               #:generate-data-key-pair-without-plaintext
                               #:generate-data-key-without-plaintext
                               #:generate-mac #:generate-random #:get-key-policy
@@ -42,6 +56,21 @@
                               #:grant-token-list #:grant-token-type
                               #:import-key-material #:import-state
                               #:import-type #:include-key-material
+                              #:incorrect-key-exception
+                              #:incorrect-key-material-exception
+                              #:incorrect-trust-anchor-exception
+                              #:invalid-alias-name-exception
+                              #:invalid-arn-exception
+                              #:invalid-ciphertext-exception
+                              #:invalid-grant-id-exception
+                              #:invalid-grant-token-exception
+                              #:invalid-import-token-exception
+                              #:invalid-key-usage-exception
+                              #:invalid-marker-exception
+                              #:kmsinternal-exception
+                              #:kmsinvalid-mac-exception
+                              #:kmsinvalid-signature-exception
+                              #:kmsinvalid-state-exception
                               #:key-agreement-algorithm-spec
                               #:key-agreement-algorithm-spec-list
                               #:key-encryption-mechanism #:key-id-type
@@ -49,15 +78,18 @@
                               #:key-material-description-type
                               #:key-material-state #:key-metadata #:key-spec
                               #:key-state #:key-store-password-type
-                              #:key-usage-type #:limit-type #:list-aliases
-                              #:list-grants #:list-grants-response
-                              #:list-key-policies #:list-key-rotations
-                              #:list-keys #:list-resource-tags
-                              #:list-retirable-grants #:mac-algorithm-spec
-                              #:mac-algorithm-spec-list #:marker-type
-                              #:message-type #:multi-region-configuration
-                              #:multi-region-key #:multi-region-key-list
-                              #:multi-region-key-type #:nullable-boolean-type
+                              #:key-unavailable-exception #:key-usage-type
+                              #:limit-exceeded-exception #:limit-type
+                              #:list-aliases #:list-grants
+                              #:list-grants-response #:list-key-policies
+                              #:list-key-rotations #:list-keys
+                              #:list-resource-tags #:list-retirable-grants
+                              #:mac-algorithm-spec #:mac-algorithm-spec-list
+                              #:malformed-policy-document-exception
+                              #:marker-type #:message-type
+                              #:multi-region-configuration #:multi-region-key
+                              #:multi-region-key-list #:multi-region-key-type
+                              #:not-found-exception #:nullable-boolean-type
                               #:number-of-bytes-type #:origin-type
                               #:pending-window-in-days-type #:plaintext-type
                               #:policy-name-list #:policy-name-type
@@ -71,22 +103,41 @@
                               #:schedule-key-deletion #:sign
                               #:signing-algorithm-spec
                               #:signing-algorithm-spec-list #:tag
-                              #:tag-key-list #:tag-key-type #:tag-list
-                              #:tag-resource #:tag-value-type #:trent-service
-                              #:trust-anchor-certificate-type #:untag-resource
-                              #:update-alias #:update-custom-key-store
+                              #:tag-exception #:tag-key-list #:tag-key-type
+                              #:tag-list #:tag-resource #:tag-value-type
+                              #:trent-service #:trust-anchor-certificate-type
+                              #:unsupported-operation-exception
+                              #:untag-resource #:update-alias
+                              #:update-custom-key-store
                               #:update-key-description #:update-primary-region
                               #:verify #:verify-mac #:wrapping-key-spec
+                              #:xks-key-already-in-use-exception
                               #:xks-key-configuration-type #:xks-key-id-type
+                              #:xks-key-invalid-configuration-exception
+                              #:xks-key-not-found-exception
                               #:xks-proxy-authentication-access-key-id-type
                               #:xks-proxy-authentication-credential-type
                               #:xks-proxy-authentication-raw-secret-access-key-type
                               #:xks-proxy-configuration-type
                               #:xks-proxy-connectivity-type
+                              #:xks-proxy-incorrect-authentication-credential-exception
+                              #:xks-proxy-invalid-configuration-exception
+                              #:xks-proxy-invalid-response-exception
+                              #:xks-proxy-uri-endpoint-in-use-exception
                               #:xks-proxy-uri-endpoint-type
+                              #:xks-proxy-uri-in-use-exception
                               #:xks-proxy-uri-path-type
-                              #:xks-proxy-vpc-endpoint-service-name-type))
+                              #:xks-proxy-uri-unreachable-exception
+                              #:xks-proxy-vpc-endpoint-service-in-use-exception
+                              #:xks-proxy-vpc-endpoint-service-invalid-configuration-exception
+                              #:xks-proxy-vpc-endpoint-service-name-type
+                              #:xks-proxy-vpc-endpoint-service-not-found-exception
+                              #:kms-error))
 (common-lisp:in-package #:pira/kms)
+
+(common-lisp:define-condition kms-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service trent-service :shape-name "TrentService"
                                    :version "2014-11-01" :title
@@ -166,7 +217,8 @@
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "AlreadyExistsException")
-                                (:error-name "AlreadyExists") (:error-code 409))
+                                (:error-name "AlreadyExists") (:error-code 409)
+                                (:base-class kms-error))
 
 (smithy/sdk/shapes:define-type arn-type smithy/sdk/smithy-types:string)
 
@@ -202,13 +254,14 @@
                                   :member-name "message"))
                                 (:shape-name "CloudHsmClusterInUseException")
                                 (:error-name "CloudHsmClusterInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error
  cloud-hsm-cluster-invalid-configuration-exception common-lisp:nil
  ((message :target-type error-message-type :member-name "message"))
  (:shape-name "CloudHsmClusterInvalidConfigurationException")
- (:error-name "CloudHsmClusterInvalidConfigurationException") (:error-code 400))
+ (:error-name "CloudHsmClusterInvalidConfigurationException") (:error-code 400)
+ (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error cloud-hsm-cluster-not-active-exception
                                 common-lisp:nil
@@ -218,7 +271,7 @@
                                  "CloudHsmClusterNotActiveException")
                                 (:error-name
                                  "CloudHsmClusterNotActiveException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error cloud-hsm-cluster-not-found-exception
                                 common-lisp:nil
@@ -228,7 +281,7 @@
                                  "CloudHsmClusterNotFoundException")
                                 (:error-name
                                  "CloudHsmClusterNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error cloud-hsm-cluster-not-related-exception
                                 common-lisp:nil
@@ -238,14 +291,14 @@
                                  "CloudHsmClusterNotRelatedException")
                                 (:error-name
                                  "CloudHsmClusterNotRelatedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
                                 (:error-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-input connect-custom-key-store-request
                                 common-lisp:nil
@@ -413,7 +466,7 @@
                                   :member-name "message"))
                                 (:shape-name "CustomKeyStoreHasCMKsException")
                                 (:error-name "CustomKeyStoreHasCMKsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-type custom-key-store-id-type
                                smithy/sdk/smithy-types:string)
@@ -426,7 +479,7 @@
                                  "CustomKeyStoreInvalidStateException")
                                 (:error-name
                                  "CustomKeyStoreInvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error custom-key-store-name-in-use-exception
                                 common-lisp:nil
@@ -436,7 +489,7 @@
                                  "CustomKeyStoreNameInUseException")
                                 (:error-name
                                  "CustomKeyStoreNameInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-type custom-key-store-name-type
                                smithy/sdk/smithy-types:string)
@@ -447,7 +500,7 @@
                                   :member-name "message"))
                                 (:shape-name "CustomKeyStoreNotFoundException")
                                 (:error-name "CustomKeyStoreNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-enum custom-key-store-type
     common-lisp:nil
@@ -599,7 +652,7 @@
                                   :member-name "message"))
                                 (:shape-name "DependencyTimeoutException")
                                 (:error-name "DependencyTimeout")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-input derive-shared-secret-request common-lisp:nil
                                 ((key-id :target-type key-id-type :required
@@ -688,7 +741,8 @@
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "DisabledException")
-                                (:error-name "Disabled") (:error-code 409))
+                                (:error-name "Disabled") (:error-code 409)
+                                (:base-class kms-error))
 
 (smithy/sdk/shapes:define-input disconnect-custom-key-store-request
                                 common-lisp:nil
@@ -708,7 +762,7 @@
                                   :member-name "message"))
                                 (:shape-name "DryRunOperationException")
                                 (:error-name "DryRunOperation")
-                                (:error-code 412))
+                                (:error-code 412) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-input enable-key-request common-lisp:nil
                                 ((key-id :target-type key-id-type :required
@@ -784,7 +838,7 @@
                                   :member-name "message"))
                                 (:shape-name "ExpiredImportTokenException")
                                 (:error-name "ExpiredImportTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-input generate-data-key-pair-request common-lisp:nil
                                 ((encryption-context :target-type
@@ -1167,7 +1221,7 @@
                                   :member-name "message"))
                                 (:shape-name "IncorrectKeyException")
                                 (:error-name "IncorrectKeyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error incorrect-key-material-exception
                                 common-lisp:nil
@@ -1175,7 +1229,7 @@
                                   :member-name "message"))
                                 (:shape-name "IncorrectKeyMaterialException")
                                 (:error-name "IncorrectKeyMaterialException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error incorrect-trust-anchor-exception
                                 common-lisp:nil
@@ -1183,87 +1237,91 @@
                                   :member-name "message"))
                                 (:shape-name "IncorrectTrustAnchorException")
                                 (:error-name "IncorrectTrustAnchorException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error invalid-alias-name-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "InvalidAliasNameException")
                                 (:error-name "InvalidAliasName")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error invalid-arn-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "InvalidArnException")
-                                (:error-name "InvalidArn") (:error-code 400))
+                                (:error-name "InvalidArn") (:error-code 400)
+                                (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error invalid-ciphertext-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "InvalidCiphertextException")
                                 (:error-name "InvalidCiphertext")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error invalid-grant-id-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "InvalidGrantIdException")
                                 (:error-name "InvalidGrantId")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error invalid-grant-token-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "InvalidGrantTokenException")
                                 (:error-name "InvalidGrantToken")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error invalid-import-token-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "InvalidImportTokenException")
                                 (:error-name "InvalidImportTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error invalid-key-usage-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "InvalidKeyUsageException")
                                 (:error-name "InvalidKeyUsage")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error invalid-marker-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "InvalidMarkerException")
-                                (:error-name "InvalidMarker") (:error-code 400))
+                                (:error-name "InvalidMarker") (:error-code 400)
+                                (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error kmsinternal-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "KMSInternalException")
-                                (:error-name "KMSInternal") (:error-code 500))
+                                (:error-name "KMSInternal") (:error-code 500)
+                                (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error kmsinvalid-mac-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "KMSInvalidMacException")
-                                (:error-name "KMSInvalidMac") (:error-code 400))
+                                (:error-name "KMSInvalidMac") (:error-code 400)
+                                (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error kmsinvalid-signature-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "KMSInvalidSignatureException")
                                 (:error-name "KMSInvalidSignature")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error kmsinvalid-state-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "KMSInvalidStateException")
                                 (:error-name "KMSInvalidStateException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-enum key-agreement-algorithm-spec
     common-lisp:nil
@@ -1409,7 +1467,7 @@
                                   :member-name "message"))
                                 (:shape-name "KeyUnavailableException")
                                 (:error-name "KeyUnavailable")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-enum key-usage-type
     common-lisp:nil
@@ -1422,7 +1480,8 @@
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-name "LimitExceeded") (:error-code 400))
+                                (:error-name "LimitExceeded") (:error-code 400)
+                                (:base-class kms-error))
 
 (smithy/sdk/shapes:define-type limit-type smithy/sdk/smithy-types:integer)
 
@@ -1567,7 +1626,7 @@
                                 (:shape-name
                                  "MalformedPolicyDocumentException")
                                 (:error-name "MalformedPolicyDocument")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-type marker-type smithy/sdk/smithy-types:string)
 
@@ -1606,7 +1665,8 @@
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-name "NotFound") (:error-code 404))
+                                (:error-name "NotFound") (:error-code 404)
+                                (:base-class kms-error))
 
 (smithy/sdk/shapes:define-type nullable-boolean-type
                                smithy/sdk/smithy-types:boolean)
@@ -1877,7 +1937,8 @@
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "TagException")
-                                (:error-name "TagException") (:error-code 400))
+                                (:error-name "TagException") (:error-code 400)
+                                (:base-class kms-error))
 
 (smithy/sdk/shapes:define-list tag-key-list :member tag-key-type)
 
@@ -1902,7 +1963,7 @@
                                   :member-name "message"))
                                 (:shape-name "UnsupportedOperationException")
                                 (:error-name "UnsupportedOperation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((key-id :target-type key-id-type :required
@@ -2044,7 +2105,7 @@
                                   :member-name "message"))
                                 (:shape-name "XksKeyAlreadyInUseException")
                                 (:error-name "XksKeyAlreadyInUse")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-structure xks-key-configuration-type common-lisp:nil
                                     ((id :target-type xks-key-id-type
@@ -2060,14 +2121,14 @@
                                 (:shape-name
                                  "XksKeyInvalidConfigurationException")
                                 (:error-name "XksKeyInvalidConfiguration")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error xks-key-not-found-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "message"))
                                 (:shape-name "XksKeyNotFoundException")
                                 (:error-name "XksKeyNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-type xks-proxy-authentication-access-key-id-type
                                smithy/sdk/smithy-types:string)
@@ -2118,7 +2179,7 @@
  ((message :target-type error-message-type :member-name "message"))
  (:shape-name "XksProxyIncorrectAuthenticationCredentialException")
  (:error-name "XksProxyIncorrectAuthenticationCredentialException")
- (:error-code 400))
+ (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error xks-proxy-invalid-configuration-exception
                                 common-lisp:nil
@@ -2128,7 +2189,7 @@
                                  "XksProxyInvalidConfigurationException")
                                 (:error-name
                                  "XksProxyInvalidConfigurationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error xks-proxy-invalid-response-exception
                                 common-lisp:nil
@@ -2138,7 +2199,7 @@
                                  "XksProxyInvalidResponseException")
                                 (:error-name
                                  "XksProxyInvalidResponseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error xks-proxy-uri-endpoint-in-use-exception
                                 common-lisp:nil
@@ -2148,7 +2209,7 @@
                                  "XksProxyUriEndpointInUseException")
                                 (:error-name
                                  "XksProxyUriEndpointInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-type xks-proxy-uri-endpoint-type
                                smithy/sdk/smithy-types:string)
@@ -2158,7 +2219,7 @@
                                   :member-name "message"))
                                 (:shape-name "XksProxyUriInUseException")
                                 (:error-name "XksProxyUriInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-type xks-proxy-uri-path-type
                                smithy/sdk/smithy-types:string)
@@ -2169,7 +2230,7 @@
                                   :member-name "message"))
                                 (:shape-name "XksProxyUriUnreachableException")
                                 (:error-name "XksProxyUriUnreachableException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error xks-proxy-vpc-endpoint-service-in-use-exception
                                 common-lisp:nil
@@ -2179,14 +2240,14 @@
                                  "XksProxyVpcEndpointServiceInUseException")
                                 (:error-name
                                  "XksProxyVpcEndpointServiceInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-error
  xks-proxy-vpc-endpoint-service-invalid-configuration-exception common-lisp:nil
  ((message :target-type error-message-type :member-name "message"))
  (:shape-name "XksProxyVpcEndpointServiceInvalidConfigurationException")
  (:error-name "XksProxyVpcEndpointServiceInvalidConfigurationException")
- (:error-code 400))
+ (:error-code 400) (:base-class kms-error))
 
 (smithy/sdk/shapes:define-type xks-proxy-vpc-endpoint-service-name-type
                                smithy/sdk/smithy-types:string)
@@ -2195,7 +2256,8 @@
  xks-proxy-vpc-endpoint-service-not-found-exception common-lisp:nil
  ((message :target-type error-message-type :member-name "message"))
  (:shape-name "XksProxyVpcEndpointServiceNotFoundException")
- (:error-name "XksProxyVpcEndpointServiceNotFoundException") (:error-code 400))
+ (:error-name "XksProxyVpcEndpointServiceNotFoundException") (:error-code 400)
+ (:base-class kms-error))
 
 (smithy/sdk/operation:define-operation cancel-key-deletion :shape-name
                                        "CancelKeyDeletion" :input

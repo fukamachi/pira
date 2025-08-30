@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/observabilityadmin (:use)
-                             (:export #:account-identifier
-                              #:account-identifiers #:create-telemetry-rule
+                             (:export #:access-denied-exception
+                              #:account-identifier #:account-identifiers
+                              #:conflict-exception #:create-telemetry-rule
                               #:create-telemetry-rule-for-organization
                               #:delete-telemetry-rule
                               #:delete-telemetry-rule-for-organization
@@ -9,6 +10,7 @@
                               #:get-telemetry-evaluation-status-for-organization
                               #:get-telemetry-rule
                               #:get-telemetry-rule-for-organization
+                              #:internal-server-exception
                               #:list-resource-telemetry
                               #:list-resource-telemetry-for-organization
                               #:list-resource-telemetry-for-organization-max-results
@@ -21,9 +23,11 @@
                               #:organization-unit-identifier
                               #:organization-unit-identifiers #:resource-arn
                               #:resource-identifier
-                              #:resource-identifier-prefix #:resource-type
+                              #:resource-identifier-prefix
+                              #:resource-not-found-exception #:resource-type
                               #:resource-types #:retention-period-in-days
                               #:rule-identifier #:rule-name
+                              #:service-quota-exceeded-exception
                               #:start-telemetry-evaluation
                               #:start-telemetry-evaluation-for-organization
                               #:status #:stop-telemetry-evaluation
@@ -36,11 +40,16 @@
                               #:telemetry-destination-configuration
                               #:telemetry-rule #:telemetry-rule-summaries
                               #:telemetry-rule-summary #:telemetry-state
-                              #:telemetry-type #:untag-resource
-                              #:update-telemetry-rule
+                              #:telemetry-type #:too-many-requests-exception
+                              #:untag-resource #:update-telemetry-rule
                               #:update-telemetry-rule-for-organization
-                              #:vpcflow-log-parameters))
+                              #:vpcflow-log-parameters #:validation-exception
+                              #:observabilityadmin-error))
 (common-lisp:in-package #:pira/observabilityadmin)
+
+(common-lisp:define-condition observabilityadmin-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service observability-admin :shape-name
                                    "ObservabilityAdmin" :version "2018-05-10"
@@ -84,7 +93,8 @@
                                   "amznErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class observabilityadmin-error))
 
 (smithy/sdk/shapes:define-type account-identifier
                                smithy/sdk/smithy-types:string)
@@ -96,7 +106,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class observabilityadmin-error))
 
 (smithy/sdk/shapes:define-input create-telemetry-rule-for-organization-input
                                 common-lisp:nil
@@ -220,7 +231,8 @@
                                   "amznErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class observabilityadmin-error))
 
 (smithy/sdk/shapes:define-input list-resource-telemetry-for-organization-input
                                 common-lisp:nil
@@ -372,7 +384,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class observabilityadmin-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -399,7 +412,8 @@
                                   "amznErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class observabilityadmin-error))
 
 (smithy/sdk/shapes:define-enum status
     common-lisp:nil
@@ -530,7 +544,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class observabilityadmin-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type resource-arn
@@ -587,7 +602,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class observabilityadmin-error))
 
 (smithy/sdk/operation:define-operation create-telemetry-rule :shape-name
                                        "CreateTelemetryRule" :input

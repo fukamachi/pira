@@ -2,8 +2,9 @@
                              (:export #:accept-environment-account-connection
                               #:accept-environment-account-connection-input
                               #:accept-environment-account-connection-output
-                              #:account-settings #:account-settings-resource
-                              #:arn #:aws-account-id #:aws-proton20200720
+                              #:access-denied-exception #:account-settings
+                              #:account-settings-resource #:arn
+                              #:aws-account-id #:aws-proton20200720
                               #:blocker-status #:blocker-type
                               #:cancel-component-deployment
                               #:cancel-component-deployment-input
@@ -28,8 +29,8 @@
                               #:component-provisioned-resource-resource
                               #:component-resource #:component-state
                               #:component-summary #:component-summary-list
-                              #:counts-summary #:create-component
-                              #:create-component-input
+                              #:conflict-exception #:counts-summary
+                              #:create-component #:create-component-input
                               #:create-component-output #:create-environment
                               #:create-environment-account-connection
                               #:create-environment-account-connection-input
@@ -169,8 +170,8 @@
                               #:get-template-sync-status
                               #:get-template-sync-status-input
                               #:get-template-sync-status-output
-                              #:git-branch-name #:latest-sync-blockers
-                              #:list-component-outputs
+                              #:git-branch-name #:internal-server-exception
+                              #:latest-sync-blockers #:list-component-outputs
                               #:list-component-outputs-input
                               #:list-component-outputs-output
                               #:list-component-provisioned-resources
@@ -256,12 +257,14 @@
                               #:repository-sync-status
                               #:resource-counts-summary
                               #:resource-deployment-status #:resource-name
-                              #:resource-name-or-empty #:resource-sync-attempt
-                              #:resource-sync-event #:resource-sync-events
-                              #:resource-sync-status #:revision #:role-arn
-                              #:role-arn-or-empty-string #:s3bucket #:s3key
-                              #:s3object-source #:sha #:service #:service-arn
-                              #:service-instance #:service-instance-arn
+                              #:resource-name-or-empty
+                              #:resource-not-found-exception
+                              #:resource-sync-attempt #:resource-sync-event
+                              #:resource-sync-events #:resource-sync-status
+                              #:revision #:role-arn #:role-arn-or-empty-string
+                              #:s3bucket #:s3key #:s3object-source #:sha
+                              #:service #:service-arn #:service-instance
+                              #:service-instance-arn
                               #:service-instance-output-resource
                               #:service-instance-provisioned-resource-resource
                               #:service-instance-resource
@@ -272,9 +275,10 @@
                               #:service-pipeline-output-resource
                               #:service-pipeline-provisioned-resource-resource
                               #:service-pipeline-resource
-                              #:service-pipeline-state #:service-resource
-                              #:service-status #:service-summary
-                              #:service-summary-list
+                              #:service-pipeline-state
+                              #:service-quota-exceeded-exception
+                              #:service-resource #:service-status
+                              #:service-summary #:service-summary-list
                               #:service-sync-blocker-resource
                               #:service-sync-blocker-summary
                               #:service-sync-config
@@ -302,9 +306,9 @@
                               #:template-sync-config-resource #:template-type
                               #:template-version-part
                               #:template-version-source-input
-                              #:template-version-status #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
-                              #:update-account-settings
+                              #:template-version-status #:throttling-exception
+                              #:untag-resource #:untag-resource-input
+                              #:untag-resource-output #:update-account-settings
                               #:update-account-settings-input
                               #:update-account-settings-output
                               #:update-component #:update-component-input
@@ -341,8 +345,13 @@
                               #:update-service-template-version-output
                               #:update-template-sync-config
                               #:update-template-sync-config-input
-                              #:update-template-sync-config-output))
+                              #:update-template-sync-config-output
+                              #:validation-exception #:proton-error))
 (common-lisp:in-package #:pira/proton)
+
+(common-lisp:define-condition proton-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service aws-proton20200720 :shape-name
                                    "AwsProton20200720" :version "2020-07-20"
@@ -384,7 +393,7 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class proton-error))
 
 (smithy/sdk/shapes:define-structure account-settings common-lisp:nil
                                     ((pipeline-service-role-arn :target-type
@@ -631,7 +640,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class proton-error))
 
 (smithy/sdk/shapes:define-structure counts-summary common-lisp:nil
                                     ((components :target-type
@@ -2082,7 +2091,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class proton-error))
 
 (smithy/sdk/shapes:define-list latest-sync-blockers :member sync-blocker)
 
@@ -2784,7 +2793,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class proton-error))
 
 (smithy/sdk/shapes:define-structure resource-sync-attempt common-lisp:nil
                                     ((initial-revision :target-type revision
@@ -3114,7 +3123,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class proton-error))
 
 common-lisp:nil
 
@@ -3475,7 +3484,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class proton-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -3871,7 +3880,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class proton-error))
 
 (smithy/sdk/operation:define-operation accept-environment-account-connection
                                        :shape-name

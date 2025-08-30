@@ -1,6 +1,8 @@
 (uiop/package:define-package #:pira/s3vectors (:use)
-                             (:export #:create-index #:create-vector-bucket
-                              #:data-type #:delete-index #:delete-vector-bucket
+                             (:export #:access-denied-exception
+                              #:conflict-exception #:create-index
+                              #:create-vector-bucket #:data-type #:delete-index
+                              #:delete-vector-bucket
                               #:delete-vector-bucket-policy #:delete-vectors
                               #:delete-vectors-input-list #:dimension
                               #:distance-metric #:encryption-configuration
@@ -10,7 +12,11 @@
                               #:get-vectors #:get-vectors-input-list
                               #:get-vectors-output-list #:index #:index-arn
                               #:index-name #:index-resource #:index-summary
-                              #:kms-key-arn #:list-indexes
+                              #:internal-server-exception
+                              #:kms-disabled-exception
+                              #:kms-invalid-key-usage-exception
+                              #:kms-invalid-state-exception #:kms-key-arn
+                              #:kms-not-found-exception #:list-indexes
                               #:list-indexes-max-results
                               #:list-indexes-next-token
                               #:list-indexes-output-list #:list-indexes-prefix
@@ -25,18 +31,27 @@
                               #:list-vectors-segment-count
                               #:list-vectors-segment-index
                               #:metadata-configuration #:metadata-key
-                              #:non-filterable-metadata-keys #:put-input-vector
+                              #:non-filterable-metadata-keys
+                              #:not-found-exception #:put-input-vector
                               #:put-vector-bucket-policy #:put-vectors
                               #:put-vectors-input-list #:query-output-vector
                               #:query-vectors #:query-vectors-output-list
-                              #:s3vectors #:sse-type #:top-k
+                              #:s3vectors #:service-quota-exceeded-exception
+                              #:service-unavailable-exception #:sse-type
+                              #:too-many-requests-exception #:top-k
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list #:vector-bucket
                               #:vector-bucket-arn #:vector-bucket-name
                               #:vector-bucket-policy #:vector-bucket-resource
                               #:vector-bucket-summary #:vector-data
-                              #:vector-key #:vector-metadata #:vector-resource))
+                              #:vector-key #:vector-metadata #:vector-resource
+                              #:s3vectors-error))
 (common-lisp:in-package #:pira/s3vectors)
+
+(common-lisp:define-condition s3vectors-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service s3vectors :shape-name "S3Vectors" :version
                                    "2025-07-15" :title "Amazon S3 Vectors"
@@ -60,14 +75,14 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class s3vectors-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class s3vectors-error))
 
 (smithy/sdk/shapes:define-input create-index-input common-lisp:nil
                                 ((vector-bucket-name :target-type
@@ -329,28 +344,28 @@ common-lisp:nil
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class s3vectors-error))
 
 (smithy/sdk/shapes:define-error kms-disabled-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "KmsDisabledException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class s3vectors-error))
 
 (smithy/sdk/shapes:define-error kms-invalid-key-usage-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "KmsInvalidKeyUsageException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class s3vectors-error))
 
 (smithy/sdk/shapes:define-error kms-invalid-state-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "KmsInvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class s3vectors-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -359,7 +374,7 @@ common-lisp:nil
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "KmsNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class s3vectors-error))
 
 (smithy/sdk/shapes:define-input list-indexes-input common-lisp:nil
                                 ((vector-bucket-name :target-type
@@ -509,7 +524,7 @@ common-lisp:nil
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class s3vectors-error))
 
 (smithy/sdk/shapes:define-structure put-input-vector common-lisp:nil
                                     ((key :target-type vector-key :required
@@ -606,14 +621,14 @@ common-lisp:nil
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class s3vectors-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class s3vectors-error))
 
 (smithy/sdk/shapes:define-enum sse-type
     common-lisp:nil
@@ -625,7 +640,7 @@ common-lisp:nil
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class s3vectors-error))
 
 (smithy/sdk/shapes:define-type top-k smithy/sdk/smithy-types:integer)
 
@@ -637,7 +652,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class s3vectors-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((path :target-type

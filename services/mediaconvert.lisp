@@ -46,7 +46,7 @@
                               #:avc-intra-settings #:avc-intra-slow-pal
                               #:avc-intra-telecine
                               #:avc-intra-uhd-quality-tuning-level
-                              #:avc-intra-uhd-settings
+                              #:avc-intra-uhd-settings #:bad-request-exception
                               #:bandwidth-reduction-filter
                               #:bandwidth-reduction-filter-sharpening
                               #:bandwidth-reduction-filter-strength
@@ -102,11 +102,11 @@
                               #:color-conversion3dlutsetting #:color-corrector
                               #:color-metadata #:color-primaries #:color-space
                               #:color-space-conversion #:color-space-usage
-                              #:commitment #:container #:container-settings
-                              #:container-type #:copy-protection-action
-                              #:create-job #:create-job-template
-                              #:create-preset #:create-queue
-                              #:dash-additional-manifest
+                              #:commitment #:conflict-exception #:container
+                              #:container-settings #:container-type
+                              #:copy-protection-action #:create-job
+                              #:create-job-template #:create-preset
+                              #:create-queue #:dash-additional-manifest
                               #:dash-iso-encryption-settings
                               #:dash-iso-group-audio-channel-config-scheme-id-uri
                               #:dash-iso-group-settings
@@ -179,11 +179,12 @@
                               #:file-source-convert608to708
                               #:file-source-settings
                               #:file-source-time-delta-units #:flac-settings
-                              #:font-script #:force-include-rendition-size
-                              #:format #:frame-capture-settings
-                              #:frame-metric-type #:frame-rate #:get-job
-                              #:get-job-template #:get-policy #:get-preset
-                              #:get-queue #:gif-framerate-control
+                              #:font-script #:forbidden-exception
+                              #:force-include-rendition-size #:format
+                              #:frame-capture-settings #:frame-metric-type
+                              #:frame-rate #:get-job #:get-job-template
+                              #:get-policy #:get-preset #:get-queue
+                              #:gif-framerate-control
                               #:gif-framerate-conversion-algorithm
                               #:gif-settings #:h264adaptive-quantization
                               #:h264codec-level #:h264codec-profile
@@ -266,9 +267,10 @@
                               #:input-sample-range #:input-scan-type
                               #:input-tams-settings #:input-template
                               #:input-timecode-source #:input-video-generator
-                              #:insertable-image #:job #:job-engine-version
-                              #:job-messages #:job-phase #:job-settings
-                              #:job-status #:job-template
+                              #:insertable-image
+                              #:internal-server-error-exception #:job
+                              #:job-engine-version #:job-messages #:job-phase
+                              #:job-settings #:job-status #:job-template
                               #:job-template-list-by #:job-template-settings
                               #:kantar-watermark-settings #:language-code
                               #:list-job-templates #:list-jobs #:list-presets
@@ -342,8 +344,8 @@
                               #:noise-reducer-filter-settings
                               #:noise-reducer-spatial-filter-settings
                               #:noise-reducer-temporal-filter-settings
-                              #:opus-settings #:order #:output
-                              #:output-channel-mapping #:output-detail
+                              #:not-found-exception #:opus-settings #:order
+                              #:output #:output-channel-mapping #:output-detail
                               #:output-group #:output-group-detail
                               #:output-group-settings #:output-group-type
                               #:output-sdt #:output-settings #:pad-video
@@ -383,7 +385,8 @@
                               #:timecode-burnin #:timecode-burnin-position
                               #:timecode-config #:timecode-source
                               #:timecode-track #:timed-metadata
-                              #:timed-metadata-insertion #:timing #:track
+                              #:timed-metadata-insertion #:timing
+                              #:too-many-requests-exception #:track
                               #:track-mapping #:track-source-settings
                               #:track-type #:transfer-characteristics
                               #:ts-pts-offset #:ttml-destination-settings
@@ -620,8 +623,12 @@
                               #:string-pattern-snmanifest-confirm-condition-notification-ns
                               #:string-pattern-snsignal-processing-notification-ns
                               #:string-pattern-w #:string-pattern-ws
-                              #:timestamp-unix))
+                              #:timestamp-unix #:mediaconvert-error))
 (common-lisp:in-package #:pira/mediaconvert)
+
+(common-lisp:define-condition mediaconvert-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service media-convert :shape-name "MediaConvert"
                                    :version "2017-08-29" :title
@@ -1539,7 +1546,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class mediaconvert-error))
 
 (smithy/sdk/shapes:define-structure bandwidth-reduction-filter common-lisp:nil
                                     ((sharpening :target-type
@@ -2519,7 +2527,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class mediaconvert-error))
 
 (smithy/sdk/shapes:define-structure container common-lisp:nil
                                     ((duration :target-type double :member-name
@@ -3862,7 +3871,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class mediaconvert-error))
 
 (smithy/sdk/shapes:define-structure force-include-rendition-size
                                     common-lisp:nil
@@ -5612,7 +5622,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class mediaconvert-error))
 
 (smithy/sdk/shapes:define-structure job common-lisp:nil
                                     ((acceleration-settings :target-type
@@ -7479,7 +7490,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class mediaconvert-error))
 
 (smithy/sdk/shapes:define-structure opus-settings common-lisp:nil
                                     ((bitrate :target-type
@@ -8400,7 +8412,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class mediaconvert-error))
 
 (smithy/sdk/shapes:define-structure track common-lisp:nil
                                     ((audio-properties :target-type

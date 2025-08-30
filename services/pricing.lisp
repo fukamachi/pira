@@ -1,19 +1,29 @@
 (uiop/package:define-package #:pira/pricing (:use)
                              (:export #:awsprice-list-service
-                              #:attribute-name-list #:attribute-value
-                              #:attribute-value-list #:boxed-integer
-                              #:currency-code #:describe-services
-                              #:effective-date #:field #:file-format
-                              #:file-formats #:filter #:filter-type #:filters
-                              #:format-version #:get-attribute-values
-                              #:get-price-list-file-url #:get-products
-                              #:list-price-lists #:max-results #:price-list
+                              #:access-denied-exception #:attribute-name-list
+                              #:attribute-value #:attribute-value-list
+                              #:boxed-integer #:currency-code
+                              #:describe-services #:effective-date
+                              #:expired-next-token-exception #:field
+                              #:file-format #:file-formats #:filter
+                              #:filter-type #:filters #:format-version
+                              #:get-attribute-values #:get-price-list-file-url
+                              #:get-products #:internal-error-exception
+                              #:invalid-next-token-exception
+                              #:invalid-parameter-exception #:list-price-lists
+                              #:max-results #:not-found-exception #:price-list
                               #:price-list-arn #:price-list-json-items
-                              #:price-lists #:region-code #:service
+                              #:price-lists #:region-code
+                              #:resource-not-found-exception #:service
                               #:service-code #:service-list #:string
-                              #:synthesized-json-price-list-json-item #:value
-                              #:error-message))
+                              #:synthesized-json-price-list-json-item
+                              #:throttling-exception #:value #:error-message
+                              #:pricing-error))
 (common-lisp:in-package #:pira/pricing)
+
+(common-lisp:define-condition pricing-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsprice-list-service :shape-name
                                    "AWSPriceListService" :version "2017-10-15"
@@ -35,7 +45,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class pricing-error))
 
 (smithy/sdk/shapes:define-list attribute-name-list :member string)
 
@@ -76,7 +86,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ExpiredNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class pricing-error))
 
 (smithy/sdk/shapes:define-type field smithy/sdk/smithy-types:string)
 
@@ -165,19 +175,19 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class pricing-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class pricing-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class pricing-error))
 
 (smithy/sdk/shapes:define-input list-price-lists-request common-lisp:nil
                                 ((service-code :target-type service-code
@@ -210,7 +220,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class pricing-error))
 
 (smithy/sdk/shapes:define-structure price-list common-lisp:nil
                                     ((price-list-arn :target-type
@@ -237,7 +247,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class pricing-error))
 
 (smithy/sdk/shapes:define-structure service common-lisp:nil
                                     ((service-code :target-type string
@@ -262,7 +272,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class pricing-error))
 
 (smithy/sdk/shapes:define-type value smithy/sdk/smithy-types:string)
 

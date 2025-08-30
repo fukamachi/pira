@@ -12,23 +12,32 @@
                               #:format-option #:frequency-option
                               #:generic-string #:generic-string-list
                               #:get-execution #:get-export #:get-table
-                              #:list-executions #:list-exports #:list-tables
+                              #:internal-server-exception #:list-executions
+                              #:list-exports #:list-tables
                               #:list-tags-for-resource #:max-results
                               #:next-page-token #:overwrite-option
                               #:query-statement #:refresh-cadence
-                              #:resource-tag #:resource-tag-key
-                              #:resource-tag-key-list #:resource-tag-list
-                              #:resource-tag-value #:s3destination
-                              #:s3output-configurations #:s3output-type #:table
+                              #:resource-not-found-exception #:resource-tag
+                              #:resource-tag-key #:resource-tag-key-list
+                              #:resource-tag-list #:resource-tag-value
+                              #:s3destination #:s3output-configurations
+                              #:s3output-type
+                              #:service-quota-exceeded-exception #:table
                               #:table-configurations #:table-list #:table-name
                               #:table-properties #:table-property
                               #:table-property-description
                               #:table-property-description-list #:tag-resource
-                              #:untag-resource #:update-export
+                              #:throttling-exception #:untag-resource
+                              #:update-export #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason))
+                              #:validation-exception-reason
+                              #:bcm-data-exports-error))
 (common-lisp:in-package #:pira/bcm-data-exports)
+
+(common-lisp:define-condition bcm-data-exports-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsbilling-and-cost-management-data-exports
                                    :shape-name
@@ -283,7 +292,8 @@
                                 ((message :target-type generic-string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class bcm-data-exports-error))
 
 (smithy/sdk/shapes:define-input list-executions-request common-lisp:nil
                                 ((export-arn :target-type arn :required
@@ -374,7 +384,8 @@
                                   :required common-lisp:t :member-name
                                   "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class bcm-data-exports-error))
 
 (smithy/sdk/shapes:define-structure resource-tag common-lisp:nil
                                     ((key :target-type resource-tag-key
@@ -444,7 +455,8 @@
                                   :required common-lisp:t :member-name
                                   "ServiceCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class bcm-data-exports-error))
 
 (smithy/sdk/shapes:define-structure table common-lisp:nil
                                     ((table-name :target-type table-name
@@ -503,7 +515,8 @@
                                  (service-code :target-type generic-string
                                   :member-name "ServiceCode"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class bcm-data-exports-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -539,7 +552,8 @@
                                   validation-exception-field-list :member-name
                                   "Fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bcm-data-exports-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type generic-string

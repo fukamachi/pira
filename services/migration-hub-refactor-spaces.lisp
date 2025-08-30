@@ -1,6 +1,6 @@
 (uiop/package:define-package #:pira/migration-hub-refactor-spaces (:use)
-                             (:export #:account-id #:additional-details
-                              #:additional-details-key
+                             (:export #:access-denied-exception #:account-id
+                              #:additional-details #:additional-details-key
                               #:additional-details-value
                               #:api-gateway-endpoint-type #:api-gateway-id
                               #:api-gateway-proxy-config
@@ -9,8 +9,8 @@
                               #:application-name #:application-state
                               #:application-summaries #:application-summary
                               #:boolean #:cidr-block #:cidr-blocks
-                              #:client-token #:create-application
-                              #:create-application-request
+                              #:client-token #:conflict-exception
+                              #:create-application #:create-application-request
                               #:create-application-response
                               #:create-environment #:create-environment-request
                               #:create-environment-response #:create-route
@@ -42,7 +42,8 @@
                               #:get-route-request #:get-route-response
                               #:get-service #:get-service-request
                               #:get-service-response #:http-method
-                              #:http-methods #:lambda-arn
+                              #:http-methods #:internal-server-exception
+                              #:invalid-resource-policy-exception #:lambda-arn
                               #:lambda-endpoint-config #:lambda-endpoint-input
                               #:lambda-endpoint-summary #:list-applications
                               #:list-applications-request
@@ -65,24 +66,32 @@
                               #:put-resource-policy-request
                               #:put-resource-policy-response #:refactor-spaces
                               #:resource-arn #:resource-identifier
+                              #:resource-not-found-exception
                               #:resource-policy-identifier
                               #:retry-after-seconds #:route-activation-state
                               #:route-id #:route-state #:route-summaries
                               #:route-summary #:route-type
                               #:service-endpoint-type #:service-id
-                              #:service-name #:service-state
-                              #:service-summaries #:service-summary
-                              #:stage-name #:string #:tag-keys #:tag-map
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:timestamp
+                              #:service-name #:service-quota-exceeded-exception
+                              #:service-state #:service-summaries
+                              #:service-summary #:stage-name #:string
+                              #:tag-keys #:tag-map #:tag-resource
+                              #:tag-resource-request #:tag-resource-response
+                              #:throttling-exception #:timestamp
                               #:transit-gateway-id #:untag-resource
                               #:untag-resource-request
                               #:untag-resource-response #:update-route
                               #:update-route-request #:update-route-response
                               #:uri #:uri-path #:uri-path-route-input
                               #:url-endpoint-config #:url-endpoint-input
-                              #:url-endpoint-summary #:vpc-id #:vpc-link-id))
+                              #:url-endpoint-summary #:validation-exception
+                              #:vpc-id #:vpc-link-id
+                              #:migration-hub-refactor-spaces-error))
 (common-lisp:in-package #:pira/migration-hub-refactor-spaces)
+
+(common-lisp:define-condition migration-hub-refactor-spaces-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service refactor-spaces :shape-name "RefactorSpaces"
                                    :version "2021-10-26" :title
@@ -116,7 +125,9 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class
+                                 migration-hub-refactor-spaces-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -240,7 +251,9 @@
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class
+                                 migration-hub-refactor-spaces-error))
 
 (smithy/sdk/shapes:define-input create-application-request common-lisp:nil
                                 ((name :target-type application-name :required
@@ -900,14 +913,18 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class
+                                 migration-hub-refactor-spaces-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-policy-exception
                                 common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InvalidResourcePolicyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 migration-hub-refactor-spaces-error))
 
 (smithy/sdk/shapes:define-type lambda-arn smithy/sdk/smithy-types:string)
 
@@ -1098,7 +1115,9 @@
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class
+                                 migration-hub-refactor-spaces-error))
 
 (smithy/sdk/shapes:define-type resource-policy-identifier
                                smithy/sdk/smithy-types:string)
@@ -1180,7 +1199,9 @@
                                  (service-code :target-type string :required
                                   common-lisp:t :member-name "ServiceCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class
+                                 migration-hub-refactor-spaces-error))
 
 (smithy/sdk/shapes:define-type service-state smithy/sdk/smithy-types:string)
 
@@ -1261,7 +1282,9 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class
+                                 migration-hub-refactor-spaces-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -1358,7 +1381,9 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 migration-hub-refactor-spaces-error))
 
 (smithy/sdk/shapes:define-type vpc-id smithy/sdk/smithy-types:string)
 

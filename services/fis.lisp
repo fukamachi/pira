@@ -7,7 +7,7 @@
                               #:action-summary-list #:action-target
                               #:action-target-map #:action-target-name
                               #:actions-mode #:client-token
-                              #:cloud-watch-log-group-arn
+                              #:cloud-watch-log-group-arn #:conflict-exception
                               #:create-experiment-template
                               #:create-experiment-template-action-input
                               #:create-experiment-template-action-input-map
@@ -152,11 +152,14 @@
                               #:report-configuration-s3output-input
                               #:report-configuration-s3output-prefix
                               #:resolved-target #:resolved-target-list
-                              #:resource-arn #:resource-arn-list #:role-arn
+                              #:resource-arn #:resource-arn-list
+                              #:resource-not-found-exception #:role-arn
                               #:s3bucket-name #:s3object-key #:safety-lever
                               #:safety-lever-id #:safety-lever-state
                               #:safety-lever-status #:safety-lever-status-input
-                              #:safety-lever-status-reason #:start-experiment
+                              #:safety-lever-status-reason
+                              #:service-quota-exceeded-exception
+                              #:start-experiment
                               #:start-experiment-experiment-options-input
                               #:stop-condition-source #:stop-condition-value
                               #:stop-experiment #:tag-key #:tag-key-list
@@ -191,8 +194,13 @@
                               #:update-experiment-template-target-input-map
                               #:update-safety-lever-state
                               #:update-safety-lever-state-input
-                              #:update-target-account-configuration))
+                              #:update-target-account-configuration
+                              #:validation-exception #:fis-error))
 (common-lisp:in-package #:pira/fis)
+
+(common-lisp:define-condition fis-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service fault-injection-simulator :shape-name
                                    "FaultInjectionSimulator" :version
@@ -320,7 +328,7 @@
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
                                 (:error-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class fis-error))
 
 (smithy/sdk/shapes:define-structure create-experiment-template-action-input
                                     common-lisp:nil
@@ -1657,7 +1665,7 @@
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class fis-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -1704,7 +1712,7 @@
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
                                 (:error-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class fis-error))
 
 (smithy/sdk/shapes:define-structure start-experiment-experiment-options-input
                                     common-lisp:nil
@@ -2065,7 +2073,7 @@
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
                                 (:error-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class fis-error))
 
 (smithy/sdk/operation:define-operation create-experiment-template :shape-name
                                        "CreateExperimentTemplate" :input

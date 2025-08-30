@@ -4,17 +4,18 @@
                               #:create-http-namespace
                               #:create-private-dns-namespace
                               #:create-public-dns-namespace #:create-service
-                              #:custom-health-status #:delete-namespace
-                              #:delete-service #:delete-service-attributes
-                              #:deregister-instance #:discover-instances
+                              #:custom-health-not-found #:custom-health-status
+                              #:delete-namespace #:delete-service
+                              #:delete-service-attributes #:deregister-instance
+                              #:discover-instances
                               #:discover-instances-revision
                               #:discover-max-results #:dns-config
                               #:dns-config-change #:dns-properties #:dns-record
-                              #:dns-record-list #:error-message
-                              #:failure-threshold #:filter-condition
-                              #:filter-value #:filter-values #:get-instance
-                              #:get-instances-health-status #:get-namespace
-                              #:get-operation #:get-service
+                              #:dns-record-list #:duplicate-request
+                              #:error-message #:failure-threshold
+                              #:filter-condition #:filter-value #:filter-values
+                              #:get-instance #:get-instances-health-status
+                              #:get-namespace #:get-operation #:get-service
                               #:get-service-attributes #:health-check-config
                               #:health-check-custom-config #:health-check-type
                               #:health-status #:health-status-filter
@@ -23,22 +24,25 @@
                               #:http-namespace-change #:http-properties
                               #:instance #:instance-health-status-map
                               #:instance-id #:instance-id-list
-                              #:instance-summary #:instance-summary-list
+                              #:instance-not-found #:instance-summary
+                              #:instance-summary-list #:invalid-input
                               #:list-instances #:list-namespaces
                               #:list-operations #:list-services
                               #:list-tags-for-resource #:max-results #:message
-                              #:namespace #:namespace-filter
-                              #:namespace-filter-name #:namespace-filters
-                              #:namespace-name #:namespace-name-http
-                              #:namespace-name-private #:namespace-name-public
+                              #:namespace #:namespace-already-exists
+                              #:namespace-filter #:namespace-filter-name
+                              #:namespace-filters #:namespace-name
+                              #:namespace-name-http #:namespace-name-private
+                              #:namespace-name-public #:namespace-not-found
                               #:namespace-properties #:namespace-summaries-list
                               #:namespace-summary #:namespace-type #:next-token
                               #:operation #:operation-filter
                               #:operation-filter-name #:operation-filters
-                              #:operation-id #:operation-status
-                              #:operation-summary #:operation-summary-list
-                              #:operation-target-type #:operation-targets-map
-                              #:operation-type #:private-dns-namespace-change
+                              #:operation-id #:operation-not-found
+                              #:operation-status #:operation-summary
+                              #:operation-summary-list #:operation-target-type
+                              #:operation-targets-map #:operation-type
+                              #:private-dns-namespace-change
                               #:private-dns-namespace-properties
                               #:private-dns-namespace-properties-change
                               #:private-dns-properties-mutable
@@ -49,26 +53,35 @@
                               #:public-dns-properties-mutable
                               #:public-dns-properties-mutable-change
                               #:record-ttl #:record-type #:register-instance
-                              #:resource-count #:resource-description
-                              #:resource-id #:resource-path #:revision
-                              #:route53auto-naming-v20170314 #:routing-policy
-                              #:soa #:soachange #:service
-                              #:service-attribute-key
+                              #:request-limit-exceeded #:resource-count
+                              #:resource-description #:resource-id
+                              #:resource-in-use #:resource-limit-exceeded
+                              #:resource-not-found-exception #:resource-path
+                              #:revision #:route53auto-naming-v20170314
+                              #:routing-policy #:soa #:soachange #:service
+                              #:service-already-exists #:service-attribute-key
                               #:service-attribute-key-list
                               #:service-attribute-value #:service-attributes
+                              #:service-attributes-limit-exceeded-exception
                               #:service-attributes-map #:service-change
                               #:service-filter #:service-filter-name
                               #:service-filters #:service-name
-                              #:service-summaries-list #:service-summary
-                              #:service-type #:service-type-option #:tag
-                              #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-value #:timestamp
+                              #:service-not-found #:service-summaries-list
+                              #:service-summary #:service-type
+                              #:service-type-option #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-resource
+                              #:tag-value #:timestamp #:too-many-tags-exception
                               #:untag-resource #:update-http-namespace
                               #:update-instance-custom-health-status
                               #:update-private-dns-namespace
                               #:update-public-dns-namespace #:update-service
-                              #:update-service-attributes))
+                              #:update-service-attributes
+                              #:servicediscovery-error))
 (common-lisp:in-package #:pira/servicediscovery)
+
+(common-lisp:define-condition servicediscovery-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service route53auto-naming-v20170314 :shape-name
                                    "Route53AutoNaming_v20170314" :version
@@ -213,7 +226,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "CustomHealthNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-enum custom-health-status
     common-lisp:nil
@@ -352,7 +366,8 @@
                                   resource-id :member-name
                                   "DuplicateOperationId"))
                                 (:shape-name "DuplicateRequest")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-type error-message smithy/sdk/smithy-types:string)
 
@@ -536,7 +551,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InstanceNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-structure instance-summary common-lisp:nil
                                     ((id :target-type resource-id :member-name
@@ -551,7 +567,8 @@
 (smithy/sdk/shapes:define-error invalid-input common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
-                                (:shape-name "InvalidInput") (:error-code 400))
+                                (:shape-name "InvalidInput") (:error-code 400)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-input list-instances-request common-lisp:nil
                                 ((service-id :target-type resource-id :required
@@ -666,7 +683,8 @@
                                  (namespace-id :target-type resource-id
                                   :member-name "NamespaceId"))
                                 (:shape-name "NamespaceAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-structure namespace-filter common-lisp:nil
                                     ((name :target-type namespace-filter-name
@@ -703,7 +721,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NamespaceNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-structure namespace-properties common-lisp:nil
                                     ((dns-properties :target-type
@@ -793,7 +812,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "OperationNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-enum operation-status
     common-lisp:nil
@@ -941,7 +961,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "RequestLimitExceeded")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-type resource-count smithy/sdk/smithy-types:integer)
 
@@ -953,19 +974,22 @@
 (smithy/sdk/shapes:define-error resource-in-use common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
-                                (:shape-name "ResourceInUse") (:error-code 409))
+                                (:shape-name "ResourceInUse") (:error-code 409)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-error resource-limit-exceeded common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-type resource-path smithy/sdk/smithy-types:string)
 
@@ -1025,7 +1049,8 @@
                                  (service-id :target-type resource-id
                                   :member-name "ServiceId"))
                                 (:shape-name "ServiceAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-type service-attribute-key
                                smithy/sdk/smithy-types:string)
@@ -1050,7 +1075,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ServiceAttributesLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-map service-attributes-map :key service-attribute-key
                               :value service-attribute-value)
@@ -1090,7 +1116,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-list service-summaries-list :member service-summary)
 
@@ -1166,7 +1193,8 @@
                                   amazon-resource-name :member-name
                                   "ResourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class servicediscovery-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type

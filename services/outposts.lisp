@@ -1,9 +1,10 @@
 (uiop/package:define-package #:pira/outposts (:use)
                              (:export #:awsservice-name #:awsservice-name-list
-                              #:account-id #:account-id-list #:address
-                              #:address-line1 #:address-line2 #:address-line3
-                              #:address-type #:arn #:asset-id #:asset-id-input
-                              #:asset-id-list #:asset-info #:asset-instance
+                              #:access-denied-exception #:account-id
+                              #:account-id-list #:address #:address-line1
+                              #:address-line2 #:address-line3 #:address-type
+                              #:arn #:asset-id #:asset-id-input #:asset-id-list
+                              #:asset-info #:asset-instance
                               #:asset-instance-capacity-list
                               #:asset-instance-list
                               #:asset-instance-type-capacity
@@ -25,9 +26,10 @@
                               #:catalog-item-power-kva #:catalog-item-status
                               #:catalog-item-weight-lbs #:city #:city-list
                               #:compute-asset-state #:compute-attributes
-                              #:connection-details #:connection-id
-                              #:contact-name #:contact-phone-number
-                              #:country-code #:country-code-list #:create-order
+                              #:conflict-exception #:connection-details
+                              #:connection-id #:contact-name
+                              #:contact-phone-number #:country-code
+                              #:country-code-list #:create-order
                               #:create-outpost #:create-site #:delete-outpost
                               #:delete-site #:device-serial-number
                               #:district-or-county #:dry-run #:ec2capacity
@@ -46,8 +48,9 @@
                               #:instance-type-item
                               #:instance-type-list-definition
                               #:instance-type-name #:instances-to-exclude
-                              #:life-cycle-status #:life-cycle-status-list
-                              #:line-item #:line-item-asset-information
+                              #:internal-server-exception #:life-cycle-status
+                              #:life-cycle-status-list #:line-item
+                              #:line-item-asset-information
                               #:line-item-asset-information-list #:line-item-id
                               #:line-item-list-definition #:line-item-quantity
                               #:line-item-request
@@ -61,13 +64,13 @@
                               #:mac-address-list #:max-results1000 #:max-size
                               #:maximum-supported-weight-lbs #:municipality
                               #:network-interface-device-index
-                              #:nullable-double #:optical-standard #:order
-                              #:order-id #:order-id-list #:order-status
-                              #:order-summary #:order-summary-list-definition
-                              #:order-type #:outpost #:outpost-arn
-                              #:outpost-description #:outpost-id
-                              #:outpost-id-only #:outpost-identifier
-                              #:outpost-instance-type
+                              #:not-found-exception #:nullable-double
+                              #:optical-standard #:order #:order-id
+                              #:order-id-list #:order-status #:order-summary
+                              #:order-summary-list-definition #:order-type
+                              #:outpost #:outpost-arn #:outpost-description
+                              #:outpost-id #:outpost-id-only
+                              #:outpost-identifier #:outpost-instance-type
                               #:outpost-instance-type-list #:outpost-name
                               #:outposts-olaf-service #:owner-id
                               #:payment-option #:payment-term #:postal-code
@@ -76,15 +79,16 @@
                               #:rack-elevation #:rack-id
                               #:rack-physical-properties
                               #:requested-instance-pools #:resource-type
-                              #:server-endpoint #:shipment-carrier
-                              #:shipment-information #:site #:site-arn
-                              #:site-description #:site-id #:site-name
-                              #:site-notes #:sku-code #:start-capacity-task
-                              #:start-connection #:state-or-region
-                              #:state-or-region-list #:status-list #:string
-                              #:subscription #:subscription-list
-                              #:subscription-status #:subscription-type
-                              #:supported-hardware-type
+                              #:server-endpoint
+                              #:service-quota-exceeded-exception
+                              #:shipment-carrier #:shipment-information #:site
+                              #:site-arn #:site-description #:site-id
+                              #:site-name #:site-notes #:sku-code
+                              #:start-capacity-task #:start-connection
+                              #:state-or-region #:state-or-region-list
+                              #:status-list #:string #:subscription
+                              #:subscription-list #:subscription-status
+                              #:subscription-type #:supported-hardware-type
                               #:supported-storage-enum #:supported-storage-list
                               #:supported-uplink-gbps
                               #:supported-uplink-gbps-list-definition #:tag-key
@@ -95,9 +99,14 @@
                               #:update-site-address
                               #:update-site-rack-physical-properties
                               #:uplink-count #:uplink-gbps #:vcpucount
-                              #:wire-guard-public-key #:outpost-list-definition
-                              #:site-list-definition))
+                              #:validation-exception #:wire-guard-public-key
+                              #:outpost-list-definition #:site-list-definition
+                              #:outposts-error))
 (common-lisp:in-package #:pira/outposts)
+
+(common-lisp:define-condition outposts-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service outposts-olaf-service :shape-name
                                    "OutpostsOlafService" :version "2019-12-03"
@@ -145,7 +154,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class outposts-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -458,7 +467,7 @@
                                  (resource-type :target-type resource-type
                                   :member-name "ResourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class outposts-error))
 
 (smithy/sdk/shapes:define-structure connection-details common-lisp:nil
                                     ((client-public-key :target-type
@@ -865,7 +874,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class outposts-error))
 
 (smithy/sdk/shapes:define-type life-cycle-status smithy/sdk/smithy-types:string)
 
@@ -1187,7 +1196,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class outposts-error))
 
 (smithy/sdk/shapes:define-type nullable-double smithy/sdk/smithy-types:double)
 
@@ -1419,7 +1428,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class outposts-error))
 
 (smithy/sdk/shapes:define-enum shipment-carrier
     common-lisp:nil
@@ -1785,7 +1794,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class outposts-error))
 
 (smithy/sdk/shapes:define-type wire-guard-public-key
                                smithy/sdk/smithy-types:string)

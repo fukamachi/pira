@@ -1,20 +1,24 @@
 (uiop/package:define-package #:pira/serverlessapplicationrepository (:use)
                              (:export #:application-dependency-summary
                               #:application-policy-statement
-                              #:application-summary #:capability
+                              #:application-summary #:bad-request-exception
+                              #:capability #:conflict-exception
                               #:create-application #:create-application-version
                               #:create-cloud-formation-change-set
                               #:create-cloud-formation-template
-                              #:delete-application #:get-application
-                              #:get-application-policy
+                              #:delete-application #:forbidden-exception
+                              #:get-application #:get-application-policy
                               #:get-cloud-formation-template
+                              #:internal-server-error-exception
                               #:list-application-dependencies
                               #:list-application-versions #:list-applications
-                              #:max-items #:parameter-definition
-                              #:parameter-value #:put-application-policy
-                              #:rollback-configuration #:rollback-trigger
+                              #:max-items #:not-found-exception
+                              #:parameter-definition #:parameter-value
+                              #:put-application-policy #:rollback-configuration
+                              #:rollback-trigger
                               #:serverless-application-repository #:status
-                              #:tag #:unshare-application #:update-application
+                              #:tag #:too-many-requests-exception
+                              #:unshare-application #:update-application
                               #:version #:version-summary #:boolean #:integer
                               #:list-of-application-dependency-summary
                               #:list-of-application-policy-statement
@@ -24,8 +28,12 @@
                               #:list-of-parameter-value
                               #:list-of-rollback-trigger #:list-of-tag
                               #:list-of-version-summary #:list-of-string
-                              #:string))
+                              #:string #:serverlessapplicationrepository-error))
 (common-lisp:in-package #:pira/serverlessapplicationrepository)
+
+(common-lisp:define-condition serverlessapplicationrepository-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service serverless-application-repository
                                    :shape-name
@@ -124,7 +132,9 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 serverlessapplicationrepository-error))
 
 (smithy/sdk/shapes:define-enum capability
     common-lisp:nil
@@ -139,7 +149,9 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class
+                                 serverlessapplicationrepository-error))
 
 (smithy/sdk/shapes:define-input create-application-request common-lisp:nil
                                 ((author :target-type string :required
@@ -378,7 +390,9 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class
+                                 serverlessapplicationrepository-error))
 
 (smithy/sdk/shapes:define-input get-application-policy-request common-lisp:nil
                                 ((application-id :target-type string :required
@@ -479,7 +493,9 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class
+                                 serverlessapplicationrepository-error))
 
 (smithy/sdk/shapes:define-input list-application-dependencies-request
                                 common-lisp:nil
@@ -551,7 +567,9 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class
+                                 serverlessapplicationrepository-error))
 
 (smithy/sdk/shapes:define-structure parameter-definition common-lisp:nil
                                     ((allowed-pattern :target-type string
@@ -664,7 +682,9 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class
+                                 serverlessapplicationrepository-error))
 
 (smithy/sdk/shapes:define-input unshare-application-request common-lisp:nil
                                 ((application-id :target-type string :required

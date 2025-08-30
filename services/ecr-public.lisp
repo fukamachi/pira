@@ -10,25 +10,37 @@
                               #:default-registry-alias-flag #:delete-repository
                               #:delete-repository-policy #:describe-image-tags
                               #:describe-images #:describe-registries
-                              #:describe-repositories #:exception-message
-                              #:expiration-timestamp #:force-flag
-                              #:get-authorization-token
+                              #:describe-repositories #:empty-upload-exception
+                              #:exception-message #:expiration-timestamp
+                              #:force-flag #:get-authorization-token
                               #:get-registry-catalog-data
                               #:get-repository-catalog-data
-                              #:get-repository-policy #:image #:image-detail
+                              #:get-repository-policy #:image
+                              #:image-already-exists-exception #:image-detail
                               #:image-detail-list #:image-digest
+                              #:image-digest-does-not-match-exception
                               #:image-failure #:image-failure-code
                               #:image-failure-list #:image-failure-reason
                               #:image-identifier #:image-identifier-list
-                              #:image-manifest #:image-size-in-bytes
-                              #:image-tag #:image-tag-detail
-                              #:image-tag-detail-list #:image-tag-list
-                              #:initiate-layer-upload #:layer
+                              #:image-manifest #:image-not-found-exception
+                              #:image-size-in-bytes #:image-tag
+                              #:image-tag-already-exists-exception
+                              #:image-tag-detail #:image-tag-detail-list
+                              #:image-tag-list #:initiate-layer-upload
+                              #:invalid-layer-exception
+                              #:invalid-layer-part-exception
+                              #:invalid-parameter-exception
+                              #:invalid-tag-parameter-exception #:layer
+                              #:layer-already-exists-exception
                               #:layer-availability #:layer-digest
                               #:layer-digest-list #:layer-failure
                               #:layer-failure-code #:layer-failure-list
                               #:layer-failure-reason #:layer-list
-                              #:layer-part-blob #:layer-size-in-bytes
+                              #:layer-part-blob
+                              #:layer-part-too-small-exception
+                              #:layer-size-in-bytes
+                              #:layers-not-found-exception
+                              #:limit-exceeded-exception
                               #:list-tags-for-resource #:logo-image-blob
                               #:marketplace-certified #:max-results
                               #:media-type #:next-token #:operating-system
@@ -36,23 +48,37 @@
                               #:primary-registry-alias-flag #:push-timestamp
                               #:put-image #:put-registry-catalog-data
                               #:put-repository-catalog-data
-                              #:referenced-image-detail #:registry
-                              #:registry-alias #:registry-alias-list
+                              #:referenced-image-detail
+                              #:referenced-images-not-found-exception
+                              #:registry #:registry-alias #:registry-alias-list
                               #:registry-alias-name #:registry-alias-status
                               #:registry-catalog-data #:registry-display-name
                               #:registry-id #:registry-id-or-alias
-                              #:registry-list #:registry-verified #:repository
+                              #:registry-list #:registry-not-found-exception
+                              #:registry-verified #:repository
+                              #:repository-already-exists-exception
                               #:repository-catalog-data
                               #:repository-catalog-data-input
+                              #:repository-catalog-data-not-found-exception
                               #:repository-description #:repository-list
                               #:repository-name #:repository-name-list
+                              #:repository-not-empty-exception
+                              #:repository-not-found-exception
+                              #:repository-policy-not-found-exception
                               #:repository-policy-text #:resource-url
-                              #:set-repository-policy
+                              #:server-exception #:set-repository-policy
                               #:spencer-frontend-service #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-value #:untag-resource #:upload-id
-                              #:upload-layer-part #:url #:usage-text))
+                              #:tag-value #:too-many-tags-exception
+                              #:unsupported-command-exception #:untag-resource
+                              #:upload-id #:upload-layer-part
+                              #:upload-not-found-exception #:url #:usage-text
+                              #:ecr-public-error))
 (common-lisp:in-package #:pira/ecr-public)
+
+(common-lisp:define-condition ecr-public-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service spencer-frontend-service :shape-name
                                    "SpencerFrontendService" :version
@@ -317,7 +343,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "EmptyUploadException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-type exception-message smithy/sdk/smithy-types:string)
 
@@ -405,7 +432,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ImageAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-structure image-detail common-lisp:nil
                                     ((registry-id :target-type registry-id
@@ -441,7 +469,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ImageDigestDoesNotMatchException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-structure image-failure common-lisp:nil
                                     ((image-id :target-type image-identifier
@@ -484,7 +513,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ImageNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-type image-size-in-bytes smithy/sdk/smithy-types:long)
 
@@ -495,7 +525,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ImageTagAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-structure image-tag-detail common-lisp:nil
                                     ((image-tag :target-type image-tag
@@ -531,7 +562,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidLayerException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-error invalid-layer-part-exception common-lisp:nil
                                 ((registry-id :target-type registry-id
@@ -546,19 +578,22 @@
                                  (message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidLayerPartException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-error invalid-tag-parameter-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTagParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-structure layer common-lisp:nil
                                     ((layer-digest :target-type layer-digest
@@ -577,7 +612,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "LayerAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-enum layer-availability
     common-lisp:nil
@@ -618,7 +654,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "LayerPartTooSmallException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-type layer-size-in-bytes smithy/sdk/smithy-types:long)
 
@@ -626,13 +663,15 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "LayersNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -748,7 +787,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ReferencedImagesNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-structure registry common-lisp:nil
                                     ((registry-id :target-type registry-id
@@ -814,7 +854,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "RegistryNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-type registry-verified
                                smithy/sdk/smithy-types:boolean)
@@ -840,7 +881,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "RepositoryAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-structure repository-catalog-data common-lisp:nil
                                     ((description :target-type
@@ -889,7 +931,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "RepositoryCatalogDataNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-type repository-description
                                smithy/sdk/smithy-types:string)
@@ -904,13 +947,15 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "RepositoryNotEmptyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-error repository-not-found-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "RepositoryNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-error repository-policy-not-found-exception
                                 common-lisp:nil
@@ -918,7 +963,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "RepositoryPolicyNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-type repository-policy-text
                                smithy/sdk/smithy-types:string)
@@ -929,7 +975,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-input set-repository-policy-request common-lisp:nil
                                 ((registry-id :target-type registry-id
@@ -984,13 +1031,15 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-error unsupported-command-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UnsupportedCommandException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -1039,7 +1088,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UploadNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ecr-public-error))
 
 (smithy/sdk/shapes:define-type url smithy/sdk/smithy-types:string)
 

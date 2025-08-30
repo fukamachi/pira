@@ -1,11 +1,13 @@
 (uiop/package:define-package #:pira/amp (:use)
-                             (:export #:alert-manager-definition
+                             (:export #:access-denied-exception
+                              #:alert-manager-definition
                               #:alert-manager-definition-data
                               #:alert-manager-definition-description
                               #:alert-manager-definition-status
                               #:alert-manager-definition-status-code
                               #:amazon-prometheus-service #:amp-configuration
                               #:cloud-watch-log-destination #:cluster-arn
+                              #:conflict-exception
                               #:create-alert-manager-definition
                               #:create-alert-manager-definition-request
                               #:create-alert-manager-definition-response
@@ -45,7 +47,8 @@
                               #:eks-configuration #:filter-key #:filter-value
                               #:filter-values
                               #:get-default-scraper-configuration
-                              #:iam-role-arn #:idempotency-token #:kms-key-arn
+                              #:iam-role-arn #:idempotency-token
+                              #:internal-server-exception #:kms-key-arn
                               #:label-name #:label-set #:label-value
                               #:limits-per-label-set
                               #:limits-per-label-set-entry
@@ -74,6 +77,7 @@
                               #:query-logging-configuration-metadata
                               #:query-logging-configuration-status
                               #:query-logging-configuration-status-code
+                              #:resource-not-found-exception
                               #:role-configuration #:rule-groups-namespace
                               #:rule-groups-namespace-arn
                               #:rule-groups-namespace-data
@@ -88,10 +92,12 @@
                               #:scraper-filters #:scraper-id #:scraper-status
                               #:scraper-status-code #:scraper-summary
                               #:scraper-summary-list #:security-group-id
-                              #:security-group-ids #:source #:status-reason
-                              #:subnet-id #:subnet-ids #:tag-key #:tag-keys
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:security-group-ids
+                              #:service-quota-exceeded-exception #:source
+                              #:status-reason #:subnet-id #:subnet-ids
+                              #:tag-key #:tag-keys #:tag-map #:tag-resource
+                              #:tag-resource-request #:tag-resource-response
+                              #:tag-value #:throttling-exception
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response
                               #:update-logging-configuration
@@ -101,6 +107,7 @@
                               #:update-scraper #:update-workspace-alias
                               #:update-workspace-alias-request
                               #:update-workspace-configuration #:uri
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:workspace
@@ -111,8 +118,13 @@
                               #:workspace-configuration-status-code
                               #:workspace-description #:workspace-id
                               #:workspace-status #:workspace-status-code
-                              #:workspace-summary #:workspace-summary-list))
+                              #:workspace-summary #:workspace-summary-list
+                              #:amp-error))
 (common-lisp:in-package #:pira/amp)
+
+(common-lisp:define-condition amp-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-prometheus-service :shape-name
                                    "AmazonPrometheusService" :version
@@ -134,7 +146,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class amp-error))
 
 common-lisp:nil
 
@@ -200,7 +212,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class amp-error))
 
 (smithy/sdk/shapes:define-input create-alert-manager-definition-request
                                 common-lisp:nil
@@ -589,7 +601,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class amp-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -859,7 +871,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class amp-error))
 
 (smithy/sdk/shapes:define-structure role-configuration common-lisp:nil
                                     ((source-role-arn :target-type iam-role-arn
@@ -1072,7 +1084,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class amp-error))
 
 (smithy/sdk/shapes:define-union source common-lisp:nil
                                 ((eks-configuration :target-type
@@ -1122,7 +1134,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class amp-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -1256,7 +1268,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class amp-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

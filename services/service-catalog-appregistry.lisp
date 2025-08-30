@@ -15,15 +15,17 @@
                               #:attribute-group-specifier
                               #:attribute-group-summaries
                               #:attribute-group-summary #:attributes
-                              #:client-token #:create-application
-                              #:create-attribute-group #:created-by
-                              #:delete-application #:delete-attribute-group
-                              #:description #:disassociate-attribute-group
+                              #:client-token #:conflict-exception
+                              #:create-application #:create-attribute-group
+                              #:created-by #:delete-application
+                              #:delete-attribute-group #:description
+                              #:disassociate-attribute-group
                               #:disassociate-resource #:get-application
                               #:get-associated-resource
                               #:get-associated-resource-filter
                               #:get-attribute-group #:get-configuration
-                              #:integrations #:list-applications
+                              #:integrations #:internal-server-exception
+                              #:list-applications
                               #:list-associated-attribute-groups
                               #:list-associated-resources
                               #:list-attribute-groups
@@ -33,16 +35,24 @@
                               #:resource #:resource-details #:resource-group
                               #:resource-group-state #:resource-info
                               #:resource-integrations #:resource-item-status
-                              #:resource-item-type #:resource-specifier
-                              #:resource-type #:resources #:resources-list
-                              #:resources-list-item
-                              #:resources-list-item-error-message #:string
+                              #:resource-item-type
+                              #:resource-not-found-exception
+                              #:resource-specifier #:resource-type #:resources
+                              #:resources-list #:resources-list-item
+                              #:resources-list-item-error-message
+                              #:service-quota-exceeded-exception #:string
                               #:sync-action #:sync-resource #:tag-key
                               #:tag-key-config #:tag-keys
                               #:tag-query-configuration #:tag-resource
-                              #:tag-value #:tags #:timestamp #:untag-resource
-                              #:update-application #:update-attribute-group))
+                              #:tag-value #:tags #:throttling-exception
+                              #:timestamp #:untag-resource #:update-application
+                              #:update-attribute-group #:validation-exception
+                              #:service-catalog-appregistry-error))
 (common-lisp:in-package #:pira/service-catalog-appregistry)
+
+(common-lisp:define-condition service-catalog-appregistry-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service aws242app-registry :shape-name
                                    "AWS242AppRegistry" :version "2020-06-24"
@@ -278,7 +288,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class service-catalog-appregistry-error))
 
 (smithy/sdk/shapes:define-input create-application-request common-lisp:nil
                                 ((name :target-type name :required
@@ -500,7 +511,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class service-catalog-appregistry-error))
 
 (smithy/sdk/shapes:define-input list-applications-request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -700,7 +712,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class service-catalog-appregistry-error))
 
 (smithy/sdk/shapes:define-type resource-specifier
                                smithy/sdk/smithy-types:string)
@@ -735,7 +748,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class service-catalog-appregistry-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -795,7 +809,8 @@
                                  (service-code :target-type string :member-name
                                   "serviceCode"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class service-catalog-appregistry-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -850,7 +865,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-catalog-appregistry-error))
 
 (smithy/sdk/operation:define-operation associate-attribute-group :shape-name
                                        "AssociateAttributeGroup" :input

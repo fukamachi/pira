@@ -1,10 +1,11 @@
 (uiop/package:define-package #:pira/mailmanager (:use)
-                             (:export #:accept-action #:action-failure-policy
-                              #:add-header-action #:addon-instance
-                              #:addon-instance-arn #:addon-instance-id
-                              #:addon-instance-resource #:addon-instances
-                              #:addon-name #:addon-subscription
-                              #:addon-subscription-arn #:addon-subscription-id
+                             (:export #:accept-action #:access-denied-exception
+                              #:action-failure-policy #:add-header-action
+                              #:addon-instance #:addon-instance-arn
+                              #:addon-instance-id #:addon-instance-resource
+                              #:addon-instances #:addon-name
+                              #:addon-subscription #:addon-subscription-arn
+                              #:addon-subscription-id
                               #:addon-subscription-resource
                               #:addon-subscriptions #:address #:address-filter
                               #:address-list #:address-list-arn
@@ -26,7 +27,7 @@
                               #:archive-string-operator
                               #:archive-string-to-evaluate
                               #:archived-message-id #:archives-list
-                              #:create-addon-instance
+                              #:conflict-exception #:create-addon-instance
                               #:create-addon-subscription #:create-address-list
                               #:create-address-list-import-job #:create-archive
                               #:create-ingress-point #:create-relay
@@ -110,7 +111,8 @@
                               #:relay-authentication #:relay-id #:relay-name
                               #:relay-resource #:relay-server-name
                               #:relay-server-port #:relays
-                              #:replace-recipient-action #:result-field
+                              #:replace-recipient-action
+                              #:resource-not-found-exception #:result-field
                               #:retention-period #:row #:rows-list #:rule
                               #:rule-action #:rule-actions
                               #:rule-address-list-arn-list
@@ -143,7 +145,9 @@
                               #:search-max-results #:search-state
                               #:search-status #:search-summary
                               #:search-summary-list #:secret-arn #:send-action
-                              #:sender-ip-address #:smtp-password #:sns-action
+                              #:sender-ip-address
+                              #:service-quota-exceeded-exception
+                              #:smtp-password #:sns-action
                               #:sns-notification-encoding
                               #:sns-notification-payload-type #:sns-topic-arn
                               #:start-address-list-import-job
@@ -153,14 +157,20 @@
                               #:string-list #:string-value #:string-value-list
                               #:tag #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-value
-                              #:taggable-resource-arn #:traffic-policy
-                              #:traffic-policy-arn #:traffic-policy-id
-                              #:traffic-policy-list #:traffic-policy-name
-                              #:traffic-policy-resource #:untag-resource
-                              #:update-archive #:update-ingress-point
-                              #:update-relay #:update-rule-set
-                              #:update-traffic-policy #:vpc-endpoint-id))
+                              #:taggable-resource-arn #:throttling-exception
+                              #:traffic-policy #:traffic-policy-arn
+                              #:traffic-policy-id #:traffic-policy-list
+                              #:traffic-policy-name #:traffic-policy-resource
+                              #:untag-resource #:update-archive
+                              #:update-ingress-point #:update-relay
+                              #:update-rule-set #:update-traffic-policy
+                              #:validation-exception #:vpc-endpoint-id
+                              #:mailmanager-error))
 (common-lisp:in-package #:pira/mailmanager)
+
+(common-lisp:define-condition mailmanager-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service mail-manager-svc :shape-name
                                    "MailManagerSvc" :version "2023-10-17"
@@ -201,7 +211,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class mailmanager-error))
 
 (smithy/sdk/shapes:define-enum action-failure-policy
     common-lisp:nil
@@ -453,7 +464,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class mailmanager-error))
 
 (smithy/sdk/shapes:define-input create-addon-instance-request common-lisp:nil
                                 ((client-token :target-type idempotency-token
@@ -1970,7 +1982,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class mailmanager-error))
 
 (smithy/sdk/shapes:define-type result-field smithy/sdk/smithy-types:string)
 
@@ -2457,7 +2470,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class mailmanager-error))
 
 (smithy/sdk/shapes:define-type smtp-password smithy/sdk/smithy-types:string)
 
@@ -2621,7 +2635,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class mailmanager-error))
 
 (smithy/sdk/shapes:define-structure traffic-policy common-lisp:nil
                                     ((traffic-policy-name :target-type
@@ -2755,7 +2770,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class mailmanager-error))
 
 (smithy/sdk/shapes:define-type vpc-endpoint-id smithy/sdk/smithy-types:string)
 

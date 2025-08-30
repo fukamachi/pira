@@ -1,9 +1,10 @@
 (uiop/package:define-package #:pira/pcs (:use)
                              (:export #:awsparallel-computing-service
-                              #:accounting #:accounting-mode
-                              #:accounting-request #:ami-id #:arn
-                              #:bootstrap-id #:cluster #:cluster-identifier
-                              #:cluster-list #:cluster-name #:cluster-resource
+                              #:access-denied-exception #:accounting
+                              #:accounting-mode #:accounting-request #:ami-id
+                              #:arn #:bootstrap-id #:cluster
+                              #:cluster-identifier #:cluster-list
+                              #:cluster-name #:cluster-resource
                               #:cluster-slurm-configuration
                               #:cluster-slurm-configuration-request
                               #:cluster-status #:cluster-summary
@@ -17,15 +18,16 @@
                               #:compute-node-group-slurm-configuration
                               #:compute-node-group-slurm-configuration-request
                               #:compute-node-group-status
-                              #:compute-node-group-summary #:create-cluster
-                              #:create-compute-node-group #:create-queue
-                              #:custom-launch-template #:delete-cluster
-                              #:delete-compute-node-group #:delete-queue
-                              #:endpoint #:endpoint-type #:endpoints
-                              #:error-info #:error-info-list #:get-cluster
-                              #:get-compute-node-group #:get-queue
-                              #:instance-config #:instance-list
-                              #:instance-profile-arn #:list-clusters
+                              #:compute-node-group-summary #:conflict-exception
+                              #:create-cluster #:create-compute-node-group
+                              #:create-queue #:custom-launch-template
+                              #:delete-cluster #:delete-compute-node-group
+                              #:delete-queue #:endpoint #:endpoint-type
+                              #:endpoints #:error-info #:error-info-list
+                              #:get-cluster #:get-compute-node-group
+                              #:get-queue #:instance-config #:instance-list
+                              #:instance-profile-arn
+                              #:internal-server-exception #:list-clusters
                               #:list-compute-node-groups #:list-queues
                               #:list-tags-for-resource #:max-results
                               #:network-type #:networking #:networking-request
@@ -33,22 +35,30 @@
                               #:queue-list #:queue-name #:queue-resource
                               #:queue-status #:queue-summary
                               #:register-compute-node-group-instance
-                              #:request-tag-map #:response-tag-map
-                              #:sbclient-token #:scaling-configuration
+                              #:request-tag-map #:resource-not-found-exception
+                              #:response-tag-map #:sbclient-token
+                              #:scaling-configuration
                               #:scaling-configuration-request #:scheduler
                               #:scheduler-request #:scheduler-type
                               #:security-group-id #:security-group-id-list
+                              #:service-quota-exceeded-exception
                               #:shared-secret #:size #:slurm-auth-key
                               #:slurm-custom-setting #:slurm-custom-settings
                               #:spot-allocation-strategy #:spot-options
                               #:string-list #:subnet-id #:subnet-id-list
                               #:tag-key #:tag-keys #:tag-resource #:tag-value
-                              #:untag-resource #:update-compute-node-group
+                              #:throttling-exception #:untag-resource
+                              #:update-compute-node-group
                               #:update-compute-node-group-slurm-configuration-request
-                              #:update-queue #:validation-exception-field
+                              #:update-queue #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason))
+                              #:validation-exception-reason #:pcs-error))
 (common-lisp:in-package #:pira/pcs)
+
+(common-lisp:define-condition pcs-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsparallel-computing-service :shape-name
                                    "AWSParallelComputingService" :version
@@ -89,7 +99,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class pcs-error))
 
 (smithy/sdk/shapes:define-structure accounting common-lisp:nil
                                     ((mode :target-type accounting-mode
@@ -383,7 +393,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class pcs-error))
 
 (smithy/sdk/shapes:define-input create-cluster-request common-lisp:nil
                                 ((cluster-name :target-type cluster-name
@@ -627,7 +637,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class pcs-error))
 
 (smithy/sdk/shapes:define-input list-clusters-request common-lisp:nil
                                 ((next-token :target-type
@@ -849,7 +859,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class pcs-error))
 
 (smithy/sdk/shapes:define-map response-tag-map :key tag-key :value tag-value)
 
@@ -922,7 +932,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class pcs-error))
 
 (smithy/sdk/shapes:define-type shared-secret smithy/sdk/smithy-types:string)
 
@@ -997,7 +1007,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class pcs-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -1085,7 +1095,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class pcs-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

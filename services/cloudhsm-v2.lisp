@@ -4,19 +4,26 @@
                               #:backup-retention-type #:backup-retention-value
                               #:backup-state #:backups #:backups-max-size
                               #:baldr-api-service #:boolean #:cert
-                              #:certificates #:cloud-hsm-arn #:cluster
-                              #:cluster-id #:cluster-mode #:cluster-state
-                              #:clusters #:clusters-max-size
-                              #:copy-backup-to-region #:create-cluster
-                              #:create-hsm #:delete-backup #:delete-cluster
-                              #:delete-hsm #:delete-resource-policy
-                              #:describe-backups #:describe-clusters
-                              #:destination-backup #:eni-id #:external-az
-                              #:external-subnet-mapping #:field #:filters
-                              #:get-resource-policy #:hsm #:hsm-id #:hsm-state
-                              #:hsm-type #:hsms #:initialize-cluster
-                              #:ip-address #:ip-v6address #:list-tags
-                              #:max-size #:modify-backup-attributes
+                              #:certificates
+                              #:cloud-hsm-access-denied-exception
+                              #:cloud-hsm-arn
+                              #:cloud-hsm-internal-failure-exception
+                              #:cloud-hsm-invalid-request-exception
+                              #:cloud-hsm-resource-limit-exceeded-exception
+                              #:cloud-hsm-resource-not-found-exception
+                              #:cloud-hsm-service-exception
+                              #:cloud-hsm-tag-exception #:cluster #:cluster-id
+                              #:cluster-mode #:cluster-state #:clusters
+                              #:clusters-max-size #:copy-backup-to-region
+                              #:create-cluster #:create-hsm #:delete-backup
+                              #:delete-cluster #:delete-hsm
+                              #:delete-resource-policy #:describe-backups
+                              #:describe-clusters #:destination-backup #:eni-id
+                              #:external-az #:external-subnet-mapping #:field
+                              #:filters #:get-resource-policy #:hsm #:hsm-id
+                              #:hsm-state #:hsm-type #:hsms
+                              #:initialize-cluster #:ip-address #:ip-v6address
+                              #:list-tags #:max-size #:modify-backup-attributes
                               #:modify-cluster #:network-type #:next-token
                               #:pre-co-password #:put-resource-policy #:region
                               #:resource-id #:resource-policy #:restore-backup
@@ -24,8 +31,13 @@
                               #:strings #:subnet-id #:subnet-ids #:tag
                               #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-value #:timestamp
-                              #:untag-resource #:vpc-id #:error-message))
+                              #:untag-resource #:vpc-id #:error-message
+                              #:cloudhsm-v2-error))
 (common-lisp:in-package #:pira/cloudhsm-v2)
+
+(common-lisp:define-condition cloudhsm-v2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service baldr-api-service :shape-name
                                    "BaldrApiService" :version "2017-04-28"
@@ -140,7 +152,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "CloudHsmAccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudhsm-v2-error))
 
 (smithy/sdk/shapes:define-type cloud-hsm-arn smithy/sdk/smithy-types:string)
 
@@ -150,14 +163,16 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CloudHsmInternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class cloudhsm-v2-error))
 
 (smithy/sdk/shapes:define-error cloud-hsm-invalid-request-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "CloudHsmInvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudhsm-v2-error))
 
 (smithy/sdk/shapes:define-error cloud-hsm-resource-limit-exceeded-exception
                                 common-lisp:nil
@@ -165,7 +180,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CloudHsmResourceLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudhsm-v2-error))
 
 (smithy/sdk/shapes:define-error cloud-hsm-resource-not-found-exception
                                 common-lisp:nil
@@ -173,19 +189,22 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CloudHsmResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudhsm-v2-error))
 
 (smithy/sdk/shapes:define-error cloud-hsm-service-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "CloudHsmServiceException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudhsm-v2-error))
 
 (smithy/sdk/shapes:define-error cloud-hsm-tag-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "CloudHsmTagException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudhsm-v2-error))
 
 (smithy/sdk/shapes:define-structure cluster common-lisp:nil
                                     ((backup-policy :target-type backup-policy

@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/osis (:use)
-                             (:export #:amazon-open-search-ingestion-service
+                             (:export #:access-denied-exception
+                              #:amazon-open-search-ingestion-service
                               #:blueprint-format #:boolean #:buffer-options
                               #:change-progress-stage
                               #:change-progress-stage-list
@@ -7,18 +8,21 @@
                               #:change-progress-status
                               #:change-progress-status-list
                               #:change-progress-statuses #:cidr-block
-                              #:cloud-watch-log-destination #:create-pipeline
-                              #:delete-pipeline #:encryption-at-rest-options
-                              #:error-message #:get-pipeline
-                              #:get-pipeline-blueprint
+                              #:cloud-watch-log-destination
+                              #:conflict-exception #:create-pipeline
+                              #:delete-pipeline #:disabled-operation-exception
+                              #:encryption-at-rest-options #:error-message
+                              #:get-pipeline #:get-pipeline-blueprint
                               #:get-pipeline-change-progress
                               #:ingest-endpoint-urls-list #:integer
-                              #:kms-key-arn #:list-pipeline-blueprints
-                              #:list-pipelines #:list-tags-for-resource
-                              #:log-group #:log-publishing-options
-                              #:max-results #:next-token #:pipeline
-                              #:pipeline-arn #:pipeline-blueprint
-                              #:pipeline-blueprint-summary
+                              #:internal-exception
+                              #:invalid-pagination-token-exception
+                              #:kms-key-arn #:limit-exceeded-exception
+                              #:list-pipeline-blueprints #:list-pipelines
+                              #:list-tags-for-resource #:log-group
+                              #:log-publishing-options #:max-results
+                              #:next-token #:pipeline #:pipeline-arn
+                              #:pipeline-blueprint #:pipeline-blueprint-summary
                               #:pipeline-blueprints-summary-list
                               #:pipeline-configuration-body
                               #:pipeline-destination
@@ -26,6 +30,8 @@
                               #:pipeline-role-arn #:pipeline-status
                               #:pipeline-status-reason #:pipeline-summary
                               #:pipeline-summary-list #:pipeline-units
+                              #:resource-already-exists-exception
+                              #:resource-not-found-exception
                               #:security-group-id #:security-group-ids
                               #:service-vpc-endpoint
                               #:service-vpc-endpoints-list #:start-pipeline
@@ -33,13 +39,17 @@
                               #:subnet-id #:subnet-ids #:tag #:tag-key
                               #:tag-list #:tag-resource #:tag-value #:timestamp
                               #:untag-resource #:update-pipeline
-                              #:validate-pipeline #:validation-message
-                              #:validation-message-list
+                              #:validate-pipeline #:validation-exception
+                              #:validation-message #:validation-message-list
                               #:vpc-attachment-options #:vpc-endpoint
                               #:vpc-endpoint-management
                               #:vpc-endpoint-service-name #:vpc-endpoints-list
-                              #:vpc-options))
+                              #:vpc-options #:osis-error))
 (common-lisp:in-package #:pira/osis)
+
+(common-lisp:define-condition osis-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-open-search-ingestion-service
                                    :shape-name
@@ -71,7 +81,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class osis-error))
 
 (smithy/sdk/shapes:define-type blueprint-format smithy/sdk/smithy-types:string)
 
@@ -141,7 +151,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class osis-error))
 
 (smithy/sdk/shapes:define-input create-pipeline-request common-lisp:nil
                                 ((pipeline-name :target-type pipeline-name
@@ -193,7 +203,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DisabledOperationException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class osis-error))
 
 (smithy/sdk/shapes:define-structure encryption-at-rest-options common-lisp:nil
                                     ((kms-key-arn :target-type kms-key-arn
@@ -254,14 +264,14 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class osis-error))
 
 (smithy/sdk/shapes:define-error invalid-pagination-token-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidPaginationTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class osis-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -269,7 +279,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class osis-error))
 
 (smithy/sdk/shapes:define-input list-pipeline-blueprints-request
                                 common-lisp:nil common-lisp:nil
@@ -478,13 +488,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class osis-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class osis-error))
 
 (smithy/sdk/shapes:define-type security-group-id smithy/sdk/smithy-types:string)
 
@@ -617,7 +627,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class osis-error))
 
 (smithy/sdk/shapes:define-structure validation-message common-lisp:nil
                                     ((message :target-type string :member-name

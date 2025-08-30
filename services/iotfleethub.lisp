@@ -1,15 +1,24 @@
 (uiop/package:define-package #:pira/iotfleethub (:use)
                              (:export #:awsio-tfleet-hub #:application-state
                               #:application-summaries #:application-summary
-                              #:arn #:client-request-token #:create-application
-                              #:delete-application #:describe-application
-                              #:description #:error-message #:id
-                              #:list-applications #:list-tags-for-resource
-                              #:name #:next-token #:resource-arn
+                              #:arn #:client-request-token #:conflict-exception
+                              #:create-application #:delete-application
+                              #:describe-application #:description
+                              #:error-message #:id #:internal-failure-exception
+                              #:invalid-request-exception
+                              #:limit-exceeded-exception #:list-applications
+                              #:list-tags-for-resource #:name #:next-token
+                              #:resource-arn #:resource-not-found-exception
                               #:sso-client-id #:tag-key #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-value #:timestamp
-                              #:untag-resource #:update-application #:url))
+                              #:tag-map #:tag-resource #:tag-value
+                              #:throttling-exception #:timestamp
+                              #:untag-resource #:update-application #:url
+                              #:iotfleethub-error))
 (common-lisp:in-package #:pira/iotfleethub)
+
+(common-lisp:define-condition iotfleethub-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsio-tfleet-hub :shape-name
                                    "AWSIoTFleetHub" :version "2020-11-03"
@@ -74,7 +83,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iotfleethub-error))
 
 (smithy/sdk/shapes:define-input create-application-request common-lisp:nil
                                 ((application-name :target-type name :required
@@ -160,19 +170,22 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iotfleethub-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotfleethub-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 410))
+                                (:error-code 410)
+                                (:base-class iotfleethub-error))
 
 (smithy/sdk/shapes:define-input list-applications-request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -210,7 +223,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iotfleethub-error))
 
 (smithy/sdk/shapes:define-type sso-client-id smithy/sdk/smithy-types:string)
 
@@ -238,7 +252,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotfleethub-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:long)
 

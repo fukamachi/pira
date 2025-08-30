@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/support-app (:use)
-                             (:export #:account-type
+                             (:export #:access-denied-exception #:account-type
+                              #:conflict-exception
                               #:create-slack-channel-configuration
                               #:create-slack-channel-configuration-request
                               #:create-slack-channel-configuration-result
@@ -14,6 +15,7 @@
                               #:delete-slack-workspace-configuration-result
                               #:get-account-alias #:get-account-alias-request
                               #:get-account-alias-result
+                              #:internal-server-exception
                               #:list-slack-channel-configurations
                               #:list-slack-channel-configurations-request
                               #:list-slack-channel-configurations-result
@@ -26,6 +28,8 @@
                               #:register-slack-workspace-for-organization
                               #:register-slack-workspace-for-organization-request
                               #:register-slack-workspace-for-organization-result
+                              #:resource-not-found-exception
+                              #:service-quota-exceeded-exception
                               #:slack-channel-configuration
                               #:slack-workspace-configuration
                               #:slack-workspace-configuration-list
@@ -33,11 +37,16 @@
                               #:update-slack-channel-configuration
                               #:update-slack-channel-configuration-request
                               #:update-slack-channel-configuration-result
-                              #:aws-account-alias #:boolean-value #:channel-id
-                              #:channel-name #:error-message #:pagination-token
-                              #:role-arn #:slack-channel-configuration-list
-                              #:team-id #:team-name))
+                              #:validation-exception #:aws-account-alias
+                              #:boolean-value #:channel-id #:channel-name
+                              #:error-message #:pagination-token #:role-arn
+                              #:slack-channel-configuration-list #:team-id
+                              #:team-name #:support-app-error))
 (common-lisp:in-package #:pira/support-app)
+
+(common-lisp:define-condition support-app-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service support-app :shape-name "SupportApp"
                                    :version "2021-08-20" :title
@@ -63,7 +72,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class support-app-error))
 
 (smithy/sdk/shapes:define-type account-type smithy/sdk/smithy-types:string)
 
@@ -71,7 +81,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class support-app-error))
 
 (smithy/sdk/shapes:define-structure create-slack-channel-configuration-request
                                     common-lisp:nil
@@ -153,7 +164,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class support-app-error))
 
 (smithy/sdk/shapes:define-structure list-slack-channel-configurations-request
                                     common-lisp:nil
@@ -221,14 +233,16 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class support-app-error))
 
 (smithy/sdk/shapes:define-error service-quota-exceeded-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class support-app-error))
 
 (smithy/sdk/shapes:define-structure slack-channel-configuration common-lisp:nil
                                     ((team-id :target-type team-id :required
@@ -323,7 +337,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class support-app-error))
 
 (smithy/sdk/shapes:define-type aws-account-alias smithy/sdk/smithy-types:string)
 

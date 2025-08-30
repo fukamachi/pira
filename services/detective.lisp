@@ -1,14 +1,15 @@
 (uiop/package:define-package #:pira/detective (:use)
                              (:export #:apifailure-count #:apiname
-                              #:apisuccess-count #:accept-invitation #:account
-                              #:account-id #:account-id-extended-list
-                              #:account-id-list #:account-list #:administrator
+                              #:apisuccess-count #:accept-invitation
+                              #:access-denied-exception #:account #:account-id
+                              #:account-id-extended-list #:account-id-list
+                              #:account-list #:administrator
                               #:administrator-list #:ai-pagination-token
                               #:amazon-detective #:aso
                               #:batch-get-graph-member-datasources
                               #:batch-get-membership-datasources #:boolean
-                              #:byte-value #:create-graph #:create-members
-                              #:datasource-package
+                              #:byte-value #:conflict-exception #:create-graph
+                              #:create-members #:datasource-package
                               #:datasource-package-ingest-detail
                               #:datasource-package-ingest-details
                               #:datasource-package-ingest-history
@@ -29,6 +30,7 @@
                               #:graph-arn-list #:graph-list #:hourly-time-delta
                               #:id #:impossible-travel-detail #:indicator
                               #:indicator-detail #:indicator-type #:indicators
+                              #:internal-server-exception
                               #:investigation-detail #:investigation-details
                               #:investigation-id #:invitation-type #:ip-address
                               #:is-new-for-entire-account
@@ -47,21 +49,30 @@
                               #:reason #:reject-invitation
                               #:related-finding-detail
                               #:related-finding-group-detail #:resource
-                              #:resource-list #:severity #:sort-criteria
-                              #:sort-order #:start-investigation
-                              #:start-monitoring-member #:state #:status
-                              #:string-filter #:ttps-observed-detail #:tactic
-                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
+                              #:resource-list #:resource-not-found-exception
+                              #:service-quota-exceeded-exception #:severity
+                              #:sort-criteria #:sort-order
+                              #:start-investigation #:start-monitoring-member
+                              #:state #:status #:string-filter
+                              #:ttps-observed-detail #:tactic #:tag-key
+                              #:tag-key-list #:tag-map #:tag-resource
                               #:tag-value #:technique #:timestamp
-                              #:timestamp-for-collection #:type
+                              #:timestamp-for-collection
+                              #:too-many-requests-exception #:type
                               #:unprocessed-account #:unprocessed-account-list
                               #:unprocessed-graph #:unprocessed-graph-list
                               #:unprocessed-reason #:untag-resource
                               #:update-datasource-packages
                               #:update-investigation-state
                               #:update-organization-configuration #:user-agent
-                              #:value #:volume-usage-by-datasource-package))
+                              #:validation-exception #:value
+                              #:volume-usage-by-datasource-package
+                              #:detective-error))
 (common-lisp:in-package #:pira/detective)
+
+(common-lisp:define-condition detective-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-detective :shape-name
                                    "AmazonDetective" :version "2018-10-26"
@@ -121,7 +132,7 @@
                                   error-code-reason :member-name
                                   "SubErrorCodeReason"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class detective-error))
 
 (smithy/sdk/shapes:define-structure account common-lisp:nil
                                     ((account-id :target-type account-id
@@ -204,7 +215,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class detective-error))
 
 (smithy/sdk/shapes:define-input create-graph-request common-lisp:nil
                                 ((tags :target-type tag-map :member-name
@@ -524,7 +535,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class detective-error))
 
 (smithy/sdk/shapes:define-structure investigation-detail common-lisp:nil
                                     ((investigation-id :target-type
@@ -851,7 +862,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class detective-error))
 
 (smithy/sdk/shapes:define-error service-quota-exceeded-exception
                                 common-lisp:nil
@@ -860,7 +871,7 @@
                                  (resources :target-type resource-list
                                   :member-name "Resources"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class detective-error))
 
 (smithy/sdk/shapes:define-enum severity
     common-lisp:nil
@@ -979,7 +990,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class detective-error))
 
 (smithy/sdk/shapes:define-type type smithy/sdk/smithy-types:string)
 
@@ -1059,7 +1070,7 @@
                                   error-code-reason :member-name
                                   "ErrorCodeReason"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class detective-error))
 
 (smithy/sdk/shapes:define-type value smithy/sdk/smithy-types:string)
 

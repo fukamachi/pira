@@ -1,11 +1,12 @@
 (uiop/package:define-package #:pira/mq (:use)
                              (:export #:action-required
                               #:authentication-strategy #:availability-zone
-                              #:broker-engine-type #:broker-instance
-                              #:broker-instance-option #:broker-state
-                              #:broker-storage-type #:broker-summary
-                              #:change-type #:configuration #:configuration-id
-                              #:configuration-revision #:configurations
+                              #:bad-request-exception #:broker-engine-type
+                              #:broker-instance #:broker-instance-option
+                              #:broker-state #:broker-storage-type
+                              #:broker-summary #:change-type #:configuration
+                              #:configuration-id #:configuration-revision
+                              #:configurations #:conflict-exception
                               #:create-broker #:create-configuration
                               #:create-tags #:create-user
                               #:data-replication-counterpart
@@ -18,14 +19,18 @@
                               #:describe-configuration
                               #:describe-configuration-revision #:describe-user
                               #:encryption-options #:engine-type
-                              #:engine-version #:ldap-server-metadata-input
+                              #:engine-version #:forbidden-exception
+                              #:internal-server-error-exception
+                              #:ldap-server-metadata-input
                               #:ldap-server-metadata-output #:list-brokers
                               #:list-configuration-revisions
                               #:list-configurations #:list-tags #:list-users
                               #:logs #:logs-summary #:max-results
-                              #:pending-logs #:promote #:promote-mode
-                              #:reboot-broker #:sanitization-warning
-                              #:sanitization-warning-reason #:update-broker
+                              #:not-found-exception #:pending-logs #:promote
+                              #:promote-mode #:reboot-broker
+                              #:sanitization-warning
+                              #:sanitization-warning-reason
+                              #:unauthorized-exception #:update-broker
                               #:update-configuration #:update-user #:user
                               #:user-pending-changes #:user-summary
                               #:weekly-start-time #:boolean #:integer
@@ -41,9 +46,13 @@
                               #:list-of-engine-version
                               #:list-of-sanitization-warning #:list-of-user
                               #:list-of-user-summary #:list-of-string
-                              #:map-of-string #:string #:timestamp-iso8601
-                              #:mq))
+                              #:map-of-string #:string #:timestamp-iso8601 #:mq
+                              #:mq-error))
 (common-lisp:in-package #:pira/mq)
+
+(common-lisp:define-condition mq-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service mq :shape-name "mq" :version "2017-11-27"
                                    :title "AmazonMQ" :operations
@@ -96,7 +105,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class mq-error))
 
 (smithy/sdk/shapes:define-structure broker-engine-type common-lisp:nil
                                     ((engine-type :target-type engine-type
@@ -270,7 +279,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class mq-error))
 
 (smithy/sdk/shapes:define-input create-broker-request common-lisp:nil
                                 ((authentication-strategy :target-type
@@ -800,7 +809,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class mq-error))
 
 (smithy/sdk/shapes:define-error internal-server-error-exception common-lisp:nil
                                 ((error-attribute :target-type string
@@ -809,7 +818,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class mq-error))
 
 (smithy/sdk/shapes:define-structure ldap-server-metadata-input common-lisp:nil
                                     ((hosts :target-type list-of-string
@@ -1021,7 +1030,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class mq-error))
 
 (smithy/sdk/shapes:define-structure pending-logs common-lisp:nil
                                     ((audit :target-type boolean :member-name
@@ -1085,7 +1094,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class mq-error))
 
 (smithy/sdk/shapes:define-input update-broker-request common-lisp:nil
                                 ((authentication-strategy :target-type

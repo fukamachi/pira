@@ -9,17 +9,24 @@
                               #:boolean-type #:comment #:comment-id-type
                               #:comment-list #:comment-metadata
                               #:comment-status-type #:comment-text-type
-                              #:comment-visibility-type #:content-category-type
-                              #:create-comment #:create-custom-metadata
-                              #:create-folder #:create-labels
+                              #:comment-visibility-type
+                              #:concurrent-modification-exception
+                              #:conflicting-operation-exception
+                              #:content-category-type #:create-comment
+                              #:create-custom-metadata #:create-folder
+                              #:create-labels
                               #:create-notification-subscription #:create-user
                               #:custom-metadata-key-list
-                              #:custom-metadata-key-type #:custom-metadata-map
+                              #:custom-metadata-key-type
+                              #:custom-metadata-limit-exceeded-exception
+                              #:custom-metadata-map
                               #:custom-metadata-value-type #:date-range-type
-                              #:deactivate-user #:delete-comment
-                              #:delete-custom-metadata #:delete-document
-                              #:delete-document-version #:delete-folder
-                              #:delete-folder-contents #:delete-labels
+                              #:deactivate-user
+                              #:deactivating-last-system-user-exception
+                              #:delete-comment #:delete-custom-metadata
+                              #:delete-document #:delete-document-version
+                              #:delete-folder #:delete-folder-contents
+                              #:delete-labels
                               #:delete-notification-subscription #:delete-user
                               #:describe-activities #:describe-comments
                               #:describe-document-versions
@@ -27,17 +34,22 @@
                               #:describe-notification-subscriptions
                               #:describe-resource-permissions
                               #:describe-root-folders #:describe-users
-                              #:document-content-type #:document-metadata
-                              #:document-metadata-list #:document-source-type
-                              #:document-source-url-map #:document-status-type
-                              #:document-thumbnail-type
+                              #:document-content-type
+                              #:document-locked-for-comments-exception
+                              #:document-metadata #:document-metadata-list
+                              #:document-source-type #:document-source-url-map
+                              #:document-status-type #:document-thumbnail-type
                               #:document-thumbnail-url-map
                               #:document-version-id-type
                               #:document-version-metadata
                               #:document-version-metadata-list
-                              #:document-version-status #:email-address-type
-                              #:entity-id-list #:error-message-type
-                              #:exception-code-type #:field-names-type
+                              #:document-version-status
+                              #:draft-upload-out-of-sync-exception
+                              #:email-address-type
+                              #:entity-already-exists-exception
+                              #:entity-id-list #:entity-not-exists-exception
+                              #:error-message-type #:exception-code-type
+                              #:failed-dependency-exception #:field-names-type
                               #:filters #:folder-content-type #:folder-metadata
                               #:folder-metadata-list #:get-current-user
                               #:get-document #:get-document-path
@@ -46,10 +58,15 @@
                               #:group-metadata #:group-metadata-list
                               #:group-name-type #:hash-type #:header-name-type
                               #:header-value-type #:id-type
+                              #:illegal-user-state-exception
                               #:initiate-document-version-upload
-                              #:language-code-type #:limit-type #:locale-type
-                              #:long-range-type #:long-type #:marker-type
-                              #:message-type #:next-marker-type
+                              #:invalid-argument-exception
+                              #:invalid-comment-operation-exception
+                              #:invalid-operation-exception
+                              #:invalid-password-exception #:language-code-type
+                              #:limit-exceeded-exception #:limit-type
+                              #:locale-type #:long-range-type #:long-type
+                              #:marker-type #:message-type #:next-marker-type
                               #:notification-options #:order-by-field-type
                               #:order-type #:organization-user-list
                               #:page-marker-type #:participants #:password-type
@@ -57,8 +74,11 @@
                               #:positive-integer-type #:positive-size-type
                               #:principal #:principal-list
                               #:principal-role-type #:principal-type
+                              #:prohibited-state-exception
                               #:remove-all-resource-permissions
                               #:remove-resource-permission
+                              #:requested-entity-too-large-exception
+                              #:resource-already-checked-out-exception
                               #:resource-collection-type #:resource-id-type
                               #:resource-metadata #:resource-name-type
                               #:resource-path #:resource-path-component
@@ -82,15 +102,21 @@
                               #:search-resource-type-list #:search-resources
                               #:search-result-sort-list
                               #:search-results-limit-type #:search-sort-result
-                              #:share-principal #:share-principal-list
-                              #:share-result #:share-results-list
-                              #:share-status-type #:shared-label
-                              #:shared-labels #:signed-header-map #:size-type
-                              #:sort-order #:storage-rule-type #:storage-type
-                              #:subscription #:subscription-end-point-type
-                              #:subscription-list #:subscription-protocol-type
-                              #:subscription-type #:text-locale-type-list
-                              #:time-zone-id-type #:timestamp-type
+                              #:service-unavailable-exception #:share-principal
+                              #:share-principal-list #:share-result
+                              #:share-results-list #:share-status-type
+                              #:shared-label #:shared-labels
+                              #:signed-header-map #:size-type #:sort-order
+                              #:storage-limit-exceeded-exception
+                              #:storage-limit-will-exceed-exception
+                              #:storage-rule-type #:storage-type #:subscription
+                              #:subscription-end-point-type #:subscription-list
+                              #:subscription-protocol-type #:subscription-type
+                              #:text-locale-type-list #:time-zone-id-type
+                              #:timestamp-type #:too-many-labels-exception
+                              #:too-many-subscriptions-exception
+                              #:unauthorized-operation-exception
+                              #:unauthorized-resource-access-exception
                               #:update-document #:update-document-version
                               #:update-folder #:update-user #:upload-metadata
                               #:url-type #:user #:user-activities
@@ -98,8 +124,12 @@
                               #:user-ids-type #:user-metadata
                               #:user-metadata-list #:user-sort-type
                               #:user-status-type #:user-storage-metadata
-                              #:user-type #:username-type))
+                              #:user-type #:username-type #:workdocs-error))
 (common-lisp:in-package #:pira/workdocs)
+
+(common-lisp:define-condition workdocs-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsgorilla-boy-service :shape-name
                                    "AWSGorillaBoyService" :version "2016-05-01"
@@ -343,13 +373,13 @@
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-error conflicting-operation-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "ConflictingOperationException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-enum content-category-type
     common-lisp:nil
@@ -512,7 +542,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CustomMetadataLimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-map custom-metadata-map :key custom-metadata-key-type
                               :value custom-metadata-value-type)
@@ -545,7 +575,7 @@
                                   :member-name "Code"))
                                 (:shape-name
                                  "DeactivatingLastSystemUserException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-input delete-comment-request common-lisp:nil
                                 ((authentication-token :target-type
@@ -936,7 +966,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "DocumentLockedForCommentsException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-structure document-metadata common-lisp:nil
                                     ((id :target-type resource-id-type
@@ -1037,7 +1067,7 @@
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "DraftUploadOutOfSyncException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-type email-address-type
                                smithy/sdk/smithy-types:string)
@@ -1046,7 +1076,7 @@
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "EntityAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-list entity-id-list :member id-type)
 
@@ -1056,7 +1086,7 @@
                                  (entity-ids :target-type entity-id-list
                                   :member-name "EntityIds"))
                                 (:shape-name "EntityNotExistsException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-type error-message-type
                                smithy/sdk/smithy-types:string)
@@ -1068,7 +1098,7 @@
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "FailedDependencyException")
-                                (:error-code 424))
+                                (:error-code 424) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-type field-names-type smithy/sdk/smithy-types:string)
 
@@ -1318,7 +1348,7 @@
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "IllegalUserStateException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-input initiate-document-version-upload-request
                                 common-lisp:nil
@@ -1360,7 +1390,7 @@
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "InvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-error invalid-comment-operation-exception
                                 common-lisp:nil
@@ -1368,19 +1398,19 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "InvalidCommentOperationException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-error invalid-operation-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "InvalidOperationException")
-                                (:error-code 405))
+                                (:error-code 405) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-error invalid-password-exception common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "InvalidPasswordException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-enum language-code-type
     common-lisp:nil
@@ -1420,7 +1450,7 @@
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-type limit-type smithy/sdk/smithy-types:integer)
 
@@ -1530,7 +1560,7 @@
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "ProhibitedStateException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-input remove-all-resource-permissions-request
                                 common-lisp:nil
@@ -1567,7 +1597,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "RequestedEntityTooLargeException")
-                                (:error-code 413))
+                                (:error-code 413) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-error resource-already-checked-out-exception
                                 common-lisp:nil
@@ -1575,7 +1605,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ResourceAlreadyCheckedOutException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-enum resource-collection-type
     common-lisp:nil
@@ -1801,7 +1831,7 @@
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-structure share-principal common-lisp:nil
                                     ((id :target-type id-type :required
@@ -1856,14 +1886,14 @@
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "StorageLimitExceededException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-error storage-limit-will-exceed-exception
                                 common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "StorageLimitWillExceedException")
-                                (:error-code 413))
+                                (:error-code 413) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-structure storage-rule-type common-lisp:nil
                                     ((storage-allocated-in-bytes :target-type
@@ -1913,14 +1943,14 @@
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "TooManyLabelsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-error too-many-subscriptions-exception
                                 common-lisp:nil
                                 ((message :target-type error-message-type
                                   :member-name "Message"))
                                 (:shape-name "TooManySubscriptionsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-error unauthorized-operation-exception
                                 common-lisp:nil
@@ -1929,7 +1959,7 @@
                                  (code :target-type exception-code-type
                                   :member-name "Code"))
                                 (:shape-name "UnauthorizedOperationException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-error unauthorized-resource-access-exception
                                 common-lisp:nil
@@ -1937,7 +1967,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "UnauthorizedResourceAccessException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class workdocs-error))
 
 (smithy/sdk/shapes:define-input update-document-request common-lisp:nil
                                 ((authentication-token :target-type

@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/appintegrations (:use)
-                             (:export #:amazon-app-integration-service
+                             (:export #:access-denied-exception
+                              #:amazon-app-integration-service
                               #:application-approved-origins
                               #:application-association-summary
                               #:application-associations-list
@@ -19,8 +20,8 @@
                               #:data-integrations-list #:delete-application
                               #:delete-data-integration
                               #:delete-event-integration #:description
-                              #:destination-uri #:event-bridge-bus
-                              #:event-bridge-rule-name
+                              #:destination-uri #:duplicate-resource-exception
+                              #:event-bridge-bus #:event-bridge-rule-name
                               #:event-definition-schema #:event-filter
                               #:event-integration
                               #:event-integration-association
@@ -33,7 +34,9 @@
                               #:get-data-integration #:get-event-integration
                               #:idempotency-token #:identifier #:iframe-config
                               #:iframe-permission #:iframe-permission-list
-                              #:initialization-timeout #:last-execution-status
+                              #:initialization-timeout #:internal-service-error
+                              #:invalid-request-exception
+                              #:last-execution-status
                               #:list-application-associations
                               #:list-applications
                               #:list-data-integration-associations
@@ -45,15 +48,23 @@
                               #:non-blank-string #:object
                               #:object-configuration #:on-demand-configuration
                               #:permission #:permission-list #:publication
-                              #:publication-list #:schedule-configuration
-                              #:source #:source-uri #:subscription
-                              #:subscription-list #:tag-key #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-value #:timestamp
-                              #:url #:uuid #:untag-resource
-                              #:update-application #:update-data-integration
+                              #:publication-list #:resource-not-found-exception
+                              #:resource-quota-exceeded-exception
+                              #:schedule-configuration #:source #:source-uri
+                              #:subscription #:subscription-list #:tag-key
+                              #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-value #:throttling-exception #:timestamp
+                              #:url #:uuid #:unsupported-operation-exception
+                              #:untag-resource #:update-application
+                              #:update-data-integration
                               #:update-data-integration-association
-                              #:update-event-integration))
+                              #:update-event-integration
+                              #:appintegrations-error))
 (common-lisp:in-package #:pira/appintegrations)
+
+(common-lisp:define-condition appintegrations-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-app-integration-service :shape-name
                                    "AmazonAppIntegrationService" :version
@@ -93,7 +104,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class appintegrations-error))
 
 (smithy/sdk/shapes:define-list application-approved-origins :member
                                application-trusted-source)
@@ -395,7 +407,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "DuplicateResourceException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class appintegrations-error))
 
 (smithy/sdk/shapes:define-type event-bridge-bus smithy/sdk/smithy-types:string)
 
@@ -617,13 +630,15 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InternalServiceError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class appintegrations-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class appintegrations-error))
 
 (smithy/sdk/shapes:define-structure last-execution-status common-lisp:nil
                                     ((execution-status :target-type
@@ -818,14 +833,16 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class appintegrations-error))
 
 (smithy/sdk/shapes:define-error resource-quota-exceeded-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceQuotaExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class appintegrations-error))
 
 (smithy/sdk/shapes:define-structure schedule-configuration common-lisp:nil
                                     ((first-execution-from :target-type
@@ -875,7 +892,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class appintegrations-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -887,7 +905,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "UnsupportedOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class appintegrations-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required

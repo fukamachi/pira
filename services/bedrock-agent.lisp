@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/bedrock-agent (:use)
-                             (:export #:apischema #:action-group-executor
-                              #:action-group-resource #:action-group-signature
+                             (:export #:apischema #:access-denied-exception
+                              #:action-group-executor #:action-group-resource
+                              #:action-group-signature
                               #:action-group-signature-params
                               #:action-group-state #:action-group-summaries
                               #:action-group-summary
@@ -47,7 +48,7 @@
                               #:collector-flow-node-configuration #:column-name
                               #:concurrency-type
                               #:condition-flow-node-configuration
-                              #:confluence-auth-type
+                              #:conflict-exception #:confluence-auth-type
                               #:confluence-crawler-configuration
                               #:confluence-data-source-configuration
                               #:confluence-host-type
@@ -162,6 +163,7 @@
                               #:inline-content #:inline-content-type
                               #:input-flow-node-configuration #:instruction
                               #:intermediate-storage
+                              #:internal-server-exception
                               #:invalid-loop-boundary-flow-validation-details
                               #:iterator-flow-node-configuration
                               #:kendra-index-arn
@@ -326,6 +328,7 @@
                               #:require-confirmation
                               #:reranking-metadata-selection-mode
                               #:reranking-metadata-selective-mode-configuration
+                              #:resource-not-found-exception
                               #:retrieval-flow-node-configuration
                               #:retrieval-flow-node-s3configuration
                               #:retrieval-flow-node-service-configuration
@@ -340,6 +343,7 @@
                               #:seed-url #:seed-urls
                               #:semantic-chunking-configuration
                               #:server-side-encryption-configuration
+                              #:service-quota-exceeded-exception
                               #:session-summary-configuration #:session-ttl
                               #:share-point-auth-type
                               #:share-point-crawler-configuration
@@ -366,11 +370,12 @@
                               #:taggable-resources-arn #:tagging-resource
                               #:tags-map #:temperature #:text-content-doc
                               #:text-prompt
-                              #:text-prompt-template-configuration #:tool
-                              #:tool-choice #:tool-configuration
-                              #:tool-input-schema #:tool-name
-                              #:tool-specification #:tools #:top-k #:top-p
-                              #:transformation #:transformation-function
+                              #:text-prompt-template-configuration
+                              #:throttling-exception #:tool #:tool-choice
+                              #:tool-configuration #:tool-input-schema
+                              #:tool-name #:tool-specification #:tools #:top-k
+                              #:top-p #:transformation
+                              #:transformation-function
                               #:transformation-lambda-configuration
                               #:transformations #:type
                               #:unfulfilled-node-input-flow-validation-details
@@ -392,7 +397,7 @@
                               #:update-flow-alias #:update-knowledge-base
                               #:update-prompt #:url #:url-configuration
                               #:user-agent #:user-agent-header
-                              #:validate-flow-definition
+                              #:validate-flow-definition #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:vector-bucket-arn
@@ -405,8 +410,13 @@
                               #:version #:version-resource
                               #:web-crawler-configuration #:web-crawler-limits
                               #:web-data-source-configuration #:web-scope-type
-                              #:web-source-configuration #:workgroup-arn))
+                              #:web-source-configuration #:workgroup-arn
+                              #:bedrock-agent-error))
 (common-lisp:in-package #:pira/bedrock-agent)
+
+(common-lisp:define-condition bedrock-agent-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-bedrock-agent-build-time-lambda
                                    :shape-name
@@ -434,7 +444,8 @@
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class bedrock-agent-error))
 
 (smithy/sdk/shapes:define-union action-group-executor common-lisp:nil
                                 ((lambda :target-type lambda-arn :member-name
@@ -1197,7 +1208,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class bedrock-agent-error))
 
 (smithy/sdk/shapes:define-enum confluence-auth-type
     common-lisp:nil
@@ -3409,7 +3421,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class bedrock-agent-error))
 
 (smithy/sdk/shapes:define-structure
  invalid-loop-boundary-flow-validation-details common-lisp:nil
@@ -5151,7 +5164,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class bedrock-agent-error))
 
 (smithy/sdk/shapes:define-structure retrieval-flow-node-configuration
                                     common-lisp:nil
@@ -5305,7 +5319,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class bedrock-agent-error))
 
 (smithy/sdk/shapes:define-structure session-summary-configuration
                                     common-lisp:nil
@@ -5603,7 +5618,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class bedrock-agent-error))
 
 (smithy/sdk/shapes:define-union tool common-lisp:nil
                                 ((tool-spec :target-type tool-specification
@@ -6188,7 +6204,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bedrock-agent-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type non-blank-string

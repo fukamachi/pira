@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/route53-recovery-readiness (:use)
-                             (:export #:cell-output #:create-cell
+                             (:export #:access-denied-exception #:cell-output
+                              #:conflict-exception #:create-cell
                               #:create-cross-account-authorization
                               #:create-readiness-check #:create-recovery-group
                               #:create-resource-set
@@ -14,8 +15,9 @@
                               #:get-readiness-check-resource-status
                               #:get-readiness-check-status #:get-recovery-group
                               #:get-recovery-group-readiness-summary
-                              #:get-resource-set #:last-audit-timestamp
-                              #:list-cells #:list-cross-account-authorizations
+                              #:get-resource-set #:internal-server-exception
+                              #:last-audit-timestamp #:list-cells
+                              #:list-cross-account-authorizations
                               #:list-readiness-checks #:list-recovery-groups
                               #:list-resource-sets #:list-rules
                               #:list-rules-output #:list-tags-for-resources
@@ -25,12 +27,14 @@
                               #:readiness-check-summary
                               #:readiness-check-timestamp #:recommendation
                               #:recovery-group-output #:resource
-                              #:resource-result #:resource-set-output
-                              #:route53recovery-readiness #:rule-result
-                              #:tag-resource #:tags #:target-resource
+                              #:resource-not-found-exception #:resource-result
+                              #:resource-set-output #:route53recovery-readiness
+                              #:rule-result #:tag-resource #:tags
+                              #:target-resource #:throttling-exception
                               #:untag-resource #:update-cell
                               #:update-readiness-check #:update-recovery-group
-                              #:update-resource-set #:list-of-cell-output
+                              #:update-resource-set #:validation-exception
+                              #:list-of-cell-output
                               #:list-of-cross-account-authorization
                               #:list-of-list-rules-output #:list-of-message
                               #:list-of-readiness-check-output
@@ -42,8 +46,13 @@
                               #:list-of-rule-result #:list-of-string #:string
                               #:string-max256 #:string-max64
                               #:string-max64pattern-aazaz09z
-                              #:string-pattern-awsaza-z09aza-z09))
+                              #:string-pattern-awsaza-z09aza-z09
+                              #:route53-recovery-readiness-error))
 (common-lisp:in-package #:pira/route53-recovery-readiness)
+
+(common-lisp:define-condition route53-recovery-readiness-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service route53recovery-readiness :shape-name
                                    "Route53RecoveryReadiness" :version
@@ -91,7 +100,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class route53-recovery-readiness-error))
 
 (smithy/sdk/shapes:define-structure cell-output common-lisp:nil
                                     ((cell-arn :target-type string-max256
@@ -116,7 +126,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class route53-recovery-readiness-error))
 
 (smithy/sdk/shapes:define-input create-cell-request common-lisp:nil
                                 ((cell-name :target-type string :required
@@ -554,7 +565,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class route53-recovery-readiness-error))
 
 (smithy/sdk/shapes:define-type last-audit-timestamp
                                smithy/sdk/smithy-types:timestamp
@@ -793,7 +805,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class route53-recovery-readiness-error))
 
 (smithy/sdk/shapes:define-structure resource-result common-lisp:nil
                                     ((component-id :target-type string
@@ -879,7 +892,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class route53-recovery-readiness-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required
@@ -1004,7 +1018,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53-recovery-readiness-error))
 
 (smithy/sdk/shapes:define-list list-of-cell-output :member cell-output)
 

@@ -5,13 +5,15 @@
                               #:amazon-app-config #:application
                               #:application-list #:applications
                               #:applied-extension #:applied-extensions #:arn
-                              #:bad-request-details #:bad-request-reason #:blob
-                              #:boolean #:bytes-measure #:configuration
+                              #:bad-request-details #:bad-request-exception
+                              #:bad-request-reason #:blob #:boolean
+                              #:bytes-measure #:configuration
                               #:configuration-profile
                               #:configuration-profile-summary
                               #:configuration-profile-summary-list
                               #:configuration-profile-type
-                              #:configuration-profiles #:create-application
+                              #:configuration-profiles #:conflict-exception
+                              #:create-application
                               #:create-configuration-profile
                               #:create-deployment-strategy #:create-environment
                               #:create-extension #:create-extension-association
@@ -50,7 +52,8 @@
                               #:hosted-configuration-version-summary
                               #:hosted-configuration-version-summary-list
                               #:hosted-configuration-versions #:id #:identifier
-                              #:integer #:invalid-configuration-detail
+                              #:integer #:internal-server-exception
+                              #:invalid-configuration-detail
                               #:invalid-configuration-detail-list
                               #:iso8601date-time #:kms-key-identifier
                               #:kms-key-identifier-or-empty #:list-applications
@@ -63,9 +66,11 @@
                               #:max-results #:minutes-between0and24hours
                               #:monitor #:monitor-list #:name #:next-token
                               #:parameter #:parameter-map #:parameter-value-map
-                              #:percentage #:query-name #:replicate-to
-                              #:resource-tags #:role-arn #:start-deployment
-                              #:stop-deployment #:string
+                              #:payload-too-large-exception #:percentage
+                              #:query-name #:replicate-to
+                              #:resource-not-found-exception #:resource-tags
+                              #:role-arn #:service-quota-exceeded-exception
+                              #:start-deployment #:stop-deployment #:string
                               #:string-with-length-between0and32768
                               #:string-with-length-between1and2048
                               #:string-with-length-between1and255
@@ -78,8 +83,13 @@
                               #:update-extension #:update-extension-association
                               #:uri #:validate-configuration #:validator
                               #:validator-list #:validator-type
-                              #:validator-type-list #:version #:version-label))
+                              #:validator-type-list #:version #:version-label
+                              #:appconfig-error))
 (common-lisp:in-package #:pira/appconfig)
+
+(common-lisp:define-condition appconfig-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-app-config :shape-name
                                    "AmazonAppConfig" :version "2019-10-09"
@@ -227,7 +237,7 @@
                                  (details :target-type bad-request-details
                                   :member-name "Details"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appconfig-error))
 
 (smithy/sdk/shapes:define-enum bad-request-reason
     common-lisp:nil
@@ -312,7 +322,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class appconfig-error))
 
 (smithy/sdk/shapes:define-input create-application-request common-lisp:nil
                                 ((name :target-type name :required
@@ -1008,7 +1018,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class appconfig-error))
 
 (smithy/sdk/shapes:define-structure invalid-configuration-detail
                                     common-lisp:nil
@@ -1204,7 +1214,7 @@
                                   "Limit")
                                  (size :target-type float :member-name "Size"))
                                 (:shape-name "PayloadTooLargeException")
-                                (:error-code 413))
+                                (:error-code 413) (:base-class appconfig-error))
 
 (smithy/sdk/shapes:define-type percentage smithy/sdk/smithy-types:float)
 
@@ -1221,7 +1231,7 @@
                                  (resource-name :target-type string
                                   :member-name "ResourceName"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class appconfig-error))
 
 (smithy/sdk/shapes:define-structure resource-tags common-lisp:nil
                                     ((tags :target-type tag-map :member-name
@@ -1235,7 +1245,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class appconfig-error))
 
 (smithy/sdk/shapes:define-input start-deployment-request common-lisp:nil
                                 ((application-id :target-type id :required

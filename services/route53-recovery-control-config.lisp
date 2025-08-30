@@ -1,27 +1,31 @@
 (uiop/package:define-package #:pira/route53-recovery-control-config (:use)
-                             (:export #:assertion-rule #:assertion-rule-update
-                              #:cluster #:cluster-endpoint #:control-panel
-                              #:create-cluster #:create-control-panel
-                              #:create-routing-control #:create-safety-rule
-                              #:delete-cluster #:delete-control-panel
-                              #:delete-routing-control #:delete-safety-rule
-                              #:describe-cluster #:describe-control-panel
+                             (:export #:access-denied-exception
+                              #:assertion-rule #:assertion-rule-update
+                              #:cluster #:cluster-endpoint #:conflict-exception
+                              #:control-panel #:create-cluster
+                              #:create-control-panel #:create-routing-control
+                              #:create-safety-rule #:delete-cluster
+                              #:delete-control-panel #:delete-routing-control
+                              #:delete-safety-rule #:describe-cluster
+                              #:describe-control-panel
                               #:describe-routing-control #:describe-safety-rule
                               #:gating-rule #:gating-rule-update
-                              #:get-resource-policy
+                              #:get-resource-policy #:internal-server-exception
                               #:list-associated-route53health-checks
                               #:list-clusters #:list-control-panels
                               #:list-routing-controls #:list-safety-rules
                               #:list-tags-for-resource #:max-results
                               #:network-type #:new-assertion-rule
-                              #:new-gating-rule
+                              #:new-gating-rule #:resource-not-found-exception
                               #:route53recovery-control-config
                               #:routing-control #:rule #:rule-config
-                              #:rule-type #:status #:tag-resource
+                              #:rule-type #:service-quota-exceeded-exception
+                              #:status #:tag-resource #:throttling-exception
                               #:untag-resource #:update-cluster
                               #:update-control-panel #:update-routing-control
-                              #:update-safety-rule #:boolean #:integer
-                              #:list-of-cluster #:list-of-cluster-endpoint
+                              #:update-safety-rule #:validation-exception
+                              #:boolean #:integer #:list-of-cluster
+                              #:list-of-cluster-endpoint
                               #:list-of-control-panel #:list-of-routing-control
                               #:list-of-rule #:list-of-string
                               #:list-of-string-max36pattern-s
@@ -34,8 +38,13 @@
                               #:string-min1max256pattern-aza-z09
                               #:string-min1max32pattern-s
                               #:string-min1max64pattern-s
-                              #:string-min1max8096pattern-s))
+                              #:string-min1max8096pattern-s
+                              #:route53-recovery-control-config-error))
 (common-lisp:in-package #:pira/route53-recovery-control-config)
+
+(common-lisp:define-condition route53-recovery-control-config-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service route53recovery-control-config :shape-name
                                    "Route53RecoveryControlConfig" :version
@@ -78,7 +87,9 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class
+                                 route53-recovery-control-config-error))
 
 (smithy/sdk/shapes:define-structure assertion-rule common-lisp:nil
                                     ((asserted-controls :target-type
@@ -155,7 +166,9 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class
+                                 route53-recovery-control-config-error))
 
 (smithy/sdk/shapes:define-structure control-panel common-lisp:nil
                                     ((cluster-arn :target-type
@@ -416,7 +429,9 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class
+                                 route53-recovery-control-config-error))
 
 (smithy/sdk/shapes:define-input list-associated-route53health-checks-request
                                 common-lisp:nil
@@ -586,7 +601,9 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class
+                                 route53-recovery-control-config-error))
 
 (smithy/sdk/shapes:define-structure routing-control common-lisp:nil
                                     ((control-panel-arn :target-type
@@ -633,7 +650,9 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class
+                                 route53-recovery-control-config-error))
 
 (smithy/sdk/shapes:define-enum status
     common-lisp:nil
@@ -659,7 +678,9 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class
+                                 route53-recovery-control-config-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required
@@ -741,7 +762,9 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 route53-recovery-control-config-error))
 
 (smithy/sdk/shapes:define-type boolean smithy/sdk/smithy-types:boolean)
 

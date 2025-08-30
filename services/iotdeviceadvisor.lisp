@@ -1,7 +1,7 @@
 (uiop/package:define-package #:pira/iotdeviceadvisor (:use)
                              (:export #:amazon-resource-name
                               #:authentication-method #:client-token
-                              #:create-suite-definition
+                              #:conflict-exception #:create-suite-definition
                               #:delete-suite-definition #:device-under-test
                               #:device-under-test-list #:endpoint
                               #:error-reason #:failure #:get-endpoint
@@ -9,12 +9,13 @@
                               #:get-suite-run-report #:group-name
                               #:group-result #:group-result-list
                               #:intended-for-qualification-boolean
-                              #:iot-senate-service
+                              #:internal-server-exception #:iot-senate-service
                               #:is-long-duration-test-boolean
                               #:list-suite-definitions #:list-suite-runs
                               #:list-tags-for-resource #:log-url #:max-results
                               #:message #:parallel-run #:protocol
-                              #:qualification-report-download-url #:root-group
+                              #:qualification-report-download-url
+                              #:resource-not-found-exception #:root-group
                               #:selected-test-list #:start-suite-run #:status
                               #:stop-suite-run #:string128 #:string256
                               #:suite-definition-configuration
@@ -33,8 +34,13 @@
                               #:test-case-scenario-type
                               #:test-case-scenarios-list #:test-result
                               #:timestamp #:token #:uuid #:untag-resource
-                              #:update-suite-definition #:warnings))
+                              #:update-suite-definition #:validation-exception
+                              #:warnings #:iotdeviceadvisor-error))
 (common-lisp:in-package #:pira/iotdeviceadvisor)
+
+(common-lisp:define-condition iotdeviceadvisor-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service iot-senate-service :shape-name
                                    "IotSenateService" :version "2020-09-18"
@@ -76,7 +82,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotdeviceadvisor-error))
 
 (smithy/sdk/shapes:define-input create-suite-definition-request common-lisp:nil
                                 ((suite-definition-configuration :target-type
@@ -266,7 +273,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iotdeviceadvisor-error))
 
 (smithy/sdk/shapes:define-type is-long-duration-test-boolean
                                smithy/sdk/smithy-types:boolean)
@@ -347,7 +355,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iotdeviceadvisor-error))
 
 (smithy/sdk/shapes:define-type root-group smithy/sdk/smithy-types:string)
 
@@ -672,7 +681,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotdeviceadvisor-error))
 
 (smithy/sdk/shapes:define-type warnings smithy/sdk/smithy-types:string)
 

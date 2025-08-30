@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/quicksight (:use)
-                             (:export #:account-customization #:account-info
+                             (:export #:access-denied-exception
+                              #:account-customization #:account-info
                               #:account-name #:account-settings #:action-list
                               #:active-iampolicy-assignment
                               #:active-iampolicy-assignment-list
@@ -266,6 +267,7 @@
                               #:comparison-format-configuration
                               #:comparison-method #:comparison-method-type
                               #:computation #:computation-list
+                              #:concurrent-updating-exception
                               #:conditional-formatting-color
                               #:conditional-formatting-custom-icon-condition
                               #:conditional-formatting-custom-icon-options
@@ -276,8 +278,8 @@
                               #:conditional-formatting-icon-set
                               #:conditional-formatting-icon-set-type
                               #:conditional-formatting-solid-color
-                              #:constant-type #:constant-value-string
-                              #:context-menu-option
+                              #:conflict-exception #:constant-type
+                              #:constant-value-string #:context-menu-option
                               #:contribution-analysis-default
                               #:contribution-analysis-default-list
                               #:contribution-analysis-direction
@@ -322,6 +324,7 @@
                               #:custom-permissions-list
                               #:custom-permissions-name #:custom-sql
                               #:custom-sql-name #:custom-values-configuration
+                              #:customer-managed-key-unavailable-exception
                               #:dashboard #:dashboard-behavior
                               #:dashboard-error #:dashboard-error-list
                               #:dashboard-error-type
@@ -492,9 +495,9 @@
                               #:digit-grouping-style #:dimension-field
                               #:dimension-field-list #:display-format
                               #:display-format-options #:dns-resolver-list
-                              #:domain #:donut-center-options #:donut-options
-                              #:double #:drill-down-filter
-                              #:drill-down-filter-list
+                              #:domain #:domain-not-whitelisted-exception
+                              #:donut-center-options #:donut-options #:double
+                              #:drill-down-filter #:drill-down-filter-list
                               #:drop-down-control-display-options
                               #:dynamic-default-value #:edition
                               #:embedding-identity-type #:embedding-url
@@ -684,8 +687,10 @@
                               #:identity-center-configuration #:identity-map
                               #:identity-name #:identity-name-list
                               #:identity-provider-resource-uri #:identity-store
-                              #:identity-type #:image #:image-configuration
-                              #:image-custom-action #:image-custom-action-list
+                              #:identity-type
+                              #:identity-type-not-supported-exception #:image
+                              #:image-configuration #:image-custom-action
+                              #:image-custom-action-list
                               #:image-custom-action-name
                               #:image-custom-action-operation
                               #:image-custom-action-operation-list
@@ -714,6 +719,11 @@
                               #:integer-parameter-declaration
                               #:integer-parameter-list
                               #:integer-value-when-unset-configuration
+                              #:internal-failure-exception
+                              #:internal-server-exception
+                              #:invalid-next-token-exception
+                              #:invalid-parameter-value-exception
+                              #:invalid-request-exception
                               #:invalid-topic-reviewed-answer
                               #:invalid-topic-reviewed-answers
                               #:ip-restriction-rule-description
@@ -743,7 +753,7 @@
                               #:layout #:layout-configuration
                               #:layout-element-type #:layout-list
                               #:legend-options #:legend-position #:length
-                              #:limited-string
+                              #:limit-exceeded-exception #:limited-string
                               #:line-chart-aggregated-field-wells
                               #:line-chart-configuration
                               #:line-chart-default-series-settings
@@ -915,7 +925,9 @@
                               #:plugin-visual-sort-configuration
                               #:plugin-visual-table-query-sort #:port
                               #:positive-integer #:positive-long
-                              #:postgre-sql-parameters #:predefined-hierarchy
+                              #:postgre-sql-parameters
+                              #:precondition-not-met-exception
+                              #:predefined-hierarchy
                               #:predefined-hierarchy-column-list
                               #:predict-qaresults #:prediction-interval
                               #:prefix #:presto-parameters
@@ -929,7 +941,9 @@
                               #:qbusiness-insights-status #:qsearch-status
                               #:query #:query-execution-mode
                               #:query-execution-options #:question-id
-                              #:queue-info #:quick-sight-20180401
+                              #:queue-info
+                              #:quick-sight-user-not-found-exception
+                              #:quick-sight-20180401
                               #:radar-chart-aggregated-field-wells
                               #:radar-chart-area-style-settings
                               #:radar-chart-axes-range-scale
@@ -980,10 +994,13 @@
                               #:relative-date-time-control-display-options
                               #:relative-date-type #:relative-dates-filter
                               #:relative-font-size #:rename-column-operation
-                              #:resize-option #:resource-id #:resource-name
+                              #:resize-option #:resource-exists-exception
+                              #:resource-id #:resource-name
+                              #:resource-not-found-exception
                               #:resource-permission #:resource-permission-list
-                              #:resource-status #:restore-analysis
-                              #:restrictive-resource-id
+                              #:resource-status
+                              #:resource-unavailable-exception
+                              #:restore-analysis #:restrictive-resource-id
                               #:reviewed-answer-error-code #:role #:role-arn
                               #:role-name #:role-session-name
                               #:rolling-date-configuration
@@ -1040,6 +1057,7 @@
                               #:sensitive-timestamp-list #:series-item
                               #:series-item-list #:service-now-parameters
                               #:service-type #:session-lifetime-in-minutes
+                              #:session-lifetime-in-minutes-invalid-exception
                               #:session-tag #:session-tag-key
                               #:session-tag-key-list #:session-tag-list
                               #:session-tag-value
@@ -1204,8 +1222,8 @@
                               #:theme-version-summary-list
                               #:thousand-separator-options
                               #:threshold-alerts-configurations
-                              #:tile-layout-style #:tile-style
-                              #:time-based-forecast-properties
+                              #:throttling-exception #:tile-layout-style
+                              #:tile-style #:time-based-forecast-properties
                               #:time-equality-filter #:time-granularity
                               #:time-range-drill-down-filter
                               #:time-range-filter #:time-range-filter-value
@@ -1274,8 +1292,11 @@
                               #:undefined-specified-value-type #:unicode-icon
                               #:unique-key #:unique-key-column-name-list
                               #:unique-key-list #:unique-values-computation
-                              #:unlimited-pixel-length #:untag-column-operation
-                              #:untag-resource #:update-account-customization
+                              #:unlimited-pixel-length
+                              #:unsupported-pricing-plan-exception
+                              #:unsupported-user-edition-exception
+                              #:untag-column-operation #:untag-resource
+                              #:update-account-customization
                               #:update-account-settings #:update-analysis
                               #:update-analysis-permissions
                               #:update-application-with-token-exchange-grant
@@ -1364,8 +1385,12 @@
                               #:word-cloud-word-orientation
                               #:word-cloud-word-padding
                               #:word-cloud-word-scaling #:work-group
-                              #:yaxis-options))
+                              #:yaxis-options #:quicksight-error))
 (common-lisp:in-package #:pira/quicksight)
+
+(common-lisp:define-condition quicksight-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service quick-sight-20180401 :shape-name
                                    "QuickSight_20180401" :version "2018-04-01"
@@ -1542,7 +1567,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-structure account-customization common-lisp:nil
                                     ((default-theme :target-type arn
@@ -4392,7 +4418,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ConcurrentUpdatingException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-structure conditional-formatting-color
                                     common-lisp:nil
@@ -4496,7 +4523,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-enum constant-type
     common-lisp:nil
@@ -5715,7 +5743,8 @@
                                   "RequestId"))
                                 (:shape-name
                                  "CustomerManagedKeyUnavailableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-structure dashboard common-lisp:nil
                                     ((dashboard-id :target-type
@@ -9347,7 +9376,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "DomainNotWhitelistedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-structure donut-center-options common-lisp:nil
                                     ((label-visibility :target-type visibility
@@ -11807,7 +11837,8 @@
                                   "RequestId"))
                                 (:shape-name
                                  "IdentityTypeNotSupportedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-structure image common-lisp:nil
                                     ((source :target-type image-source
@@ -12213,14 +12244,16 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -12228,7 +12261,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
@@ -12237,7 +12271,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "InvalidParameterValueException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -12245,7 +12280,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-structure invalid-topic-reviewed-answer
                                     common-lisp:nil
@@ -12653,7 +12689,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-type limited-string smithy/sdk/smithy-types:string)
 
@@ -15544,7 +15581,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "PreconditionNotMetException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-structure predefined-hierarchy common-lisp:nil
                                     ((hierarchy-id :target-type hierarchy-id
@@ -15735,7 +15773,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "QuickSightUserNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-structure radar-chart-aggregated-field-wells
                                     common-lisp:nil
@@ -16400,7 +16439,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ResourceExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-type resource-id smithy/sdk/smithy-types:string)
 
@@ -16415,7 +16455,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-structure resource-permission common-lisp:nil
                                     ((principal :target-type principal
@@ -16448,7 +16489,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ResourceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-input restore-analysis-request common-lisp:nil
                                 ((aws-account-id :target-type aws-account-id
@@ -17236,7 +17278,8 @@
                                   "RequestId"))
                                 (:shape-name
                                  "SessionLifetimeInMinutesInvalidException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-structure session-tag common-lisp:nil
                                     ((key :target-type session-tag-key
@@ -19114,7 +19157,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-structure tile-layout-style common-lisp:nil
                                     ((gutter :target-type gutter-style
@@ -20344,7 +20388,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "UnsupportedPricingPlanException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-error unsupported-user-edition-exception
                                 common-lisp:nil
@@ -20353,7 +20398,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "UnsupportedUserEditionException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class quicksight-error))
 
 (smithy/sdk/shapes:define-structure untag-column-operation common-lisp:nil
                                     ((column-name :target-type column-name

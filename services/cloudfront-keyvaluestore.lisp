@@ -1,13 +1,24 @@
 (uiop/package:define-package #:pira/cloudfront-keyvaluestore (:use)
-                             (:export #:cloud-front-key-value-store
-                              #:delete-key #:delete-key-request-list-item
+                             (:export #:access-denied-exception
+                              #:cloud-front-key-value-store
+                              #:conflict-exception #:delete-key
+                              #:delete-key-request-list-item
                               #:delete-key-requests-list
-                              #:describe-key-value-store #:etag #:get-key #:key
-                              #:kvs-arn #:list-keys #:list-keys-response-list
+                              #:describe-key-value-store #:etag #:get-key
+                              #:internal-server-exception #:key #:kvs-arn
+                              #:list-keys #:list-keys-response-list
                               #:list-keys-response-list-item #:put-key
                               #:put-key-request-list-item
-                              #:put-key-requests-list #:update-keys #:value))
+                              #:put-key-requests-list
+                              #:resource-not-found-exception
+                              #:service-quota-exceeded-exception #:update-keys
+                              #:validation-exception #:value
+                              #:cloudfront-keyvaluestore-error))
 (common-lisp:in-package #:pira/cloudfront-keyvaluestore)
+
+(common-lisp:define-condition cloudfront-keyvaluestore-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service cloud-front-key-value-store :shape-name
                                    "CloudFrontKeyValueStore" :version
@@ -31,14 +42,16 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cloudfront-keyvaluestore-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-keyvaluestore-error))
 
 (smithy/sdk/shapes:define-input delete-key-request common-lisp:nil
                                 ((kvs-arn :target-type kvs-arn :required
@@ -138,7 +151,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class cloudfront-keyvaluestore-error))
 
 (smithy/sdk/shapes:define-type key smithy/sdk/smithy-types:string)
 
@@ -216,7 +230,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-keyvaluestore-error))
 
 (smithy/sdk/shapes:define-error service-quota-exceeded-exception
                                 common-lisp:nil
@@ -224,7 +239,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class cloudfront-keyvaluestore-error))
 
 (smithy/sdk/shapes:define-input update-keys-request common-lisp:nil
                                 ((kvs-arn :target-type kvs-arn :required
@@ -257,7 +273,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-keyvaluestore-error))
 
 (smithy/sdk/shapes:define-type value smithy/sdk/smithy-types:string)
 

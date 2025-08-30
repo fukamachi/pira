@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/arc-zonal-shift (:use)
-                             (:export #:applied-status #:applied-weights
-                              #:autoshift #:autoshift-applied-status
+                             (:export #:access-denied-exception
+                              #:applied-status #:applied-weights #:autoshift
+                              #:autoshift-applied-status
                               #:autoshift-execution-status
                               #:autoshift-in-resource
                               #:autoshift-observer-notification
@@ -11,14 +12,15 @@
                               #:availability-zones #:blocked-date
                               #:blocked-dates #:blocked-window
                               #:blocked-windows #:cancel-practice-run
-                              #:cancel-zonal-shift #:conflict-exception-reason
-                              #:control-condition #:control-condition-type
-                              #:control-conditions
+                              #:cancel-zonal-shift #:conflict-exception
+                              #:conflict-exception-reason #:control-condition
+                              #:control-condition-type #:control-conditions
                               #:create-practice-run-configuration
                               #:delete-practice-run-configuration #:expires-in
                               #:expiry-time
                               #:get-autoshift-observer-notification-status
-                              #:get-managed-resource #:list-autoshifts
+                              #:get-managed-resource
+                              #:internal-server-exception #:list-autoshifts
                               #:list-managed-resources #:list-zonal-shifts
                               #:managed-resource #:managed-resource-summaries
                               #:managed-resource-summary #:max-results
@@ -27,20 +29,26 @@
                               #:practice-run-configuration-resource
                               #:practice-run-outcome #:resource-arn
                               #:resource-identifier #:resource-name
-                              #:shift-type #:start-practice-run #:start-time
-                              #:start-zonal-shift
+                              #:resource-not-found-exception #:shift-type
+                              #:start-practice-run #:start-time
+                              #:start-zonal-shift #:throttling-exception
                               #:update-autoshift-observer-notification-status
                               #:update-practice-run-configuration
                               #:update-zonal-autoshift-configuration
-                              #:update-zonal-shift
+                              #:update-zonal-shift #:validation-exception
                               #:validation-exception-reason #:weight
                               #:zonal-autoshift-status #:zonal-shift
                               #:zonal-shift-comment #:zonal-shift-id
                               #:zonal-shift-in-resource #:zonal-shift-resource
                               #:zonal-shift-status #:zonal-shift-summaries
                               #:zonal-shift-summary #:zonal-shifts
-                              #:zonal-shifts-in-resource))
+                              #:zonal-shifts-in-resource
+                              #:arc-zonal-shift-error))
 (common-lisp:in-package #:pira/arc-zonal-shift)
+
+(common-lisp:define-condition arc-zonal-shift-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service perc-data-plane :shape-name "PercDataPlane"
                                    :version "2022-10-30" :title
@@ -59,7 +67,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class arc-zonal-shift-error))
 
 (smithy/sdk/shapes:define-enum applied-status
     common-lisp:nil
@@ -180,7 +189,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "zonalShiftId"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class arc-zonal-shift-error))
 
 (smithy/sdk/shapes:define-enum conflict-exception-reason
     common-lisp:nil
@@ -316,7 +326,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class arc-zonal-shift-error))
 
 (smithy/sdk/shapes:define-input list-autoshifts-request common-lisp:nil
                                 ((next-token :target-type
@@ -452,7 +463,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class arc-zonal-shift-error))
 
 (smithy/sdk/shapes:define-enum shift-type
     common-lisp:nil
@@ -517,7 +529,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class arc-zonal-shift-error))
 
 (smithy/sdk/shapes:define-input
  update-autoshift-observer-notification-status-request common-lisp:nil
@@ -610,7 +623,8 @@ common-lisp:nil
                                   validation-exception-reason :required
                                   common-lisp:t :member-name "reason"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class arc-zonal-shift-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-reason
     common-lisp:nil

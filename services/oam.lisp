@@ -1,7 +1,9 @@
 (uiop/package:define-package #:pira/oam (:use)
-                             (:export #:arn #:create-link #:create-sink
-                              #:delete-link #:delete-sink #:get-link #:get-sink
-                              #:get-sink-policy #:include-tags #:label-template
+                             (:export #:arn #:conflict-exception #:create-link
+                              #:create-sink #:delete-link #:delete-sink
+                              #:get-link #:get-sink #:get-sink-policy
+                              #:include-tags #:internal-service-fault
+                              #:invalid-parameter-exception #:label-template
                               #:link-configuration #:list-attached-links
                               #:list-attached-links-item
                               #:list-attached-links-items
@@ -12,14 +14,22 @@
                               #:list-sinks-max-results #:list-tags-for-resource
                               #:log-group-configuration #:logs-filter
                               #:metric-configuration #:metrics-filter
+                              #:missing-required-parameter-exception
                               #:next-token #:put-sink-policy
-                              #:resource-identifier #:resource-type
+                              #:resource-identifier
+                              #:resource-not-found-exception #:resource-type
                               #:resource-types-input #:resource-types-output
-                              #:sink-name #:sink-policy #:tag-key #:tag-keys
+                              #:service-quota-exceeded-exception #:sink-name
+                              #:sink-policy #:tag-key #:tag-keys
                               #:tag-map-input #:tag-map-output #:tag-resource
-                              #:tag-value #:untag-resource #:update-link
-                              #:oamservice))
+                              #:tag-value #:too-many-tags-exception
+                              #:untag-resource #:update-link
+                              #:validation-exception #:oamservice #:oam-error))
 (common-lisp:in-package #:pira/oam)
+
+(common-lisp:define-condition oam-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service oamservice :shape-name "oamservice" :version
                                    "2022-06-10" :title
@@ -77,7 +87,7 @@
                                   "amznErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class oam-error))
 
 (smithy/sdk/shapes:define-input create-link-input common-lisp:nil
                                 ((label-template :target-type label-template
@@ -248,7 +258,7 @@
                                   "amznErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "InternalServiceFault")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class oam-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type
@@ -259,7 +269,7 @@
                                   "amznErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class oam-error))
 
 (smithy/sdk/shapes:define-type label-template smithy/sdk/smithy-types:string)
 
@@ -421,7 +431,7 @@
                                   "x-amzn-ErrorType"))
                                 (:shape-name
                                  "MissingRequiredParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class oam-error))
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
 
@@ -457,7 +467,7 @@
                                   "amznErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class oam-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -485,7 +495,7 @@
                                   "amznErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class oam-error))
 
 (smithy/sdk/shapes:define-type sink-name smithy/sdk/smithy-types:string)
 
@@ -520,7 +530,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class oam-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -579,7 +589,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class oam-error))
 
 (smithy/sdk/operation:define-operation create-link :shape-name "CreateLink"
                                        :input create-link-input :output

@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/payment-cryptography-data (:use)
-                             (:export #:amex-attributes
+                             (:export #:access-denied-exception
+                              #:amex-attributes
                               #:amex-card-security-code-version1
                               #:amex-card-security-code-version2
                               #:application-cryptogram-type
@@ -45,7 +46,8 @@
                               #:integer-range-between0and6
                               #:integer-range-between3and5type
                               #:integer-range-between4and12
-                              #:integer-range-between4and16 #:key-arn
+                              #:integer-range-between4and16
+                              #:internal-server-exception #:key-arn
                               #:key-arn-or-key-alias-type #:key-check-value
                               #:key-check-value-algorithm
                               #:key-derivation-function
@@ -69,6 +71,7 @@
                               #:primary-account-number-type
                               #:proprietary-authentication-data-type
                               #:re-encrypt-data #:re-encryption-attributes
+                              #:resource-not-found-exception
                               #:service-code-type
                               #:session-derivation-data-type #:session-key-amex
                               #:session-key-derivation
@@ -78,14 +81,16 @@
                               #:session-key-mastercard #:session-key-visa
                               #:shared-information
                               #:symmetric-encryption-attributes
-                              #:symmetric-key-algorithm #:tr31wrapped-key-block
-                              #:track-data-type #:transaction-data-type
-                              #:translate-pin-data #:translation-iso-formats
+                              #:symmetric-key-algorithm #:throttling-exception
+                              #:tr31wrapped-key-block #:track-data-type
+                              #:transaction-data-type #:translate-pin-data
+                              #:translation-iso-formats
                               #:translation-pin-data-iso-format034
                               #:translation-pin-data-iso-format1
-                              #:validation-data-type
+                              #:validation-data-type #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
+                              #:verification-failed-exception
                               #:verification-failed-reason
                               #:verification-value-type
                               #:verify-auth-request-cryptogram
@@ -94,8 +99,13 @@
                               #:visa-attributes #:visa-pin
                               #:visa-pin-verification
                               #:visa-pin-verification-value #:wrapped-key
-                              #:wrapped-key-material))
+                              #:wrapped-key-material
+                              #:payment-cryptography-data-error))
 (common-lisp:in-package #:pira/payment-cryptography-data)
+
+(common-lisp:define-condition payment-cryptography-data-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service payment-cryptography-data-plane :shape-name
                                    "PaymentCryptographyDataPlane" :version
@@ -125,7 +135,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class payment-cryptography-data-error))
 
 (smithy/sdk/shapes:define-structure amex-attributes common-lisp:nil
                                     ((major-key-derivation-mode :target-type
@@ -951,7 +962,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class payment-cryptography-data-error))
 
 (smithy/sdk/shapes:define-type key-arn smithy/sdk/smithy-types:string)
 
@@ -1208,7 +1220,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "ResourceId"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class payment-cryptography-data-error))
 
 (smithy/sdk/shapes:define-type service-code-type smithy/sdk/smithy-types:string)
 
@@ -1351,7 +1364,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class payment-cryptography-data-error))
 
 (smithy/sdk/shapes:define-type tr31wrapped-key-block
                                smithy/sdk/smithy-types:string)
@@ -1445,7 +1459,8 @@
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class payment-cryptography-data-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((path :target-type
@@ -1467,7 +1482,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "VerificationFailedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class payment-cryptography-data-error))
 
 (smithy/sdk/shapes:define-type verification-failed-reason
                                smithy/sdk/smithy-types:string)

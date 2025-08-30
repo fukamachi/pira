@@ -1,23 +1,26 @@
 (uiop/package:define-package #:pira/codeguru-reviewer (:use)
                              (:export #:awsguru-frontend-service
-                              #:analysis-type #:analysis-types #:arn
-                              #:associate-repository #:association-arn
-                              #:association-id #:branch-diff-source-code-type
-                              #:branch-name #:build-artifacts-object-key
+                              #:access-denied-exception #:analysis-type
+                              #:analysis-types #:arn #:associate-repository
+                              #:association-arn #:association-id
+                              #:branch-diff-source-code-type #:branch-name
+                              #:build-artifacts-object-key
                               #:client-request-token #:code-artifacts
                               #:code-commit-repository #:code-review
                               #:code-review-name #:code-review-summaries
                               #:code-review-summary #:code-review-type
                               #:commit-diff-source-code-type #:commit-id
-                              #:config-file-state #:connection-arn
-                              #:create-code-review #:describe-code-review
+                              #:config-file-state #:conflict-exception
+                              #:connection-arn #:create-code-review
+                              #:describe-code-review
                               #:describe-recommendation-feedback
                               #:describe-repository-association
                               #:disassociate-repository #:encryption-option
                               #:error-message #:event-info #:event-name
                               #:event-state #:file-path #:findings-count
-                              #:job-state #:job-states #:kmskey-details
-                              #:kmskey-id #:line-number #:lines-of-code-count
+                              #:internal-server-exception #:job-state
+                              #:job-states #:kmskey-details #:kmskey-id
+                              #:line-number #:lines-of-code-count
                               #:list-code-reviews
                               #:list-code-reviews-max-results
                               #:list-recommendation-feedback
@@ -26,8 +29,8 @@
                               #:list-repository-associations
                               #:list-tags-for-resource #:long-description
                               #:max-results #:metrics #:metrics-summary #:name
-                              #:names #:next-token #:owner #:owners
-                              #:provider-type #:provider-types
+                              #:names #:next-token #:not-found-exception
+                              #:owner #:owners #:provider-type #:provider-types
                               #:pull-request-id #:put-recommendation-feedback
                               #:reaction #:reactions #:recommendation-category
                               #:recommendation-feedback
@@ -43,7 +46,8 @@
                               #:repository-association-summary
                               #:repository-head-source-code-type
                               #:repository-names #:request-id
-                              #:request-metadata #:requester #:rule-id
+                              #:request-metadata #:requester
+                              #:resource-not-found-exception #:rule-id
                               #:rule-metadata #:rule-name #:rule-tag
                               #:rule-tags #:s3bucket-name #:s3bucket-repository
                               #:s3repository #:s3repository-details #:severity
@@ -52,10 +56,16 @@
                               #:source-code-type #:state-reason #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
                               #:tag-value #:text
-                              #:third-party-source-repository #:time-stamp
-                              #:type #:untag-resource #:user-id #:user-ids
-                              #:vendor-name))
+                              #:third-party-source-repository
+                              #:throttling-exception #:time-stamp #:type
+                              #:untag-resource #:user-id #:user-ids
+                              #:validation-exception #:vendor-name
+                              #:codeguru-reviewer-error))
 (common-lisp:in-package #:pira/codeguru-reviewer)
+
+(common-lisp:define-condition codeguru-reviewer-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsguru-frontend-service :shape-name
                                    "AWSGuruFrontendService" :version
@@ -89,7 +99,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class codeguru-reviewer-error))
 
 (smithy/sdk/shapes:define-enum analysis-type
     common-lisp:nil
@@ -269,7 +280,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codeguru-reviewer-error))
 
 (smithy/sdk/shapes:define-type connection-arn smithy/sdk/smithy-types:string)
 
@@ -383,7 +395,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class codeguru-reviewer-error))
 
 (smithy/sdk/shapes:define-enum job-state
     common-lisp:nil
@@ -580,7 +593,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class codeguru-reviewer-error))
 
 (smithy/sdk/shapes:define-type owner smithy/sdk/smithy-types:string)
 
@@ -822,7 +836,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class codeguru-reviewer-error))
 
 (smithy/sdk/shapes:define-type rule-id smithy/sdk/smithy-types:string)
 
@@ -942,7 +957,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class codeguru-reviewer-error))
 
 (smithy/sdk/shapes:define-type time-stamp smithy/sdk/smithy-types:timestamp)
 
@@ -972,7 +988,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codeguru-reviewer-error))
 
 (smithy/sdk/shapes:define-enum vendor-name
     common-lisp:nil

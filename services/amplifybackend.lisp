@@ -9,7 +9,8 @@
                               #:backend-auth-apple-provider-config
                               #:backend-auth-social-provider-config
                               #:backend-job-resp-obj
-                              #:backend-storage-permissions #:clone-backend
+                              #:backend-storage-permissions
+                              #:bad-request-exception #:clone-backend
                               #:create-backend #:create-backend-api
                               #:create-backend-auth
                               #:create-backend-auth-forgot-password-config
@@ -26,6 +27,7 @@
                               #:delete-backend-api #:delete-backend-auth
                               #:delete-backend-storage #:delete-token
                               #:delivery-method #:email-settings
+                              #:gateway-timeout-exception
                               #:generate-backend-apimodels #:get-backend
                               #:get-backend-api #:get-backend-apimodels
                               #:get-backend-auth #:get-backend-job
@@ -44,14 +46,15 @@
                               #:list-of-un-authenticated-element
                               #:list-of-string #:list-s3buckets
                               #:login-auth-config-req-obj #:mfamode
-                              #:mfa-types-element #:mode #:oauth-grant-type
-                              #:oauth-scopes-element #:remove-all-backends
-                              #:remove-backend-config
+                              #:mfa-types-element #:mode #:not-found-exception
+                              #:oauth-grant-type #:oauth-scopes-element
+                              #:remove-all-backends #:remove-backend-config
                               #:required-sign-up-attributes-element
                               #:resolution-strategy #:resource-config
                               #:s3bucket-info #:service #:service-name
                               #:settings #:sign-in-method #:sms-settings
                               #:social-provider-settings #:status
+                              #:too-many-requests-exception
                               #:un-authenticated-element #:update-backend-api
                               #:update-backend-auth
                               #:update-backend-auth-forgot-password-config
@@ -65,8 +68,13 @@
                               #:update-backend-config #:update-backend-job
                               #:update-backend-storage
                               #:update-backend-storage-resource-config
-                              #:boolean #:double #:integer-min1max25 #:string))
+                              #:boolean #:double #:integer-min1max25 #:string
+                              #:amplifybackend-error))
 (common-lisp:in-package #:pira/amplifybackend)
+
+(common-lisp:define-condition amplifybackend-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amplify-backend :shape-name "AmplifyBackend"
                                    :version "2020-08-11" :title
@@ -253,7 +261,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class amplifybackend-error))
 
 (smithy/sdk/shapes:define-input clone-backend-request common-lisp:nil
                                 ((app-id :target-type string :required
@@ -763,7 +772,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "GatewayTimeoutException")
-                                (:error-code 504))
+                                (:error-code 504)
+                                (:base-class amplifybackend-error))
 
 (smithy/sdk/shapes:define-input generate-backend-apimodels-request
                                 common-lisp:nil
@@ -1191,7 +1201,8 @@
                                   :member-name "ResourceType" :json-name
                                   "resourceType"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class amplifybackend-error))
 
 (smithy/sdk/shapes:define-enum oauth-grant-type
     common-lisp:nil
@@ -1334,7 +1345,8 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class amplifybackend-error))
 
 (smithy/sdk/shapes:define-enum un-authenticated-element
     common-lisp:nil

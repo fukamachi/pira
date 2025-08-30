@@ -57,6 +57,7 @@
                               #:disassociate-product-from-portfolio
                               #:disassociate-service-action-from-provisioning-artifact
                               #:disassociate-tag-option-from-resource
+                              #:duplicate-resource-exception
                               #:enable-awsorganizations-access
                               #:engine-workflow-failure-reason
                               #:engine-workflow-resource-identifier
@@ -78,11 +79,13 @@
                               #:has-default-path #:id #:idempotency-token
                               #:ignore-errors #:import-as-provisioned-product
                               #:instruction-type #:instruction-value
-                              #:last-request-id #:last-successful-sync-time
-                              #:last-sync #:last-sync-status
-                              #:last-sync-status-message #:last-sync-time
-                              #:launch-path #:launch-path-summaries
-                              #:launch-path-summary #:launch-paths
+                              #:invalid-parameters-exception
+                              #:invalid-state-exception #:last-request-id
+                              #:last-successful-sync-time #:last-sync
+                              #:last-sync-status #:last-sync-status-message
+                              #:last-sync-time #:launch-path
+                              #:launch-path-summaries #:launch-path-summary
+                              #:launch-paths #:limit-exceeded-exception
                               #:list-accepted-portfolio-shares
                               #:list-budgets-for-resource
                               #:list-constraints-for-portfolio
@@ -106,8 +109,9 @@
                               #:notify-provision-product-engine-workflow-result
                               #:notify-terminate-provisioned-product-engine-workflow-result
                               #:notify-update-provisioned-product-engine-workflow-result
-                              #:nullable-boolean #:organization-node
-                              #:organization-node-type
+                              #:nullable-boolean
+                              #:operation-not-supported-exception
+                              #:organization-node #:organization-node-type
                               #:organization-node-value #:organization-nodes
                               #:output-description #:output-key #:output-keys
                               #:output-value #:owner #:page-size
@@ -200,6 +204,8 @@
                               #:resource-detail-description
                               #:resource-detail-id #:resource-detail-name
                               #:resource-details #:resource-id
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception
                               #:resource-target-definition #:resource-type
                               #:retain-physical-resources #:role-arn
                               #:scan-provisioned-products #:scope
@@ -239,9 +245,11 @@
                               #:support-url #:tag #:tag-key #:tag-keys
                               #:tag-option-active #:tag-option-detail
                               #:tag-option-details #:tag-option-id
-                              #:tag-option-key #:tag-option-summaries
-                              #:tag-option-summary #:tag-option-value
-                              #:tag-option-values #:tag-value #:tags
+                              #:tag-option-key
+                              #:tag-option-not-migrated-exception
+                              #:tag-option-summaries #:tag-option-summary
+                              #:tag-option-value #:tag-option-values
+                              #:tag-value #:tags
                               #:terminate-provisioned-product
                               #:total-results-count #:unique-tag-key
                               #:unique-tag-resource-identifier
@@ -256,8 +264,13 @@
                               #:update-service-action #:update-tag-option
                               #:updated-time #:usage-instruction
                               #:usage-instructions #:use-previous-value
-                              #:user-arn #:user-arn-session #:verbose))
+                              #:user-arn #:user-arn-session #:verbose
+                              #:service-catalog-error))
 (common-lisp:in-package #:pira/service-catalog)
+
+(common-lisp:define-condition service-catalog-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service aws242service-catalog-service :shape-name
                                    "AWS242ServiceCatalogService" :version
@@ -1469,7 +1482,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DuplicateResourceException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-catalog-error))
 
 (smithy/sdk/shapes:define-input enable-awsorganizations-access-input
                                 common-lisp:nil common-lisp:nil
@@ -1681,13 +1695,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidParametersException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-catalog-error))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-catalog-error))
 
 (smithy/sdk/shapes:define-type last-request-id smithy/sdk/smithy-types:string)
 
@@ -1748,7 +1764,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-catalog-error))
 
 (smithy/sdk/shapes:define-input list-accepted-portfolio-shares-input
                                 common-lisp:nil
@@ -2213,7 +2230,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "OperationNotSupportedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-catalog-error))
 
 (smithy/sdk/shapes:define-structure organization-node common-lisp:nil
                                     ((type :target-type organization-node-type
@@ -3165,13 +3183,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-catalog-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-catalog-error))
 
 (smithy/sdk/shapes:define-structure resource-target-definition common-lisp:nil
                                     ((attribute :target-type resource-attribute
@@ -3555,7 +3575,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "TagOptionNotMigratedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-catalog-error))
 
 (smithy/sdk/shapes:define-list tag-option-summaries :member tag-option-summary)
 

@@ -3,6 +3,7 @@
                               #:aimloptions-status #:arn #:awsaccount
                               #:awsdomain-information #:awsservice-principal
                               #:accept-inbound-connection
+                              #:access-denied-exception
                               #:access-policies-status #:action-severity
                               #:action-status #:action-type #:add-data-source
                               #:add-direct-query-data-source #:add-tags
@@ -30,7 +31,8 @@
                               #:auto-tune-status #:auto-tune-type
                               #:availability-zone #:availability-zone-info
                               #:availability-zone-info-list
-                              #:availability-zone-list #:backend-role #:boolean
+                              #:availability-zone-list #:backend-role
+                              #:base-exception #:boolean
                               #:cancel-domain-config-change
                               #:cancel-service-software-update
                               #:cancelled-change-property
@@ -46,8 +48,9 @@
                               #:cognito-options-status #:cold-storage-options
                               #:commit-message #:compatible-versions-list
                               #:compatible-versions-map #:config-change-status
-                              #:connection-alias #:connection-id
-                              #:connection-mode #:connection-properties
+                              #:conflict-exception #:connection-alias
+                              #:connection-id #:connection-mode
+                              #:connection-properties
                               #:connection-status-message #:create-application
                               #:create-domain #:create-outbound-connection
                               #:create-package #:create-vpc-endpoint
@@ -62,6 +65,7 @@
                               #:delete-inbound-connection
                               #:delete-outbound-connection #:delete-package
                               #:delete-vpc-endpoint
+                              #:dependency-failure-exception
                               #:deployment-close-date-time-stamp
                               #:deployment-status #:deployment-type
                               #:describe-domain #:describe-domain-auto-tunes
@@ -87,9 +91,11 @@
                               #:direct-query-data-source-role-arn
                               #:direct-query-data-source-type
                               #:direct-query-open-search-arnlist
-                              #:disable-timestamp #:dissociate-package
-                              #:dissociate-packages #:domain-arn
-                              #:domain-config #:domain-endpoint-options
+                              #:disable-timestamp
+                              #:disabled-operation-exception
+                              #:dissociate-package #:dissociate-packages
+                              #:domain-arn #:domain-config
+                              #:domain-endpoint-options
                               #:domain-endpoint-options-status #:domain-health
                               #:domain-id #:domain-info #:domain-info-list
                               #:domain-information-container
@@ -137,11 +143,15 @@
                               #:instance-role-list #:instance-type-details
                               #:instance-type-details-list
                               #:instance-type-string #:integer #:integer-class
-                              #:issue #:issues #:jwtoptions-input
-                              #:jwtoptions-output #:key-store-access-option
-                              #:kms-key-id #:last-updated #:license-filepath
-                              #:limit-name #:limit-value #:limit-value-list
-                              #:limits #:limits-by-role #:list-applications
+                              #:internal-exception
+                              #:invalid-pagination-token-exception
+                              #:invalid-type-exception #:issue #:issues
+                              #:jwtoptions-input #:jwtoptions-output
+                              #:key-store-access-option #:kms-key-id
+                              #:last-updated #:license-filepath
+                              #:limit-exceeded-exception #:limit-name
+                              #:limit-value #:limit-value-list #:limits
+                              #:limits-by-role #:list-applications
                               #:list-data-sources
                               #:list-direct-query-data-sources
                               #:list-domain-maintenances #:list-domain-names
@@ -207,6 +217,8 @@
                               #:reserved-instance-offering
                               #:reserved-instance-offering-list
                               #:reserved-instance-payment-option
+                              #:resource-already-exists-exception
+                              #:resource-not-found-exception
                               #:revoke-vpc-endpoint-access #:role-arn
                               #:roles-key #:roles-key-id-coption
                               #:rollback-on-disable #:s3bucket-name
@@ -223,7 +235,8 @@
                               #:security-lake-direct-query-data-source
                               #:service-software-options #:service-url
                               #:skip-unavailable-status #:slot-list
-                              #:snapshot-options #:snapshot-options-status
+                              #:slot-not-available-exception #:snapshot-options
+                              #:snapshot-options-status
                               #:software-update-options
                               #:software-update-options-status #:start-at
                               #:start-domain-maintenance
@@ -249,18 +262,22 @@
                               #:upgrade-step-item #:upgrade-steps-list
                               #:user-pool-id #:username #:vpcderived-info
                               #:vpcderived-info-status #:vpcoptions
-                              #:validation-failure #:validation-failures
-                              #:value-string-list #:version-list
-                              #:version-status #:version-string #:volume-size
-                              #:volume-type #:vpc-endpoint #:vpc-endpoint-error
-                              #:vpc-endpoint-error-code
+                              #:validation-exception #:validation-failure
+                              #:validation-failures #:value-string-list
+                              #:version-list #:version-status #:version-string
+                              #:volume-size #:volume-type #:vpc-endpoint
+                              #:vpc-endpoint-error #:vpc-endpoint-error-code
                               #:vpc-endpoint-error-list #:vpc-endpoint-id
                               #:vpc-endpoint-id-list #:vpc-endpoint-status
                               #:vpc-endpoint-summary
                               #:vpc-endpoint-summary-list #:vpc-endpoints
                               #:window-start-time #:zone-awareness-config
-                              #:zone-status))
+                              #:zone-status #:opensearch-error))
 (common-lisp:in-package #:pira/opensearch)
+
+(common-lisp:define-condition opensearch-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-open-search-service :shape-name
                                    "AmazonOpenSearchService" :version
@@ -401,7 +418,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-structure access-policies-status common-lisp:nil
                                     ((options :target-type policy-document
@@ -823,7 +841,8 @@
 (smithy/sdk/shapes:define-error base-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "BaseException") (:error-code 400))
+                                (:shape-name "BaseException") (:error-code 400)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-type boolean smithy/sdk/smithy-types:boolean)
 
@@ -1061,7 +1080,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-type connection-alias smithy/sdk/smithy-types:string)
 
@@ -1417,7 +1437,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DependencyFailureException")
-                                (:error-code 424))
+                                (:error-code 424)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-type deployment-close-date-time-stamp
                                smithy/sdk/smithy-types:timestamp)
@@ -1809,7 +1830,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DisabledOperationException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-input dissociate-package-request common-lisp:nil
                                 ((package-id :target-type package-id :required
@@ -2709,20 +2731,23 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-error invalid-pagination-token-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidPaginationTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-error invalid-type-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTypeException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-type issue smithy/sdk/smithy-types:string)
 
@@ -2768,7 +2793,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-type limit-name smithy/sdk/smithy-types:string)
 
@@ -3803,13 +3829,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-input revoke-vpc-endpoint-access-request
                                 common-lisp:nil
@@ -4010,7 +4038,8 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "SlotNotAvailableException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-structure snapshot-options common-lisp:nil
                                     ((automated-snapshot-start-hour
@@ -4506,7 +4535,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class opensearch-error))
 
 (smithy/sdk/shapes:define-structure validation-failure common-lisp:nil
                                     ((code :target-type string :member-name

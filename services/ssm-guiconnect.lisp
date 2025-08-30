@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/ssm-guiconnect (:use)
-                             (:export #:account-id #:bucket-name #:client-token
+                             (:export #:access-denied-exception #:account-id
+                              #:bucket-name #:client-token #:conflict-exception
                               #:connection #:connection-access #:connection-arn
                               #:connection-preferences
                               #:connection-recording-preferences
@@ -7,12 +8,21 @@
                               #:delete-connection-recording-preferences
                               #:error-message
                               #:get-connection-recording-preferences
+                              #:internal-server-exception
                               #:modify-connection-preferences
                               #:modify-recording-preferences
                               #:recording-destinations #:recording-preferences
-                              #:s3bucket #:s3buckets #:ssmgui-connect
-                              #:update-connection-recording-preferences))
+                              #:resource-not-found-exception #:s3bucket
+                              #:s3buckets #:ssmgui-connect
+                              #:service-quota-exceeded-exception
+                              #:throttling-exception
+                              #:update-connection-recording-preferences
+                              #:validation-exception #:ssm-guiconnect-error))
 (common-lisp:in-package #:pira/ssm-guiconnect)
+
+(common-lisp:define-condition ssm-guiconnect-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ssmgui-connect :shape-name "SSMGuiConnect"
                                    :version "2021-05-01" :title
@@ -30,7 +40,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class ssm-guiconnect-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -42,7 +53,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class ssm-guiconnect-error))
 
 common-lisp:nil
 
@@ -98,7 +110,8 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class ssm-guiconnect-error))
 
 common-lisp:nil
 
@@ -116,7 +129,8 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class ssm-guiconnect-error))
 
 (smithy/sdk/shapes:define-structure s3bucket common-lisp:nil
                                     ((bucket-owner :target-type account-id
@@ -134,13 +148,15 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class ssm-guiconnect-error))
 
 (smithy/sdk/shapes:define-error throttling-exception common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class ssm-guiconnect-error))
 
 (smithy/sdk/shapes:define-input update-connection-recording-preferences-request
                                 common-lisp:nil
@@ -165,7 +181,8 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ssm-guiconnect-error))
 
 (smithy/sdk/operation:define-operation delete-connection-recording-preferences
                                        :shape-name

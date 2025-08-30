@@ -1,12 +1,13 @@
 (uiop/package:define-package #:pira/taxsettings (:use)
-                             (:export #:account-details #:account-details-list
+                             (:export #:access-denied-exception
+                              #:account-details #:account-details-list
                               #:account-id #:account-ids #:account-meta-data
                               #:account-name #:additional-info-request
                               #:additional-info-response #:address
                               #:address-line1 #:address-line2 #:address-line3
                               #:address-role-map #:address-role-type
-                              #:authorities #:authority
-                              #:batch-delete-tax-registration
+                              #:attachment-upload-exception #:authorities
+                              #:authority #:batch-delete-tax-registration
                               #:batch-delete-tax-registration-error
                               #:batch-delete-tax-registration-errors
                               #:batch-get-tax-exemptions
@@ -20,10 +21,12 @@
                               #:canada-provincial-sales-tax-id-string
                               #:canada-quebec-sales-tax-number-string
                               #:canada-retail-sales-tax-number-string
+                              #:case-creation-limit-exceeded-exception
                               #:ccm-code #:certified-email-id #:cig-number
-                              #:city #:contracting-authority-code
-                              #:country-code #:cup-number #:date-of-birth
-                              #:date-string #:decision-number
+                              #:city #:conflict-exception
+                              #:contracting-authority-code #:country-code
+                              #:cup-number #:date-of-birth #:date-string
+                              #:decision-number
                               #:delete-supplemental-tax-registration
                               #:delete-tax-registration #:destination-file-path
                               #:destination-s3location #:display-name
@@ -44,6 +47,7 @@
                               #:indonesia-additional-info
                               #:indonesia-tax-registration-number-type
                               #:industries #:inheritance-obtained-reason
+                              #:internal-server-exception
                               #:israel-additional-info #:israel-customer-type
                               #:israel-dealer-type #:italy-additional-info
                               #:item-of-business #:jurisdiction
@@ -63,6 +67,7 @@
                               #:put-tax-exemption #:put-tax-inheritance
                               #:put-tax-registration #:registration-id
                               #:registration-type #:registry-commercial-code
+                              #:resource-not-found-exception
                               #:romania-additional-info #:s3bucket-name #:s3key
                               #:s3prefix #:saudi-arabia-additional-info
                               #:saudi-arabia-tax-registration-number-type
@@ -94,12 +99,17 @@
                               #:unique-identification-number #:url
                               #:uzbekistan-additional-info
                               #:uzbekistan-tax-registration-number-type
+                              #:validation-exception
                               #:validation-exception-error-code
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:vat-registration-number #:verification-details
-                              #:vietnam-additional-info))
+                              #:vietnam-additional-info #:taxsettings-error))
 (common-lisp:in-package #:pira/taxsettings)
+
+(common-lisp:define-condition taxsettings-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service tax-settings :shape-name "TaxSettings"
                                    :version "2018-05-10" :title "Tax Settings"
@@ -133,7 +143,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class taxsettings-error))
 
 (smithy/sdk/shapes:define-structure account-details common-lisp:nil
                                     ((account-id :target-type account-id
@@ -339,7 +350,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AttachmentUploadException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class taxsettings-error))
 
 (smithy/sdk/shapes:define-list authorities :member authority)
 
@@ -486,7 +498,8 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
                                  "CaseCreationLimitExceededException")
-                                (:error-code 413))
+                                (:error-code 413)
+                                (:base-class taxsettings-error))
 
 (smithy/sdk/shapes:define-type ccm-code smithy/sdk/smithy-types:string)
 
@@ -503,7 +516,8 @@
                                  (error-code :target-type error-code :required
                                   common-lisp:t :member-name "errorCode"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class taxsettings-error))
 
 (smithy/sdk/shapes:define-type contracting-authority-code
                                smithy/sdk/smithy-types:string)
@@ -725,7 +739,8 @@
                                  (error-code :target-type error-code :required
                                   common-lisp:t :member-name "errorCode"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class taxsettings-error))
 
 (smithy/sdk/shapes:define-structure israel-additional-info common-lisp:nil
                                     ((dealer-type :target-type
@@ -971,7 +986,8 @@
                                  (error-code :target-type error-code :required
                                   common-lisp:t :member-name "errorCode"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class taxsettings-error))
 
 (smithy/sdk/shapes:define-structure romania-additional-info common-lisp:nil
                                     ((tax-registration-number-type :target-type
@@ -1355,7 +1371,8 @@
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class taxsettings-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-error-code
     common-lisp:nil

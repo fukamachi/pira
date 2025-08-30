@@ -4,8 +4,9 @@
                               #:accept-rule-behavior
                               #:accept-subscription-request
                               #:accepted-asset-scope #:accepted-asset-scopes
-                              #:action-link #:action-parameters
-                              #:add-entity-owner #:add-policy-grant
+                              #:access-denied-exception #:action-link
+                              #:action-parameters #:add-entity-owner
+                              #:add-policy-grant
                               #:add-to-project-member-pool-policy-grant-detail
                               #:aggregation-attribute-display-value
                               #:aggregation-attribute-value
@@ -55,8 +56,9 @@
                               #:configurable-action-parameter-list
                               #:configurable-action-type-authorization
                               #:configurable-environment-action
-                              #:connection-credentials #:connection-id
-                              #:connection-name #:connection-properties
+                              #:conflict-exception #:connection-credentials
+                              #:connection-id #:connection-name
+                              #:connection-properties
                               #:connection-properties-input
                               #:connection-properties-output
                               #:connection-properties-patch #:connection-status
@@ -248,13 +250,14 @@
                               #:iam-properties-input #:iam-properties-output
                               #:iam-properties-patch #:iam-role-arn
                               #:iam-user-profile-details #:import #:import-list
-                              #:in-expression #:inventory-search-scope
-                              #:is-not-null-expression #:is-null-expression
-                              #:item-glossary-terms #:job-run-details
-                              #:job-run-error #:job-run-mode #:job-run-status
-                              #:job-run-summaries #:job-run-summary #:job-type
-                              #:kms-key-arn #:lake-formation-configuration
-                              #:last-name #:less-than-expression
+                              #:in-expression #:internal-server-exception
+                              #:inventory-search-scope #:is-not-null-expression
+                              #:is-null-expression #:item-glossary-terms
+                              #:job-run-details #:job-run-error #:job-run-mode
+                              #:job-run-status #:job-run-summaries
+                              #:job-run-summary #:job-type #:kms-key-arn
+                              #:lake-formation-configuration #:last-name
+                              #:less-than-expression
                               #:less-than-or-equal-to-expression
                               #:like-expression #:lineage-event
                               #:lineage-event-error-message
@@ -376,7 +379,8 @@
                               #:relational-filter-configurations
                               #:remove-entity-owner #:remove-policy-grant
                               #:request-reason #:required-metadata-form-list
-                              #:resource #:resource-list #:revision
+                              #:resource #:resource-list
+                              #:resource-not-found-exception #:revision
                               #:revision-input #:revoke-subscription #:role-arn
                               #:row-filter #:row-filter-configuration
                               #:row-filter-expression #:row-filter-list #:rule
@@ -407,9 +411,11 @@
                               #:search-user-profiles #:security-group-id-list
                               #:self-grant-status #:self-grant-status-detail
                               #:self-grant-status-details
-                              #:self-grant-status-output #:short-description
-                              #:single-sign-on #:smithy #:sort-field-connection
-                              #:sort-field-project #:sort-key #:sort-order
+                              #:self-grant-status-output
+                              #:service-quota-exceeded-exception
+                              #:short-description #:single-sign-on #:smithy
+                              #:sort-field-connection #:sort-field-project
+                              #:sort-key #:sort-order
                               #:spark-emr-properties-input
                               #:spark-emr-properties-output
                               #:spark-emr-properties-patch #:spark-glue-args
@@ -448,6 +454,7 @@
                               #:tag-key-list #:tag-resource #:tag-value #:tags
                               #:target-entity-type #:task-id #:task-status
                               #:term-relations #:text-match-item #:text-matches
+                              #:throttling-exception
                               #:time-series-data-point-form-input
                               #:time-series-data-point-form-input-list
                               #:time-series-data-point-form-output
@@ -458,11 +465,12 @@
                               #:time-series-entity-type #:time-series-form-name
                               #:timezone #:title #:token-url-parameters-map
                               #:topic #:tracking-asset-arns #:tracking-assets
-                              #:type-name #:types-search-scope #:unit
-                              #:untag-resource #:update-asset-filter
-                              #:update-connection #:update-data-source
-                              #:update-domain #:update-domain-unit
-                              #:update-environment #:update-environment-action
+                              #:type-name #:types-search-scope
+                              #:unauthorized-exception #:unit #:untag-resource
+                              #:update-asset-filter #:update-connection
+                              #:update-data-source #:update-domain
+                              #:update-domain-unit #:update-environment
+                              #:update-environment-action
                               #:update-environment-profile #:update-glossary
                               #:update-glossary-term #:update-group-profile
                               #:update-project #:update-project-profile
@@ -479,8 +487,13 @@
                               #:user-profile-summaries #:user-profile-summary
                               #:user-profile-type #:user-search-text
                               #:user-search-type #:user-type #:username
-                              #:username-password))
+                              #:username-password #:validation-exception
+                              #:datazone-error))
 (common-lisp:in-package #:pira/datazone)
+
+(common-lisp:define-condition datazone-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service data-zone :shape-name "DataZone" :version
                                    "2018-05-10" :title "Amazon DataZone"
@@ -701,7 +714,7 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class datazone-error))
 
 (smithy/sdk/shapes:define-type action-link smithy/sdk/smithy-types:string)
 
@@ -1411,7 +1424,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class datazone-error))
 
 (smithy/sdk/shapes:define-structure connection-credentials common-lisp:nil
                                     ((access-key-id :target-type
@@ -6551,7 +6564,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class datazone-error))
 
 (smithy/sdk/shapes:define-enum inventory-search-scope
     common-lisp:nil
@@ -9120,7 +9133,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class datazone-error))
 
 (smithy/sdk/shapes:define-type revision smithy/sdk/smithy-types:string)
 
@@ -9657,7 +9670,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class datazone-error))
 
 (smithy/sdk/shapes:define-type short-description smithy/sdk/smithy-types:string)
 
@@ -10373,7 +10386,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class datazone-error))
 
 (smithy/sdk/shapes:define-structure time-series-data-point-form-input
                                     common-lisp:nil
@@ -10566,7 +10579,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class datazone-error))
 
 (smithy/sdk/shapes:define-structure unit common-lisp:nil common-lisp:nil
                                     (:shape-name "Unit"))
@@ -11622,7 +11635,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class datazone-error))
 
 (smithy/sdk/operation:define-operation accept-predictions :shape-name
                                        "AcceptPredictions" :input

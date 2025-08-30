@@ -1,8 +1,9 @@
 (uiop/package:define-package #:pira/redshift-serverless (:use)
-                             (:export #:account-id-list #:amazon-resource-name
+                             (:export #:access-denied-exception
+                              #:account-id-list #:amazon-resource-name
                               #:association #:association-list #:capacity
                               #:charge #:config-parameter
-                              #:config-parameter-list
+                              #:config-parameter-list #:conflict-exception
                               #:convert-recovery-point-to-snapshot
                               #:create-custom-domain-association
                               #:create-endpoint-access #:create-namespace
@@ -29,8 +30,12 @@
                               #:get-scheduled-action #:get-snapshot
                               #:get-table-restore-status #:get-track
                               #:get-usage-limit #:get-workgroup #:iam-role-arn
-                              #:iam-role-arn-list #:ip-address-type
-                              #:kms-key-id #:list-custom-domain-associations
+                              #:iam-role-arn-list
+                              #:insufficient-capacity-exception
+                              #:internal-server-exception
+                              #:invalid-pagination-exception #:ip-address-type
+                              #:ipv6cidr-block-not-found-exception #:kms-key-id
+                              #:list-custom-domain-associations
                               #:list-endpoint-access #:list-managed-workgroups
                               #:list-namespaces #:list-recovery-points
                               #:list-reservation-offerings #:list-reservations
@@ -60,7 +65,8 @@
                               #:reservation-offering
                               #:reservation-offerings-list
                               #:reservation-resource #:reservations-list
-                              #:resource-policy #:restore-from-recovery-point
+                              #:resource-not-found-exception #:resource-policy
+                              #:restore-from-recovery-point
                               #:restore-from-snapshot
                               #:restore-table-from-recovery-point
                               #:restore-table-from-snapshot #:schedule
@@ -70,7 +76,8 @@
                               #:scheduled-action-response
                               #:scheduled-actions-list #:security-group-id
                               #:security-group-id-list #:serverless-track
-                              #:snapshot #:snapshot-copy-configuration
+                              #:service-quota-exceeded-exception #:snapshot
+                              #:snapshot-copy-configuration
                               #:snapshot-copy-configurations #:snapshot-list
                               #:snapshot-name-prefix #:snapshot-resource
                               #:snapshot-status #:source-arn #:state #:status
@@ -78,8 +85,9 @@
                               #:table-restore-status
                               #:table-restore-status-list #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-value #:target-action #:track-list
-                              #:track-name #:untag-resource
+                              #:tag-value #:target-action
+                              #:throttling-exception #:too-many-tags-exception
+                              #:track-list #:track-name #:untag-resource
                               #:update-custom-domain-association
                               #:update-endpoint-access #:update-namespace
                               #:update-scheduled-action #:update-snapshot
@@ -89,14 +97,20 @@
                               #:usage-limit #:usage-limit-breach-action
                               #:usage-limit-period #:usage-limit-resource
                               #:usage-limit-usage-type #:usage-limits
-                              #:vpc-endpoint #:vpc-endpoint-list #:vpc-ids
+                              #:validation-exception #:vpc-endpoint
+                              #:vpc-endpoint-list #:vpc-ids
                               #:vpc-security-group-id
                               #:vpc-security-group-id-list
                               #:vpc-security-group-membership
                               #:vpc-security-group-membership-list #:workgroup
                               #:workgroup-list #:workgroup-name
-                              #:workgroup-resource #:workgroup-status))
+                              #:workgroup-resource #:workgroup-status
+                              #:redshift-serverless-error))
 (common-lisp:in-package #:pira/redshift-serverless)
+
+(common-lisp:define-condition redshift-serverless-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service redshift-serverless :shape-name
                                    "RedshiftServerless" :version "2021-04-21"
@@ -130,7 +144,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class redshift-serverless-error))
 
 (smithy/sdk/shapes:define-list account-id-list :member
                                smithy/sdk/smithy-types:string)
@@ -179,7 +194,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class redshift-serverless-error))
 
 (smithy/sdk/shapes:define-input convert-recovery-point-to-snapshot-request
                                 common-lisp:nil
@@ -877,21 +893,24 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InsufficientCapacityException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class redshift-serverless-error))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class redshift-serverless-error))
 
 (smithy/sdk/shapes:define-error invalid-pagination-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidPaginationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class redshift-serverless-error))
 
 (smithy/sdk/shapes:define-type ip-address-type smithy/sdk/smithy-types:string)
 
@@ -901,7 +920,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "Ipv6CidrBlockNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class redshift-serverless-error))
 
 (smithy/sdk/shapes:define-type kms-key-id smithy/sdk/smithy-types:string)
 
@@ -1466,7 +1486,8 @@ common-lisp:nil
                                   amazon-resource-name :member-name
                                   "resourceName"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class redshift-serverless-error))
 
 (smithy/sdk/shapes:define-structure resource-policy common-lisp:nil
                                     ((resource-arn :target-type
@@ -1705,7 +1726,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class redshift-serverless-error))
 
 (smithy/sdk/shapes:define-structure snapshot common-lisp:nil
                                     ((namespace-name :target-type
@@ -1927,7 +1949,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class redshift-serverless-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type
@@ -1937,7 +1960,8 @@ common-lisp:nil
                                   amazon-resource-name :member-name
                                   "resourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class redshift-serverless-error))
 
 (smithy/sdk/shapes:define-list track-list :member serverless-track)
 
@@ -2210,7 +2234,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class redshift-serverless-error))
 
 (smithy/sdk/shapes:define-structure vpc-endpoint common-lisp:nil
                                     ((vpc-endpoint-id :target-type

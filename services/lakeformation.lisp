@@ -1,8 +1,9 @@
 (uiop/package:define-package #:pira/lakeformation (:use)
                              (:export #:awslake-formation
-                              #:access-key-id-string #:add-lftags-to-resource
-                              #:add-object-input #:additional-context-map
-                              #:all-rows-wildcard #:application-arn
+                              #:access-denied-exception #:access-key-id-string
+                              #:add-lftags-to-resource #:add-object-input
+                              #:additional-context-map #:all-rows-wildcard
+                              #:already-exists-exception #:application-arn
                               #:application-status
                               #:assume-decorated-role-with-saml #:audit-context
                               #:audit-context-string
@@ -18,7 +19,8 @@
                               #:column-lftag #:column-lftags-list
                               #:column-names #:column-wildcard
                               #:commit-transaction #:comparison-operator
-                              #:condition #:context-key #:context-value
+                              #:concurrent-modification-exception #:condition
+                              #:context-key #:context-value
                               #:create-data-cells-filter #:create-lftag
                               #:create-lftag-expression
                               #:create-lake-formation-identity-center-configuration
@@ -40,9 +42,10 @@
                               #:describe-lake-formation-identity-center-configuration
                               #:describe-resource #:describe-transaction
                               #:description-string #:details-map #:etag-string
-                              #:enable-status #:error-detail
-                              #:error-message-string #:execution-statistics
-                              #:expiration-timestamp #:expression
+                              #:enable-status #:entity-not-found-exception
+                              #:error-detail #:error-message-string
+                              #:execution-statistics #:expiration-timestamp
+                              #:expired-exception #:expression
                               #:expression-string #:extend-transaction
                               #:external-filtering-configuration
                               #:field-name-string #:filter-condition
@@ -62,11 +65,13 @@
                               #:get-work-unit-results-request-work-unit-id-long
                               #:get-work-units
                               #:get-work-units-request-query-id-string
-                              #:grant-permissions #:hash-string #:iamrole-arn
-                              #:iamsamlprovider-arn #:identifier
-                              #:identity-center-instance-arn #:identity-string
-                              #:key-string #:lftag #:lftag-error #:lftag-errors
-                              #:lftag-expression #:lftag-expression-resource
+                              #:glue-encryption-exception #:grant-permissions
+                              #:hash-string #:iamrole-arn #:iamsamlprovider-arn
+                              #:identifier #:identity-center-instance-arn
+                              #:identity-string #:internal-service-exception
+                              #:invalid-input-exception #:key-string #:lftag
+                              #:lftag-error #:lftag-errors #:lftag-expression
+                              #:lftag-expression-resource
                               #:lftag-expressions-list #:lftag-key
                               #:lftag-key-resource #:lftag-pair
                               #:lftag-policy-resource #:lftag-value
@@ -81,13 +86,15 @@
                               #:name-string #:nullable-boolean
                               #:nullable-string #:number-of-bytes
                               #:number-of-items #:number-of-milliseconds
-                              #:object-size #:optimizer-type #:page-size
-                              #:parameters-map #:parameters-map-value
-                              #:partition-objects #:partition-value-list
-                              #:partition-value-string #:partition-values-list
+                              #:object-size #:operation-timeout-exception
+                              #:optimizer-type #:page-size #:parameters-map
+                              #:parameters-map-value #:partition-objects
+                              #:partition-value-list #:partition-value-string
+                              #:partition-values-list
                               #:partitioned-table-objects-list #:path-string
                               #:path-string-list #:permission #:permission-list
                               #:permission-type #:permission-type-list
+                              #:permission-type-mismatch-exception
                               #:planning-statistics #:predicate-string
                               #:principal-permissions
                               #:principal-permissions-list
@@ -100,14 +107,18 @@
                               #:ramresource-share-arn #:register-resource
                               #:remove-lftags-from-resource #:resource
                               #:resource-arn-string #:resource-info
-                              #:resource-info-list #:resource-share-list
-                              #:resource-share-type #:resource-type #:result
-                              #:result-stream #:revoke-permissions #:row-filter
+                              #:resource-info-list
+                              #:resource-not-ready-exception
+                              #:resource-number-limit-exceeded-exception
+                              #:resource-share-list #:resource-share-type
+                              #:resource-type #:result #:result-stream
+                              #:revoke-permissions #:row-filter
                               #:samlassertion-string #:scope-target
                               #:scope-targets #:search-databases-by-lftags
                               #:search-page-size #:search-tables-by-lftags
                               #:secret-access-key-string #:session-token-string
                               #:start-query-planning #:start-transaction
+                              #:statistics-not-ready-yet-exception
                               #:storage-optimizer #:storage-optimizer-config
                               #:storage-optimizer-config-key
                               #:storage-optimizer-config-map
@@ -120,7 +131,10 @@
                               #:table-object-list #:table-resource
                               #:table-wildcard #:table-with-columns-resource
                               #:tag-value-list #:tagged-database #:tagged-table
-                              #:timestamp #:token #:token-string
+                              #:throttled-exception #:timestamp #:token
+                              #:token-string #:transaction-canceled-exception
+                              #:transaction-commit-in-progress-exception
+                              #:transaction-committed-exception
                               #:transaction-description
                               #:transaction-description-list
                               #:transaction-id-string #:transaction-status
@@ -135,8 +149,14 @@
                               #:virtual-object #:virtual-object-list
                               #:work-unit-id-long #:work-unit-range
                               #:work-unit-range-list #:work-unit-token-string
-                              #:write-operation #:write-operation-list))
+                              #:work-units-not-ready-yet-exception
+                              #:write-operation #:write-operation-list
+                              #:lakeformation-error))
 (common-lisp:in-package #:pira/lakeformation)
+
+(common-lisp:define-condition lakeformation-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awslake-formation :shape-name
                                    "AWSLakeFormation" :version "2017-03-31"
@@ -201,7 +221,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-type access-key-id-string
                                smithy/sdk/smithy-types:string)
@@ -244,7 +265,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "AlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-type application-arn smithy/sdk/smithy-types:string)
 
@@ -434,7 +456,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-structure condition common-lisp:nil
                                     ((expression :target-type expression-string
@@ -810,7 +833,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "EntityNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-structure error-detail common-lisp:nil
                                     ((error-code :target-type name-string
@@ -843,7 +867,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "ExpiredException")
-                                (:error-code 410))
+                                (:error-code 410)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-list expression :member lftag)
 
@@ -1198,7 +1223,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "GlueEncryptionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-input grant-permissions-request common-lisp:nil
                                 ((catalog-id :target-type catalog-id-string
@@ -1240,13 +1266,15 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-error invalid-input-exception common-lisp:nil
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-type key-string smithy/sdk/smithy-types:string)
 
@@ -1541,7 +1569,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "OperationTimeoutException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-enum optimizer-type
     common-lisp:nil
@@ -1619,7 +1648,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "PermissionTypeMismatchException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-structure planning-statistics common-lisp:nil
                                     ((estimated-data-to-scan-bytes :target-type
@@ -1835,7 +1865,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotReadyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-error resource-number-limit-exceeded-exception
                                 common-lisp:nil
@@ -1843,7 +1874,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ResourceNumberLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-list resource-share-list :member
                                ramresource-share-arn)
@@ -1984,7 +2016,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "StatisticsNotReadyYetException")
-                                (:error-code 420))
+                                (:error-code 420)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-structure storage-optimizer common-lisp:nil
                                     ((storage-optimizer-type :target-type
@@ -2099,7 +2132,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "ThrottledException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -2111,7 +2145,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "TransactionCanceledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-error transaction-commit-in-progress-exception
                                 common-lisp:nil
@@ -2119,13 +2154,15 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "TransactionCommitInProgressException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-error transaction-committed-exception common-lisp:nil
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "TransactionCommittedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-structure transaction-description common-lisp:nil
                                     ((transaction-id :target-type
@@ -2333,7 +2370,8 @@
                                 ((message :target-type message-string
                                   :member-name "Message"))
                                 (:shape-name "WorkUnitsNotReadyYetException")
-                                (:error-code 420))
+                                (:error-code 420)
+                                (:base-class lakeformation-error))
 
 (smithy/sdk/shapes:define-structure write-operation common-lisp:nil
                                     ((add-object :target-type add-object-input

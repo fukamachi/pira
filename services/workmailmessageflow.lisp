@@ -1,12 +1,19 @@
 (uiop/package:define-package #:pira/workmailmessageflow (:use)
                              (:export #:get-raw-message-content
                               #:giraffe-message-in-transit-service
-                              #:put-raw-message-content #:raw-message-content
-                              #:s3reference #:error-message
-                              #:message-content-blob #:message-id-type
-                              #:s3bucket-id-type #:s3key-id-type
-                              #:s3version-type))
+                              #:invalid-content-location #:message-frozen
+                              #:message-rejected #:put-raw-message-content
+                              #:raw-message-content
+                              #:resource-not-found-exception #:s3reference
+                              #:error-message #:message-content-blob
+                              #:message-id-type #:s3bucket-id-type
+                              #:s3key-id-type #:s3version-type
+                              #:workmailmessageflow-error))
 (common-lisp:in-package #:pira/workmailmessageflow)
+
+(common-lisp:define-condition workmailmessageflow-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service giraffe-message-in-transit-service
                                    :shape-name "GiraffeMessageInTransitService"
@@ -46,18 +53,21 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidContentLocation")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workmailmessageflow-error))
 
 (smithy/sdk/shapes:define-error message-frozen common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "MessageFrozen") (:error-code 400))
+                                (:shape-name "MessageFrozen") (:error-code 400)
+                                (:base-class workmailmessageflow-error))
 
 (smithy/sdk/shapes:define-error message-rejected common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "MessageRejected")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class workmailmessageflow-error))
 
 (smithy/sdk/shapes:define-input put-raw-message-content-request common-lisp:nil
                                 ((message-id :target-type message-id-type
@@ -82,7 +92,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class workmailmessageflow-error))
 
 (smithy/sdk/shapes:define-structure s3reference common-lisp:nil
                                     ((bucket :target-type s3bucket-id-type

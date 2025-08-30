@@ -2,7 +2,8 @@
                              (:export
                               #:any-scale-scaling-planner-frontend-service
                               #:application-source #:application-sources
-                              #:cooldown #:create-scaling-plan
+                              #:concurrent-update-exception #:cooldown
+                              #:create-scaling-plan
                               #:customized-load-metric-specification
                               #:customized-scaling-metric-specification
                               #:datapoint #:datapoints #:delete-scaling-plan
@@ -11,12 +12,16 @@
                               #:disable-dynamic-scaling #:disable-scale-in
                               #:error-message #:forecast-data-type
                               #:get-scaling-plan-resource-forecast-data
-                              #:load-metric-type #:max-results
-                              #:metric-dimension #:metric-dimension-name
-                              #:metric-dimension-value #:metric-dimensions
-                              #:metric-name #:metric-namespace #:metric-scale
+                              #:internal-service-exception
+                              #:invalid-next-token-exception
+                              #:limit-exceeded-exception #:load-metric-type
+                              #:max-results #:metric-dimension
+                              #:metric-dimension-name #:metric-dimension-value
+                              #:metric-dimensions #:metric-name
+                              #:metric-namespace #:metric-scale
                               #:metric-statistic #:metric-unit #:next-token
-                              #:policy-name #:policy-type
+                              #:object-not-found-exception #:policy-name
+                              #:policy-type
                               #:predefined-load-metric-specification
                               #:predefined-scaling-metric-specification
                               #:predictive-scaling-max-capacity-behavior
@@ -35,9 +40,15 @@
                               #:service-namespace #:tag-filter #:tag-filters
                               #:tag-values #:target-tracking-configuration
                               #:target-tracking-configurations #:timestamp-type
-                              #:update-scaling-plan #:xml-string
-                              #:xml-string-max-len128 #:xml-string-max-len256))
+                              #:update-scaling-plan #:validation-exception
+                              #:xml-string #:xml-string-max-len128
+                              #:xml-string-max-len256
+                              #:auto-scaling-plans-error))
 (common-lisp:in-package #:pira/auto-scaling-plans)
+
+(common-lisp:define-condition auto-scaling-plans-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service any-scale-scaling-planner-frontend-service
                                    :shape-name
@@ -79,7 +90,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentUpdateException")
                                 (:error-name "ConcurrentUpdateException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class auto-scaling-plans-error))
 
 (smithy/sdk/shapes:define-type cooldown smithy/sdk/smithy-types:integer)
 
@@ -261,21 +273,24 @@
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceException")
                                 (:error-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class auto-scaling-plans-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
                                 (:error-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class auto-scaling-plans-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
                                 (:error-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class auto-scaling-plans-error))
 
 (smithy/sdk/shapes:define-enum load-metric-type
     common-lisp:nil
@@ -326,7 +341,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ObjectNotFoundException")
                                 (:error-name "ObjectNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class auto-scaling-plans-error))
 
 (smithy/sdk/shapes:define-type policy-name smithy/sdk/smithy-types:string)
 
@@ -655,7 +671,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
                                 (:error-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class auto-scaling-plans-error))
 
 (smithy/sdk/shapes:define-type xml-string smithy/sdk/smithy-types:string)
 

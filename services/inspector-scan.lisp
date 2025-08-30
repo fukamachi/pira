@@ -1,11 +1,18 @@
 (uiop/package:define-package #:pira/inspector-scan (:use)
-                             (:export #:inspector-scan
+                             (:export #:access-denied-exception
+                              #:inspector-scan #:internal-server-exception
                               #:internal-server-exception-reason
                               #:output-format #:sbom #:scan-sbom
+                              #:throttling-exception #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-fields
-                              #:validation-exception-reason))
+                              #:validation-exception-reason
+                              #:inspector-scan-error))
 (common-lisp:in-package #:pira/inspector-scan)
+
+(common-lisp:define-condition inspector-scan-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service inspector-scan :shape-name "InspectorScan"
                                    :version "2023-08-08" :title
@@ -26,7 +33,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class inspector-scan-error))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil
                                 ((message :target-type
@@ -40,7 +48,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class inspector-scan-error))
 
 (smithy/sdk/shapes:define-enum internal-server-exception-reason
     common-lisp:nil
@@ -74,7 +83,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class inspector-scan-error))
 
 (smithy/sdk/shapes:define-error validation-exception common-lisp:nil
                                 ((message :target-type
@@ -87,7 +97,8 @@
                                   validation-exception-fields :member-name
                                   "fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class inspector-scan-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

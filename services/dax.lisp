@@ -1,9 +1,12 @@
 (uiop/package:define-package #:pira/dax (:use)
                              (:export #:amazon-daxv3 #:availability-zone-list
                               #:aws-query-error-message #:change-type #:cluster
+                              #:cluster-already-exists-fault
                               #:cluster-endpoint-encryption-type #:cluster-list
-                              #:cluster-name-list #:create-cluster
-                              #:create-parameter-group #:create-subnet-group
+                              #:cluster-name-list #:cluster-not-found-fault
+                              #:cluster-quota-for-customer-exceeded-fault
+                              #:create-cluster #:create-parameter-group
+                              #:create-subnet-group
                               #:decrease-replication-factor #:delete-cluster
                               #:delete-parameter-group #:delete-subnet-group
                               #:describe-clusters #:describe-default-parameters
@@ -11,14 +14,27 @@
                               #:describe-parameters #:describe-subnet-groups
                               #:endpoint #:event #:event-list
                               #:exception-message #:increase-replication-factor
-                              #:integer #:integer-optional #:is-modifiable
-                              #:key-list #:list-tags #:node
+                              #:insufficient-cluster-capacity-fault #:integer
+                              #:integer-optional #:invalid-arnfault
+                              #:invalid-cluster-state-fault
+                              #:invalid-parameter-combination-exception
+                              #:invalid-parameter-group-state-fault
+                              #:invalid-parameter-value-exception
+                              #:invalid-subnet #:invalid-vpcnetwork-state-fault
+                              #:is-modifiable #:key-list #:list-tags #:node
                               #:node-identifier-list #:node-list
+                              #:node-not-found-fault
+                              #:node-quota-for-cluster-exceeded-fault
+                              #:node-quota-for-customer-exceeded-fault
                               #:node-type-specific-value
                               #:node-type-specific-value-list
                               #:notification-configuration #:parameter
-                              #:parameter-group #:parameter-group-list
+                              #:parameter-group
+                              #:parameter-group-already-exists-fault
+                              #:parameter-group-list
                               #:parameter-group-name-list
+                              #:parameter-group-not-found-fault
+                              #:parameter-group-quota-exceeded-fault
                               #:parameter-group-status #:parameter-list
                               #:parameter-name-value
                               #:parameter-name-value-list #:parameter-type
@@ -26,14 +42,27 @@
                               #:ssespecification #:ssestatus
                               #:security-group-identifier-list
                               #:security-group-membership
-                              #:security-group-membership-list #:source-type
+                              #:security-group-membership-list
+                              #:service-linked-role-not-found-fault
+                              #:service-quota-exceeded-exception #:source-type
                               #:string #:subnet #:subnet-group
-                              #:subnet-group-list #:subnet-group-name-list
-                              #:subnet-identifier-list #:subnet-list #:tstamp
-                              #:tag #:tag-list #:tag-resource #:untag-resource
-                              #:update-cluster #:update-parameter-group
-                              #:update-subnet-group))
+                              #:subnet-group-already-exists-fault
+                              #:subnet-group-in-use-fault #:subnet-group-list
+                              #:subnet-group-name-list
+                              #:subnet-group-not-found-fault
+                              #:subnet-group-quota-exceeded-fault
+                              #:subnet-identifier-list #:subnet-in-use
+                              #:subnet-list #:subnet-quota-exceeded-fault
+                              #:tstamp #:tag #:tag-list #:tag-not-found-fault
+                              #:tag-quota-per-resource-exceeded #:tag-resource
+                              #:untag-resource #:update-cluster
+                              #:update-parameter-group #:update-subnet-group
+                              #:dax-error))
 (common-lisp:in-package #:pira/dax)
+
+(common-lisp:define-condition dax-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-daxv3 :shape-name "AmazonDAXV3"
                                    :version "2017-04-19" :title
@@ -130,7 +159,7 @@
                                   :member-name "message"))
                                 (:shape-name "ClusterAlreadyExistsFault")
                                 (:error-name "ClusterAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-enum cluster-endpoint-encryption-type
     common-lisp:nil
@@ -146,7 +175,7 @@
                                   :member-name "message"))
                                 (:shape-name "ClusterNotFoundFault")
                                 (:error-name "ClusterNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error cluster-quota-for-customer-exceeded-fault
                                 common-lisp:nil
@@ -155,7 +184,7 @@
                                 (:shape-name
                                  "ClusterQuotaForCustomerExceededFault")
                                 (:error-name "ClusterQuotaForCustomerExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-input create-cluster-request common-lisp:nil
                                 ((cluster-name :target-type string :required
@@ -452,7 +481,7 @@
                                 (:shape-name
                                  "InsufficientClusterCapacityFault")
                                 (:error-name "InsufficientClusterCapacity")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
 
@@ -462,14 +491,15 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidARNFault")
-                                (:error-name "InvalidARN") (:error-code 400))
+                                (:error-name "InvalidARN") (:error-code 400)
+                                (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error invalid-cluster-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidClusterStateFault")
                                 (:error-name "InvalidClusterState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-combination-exception
                                 common-lisp:nil
@@ -478,7 +508,7 @@
                                 (:shape-name
                                  "InvalidParameterCombinationException")
                                 (:error-name "InvalidParameterCombination")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-group-state-fault
                                 common-lisp:nil
@@ -486,7 +516,7 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterGroupStateFault")
                                 (:error-name "InvalidParameterGroupState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
@@ -494,20 +524,21 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterValueException")
                                 (:error-name "InvalidParameterValue")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error invalid-subnet common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSubnet")
-                                (:error-name "InvalidSubnet") (:error-code 400))
+                                (:error-name "InvalidSubnet") (:error-code 400)
+                                (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error invalid-vpcnetwork-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidVPCNetworkStateFault")
                                 (:error-name "InvalidVPCNetworkStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-enum is-modifiable
     common-lisp:nil
@@ -555,7 +586,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "NodeNotFoundFault")
-                                (:error-name "NodeNotFound") (:error-code 404))
+                                (:error-name "NodeNotFound") (:error-code 404)
+                                (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error node-quota-for-cluster-exceeded-fault
                                 common-lisp:nil
@@ -564,7 +596,7 @@
                                 (:shape-name
                                  "NodeQuotaForClusterExceededFault")
                                 (:error-name "NodeQuotaForClusterExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error node-quota-for-customer-exceeded-fault
                                 common-lisp:nil
@@ -573,7 +605,7 @@
                                 (:shape-name
                                  "NodeQuotaForCustomerExceededFault")
                                 (:error-name "NodeQuotaForCustomerExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-structure node-type-specific-value common-lisp:nil
                                     ((node-type :target-type string
@@ -631,7 +663,7 @@
                                 (:shape-name
                                  "ParameterGroupAlreadyExistsFault")
                                 (:error-name "ParameterGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-list parameter-group-list :member parameter-group)
 
@@ -642,7 +674,7 @@
                                   :member-name "message"))
                                 (:shape-name "ParameterGroupNotFoundFault")
                                 (:error-name "ParameterGroupNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error parameter-group-quota-exceeded-fault
                                 common-lisp:nil
@@ -651,7 +683,7 @@
                                 (:shape-name
                                  "ParameterGroupQuotaExceededFault")
                                 (:error-name "ParameterGroupQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-structure parameter-group-status common-lisp:nil
                                     ((parameter-group-name :target-type string
@@ -731,13 +763,13 @@
                                   :member-name "message"))
                                 (:shape-name "ServiceLinkedRoleNotFoundFault")
                                 (:error-name "ServiceLinkedRoleNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error service-quota-exceeded-exception
                                 common-lisp:nil common-lisp:nil
                                 (:shape-name "ServiceQuotaExceededException")
                                 (:error-name "ServiceQuotaExceeded")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-enum source-type
     common-lisp:nil
@@ -772,14 +804,14 @@
                                   :member-name "message"))
                                 (:shape-name "SubnetGroupAlreadyExistsFault")
                                 (:error-name "SubnetGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error subnet-group-in-use-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SubnetGroupInUseFault")
                                 (:error-name "SubnetGroupInUse")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-list subnet-group-list :member subnet-group)
 
@@ -790,7 +822,7 @@
                                   :member-name "message"))
                                 (:shape-name "SubnetGroupNotFoundFault")
                                 (:error-name "SubnetGroupNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error subnet-group-quota-exceeded-fault
                                 common-lisp:nil
@@ -798,7 +830,7 @@
                                   :member-name "message"))
                                 (:shape-name "SubnetGroupQuotaExceededFault")
                                 (:error-name "SubnetGroupQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-list subnet-identifier-list :member string)
 
@@ -806,7 +838,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SubnetInUse")
-                                (:error-name "SubnetInUse") (:error-code 400))
+                                (:error-name "SubnetInUse") (:error-code 400)
+                                (:base-class dax-error))
 
 (smithy/sdk/shapes:define-list subnet-list :member subnet)
 
@@ -815,7 +848,7 @@
                                   :member-name "message"))
                                 (:shape-name "SubnetQuotaExceededFault")
                                 (:error-name "SubnetQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-type tstamp smithy/sdk/smithy-types:timestamp)
 
@@ -832,14 +865,15 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TagNotFoundFault")
-                                (:error-name "TagNotFound") (:error-code 404))
+                                (:error-name "TagNotFound") (:error-code 404)
+                                (:base-class dax-error))
 
 (smithy/sdk/shapes:define-error tag-quota-per-resource-exceeded common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TagQuotaPerResourceExceeded")
                                 (:error-name "TagQuotaPerResourceExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dax-error))
 
 (smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
                                 ((resource-name :target-type string :required

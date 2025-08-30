@@ -1,23 +1,34 @@
 (uiop/package:define-package #:pira/ebs (:use)
-                             (:export #:access-denied-exception-reason #:block
+                             (:export #:access-denied-exception
+                              #:access-denied-exception-reason #:block
                               #:block-data #:block-index #:block-size
                               #:block-token #:blocks #:boolean #:changed-block
                               #:changed-blocks #:changed-blocks-count
                               #:checksum #:checksum-aggregation-method
                               #:checksum-algorithm #:complete-snapshot
-                              #:data-length #:description #:ebs #:error-message
-                              #:get-snapshot-block #:idempotency-token
+                              #:concurrent-limit-exceeded-exception
+                              #:conflict-exception #:data-length #:description
+                              #:ebs #:error-message #:get-snapshot-block
+                              #:idempotency-token #:internal-server-exception
                               #:kms-key-arn #:list-changed-blocks
                               #:list-snapshot-blocks #:max-results #:owner-id
                               #:page-token #:progress #:put-snapshot-block
+                              #:request-throttled-exception
                               #:request-throttled-exception-reason
+                              #:resource-not-found-exception
                               #:resource-not-found-exception-reason #:ssetype
+                              #:service-quota-exceeded-exception
                               #:service-quota-exceeded-exception-reason
                               #:snapshot-id #:start-snapshot #:status #:tag
                               #:tag-key #:tag-value #:tags #:time-stamp
-                              #:timeout #:validation-exception-reason
-                              #:volume-size))
+                              #:timeout #:validation-exception
+                              #:validation-exception-reason #:volume-size
+                              #:ebs-error))
 (common-lisp:in-package #:pira/ebs)
+
+(common-lisp:define-condition ebs-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ebs :shape-name "Ebs" :version "2019-11-02"
                                    :title "Amazon Elastic Block Store"
@@ -42,7 +53,7 @@
                                   access-denied-exception-reason :required
                                   common-lisp:t :member-name "Reason"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class ebs-error))
 
 (smithy/sdk/shapes:define-enum access-denied-exception-reason
     common-lisp:nil
@@ -126,13 +137,13 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ConcurrentLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ebs-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class ebs-error))
 
 (smithy/sdk/shapes:define-type data-length smithy/sdk/smithy-types:integer)
 
@@ -173,7 +184,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class ebs-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -285,7 +296,7 @@
                                   request-throttled-exception-reason
                                   :member-name "Reason"))
                                 (:shape-name "RequestThrottledException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ebs-error))
 
 (smithy/sdk/shapes:define-enum request-throttled-exception-reason
     common-lisp:nil
@@ -300,7 +311,7 @@
                                   resource-not-found-exception-reason
                                   :member-name "Reason"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class ebs-error))
 
 (smithy/sdk/shapes:define-enum resource-not-found-exception-reason
     common-lisp:nil
@@ -323,7 +334,7 @@
                                   service-quota-exceeded-exception-reason
                                   :member-name "Reason"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class ebs-error))
 
 (smithy/sdk/shapes:define-enum service-quota-exceeded-exception-reason
     common-lisp:nil
@@ -404,7 +415,7 @@
                                   validation-exception-reason :member-name
                                   "Reason"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ebs-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-reason
     common-lisp:nil

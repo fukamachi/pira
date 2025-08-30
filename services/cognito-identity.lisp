@@ -8,12 +8,15 @@
                               #:cognito-identity-provider-list
                               #:cognito-identity-provider-name
                               #:cognito-identity-provider-token-check
+                              #:concurrent-modification-exception
                               #:create-identity-pool #:credentials #:date-type
                               #:delete-identities #:delete-identity-pool
                               #:describe-identity #:describe-identity-pool
                               #:developer-provider-name
+                              #:developer-user-already-registered-exception
                               #:developer-user-identifier
                               #:developer-user-identifier-list #:error-code
+                              #:external-service-exception
                               #:get-credentials-for-identity #:get-id
                               #:get-identity-pool-roles #:get-open-id-token
                               #:get-open-id-token-for-developer-identity
@@ -28,14 +31,20 @@
                               #:identity-pools-list #:identity-provider-id
                               #:identity-provider-name
                               #:identity-provider-token #:identity-providers
-                              #:list-identities #:list-identity-pools
-                              #:list-tags-for-resource #:logins-list
-                              #:logins-map #:lookup-developer-identity
-                              #:mapping-rule #:mapping-rule-match-type
-                              #:mapping-rules-list #:merge-developer-identities
-                              #:oidcprovider-list #:oidctoken #:pagination-key
-                              #:principal-tag-id #:principal-tag-value
-                              #:principal-tags #:query-limit #:role-mapping
+                              #:internal-error-exception
+                              #:invalid-identity-pool-configuration-exception
+                              #:invalid-parameter-exception
+                              #:limit-exceeded-exception #:list-identities
+                              #:list-identity-pools #:list-tags-for-resource
+                              #:logins-list #:logins-map
+                              #:lookup-developer-identity #:mapping-rule
+                              #:mapping-rule-match-type #:mapping-rules-list
+                              #:merge-developer-identities
+                              #:not-authorized-exception #:oidcprovider-list
+                              #:oidctoken #:pagination-key #:principal-tag-id
+                              #:principal-tag-value #:principal-tags
+                              #:query-limit #:resource-conflict-exception
+                              #:resource-not-found-exception #:role-mapping
                               #:role-mapping-map #:role-mapping-type
                               #:role-type #:roles-map
                               #:rules-configuration-type #:samlprovider-list
@@ -43,11 +52,17 @@
                               #:set-identity-pool-roles
                               #:set-principal-tag-attribute-map #:string
                               #:tag-keys-type #:tag-resource #:tag-value-type
-                              #:token-duration #:unlink-developer-identity
-                              #:unlink-identity #:unprocessed-identity-id
+                              #:token-duration #:too-many-requests-exception
+                              #:unlink-developer-identity #:unlink-identity
+                              #:unprocessed-identity-id
                               #:unprocessed-identity-id-list #:untag-resource
-                              #:update-identity-pool #:use-defaults))
+                              #:update-identity-pool #:use-defaults
+                              #:cognito-identity-error))
 (common-lisp:in-package #:pira/cognito-identity)
+
+(common-lisp:define-condition cognito-identity-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awscognito-identity-service :shape-name
                                    "AWSCognitoIdentityService" :version
@@ -131,7 +146,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-error))
 
 (smithy/sdk/shapes:define-input create-identity-pool-input common-lisp:nil
                                 ((identity-pool-name :target-type
@@ -217,7 +233,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeveloperUserAlreadyRegisteredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-error))
 
 (smithy/sdk/shapes:define-type developer-user-identifier
                                smithy/sdk/smithy-types:string)
@@ -234,7 +251,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ExternalServiceException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-error))
 
 (smithy/sdk/shapes:define-input get-credentials-for-identity-input
                                 common-lisp:nil
@@ -451,7 +469,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InternalErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class cognito-identity-error))
 
 (smithy/sdk/shapes:define-error invalid-identity-pool-configuration-exception
                                 common-lisp:nil
@@ -459,19 +478,22 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidIdentityPoolConfigurationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-error))
 
 (smithy/sdk/shapes:define-input list-identities-input common-lisp:nil
                                 ((identity-pool-id :target-type
@@ -606,7 +628,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "NotAuthorizedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cognito-identity-error))
 
 (smithy/sdk/shapes:define-list oidcprovider-list :member arnstring)
 
@@ -628,13 +651,15 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cognito-identity-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cognito-identity-error))
 
 (smithy/sdk/shapes:define-structure role-mapping common-lisp:nil
                                     ((type :target-type role-mapping-type
@@ -737,7 +762,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class cognito-identity-error))
 
 (smithy/sdk/shapes:define-input unlink-developer-identity-input common-lisp:nil
                                 ((identity-id :target-type identity-id

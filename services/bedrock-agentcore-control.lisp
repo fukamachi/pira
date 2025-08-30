@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/bedrock-agentcore-control (:use)
-                             (:export #:agent #:agent-artifact #:agent-endpoint
+                             (:export #:access-denied-exception #:agent
+                              #:agent-artifact #:agent-endpoint
                               #:agent-endpoint-description
                               #:agent-endpoint-resource #:agent-endpoint-status
                               #:agent-endpoints #:agent-resource
@@ -34,6 +35,8 @@
                               #:code-interpreter-status
                               #:code-interpreter-summaries
                               #:code-interpreter-summary
+                              #:concurrent-modification-exception
+                              #:conflict-exception
                               #:consolidation-configuration
                               #:container-configuration #:create-agent-runtime
                               #:create-agent-runtime-endpoint
@@ -58,7 +61,8 @@
                               #:custom-memory-strategy-input
                               #:custom-oauth2provider-config-input
                               #:custom-oauth2provider-config-output
-                              #:date-timestamp #:delete-agent-runtime
+                              #:date-timestamp #:decryption-failure
+                              #:delete-agent-runtime
                               #:delete-agent-runtime-endpoint
                               #:delete-api-key-credential-provider
                               #:delete-browser #:delete-code-interpreter
@@ -68,7 +72,8 @@
                               #:delete-oauth2credential-provider
                               #:delete-workload-identity #:description
                               #:discovery-url #:discovery-url-type
-                              #:endpoint-name #:environment-variable-key
+                              #:encryption-failure #:endpoint-name
+                              #:environment-variable-key
                               #:environment-variable-value
                               #:environment-variables-map #:exception-level
                               #:extraction-configuration
@@ -91,9 +96,9 @@
                               #:github-oauth2provider-config-output
                               #:google-oauth2provider-config-input
                               #:google-oauth2provider-config-output
-                              #:inline-payload #:issuer-url-type #:key-type
-                              #:kms-configuration #:kms-key-arn
-                              #:lambda-function-arn
+                              #:inline-payload #:internal-server-exception
+                              #:issuer-url-type #:key-type #:kms-configuration
+                              #:kms-key-arn #:lambda-function-arn
                               #:list-agent-runtime-endpoints
                               #:list-agent-runtime-versions
                               #:list-agent-runtimes
@@ -139,6 +144,8 @@
                               #:oauth2provider-config-output #:override-type
                               #:prompt #:protocol-configuration
                               #:recording-config #:required-properties
+                              #:resource-limit-exceeded-exception
+                              #:resource-not-found-exception
                               #:resource-oauth2return-url-list-type
                               #:resource-oauth2return-url-type #:resource-type
                               #:response-list-type #:response-type #:role-arn
@@ -155,7 +162,9 @@
                               #:semantic-override-configuration-input
                               #:semantic-override-consolidation-configuration-input
                               #:semantic-override-extraction-configuration-input
-                              #:server-protocol #:set-token-vault-cmk
+                              #:server-protocol #:service-exception
+                              #:service-quota-exceeded-exception
+                              #:set-token-vault-cmk
                               #:slack-oauth2provider-config-input
                               #:slack-oauth2provider-config-output
                               #:status-reason #:status-reasons
@@ -168,9 +177,11 @@
                               #:target-id #:target-max-results #:target-name
                               #:target-next-token #:target-status
                               #:target-summaries #:target-summary
+                              #:throttled-exception #:throttling-exception
                               #:token-endpoint-type #:token-vault-id-type
                               #:tool-definition #:tool-definitions
-                              #:tool-schema #:update-agent-runtime
+                              #:tool-schema #:unauthorized-exception
+                              #:update-agent-runtime
                               #:update-agent-runtime-endpoint
                               #:update-api-key-credential-provider
                               #:update-gateway #:update-gateway-target
@@ -183,6 +194,7 @@
                               #:user-preference-override-configuration-input
                               #:user-preference-override-consolidation-configuration-input
                               #:user-preference-override-extraction-configuration-input
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:workload-identity
@@ -191,8 +203,13 @@
                               #:workload-identity-details
                               #:workload-identity-list
                               #:workload-identity-name-type
-                              #:workload-identity-type))
+                              #:workload-identity-type
+                              #:bedrock-agentcore-control-error))
 (common-lisp:in-package #:pira/bedrock-agentcore-control)
+
+(common-lisp:define-condition bedrock-agentcore-control-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-bedrock-agent-core-control
                                    :shape-name "AmazonBedrockAgentCoreControl"
@@ -216,7 +233,8 @@
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-structure agent common-lisp:nil
                                     ((agent-runtime-arn :target-type
@@ -526,13 +544,15 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-union consolidation-configuration common-lisp:nil
                                 ((custom-consolidation-configuration
@@ -1097,7 +1117,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "DecryptionFailure")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-input delete-agent-runtime-endpoint-request
                                 common-lisp:nil
@@ -1287,7 +1308,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "EncryptionFailure")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-type endpoint-name smithy/sdk/smithy-types:string)
 
@@ -1832,7 +1854,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-type issuer-url-type smithy/sdk/smithy-types:string)
 
@@ -2516,13 +2539,15 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-list resource-oauth2return-url-list-type :member
                                resource-oauth2return-url-type)
@@ -2692,14 +2717,16 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-error service-quota-exceeded-exception
                                 common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-input set-token-vault-cmkrequest common-lisp:nil
                                 ((token-vault-id :target-type
@@ -2848,13 +2875,15 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottledException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-error throttling-exception common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-type token-endpoint-type
                                smithy/sdk/smithy-types:string)
@@ -2890,7 +2919,8 @@ common-lisp:nil
                                 ((message :target-type non-blank-string
                                   :member-name "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-input update-agent-runtime-endpoint-request
                                 common-lisp:nil
@@ -3319,7 +3349,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class bedrock-agentcore-control-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

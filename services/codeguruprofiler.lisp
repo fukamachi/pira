@@ -17,7 +17,7 @@
                               #:client-token #:code-guru-profiler
                               #:compute-platform #:configure-agent
                               #:configure-agent-request
-                              #:configure-agent-response
+                              #:configure-agent-response #:conflict-exception
                               #:create-profiling-group
                               #:create-profiling-group-request
                               #:create-profiling-group-response
@@ -46,6 +46,7 @@
                               #:get-recommendations
                               #:get-recommendations-request
                               #:get-recommendations-response
+                              #:internal-server-exception
                               #:list-findings-reports
                               #:list-findings-reports-request
                               #:list-findings-reports-response
@@ -77,21 +78,27 @@
                               #:remove-notification-channel-request
                               #:remove-notification-channel-response
                               #:remove-permission #:remove-permission-request
-                              #:remove-permission-response #:revision-id
-                              #:strings #:submit-feedback
-                              #:submit-feedback-request
+                              #:remove-permission-response
+                              #:resource-not-found-exception #:revision-id
+                              #:service-quota-exceeded-exception #:strings
+                              #:submit-feedback #:submit-feedback-request
                               #:submit-feedback-response #:tag-keys
                               #:tag-resource #:tag-resource-request
                               #:tag-resource-response #:tags-map #:target-frame
-                              #:target-frames #:thread-states #:timestamp
+                              #:target-frames #:thread-states
+                              #:throttling-exception #:timestamp
                               #:timestamp-structure #:unprocessed-end-time-map
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response
                               #:update-profiling-group
                               #:update-profiling-group-request
-                              #:update-profiling-group-response
-                              #:user-feedback))
+                              #:update-profiling-group-response #:user-feedback
+                              #:validation-exception #:codeguruprofiler-error))
 (common-lisp:in-package #:pira/codeguruprofiler)
+
+(common-lisp:define-condition codeguruprofiler-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service code-guru-profiler :shape-name
                                    "CodeGuruProfiler" :version "2019-07-18"
@@ -294,7 +301,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codeguruprofiler-error))
 
 (smithy/sdk/shapes:define-input create-profiling-group-request common-lisp:nil
                                 ((profiling-group-name :target-type
@@ -540,7 +548,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class codeguruprofiler-error))
 
 (smithy/sdk/shapes:define-input list-findings-reports-request common-lisp:nil
                                 ((profiling-group-name :target-type
@@ -893,7 +902,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class codeguruprofiler-error))
 
 (smithy/sdk/shapes:define-type revision-id smithy/sdk/smithy-types:string)
 
@@ -903,7 +913,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class codeguruprofiler-error))
 
 (smithy/sdk/shapes:define-list strings :member smithy/sdk/smithy-types:string)
 
@@ -957,7 +968,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class codeguruprofiler-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -1015,7 +1027,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codeguruprofiler-error))
 
 (smithy/sdk/operation:define-operation add-notification-channels :shape-name
                                        "AddNotificationChannels" :input

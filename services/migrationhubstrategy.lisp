@@ -1,8 +1,8 @@
 (uiop/package:define-package #:pira/migrationhubstrategy (:use)
                              (:export
                               #:awsmigration-hub-strategy-recommendation
-                              #:analysis-status-union #:analysis-type
-                              #:analyzable-server-summary
+                              #:access-denied-exception #:analysis-status-union
+                              #:analysis-type #:analyzable-server-summary
                               #:analyzable-server-summary-list
                               #:analyzer-name-union #:antipattern-report-result
                               #:antipattern-report-result-list
@@ -30,11 +30,12 @@
                               #:binary-analyzer-name #:boolean #:business-goals
                               #:business-goals-integer #:collector
                               #:collector-health #:collectors #:condition
-                              #:configuration-summary #:data-collection-details
-                              #:data-source-type #:database-config-detail
+                              #:configuration-summary #:conflict-exception
+                              #:data-collection-details #:data-source-type
+                              #:database-config-detail
                               #:database-management-preference
                               #:database-migration-preference
-                              #:database-preferences
+                              #:database-preferences #:dependency-exception
                               #:get-application-component-details
                               #:get-application-component-details-request
                               #:get-application-component-details-response
@@ -73,6 +74,7 @@
                               #:import-file-task-information
                               #:import-file-task-status #:inclusion-status
                               #:integer #:interface-name
+                              #:internal-server-exception
                               #:list-analyzable-servers
                               #:list-antipattern-severity-summary
                               #:list-application-component-status-summary
@@ -108,8 +110,10 @@
                               #:recommendation-report-time-stamp
                               #:recommendation-set #:recommendation-task-id
                               #:remote-source-code-analysis-server-info
-                              #:resource-id #:resource-name #:resource-sub-type
-                              #:result #:result-list #:run-time-analyzer-name
+                              #:resource-id #:resource-name
+                              #:resource-not-found-exception
+                              #:resource-sub-type #:result #:result-list
+                              #:run-time-analyzer-name
                               #:run-time-assessment-status
                               #:runtime-analysis-status #:s3bucket #:s3key
                               #:s3keys #:s3object #:secrets-manager-key
@@ -121,9 +125,12 @@
                               #:server-error-category #:server-id
                               #:server-os-type #:server-status-summary
                               #:server-strategies #:server-strategy
-                              #:server-summary #:severity #:sort-order
-                              #:source-code #:source-code-analyzer-name
-                              #:source-code-list #:source-code-repositories
+                              #:server-summary
+                              #:service-linked-role-lock-client-exception
+                              #:service-quota-exceeded-exception #:severity
+                              #:sort-order #:source-code
+                              #:source-code-analyzer-name #:source-code-list
+                              #:source-code-repositories
                               #:source-code-repository #:source-version
                               #:src-code-or-db-analysis-status
                               #:start-assessment #:start-assessment-request
@@ -141,7 +148,8 @@
                               #:strategy-summary #:string #:system-info
                               #:target-database-engine
                               #:target-database-engines #:target-destination
-                              #:time-stamp #:tranformation-tool-description
+                              #:throttling-exception #:time-stamp
+                              #:tranformation-tool-description
                               #:tranformation-tool-installation-link
                               #:transformation-tool #:transformation-tool-name
                               #:update-application-component-config
@@ -150,13 +158,19 @@
                               #:update-server-config
                               #:update-server-config-request
                               #:update-server-config-response
+                              #:validation-exception
                               #:vcenter-based-remote-info
                               #:vcenter-based-remote-info-list
                               #:version-control #:version-control-info
                               #:version-control-info-list
                               #:version-control-type #:error-message
-                              #:import-s3bucket #:import-s3key))
+                              #:import-s3bucket #:import-s3key
+                              #:migrationhubstrategy-error))
 (common-lisp:in-package #:pira/migrationhubstrategy)
+
+(common-lisp:define-condition migrationhubstrategy-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsmigration-hub-strategy-recommendation
                                    :shape-name
@@ -196,7 +210,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class migrationhubstrategy-error))
 
 (smithy/sdk/shapes:define-union analysis-status-union common-lisp:nil
                                 ((runtime-analysis-status :target-type
@@ -572,7 +587,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class migrationhubstrategy-error))
 
 (smithy/sdk/shapes:define-structure data-collection-details common-lisp:nil
                                     ((status :target-type assessment-status
@@ -631,7 +647,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DependencyException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class migrationhubstrategy-error))
 
 (smithy/sdk/shapes:define-input get-application-component-details-request
                                 common-lisp:nil
@@ -926,7 +943,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class migrationhubstrategy-error))
 
 (smithy/sdk/shapes:define-input list-analyzable-servers-request common-lisp:nil
                                 ((sort :target-type sort-order :member-name
@@ -1224,7 +1242,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class migrationhubstrategy-error))
 
 (smithy/sdk/shapes:define-type resource-sub-type smithy/sdk/smithy-types:string)
 
@@ -1382,14 +1401,16 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ServiceLinkedRoleLockClientException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migrationhubstrategy-error))
 
 (smithy/sdk/shapes:define-error service-quota-exceeded-exception
                                 common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class migrationhubstrategy-error))
 
 (smithy/sdk/shapes:define-type severity smithy/sdk/smithy-types:string)
 
@@ -1552,7 +1573,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class migrationhubstrategy-error))
 
 (smithy/sdk/shapes:define-type time-stamp smithy/sdk/smithy-types:timestamp)
 
@@ -1626,7 +1648,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class migrationhubstrategy-error))
 
 (smithy/sdk/shapes:define-structure vcenter-based-remote-info common-lisp:nil
                                     ((vcenter-configuration-time-stamp

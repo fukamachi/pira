@@ -1,12 +1,18 @@
 (uiop/package:define-package #:pira/route53profiles (:use)
-                             (:export #:account-id #:arn #:associate-profile
-                              #:associate-resource-to-profile #:create-profile
+                             (:export #:access-denied-exception #:account-id
+                              #:arn #:associate-profile
+                              #:associate-resource-to-profile
+                              #:conflict-exception #:create-profile
                               #:creator-request-id #:delete-profile
                               #:disassociate-profile
                               #:disassociate-resource-from-profile
                               #:exception-message #:get-profile
                               #:get-profile-association
                               #:get-profile-resource-association
+                              #:internal-service-error-exception
+                              #:invalid-next-token-exception
+                              #:invalid-parameter-exception
+                              #:limit-exceeded-exception
                               #:list-profile-associations
                               #:list-profile-resource-associations
                               #:list-profiles #:list-tags-for-resource
@@ -15,13 +21,20 @@
                               #:profile-resource-association
                               #:profile-resource-associations #:profile-status
                               #:profile-summary #:profile-summary-list
-                              #:resource-id #:resource-properties
-                              #:rfc3339timestamp #:route53profiles
-                              #:share-status #:string #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-map
-                              #:tag-resource #:tag-value #:untag-resource
-                              #:update-profile-resource-association))
+                              #:resource-exists-exception #:resource-id
+                              #:resource-not-found-exception
+                              #:resource-properties #:rfc3339timestamp
+                              #:route53profiles #:share-status #:string #:tag
+                              #:tag-key #:tag-key-list #:tag-list #:tag-map
+                              #:tag-resource #:tag-value #:throttling-exception
+                              #:untag-resource
+                              #:update-profile-resource-association
+                              #:validation-exception #:route53profiles-error))
 (common-lisp:in-package #:pira/route53profiles)
+
+(common-lisp:define-condition route53profiles-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service route53profiles :shape-name
                                    "Route53Profiles" :version "2018-05-10"
@@ -73,7 +86,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53profiles-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -123,7 +137,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53profiles-error))
 
 (smithy/sdk/shapes:define-input create-profile-request common-lisp:nil
                                 ((name :target-type name :required
@@ -237,13 +252,15 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceErrorException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53profiles-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53profiles-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -252,7 +269,8 @@
                                  (field-name :target-type string :member-name
                                   "FieldName"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53profiles-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -260,7 +278,8 @@
                                  (resource-type :target-type string
                                   :member-name "ResourceType"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53profiles-error))
 
 (smithy/sdk/shapes:define-input list-profile-associations-request
                                 common-lisp:nil
@@ -459,7 +478,8 @@
                                  (resource-type :target-type string
                                   :member-name "ResourceType"))
                                 (:shape-name "ResourceExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53profiles-error))
 
 (smithy/sdk/shapes:define-type resource-id smithy/sdk/smithy-types:string)
 
@@ -469,7 +489,8 @@
                                  (resource-type :target-type string
                                   :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53profiles-error))
 
 (smithy/sdk/shapes:define-type resource-properties
                                smithy/sdk/smithy-types:string)
@@ -518,7 +539,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53profiles-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -558,7 +580,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route53profiles-error))
 
 (smithy/sdk/operation:define-operation associate-profile :shape-name
                                        "AssociateProfile" :input

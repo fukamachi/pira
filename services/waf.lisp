@@ -114,16 +114,38 @@
                               #:update-regex-pattern-set #:update-rule
                               #:update-rule-group #:update-size-constraint-set
                               #:update-sql-injection-match-set #:update-web-acl
-                              #:update-xss-match-set #:waf-action
-                              #:waf-action-type #:waf-override-action
-                              #:waf-override-action-type #:waf-rule-type
-                              #:web-acl #:web-aclsummaries #:web-aclsummary
-                              #:web-aclupdate #:web-aclupdates #:xss-match-set
-                              #:xss-match-set-summaries #:xss-match-set-summary
-                              #:xss-match-set-update #:xss-match-set-updates
-                              #:xss-match-tuple #:xss-match-tuples
-                              #:error-message))
+                              #:update-xss-match-set #:wafbad-request-exception
+                              #:wafdisallowed-name-exception
+                              #:wafentity-migration-exception
+                              #:wafinternal-error-exception
+                              #:wafinvalid-account-exception
+                              #:wafinvalid-operation-exception
+                              #:wafinvalid-parameter-exception
+                              #:wafinvalid-permission-policy-exception
+                              #:wafinvalid-regex-pattern-exception
+                              #:waflimits-exceeded-exception
+                              #:wafnon-empty-entity-exception
+                              #:wafnonexistent-container-exception
+                              #:wafnonexistent-item-exception
+                              #:wafreferenced-item-exception
+                              #:wafservice-linked-role-error-exception
+                              #:wafstale-data-exception
+                              #:wafsubscription-not-found-exception
+                              #:waftag-operation-exception
+                              #:waftag-operation-internal-error-exception
+                              #:waf-action #:waf-action-type
+                              #:waf-override-action #:waf-override-action-type
+                              #:waf-rule-type #:web-acl #:web-aclsummaries
+                              #:web-aclsummary #:web-aclupdate #:web-aclupdates
+                              #:xss-match-set #:xss-match-set-summaries
+                              #:xss-match-set-summary #:xss-match-set-update
+                              #:xss-match-set-updates #:xss-match-tuple
+                              #:xss-match-tuples #:error-message #:waf-error))
 (common-lisp:in-package #:pira/waf)
+
+(common-lisp:define-condition waf-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awswaf-20150824 :shape-name
                                    "AWSWAF_20150824" :version "2015-08-24"
@@ -2396,13 +2418,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "WAFBadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafdisallowed-name-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "WAFDisallowedNameException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafentity-migration-exception common-lisp:nil
                                 ((message :target-type error-message
@@ -2414,24 +2436,24 @@
                                   error-reason :member-name
                                   "MigrationErrorReason"))
                                 (:shape-name "WAFEntityMigrationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafinternal-error-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "WAFInternalErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafinvalid-account-exception common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "WAFInvalidAccountException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafinvalid-operation-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "WAFInvalidOperationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafinvalid-parameter-exception common-lisp:nil
                                 ((field :target-type parameter-exception-field
@@ -2443,7 +2465,7 @@
                                   parameter-exception-reason :member-name
                                   "reason"))
                                 (:shape-name "WAFInvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafinvalid-permission-policy-exception
                                 common-lisp:nil
@@ -2451,26 +2473,26 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "WAFInvalidPermissionPolicyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafinvalid-regex-pattern-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "WAFInvalidRegexPatternException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error waflimits-exceeded-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "WAFLimitsExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafnon-empty-entity-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "WAFNonEmptyEntityException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafnonexistent-container-exception
                                 common-lisp:nil
@@ -2478,19 +2500,19 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "WAFNonexistentContainerException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafnonexistent-item-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "WAFNonexistentItemException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafreferenced-item-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "WAFReferencedItemException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafservice-linked-role-error-exception
                                 common-lisp:nil
@@ -2498,13 +2520,13 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "WAFServiceLinkedRoleErrorException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafstale-data-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "WAFStaleDataException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error wafsubscription-not-found-exception
                                 common-lisp:nil
@@ -2512,13 +2534,13 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "WAFSubscriptionNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error waftag-operation-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "WAFTagOperationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-error waftag-operation-internal-error-exception
                                 common-lisp:nil
@@ -2526,7 +2548,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "WAFTagOperationInternalErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class waf-error))
 
 (smithy/sdk/shapes:define-structure waf-action common-lisp:nil
                                     ((type :target-type waf-action-type

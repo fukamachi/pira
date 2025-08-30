@@ -14,8 +14,8 @@
                               #:compute-arn #:compute-auth-token #:compute-list
                               #:compute-name #:compute-name-or-arn
                               #:compute-status #:compute-type
-                              #:connection-port-range #:container-attribute
-                              #:container-attributes
+                              #:conflict-exception #:connection-port-range
+                              #:container-attribute #:container-attributes
                               #:container-command-string-list
                               #:container-dependency
                               #:container-dependency-condition
@@ -123,6 +123,7 @@
                               #:fleet-action-list #:fleet-arn
                               #:fleet-attributes #:fleet-attributes-list
                               #:fleet-binary-arn #:fleet-capacity
+                              #:fleet-capacity-exceeded-exception
                               #:fleet-capacity-list #:fleet-deployment
                               #:fleet-deployments #:fleet-id #:fleet-id-list
                               #:fleet-id-or-arn #:fleet-id-or-arn-list
@@ -161,7 +162,8 @@
                               #:game-session-connection-info
                               #:game-session-creation-limit-policy
                               #:game-session-data #:game-session-detail
-                              #:game-session-detail-list #:game-session-list
+                              #:game-session-detail-list
+                              #:game-session-full-exception #:game-session-list
                               #:game-session-placement
                               #:game-session-placement-state
                               #:game-session-queue #:game-session-queue-arn
@@ -176,12 +178,17 @@
                               #:get-compute-auth-token
                               #:get-game-session-log-url #:get-instance-access
                               #:iam-role-arn #:id-string-model
+                              #:idempotent-parameter-mismatch-exception
                               #:image-uri-string #:instance #:instance-access
                               #:instance-credentials #:instance-definition
                               #:instance-definitions #:instance-id
                               #:instance-list #:instance-path-string
                               #:instance-role-credentials-provider
-                              #:instance-status #:integer #:ip-address
+                              #:instance-status #:integer
+                              #:internal-service-exception
+                              #:invalid-fleet-status-exception
+                              #:invalid-game-session-status-exception
+                              #:invalid-request-exception #:ip-address
                               #:ip-permission #:ip-permissions-list
                               #:ip-protocol #:ip-range
                               #:large-game-session-data #:latency-map
@@ -189,7 +196,8 @@
                               #:launch-path-string-model #:launch-template-id
                               #:launch-template-name
                               #:launch-template-specification
-                              #:launch-template-version #:list-aliases
+                              #:launch-template-version
+                              #:limit-exceeded-exception #:list-aliases
                               #:list-builds #:list-compute
                               #:list-compute-input-status
                               #:list-container-fleets
@@ -238,8 +246,10 @@
                               #:non-negative-limited-length-double
                               #:non-zero-and128max-ascii-string
                               #:non-zero-and255max-string
-                              #:non-zero-and-max-string #:operating-system
-                              #:ping-beacon #:placed-player-session
+                              #:non-zero-and-max-string #:not-found-exception
+                              #:not-ready-exception #:operating-system
+                              #:out-of-capacity-exception #:ping-beacon
+                              #:placed-player-session
                               #:placed-player-session-list
                               #:placement-fallback-strategy #:player
                               #:player-attribute-map #:player-attribute-string
@@ -284,10 +294,14 @@
                               #:support-container-definition-list
                               #:suspend-game-server-group #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-value #:target-configuration
+                              #:tag-value #:tagging-failed-exception
+                              #:target-configuration
                               #:target-tracking-configuration
+                              #:terminal-routing-strategy-exception
                               #:terminate-game-session #:termination-mode
-                              #:timestamp #:udpendpoint #:untag-resource
+                              #:timestamp #:udpendpoint
+                              #:unauthorized-exception
+                              #:unsupported-region-exception #:untag-resource
                               #:update-alias #:update-build
                               #:update-container-fleet
                               #:update-container-group-definition
@@ -304,8 +318,12 @@
                               #:vpc-peering-connection-list
                               #:vpc-peering-connection-status #:vpc-subnet
                               #:vpc-subnets #:weighted-capacity #:whole-number
-                              #:zip-blob))
+                              #:zip-blob #:gamelift-error))
 (common-lisp:in-package #:pira/gamelift)
+
+(common-lisp:define-condition gamelift-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service game-lift :shape-name "GameLift" :version
                                    "2015-10-01" :title "Amazon GameLift"
@@ -666,7 +684,7 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-structure connection-port-range common-lisp:nil
                                     ((from-port :target-type port-number
@@ -3191,7 +3209,7 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "FleetCapacityExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-list fleet-capacity-list :member fleet-capacity)
 
@@ -3746,7 +3764,7 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "GameSessionFullException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-list game-session-list :member game-session)
 
@@ -3972,7 +3990,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "IdempotentParameterMismatchException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-type image-uri-string smithy/sdk/smithy-types:string)
 
@@ -4058,13 +4076,13 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-error invalid-fleet-status-exception common-lisp:nil
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "InvalidFleetStatusException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-error invalid-game-session-status-exception
                                 common-lisp:nil
@@ -4072,13 +4090,13 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "InvalidGameSessionStatusException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-type ip-address smithy/sdk/smithy-types:string)
 
@@ -4143,7 +4161,7 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-input list-aliases-input common-lisp:nil
                                 ((routing-strategy-type :target-type
@@ -4722,13 +4740,13 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-error not-ready-exception common-lisp:nil
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "NotReadyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-enum operating-system
     common-lisp:nil
@@ -4742,7 +4760,7 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "OutOfCapacityException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-structure ping-beacon common-lisp:nil
                                     ((udpendpoint :target-type udpendpoint
@@ -5510,7 +5528,7 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "TaggingFailedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-structure target-configuration common-lisp:nil
                                     ((target-value :target-type double
@@ -5532,7 +5550,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "TerminalRoutingStrategyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-input terminate-game-session-input common-lisp:nil
                                 ((game-session-id :target-type arn-string-model
@@ -5567,13 +5585,13 @@
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-error unsupported-region-exception common-lisp:nil
                                 ((message :target-type non-empty-string
                                   :member-name "Message"))
                                 (:shape-name "UnsupportedRegionException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class gamelift-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type

@@ -1,18 +1,27 @@
 (uiop/package:define-package #:pira/s3outposts (:use)
-                             (:export #:aws-account-id #:capacity-in-bytes
-                              #:cidr-block #:create-endpoint #:creation-time
-                              #:customer-owned-ipv4pool #:delete-endpoint
-                              #:endpoint #:endpoint-access-type #:endpoint-arn
+                             (:export #:access-denied-exception
+                              #:aws-account-id #:capacity-in-bytes #:cidr-block
+                              #:conflict-exception #:create-endpoint
+                              #:creation-time #:customer-owned-ipv4pool
+                              #:delete-endpoint #:endpoint
+                              #:endpoint-access-type #:endpoint-arn
                               #:endpoint-id #:endpoint-status #:endpoints
                               #:error-code #:error-message #:failed-reason
-                              #:list-endpoints #:list-outposts-with-s3
-                              #:list-shared-endpoints #:max-results #:message
-                              #:network-interface #:network-interface-id
-                              #:network-interfaces #:next-token #:outpost
-                              #:outpost-arn #:outpost-id #:outposts
-                              #:s3outpost-arn #:s3outposts #:security-group-id
-                              #:subnet-id #:vpc-id))
+                              #:internal-server-exception #:list-endpoints
+                              #:list-outposts-with-s3 #:list-shared-endpoints
+                              #:max-results #:message #:network-interface
+                              #:network-interface-id #:network-interfaces
+                              #:next-token #:outpost #:outpost-arn #:outpost-id
+                              #:outpost-offline-exception #:outposts
+                              #:resource-not-found-exception #:s3outpost-arn
+                              #:s3outposts #:security-group-id #:subnet-id
+                              #:throttling-exception #:validation-exception
+                              #:vpc-id #:s3outposts-error))
 (common-lisp:in-package #:pira/s3outposts)
+
+(common-lisp:define-condition s3outposts-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service s3outposts :shape-name "S3Outposts" :version
                                    "2017-07-25" :title "Amazon S3 on Outposts"
@@ -36,7 +45,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class s3outposts-error))
 
 (smithy/sdk/shapes:define-type aws-account-id smithy/sdk/smithy-types:string)
 
@@ -48,7 +58,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class s3outposts-error))
 
 (smithy/sdk/shapes:define-input create-endpoint-request common-lisp:nil
                                 ((outpost-id :target-type outpost-id :required
@@ -149,7 +160,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class s3outposts-error))
 
 (smithy/sdk/shapes:define-input list-endpoints-request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -241,7 +253,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "OutpostOfflineException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class s3outposts-error))
 
 (smithy/sdk/shapes:define-list outposts :member outpost)
 
@@ -249,7 +262,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class s3outposts-error))
 
 (smithy/sdk/shapes:define-type s3outpost-arn smithy/sdk/smithy-types:string)
 
@@ -261,13 +275,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class s3outposts-error))
 
 (smithy/sdk/shapes:define-error validation-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class s3outposts-error))
 
 (smithy/sdk/shapes:define-type vpc-id smithy/sdk/smithy-types:string)
 

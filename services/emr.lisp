@@ -94,8 +94,10 @@
                               #:instance-type-config-list
                               #:instance-type-specification
                               #:instance-type-specification-list #:integer
-                              #:job-flow-detail #:job-flow-detail-list
-                              #:job-flow-execution-state
+                              #:internal-server-error
+                              #:internal-server-exception
+                              #:invalid-request-exception #:job-flow-detail
+                              #:job-flow-detail-list #:job-flow-execution-state
                               #:job-flow-execution-state-list
                               #:job-flow-execution-status-detail
                               #:job-flow-instances-config
@@ -188,8 +190,12 @@
                               #:volume-specification #:whole-number
                               #:xml-string #:xml-string-list
                               #:xml-string-max-len256
-                              #:xml-string-max-len256list))
+                              #:xml-string-max-len256list #:emr-error))
 (common-lisp:in-package #:pira/emr)
+
+(common-lisp:define-condition emr-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service elastic-map-reduce :shape-name
                                    "ElasticMapReduce" :version "2009-03-31"
@@ -1899,13 +1905,13 @@
                                 common-lisp:nil
                                 (:shape-name "InternalServerError")
                                 (:error-name "InternalFailure")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class emr-error))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class emr-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((error-code :target-type error-code
@@ -1913,7 +1919,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class emr-error))
 
 (smithy/sdk/shapes:define-structure job-flow-detail common-lisp:nil
                                     ((job-flow-id :target-type

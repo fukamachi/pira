@@ -30,10 +30,12 @@
                               #:catalog-configuration
                               #:cloud-watch-logging-options #:cluster-jdbcurl
                               #:column-to-json-key-mappings
-                              #:compression-format #:connectivity
-                              #:content-encoding #:copy-command #:copy-options
-                              #:create-delivery-stream #:custom-time-zone
-                              #:data #:data-format-conversion-configuration
+                              #:compression-format
+                              #:concurrent-modification-exception
+                              #:connectivity #:content-encoding #:copy-command
+                              #:copy-options #:create-delivery-stream
+                              #:custom-time-zone #:data
+                              #:data-format-conversion-configuration
                               #:data-table-columns #:data-table-name
                               #:database-column-include-or-exclude-list
                               #:database-column-list #:database-column-name
@@ -117,10 +119,14 @@
                               #:iceberg-destination-update
                               #:iceberg-s3backup-mode
                               #:input-format-configuration
-                              #:interval-in-seconds #:kmsencryption-config
+                              #:interval-in-seconds
+                              #:invalid-argument-exception
+                              #:invalid-kmsresource-exception
+                              #:invalid-source-exception #:kmsencryption-config
                               #:key-type #:kinesis-stream-arn
                               #:kinesis-stream-source-configuration
                               #:kinesis-stream-source-description
+                              #:limit-exceeded-exception
                               #:list-delivery-streams
                               #:list-delivery-streams-input-limit
                               #:list-of-non-empty-strings
@@ -157,6 +163,8 @@
                               #:redshift-destination-update
                               #:redshift-retry-duration-in-seconds
                               #:redshift-retry-options #:redshift-s3backup-mode
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception
                               #:retry-duration-in-seconds #:retry-options
                               #:role-arn #:s3backup-mode
                               #:s3destination-configuration
@@ -166,8 +174,9 @@
                               #:schema-evolution-configuration #:secret-arn
                               #:secrets-manager-configuration
                               #:security-group-id-list #:serializer
-                              #:size-in-mbs #:snapshot-requested-by
-                              #:snapshot-status #:snowflake-account-url
+                              #:service-unavailable-exception #:size-in-mbs
+                              #:snapshot-requested-by #:snapshot-status
+                              #:snowflake-account-url
                               #:snowflake-buffering-hints
                               #:snowflake-buffering-interval-in-seconds
                               #:snowflake-buffering-size-in-mbs
@@ -206,8 +215,13 @@
                               #:untag-delivery-stream #:update-destination
                               #:username #:vpc-configuration
                               #:vpc-configuration-description
-                              #:vpc-endpoint-service-name #:warehouse-location))
+                              #:vpc-endpoint-service-name #:warehouse-location
+                              #:firehose-error))
 (common-lisp:in-package #:pira/firehose)
+
+(common-lisp:define-condition firehose-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service firehose-20150804 :shape-name
                                    "Firehose_20150804" :version "2015-08-04"
@@ -570,7 +584,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class firehose-error))
 
 (smithy/sdk/shapes:define-enum connectivity
     common-lisp:nil
@@ -1892,7 +1906,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class firehose-error))
 
 (smithy/sdk/shapes:define-error invalid-kmsresource-exception common-lisp:nil
                                 ((code :target-type error-code :member-name
@@ -1900,7 +1914,7 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidKMSResourceException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class firehose-error))
 
 (smithy/sdk/shapes:define-error invalid-source-exception common-lisp:nil
                                 ((code :target-type error-code :member-name
@@ -1908,7 +1922,7 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSourceException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class firehose-error))
 
 (smithy/sdk/shapes:define-structure kmsencryption-config common-lisp:nil
                                     ((awskmskey-arn :target-type awskmskey-arn
@@ -1952,7 +1966,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class firehose-error))
 
 (smithy/sdk/shapes:define-input list-delivery-streams-input common-lisp:nil
                                 ((limit :target-type
@@ -2444,13 +2458,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class firehose-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class firehose-error))
 
 (smithy/sdk/shapes:define-type retry-duration-in-seconds
                                smithy/sdk/smithy-types:integer)
@@ -2606,7 +2620,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class firehose-error))
 
 (smithy/sdk/shapes:define-type size-in-mbs smithy/sdk/smithy-types:integer)
 

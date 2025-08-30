@@ -1,12 +1,14 @@
 (uiop/package:define-package #:pira/evidently (:use)
-                             (:export #:app-config-resource-id #:arn
+                             (:export #:access-denied-exception
+                              #:app-config-resource-id #:arn
                               #:batch-evaluate-feature
                               #:batch-evaluate-feature-request
                               #:batch-evaluate-feature-response
                               #:change-direction-enum
                               #:cloud-watch-logs-destination
                               #:cloud-watch-logs-destination-config
-                              #:create-experiment #:create-experiment-request
+                              #:conflict-exception #:create-experiment
+                              #:create-experiment-request
                               #:create-experiment-response #:create-feature
                               #:create-feature-request
                               #:create-feature-response #:create-launch
@@ -63,11 +65,12 @@
                               #:get-project-request #:get-project-response
                               #:get-segment #:get-segment-request
                               #:get-segment-response #:group-name
-                              #:group-to-weight-map #:json-path #:json-value
-                              #:launch #:launch-arn #:launch-execution
-                              #:launch-group #:launch-group-config
-                              #:launch-group-config-list #:launch-group-list
-                              #:launch-name #:launch-resource #:launch-status
+                              #:group-to-weight-map #:internal-server-exception
+                              #:json-path #:json-value #:launch #:launch-arn
+                              #:launch-execution #:launch-group
+                              #:launch-group-config #:launch-group-config-list
+                              #:launch-group-list #:launch-name
+                              #:launch-resource #:launch-status
                               #:launch-stop-desired-state #:launch-type
                               #:launches-list #:list-experiments
                               #:list-experiments-request
@@ -104,10 +107,12 @@
                               #:put-project-events-result-entry
                               #:put-project-events-result-entry-list
                               #:randomization-salt #:ref-resource
-                              #:ref-resource-list #:results-period #:rule-name
-                              #:rule-type #:s3bucket-safe-name #:s3destination
-                              #:s3destination-config #:s3prefix-safe-name
-                              #:scheduled-split #:scheduled-split-config
+                              #:ref-resource-list
+                              #:resource-not-found-exception #:results-period
+                              #:rule-name #:rule-type #:s3bucket-safe-name
+                              #:s3destination #:s3destination-config
+                              #:s3prefix-safe-name #:scheduled-split
+                              #:scheduled-split-config
                               #:scheduled-split-config-list
                               #:scheduled-splits-launch-config
                               #:scheduled-splits-launch-definition
@@ -115,7 +120,9 @@
                               #:segment-list #:segment-name #:segment-override
                               #:segment-overrides-list #:segment-pattern
                               #:segment-ref #:segment-reference-resource-type
-                              #:segment-resource #:split-weight
+                              #:segment-resource
+                              #:service-quota-exceeded-exception
+                              #:service-unavailable-exception #:split-weight
                               #:start-experiment #:start-experiment-request
                               #:start-experiment-response #:start-launch
                               #:start-launch-request #:start-launch-response
@@ -126,7 +133,8 @@
                               #:tag-resource-request #:tag-resource-response
                               #:tag-value #:test-segment-pattern
                               #:test-segment-pattern-request
-                              #:test-segment-pattern-response #:timestamp-list
+                              #:test-segment-pattern-response
+                              #:throttling-exception #:timestamp-list
                               #:treatment #:treatment-config
                               #:treatment-config-list #:treatment-list
                               #:treatment-name #:treatment-name-list
@@ -143,14 +151,19 @@
                               #:update-project-data-delivery-response
                               #:update-project-request
                               #:update-project-response #:uuid
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:variable-value
                               #:variation #:variation-config
                               #:variation-configs-list #:variation-name
                               #:variation-name-list #:variation-value-type
-                              #:variations-list))
+                              #:variations-list #:evidently-error))
 (common-lisp:in-package #:pira/evidently)
+
+(common-lisp:define-condition evidently-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service evidently :shape-name "Evidently" :version
                                    "2021-02-01" :title
@@ -168,7 +181,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class evidently-error))
 
 (smithy/sdk/shapes:define-type app-config-resource-id
                                smithy/sdk/smithy-types:string)
@@ -221,7 +234,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class evidently-error))
 
 (smithy/sdk/shapes:define-input create-experiment-request common-lisp:nil
                                 ((project :target-type project-ref :required
@@ -862,7 +875,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class evidently-error))
 
 (smithy/sdk/shapes:define-type json-path smithy/sdk/smithy-types:string)
 
@@ -1409,7 +1422,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class evidently-error))
 
 (smithy/sdk/shapes:define-type results-period smithy/sdk/smithy-types:long)
 
@@ -1560,14 +1573,14 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class evidently-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class evidently-error))
 
 (smithy/sdk/shapes:define-type split-weight smithy/sdk/smithy-types:long)
 
@@ -1691,7 +1704,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "quotaCode"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class evidently-error))
 
 (smithy/sdk/shapes:define-list timestamp-list :member
                                smithy/sdk/smithy-types:timestamp)
@@ -1887,7 +1900,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class evidently-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

@@ -5,7 +5,8 @@
                               #:access-control-configuration-summary
                               #:access-control-configuration-summary-list
                               #:access-control-list-configuration
-                              #:acl-configuration #:additional-result-attribute
+                              #:access-denied-exception #:acl-configuration
+                              #:additional-result-attribute
                               #:additional-result-attribute-list
                               #:additional-result-attribute-value
                               #:additional-result-attribute-value-type
@@ -43,7 +44,8 @@
                               #:collapse-configuration
                               #:collapsed-result-detail #:column-configuration
                               #:column-name #:condition-operator
-                              #:conflicting-item #:conflicting-items
+                              #:conflict-exception #:conflicting-item
+                              #:conflicting-items
                               #:confluence-attachment-configuration
                               #:confluence-attachment-field-mappings-list
                               #:confluence-attachment-field-name
@@ -162,6 +164,7 @@
                               #:featured-document-missing-list
                               #:featured-document-with-metadata
                               #:featured-document-with-metadata-list
+                              #:featured-results-conflict-exception
                               #:featured-results-item
                               #:featured-results-item-list
                               #:featured-results-set
@@ -195,7 +198,8 @@
                               #:indexed-text-documents-count
                               #:inline-custom-document-enrichment-configuration
                               #:inline-custom-document-enrichment-configuration-list
-                              #:integer #:interval #:issue-sub-entity
+                              #:integer #:internal-server-exception #:interval
+                              #:invalid-request-exception #:issue-sub-entity
                               #:issue-sub-entity-filter #:issue-type #:issuer
                               #:jira-account-url #:jira-configuration
                               #:jira-status #:json-token-type-configuration
@@ -256,7 +260,11 @@
                               #:quip-configuration #:read-access-type
                               #:relevance #:relevance-feedback
                               #:relevance-feedback-list #:relevance-type
-                              #:repository-name #:repository-names #:result-id
+                              #:repository-name #:repository-names
+                              #:resource-already-exist-exception
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception
+                              #:resource-unavailable-exception #:result-id
                               #:retrieve #:retrieve-result-item
                               #:retrieve-result-item-list #:role-arn
                               #:s3bucket-name #:s3data-source-configuration
@@ -287,6 +295,7 @@
                               #:service-now-knowledge-article-configuration
                               #:service-now-knowledge-article-filter-query
                               #:service-now-service-catalog-configuration
+                              #:service-quota-exceeded-exception
                               #:share-point-configuration
                               #:share-point-online-authentication-type
                               #:share-point-url-list #:share-point-version
@@ -321,7 +330,8 @@
                               #:text-with-highlights #:thesaurus-id
                               #:thesaurus-name #:thesaurus-status
                               #:thesaurus-summary #:thesaurus-summary-items
-                              #:time-range #:timestamp #:title #:token
+                              #:throttling-exception #:time-range #:timestamp
+                              #:title #:token
                               #:top-document-attribute-value-count-pairs-size
                               #:type #:untag-resource
                               #:update-access-control-configuration
@@ -337,12 +347,17 @@
                               #:user-name-attribute-field
                               #:user-token-configuration
                               #:user-token-configuration-list
-                              #:value-importance-map #:value-importance-map-key
-                              #:visitor-id #:vpc-security-group-id #:warning
-                              #:warning-code #:warning-list #:warning-message
+                              #:validation-exception #:value-importance-map
+                              #:value-importance-map-key #:visitor-id
+                              #:vpc-security-group-id #:warning #:warning-code
+                              #:warning-list #:warning-message
                               #:web-crawler-configuration #:web-crawler-mode
-                              #:work-docs-configuration))
+                              #:work-docs-configuration #:kendra-error))
 (common-lisp:in-package #:pira/kendra)
+
+(common-lisp:define-condition kendra-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awskendra-frontend-service :shape-name
                                    "AWSKendraFrontendService" :version
@@ -434,7 +449,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class kendra-error))
 
 (smithy/sdk/shapes:define-structure acl-configuration common-lisp:nil
                                     ((allowed-groups-column-name :target-type
@@ -950,7 +965,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class kendra-error))
 
 (smithy/sdk/shapes:define-structure conflicting-item common-lisp:nil
                                     ((query-text :target-type query-text
@@ -2725,7 +2740,7 @@
                                   "ConflictingItems"))
                                 (:shape-name
                                  "FeaturedResultsConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class kendra-error))
 
 (smithy/sdk/shapes:define-structure featured-results-item common-lisp:nil
                                     ((id :target-type result-id :member-name
@@ -3208,7 +3223,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class kendra-error))
 
 (smithy/sdk/shapes:define-enum interval
     common-lisp:nil
@@ -3223,7 +3238,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kendra-error))
 
 (smithy/sdk/shapes:define-enum issue-sub-entity
     common-lisp:nil
@@ -4090,25 +4105,25 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceAlreadyExistException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kendra-error))
 
 (smithy/sdk/shapes:define-error resource-in-use-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kendra-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class kendra-error))
 
 (smithy/sdk/shapes:define-error resource-unavailable-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceUnavailableException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class kendra-error))
 
 (smithy/sdk/shapes:define-type result-id smithy/sdk/smithy-types:string)
 
@@ -4541,7 +4556,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class kendra-error))
 
 (smithy/sdk/shapes:define-structure share-point-configuration common-lisp:nil
                                     ((share-point-version :target-type
@@ -4972,7 +4987,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class kendra-error))
 
 (smithy/sdk/shapes:define-structure time-range common-lisp:nil
                                     ((start-time :target-type timestamp
@@ -5269,7 +5284,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kendra-error))
 
 (smithy/sdk/shapes:define-map value-importance-map :key
                               value-importance-map-key :value importance)

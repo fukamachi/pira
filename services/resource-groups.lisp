@@ -1,15 +1,15 @@
 (uiop/package:define-package #:pira/resource-groups (:use)
                              (:export #:account-settings #:application-arn
                               #:application-tag #:application-tag-key #:ardi
-                              #:cancel-tag-sync-task #:create-group
-                              #:create-group-name #:criticality #:delete-group
-                              #:description #:display-name #:error-code
-                              #:error-message #:failed-resource
-                              #:failed-resource-list #:get-account-settings
-                              #:get-group #:get-group-configuration
-                              #:get-group-query #:get-tag-sync-task #:get-tags
-                              #:group #:group-arn #:group-arn-v2
-                              #:group-configuration
+                              #:bad-request-exception #:cancel-tag-sync-task
+                              #:create-group #:create-group-name #:criticality
+                              #:delete-group #:description #:display-name
+                              #:error-code #:error-message #:failed-resource
+                              #:failed-resource-list #:forbidden-exception
+                              #:get-account-settings #:get-group
+                              #:get-group-configuration #:get-group-query
+                              #:get-tag-sync-task #:get-tags #:group
+                              #:group-arn #:group-arn-v2 #:group-configuration
                               #:group-configuration-failure-reason
                               #:group-configuration-item
                               #:group-configuration-list
@@ -29,7 +29,8 @@
                               #:group-query #:group-resources #:group-string
                               #:group-string-v2 #:grouping-status
                               #:grouping-statuses-item #:grouping-statuses-list
-                              #:grouping-type #:list-group-resources
+                              #:grouping-type #:internal-server-error-exception
+                              #:list-group-resources
                               #:list-group-resources-item
                               #:list-group-resources-item-list
                               #:list-grouping-statuses
@@ -41,7 +42,8 @@
                               #:list-groups #:list-tag-sync-tasks
                               #:list-tag-sync-tasks-filter
                               #:list-tag-sync-tasks-filter-list #:max-results
-                              #:next-token #:owner #:pending-resource
+                              #:method-not-allowed-exception #:next-token
+                              #:not-found-exception #:owner #:pending-resource
                               #:pending-resource-list #:put-group-configuration
                               #:query #:query-error #:query-error-code
                               #:query-error-list #:query-error-message
@@ -56,10 +58,16 @@
                               #:tag-key-list #:tag-sync-task-arn
                               #:tag-sync-task-item #:tag-sync-task-list
                               #:tag-sync-task-status #:tag-value #:tags
-                              #:ungroup-resources #:untag
-                              #:update-account-settings #:update-group
-                              #:update-group-query #:timestamp))
+                              #:too-many-requests-exception
+                              #:unauthorized-exception #:ungroup-resources
+                              #:untag #:update-account-settings #:update-group
+                              #:update-group-query #:timestamp
+                              #:resource-groups-error))
 (common-lisp:in-package #:pira/resource-groups)
+
+(common-lisp:define-condition resource-groups-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ardi :shape-name "Ardi" :version
                                    "2017-11-27" :title "AWS Resource Groups"
@@ -117,7 +125,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class resource-groups-error))
 
 (smithy/sdk/shapes:define-input cancel-tag-sync-task-input common-lisp:nil
                                 ((task-arn :target-type tag-sync-task-arn
@@ -194,7 +203,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class resource-groups-error))
 
 (smithy/sdk/shapes:define-output get-account-settings-output common-lisp:nil
                                  ((account-settings :target-type
@@ -487,7 +497,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class resource-groups-error))
 
 (smithy/sdk/shapes:define-input list-group-resources-input common-lisp:nil
                                 ((group-name :target-type group-name
@@ -629,7 +640,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "MethodNotAllowedException")
-                                (:error-code 405))
+                                (:error-code 405)
+                                (:base-class resource-groups-error))
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
 
@@ -637,7 +649,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class resource-groups-error))
 
 (smithy/sdk/shapes:define-type owner smithy/sdk/smithy-types:string)
 
@@ -851,13 +864,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class resource-groups-error))
 
 (smithy/sdk/shapes:define-error unauthorized-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class resource-groups-error))
 
 (smithy/sdk/shapes:define-input ungroup-resources-input common-lisp:nil
                                 ((group :target-type group-string-v2 :required

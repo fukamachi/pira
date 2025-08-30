@@ -47,22 +47,26 @@
                               #:qualification-status #:qualification-type
                               #:qualification-type-list
                               #:qualification-type-status #:reject-assignment
-                              #:reject-qualification-request #:result-size
-                              #:review-action-detail
+                              #:reject-qualification-request #:request-error
+                              #:result-size #:review-action-detail
                               #:review-action-detail-list
                               #:review-action-status #:review-policy
                               #:review-policy-level #:review-policy-level-list
                               #:review-report #:review-result-detail
                               #:review-result-detail-list
                               #:reviewable-hitstatus #:send-bonus
-                              #:send-test-event-notification #:string
-                              #:string-list #:timestamp #:turk-error-code
-                              #:update-expiration-for-hit
+                              #:send-test-event-notification #:service-fault
+                              #:string #:string-list #:timestamp
+                              #:turk-error-code #:update-expiration-for-hit
                               #:update-hitreview-status #:update-hittype-of-hit
                               #:update-notification-settings
                               #:update-qualification-type #:worker-block
-                              #:worker-block-list))
+                              #:worker-block-list #:mturk-error))
 (common-lisp:in-package #:pira/mturk)
+
+(common-lisp:define-condition mturk-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service mturk-requester-service-v20170117
                                    :shape-name "MTurkRequesterServiceV20170117"
@@ -1101,7 +1105,8 @@
                                  (turk-error-code :target-type turk-error-code
                                   :member-name "TurkErrorCode"))
                                 (:shape-name "RequestError")
-                                (:error-name "RequestError") (:error-code 400))
+                                (:error-name "RequestError") (:error-code 400)
+                                (:base-class mturk-error))
 
 (smithy/sdk/shapes:define-type result-size smithy/sdk/smithy-types:integer)
 
@@ -1224,7 +1229,8 @@
                                  (turk-error-code :target-type turk-error-code
                                   :member-name "TurkErrorCode"))
                                 (:shape-name "ServiceFault")
-                                (:error-name "ServiceFault") (:error-code 500))
+                                (:error-name "ServiceFault") (:error-code 500)
+                                (:base-class mturk-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 

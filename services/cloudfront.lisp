@@ -3,7 +3,7 @@
                               #:access-control-allow-methods-list
                               #:access-control-allow-origins-list
                               #:access-control-expose-headers-list
-                              #:active-trusted-key-groups
+                              #:access-denied #:active-trusted-key-groups
                               #:active-trusted-signers #:alias-icprecordal
                               #:alias-icprecordals #:alias-list #:aliases
                               #:allowed-methods #:anycast-ip-list
@@ -14,22 +14,30 @@
                               #:associate-alias
                               #:associate-distribution-tenant-web-acl
                               #:associate-distribution-web-acl
-                              #:aws-account-number-list #:cache-behavior
+                              #:aws-account-number-list #:batch-too-large
+                              #:cnamealready-exists #:cache-behavior
                               #:cache-behavior-list #:cache-behaviors
-                              #:cache-policy #:cache-policy-config
+                              #:cache-policy #:cache-policy-already-exists
+                              #:cache-policy-config
                               #:cache-policy-cookie-behavior
                               #:cache-policy-cookies-config
                               #:cache-policy-header-behavior
-                              #:cache-policy-headers-config #:cache-policy-list
+                              #:cache-policy-headers-config
+                              #:cache-policy-in-use #:cache-policy-list
                               #:cache-policy-query-string-behavior
                               #:cache-policy-query-strings-config
                               #:cache-policy-summary
                               #:cache-policy-summary-list #:cache-policy-type
-                              #:cached-methods #:certificate
+                              #:cached-methods
+                              #:cannot-change-immutable-public-key-fields
+                              #:cannot-delete-entity-while-in-use
+                              #:cannot-update-entity-while-in-use #:certificate
                               #:certificate-source
                               #:certificate-transparency-logging-preference
                               #:cloud-front-origin-access-identity
+                              #:cloud-front-origin-access-identity-already-exists
                               #:cloud-front-origin-access-identity-config
+                              #:cloud-front-origin-access-identity-in-use
                               #:cloud-front-origin-access-identity-list
                               #:cloud-front-origin-access-identity-summary
                               #:cloud-front-origin-access-identity-summary-list
@@ -44,7 +52,9 @@
                               #:content-type-profile-list
                               #:content-type-profiles
                               #:continuous-deployment-policy
+                              #:continuous-deployment-policy-already-exists
                               #:continuous-deployment-policy-config
+                              #:continuous-deployment-policy-in-use
                               #:continuous-deployment-policy-list
                               #:continuous-deployment-policy-summary
                               #:continuous-deployment-policy-summary-list
@@ -98,11 +108,13 @@
                               #:describe-key-value-store
                               #:disassociate-distribution-tenant-web-acl
                               #:disassociate-distribution-web-acl
-                              #:distribution #:distribution-config
+                              #:distribution #:distribution-already-exists
+                              #:distribution-config
                               #:distribution-config-with-tags
                               #:distribution-id-list
                               #:distribution-id-list-summary
-                              #:distribution-list #:distribution-resource-id
+                              #:distribution-list #:distribution-not-disabled
+                              #:distribution-resource-id
                               #:distribution-resource-type
                               #:distribution-summary
                               #:distribution-summary-list #:distribution-tenant
@@ -116,13 +128,20 @@
                               #:domain-result-list #:domain-status
                               #:encryption-entities #:encryption-entity
                               #:encryption-entity-list #:end-point
-                              #:end-point-list #:event-type
+                              #:end-point-list #:entity-already-exists
+                              #:entity-limit-exceeded #:entity-not-found
+                              #:entity-size-limit-exceeded #:event-type
                               #:field-level-encryption
                               #:field-level-encryption-config
+                              #:field-level-encryption-config-already-exists
+                              #:field-level-encryption-config-in-use
                               #:field-level-encryption-list
                               #:field-level-encryption-profile
+                              #:field-level-encryption-profile-already-exists
                               #:field-level-encryption-profile-config
+                              #:field-level-encryption-profile-in-use
                               #:field-level-encryption-profile-list
+                              #:field-level-encryption-profile-size-exceeded
                               #:field-level-encryption-profile-summary
                               #:field-level-encryption-profile-summary-list
                               #:field-level-encryption-summary
@@ -130,13 +149,14 @@
                               #:field-list #:field-pattern-list
                               #:field-patterns #:format #:forwarded-values
                               #:frame-options-list #:function-arn
-                              #:function-association
+                              #:function-already-exists #:function-association
                               #:function-association-list
                               #:function-associations #:function-blob
                               #:function-config #:function-event-object
-                              #:function-execution-log-list #:function-list
-                              #:function-metadata #:function-name
-                              #:function-runtime #:function-stage
+                              #:function-execution-log-list #:function-in-use
+                              #:function-list #:function-metadata
+                              #:function-name #:function-runtime
+                              #:function-size-limit-exceeded #:function-stage
                               #:function-summary #:function-summary-list
                               #:geo-restriction #:geo-restriction-customization
                               #:geo-restriction-type #:get-anycast-ip-list
@@ -171,12 +191,39 @@
                               #:get-streaming-distribution-config
                               #:get-vpc-origin #:grpc-config #:header-list
                               #:headers #:http-version #:icprecordal-status
-                              #:import-source #:import-source-type
-                              #:invalidation #:invalidation-batch
-                              #:invalidation-list #:invalidation-summary
+                              #:illegal-delete
+                              #:illegal-field-level-encryption-config-association-with-cache-behavior
+                              #:illegal-origin-access-configuration
+                              #:illegal-update #:import-source
+                              #:import-source-type #:inconsistent-quantities
+                              #:invalid-argument #:invalid-association
+                              #:invalid-default-root-object
+                              #:invalid-domain-name-for-origin-access-control
+                              #:invalid-error-code #:invalid-forward-cookies
+                              #:invalid-function-association
+                              #:invalid-geo-restriction-parameter
+                              #:invalid-headers-for-s3origin
+                              #:invalid-if-match-version
+                              #:invalid-lambda-function-association
+                              #:invalid-location-code
+                              #:invalid-minimum-protocol-version
+                              #:invalid-origin #:invalid-origin-access-control
+                              #:invalid-origin-access-identity
+                              #:invalid-origin-keepalive-timeout
+                              #:invalid-origin-read-timeout
+                              #:invalid-protocol-settings
+                              #:invalid-query-string-parameters
+                              #:invalid-relative-path
+                              #:invalid-required-protocol
+                              #:invalid-response-code #:invalid-ttlorder
+                              #:invalid-tagging #:invalid-viewer-certificate
+                              #:invalid-web-aclid #:invalidation
+                              #:invalidation-batch #:invalidation-list
+                              #:invalidation-summary
                               #:invalidation-summary-list #:item-selection
                               #:kgkey-pair-ids #:kgkey-pair-ids-list
-                              #:key-group #:key-group-config #:key-group-list
+                              #:key-group #:key-group-already-exists
+                              #:key-group-config #:key-group-list
                               #:key-group-summary #:key-group-summary-list
                               #:key-pair-id-list #:key-pair-ids
                               #:key-value-store #:key-value-store-arn
@@ -224,9 +271,26 @@
                               #:managed-certificate-request
                               #:managed-certificate-status #:method
                               #:methods-list #:minimum-protocol-version
-                              #:monitoring-subscription #:origin
+                              #:missing-body #:monitoring-subscription
+                              #:monitoring-subscription-already-exists
+                              #:no-such-cache-policy
+                              #:no-such-cloud-front-origin-access-identity
+                              #:no-such-continuous-deployment-policy
+                              #:no-such-distribution
+                              #:no-such-field-level-encryption-config
+                              #:no-such-field-level-encryption-profile
+                              #:no-such-function-exists #:no-such-invalidation
+                              #:no-such-monitoring-subscription
+                              #:no-such-origin #:no-such-origin-access-control
+                              #:no-such-origin-request-policy
+                              #:no-such-public-key
+                              #:no-such-realtime-log-config #:no-such-resource
+                              #:no-such-response-headers-policy
+                              #:no-such-streaming-distribution #:origin
                               #:origin-access-control
+                              #:origin-access-control-already-exists
                               #:origin-access-control-config
+                              #:origin-access-control-in-use
                               #:origin-access-control-list
                               #:origin-access-control-origin-types
                               #:origin-access-control-signing-behaviors
@@ -241,11 +305,13 @@
                               #:origin-group-selection-criteria #:origin-groups
                               #:origin-list #:origin-protocol-policy
                               #:origin-request-policy
+                              #:origin-request-policy-already-exists
                               #:origin-request-policy-config
                               #:origin-request-policy-cookie-behavior
                               #:origin-request-policy-cookies-config
                               #:origin-request-policy-header-behavior
                               #:origin-request-policy-headers-config
+                              #:origin-request-policy-in-use
                               #:origin-request-policy-list
                               #:origin-request-policy-query-string-behavior
                               #:origin-request-policy-query-strings-config
@@ -258,26 +324,35 @@
                               #:parameter-definitions #:parameter-name
                               #:parameter-value #:parameters
                               #:parameters-in-cache-key-and-forwarded-to-origin
-                              #:path-list #:paths #:price-class #:public-key
-                              #:public-key-config #:public-key-id-list
+                              #:path-list #:paths #:precondition-failed
+                              #:price-class #:public-key
+                              #:public-key-already-exists #:public-key-config
+                              #:public-key-id-list #:public-key-in-use
                               #:public-key-list #:public-key-summary
                               #:public-key-summary-list #:publish-function
                               #:query-arg-profile #:query-arg-profile-config
+                              #:query-arg-profile-empty
                               #:query-arg-profile-list #:query-arg-profiles
                               #:query-string-cache-keys
                               #:query-string-cache-keys-list
                               #:query-string-names #:query-string-names-list
-                              #:realtime-log-config #:realtime-log-config-list
+                              #:realtime-log-config
+                              #:realtime-log-config-already-exists
+                              #:realtime-log-config-in-use
+                              #:realtime-log-config-list
+                              #:realtime-log-config-owner-mismatch
                               #:realtime-log-configs
                               #:realtime-metrics-subscription-config
                               #:realtime-metrics-subscription-status
                               #:referrer-policy-list #:resource-arn
+                              #:resource-in-use #:resource-not-disabled
                               #:response-headers-policy
                               #:response-headers-policy-access-control-allow-headers
                               #:response-headers-policy-access-control-allow-methods
                               #:response-headers-policy-access-control-allow-methods-values
                               #:response-headers-policy-access-control-allow-origins
                               #:response-headers-policy-access-control-expose-headers
+                              #:response-headers-policy-already-exists
                               #:response-headers-policy-config
                               #:response-headers-policy-content-security-policy
                               #:response-headers-policy-content-type-options
@@ -286,6 +361,7 @@
                               #:response-headers-policy-custom-header-list
                               #:response-headers-policy-custom-headers-config
                               #:response-headers-policy-frame-options
+                              #:response-headers-policy-in-use
                               #:response-headers-policy-list
                               #:response-headers-policy-referrer-policy
                               #:response-headers-policy-remove-header
@@ -305,20 +381,75 @@
                               #:signer-list #:ssl-protocol #:ssl-protocols-list
                               #:staging-distribution-dns-name-list
                               #:staging-distribution-dns-names
-                              #:status-code-list #:status-codes
-                              #:streaming-distribution
+                              #:staging-distribution-in-use #:status-code-list
+                              #:status-codes #:streaming-distribution
+                              #:streaming-distribution-already-exists
                               #:streaming-distribution-config
                               #:streaming-distribution-config-with-tags
                               #:streaming-distribution-list
+                              #:streaming-distribution-not-disabled
                               #:streaming-distribution-summary
                               #:streaming-distribution-summary-list
                               #:streaming-logging-config #:string-schema-config
                               #:tag #:tag-key #:tag-key-list #:tag-keys
                               #:tag-list #:tag-resource #:tag-value #:tags
-                              #:tenant-config #:test-function #:test-result
-                              #:traffic-config #:trusted-key-group-id-list
-                              #:trusted-key-groups #:trusted-signers
-                              #:untag-resource #:update-cache-policy
+                              #:tenant-config #:test-function
+                              #:test-function-failed #:test-result
+                              #:too-long-cspin-response-headers-policy
+                              #:too-many-cache-behaviors
+                              #:too-many-cache-policies #:too-many-certificates
+                              #:too-many-cloud-front-origin-access-identities
+                              #:too-many-continuous-deployment-policies
+                              #:too-many-cookie-names-in-white-list
+                              #:too-many-cookies-in-cache-policy
+                              #:too-many-cookies-in-origin-request-policy
+                              #:too-many-custom-headers-in-response-headers-policy
+                              #:too-many-distribution-cnames
+                              #:too-many-distributions
+                              #:too-many-distributions-associated-to-cache-policy
+                              #:too-many-distributions-associated-to-field-level-encryption-config
+                              #:too-many-distributions-associated-to-key-group
+                              #:too-many-distributions-associated-to-origin-access-control
+                              #:too-many-distributions-associated-to-origin-request-policy
+                              #:too-many-distributions-associated-to-response-headers-policy
+                              #:too-many-distributions-with-function-associations
+                              #:too-many-distributions-with-lambda-associations
+                              #:too-many-distributions-with-single-function-arn
+                              #:too-many-field-level-encryption-configs
+                              #:too-many-field-level-encryption-content-type-profiles
+                              #:too-many-field-level-encryption-encryption-entities
+                              #:too-many-field-level-encryption-field-patterns
+                              #:too-many-field-level-encryption-profiles
+                              #:too-many-field-level-encryption-query-arg-profiles
+                              #:too-many-function-associations
+                              #:too-many-functions
+                              #:too-many-headers-in-cache-policy
+                              #:too-many-headers-in-forwarded-values
+                              #:too-many-headers-in-origin-request-policy
+                              #:too-many-invalidations-in-progress
+                              #:too-many-key-groups
+                              #:too-many-key-groups-associated-to-distribution
+                              #:too-many-lambda-function-associations
+                              #:too-many-origin-access-controls
+                              #:too-many-origin-custom-headers
+                              #:too-many-origin-groups-per-distribution
+                              #:too-many-origin-request-policies
+                              #:too-many-origins #:too-many-public-keys
+                              #:too-many-public-keys-in-key-group
+                              #:too-many-query-string-parameters
+                              #:too-many-query-strings-in-cache-policy
+                              #:too-many-query-strings-in-origin-request-policy
+                              #:too-many-realtime-log-configs
+                              #:too-many-remove-headers-in-response-headers-policy
+                              #:too-many-response-headers-policies
+                              #:too-many-streaming-distribution-cnames
+                              #:too-many-streaming-distributions
+                              #:too-many-trusted-signers #:traffic-config
+                              #:trusted-key-group-does-not-exist
+                              #:trusted-key-group-id-list #:trusted-key-groups
+                              #:trusted-signer-does-not-exist #:trusted-signers
+                              #:unsupported-operation #:untag-resource
+                              #:update-cache-policy
                               #:update-cloud-front-origin-access-identity
                               #:update-connection-group
                               #:update-continuous-deployment-policy
@@ -347,8 +478,12 @@
                               #:float #:integer
                               #:list-conflicting-aliases-max-items-integer
                               #:long #:sensitive-string-type #:string
-                              #:timestamp))
+                              #:timestamp #:cloudfront-error))
 (common-lisp:in-package #:pira/cloudfront)
+
+(common-lisp:define-condition cloudfront-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service cloudfront2020-05-31 :shape-name
                                    "Cloudfront2020_05_31" :version "2020-05-31"
@@ -534,7 +669,8 @@
 (smithy/sdk/shapes:define-error access-denied common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
-                                (:shape-name "AccessDenied") (:error-code 403))
+                                (:shape-name "AccessDenied") (:error-code 403)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure active-trusted-key-groups common-lisp:nil
                                     ((enabled :target-type boolean :required
@@ -708,13 +844,15 @@
 (smithy/sdk/shapes:define-error batch-too-large common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
-                                (:shape-name "BatchTooLarge") (:error-code 413))
+                                (:shape-name "BatchTooLarge") (:error-code 413)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error cnamealready-exists common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "CNAMEAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure cache-behavior common-lisp:nil
                                     ((path-pattern :target-type string
@@ -799,7 +937,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "CachePolicyAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure cache-policy-config common-lisp:nil
                                     ((comment :target-type string :member-name
@@ -853,7 +992,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "CachePolicyInUse")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure cache-policy-list common-lisp:nil
                                     ((next-marker :target-type string
@@ -917,21 +1057,24 @@
                                   "Message"))
                                 (:shape-name
                                  "CannotChangeImmutablePublicKeyFields")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error cannot-delete-entity-while-in-use
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "CannotDeleteEntityWhileInUse")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error cannot-update-entity-while-in-use
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "CannotUpdateEntityWhileInUse")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure certificate common-lisp:nil
                                     ((arn :target-type string :required
@@ -967,7 +1110,8 @@
 (smithy/sdk/shapes:define-error
  cloud-front-origin-access-identity-already-exists common-lisp:nil
  ((message :target-type string :member-name "Message"))
- (:shape-name "CloudFrontOriginAccessIdentityAlreadyExists") (:error-code 409))
+ (:shape-name "CloudFrontOriginAccessIdentityAlreadyExists") (:error-code 409)
+ (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure cloud-front-origin-access-identity-config
                                     common-lisp:nil
@@ -985,7 +1129,8 @@
                                   "Message"))
                                 (:shape-name
                                  "CloudFrontOriginAccessIdentityInUse")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure cloud-front-origin-access-identity-list
                                     common-lisp:nil
@@ -1171,7 +1316,8 @@
                                   "Message"))
                                 (:shape-name
                                  "ContinuousDeploymentPolicyAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure continuous-deployment-policy-config
                                     common-lisp:nil
@@ -1193,7 +1339,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ContinuousDeploymentPolicyInUse")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure continuous-deployment-policy-list
                                     common-lisp:nil
@@ -2221,7 +2368,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "DistributionAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure distribution-config common-lisp:nil
                                     ((caller-reference :target-type string
@@ -2330,7 +2478,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "DistributionNotDisabled")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure distribution-resource-id common-lisp:nil
                                     ((distribution-id :target-type string
@@ -2580,25 +2729,29 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EntityAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error entity-limit-exceeded common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EntityLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error entity-not-found common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EntityNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error entity-size-limit-exceeded common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EntitySizeLimitExceeded")
-                                (:error-code 413))
+                                (:error-code 413)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-enum event-type
     common-lisp:nil
@@ -2641,14 +2794,16 @@
                                   "Message"))
                                 (:shape-name
                                  "FieldLevelEncryptionConfigAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error field-level-encryption-config-in-use
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "FieldLevelEncryptionConfigInUse")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure field-level-encryption-list common-lisp:nil
                                     ((next-marker :target-type string
@@ -2682,7 +2837,8 @@
                                   "Message"))
                                 (:shape-name
                                  "FieldLevelEncryptionProfileAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure field-level-encryption-profile-config
                                     common-lisp:nil
@@ -2706,7 +2862,8 @@
                                   "Message"))
                                 (:shape-name
                                  "FieldLevelEncryptionProfileInUse")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure field-level-encryption-profile-list
                                     common-lisp:nil
@@ -2728,7 +2885,8 @@
                                   "Message"))
                                 (:shape-name
                                  "FieldLevelEncryptionProfileSizeExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure field-level-encryption-profile-summary
                                     common-lisp:nil
@@ -2815,7 +2973,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "FunctionAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure function-association common-lisp:nil
                                     ((function-arn :target-type function-arn
@@ -2859,7 +3018,8 @@
 (smithy/sdk/shapes:define-error function-in-use common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
-                                (:shape-name "FunctionInUse") (:error-code 409))
+                                (:shape-name "FunctionInUse") (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure function-list common-lisp:nil
                                     ((next-marker :target-type string
@@ -2896,7 +3056,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "FunctionSizeLimitExceeded")
-                                (:error-code 413))
+                                (:error-code 413)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-enum function-stage
     common-lisp:nil
@@ -3563,13 +3724,14 @@
 (smithy/sdk/shapes:define-error illegal-delete common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
-                                (:shape-name "IllegalDelete") (:error-code 400))
+                                (:shape-name "IllegalDelete") (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error
  illegal-field-level-encryption-config-association-with-cache-behavior
  common-lisp:nil ((message :target-type string :member-name "Message"))
  (:shape-name "IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior")
- (:error-code 400))
+ (:error-code 400) (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error illegal-origin-access-configuration
                                 common-lisp:nil
@@ -3577,12 +3739,14 @@
                                   "Message"))
                                 (:shape-name
                                  "IllegalOriginAccessConfiguration")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error illegal-update common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
-                                (:shape-name "IllegalUpdate") (:error-code 400))
+                                (:shape-name "IllegalUpdate") (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure import-source common-lisp:nil
                                     ((source-type :target-type
@@ -3600,25 +3764,29 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InconsistentQuantities")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-argument common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidArgument")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-association common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidAssociation")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-default-root-object common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidDefaultRootObject")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-domain-name-for-origin-access-control
                                 common-lisp:nil
@@ -3626,44 +3794,51 @@
                                   "Message"))
                                 (:shape-name
                                  "InvalidDomainNameForOriginAccessControl")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-error-code common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidErrorCode")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-forward-cookies common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidForwardCookies")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-function-association common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidFunctionAssociation")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-geo-restriction-parameter
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidGeoRestrictionParameter")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-headers-for-s3origin common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidHeadersForS3Origin")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-if-match-version common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidIfMatchVersion")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-lambda-function-association
                                 common-lisp:nil
@@ -3671,104 +3846,121 @@
                                   "Message"))
                                 (:shape-name
                                  "InvalidLambdaFunctionAssociation")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-location-code common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidLocationCode")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-minimum-protocol-version
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidMinimumProtocolVersion")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-origin common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
-                                (:shape-name "InvalidOrigin") (:error-code 400))
+                                (:shape-name "InvalidOrigin") (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-origin-access-control common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidOriginAccessControl")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-origin-access-identity common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidOriginAccessIdentity")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-origin-keepalive-timeout
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidOriginKeepaliveTimeout")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-origin-read-timeout common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidOriginReadTimeout")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-protocol-settings common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidProtocolSettings")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-query-string-parameters common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidQueryStringParameters")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-relative-path common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidRelativePath")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-required-protocol common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidRequiredProtocol")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-response-code common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidResponseCode")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-ttlorder common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidTTLOrder")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-tagging common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidTagging")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-viewer-certificate common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidViewerCertificate")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error invalid-web-aclid common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidWebACLId")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure invalidation common-lisp:nil
                                     ((id :target-type string :required
@@ -3854,7 +4046,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "KeyGroupAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure key-group-config common-lisp:nil
                                     ((name :target-type string :required
@@ -4654,7 +4847,8 @@
 (smithy/sdk/shapes:define-error missing-body common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
-                                (:shape-name "MissingBody") (:error-code 400))
+                                (:shape-name "MissingBody") (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure monitoring-subscription common-lisp:nil
                                     ((realtime-metrics-subscription-config
@@ -4670,13 +4864,15 @@
                                   "Message"))
                                 (:shape-name
                                  "MonitoringSubscriptionAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-cache-policy common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NoSuchCachePolicy")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-cloud-front-origin-access-identity
                                 common-lisp:nil
@@ -4684,7 +4880,8 @@
                                   "Message"))
                                 (:shape-name
                                  "NoSuchCloudFrontOriginAccessIdentity")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-continuous-deployment-policy
                                 common-lisp:nil
@@ -4692,13 +4889,15 @@
                                   "Message"))
                                 (:shape-name
                                  "NoSuchContinuousDeploymentPolicy")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-distribution common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NoSuchDistribution")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-field-level-encryption-config
                                 common-lisp:nil
@@ -4706,7 +4905,8 @@
                                   "Message"))
                                 (:shape-name
                                  "NoSuchFieldLevelEncryptionConfig")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-field-level-encryption-profile
                                 common-lisp:nil
@@ -4714,72 +4914,84 @@
                                   "Message"))
                                 (:shape-name
                                  "NoSuchFieldLevelEncryptionProfile")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-function-exists common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NoSuchFunctionExists")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-invalidation common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NoSuchInvalidation")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-monitoring-subscription common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NoSuchMonitoringSubscription")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-origin common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
-                                (:shape-name "NoSuchOrigin") (:error-code 404))
+                                (:shape-name "NoSuchOrigin") (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-origin-access-control common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NoSuchOriginAccessControl")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-origin-request-policy common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NoSuchOriginRequestPolicy")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-public-key common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NoSuchPublicKey")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-realtime-log-config common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NoSuchRealtimeLogConfig")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-resource common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NoSuchResource")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-response-headers-policy common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NoSuchResponseHeadersPolicy")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error no-such-streaming-distribution common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NoSuchStreamingDistribution")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure origin common-lisp:nil
                                     ((id :target-type string :required
@@ -4828,7 +5040,8 @@
                                   "Message"))
                                 (:shape-name
                                  "OriginAccessControlAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure origin-access-control-config
                                     common-lisp:nil
@@ -4855,7 +5068,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "OriginAccessControlInUse")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure origin-access-control-list common-lisp:nil
                                     ((marker :target-type string :required
@@ -5011,7 +5225,8 @@
                                   "Message"))
                                 (:shape-name
                                  "OriginRequestPolicyAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure origin-request-policy-config
                                     common-lisp:nil
@@ -5074,7 +5289,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "OriginRequestPolicyInUse")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure origin-request-policy-list common-lisp:nil
                                     ((next-marker :target-type string
@@ -5213,7 +5429,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "PreconditionFailed")
-                                (:error-code 412))
+                                (:error-code 412)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-enum price-class
     common-lisp:nil
@@ -5237,7 +5454,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "PublicKeyAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure public-key-config common-lisp:nil
                                     ((caller-reference :target-type string
@@ -5258,7 +5476,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "PublicKeyInUse")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure public-key-list common-lisp:nil
                                     ((next-marker :target-type string
@@ -5327,7 +5546,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "QueryArgProfileEmpty")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-list query-arg-profile-list :member
                                (query-arg-profile :xml-name "QueryArgProfile"))
@@ -5381,13 +5601,15 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "RealtimeLogConfigAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error realtime-log-config-in-use common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "RealtimeLogConfigInUse")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-list realtime-log-config-list :member
                                realtime-log-config)
@@ -5397,7 +5619,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "RealtimeLogConfigOwnerMismatch")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure realtime-log-configs common-lisp:nil
                                     ((max-items :target-type integer :required
@@ -5445,13 +5668,15 @@
 (smithy/sdk/shapes:define-error resource-in-use common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
-                                (:shape-name "ResourceInUse") (:error-code 409))
+                                (:shape-name "ResourceInUse") (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error resource-not-disabled common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotDisabled")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure response-headers-policy common-lisp:nil
                                     ((id :target-type string :required
@@ -5514,7 +5739,8 @@
                                   "Message"))
                                 (:shape-name
                                  "ResponseHeadersPolicyAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure response-headers-policy-config
                                     common-lisp:nil
@@ -5624,7 +5850,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResponseHeadersPolicyInUse")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure response-headers-policy-list
                                     common-lisp:nil
@@ -5815,7 +6042,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "StagingDistributionInUse")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-list status-code-list :member
                                (integer :xml-name "StatusCode"))
@@ -5856,7 +6084,8 @@
                                   "Message"))
                                 (:shape-name
                                  "StreamingDistributionAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure streaming-distribution-config
                                     common-lisp:nil
@@ -5916,7 +6145,8 @@
                                   "Message"))
                                 (:shape-name
                                  "StreamingDistributionNotDisabled")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure streaming-distribution-summary
                                     common-lisp:nil
@@ -6017,7 +6247,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TestFunctionFailed")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-input test-function-request common-lisp:nil
                                 ((name :target-type function-name :required
@@ -6062,25 +6293,29 @@
                                   "Message"))
                                 (:shape-name
                                  "TooLongCSPInResponseHeadersPolicy")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-cache-behaviors common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyCacheBehaviors")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-cache-policies common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyCachePolicies")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-certificates common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyCertificates")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-cloud-front-origin-access-identities
                                 common-lisp:nil
@@ -6088,7 +6323,8 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyCloudFrontOriginAccessIdentities")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-continuous-deployment-policies
                                 common-lisp:nil
@@ -6096,21 +6332,24 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyContinuousDeploymentPolicies")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-cookie-names-in-white-list
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyCookieNamesInWhiteList")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-cookies-in-cache-policy
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyCookiesInCachePolicy")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-cookies-in-origin-request-policy
                                 common-lisp:nil
@@ -6118,35 +6357,40 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyCookiesInOriginRequestPolicy")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error
  too-many-custom-headers-in-response-headers-policy common-lisp:nil
  ((message :target-type string :member-name "Message"))
- (:shape-name "TooManyCustomHeadersInResponseHeadersPolicy") (:error-code 400))
+ (:shape-name "TooManyCustomHeadersInResponseHeadersPolicy") (:error-code 400)
+ (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-distribution-cnames common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyDistributionCNAMEs")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-distributions common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyDistributions")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error
  too-many-distributions-associated-to-cache-policy common-lisp:nil
  ((message :target-type string :member-name "Message"))
- (:shape-name "TooManyDistributionsAssociatedToCachePolicy") (:error-code 400))
+ (:shape-name "TooManyDistributionsAssociatedToCachePolicy") (:error-code 400)
+ (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error
  too-many-distributions-associated-to-field-level-encryption-config
  common-lisp:nil ((message :target-type string :member-name "Message"))
  (:shape-name "TooManyDistributionsAssociatedToFieldLevelEncryptionConfig")
- (:error-code 400))
+ (:error-code 400) (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-distributions-associated-to-key-group
                                 common-lisp:nil
@@ -6154,30 +6398,32 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyDistributionsAssociatedToKeyGroup")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error
  too-many-distributions-associated-to-origin-access-control common-lisp:nil
  ((message :target-type string :member-name "Message"))
  (:shape-name "TooManyDistributionsAssociatedToOriginAccessControl")
- (:error-code 400))
+ (:error-code 400) (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error
  too-many-distributions-associated-to-origin-request-policy common-lisp:nil
  ((message :target-type string :member-name "Message"))
  (:shape-name "TooManyDistributionsAssociatedToOriginRequestPolicy")
- (:error-code 400))
+ (:error-code 400) (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error
  too-many-distributions-associated-to-response-headers-policy common-lisp:nil
  ((message :target-type string :member-name "Message"))
  (:shape-name "TooManyDistributionsAssociatedToResponseHeadersPolicy")
- (:error-code 400))
+ (:error-code 400) (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error
  too-many-distributions-with-function-associations common-lisp:nil
  ((message :target-type string :member-name "Message"))
- (:shape-name "TooManyDistributionsWithFunctionAssociations") (:error-code 400))
+ (:shape-name "TooManyDistributionsWithFunctionAssociations") (:error-code 400)
+ (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-distributions-with-lambda-associations
                                 common-lisp:nil
@@ -6185,7 +6431,8 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyDistributionsWithLambdaAssociations")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-distributions-with-single-function-arn
                                 common-lisp:nil
@@ -6193,7 +6440,8 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyDistributionsWithSingleFunctionARN")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-field-level-encryption-configs
                                 common-lisp:nil
@@ -6201,19 +6449,20 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyFieldLevelEncryptionConfigs")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error
  too-many-field-level-encryption-content-type-profiles common-lisp:nil
  ((message :target-type string :member-name "Message"))
  (:shape-name "TooManyFieldLevelEncryptionContentTypeProfiles")
- (:error-code 400))
+ (:error-code 400) (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error
  too-many-field-level-encryption-encryption-entities common-lisp:nil
  ((message :target-type string :member-name "Message"))
  (:shape-name "TooManyFieldLevelEncryptionEncryptionEntities")
- (:error-code 400))
+ (:error-code 400) (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-field-level-encryption-field-patterns
                                 common-lisp:nil
@@ -6221,7 +6470,8 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyFieldLevelEncryptionFieldPatterns")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-field-level-encryption-profiles
                                 common-lisp:nil
@@ -6229,38 +6479,44 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyFieldLevelEncryptionProfiles")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error
  too-many-field-level-encryption-query-arg-profiles common-lisp:nil
  ((message :target-type string :member-name "Message"))
- (:shape-name "TooManyFieldLevelEncryptionQueryArgProfiles") (:error-code 400))
+ (:shape-name "TooManyFieldLevelEncryptionQueryArgProfiles") (:error-code 400)
+ (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-function-associations common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyFunctionAssociations")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-functions common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyFunctions")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-headers-in-cache-policy
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyHeadersInCachePolicy")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-headers-in-forwarded-values
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyHeadersInForwardedValues")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-headers-in-origin-request-policy
                                 common-lisp:nil
@@ -6268,20 +6524,23 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyHeadersInOriginRequestPolicy")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-invalidations-in-progress
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyInvalidationsInProgress")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-key-groups common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyKeyGroups")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-key-groups-associated-to-distribution
                                 common-lisp:nil
@@ -6289,7 +6548,8 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyKeyGroupsAssociatedToDistribution")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-lambda-function-associations
                                 common-lisp:nil
@@ -6297,19 +6557,22 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyLambdaFunctionAssociations")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-origin-access-controls common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyOriginAccessControls")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-origin-custom-headers common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyOriginCustomHeaders")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-origin-groups-per-distribution
                                 common-lisp:nil
@@ -6317,40 +6580,46 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyOriginGroupsPerDistribution")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-origin-request-policies
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyOriginRequestPolicies")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-origins common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyOrigins")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-public-keys common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyPublicKeys")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-public-keys-in-key-group
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyPublicKeysInKeyGroup")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-query-string-parameters
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyQueryStringParameters")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-query-strings-in-cache-policy
                                 common-lisp:nil
@@ -6358,7 +6627,8 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyQueryStringsInCachePolicy")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-query-strings-in-origin-request-policy
                                 common-lisp:nil
@@ -6366,25 +6636,29 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyQueryStringsInOriginRequestPolicy")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-realtime-log-configs common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyRealtimeLogConfigs")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error
  too-many-remove-headers-in-response-headers-policy common-lisp:nil
  ((message :target-type string :member-name "Message"))
- (:shape-name "TooManyRemoveHeadersInResponseHeadersPolicy") (:error-code 400))
+ (:shape-name "TooManyRemoveHeadersInResponseHeadersPolicy") (:error-code 400)
+ (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-response-headers-policies
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyResponseHeadersPolicies")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-streaming-distribution-cnames
                                 common-lisp:nil
@@ -6392,20 +6666,23 @@
                                   "Message"))
                                 (:shape-name
                                  "TooManyStreamingDistributionCNAMEs")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-streaming-distributions
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyStreamingDistributions")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-error too-many-trusted-signers common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyTrustedSigners")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure traffic-config common-lisp:nil
                                     ((single-weight-config :target-type
@@ -6425,7 +6702,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TrustedKeyGroupDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-list trusted-key-group-id-list :member
                                (string :xml-name "KeyGroup"))
@@ -6444,7 +6722,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TrustedSignerDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-structure trusted-signers common-lisp:nil
                                     ((enabled :target-type boolean :required
@@ -6460,7 +6739,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnsupportedOperation")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudfront-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource :target-type resource-arn :required

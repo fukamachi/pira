@@ -1,12 +1,13 @@
 (uiop/package:define-package #:pira/securitylake (:use)
-                             (:export #:access-type #:access-type-list
-                              #:account-list #:amazon-resource-name
-                              #:aws-account-id #:aws-identity
-                              #:aws-log-source-configuration
+                             (:export #:access-denied-exception #:access-type
+                              #:access-type-list #:account-list
+                              #:amazon-resource-name #:aws-account-id
+                              #:aws-identity #:aws-log-source-configuration
                               #:aws-log-source-configuration-list
                               #:aws-log-source-name #:aws-log-source-resource
                               #:aws-log-source-resource-list
                               #:aws-log-source-version #:aws-principal
+                              #:bad-request-exception #:conflict-exception
                               #:create-aws-log-source
                               #:create-custom-log-source #:create-data-lake
                               #:create-data-lake-exception-subscription
@@ -49,6 +50,7 @@
                               #:get-data-lake-organization-configuration
                               #:get-data-lake-sources #:get-subscriber
                               #:http-method #:https-notification-configuration
+                              #:internal-server-exception
                               #:list-data-lake-exceptions #:list-data-lakes
                               #:list-log-sources #:list-subscribers
                               #:list-tags-for-resource #:log-source
@@ -58,6 +60,7 @@
                               #:ocsf-event-class #:ocsf-event-class-list
                               #:region #:region-list
                               #:register-data-lake-delegated-administrator
+                              #:resource-not-found-exception
                               #:resource-share-arn #:resource-share-name
                               #:role-arn #:s3bucket-arn #:s3uri #:safe-string
                               #:security-lake #:source-collection-status
@@ -65,12 +68,17 @@
                               #:subscriber-resource #:subscriber-resource-list
                               #:subscriber-status #:subscription-protocol #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-value #:uuid
-                              #:untag-resource #:update-data-lake
+                              #:tag-resource #:tag-value #:throttling-exception
+                              #:uuid #:untag-resource #:update-data-lake
                               #:update-data-lake-exception-subscription
                               #:update-subscriber
-                              #:update-subscriber-notification))
+                              #:update-subscriber-notification
+                              #:securitylake-error))
 (common-lisp:in-package #:pira/securitylake)
+
+(common-lisp:define-condition securitylake-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service security-lake :shape-name "SecurityLake"
                                    :version "2018-05-10" :title
@@ -123,7 +131,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "errorCode"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class securitylake-error))
 
 (smithy/sdk/shapes:define-enum access-type
     common-lisp:nil
@@ -199,7 +208,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class securitylake-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type
@@ -212,7 +222,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class securitylake-error))
 
 (smithy/sdk/shapes:define-input create-aws-log-source-request common-lisp:nil
                                 ((sources :target-type
@@ -762,7 +773,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class securitylake-error))
 
 (smithy/sdk/shapes:define-input list-data-lake-exceptions-request
                                 common-lisp:nil
@@ -910,7 +922,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class securitylake-error))
 
 (smithy/sdk/shapes:define-type resource-share-arn
                                smithy/sdk/smithy-types:string)
@@ -1044,7 +1057,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class securitylake-error))
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 

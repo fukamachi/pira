@@ -10,9 +10,9 @@
                               #:alert #:alert-category #:alternate-media
                               #:audience-media #:audiences
                               #:avail-matching-criteria #:avail-suppression
-                              #:bumper #:cdn-configuration #:channel
-                              #:channel-policy #:channel-resource
-                              #:channel-state #:clip-range
+                              #:bad-request-exception #:bumper
+                              #:cdn-configuration #:channel #:channel-policy
+                              #:channel-resource #:channel-state #:clip-range
                               #:configuration-aliases-request
                               #:configuration-aliases-response
                               #:configure-logs-for-channel
@@ -178,8 +178,12 @@
                               #:list-of-string #:long
                               #:manifest-service-exclude-event-types-list
                               #:map-of-string #:string #:timestamp-unix
-                              #:ad-markup-types))
+                              #:ad-markup-types #:mediatailor-error))
 (common-lisp:in-package #:pira/mediatailor)
+
+(common-lisp:define-condition mediatailor-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service media-tailor :shape-name "MediaTailor"
                                    :version "2018-04-23" :title
@@ -399,7 +403,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class mediatailor-error))
 
 (smithy/sdk/shapes:define-structure bumper common-lisp:nil
                                     ((end-url :target-type string :member-name

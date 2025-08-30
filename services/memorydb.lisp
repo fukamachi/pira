@@ -1,20 +1,27 @@
 (uiop/package:define-package #:pira/memorydb (:use)
-                             (:export #:acl #:aclcluster-name-list #:acllist
-                              #:aclname #:aclname-list #:aclpending-changes
-                              #:acls-update-status #:azstatus #:access-string
-                              #:amazon-memory-db #:authentication
-                              #:authentication-mode #:authentication-type
-                              #:availability-zone #:aws-query-error-message
-                              #:batch-update-cluster #:boolean
-                              #:boolean-optional #:cluster
+                             (:export #:acl #:aclalready-exists-fault
+                              #:aclcluster-name-list #:acllist #:aclname
+                              #:aclname-list #:aclnot-found-fault
+                              #:aclpending-changes #:aclquota-exceeded-fault
+                              #:acls-update-status
+                              #:apicall-rate-for-customer-exceeded-fault
+                              #:azstatus #:access-string #:amazon-memory-db
+                              #:authentication #:authentication-mode
+                              #:authentication-type #:availability-zone
+                              #:aws-query-error-message #:batch-update-cluster
+                              #:boolean #:boolean-optional #:cluster
+                              #:cluster-already-exists-fault
                               #:cluster-configuration #:cluster-list
-                              #:cluster-name-list #:cluster-pending-updates
+                              #:cluster-name-list #:cluster-not-found-fault
+                              #:cluster-pending-updates
+                              #:cluster-quota-for-customer-exceeded-fault
                               #:copy-snapshot #:create-acl #:create-cluster
                               #:create-multi-region-cluster
                               #:create-parameter-group #:create-snapshot
                               #:create-subnet-group #:create-user
-                              #:data-tiering-status #:delete-acl
-                              #:delete-cluster #:delete-multi-region-cluster
+                              #:data-tiering-status #:default-user-required
+                              #:delete-acl #:delete-cluster
+                              #:delete-multi-region-cluster
                               #:delete-parameter-group #:delete-snapshot
                               #:delete-subnet-group #:delete-user
                               #:describe-acls #:describe-clusters
@@ -25,21 +32,43 @@
                               #:describe-reserved-nodes-offerings
                               #:describe-service-updates #:describe-snapshots
                               #:describe-subnet-groups #:describe-users
-                              #:double #:endpoint #:engine-version-info
-                              #:engine-version-info-list #:event #:event-list
-                              #:exception-message #:failover-shard #:filter
-                              #:filter-list #:filter-name #:filter-value
-                              #:filter-value-list #:input-authentication-type
-                              #:integer #:integer-optional #:ip-discovery
+                              #:double #:duplicate-user-name-fault #:endpoint
+                              #:engine-version-info #:engine-version-info-list
+                              #:event #:event-list #:exception-message
+                              #:failover-shard #:filter #:filter-list
+                              #:filter-name #:filter-value #:filter-value-list
+                              #:input-authentication-type
+                              #:insufficient-cluster-capacity-fault #:integer
+                              #:integer-optional #:invalid-aclstate-fault
+                              #:invalid-arnfault #:invalid-cluster-state-fault
+                              #:invalid-credentials-exception
+                              #:invalid-kmskey-fault
+                              #:invalid-multi-region-cluster-state-fault
+                              #:invalid-node-state-fault
+                              #:invalid-parameter-combination-exception
+                              #:invalid-parameter-group-state-fault
+                              #:invalid-parameter-value-exception
+                              #:invalid-snapshot-state-fault #:invalid-subnet
+                              #:invalid-user-state-fault
+                              #:invalid-vpcnetwork-state-fault #:ip-discovery
                               #:key-list #:kms-key-id
                               #:list-allowed-multi-region-cluster-updates
                               #:list-allowed-node-type-updates #:list-tags
                               #:multi-region-cluster
-                              #:multi-region-cluster-list #:network-type
-                              #:network-type-list #:node #:node-list
+                              #:multi-region-cluster-already-exists-fault
+                              #:multi-region-cluster-list
+                              #:multi-region-cluster-not-found-fault
+                              #:multi-region-parameter-group-not-found-fault
+                              #:network-type #:network-type-list
+                              #:no-operation-fault #:node #:node-list
+                              #:node-quota-for-cluster-exceeded-fault
+                              #:node-quota-for-customer-exceeded-fault
                               #:node-type-list #:parameter #:parameter-group
-                              #:parameter-group-list #:parameter-name-list
-                              #:parameter-name-value
+                              #:parameter-group-already-exists-fault
+                              #:parameter-group-list
+                              #:parameter-group-not-found-fault
+                              #:parameter-group-quota-exceeded-fault
+                              #:parameter-name-list #:parameter-name-value
                               #:parameter-name-value-list #:parameters-list
                               #:password-list-input
                               #:pending-modified-service-update
@@ -48,32 +77,59 @@
                               #:recurring-charge #:recurring-charge-list
                               #:regional-cluster #:regional-cluster-list
                               #:replica-configuration-request #:reserved-node
-                              #:reserved-node-list #:reserved-nodes-offering
+                              #:reserved-node-already-exists-fault
+                              #:reserved-node-list
+                              #:reserved-node-not-found-fault
+                              #:reserved-node-quota-exceeded-fault
+                              #:reserved-nodes-offering
                               #:reserved-nodes-offering-list
+                              #:reserved-nodes-offering-not-found-fault
                               #:reset-parameter-group #:resharding-status
                               #:security-group-ids-list
                               #:security-group-membership
-                              #:security-group-membership-list #:service-update
-                              #:service-update-list #:service-update-request
-                              #:service-update-status
+                              #:security-group-membership-list
+                              #:service-linked-role-not-found-fault
+                              #:service-update #:service-update-list
+                              #:service-update-not-found-fault
+                              #:service-update-request #:service-update-status
                               #:service-update-status-list
                               #:service-update-type #:shard
                               #:shard-configuration
                               #:shard-configuration-request #:shard-detail
-                              #:shard-details #:shard-list #:slot-migration
-                              #:snapshot #:snapshot-arns-list #:snapshot-list
-                              #:source-type #:string #:subnet #:subnet-group
-                              #:subnet-group-list #:subnet-identifier-list
-                              #:subnet-list #:tstamp #:tag #:tag-list
-                              #:tag-resource #:target-bucket
+                              #:shard-details #:shard-list
+                              #:shard-not-found-fault
+                              #:shards-per-cluster-quota-exceeded-fault
+                              #:slot-migration #:snapshot
+                              #:snapshot-already-exists-fault
+                              #:snapshot-arns-list #:snapshot-list
+                              #:snapshot-not-found-fault
+                              #:snapshot-quota-exceeded-fault #:source-type
+                              #:string #:subnet #:subnet-group
+                              #:subnet-group-already-exists-fault
+                              #:subnet-group-in-use-fault #:subnet-group-list
+                              #:subnet-group-not-found-fault
+                              #:subnet-group-quota-exceeded-fault
+                              #:subnet-identifier-list #:subnet-in-use
+                              #:subnet-list #:subnet-not-allowed-fault
+                              #:subnet-quota-exceeded-fault #:tstamp #:tag
+                              #:tag-list #:tag-not-found-fault
+                              #:tag-quota-per-resource-exceeded #:tag-resource
+                              #:target-bucket
+                              #:test-failover-not-available-fault
                               #:unprocessed-cluster #:unprocessed-cluster-list
                               #:untag-resource #:update-acl #:update-cluster
                               #:update-multi-region-cluster
                               #:update-parameter-group #:update-strategy
                               #:update-subnet-group #:update-user #:user
-                              #:user-list #:user-name #:user-name-list
-                              #:user-name-list-input))
+                              #:user-already-exists-fault #:user-list
+                              #:user-name #:user-name-list
+                              #:user-name-list-input #:user-not-found-fault
+                              #:user-quota-exceeded-fault #:memorydb-error))
 (common-lisp:in-package #:pira/memorydb)
+
+(common-lisp:define-condition memorydb-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-memory-db :shape-name
                                    "AmazonMemoryDB" :version "2021-01-01"
@@ -143,7 +199,7 @@
                                   :member-name "message"))
                                 (:shape-name "ACLAlreadyExistsFault")
                                 (:error-name "ACLAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-list aclcluster-name-list :member string)
 
@@ -157,7 +213,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ACLNotFoundFault")
-                                (:error-name "ACLNotFound") (:error-code 404))
+                                (:error-name "ACLNotFound") (:error-code 404)
+                                (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-structure aclpending-changes common-lisp:nil
                                     ((user-names-to-remove :target-type
@@ -173,7 +230,7 @@
                                   :member-name "message"))
                                 (:shape-name "ACLQuotaExceededFault")
                                 (:error-name "ACLQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-structure acls-update-status common-lisp:nil
                                     ((aclto-apply :target-type aclname
@@ -187,7 +244,7 @@
                                 (:shape-name
                                  "APICallRateForCustomerExceededFault")
                                 (:error-name "APICallRateForCustomerExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-enum azstatus
     common-lisp:nil
@@ -324,7 +381,7 @@
                                   :member-name "message"))
                                 (:shape-name "ClusterAlreadyExistsFault")
                                 (:error-name "ClusterAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-structure cluster-configuration common-lisp:nil
                                     ((name :target-type string :member-name
@@ -376,7 +433,7 @@
                                   :member-name "message"))
                                 (:shape-name "ClusterNotFoundFault")
                                 (:error-name "ClusterNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-structure cluster-pending-updates common-lisp:nil
                                     ((resharding :target-type resharding-status
@@ -395,7 +452,7 @@
                                 (:shape-name
                                  "ClusterQuotaForCustomerExceededFault")
                                 (:error-name "ClusterQuotaForCustomerExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-input copy-snapshot-request common-lisp:nil
                                 ((source-snapshot-name :target-type string
@@ -605,7 +662,7 @@
                                   :member-name "message"))
                                 (:shape-name "DefaultUserRequired")
                                 (:error-name "DefaultUserRequired")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-input delete-aclrequest common-lisp:nil
                                 ((aclname :target-type string :required
@@ -975,7 +1032,7 @@
                                   :member-name "message"))
                                 (:shape-name "DuplicateUserNameFault")
                                 (:error-name "DuplicateUserName")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-structure endpoint common-lisp:nil
                                     ((address :target-type string :member-name
@@ -1054,7 +1111,7 @@
                                 (:shape-name
                                  "InsufficientClusterCapacityFault")
                                 (:error-name "InsufficientClusterCapacity")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
 
@@ -1065,34 +1122,35 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidACLStateFault")
                                 (:error-name "InvalidACLState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-arnfault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidARNFault")
-                                (:error-name "InvalidARN") (:error-code 400))
+                                (:error-name "InvalidARN") (:error-code 400)
+                                (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-cluster-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidClusterStateFault")
                                 (:error-name "InvalidClusterState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-credentials-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidCredentialsException")
                                 (:error-name "InvalidCredentialsException")
-                                (:error-code 408))
+                                (:error-code 408) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-kmskey-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidKMSKeyFault")
                                 (:error-name "InvalidKMSKeyFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-multi-region-cluster-state-fault
                                 common-lisp:nil
@@ -1101,14 +1159,14 @@
                                 (:shape-name
                                  "InvalidMultiRegionClusterStateFault")
                                 (:error-name "InvalidMultiRegionClusterState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-node-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidNodeStateFault")
                                 (:error-name "InvalidNodeState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-combination-exception
                                 common-lisp:nil
@@ -1117,7 +1175,7 @@
                                 (:shape-name
                                  "InvalidParameterCombinationException")
                                 (:error-name "InvalidParameterCombination")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-group-state-fault
                                 common-lisp:nil
@@ -1125,7 +1183,7 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterGroupStateFault")
                                 (:error-name "InvalidParameterGroupState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
@@ -1133,34 +1191,35 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterValueException")
                                 (:error-name "InvalidParameterValue")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-snapshot-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSnapshotStateFault")
                                 (:error-name "InvalidSnapshotState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-subnet common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSubnet")
-                                (:error-name "InvalidSubnet") (:error-code 400))
+                                (:error-name "InvalidSubnet") (:error-code 400)
+                                (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-user-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidUserStateFault")
                                 (:error-name "InvalidUserState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error invalid-vpcnetwork-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidVPCNetworkStateFault")
                                 (:error-name "InvalidVPCNetworkStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-enum ip-discovery
     common-lisp:nil
@@ -1250,7 +1309,7 @@
                                  "MultiRegionClusterAlreadyExistsFault")
                                 (:error-name
                                  "MultiRegionClusterAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-list multi-region-cluster-list :member
                                multi-region-cluster)
@@ -1261,7 +1320,7 @@
                                   :member-name "message"))
                                 (:shape-name "MultiRegionClusterNotFoundFault")
                                 (:error-name "MultiRegionClusterNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error multi-region-parameter-group-not-found-fault
                                 common-lisp:nil
@@ -1271,7 +1330,7 @@
                                  "MultiRegionParameterGroupNotFoundFault")
                                 (:error-name
                                  "MultiRegionParameterGroupNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-enum network-type
     common-lisp:nil
@@ -1286,7 +1345,7 @@
                                   :member-name "message"))
                                 (:shape-name "NoOperationFault")
                                 (:error-name "NoOperationFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-structure node common-lisp:nil
                                     ((name :target-type string :member-name
@@ -1310,7 +1369,7 @@
                                 (:shape-name
                                  "NodeQuotaForClusterExceededFault")
                                 (:error-name "NodeQuotaForClusterExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error node-quota-for-customer-exceeded-fault
                                 common-lisp:nil
@@ -1319,7 +1378,7 @@
                                 (:shape-name
                                  "NodeQuotaForCustomerExceededFault")
                                 (:error-name "NodeQuotaForCustomerExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-list node-type-list :member string)
 
@@ -1357,7 +1416,7 @@
                                 (:shape-name
                                  "ParameterGroupAlreadyExistsFault")
                                 (:error-name "ParameterGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-list parameter-group-list :member
                                (parameter-group :xml-name "ParameterGroup"))
@@ -1367,7 +1426,7 @@
                                   :member-name "message"))
                                 (:shape-name "ParameterGroupNotFoundFault")
                                 (:error-name "ParameterGroupNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error parameter-group-quota-exceeded-fault
                                 common-lisp:nil
@@ -1376,7 +1435,7 @@
                                 (:shape-name
                                  "ParameterGroupQuotaExceededFault")
                                 (:error-name "ParameterGroupQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-list parameter-name-list :member string)
 
@@ -1495,7 +1554,7 @@
                                   :member-name "message"))
                                 (:shape-name "ReservedNodeAlreadyExistsFault")
                                 (:error-name "ReservedNodeAlreadyExists")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-list reserved-node-list :member
                                (reserved-node :xml-name "ReservedNode"))
@@ -1505,7 +1564,7 @@
                                   :member-name "message"))
                                 (:shape-name "ReservedNodeNotFoundFault")
                                 (:error-name "ReservedNodeNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error reserved-node-quota-exceeded-fault
                                 common-lisp:nil
@@ -1513,7 +1572,7 @@
                                   :member-name "message"))
                                 (:shape-name "ReservedNodeQuotaExceededFault")
                                 (:error-name "ReservedNodeQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-structure reserved-nodes-offering common-lisp:nil
                                     ((reserved-nodes-offering-id :target-type
@@ -1543,7 +1602,7 @@
                                 (:shape-name
                                  "ReservedNodesOfferingNotFoundFault")
                                 (:error-name "ReservedNodesOfferingNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-input reset-parameter-group-request common-lisp:nil
                                 ((parameter-group-name :target-type string
@@ -1586,7 +1645,7 @@
                                   :member-name "message"))
                                 (:shape-name "ServiceLinkedRoleNotFoundFault")
                                 (:error-name "ServiceLinkedRoleNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-structure service-update common-lisp:nil
                                     ((cluster-name :target-type string
@@ -1618,7 +1677,7 @@
                                   :member-name "message"))
                                 (:shape-name "ServiceUpdateNotFoundFault")
                                 (:error-name "ServiceUpdateNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-structure service-update-request common-lisp:nil
                                     ((service-update-name-to-apply :target-type
@@ -1689,7 +1748,7 @@
                                   :member-name "message"))
                                 (:shape-name "ShardNotFoundFault")
                                 (:error-name "ShardNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error shards-per-cluster-quota-exceeded-fault
                                 common-lisp:nil
@@ -1698,7 +1757,7 @@
                                 (:shape-name
                                  "ShardsPerClusterQuotaExceededFault")
                                 (:error-name "ShardsPerClusterQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-structure slot-migration common-lisp:nil
                                     ((progress-percentage :target-type double
@@ -1729,7 +1788,7 @@
                                   :member-name "message"))
                                 (:shape-name "SnapshotAlreadyExistsFault")
                                 (:error-name "SnapshotAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-list snapshot-arns-list :member
                                (string :xml-name "SnapshotArn"))
@@ -1741,14 +1800,14 @@
                                   :member-name "message"))
                                 (:shape-name "SnapshotNotFoundFault")
                                 (:error-name "SnapshotNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error snapshot-quota-exceeded-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SnapshotQuotaExceededFault")
                                 (:error-name "SnapshotQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-enum source-type
     common-lisp:nil
@@ -1794,14 +1853,14 @@
                                   :member-name "message"))
                                 (:shape-name "SubnetGroupAlreadyExistsFault")
                                 (:error-name "SubnetGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error subnet-group-in-use-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SubnetGroupInUseFault")
                                 (:error-name "SubnetGroupInUse")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-list subnet-group-list :member subnet-group)
 
@@ -1810,7 +1869,7 @@
                                   :member-name "message"))
                                 (:shape-name "SubnetGroupNotFoundFault")
                                 (:error-name "SubnetGroupNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error subnet-group-quota-exceeded-fault
                                 common-lisp:nil
@@ -1818,7 +1877,7 @@
                                   :member-name "message"))
                                 (:shape-name "SubnetGroupQuotaExceededFault")
                                 (:error-name "SubnetGroupQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-list subnet-identifier-list :member
                                (string :xml-name "SubnetIdentifier"))
@@ -1827,7 +1886,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SubnetInUse")
-                                (:error-name "SubnetInUse") (:error-code 400))
+                                (:error-name "SubnetInUse") (:error-code 400)
+                                (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-list subnet-list :member (subnet :xml-name "Subnet"))
 
@@ -1836,14 +1896,14 @@
                                   :member-name "message"))
                                 (:shape-name "SubnetNotAllowedFault")
                                 (:error-name "SubnetNotAllowedFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error subnet-quota-exceeded-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SubnetQuotaExceededFault")
                                 (:error-name "SubnetQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-type tstamp smithy/sdk/smithy-types:timestamp)
 
@@ -1860,14 +1920,15 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TagNotFoundFault")
-                                (:error-name "TagNotFound") (:error-code 404))
+                                (:error-name "TagNotFound") (:error-code 404)
+                                (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error tag-quota-per-resource-exceeded common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TagQuotaPerResourceExceeded")
                                 (:error-name "TagQuotaPerResourceExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required
@@ -1889,7 +1950,7 @@
                                   :member-name "message"))
                                 (:shape-name "TestFailoverNotAvailableFault")
                                 (:error-name "TestFailoverNotAvailableFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-structure unprocessed-cluster common-lisp:nil
                                     ((cluster-name :target-type string
@@ -2079,7 +2140,7 @@
                                   :member-name "message"))
                                 (:shape-name "UserAlreadyExistsFault")
                                 (:error-name "UserAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-list user-list :member user)
 
@@ -2093,14 +2154,15 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UserNotFoundFault")
-                                (:error-name "UserNotFound") (:error-code 404))
+                                (:error-name "UserNotFound") (:error-code 404)
+                                (:base-class memorydb-error))
 
 (smithy/sdk/shapes:define-error user-quota-exceeded-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UserQuotaExceededFault")
                                 (:error-name "UserQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class memorydb-error))
 
 (smithy/sdk/operation:define-operation batch-update-cluster :shape-name
                                        "BatchUpdateCluster" :input

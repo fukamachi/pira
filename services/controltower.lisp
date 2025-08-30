@@ -1,12 +1,14 @@
 (uiop/package:define-package #:pira/controltower (:use)
-                             (:export #:awscontrol-tower-apis #:arn
-                              #:baseline-arn #:baseline-operation
+                             (:export #:awscontrol-tower-apis
+                              #:access-denied-exception #:arn #:baseline-arn
+                              #:baseline-operation
                               #:baseline-operation-resource
                               #:baseline-operation-status
                               #:baseline-operation-type #:baseline-resource
                               #:baseline-summary #:baseline-version #:baselines
-                              #:control-identifier #:control-identifiers
-                              #:control-operation #:control-operation-filter
+                              #:conflict-exception #:control-identifier
+                              #:control-identifiers #:control-operation
+                              #:control-operation-filter
                               #:control-operation-resource
                               #:control-operation-status
                               #:control-operation-statuses
@@ -50,7 +52,8 @@
                               #:get-baseline-operation #:get-control-operation
                               #:get-enabled-baseline #:get-enabled-control
                               #:get-landing-zone #:get-landing-zone-operation
-                              #:landing-zone-detail #:landing-zone-drift-status
+                              #:internal-server-exception #:landing-zone-detail
+                              #:landing-zone-drift-status
                               #:landing-zone-drift-status-summary
                               #:landing-zone-operation-detail
                               #:landing-zone-operation-filter
@@ -78,13 +81,21 @@
                               #:list-tags-for-resource #:manifest #:max-results
                               #:operation-identifier #:region #:region-name
                               #:reset-enabled-baseline #:reset-enabled-control
-                              #:reset-landing-zone #:tag-key #:tag-keys
-                              #:tag-map #:tag-resource #:tag-value
+                              #:reset-landing-zone
+                              #:resource-not-found-exception
+                              #:service-quota-exceeded-exception #:tag-key
+                              #:tag-keys #:tag-map #:tag-resource #:tag-value
                               #:tagging-resource #:target-identifier
-                              #:target-identifiers #:target-regions #:timestamp
+                              #:target-identifiers #:target-regions
+                              #:throttling-exception #:timestamp
                               #:untag-resource #:update-enabled-baseline
-                              #:update-enabled-control #:update-landing-zone))
+                              #:update-enabled-control #:update-landing-zone
+                              #:validation-exception #:controltower-error))
 (common-lisp:in-package #:pira/controltower)
+
+(common-lisp:define-condition controltower-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awscontrol-tower-apis :shape-name
                                    "AWSControlTowerApis" :version "2018-05-10"
@@ -106,7 +117,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class controltower-error))
 
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
 
@@ -169,7 +181,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class controltower-error))
 
 (smithy/sdk/shapes:define-type control-identifier
                                smithy/sdk/smithy-types:string)
@@ -742,7 +755,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class controltower-error))
 
 (smithy/sdk/shapes:define-structure landing-zone-detail common-lisp:nil
                                     ((version :target-type landing-zone-version
@@ -1072,7 +1086,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class controltower-error))
 
 (smithy/sdk/shapes:define-error service-quota-exceeded-exception
                                 common-lisp:nil
@@ -1080,7 +1095,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class controltower-error))
 
 (smithy/sdk/shapes:define-type tag-key smithy/sdk/smithy-types:string)
 
@@ -1125,7 +1141,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class controltower-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -1199,7 +1216,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class controltower-error))
 
 (smithy/sdk/operation:define-operation create-landing-zone :shape-name
                                        "CreateLandingZone" :input

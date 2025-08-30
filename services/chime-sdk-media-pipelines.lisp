@@ -12,8 +12,9 @@
                               #:audio-channels-option
                               #:audio-concatenation-configuration
                               #:audio-mux-type #:audio-sample-rate-option
-                              #:aws-region #:boolean #:border-color
-                              #:border-thickness #:call-analytics-language-code
+                              #:aws-region #:bad-request-exception #:boolean
+                              #:border-color #:border-thickness
+                              #:call-analytics-language-code
                               #:canvas-orientation #:category-name
                               #:category-name-list #:channel-definition
                               #:channel-definitions #:channel-id
@@ -27,7 +28,7 @@
                               #:concatenation-sink #:concatenation-sink-list
                               #:concatenation-sink-type #:concatenation-source
                               #:concatenation-source-list
-                              #:concatenation-source-type
+                              #:concatenation-source-type #:conflict-exception
                               #:content-artifacts-configuration
                               #:content-concatenation-configuration
                               #:content-mux-type #:content-redaction-output
@@ -47,8 +48,9 @@
                               #:delete-media-pipeline
                               #:delete-media-pipeline-kinesis-video-stream-pool
                               #:error-code #:external-user-id-list
-                              #:external-user-id-type #:fragment-number-string
-                              #:fragment-selector #:fragment-selector-type
+                              #:external-user-id-type #:forbidden-exception
+                              #:fragment-number-string #:fragment-selector
+                              #:fragment-selector-type
                               #:get-media-capture-pipeline
                               #:get-media-insights-pipeline-configuration
                               #:get-media-pipeline
@@ -121,9 +123,9 @@
                               #:media-stream-type
                               #:meeting-events-concatenation-configuration
                               #:model-name #:non-empty-string
-                              #:number-of-channels #:partial-results-stability
-                              #:participant-role #:pii-entity-types
-                              #:post-call-analytics-settings
+                              #:not-found-exception #:number-of-channels
+                              #:partial-results-stability #:participant-role
+                              #:pii-entity-types #:post-call-analytics-settings
                               #:presenter-only-configuration
                               #:presenter-position
                               #:real-time-alert-configuration
@@ -134,14 +136,16 @@
                               #:recording-stream-configuration
                               #:recording-stream-list
                               #:reserved-stream-capacity #:resolution-option
-                              #:result-max #:rule-name
-                              #:s3bucket-sink-configuration
+                              #:resource-limit-exceeded-exception #:result-max
+                              #:rule-name #:s3bucket-sink-configuration
                               #:s3recording-sink-configuration
                               #:s3recording-sink-runtime-configuration
                               #:selected-video-streams #:sensitive-string
                               #:sentiment-configuration
                               #:sentiment-time-period-in-seconds
-                              #:sentiment-type #:sns-topic-sink-configuration
+                              #:sentiment-type #:service-failure-exception
+                              #:service-unavailable-exception
+                              #:sns-topic-sink-configuration
                               #:source-configuration #:speaker-search-task
                               #:sqs-queue-sink-configuration
                               #:sse-aws-key-management-params
@@ -152,11 +156,12 @@
                               #:stream-channel-definition
                               #:stream-configuration #:streams #:string #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-value #:tile-aspect-ratio
+                              #:tag-resource #:tag-value
+                              #:throttled-client-exception #:tile-aspect-ratio
                               #:tile-count #:tile-order #:timestamp
                               #:timestamp-range
                               #:transcription-messages-concatenation-configuration
-                              #:untag-resource
+                              #:unauthorized-client-exception #:untag-resource
                               #:update-media-insights-pipeline-configuration
                               #:update-media-insights-pipeline-status
                               #:update-media-pipeline-kinesis-video-stream-pool
@@ -172,8 +177,13 @@
                               #:voice-analytics-language-code
                               #:voice-analytics-processor-configuration
                               #:voice-enhancement-sink-configuration
-                              #:voice-tone-analysis-task))
+                              #:voice-tone-analysis-task
+                              #:chime-sdk-media-pipelines-error))
 (common-lisp:in-package #:pira/chime-sdk-media-pipelines)
+
+(common-lisp:define-condition chime-sdk-media-pipelines-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service chime-sdkmedia-pipelines-service :shape-name
                                    "ChimeSDKMediaPipelinesService" :version
@@ -433,7 +443,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class chime-sdk-media-pipelines-error))
 
 (smithy/sdk/shapes:define-type boolean smithy/sdk/smithy-types:boolean)
 
@@ -575,7 +586,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class chime-sdk-media-pipelines-error))
 
 (smithy/sdk/shapes:define-structure content-artifacts-configuration
                                     common-lisp:nil
@@ -868,7 +880,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class chime-sdk-media-pipelines-error))
 
 (smithy/sdk/shapes:define-type fragment-number-string
                                smithy/sdk/smithy-types:string)
@@ -1759,7 +1772,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class chime-sdk-media-pipelines-error))
 
 (smithy/sdk/shapes:define-type number-of-channels
                                smithy/sdk/smithy-types:integer)
@@ -1875,7 +1889,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ResourceLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class chime-sdk-media-pipelines-error))
 
 (smithy/sdk/shapes:define-type result-max smithy/sdk/smithy-types:integer)
 
@@ -1947,7 +1962,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ServiceFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class chime-sdk-media-pipelines-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((code :target-type error-code :member-name
@@ -1957,7 +1973,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class chime-sdk-media-pipelines-error))
 
 (smithy/sdk/shapes:define-structure sns-topic-sink-configuration
                                     common-lisp:nil
@@ -2139,7 +2156,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ThrottledClientException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class chime-sdk-media-pipelines-error))
 
 (smithy/sdk/shapes:define-type tile-aspect-ratio smithy/sdk/smithy-types:string)
 
@@ -2175,7 +2193,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "UnauthorizedClientException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class chime-sdk-media-pipelines-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type

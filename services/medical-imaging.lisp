@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/medical-imaging (:use)
-                             (:export #:ahigateway-service #:arn
-                              #:aws-account-id #:client-token
+                             (:export #:ahigateway-service
+                              #:access-denied-exception #:arn #:aws-account-id
+                              #:client-token #:conflict-exception
                               #:copiable-attributes
                               #:copy-destination-image-set
                               #:copy-destination-image-set-properties
@@ -35,22 +36,30 @@
                               #:image-set-properties-list #:image-set-resource
                               #:image-set-state #:image-set-workflow-status
                               #:image-sets-metadata-summaries
-                              #:image-sets-metadata-summary #:job-id #:job-name
+                              #:image-sets-metadata-summary
+                              #:internal-server-exception #:job-id #:job-name
                               #:job-status #:kms-key-arn
                               #:list-dicomimport-jobs #:list-datastores
                               #:list-image-set-versions
                               #:list-tags-for-resource #:message
                               #:metadata-copies #:metadata-updates #:next-token
-                              #:operator #:overrides #:payload-blob #:role-arn
-                              #:s3uri #:search-by-attribute-value
+                              #:operator #:overrides #:payload-blob
+                              #:resource-not-found-exception #:role-arn #:s3uri
+                              #:search-by-attribute-value
                               #:search-by-attribute-values #:search-criteria
                               #:search-filter #:search-filters
-                              #:search-image-sets #:sort #:sort-field
-                              #:sort-order #:start-dicomimport-job #:tag-key
-                              #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-value #:untag-resource
-                              #:update-image-set-metadata))
+                              #:search-image-sets
+                              #:service-quota-exceeded-exception #:sort
+                              #:sort-field #:sort-order #:start-dicomimport-job
+                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-value #:throttling-exception
+                              #:untag-resource #:update-image-set-metadata
+                              #:validation-exception #:medical-imaging-error))
 (common-lisp:in-package #:pira/medical-imaging)
+
+(common-lisp:define-condition medical-imaging-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ahigateway-service :shape-name
                                    "AHIGatewayService" :version "2023-07-19"
@@ -89,7 +98,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class medical-imaging-error))
 
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
 
@@ -102,7 +112,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class medical-imaging-error))
 
 (smithy/sdk/shapes:define-type copiable-attributes
                                smithy/sdk/smithy-types:string)
@@ -725,7 +736,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class medical-imaging-error))
 
 (smithy/sdk/shapes:define-type job-id smithy/sdk/smithy-types:string)
 
@@ -859,7 +871,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class medical-imaging-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -942,7 +955,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class medical-imaging-error))
 
 (smithy/sdk/shapes:define-structure sort common-lisp:nil
                                     ((sort-order :target-type sort-order
@@ -1022,7 +1036,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class medical-imaging-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -1090,7 +1105,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class medical-imaging-error))
 
 (smithy/sdk/operation:define-operation copy-image-set :shape-name
                                        "CopyImageSet" :input

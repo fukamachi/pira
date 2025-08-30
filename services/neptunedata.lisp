@@ -1,10 +1,17 @@
 (uiop/package:define-package #:pira/neptunedata (:use)
-                             (:export #:action #:amazon-neptune-dataplane
+                             (:export #:access-denied-exception #:action
+                              #:amazon-neptune-dataplane
+                              #:bad-request-exception
+                              #:bulk-load-id-not-found-exception
                               #:cancel-gremlin-query #:cancel-loader-job
                               #:cancel-mldata-processing-job
                               #:cancel-mlmodel-training-job
                               #:cancel-mlmodel-transform-job
-                              #:cancel-open-cypher-query #:classes
+                              #:cancel-open-cypher-query
+                              #:cancelled-by-user-exception #:classes
+                              #:client-timeout-exception
+                              #:concurrent-modification-exception
+                              #:constraint-violation-exception
                               #:create-mlendpoint
                               #:custom-model-training-parameters
                               #:custom-model-transform-parameters
@@ -19,7 +26,9 @@
                               #:execute-gremlin-profile-query
                               #:execute-gremlin-query
                               #:execute-open-cypher-explain-query
-                              #:execute-open-cypher-query #:fast-reset-token
+                              #:execute-open-cypher-query
+                              #:expired-stream-exception
+                              #:failure-by-query-exception #:fast-reset-token
                               #:format #:get-engine-status
                               #:get-gremlin-query-status
                               #:get-loader-job-status
@@ -33,38 +42,68 @@
                               #:get-rdfgraph-summary #:get-sparql-statistics
                               #:get-sparql-stream #:graph-summary-type
                               #:gremlin-queries #:gremlin-query-status
-                              #:gremlin-query-status-attributes #:iterator-type
+                              #:gremlin-query-status-attributes
+                              #:illegal-argument-exception
+                              #:internal-failure-exception
+                              #:invalid-argument-exception
+                              #:invalid-numeric-data-exception
+                              #:invalid-parameter-exception #:iterator-type
                               #:list-gremlin-queries #:list-loader-jobs
                               #:list-mldata-processing-jobs #:list-mlendpoints
                               #:list-mlmodel-training-jobs
                               #:list-mlmodel-transform-jobs
-                              #:list-open-cypher-queries #:loader-id-result
-                              #:long-valued-map #:long-valued-map-list
+                              #:list-open-cypher-queries
+                              #:load-url-access-denied-exception
+                              #:loader-id-result #:long-valued-map
+                              #:long-valued-map-list
+                              #:mlresource-not-found-exception
+                              #:malformed-query-exception
                               #:manage-propertygraph-statistics
-                              #:manage-sparql-statistics #:ml-config-definition
-                              #:ml-models #:ml-resource-definition #:mode
-                              #:models #:node-labels #:node-properties
-                              #:node-structure #:node-structures
-                              #:open-cypher-explain-mode #:open-cypher-queries
-                              #:outgoing-edge-labels #:parallelism
-                              #:positive-integer #:predicates
+                              #:manage-sparql-statistics
+                              #:memory-limit-exceeded-exception
+                              #:method-not-allowed-exception
+                              #:missing-parameter-exception
+                              #:ml-config-definition #:ml-models
+                              #:ml-resource-definition #:mode #:models
+                              #:node-labels #:node-properties #:node-structure
+                              #:node-structures #:open-cypher-explain-mode
+                              #:open-cypher-queries #:outgoing-edge-labels
+                              #:parallelism #:parsing-exception
+                              #:positive-integer
+                              #:preconditions-failed-exception #:predicates
                               #:propertygraph-data #:propertygraph-record
                               #:propertygraph-records-list
                               #:propertygraph-summary
                               #:propertygraph-summary-value-map
                               #:query-eval-stats #:query-language-version
-                              #:rdfgraph-summary #:rdfgraph-summary-value-map
+                              #:query-limit-exceeded-exception
+                              #:query-limit-exception
+                              #:query-too-large-exception #:rdfgraph-summary
+                              #:rdfgraph-summary-value-map
+                              #:read-only-violation-exception
                               #:refresh-statistics-id-map #:report-as-text
-                              #:s3bucket-region #:sparql-data #:sparql-record
-                              #:sparql-records-list #:start-loader-job
-                              #:start-mldata-processing-job
+                              #:s3bucket-region #:s3exception
+                              #:server-shutdown-exception #:sparql-data
+                              #:sparql-record #:sparql-records-list
+                              #:start-loader-job #:start-mldata-processing-job
                               #:start-mlmodel-training-job
                               #:start-mlmodel-transform-job #:statistics
                               #:statistics-auto-generation-mode
-                              #:statistics-summary #:string-list
-                              #:string-valued-map #:subject-structure
-                              #:subject-structures))
+                              #:statistics-not-available-exception
+                              #:statistics-summary
+                              #:stream-records-not-found-exception
+                              #:string-list #:string-valued-map
+                              #:subject-structure #:subject-structures
+                              #:throttling-exception
+                              #:time-limit-exceeded-exception
+                              #:too-many-requests-exception
+                              #:unsupported-operation-exception
+                              #:neptunedata-error))
 (common-lisp:in-package #:pira/neptunedata)
+
+(common-lisp:define-condition neptunedata-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-neptune-dataplane :shape-name
                                    "AmazonNeptuneDataplane" :version
@@ -124,7 +163,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-enum action
     common-lisp:nil
@@ -142,7 +182,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error bulk-load-id-not-found-exception
                                 common-lisp:nil
@@ -156,7 +197,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "BulkLoadIdNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-input cancel-gremlin-query-input common-lisp:nil
                                 ((query-id :target-type
@@ -283,7 +325,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "CancelledByUserException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-list classes :member smithy/sdk/smithy-types:string)
 
@@ -298,7 +341,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "ClientTimeoutException")
-                                (:error-code 408))
+                                (:error-code 408)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error concurrent-modification-exception
                                 common-lisp:nil
@@ -312,7 +356,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error constraint-violation-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -325,7 +370,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "ConstraintViolationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-input create-mlendpoint-input common-lisp:nil
                                 ((id :target-type
@@ -619,7 +665,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "ExpiredStreamException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error failure-by-query-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -632,7 +679,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "FailureByQueryException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-structure fast-reset-token common-lisp:nil
                                     ((token :target-type
@@ -1032,7 +1080,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "IllegalArgumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error internal-failure-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -1045,7 +1094,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error invalid-argument-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -1058,7 +1108,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "InvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error invalid-numeric-data-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -1071,7 +1122,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "InvalidNumericDataException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -1084,7 +1136,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-enum iterator-type
     common-lisp:nil
@@ -1226,7 +1279,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "LoadUrlAccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-structure loader-id-result common-lisp:nil
                                     ((load-ids :target-type string-list
@@ -1250,7 +1304,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "MLResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error malformed-query-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -1263,7 +1318,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "MalformedQueryException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-input manage-propertygraph-statistics-input
                                 common-lisp:nil
@@ -1311,7 +1367,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "MemoryLimitExceededException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error method-not-allowed-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -1324,7 +1381,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "MethodNotAllowedException")
-                                (:error-code 405))
+                                (:error-code 405)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error missing-parameter-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -1337,7 +1395,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "MissingParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-structure ml-config-definition common-lisp:nil
                                     ((name :target-type
@@ -1429,7 +1488,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "ParsingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-type positive-integer smithy/sdk/smithy-types:integer)
 
@@ -1444,7 +1504,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "PreconditionsFailedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-list predicates :member
                                smithy/sdk/smithy-types:string)
@@ -1586,7 +1647,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "QueryLimitExceededException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error query-limit-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -1599,7 +1661,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "QueryLimitException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error query-too-large-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -1612,7 +1675,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "QueryTooLargeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-structure rdfgraph-summary common-lisp:nil
                                     ((num-distinct-subjects :target-type
@@ -1663,7 +1727,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "ReadOnlyViolationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-structure refresh-statistics-id-map common-lisp:nil
                                     ((statistics-id :target-type
@@ -1723,7 +1788,8 @@
                                  (code :target-type
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
-                                (:shape-name "S3Exception") (:error-code 400))
+                                (:shape-name "S3Exception") (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error server-shutdown-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -1736,7 +1802,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "ServerShutdownException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-structure sparql-data common-lisp:nil
                                     ((stmt :target-type
@@ -2045,7 +2112,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "StatisticsNotAvailableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-structure statistics-summary common-lisp:nil
                                     ((signature-count :target-type
@@ -2071,7 +2139,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "StreamRecordsNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-list string-list :member
                                smithy/sdk/smithy-types:string)
@@ -2101,7 +2170,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error time-limit-exceeded-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -2114,7 +2184,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "TimeLimitExceededException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error too-many-requests-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -2127,7 +2198,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/shapes:define-error unsupported-operation-exception common-lisp:nil
                                 ((detailed-message :target-type
@@ -2140,7 +2212,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "code"))
                                 (:shape-name "UnsupportedOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptunedata-error))
 
 (smithy/sdk/operation:define-operation cancel-gremlin-query :shape-name
                                        "CancelGremlinQuery" :input

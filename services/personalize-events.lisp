@@ -4,18 +4,24 @@
                               #:action-list #:amazon-personalize-events #:arn
                               #:date #:error-message #:event
                               #:event-attribution-source #:event-list
-                              #:float-type #:impression #:item #:item-id
+                              #:float-type #:impression
+                              #:invalid-input-exception #:item #:item-id
                               #:item-list #:metric-attribution
                               #:put-action-interactions #:put-actions
                               #:put-events #:put-items #:put-users
-                              #:recommendation-id #:string-type
+                              #:recommendation-id #:resource-in-use-exception
+                              #:resource-not-found-exception #:string-type
                               #:synthesized-json-action-interaction-properties
                               #:synthesized-json-action-properties
                               #:synthesized-json-event-properties-json
                               #:synthesized-json-item-properties
                               #:synthesized-json-user-properties #:user
-                              #:user-id #:user-list))
+                              #:user-id #:user-list #:personalize-events-error))
 (common-lisp:in-package #:pira/personalize-events)
+
+(common-lisp:define-condition personalize-events-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-personalize-events :shape-name
                                    "AmazonPersonalizeEvents" :version
@@ -125,7 +131,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class personalize-events-error))
 
 (smithy/sdk/shapes:define-structure item common-lisp:nil
                                     ((item-id :target-type string-type
@@ -196,13 +203,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class personalize-events-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class personalize-events-error))
 
 (smithy/sdk/shapes:define-type string-type smithy/sdk/smithy-types:string)
 

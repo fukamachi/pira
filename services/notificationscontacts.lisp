@@ -1,22 +1,31 @@
 (uiop/package:define-package #:pira/notificationscontacts (:use)
-                             (:export #:activate-email-contact
+                             (:export #:access-denied-exception
+                              #:activate-email-contact #:conflict-exception
                               #:create-email-contact #:creation-time
                               #:delete-email-contact #:email-contact
                               #:email-contact-address #:email-contact-arn
                               #:email-contact-name #:email-contact-resource
                               #:email-contact-status #:email-contacts
                               #:error-message #:get-email-contact
-                              #:list-email-contacts #:list-tags-for-resource
-                              #:notifications-contacts #:quota-code
-                              #:resource-id #:resource-type
+                              #:internal-server-exception #:list-email-contacts
+                              #:list-tags-for-resource #:notifications-contacts
+                              #:quota-code #:resource-id
+                              #:resource-not-found-exception #:resource-type
                               #:send-activation-code
                               #:sensitive-email-contact-address #:service-code
-                              #:tag-key #:tag-keys #:tag-map #:tag-resource
-                              #:tag-value #:token #:untag-resource
-                              #:update-time #:validation-exception-field
+                              #:service-quota-exceeded-exception #:tag-key
+                              #:tag-keys #:tag-map #:tag-resource #:tag-value
+                              #:throttling-exception #:token #:untag-resource
+                              #:update-time #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason))
+                              #:validation-exception-reason
+                              #:notificationscontacts-error))
 (common-lisp:in-package #:pira/notificationscontacts)
+
+(common-lisp:define-condition notificationscontacts-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service notifications-contacts :shape-name
                                    "NotificationsContacts" :version
@@ -49,7 +58,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class notificationscontacts-error))
 
 (smithy/sdk/shapes:define-input activate-email-contact-request common-lisp:nil
                                 ((arn :target-type email-contact-arn :required
@@ -74,7 +84,8 @@
                                   :required common-lisp:t :member-name
                                   "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class notificationscontacts-error))
 
 (smithy/sdk/shapes:define-input create-email-contact-request common-lisp:nil
                                 ((name :target-type email-contact-name
@@ -158,7 +169,8 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class notificationscontacts-error))
 
 (smithy/sdk/shapes:define-input list-email-contacts-request common-lisp:nil
                                 ((max-results :target-type
@@ -204,7 +216,8 @@ common-lisp:nil
                                   :required common-lisp:t :member-name
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class notificationscontacts-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -239,7 +252,8 @@ common-lisp:nil
                                  (quota-code :target-type quota-code :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class notificationscontacts-error))
 
 (smithy/sdk/shapes:define-type tag-key smithy/sdk/smithy-types:string)
 
@@ -273,7 +287,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class notificationscontacts-error))
 
 (smithy/sdk/shapes:define-type token smithy/sdk/smithy-types:string)
 
@@ -303,7 +318,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class notificationscontacts-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

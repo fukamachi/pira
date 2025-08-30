@@ -64,14 +64,15 @@
                               #:input-definition #:input-description
                               #:input-identifier #:input-name #:input-property
                               #:input-status #:input-summaries #:input-summary
-                              #:iot-columbo-service #:iot-events-action
-                              #:iot-events-input-identifier
+                              #:internal-failure-exception
+                              #:invalid-request-exception #:iot-columbo-service
+                              #:iot-events-action #:iot-events-input-identifier
                               #:iot-site-wise-action
                               #:iot-site-wise-asset-model-property-identifier
                               #:iot-site-wise-input-identifier
                               #:iot-topic-publish-action #:key-value
-                              #:lambda-action #:list-alarm-model-versions
-                              #:list-alarm-models
+                              #:lambda-action #:limit-exceeded-exception
+                              #:list-alarm-model-versions #:list-alarm-models
                               #:list-detector-model-versions
                               #:list-detector-models #:list-input-routings
                               #:list-inputs #:list-tags-for-resource
@@ -85,23 +86,34 @@
                               #:on-input-lifecycle #:payload #:payload-type
                               #:put-logging-options #:queue-url
                               #:recipient-detail #:recipient-details
-                              #:reset-timer-action #:resource-name
-                              #:routed-resource #:routed-resources
-                              #:smsconfiguration #:smsconfigurations
-                              #:smssender-id #:snstopic-publish-action
-                              #:ssoidentity #:ssoreference-id #:seconds
+                              #:reset-timer-action
+                              #:resource-already-exists-exception
+                              #:resource-in-use-exception #:resource-name
+                              #:resource-not-found-exception #:routed-resource
+                              #:routed-resources #:smsconfiguration
+                              #:smsconfigurations #:smssender-id
+                              #:snstopic-publish-action #:ssoidentity
+                              #:ssoreference-id #:seconds
+                              #:service-unavailable-exception
                               #:set-timer-action #:set-variable-action
                               #:severity #:simple-rule #:sqs-action
                               #:start-detector-model-analysis #:state
                               #:state-name #:states #:status-message #:tag
                               #:tag-key #:tag-keys #:tag-resource #:tag-value
-                              #:tags #:threshold #:timer-name #:timestamp
-                              #:transition-event #:transition-events
+                              #:tags #:threshold #:throttling-exception
+                              #:timer-name #:timestamp #:transition-event
+                              #:transition-events
+                              #:unsupported-operation-exception
                               #:untag-resource #:update-alarm-model
                               #:update-detector-model #:update-input
                               #:use-base64 #:variable-name #:variable-value
-                              #:error-message #:resource-arn #:resource-id))
+                              #:error-message #:resource-arn #:resource-id
+                              #:iot-events-error))
 (common-lisp:in-package #:pira/iot-events)
+
+(common-lisp:define-condition iot-events-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service iot-columbo-service :shape-name
                                    "IotColumboService" :version "2018-07-27"
@@ -1022,13 +1034,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iot-events-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iot-events-error))
 
 (smithy/sdk/shapes:define-structure iot-events-action common-lisp:nil
                                     ((input-name :target-type input-name
@@ -1100,7 +1114,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 410))
+                                (:error-code 410)
+                                (:base-class iot-events-error))
 
 (smithy/sdk/shapes:define-input list-alarm-model-versions-request
                                 common-lisp:nil
@@ -1348,13 +1363,15 @@
                                  (resource-arn :target-type resource-arn
                                   :member-name "resourceArn"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iot-events-error))
 
 (smithy/sdk/shapes:define-error resource-in-use-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iot-events-error))
 
 (smithy/sdk/shapes:define-type resource-name smithy/sdk/smithy-types:string)
 
@@ -1362,7 +1379,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iot-events-error))
 
 (smithy/sdk/shapes:define-structure routed-resource common-lisp:nil
                                     ((name :target-type resource-name
@@ -1412,7 +1430,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class iot-events-error))
 
 (smithy/sdk/shapes:define-structure set-timer-action common-lisp:nil
                                     ((timer-name :target-type timer-name
@@ -1527,7 +1546,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class iot-events-error))
 
 (smithy/sdk/shapes:define-type timer-name smithy/sdk/smithy-types:string)
 
@@ -1553,7 +1573,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnsupportedOperationException")
-                                (:error-code 501))
+                                (:error-code 501)
+                                (:base-class iot-events-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type

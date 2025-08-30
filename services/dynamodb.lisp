@@ -18,7 +18,8 @@
                               #:auto-scaling-target-tracking-scaling-policy-configuration-update
                               #:backfilling #:backup-arn
                               #:backup-creation-date-time #:backup-description
-                              #:backup-details #:backup-name
+                              #:backup-details #:backup-in-use-exception
+                              #:backup-name #:backup-not-found-exception
                               #:backup-size-bytes #:backup-status
                               #:backup-summaries #:backup-summary #:backup-type
                               #:backup-type-filter #:backups-input-limit
@@ -38,6 +39,7 @@
                               #:cloud-watch-log-group-arn #:code
                               #:comparison-operator #:condition
                               #:condition-check #:condition-expression
+                              #:conditional-check-failed-exception
                               #:conditional-operator
                               #:confirm-remove-self-resource-access
                               #:consistent-read #:consumed-capacity
@@ -45,6 +47,7 @@
                               #:consumed-capacity-units
                               #:continuous-backups-description
                               #:continuous-backups-status
+                              #:continuous-backups-unavailable-exception
                               #:contributor-insights-action
                               #:contributor-insights-rule
                               #:contributor-insights-rule-list
@@ -76,7 +79,8 @@
                               #:describe-table-replica-auto-scaling
                               #:describe-time-to-live #:destination-status
                               #:disable-kinesis-streaming-destination
-                              #:double-object #:dynamo-db-20120810
+                              #:double-object #:duplicate-item-exception
+                              #:dynamo-db-20120810
                               #:enable-kinesis-streaming-configuration
                               #:enable-kinesis-streaming-destination #:endpoint
                               #:endpoints #:error-count #:error-message
@@ -84,9 +88,10 @@
                               #:execute-statement #:execute-transaction
                               #:expected-attribute-map
                               #:expected-attribute-value #:export-arn
-                              #:export-description #:export-end-time
-                              #:export-format #:export-from-time
-                              #:export-manifest #:export-next-token
+                              #:export-conflict-exception #:export-description
+                              #:export-end-time #:export-format
+                              #:export-from-time #:export-manifest
+                              #:export-next-token #:export-not-found-exception
                               #:export-start-time #:export-status
                               #:export-summaries #:export-summary
                               #:export-table-to-point-in-time #:export-time
@@ -109,30 +114,40 @@
                               #:global-secondary-index-update-list
                               #:global-secondary-index-warm-throughput-description
                               #:global-secondary-indexes #:global-table
+                              #:global-table-already-exists-exception
                               #:global-table-arn-string
                               #:global-table-description
                               #:global-table-global-secondary-index-settings-update
                               #:global-table-global-secondary-index-settings-update-list
-                              #:global-table-list #:global-table-status
+                              #:global-table-list
+                              #:global-table-not-found-exception
+                              #:global-table-status
                               #:global-table-witness-description
                               #:global-table-witness-description-list
                               #:global-table-witness-group-update
                               #:global-table-witness-group-update-list
-                              #:import-arn #:import-end-time
-                              #:import-next-token #:import-start-time
+                              #:idempotent-parameter-mismatch-exception
+                              #:import-arn #:import-conflict-exception
+                              #:import-end-time #:import-next-token
+                              #:import-not-found-exception #:import-start-time
                               #:import-status #:import-summary
                               #:import-summary-list #:import-table
                               #:import-table-description #:imported-item-count
                               #:incremental-export-specification #:index-name
-                              #:index-status #:input-compression-type
-                              #:input-format #:input-format-options #:integer
-                              #:integer-object
+                              #:index-not-found-exception #:index-status
+                              #:input-compression-type #:input-format
+                              #:input-format-options #:integer #:integer-object
+                              #:internal-server-error
+                              #:invalid-endpoint-exception
+                              #:invalid-export-time-exception
+                              #:invalid-restore-time-exception
                               #:item-collection-key-attribute-map
                               #:item-collection-metrics
                               #:item-collection-metrics-multiple
                               #:item-collection-metrics-per-table
                               #:item-collection-size-estimate-bound
                               #:item-collection-size-estimate-range
+                              #:item-collection-size-limit-exceeded-exception
                               #:item-count #:item-list #:item-response
                               #:item-response-list #:kmsmaster-key-arn
                               #:kmsmaster-key-id #:key #:key-conditions
@@ -143,7 +158,8 @@
                               #:kinesis-data-stream-destinations
                               #:kinesis-streaming-destination-input
                               #:kinesis-streaming-destination-output
-                              #:last-update-date-time #:list-attribute-value
+                              #:last-update-date-time
+                              #:limit-exceeded-exception #:list-attribute-value
                               #:list-backups #:list-contributor-insights
                               #:list-contributor-insights-limit #:list-exports
                               #:list-exports-max-limit #:list-global-tables
@@ -170,17 +186,20 @@
                               #:point-in-time-recovery-description
                               #:point-in-time-recovery-specification
                               #:point-in-time-recovery-status
-                              #:policy-revision-id #:positive-integer-object
-                              #:positive-long-object
+                              #:point-in-time-recovery-unavailable-exception
+                              #:policy-not-found-exception #:policy-revision-id
+                              #:positive-integer-object #:positive-long-object
                               #:prepared-statement-parameters
                               #:processed-item-count #:projection
                               #:projection-expression #:projection-type
                               #:provisioned-throughput
                               #:provisioned-throughput-description
+                              #:provisioned-throughput-exceeded-exception
                               #:provisioned-throughput-override #:put
                               #:put-item #:put-item-input-attribute-map
                               #:put-request #:put-resource-policy #:query
                               #:recovery-period-in-days #:region-name #:replica
+                              #:replica-already-exists-exception
                               #:replica-auto-scaling-description
                               #:replica-auto-scaling-description-list
                               #:replica-auto-scaling-update
@@ -198,16 +217,20 @@
                               #:replica-global-secondary-index-settings-description-list
                               #:replica-global-secondary-index-settings-update
                               #:replica-global-secondary-index-settings-update-list
-                              #:replica-list #:replica-settings-description
+                              #:replica-list #:replica-not-found-exception
+                              #:replica-settings-description
                               #:replica-settings-description-list
                               #:replica-settings-update
                               #:replica-settings-update-list #:replica-status
                               #:replica-status-description
                               #:replica-status-percent-progress
                               #:replica-update #:replica-update-list
+                              #:replicated-write-conflict-exception
                               #:replication-group-update
                               #:replication-group-update-list
-                              #:resource-arn-string #:resource-policy
+                              #:request-limit-exceeded #:resource-arn-string
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception #:resource-policy
                               #:restore-in-progress #:restore-summary
                               #:restore-table-from-backup
                               #:restore-table-to-point-in-time
@@ -225,11 +248,13 @@
                               #:stream-enabled #:stream-specification
                               #:stream-view-type #:string
                               #:string-attribute-value
-                              #:string-set-attribute-value #:table-arn
+                              #:string-set-attribute-value
+                              #:table-already-exists-exception #:table-arn
                               #:table-auto-scaling-description #:table-class
                               #:table-class-summary #:table-creation-date-time
                               #:table-creation-parameters #:table-description
-                              #:table-id #:table-name #:table-name-list
+                              #:table-id #:table-in-use-exception #:table-name
+                              #:table-name-list #:table-not-found-exception
                               #:table-status
                               #:table-warm-throughput-description #:tag
                               #:tag-key-list #:tag-key-string #:tag-list
@@ -241,7 +266,11 @@
                               #:time-to-live-status #:transact-get-item
                               #:transact-get-item-list #:transact-get-items
                               #:transact-write-item #:transact-write-item-list
-                              #:transact-write-items #:untag-resource #:update
+                              #:transact-write-items
+                              #:transaction-canceled-exception
+                              #:transaction-conflict-exception
+                              #:transaction-in-progress-exception
+                              #:untag-resource #:update
                               #:update-continuous-backups
                               #:update-contributor-insights #:update-expression
                               #:update-global-secondary-index-action
@@ -253,9 +282,13 @@
                               #:update-table
                               #:update-table-replica-auto-scaling
                               #:update-time-to-live #:warm-throughput
-                              #:witness-status #:write-request
-                              #:write-requests))
+                              #:witness-status #:write-request #:write-requests
+                              #:dynamodb-error))
 (common-lisp:in-package #:pira/dynamodb)
+
+(common-lisp:define-condition dynamodb-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service dynamo-db-20120810 :shape-name
                                    "DynamoDB_20120810" :version "2012-08-10"
@@ -539,7 +572,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "BackupInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type backup-name smithy/sdk/smithy-types:string)
 
@@ -547,7 +580,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "BackupNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type backup-size-bytes smithy/sdk/smithy-types:long)
 
@@ -841,7 +874,7 @@
                                  (item :target-type attribute-map :member-name
                                   "Item"))
                                 (:shape-name "ConditionalCheckFailedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-enum conditional-operator
     common-lisp:nil
@@ -906,7 +939,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ContinuousBackupsUnavailableException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-enum contributor-insights-action
     common-lisp:nil
@@ -1438,7 +1471,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DuplicateItemException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-structure enable-kinesis-streaming-configuration
                                     common-lisp:nil
@@ -1547,7 +1580,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ExportConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-structure export-description common-lisp:nil
                                     ((export-arn :target-type export-arn
@@ -1622,7 +1655,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ExportNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type export-start-time
                                smithy/sdk/smithy-types:timestamp)
@@ -1908,7 +1941,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "GlobalTableAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type global-table-arn-string
                                smithy/sdk/smithy-types:string)
@@ -1951,7 +1984,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "GlobalTableNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-enum global-table-status
     common-lisp:nil
@@ -1993,7 +2026,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "IdempotentParameterMismatchException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type import-arn smithy/sdk/smithy-types:string)
 
@@ -2001,7 +2034,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ImportConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type import-end-time
                                smithy/sdk/smithy-types:timestamp)
@@ -2012,7 +2045,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ImportNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type import-start-time
                                smithy/sdk/smithy-types:timestamp)
@@ -2148,7 +2181,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "IndexNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-enum index-status
     common-lisp:nil
@@ -2182,25 +2215,25 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-error invalid-endpoint-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidEndpointException")
-                                (:error-code 421))
+                                (:error-code 421) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-error invalid-export-time-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidExportTimeException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-error invalid-restore-time-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRestoreTimeException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-map item-collection-key-attribute-map :key
                               attribute-name :value attribute-value)
@@ -2232,7 +2265,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ItemCollectionSizeLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type item-count smithy/sdk/smithy-types:long)
 
@@ -2355,7 +2388,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-list list-attribute-value :member attribute-value)
 
@@ -2665,13 +2698,13 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "PointInTimeRecoveryUnavailableException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-error policy-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "PolicyNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type policy-revision-id
                                smithy/sdk/smithy-types:string)
@@ -2741,7 +2774,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ProvisionedThroughputExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-structure provisioned-throughput-override
                                     common-lisp:nil
@@ -2928,7 +2961,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ReplicaAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-structure replica-auto-scaling-description
                                     common-lisp:nil
@@ -3132,7 +3165,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ReplicaNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-structure replica-settings-description
                                     common-lisp:nil
@@ -3235,7 +3268,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ReplicatedWriteConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-structure replication-group-update common-lisp:nil
                                     ((create :target-type
@@ -3256,7 +3289,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "RequestLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type resource-arn-string
                                smithy/sdk/smithy-types:string)
@@ -3265,13 +3298,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type resource-policy smithy/sdk/smithy-types:string)
 
@@ -3611,7 +3644,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TableAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type table-arn smithy/sdk/smithy-types:string)
 
@@ -3747,7 +3780,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TableInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-type table-name smithy/sdk/smithy-types:string)
 
@@ -3757,7 +3790,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TableNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-enum table-status
     common-lisp:nil
@@ -3914,20 +3947,20 @@
                                   cancellation-reason-list :member-name
                                   "CancellationReasons"))
                                 (:shape-name "TransactionCanceledException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-error transaction-conflict-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TransactionConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-error transaction-in-progress-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "TransactionInProgressException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dynamodb-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type resource-arn-string

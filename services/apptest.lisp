@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/apptest (:use)
-                             (:export #:arn #:aws-apptest-control-plane-service
-                              #:batch #:batch-job-parameters #:batch-step-input
+                             (:export #:access-denied-exception #:arn
+                              #:aws-apptest-control-plane-service #:batch
+                              #:batch-job-parameters #:batch-step-input
                               #:batch-step-output #:batch-summary
                               #:capture-tool #:cloud-formation
                               #:cloud-formation-action
@@ -13,7 +14,7 @@
                               #:compare-database-cdcstep-input
                               #:compare-database-cdcstep-output
                               #:compare-database-cdcsummary #:compare-file-type
-                              #:comparison-status-enum
+                              #:comparison-status-enum #:conflict-exception
                               #:create-cloud-formation-step-input
                               #:create-cloud-formation-step-output
                               #:create-cloud-formation-summary
@@ -29,11 +30,11 @@
                               #:format #:get-test-case #:get-test-configuration
                               #:get-test-run-step #:get-test-suite
                               #:idempotency-token-string #:identifier #:input
-                              #:input-file #:list-tags-for-resource
-                              #:list-test-cases #:list-test-configurations
-                              #:list-test-run-steps #:list-test-run-test-cases
-                              #:list-test-runs #:list-test-suites
-                              #:m2managed-action-properties
+                              #:input-file #:internal-server-exception
+                              #:list-tags-for-resource #:list-test-cases
+                              #:list-test-configurations #:list-test-run-steps
+                              #:list-test-run-test-cases #:list-test-runs
+                              #:list-test-suites #:m2managed-action-properties
                               #:m2managed-action-type #:m2managed-application
                               #:m2managed-application-action
                               #:m2managed-application-step-input
@@ -55,8 +56,10 @@
                               #:next-token #:output #:output-file #:properties
                               #:resource #:resource-action
                               #:resource-action-summary #:resource-description
-                              #:resource-list #:resource-name #:resource-type
+                              #:resource-list #:resource-name
+                              #:resource-not-found-exception #:resource-type
                               #:s3uri #:script #:script-summary #:script-type
+                              #:service-quota-exceeded-exception
                               #:service-settings #:source-database
                               #:source-database-metadata #:start-test-run
                               #:step #:step-action #:step-list
@@ -82,13 +85,19 @@
                               #:test-run-summary-list #:test-suite
                               #:test-suite-id-list #:test-suite-latest-version
                               #:test-suite-lifecycle #:test-suite-list
-                              #:test-suite-summary #:untag-resource
-                              #:update-test-case #:update-test-configuration
-                              #:update-test-suite #:validation-exception-field
+                              #:test-suite-summary #:throttling-exception
+                              #:untag-resource #:update-test-case
+                              #:update-test-configuration #:update-test-suite
+                              #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:variable
-                              #:version))
+                              #:version #:apptest-error))
 (common-lisp:in-package #:pira/apptest)
+
+(common-lisp:define-condition apptest-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service aws-apptest-control-plane-service
                                    :shape-name "AwsApptestControlPlaneService"
@@ -133,7 +142,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class apptest-error))
 
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
 
@@ -345,7 +354,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class apptest-error))
 
 (smithy/sdk/shapes:define-structure create-cloud-formation-step-input
                                     common-lisp:nil
@@ -808,7 +817,7 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class apptest-error))
 
 (smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -1255,7 +1264,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class apptest-error))
 
 (smithy/sdk/shapes:define-union resource-type common-lisp:nil
                                 ((cloud-formation :target-type cloud-formation
@@ -1308,7 +1317,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class apptest-error))
 
 (smithy/sdk/shapes:define-structure service-settings common-lisp:nil
                                     ((kms-key-id :target-type
@@ -1770,7 +1779,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class apptest-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -1865,7 +1874,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class apptest-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

@@ -2,29 +2,38 @@
                              (:export #:allowed-headers #:allowed-methods
                               #:allowed-origins #:container #:container-arn
                               #:container-access-logging-enabled
+                              #:container-in-use-exception
                               #:container-level-metrics #:container-list
                               #:container-list-limit #:container-name
+                              #:container-not-found-exception
                               #:container-policy #:container-status
-                              #:cors-policy #:cors-rule #:create-container
-                              #:delete-container #:delete-container-policy
-                              #:delete-cors-policy #:delete-lifecycle-policy
-                              #:delete-metric-policy #:describe-container
-                              #:endpoint #:error-message #:expose-headers
-                              #:get-container-policy #:get-cors-policy
-                              #:get-lifecycle-policy #:get-metric-policy
-                              #:header #:lifecycle-policy #:list-containers
+                              #:cors-policy #:cors-policy-not-found-exception
+                              #:cors-rule #:create-container #:delete-container
+                              #:delete-container-policy #:delete-cors-policy
+                              #:delete-lifecycle-policy #:delete-metric-policy
+                              #:describe-container #:endpoint #:error-message
+                              #:expose-headers #:get-container-policy
+                              #:get-cors-policy #:get-lifecycle-policy
+                              #:get-metric-policy #:header
+                              #:internal-server-error #:lifecycle-policy
+                              #:limit-exceeded-exception #:list-containers
                               #:list-tags-for-resource #:max-age-seconds
                               #:media-store-20170901 #:method-name
                               #:metric-policy #:metric-policy-rule
                               #:metric-policy-rules #:object-group
                               #:object-group-name #:origin #:pagination-token
+                              #:policy-not-found-exception
                               #:put-container-policy #:put-cors-policy
                               #:put-lifecycle-policy #:put-metric-policy
                               #:start-access-logging #:stop-access-logging
                               #:tag #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-value #:time-stamp
-                              #:untag-resource))
+                              #:untag-resource #:mediastore-error))
 (common-lisp:in-package #:pira/mediastore)
+
+(common-lisp:define-condition mediastore-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service media-store-20170901 :shape-name
                                    "MediaStore_20170901" :version "2017-09-01"
@@ -87,7 +96,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ContainerInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class mediastore-error))
 
 (smithy/sdk/shapes:define-enum container-level-metrics
     common-lisp:nil
@@ -105,7 +115,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ContainerNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class mediastore-error))
 
 (smithy/sdk/shapes:define-type container-policy smithy/sdk/smithy-types:string)
 
@@ -121,7 +132,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "CorsPolicyNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class mediastore-error))
 
 (smithy/sdk/shapes:define-structure cors-rule common-lisp:nil
                                     ((allowed-origins :target-type
@@ -274,7 +286,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class mediastore-error))
 
 (smithy/sdk/shapes:define-type lifecycle-policy smithy/sdk/smithy-types:string)
 
@@ -282,7 +295,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class mediastore-error))
 
 (smithy/sdk/shapes:define-input list-containers-input common-lisp:nil
                                 ((next-token :target-type pagination-token
@@ -351,7 +365,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "PolicyNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class mediastore-error))
 
 (smithy/sdk/shapes:define-input put-container-policy-input common-lisp:nil
                                 ((container-name :target-type container-name

@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/notifications (:use)
-                             (:export #:access-status #:account-contact-type
-                              #:account-id #:aggregated-notification-regions
+                             (:export #:access-denied-exception #:access-status
+                              #:account-contact-type #:account-id
+                              #:aggregated-notification-regions
                               #:aggregation-detail #:aggregation-duration
                               #:aggregation-event-type #:aggregation-key
                               #:aggregation-keys #:aggregation-summary #:arn
@@ -10,7 +11,7 @@
                               #:channel #:channel-arn
                               #:channel-association-override-option
                               #:channel-identifier #:channel-type #:channels
-                              #:create-event-rule
+                              #:conflict-exception #:create-event-rule
                               #:create-notification-configuration
                               #:creation-time #:delete-event-rule
                               #:delete-notification-configuration
@@ -33,6 +34,7 @@
                               #:get-notification-configuration
                               #:get-notification-event
                               #:get-notifications-access-for-organization
+                              #:internal-server-exception
                               #:last-activation-time #:list-channels
                               #:list-event-rules
                               #:list-managed-notification-channel-associations
@@ -92,9 +94,11 @@
                               #:organization-access #:organizational-unit-id
                               #:quota-code #:region #:regions
                               #:register-notification-hub #:resource
-                              #:resource-id #:resource-type #:resources
+                              #:resource-id #:resource-not-found-exception
+                              #:resource-type #:resources
                               #:sample-aggregation-dimension-values
-                              #:schema-version #:service-code #:source
+                              #:schema-version #:service-code
+                              #:service-quota-exceeded-exception #:source
                               #:source-event-metadata
                               #:source-event-metadata-summary
                               #:status-summary-by-region
@@ -105,13 +109,20 @@
                               #:tag-keys #:tag-map #:tag-resource #:tag-value
                               #:tags #:text-by-locale #:text-part-id
                               #:text-part-reference #:text-part-type
-                              #:text-part-value #:text-parts #:untag-resource
+                              #:text-part-value #:text-parts
+                              #:throttling-exception #:untag-resource
                               #:update-event-rule
                               #:update-notification-configuration #:url
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason))
+                              #:validation-exception-reason
+                              #:notifications-error))
 (common-lisp:in-package #:pira/notifications)
+
+(common-lisp:define-condition notifications-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service notifications :shape-name "Notifications"
                                    :version "2018-05-10" :title
@@ -139,7 +150,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class notifications-error))
 
 (smithy/sdk/shapes:define-enum access-status
     common-lisp:nil
@@ -269,7 +281,8 @@ common-lisp:nil
                                   :required common-lisp:t :member-name
                                   "resourceId"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class notifications-error))
 
 (smithy/sdk/shapes:define-input create-event-rule-request common-lisp:nil
                                 ((notification-configuration-arn :target-type
@@ -697,7 +710,8 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class notifications-error))
 
 (smithy/sdk/shapes:define-type last-activation-time
                                smithy/sdk/smithy-types:timestamp
@@ -1552,7 +1566,8 @@ common-lisp:nil
                                   :required common-lisp:t :member-name
                                   "resourceId"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class notifications-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -1579,7 +1594,8 @@ common-lisp:nil
                                  (quota-code :target-type quota-code
                                   :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class notifications-error))
 
 (smithy/sdk/shapes:define-type source smithy/sdk/smithy-types:string)
 
@@ -1720,7 +1736,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class notifications-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((arn :target-type
@@ -1798,7 +1815,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class notifications-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

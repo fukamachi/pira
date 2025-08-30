@@ -11,33 +11,44 @@
                               #:describe-harvest-job #:describe-origin-endpoint
                               #:egress-access-logs
                               #:encryption-contract-configuration
-                              #:encryption-method #:harvest-job
-                              #:hls-encryption #:hls-ingest #:hls-manifest
+                              #:encryption-method #:forbidden-exception
+                              #:harvest-job #:hls-encryption #:hls-ingest
+                              #:hls-manifest
                               #:hls-manifest-create-or-update-parameters
                               #:hls-package #:ingest-endpoint
-                              #:ingress-access-logs #:list-channels
+                              #:ingress-access-logs
+                              #:internal-server-error-exception #:list-channels
                               #:list-harvest-jobs #:list-origin-endpoints
                               #:list-tags-for-resource #:manifest-layout
                               #:max-results #:media-package #:mss-encryption
-                              #:mss-package #:origin-endpoint #:origination
-                              #:playlist-type #:preset-speke20audio
-                              #:preset-speke20video #:profile
-                              #:rotate-channel-credentials
+                              #:mss-package #:not-found-exception
+                              #:origin-endpoint #:origination #:playlist-type
+                              #:preset-speke20audio #:preset-speke20video
+                              #:profile #:rotate-channel-credentials
                               #:rotate-ingest-endpoint-credentials
                               #:s3destination #:segment-template-format
-                              #:sensitive-string #:speke-key-provider #:status
-                              #:stream-order #:stream-selection #:tag-resource
-                              #:tags #:untag-resource #:update-channel
-                              #:update-origin-endpoint #:utc-timing
-                              #:ad-triggers-element #:period-triggers-element
-                              #:boolean #:integer #:list-of-channel
-                              #:list-of-harvest-job #:list-of-hls-manifest
+                              #:sensitive-string
+                              #:service-unavailable-exception
+                              #:speke-key-provider #:status #:stream-order
+                              #:stream-selection #:tag-resource #:tags
+                              #:too-many-requests-exception
+                              #:unprocessable-entity-exception #:untag-resource
+                              #:update-channel #:update-origin-endpoint
+                              #:utc-timing #:ad-triggers-element
+                              #:period-triggers-element #:boolean #:integer
+                              #:list-of-channel #:list-of-harvest-job
+                              #:list-of-hls-manifest
                               #:list-of-hls-manifest-create-or-update-parameters
                               #:list-of-ingest-endpoint
                               #:list-of-origin-endpoint
                               #:list-of-period-triggers-element
-                              #:list-of-string #:map-of-string #:string))
+                              #:list-of-string #:map-of-string #:string
+                              #:mediapackage-error))
 (common-lisp:in-package #:pira/mediapackage)
+
+(common-lisp:define-condition mediapackage-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service media-package :shape-name "MediaPackage"
                                    :version "2017-10-12" :title
@@ -632,7 +643,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class mediapackage-error))
 
 (smithy/sdk/shapes:define-structure harvest-job common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -835,7 +847,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class mediapackage-error))
 
 (smithy/sdk/shapes:define-input list-channels-request common-lisp:nil
                                 ((max-results :target-type max-results
@@ -944,7 +957,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class mediapackage-error))
 
 (smithy/sdk/shapes:define-structure origin-endpoint common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -1131,7 +1145,8 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class mediapackage-error))
 
 (smithy/sdk/shapes:define-structure speke-key-provider common-lisp:nil
                                     ((certificate-arn :target-type string
@@ -1199,13 +1214,15 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class mediapackage-error))
 
 (smithy/sdk/shapes:define-error unprocessable-entity-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "UnprocessableEntityException")
-                                (:error-code 422))
+                                (:error-code 422)
+                                (:base-class mediapackage-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required

@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/database-migration-service (:use)
-                             (:export #:account-quota #:account-quota-list
-                              #:add-tags-to-resource #:amazon-dmsv20160101
+                             (:export #:access-denied-fault #:account-quota
+                              #:account-quota-list #:add-tags-to-resource
+                              #:amazon-dmsv20160101
                               #:apply-pending-maintenance-action #:arn-list
                               #:assessment-report-type
                               #:assessment-report-types-list
@@ -15,7 +16,8 @@
                               #:canned-acl-for-objects-value #:certificate
                               #:certificate-list #:certificate-wallet
                               #:char-length-semantics #:collector-health-check
-                              #:collector-response #:collector-responses
+                              #:collector-not-found-fault #:collector-response
+                              #:collector-responses
                               #:collector-short-info-response
                               #:collector-status #:collectors-list
                               #:compression-type-value #:compute-config
@@ -112,8 +114,8 @@
                               #:exception-message #:exclude-test-list
                               #:export-metadata-model-assessment
                               #:export-metadata-model-assessment-result-entry
-                              #:export-sql-details #:filter #:filter-list
-                              #:filter-value-list
+                              #:export-sql-details #:failed-dependency-fault
+                              #:filter #:filter-list #:filter-value-list
                               #:fleet-advisor-lsa-analysis-response
                               #:fleet-advisor-lsa-analysis-response-list
                               #:fleet-advisor-schema-list
@@ -125,8 +127,16 @@
                               #:import-certificate #:include-test-list
                               #:individual-assessment-name-list
                               #:instance-profile #:instance-profile-list
-                              #:integer #:integer-list #:integer-optional
+                              #:insufficient-resource-capacity-fault #:integer
+                              #:integer-list #:integer-optional
+                              #:invalid-certificate-fault
+                              #:invalid-operation-fault
+                              #:invalid-resource-state-fault #:invalid-subnet
                               #:inventory-data #:iso8601date-time
+                              #:kmsaccess-denied-fault #:kmsdisabled-fault
+                              #:kmsfault #:kmsinvalid-state-fault
+                              #:kmskey-not-accessible-fault
+                              #:kmsnot-found-fault #:kmsthrottling-fault
                               #:kafka-sasl-mechanism #:kafka-security-protocol
                               #:kafka-settings
                               #:kafka-ssl-endpoint-identification-algorithm
@@ -194,6 +204,7 @@
                               #:replication-list
                               #:replication-pending-modified-values
                               #:replication-stats #:replication-subnet-group
+                              #:replication-subnet-group-does-not-cover-enough-azs
                               #:replication-subnet-groups
                               #:replication-table-statistics-list
                               #:replication-task
@@ -206,10 +217,16 @@
                               #:replication-task-individual-assessment
                               #:replication-task-individual-assessment-list
                               #:replication-task-list #:replication-task-stats
-                              #:resource-arn
+                              #:resource-already-exists-fault #:resource-arn
+                              #:resource-not-found-fault
                               #:resource-pending-maintenance-actions
-                              #:run-fleet-advisor-lsa-analysis #:s3settings
-                              #:scapplication-attributes #:safeguard-policy
+                              #:resource-quota-exceeded-fault
+                              #:run-fleet-advisor-lsa-analysis
+                              #:s3access-denied-fault
+                              #:s3resource-not-found-fault #:s3settings
+                              #:scapplication-attributes
+                              #:snsinvalid-topic-fault
+                              #:snsno-authorization-fault #:safeguard-policy
                               #:schema-conversion-request
                               #:schema-conversion-request-list #:schema-list
                               #:schema-response #:schema-short-info-response
@@ -235,8 +252,10 @@
                               #:start-replication-task-assessment-run
                               #:start-replication-task-type-value
                               #:stop-data-migration #:stop-replication
-                              #:stop-replication-task #:string #:string-list
-                              #:subnet #:subnet-identifier-list #:subnet-list
+                              #:stop-replication-task
+                              #:storage-quota-exceeded-fault #:string
+                              #:string-list #:subnet #:subnet-already-in-use
+                              #:subnet-identifier-list #:subnet-list
                               #:supported-endpoint-type
                               #:supported-endpoint-type-list #:sybase-settings
                               #:tstamp #:table-list-to-reload
@@ -247,10 +266,16 @@
                               #:test-connection #:timestream-settings
                               #:tlog-access-mode
                               #:update-subscriptions-to-event-bridge
+                              #:upgrade-dependency-failure-fault
                               #:version-status #:vpc-security-group-id-list
                               #:vpc-security-group-membership
-                              #:vpc-security-group-membership-list))
+                              #:vpc-security-group-membership-list
+                              #:database-migration-service-error))
 (common-lisp:in-package #:pira/database-migration-service)
+
+(common-lisp:define-condition database-migration-service-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-dmsv20160101 :shape-name
                                    "AmazonDMSv20160101" :version "2016-01-01"
@@ -371,7 +396,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-structure account-quota common-lisp:nil
                                     ((account-quota-name :target-type string
@@ -565,7 +591,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "CollectorNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-structure collector-response common-lisp:nil
                                     ((collector-referenced-id :target-type
@@ -2788,7 +2815,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "FailedDependencyFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-structure filter common-lisp:nil
                                     ((name :target-type string :required
@@ -3013,7 +3041,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InsufficientResourceCapacityFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
 
@@ -3025,24 +3054,28 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidCertificateFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-error invalid-operation-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidOperationFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidResourceStateFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-error invalid-subnet common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
-                                (:shape-name "InvalidSubnet") (:error-code 400))
+                                (:shape-name "InvalidSubnet") (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-structure inventory-data common-lisp:nil
                                     ((number-of-databases :target-type
@@ -3061,42 +3094,49 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KMSAccessDeniedFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-error kmsdisabled-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KMSDisabledFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-error kmsfault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
-                                (:shape-name "KMSFault") (:error-code 400))
+                                (:shape-name "KMSFault") (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-error kmsinvalid-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KMSInvalidStateFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-error kmskey-not-accessible-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KMSKeyNotAccessibleFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-error kmsnot-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KMSNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-error kmsthrottling-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "KMSThrottlingFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-enum kafka-sasl-mechanism
     common-lisp:nil
@@ -4968,7 +5008,8 @@
 (smithy/sdk/shapes:define-error
  replication-subnet-group-does-not-cover-enough-azs common-lisp:nil
  ((message :target-type exception-message :member-name "message"))
- (:shape-name "ReplicationSubnetGroupDoesNotCoverEnoughAZs") (:error-code 400))
+ (:shape-name "ReplicationSubnetGroupDoesNotCoverEnoughAZs") (:error-code 400)
+ (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-list replication-subnet-groups :member
                                (replication-subnet-group :xml-name
@@ -5175,7 +5216,8 @@
                                  (resource-arn :target-type resource-arn
                                   :member-name "resourceArn"))
                                 (:shape-name "ResourceAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-type resource-arn smithy/sdk/smithy-types:string)
 
@@ -5183,7 +5225,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-structure resource-pending-maintenance-actions
                                     common-lisp:nil
@@ -5201,7 +5244,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ResourceQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-output run-fleet-advisor-lsa-analysis-response
                                  common-lisp:nil
@@ -5216,13 +5260,15 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "S3AccessDeniedFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-error s3resource-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "S3ResourceNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-structure s3settings common-lisp:nil
                                     ((service-access-role-arn :target-type
@@ -5354,13 +5400,15 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SNSInvalidTopicFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-error snsno-authorization-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SNSNoAuthorizationFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-enum safeguard-policy
     common-lisp:nil
@@ -5771,7 +5819,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "StorageQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -5791,7 +5840,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SubnetAlreadyInUse")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-list subnet-identifier-list :member
                                (string :xml-name "SubnetIdentifier"))
@@ -6008,7 +6058,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UpgradeDependencyFailureFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class database-migration-service-error))
 
 (smithy/sdk/shapes:define-enum version-status
     common-lisp:nil

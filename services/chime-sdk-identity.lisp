@@ -12,10 +12,11 @@
                               #:app-instance-user-endpoint-type
                               #:app-instance-user-list
                               #:app-instance-user-summary
+                              #:bad-request-exception
                               #:channel-retention-settings #:chime-arn
                               #:chime-identity-service #:client-request-token
-                              #:configuration #:create-app-instance
-                              #:create-app-instance-admin
+                              #:configuration #:conflict-exception
+                              #:create-app-instance #:create-app-instance-admin
                               #:create-app-instance-bot
                               #:create-app-instance-user #:delete-app-instance
                               #:delete-app-instance-admin
@@ -31,6 +32,7 @@
                               #:endpoint-status #:endpoint-status-reason
                               #:error-code #:expiration-criterion
                               #:expiration-days #:expiration-settings
+                              #:forbidden-exception
                               #:get-app-instance-retention-settings #:identity
                               #:invoked-by #:lex-bot-alias-arn
                               #:lex-configuration #:lex-intent-name
@@ -41,20 +43,30 @@
                               #:list-tags-for-resource #:max-results #:metadata
                               #:next-token #:non-empty-resource-name
                               #:non-empty-sensitive-string1600
+                              #:not-found-exception
                               #:put-app-instance-retention-settings
                               #:put-app-instance-user-expiration-settings
                               #:register-app-instance-user-endpoint
+                              #:resource-limit-exceeded-exception
                               #:resource-name #:responds-to #:retention-days
                               #:sensitive-chime-arn #:sensitive-string1600
+                              #:service-failure-exception
+                              #:service-unavailable-exception
                               #:standard-messages #:string #:string1600
                               #:string64 #:tag #:tag-key #:tag-key-list
                               #:tag-list #:tag-resource #:tag-value
-                              #:targeted-messages #:timestamp #:untag-resource
-                              #:update-app-instance #:update-app-instance-bot
+                              #:targeted-messages #:throttled-client-exception
+                              #:timestamp #:unauthorized-client-exception
+                              #:untag-resource #:update-app-instance
+                              #:update-app-instance-bot
                               #:update-app-instance-user
                               #:update-app-instance-user-endpoint #:user-id
-                              #:user-name))
+                              #:user-name #:chime-sdk-identity-error))
 (common-lisp:in-package #:pira/chime-sdk-identity)
+
+(common-lisp:define-condition chime-sdk-identity-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service chime-identity-service :shape-name
                                    "ChimeIdentityService" :version "2021-04-20"
@@ -281,7 +293,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class chime-sdk-identity-error))
 
 (smithy/sdk/shapes:define-structure channel-retention-settings common-lisp:nil
                                     ((retention-days :target-type
@@ -306,7 +319,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class chime-sdk-identity-error))
 
 (smithy/sdk/shapes:define-input create-app-instance-admin-request
                                 common-lisp:nil
@@ -589,7 +603,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class chime-sdk-identity-error))
 
 (smithy/sdk/shapes:define-input get-app-instance-retention-settings-request
                                 common-lisp:nil
@@ -788,7 +803,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class chime-sdk-identity-error))
 
 (smithy/sdk/shapes:define-input put-app-instance-retention-settings-request
                                 common-lisp:nil
@@ -869,7 +885,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class chime-sdk-identity-error))
 
 (smithy/sdk/shapes:define-type resource-name smithy/sdk/smithy-types:string)
 
@@ -891,7 +908,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class chime-sdk-identity-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((code :target-type error-code :member-name
@@ -899,7 +917,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class chime-sdk-identity-error))
 
 (smithy/sdk/shapes:define-enum standard-messages
     common-lisp:nil
@@ -947,7 +966,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ThrottledClientException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class chime-sdk-identity-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -957,7 +977,8 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnauthorizedClientException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class chime-sdk-identity-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type chime-arn :required

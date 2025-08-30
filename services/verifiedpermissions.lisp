@@ -1,9 +1,9 @@
 (uiop/package:define-package #:pira/verifiedpermissions (:use)
-                             (:export #:action-id #:action-identifier
-                              #:action-identifier-list #:action-type
-                              #:amazon-resource-name #:attribute-value
-                              #:audience #:audiences #:batch-get-policy
-                              #:batch-get-policy-error-code
+                             (:export #:access-denied-exception #:action-id
+                              #:action-identifier #:action-identifier-list
+                              #:action-type #:amazon-resource-name
+                              #:attribute-value #:audience #:audiences
+                              #:batch-get-policy #:batch-get-policy-error-code
                               #:batch-get-policy-error-item
                               #:batch-get-policy-error-list
                               #:batch-get-policy-input-item
@@ -29,13 +29,14 @@
                               #:cognito-user-pool-configuration-detail
                               #:cognito-user-pool-configuration-item
                               #:configuration #:configuration-detail
-                              #:configuration-item #:context-definition
-                              #:context-map #:create-identity-source
-                              #:create-policy #:create-policy-store
-                              #:create-policy-template #:decimal #:decision
-                              #:delete-identity-source #:delete-policy
-                              #:delete-policy-store #:delete-policy-template
-                              #:deletion-protection #:determining-policy-item
+                              #:configuration-item #:conflict-exception
+                              #:context-definition #:context-map
+                              #:create-identity-source #:create-policy
+                              #:create-policy-store #:create-policy-template
+                              #:decimal #:decision #:delete-identity-source
+                              #:delete-policy #:delete-policy-store
+                              #:delete-policy-template #:deletion-protection
+                              #:determining-policy-item
                               #:determining-policy-list #:discovery-url
                               #:entities-definition #:entity-attributes
                               #:entity-id #:entity-id-prefix
@@ -51,9 +52,10 @@
                               #:identity-source-filters #:identity-source-id
                               #:identity-source-item
                               #:identity-source-item-details #:identity-sources
-                              #:ip-addr #:is-authorized
-                              #:is-authorized-with-token #:issuer
-                              #:list-identity-sources
+                              #:internal-server-exception
+                              #:invalid-state-exception #:ip-addr
+                              #:is-authorized #:is-authorized-with-token
+                              #:issuer #:list-identity-sources
                               #:list-identity-sources-max-results
                               #:list-policies #:list-policy-stores
                               #:list-policy-templates #:list-tags-for-resource
@@ -87,7 +89,9 @@
                               #:principal-entity-type #:put-schema
                               #:record-attribute #:resource-arn
                               #:resource-conflict #:resource-conflict-list
-                              #:resource-type #:schema-definition #:schema-json
+                              #:resource-not-found-exception #:resource-type
+                              #:schema-definition #:schema-json
+                              #:service-quota-exceeded-exception
                               #:set-attribute #:static-policy-definition
                               #:static-policy-definition-detail
                               #:static-policy-definition-item
@@ -96,7 +100,8 @@
                               #:tag-value #:template-linked-policy-definition
                               #:template-linked-policy-definition-detail
                               #:template-linked-policy-definition-item
-                              #:timestamp-format #:token #:untag-resource
+                              #:throttling-exception #:timestamp-format #:token
+                              #:too-many-tags-exception #:untag-resource
                               #:update-cognito-group-configuration
                               #:update-cognito-user-pool-configuration
                               #:update-configuration #:update-identity-source
@@ -108,11 +113,17 @@
                               #:update-policy #:update-policy-definition
                               #:update-policy-store #:update-policy-template
                               #:update-static-policy-definition #:user-pool-arn
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-mode #:validation-settings
-                              #:verified-permissions))
+                              #:verified-permissions
+                              #:verifiedpermissions-error))
 (common-lisp:in-package #:pira/verifiedpermissions)
+
+(common-lisp:define-condition verifiedpermissions-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service verified-permissions :shape-name
                                    "VerifiedPermissions" :version "2021-12-01"
@@ -160,7 +171,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class verifiedpermissions-error))
 
 (smithy/sdk/shapes:define-type action-id smithy/sdk/smithy-types:string)
 
@@ -514,7 +526,8 @@
                                   :required common-lisp:t :member-name
                                   "resources"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class verifiedpermissions-error))
 
 (smithy/sdk/shapes:define-union context-definition common-lisp:nil
                                 ((context-map :target-type context-map
@@ -1010,14 +1023,16 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class verifiedpermissions-error))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-code 406))
+                                (:error-code 406)
+                                (:base-class verifiedpermissions-error))
 
 (smithy/sdk/shapes:define-type ip-addr smithy/sdk/smithy-types:string)
 
@@ -1534,7 +1549,8 @@ common-lisp:nil
                                   :required common-lisp:t :member-name
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class verifiedpermissions-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -1569,7 +1585,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class verifiedpermissions-error))
 
 (smithy/sdk/shapes:define-list set-attribute :member attribute-value)
 
@@ -1675,7 +1692,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "quotaCode"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class verifiedpermissions-error))
 
 (smithy/sdk/shapes:define-type timestamp-format
                                smithy/sdk/smithy-types:timestamp
@@ -1691,7 +1709,8 @@ common-lisp:nil
                                   amazon-resource-name :member-name
                                   "resourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class verifiedpermissions-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type
@@ -1937,7 +1956,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class verifiedpermissions-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((path :target-type

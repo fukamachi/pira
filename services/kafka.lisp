@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/kafka (:use)
                              (:export #:amazon-msk-cluster
+                              #:bad-request-exception
                               #:batch-associate-scram-secret
                               #:batch-disassociate-scram-secret
                               #:broker-azdistribution
@@ -18,7 +19,8 @@
                               #:cluster-type #:compatible-kafka-version
                               #:configuration #:configuration-info
                               #:configuration-revision #:configuration-state
-                              #:connectivity-info #:consumer-group-replication
+                              #:conflict-exception #:connectivity-info
+                              #:consumer-group-replication
                               #:consumer-group-replication-update
                               #:controller-node-info #:create-cluster
                               #:create-cluster-v2 #:create-configuration
@@ -34,10 +36,12 @@
                               #:ebsstorage-info #:encryption-at-rest
                               #:encryption-in-transit #:encryption-info
                               #:enhanced-monitoring #:error-info #:firehose
-                              #:get-bootstrap-brokers #:get-cluster-policy
+                              #:forbidden-exception #:get-bootstrap-brokers
+                              #:get-cluster-policy
                               #:get-compatible-kafka-versions #:iam
-                              #:jmx-exporter #:jmx-exporter-info #:kafka
-                              #:kafka-cluster #:kafka-cluster-client-vpc-config
+                              #:internal-server-error-exception #:jmx-exporter
+                              #:jmx-exporter-info #:kafka #:kafka-cluster
+                              #:kafka-cluster-client-vpc-config
                               #:kafka-cluster-description
                               #:kafka-cluster-summary #:kafka-version
                               #:kafka-version-status
@@ -51,9 +55,9 @@
                               #:list-vpc-connections #:logging-info
                               #:max-results #:mutable-cluster-info
                               #:node-exporter #:node-exporter-info #:node-info
-                              #:node-type #:open-monitoring
-                              #:open-monitoring-info #:prometheus
-                              #:prometheus-info #:provisioned
+                              #:node-type #:not-found-exception
+                              #:open-monitoring #:open-monitoring-info
+                              #:prometheus #:prometheus-info #:provisioned
                               #:provisioned-request #:provisioned-throughput
                               #:public-access #:put-cluster-policy
                               #:reboot-broker #:reject-client-vpc-connection
@@ -68,12 +72,15 @@
                               #:sasl #:scram #:serverless
                               #:serverless-client-authentication
                               #:serverless-request #:serverless-sasl
-                              #:state-info #:storage-info #:storage-mode
-                              #:tag-resource #:target-compression-type #:tls
-                              #:topic-replication #:topic-replication-update
-                              #:unauthenticated #:unprocessed-scram-secret
-                              #:untag-resource #:update-broker-count
-                              #:update-broker-storage #:update-broker-type
+                              #:service-unavailable-exception #:state-info
+                              #:storage-info #:storage-mode #:tag-resource
+                              #:target-compression-type #:tls
+                              #:too-many-requests-exception #:topic-replication
+                              #:topic-replication-update #:unauthenticated
+                              #:unauthorized-exception
+                              #:unprocessed-scram-secret #:untag-resource
+                              #:update-broker-count #:update-broker-storage
+                              #:update-broker-type
                               #:update-cluster-configuration
                               #:update-cluster-kafka-version
                               #:update-configuration #:update-connectivity
@@ -115,8 +122,12 @@
                               #:string-min1max128
                               #:string-min1max128pattern09aza-z09aza-z0
                               #:string-min1max64 #:string-min5max32
-                              #:timestamp-iso8601))
+                              #:timestamp-iso8601 #:kafka-error))
 (common-lisp:in-package #:pira/kafka)
+
+(common-lisp:define-condition kafka-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service kafka :shape-name "Kafka" :version
                                    "2018-11-14" :title
@@ -179,7 +190,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class kafka-error))
 
 (smithy/sdk/shapes:define-input batch-associate-scram-secret-request
                                 common-lisp:nil
@@ -713,7 +724,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class kafka-error))
 
 (smithy/sdk/shapes:define-structure connectivity-info common-lisp:nil
                                     ((public-access :target-type public-access
@@ -1320,7 +1331,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class kafka-error))
 
 (smithy/sdk/shapes:define-input get-bootstrap-brokers-request common-lisp:nil
                                 ((cluster-arn :target-type string :required
@@ -1417,7 +1428,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class kafka-error))
 
 (smithy/sdk/shapes:define-structure jmx-exporter common-lisp:nil
                                     ((enabled-in-broker :target-type boolean
@@ -1855,7 +1866,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class kafka-error))
 
 (smithy/sdk/shapes:define-structure open-monitoring common-lisp:nil
                                     ((prometheus :target-type prometheus
@@ -2244,7 +2255,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class kafka-error))
 
 (smithy/sdk/shapes:define-structure state-info common-lisp:nil
                                     ((code :target-type string :member-name
@@ -2298,7 +2309,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class kafka-error))
 
 (smithy/sdk/shapes:define-structure topic-replication common-lisp:nil
                                     ((copy-access-control-lists-for-topics
@@ -2372,7 +2383,7 @@
                                  (message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class kafka-error))
 
 (smithy/sdk/shapes:define-structure unprocessed-scram-secret common-lisp:nil
                                     ((error-code :target-type string

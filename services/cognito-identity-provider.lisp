@@ -36,6 +36,7 @@
                               #:advanced-security-mode-type
                               #:alias-attribute-type
                               #:alias-attributes-list-type
+                              #:alias-exists-exception
                               #:allowed-first-auth-factors-list-type
                               #:analytics-configuration-type
                               #:analytics-metadata-type #:arn-type
@@ -68,12 +69,15 @@
                               #:cloud-watch-logs-configuration-type
                               #:code-delivery-details-list-type
                               #:code-delivery-details-type
+                              #:code-delivery-failure-exception
+                              #:code-mismatch-exception
                               #:color-scheme-mode-type
                               #:complete-web-authn-registration
                               #:completion-message-type
                               #:compromised-credentials-actions-type
                               #:compromised-credentials-event-action-type
                               #:compromised-credentials-risk-configuration-type
+                              #:concurrent-modification-exception
                               #:configured-user-auth-factors-list-type
                               #:confirm-device #:confirm-forgot-password
                               #:confirm-sign-up #:confirmation-code-type
@@ -109,13 +113,15 @@
                               #:describe-user-import-job #:describe-user-pool
                               #:describe-user-pool-client
                               #:describe-user-pool-domain #:description-type
-                              #:device-configuration-type #:device-key-type
+                              #:device-configuration-type
+                              #:device-key-exists-exception #:device-key-type
                               #:device-list-type #:device-name-type
                               #:device-remembered-status-type
                               #:device-secret-verifier-config-type
                               #:device-type #:document
                               #:domain-description-type #:domain-status-type
                               #:domain-type #:domain-version-type
+                              #:duplicate-provider-exception
                               #:email-address-type #:email-configuration-type
                               #:email-invite-message-type
                               #:email-mfa-config-type #:email-mfa-message-type
@@ -128,18 +134,21 @@
                               #:email-verification-message-type
                               #:email-verification-subject-by-link-type
                               #:email-verification-subject-type
+                              #:enable-software-token-mfaexception
                               #:event-context-data-type #:event-feedback-type
                               #:event-filter-type #:event-filters-type
                               #:event-id-type #:event-response-type
                               #:event-risk-type #:event-source-name
-                              #:event-type #:explicit-auth-flows-list-type
+                              #:event-type #:expired-code-exception
+                              #:explicit-auth-flows-list-type
                               #:explicit-auth-flows-type #:feature-type
+                              #:feature-unavailable-in-tier-exception
                               #:feedback-value-type
                               #:firehose-configuration-type
-                              #:force-alias-creation #:forget-device
-                              #:forgot-password #:generate-secret
-                              #:get-csvheader #:get-device #:get-group
-                              #:get-identity-provider-by-identifier
+                              #:forbidden-exception #:force-alias-creation
+                              #:forget-device #:forgot-password
+                              #:generate-secret #:get-csvheader #:get-device
+                              #:get-group #:get-identity-provider-by-identifier
                               #:get-log-delivery-configuration
                               #:get-signing-certificate
                               #:get-tokens-from-refresh-token
@@ -147,16 +156,26 @@
                               #:get-user-attribute-verification-code
                               #:get-user-auth-factors
                               #:get-user-pool-mfa-config #:global-sign-out
-                              #:group-list-type #:group-name-type #:group-type
-                              #:hex-string-type #:http-header
-                              #:http-header-list #:id-token-validity-type
-                              #:identity-provider-type
+                              #:group-exists-exception #:group-list-type
+                              #:group-name-type #:group-type #:hex-string-type
+                              #:http-header #:http-header-list
+                              #:id-token-validity-type #:identity-provider-type
                               #:identity-provider-type-type
                               #:idp-identifier-type #:idp-identifiers-list-type
                               #:image-file-type #:image-url-type
                               #:initiate-auth #:integer-type
+                              #:internal-error-exception
+                              #:invalid-email-role-access-policy-exception
+                              #:invalid-lambda-response-exception
+                              #:invalid-oauth-flow-exception
+                              #:invalid-parameter-exception
                               #:invalid-parameter-exception-reason-code-type
-                              #:lambda-config-type #:list-devices #:list-groups
+                              #:invalid-password-exception
+                              #:invalid-sms-role-access-policy-exception
+                              #:invalid-sms-role-trust-relationship-exception
+                              #:invalid-user-pool-configuration-exception
+                              #:lambda-config-type #:limit-exceeded-exception
+                              #:list-devices #:list-groups
                               #:list-identity-providers #:list-of-string-types
                               #:list-providers-limit-type
                               #:list-resource-servers
@@ -169,22 +188,29 @@
                               #:log-configuration-type
                               #:log-delivery-configuration-type #:log-level
                               #:logout-urls-list-type #:long-type
+                              #:mfamethod-not-found-exception
                               #:mfaoption-list-type #:mfaoption-type
+                              #:managed-login-branding-exists-exception
                               #:managed-login-branding-id-type
                               #:managed-login-branding-type
                               #:message-action-type #:message-template-type
                               #:message-type #:new-device-metadata-type
+                              #:not-authorized-exception
                               #:notify-configuration-type #:notify-email-type
                               #:number-attribute-constraints-type
                               #:oauth-flow-type #:oauth-flows-type
                               #:pagination-key #:pagination-key-type
+                              #:password-history-policy-violation-exception
                               #:password-history-size-type
                               #:password-policy-min-length-type
-                              #:password-policy-type #:password-type
-                              #:pool-query-limit-type #:pre-signed-url-type
+                              #:password-policy-type
+                              #:password-reset-required-exception
+                              #:password-type #:pool-query-limit-type
+                              #:pre-signed-url-type
                               #:pre-token-generation-lambda-version-type
                               #:pre-token-generation-version-config-type
                               #:precedence-type
+                              #:precondition-not-met-exception
                               #:prevent-user-existence-error-types
                               #:priority-type #:provider-description
                               #:provider-details-type #:provider-name-type
@@ -194,10 +220,12 @@
                               #:query-limit-type #:recovery-mechanisms-type
                               #:recovery-option-name-type
                               #:recovery-option-type #:redirect-url-type
+                              #:refresh-token-reuse-exception
                               #:refresh-token-rotation-type
                               #:refresh-token-validity-type #:region-code-type
                               #:relying-party-id-type
                               #:resend-confirmation-code #:resource-id-type
+                              #:resource-not-found-exception
                               #:resource-server-identifier-type
                               #:resource-server-name-type
                               #:resource-server-scope-description-type
@@ -213,8 +241,10 @@
                               #:risk-level-type #:s3arn-type #:s3bucket-type
                               #:s3configuration-type #:sesconfiguration-set
                               #:smsmfa-settings-type #:schema-attribute-type
-                              #:schema-attributes-list-type #:scope-list-type
-                              #:scope-type #:search-pagination-token-type
+                              #:schema-attributes-list-type
+                              #:scope-does-not-exist-exception
+                              #:scope-list-type #:scope-type
+                              #:search-pagination-token-type
                               #:searched-attribute-names-list-type
                               #:secret-code-type #:secret-hash-type
                               #:session-type #:set-log-delivery-configuration
@@ -226,6 +256,7 @@
                               #:sms-configuration-type
                               #:sms-invite-message-type #:sms-mfa-config-type
                               #:sms-verification-message-type
+                              #:software-token-mfanot-found-exception
                               #:software-token-mfauser-code-type
                               #:software-token-mfa-config-type
                               #:software-token-mfa-settings-type
@@ -236,10 +267,18 @@
                               #:supported-identity-providers-list-type
                               #:tag-keys-type #:tag-resource #:tag-value-type
                               #:temporary-password-validity-days-type
+                              #:tier-change-not-allowed-exception
                               #:time-units-type #:token-model-type
                               #:token-validity-units-type
-                              #:uicustomization-type #:untag-resource
-                              #:update-auth-event-feedback
+                              #:too-many-failed-attempts-exception
+                              #:too-many-requests-exception
+                              #:uicustomization-type #:unauthorized-exception
+                              #:unexpected-lambda-exception
+                              #:unsupported-identity-provider-exception
+                              #:unsupported-operation-exception
+                              #:unsupported-token-type-exception
+                              #:unsupported-user-state-exception
+                              #:untag-resource #:update-auth-event-feedback
                               #:update-device-status #:update-group
                               #:update-identity-provider
                               #:update-managed-login-branding
@@ -248,12 +287,17 @@
                               #:update-user-pool-domain
                               #:user-attribute-update-settings-type
                               #:user-context-data-type #:user-filter-type
+                              #:user-import-in-progress-exception
                               #:user-import-job-id-type
                               #:user-import-job-name-type
                               #:user-import-job-status-type
                               #:user-import-job-type
                               #:user-import-jobs-list-type
+                              #:user-lambda-validation-exception
                               #:user-mfasetting-list-type
+                              #:user-not-confirmed-exception
+                              #:user-not-found-exception
+                              #:user-pool-add-on-not-enabled-exception
                               #:user-pool-add-ons-type
                               #:user-pool-client-description
                               #:user-pool-client-list-type
@@ -261,13 +305,15 @@
                               #:user-pool-description-type #:user-pool-id-type
                               #:user-pool-list-type #:user-pool-mfa-type
                               #:user-pool-name-type #:user-pool-policy-type
+                              #:user-pool-tagging-exception
                               #:user-pool-tags-list-type #:user-pool-tags-type
                               #:user-pool-tier-type #:user-pool-type
                               #:user-status-type #:user-type
                               #:user-verification-type
                               #:username-attribute-type
                               #:username-attributes-list-type
-                              #:username-configuration-type #:username-type
+                              #:username-configuration-type
+                              #:username-exists-exception #:username-type
                               #:users-list-type
                               #:verification-message-template-type
                               #:verified-attribute-type
@@ -278,12 +324,24 @@
                               #:web-authn-authenticator-attachment-type
                               #:web-authn-authenticator-transport-type
                               #:web-authn-authenticator-transports-list
+                              #:web-authn-challenge-not-found-exception
+                              #:web-authn-client-mismatch-exception
+                              #:web-authn-configuration-missing-exception
                               #:web-authn-configuration-type
                               #:web-authn-credential-description
                               #:web-authn-credential-description-list-type
+                              #:web-authn-credential-not-supported-exception
                               #:web-authn-credentials-query-limit-type
-                              #:wrapped-boolean-type #:wrapped-integer-type))
+                              #:web-authn-not-enabled-exception
+                              #:web-authn-origin-not-allowed-exception
+                              #:web-authn-relying-party-mismatch-exception
+                              #:wrapped-boolean-type #:wrapped-integer-type
+                              #:cognito-identity-provider-error))
 (common-lisp:in-package #:pira/cognito-identity-provider)
+
+(common-lisp:define-condition cognito-identity-provider-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awscognito-identity-provider-service
                                    :shape-name
@@ -1027,7 +1085,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "AliasExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-list allowed-first-auth-factors-list-type :member
                                auth-factor-type)
@@ -1338,13 +1397,15 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "CodeDeliveryFailureException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error code-mismatch-exception common-lisp:nil
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "CodeMismatchException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-enum color-scheme-mode-type
     common-lisp:nil
@@ -1396,7 +1457,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-list configured-user-auth-factors-list-type :member
                                auth-factor-type)
@@ -2132,7 +2194,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "DeviceKeyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type device-key-type smithy/sdk/smithy-types:string)
 
@@ -2216,7 +2279,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "DuplicateProviderException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type email-address-type
                                smithy/sdk/smithy-types:string)
@@ -2290,7 +2354,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "EnableSoftwareTokenMFAException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-structure event-context-data-type common-lisp:nil
                                     ((ip-address :target-type string-type
@@ -2362,7 +2427,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "ExpiredCodeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-list explicit-auth-flows-list-type :member
                                explicit-auth-flows-type)
@@ -2390,7 +2456,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "FeatureUnavailableInTierException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-enum feedback-value-type
     common-lisp:nil
@@ -2406,7 +2473,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type force-alias-creation
                                smithy/sdk/smithy-types:boolean)
@@ -2681,7 +2749,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "GroupExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-list group-list-type :member group-type)
 
@@ -2809,7 +2878,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "InternalErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error invalid-email-role-access-policy-exception
                                 common-lisp:nil
@@ -2817,20 +2887,23 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidEmailRoleAccessPolicyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error invalid-lambda-response-exception
                                 common-lisp:nil
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "InvalidLambdaResponseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error invalid-oauth-flow-exception common-lisp:nil
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "InvalidOAuthFlowException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type message-type
@@ -2839,7 +2912,8 @@
                                   invalid-parameter-exception-reason-code-type
                                   :member-name "reasonCode"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type invalid-parameter-exception-reason-code-type
                                smithy/sdk/smithy-types:string)
@@ -2848,7 +2922,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "InvalidPasswordException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error invalid-sms-role-access-policy-exception
                                 common-lisp:nil
@@ -2856,7 +2931,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidSmsRoleAccessPolicyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error invalid-sms-role-trust-relationship-exception
                                 common-lisp:nil
@@ -2864,7 +2940,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidSmsRoleTrustRelationshipException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error invalid-user-pool-configuration-exception
                                 common-lisp:nil
@@ -2872,7 +2949,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidUserPoolConfigurationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-structure lambda-config-type common-lisp:nil
                                     ((pre-sign-up :target-type arn-type
@@ -2916,7 +2994,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-input list-devices-request common-lisp:nil
                                 ((access-token :target-type token-model-type
@@ -3183,7 +3262,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "MFAMethodNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-list mfaoption-list-type :member mfaoption-type)
 
@@ -3202,7 +3282,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ManagedLoginBrandingExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type managed-login-branding-id-type
                                smithy/sdk/smithy-types:string)
@@ -3257,7 +3338,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "NotAuthorizedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-structure notify-configuration-type common-lisp:nil
                                     ((from :target-type string-type
@@ -3317,7 +3399,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "PasswordHistoryPolicyViolationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type password-history-size-type
                                smithy/sdk/smithy-types:integer)
@@ -3354,7 +3437,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "PasswordResetRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type password-type smithy/sdk/smithy-types:string)
 
@@ -3388,7 +3472,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "PreconditionNotMetException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-enum prevent-user-existence-error-types
     common-lisp:nil
@@ -3462,7 +3547,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "RefreshTokenReuseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-structure refresh-token-rotation-type common-lisp:nil
                                     ((feature :target-type feature-type
@@ -3514,7 +3600,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type resource-server-identifier-type
                                smithy/sdk/smithy-types:string)
@@ -3712,7 +3799,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "ScopeDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-list scope-list-type :member scope-type)
 
@@ -3949,7 +4037,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "SoftwareTokenMFANotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type software-token-mfauser-code-type
                                smithy/sdk/smithy-types:string)
@@ -4057,7 +4146,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "TierChangeNotAllowedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-enum time-units-type
     common-lisp:nil
@@ -4083,13 +4173,15 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "TooManyFailedAttemptsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error too-many-requests-exception common-lisp:nil
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-structure uicustomization-type common-lisp:nil
                                     ((user-pool-id :target-type
@@ -4113,13 +4205,15 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error unexpected-lambda-exception common-lisp:nil
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "UnexpectedLambdaException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error unsupported-identity-provider-exception
                                 common-lisp:nil
@@ -4127,27 +4221,31 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "UnsupportedIdentityProviderException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error unsupported-operation-exception common-lisp:nil
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "UnsupportedOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error unsupported-token-type-exception
                                 common-lisp:nil
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "UnsupportedTokenTypeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error unsupported-user-state-exception
                                 common-lisp:nil
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "UnsupportedUserStateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn-type :required
@@ -4504,7 +4602,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "UserImportInProgressException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type user-import-job-id-type
                                smithy/sdk/smithy-types:string)
@@ -4567,7 +4666,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "UserLambdaValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-list user-mfasetting-list-type :member string-type)
 
@@ -4575,13 +4675,15 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "UserNotConfirmedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error user-not-found-exception common-lisp:nil
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "UserNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error user-pool-add-on-not-enabled-exception
                                 common-lisp:nil
@@ -4589,7 +4691,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "UserPoolAddOnNotEnabledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-structure user-pool-add-ons-type common-lisp:nil
                                     ((advanced-security-mode :target-type
@@ -4741,7 +4844,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "UserPoolTaggingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-list user-pool-tags-list-type :member tag-keys-type)
 
@@ -4910,7 +5014,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "UsernameExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type username-type smithy/sdk/smithy-types:string)
 
@@ -5002,14 +5107,16 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "WebAuthnChallengeNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error web-authn-client-mismatch-exception
                                 common-lisp:nil
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "WebAuthnClientMismatchException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error web-authn-configuration-missing-exception
                                 common-lisp:nil
@@ -5017,7 +5124,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "WebAuthnConfigurationMissingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-structure web-authn-configuration-type
                                     common-lisp:nil
@@ -5062,7 +5170,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "WebAuthnCredentialNotSupportedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type web-authn-credentials-query-limit-type
                                smithy/sdk/smithy-types:integer)
@@ -5071,7 +5180,8 @@
                                 ((message :target-type message-type
                                   :member-name "message"))
                                 (:shape-name "WebAuthnNotEnabledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error web-authn-origin-not-allowed-exception
                                 common-lisp:nil
@@ -5079,7 +5189,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "WebAuthnOriginNotAllowedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-error web-authn-relying-party-mismatch-exception
                                 common-lisp:nil
@@ -5087,7 +5198,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "WebAuthnRelyingPartyMismatchException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cognito-identity-provider-error))
 
 (smithy/sdk/shapes:define-type wrapped-boolean-type
                                smithy/sdk/smithy-types:boolean)

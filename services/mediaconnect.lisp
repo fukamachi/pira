@@ -6,19 +6,23 @@
                               #:add-bridge-source-request #:add-bridge-sources
                               #:add-egress-gateway-bridge-request
                               #:add-flow-media-streams #:add-flow-outputs
-                              #:add-flow-sources #:add-flow-vpc-interfaces
+                              #:add-flow-outputs420exception #:add-flow-sources
+                              #:add-flow-vpc-interfaces
                               #:add-ingress-gateway-bridge-request
                               #:add-maintenance #:add-media-stream-request
                               #:add-output-request #:algorithm
-                              #:audio-monitoring-setting #:black-frames
-                              #:bridge #:bridge-arn #:bridge-flow-output
+                              #:audio-monitoring-setting
+                              #:bad-request-exception #:black-frames #:bridge
+                              #:bridge-arn #:bridge-flow-output
                               #:bridge-flow-source #:bridge-network-output
                               #:bridge-network-source #:bridge-output
                               #:bridge-placement #:bridge-resource
                               #:bridge-source #:bridge-state #:colorimetry
-                              #:connection-status
+                              #:conflict-exception #:connection-status
                               #:content-quality-analysis-state #:create-bridge
-                              #:create-flow #:create-gateway #:delete-bridge
+                              #:create-bridge420exception #:create-flow
+                              #:create-flow420exception #:create-gateway
+                              #:create-gateway420exception #:delete-bridge
                               #:delete-flow #:delete-gateway
                               #:deregister-gateway-instance #:describe-bridge
                               #:describe-flow #:describe-flow-source-metadata
@@ -34,16 +38,19 @@
                               #:entitlement #:entitlement-status
                               #:failover-config #:failover-mode #:flow
                               #:flow-arn #:flow-resource #:flow-size #:fmtp
-                              #:fmtp-request #:frame-resolution #:frozen-frames
-                              #:gateway #:gateway-arn #:gateway-bridge-source
+                              #:fmtp-request #:forbidden-exception
+                              #:frame-resolution #:frozen-frames #:gateway
+                              #:gateway-arn #:gateway-bridge-source
                               #:gateway-instance #:gateway-instance-arn
                               #:gateway-instance-resource #:gateway-network
                               #:gateway-resource #:gateway-state
                               #:grant-entitlement-request
                               #:grant-flow-entitlements
+                              #:grant-flow-entitlements420exception
                               #:ingress-gateway-bridge #:input-configuration
                               #:input-configuration-request #:instance-state
-                              #:interface #:interface-request #:key-type
+                              #:interface #:interface-request
+                              #:internal-server-error-exception #:key-type
                               #:list-bridges #:list-entitlements #:list-flows
                               #:list-gateway-instances #:list-gateways
                               #:list-offerings #:list-reservations
@@ -61,22 +68,24 @@
                               #:media-stream-type #:message-detail #:messages
                               #:monitoring-config #:multicast-source-settings
                               #:ndi-config #:ndi-discovery-server-config
-                              #:ndi-state #:network-interface-type #:offering
-                              #:offering-arn #:offering-resource #:output
-                              #:output-status #:price-units #:protocol
-                              #:purchase-offering #:range
-                              #:remove-bridge-output #:remove-bridge-source
-                              #:remove-flow-media-stream #:remove-flow-output
-                              #:remove-flow-source #:remove-flow-vpc-interface
-                              #:reservation #:reservation-arn
-                              #:reservation-resource #:reservation-state
-                              #:resource-specification #:resource-type
-                              #:revoke-flow-entitlement #:scan-mode
+                              #:ndi-state #:network-interface-type
+                              #:not-found-exception #:offering #:offering-arn
+                              #:offering-resource #:output #:output-status
+                              #:price-units #:protocol #:purchase-offering
+                              #:range #:remove-bridge-output
+                              #:remove-bridge-source #:remove-flow-media-stream
+                              #:remove-flow-output #:remove-flow-source
+                              #:remove-flow-vpc-interface #:reservation
+                              #:reservation-arn #:reservation-resource
+                              #:reservation-state #:resource-specification
+                              #:resource-type #:revoke-flow-entitlement
+                              #:scan-mode #:service-unavailable-exception
                               #:set-gateway-bridge-source-request
                               #:set-source-request #:silent-audio #:source
                               #:source-priority #:source-type #:start-flow
                               #:state #:status #:stop-flow #:tag-resource #:tcs
-                              #:thumbnail-details #:thumbnail-state #:transport
+                              #:thumbnail-details #:thumbnail-state
+                              #:too-many-requests-exception #:transport
                               #:transport-media-info #:transport-stream
                               #:transport-stream-program #:untag-resource
                               #:update-bridge
@@ -126,8 +135,13 @@
                               #:list-of-transport-stream-program
                               #:list-of-video-monitoring-setting
                               #:list-of-vpc-interface
-                              #:list-of-vpc-interface-request #:map-of-string))
+                              #:list-of-vpc-interface-request #:map-of-string
+                              #:mediaconnect-error))
 (common-lisp:in-package #:pira/mediaconnect)
+
+(common-lisp:define-condition mediaconnect-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service media-connect :shape-name "MediaConnect"
                                    :version "2018-11-14" :title
@@ -305,7 +319,8 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "AddFlowOutputs420Exception")
-                                (:error-code 420))
+                                (:error-code 420)
+                                (:base-class mediaconnect-error))
 
 (smithy/sdk/shapes:define-input add-flow-outputs-request common-lisp:nil
                                 ((flow-arn :target-type flow-arn :required
@@ -514,7 +529,8 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class mediaconnect-error))
 
 (smithy/sdk/shapes:define-structure black-frames common-lisp:nil
                                     ((state :target-type state :member-name
@@ -712,7 +728,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class mediaconnect-error))
 
 (smithy/sdk/shapes:define-enum connection-status
     common-lisp:nil
@@ -730,7 +747,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "CreateBridge420Exception")
-                                (:error-code 420))
+                                (:error-code 420)
+                                (:base-class mediaconnect-error))
 
 (smithy/sdk/shapes:define-input create-bridge-request common-lisp:nil
                                 ((egress-gateway-bridge :target-type
@@ -773,7 +791,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "CreateFlow420Exception")
-                                (:error-code 420))
+                                (:error-code 420)
+                                (:base-class mediaconnect-error))
 
 (smithy/sdk/shapes:define-input create-flow-request common-lisp:nil
                                 ((availability-zone :target-type
@@ -831,7 +850,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "CreateGateway420Exception")
-                                (:error-code 420))
+                                (:error-code 420)
+                                (:base-class mediaconnect-error))
 
 (smithy/sdk/shapes:define-input create-gateway-request common-lisp:nil
                                 ((egress-cidr-blocks :target-type
@@ -1352,7 +1372,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class mediaconnect-error))
 
 (smithy/sdk/shapes:define-structure frame-resolution common-lisp:nil
                                     ((frame-height :target-type
@@ -1512,7 +1533,8 @@ common-lisp:nil
                                   :json-name "message"))
                                 (:shape-name
                                  "GrantFlowEntitlements420Exception")
-                                (:error-code 420))
+                                (:error-code 420)
+                                (:base-class mediaconnect-error))
 
 (smithy/sdk/shapes:define-input grant-flow-entitlements-request common-lisp:nil
                                 ((entitlements :target-type
@@ -1602,7 +1624,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class mediaconnect-error))
 
 (smithy/sdk/shapes:define-enum key-type
     common-lisp:nil
@@ -2123,7 +2146,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class mediaconnect-error))
 
 (smithy/sdk/shapes:define-structure offering common-lisp:nil
                                     ((currency-code :target-type
@@ -2529,7 +2553,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class mediaconnect-error))
 
 (smithy/sdk/shapes:define-structure set-gateway-bridge-source-request
                                     common-lisp:nil
@@ -2816,7 +2841,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class mediaconnect-error))
 
 (smithy/sdk/shapes:define-structure transport common-lisp:nil
                                     ((cidr-allow-list :target-type

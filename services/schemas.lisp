@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/schemas (:use)
-                             (:export #:body #:code-generation-status
+                             (:export #:bad-request-exception #:body
+                              #:code-generation-status #:conflict-exception
                               #:create-discoverer #:create-registry
                               #:create-schema #:delete-discoverer
                               #:delete-registry #:delete-resource-policy
@@ -7,21 +8,27 @@
                               #:describe-code-binding #:describe-discoverer
                               #:describe-registry #:describe-schema
                               #:discoverer-state #:discoverer-summary
-                              #:export-schema #:get-code-binding-source
-                              #:get-discovered-schema
+                              #:export-schema #:forbidden-exception
+                              #:get-code-binding-source #:get-discovered-schema
                               #:get-discovered-schema-version-item-input
-                              #:get-resource-policy #:list-discoverers
-                              #:list-registries #:list-schema-versions
-                              #:list-schemas #:list-tags-for-resource
+                              #:get-resource-policy #:gone-exception
+                              #:internal-server-error-exception
+                              #:list-discoverers #:list-registries
+                              #:list-schema-versions #:list-schemas
+                              #:list-tags-for-resource #:not-found-exception
+                              #:precondition-failed-exception
                               #:put-code-binding #:put-resource-policy
                               #:registry-summary #:schema-summary
                               #:schema-version-summary #:search-schema-summary
                               #:search-schema-version-summary #:search-schemas
+                              #:service-unavailable-exception
                               #:start-discoverer #:stop-discoverer
                               #:synthesized-json-string #:tag-resource #:tags
-                              #:type #:untag-resource #:update-discoverer
-                              #:update-registry #:update-schema #:boolean
-                              #:integer #:list-of-discoverer-summary
+                              #:too-many-requests-exception #:type
+                              #:unauthorized-exception #:untag-resource
+                              #:update-discoverer #:update-registry
+                              #:update-schema #:boolean #:integer
+                              #:list-of-discoverer-summary
                               #:list-of-get-discovered-schema-version-item-input
                               #:list-of-registry-summary
                               #:list-of-schema-summary
@@ -31,8 +38,12 @@
                               #:list-of-string #:long #:string
                               #:string-min0max256 #:string-min0max36
                               #:string-min1max100000 #:string-min20max1600
-                              #:timestamp-iso8601 #:schemas))
+                              #:timestamp-iso8601 #:schemas #:schemas-error))
 (common-lisp:in-package #:pira/schemas)
+
+(common-lisp:define-condition schemas-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service schemas :shape-name "schemas" :version
                                    "2019-12-02" :title "Schemas" :operations
@@ -68,7 +79,7 @@
                                  (message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class schemas-error))
 
 (smithy/sdk/shapes:define-type body smithy/sdk/smithy-types:blob)
 
@@ -84,7 +95,7 @@
                                  (message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class schemas-error))
 
 (smithy/sdk/shapes:define-input create-discoverer-request common-lisp:nil
                                 ((description :target-type string-min0max256
@@ -367,7 +378,7 @@
                                  (message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class schemas-error))
 
 (smithy/sdk/shapes:define-input get-code-binding-source-request common-lisp:nil
                                 ((language :target-type string :required
@@ -425,7 +436,8 @@
                                   common-lisp:t :member-name "Code")
                                  (message :target-type string :required
                                   common-lisp:t :member-name "Message"))
-                                (:shape-name "GoneException") (:error-code 410))
+                                (:shape-name "GoneException") (:error-code 410)
+                                (:base-class schemas-error))
 
 (smithy/sdk/shapes:define-error internal-server-error-exception common-lisp:nil
                                 ((code :target-type string :required
@@ -433,7 +445,7 @@
                                  (message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class schemas-error))
 
 (smithy/sdk/shapes:define-input list-discoverers-request common-lisp:nil
                                 ((discoverer-id-prefix :target-type string
@@ -535,7 +547,7 @@
                                  (message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class schemas-error))
 
 (smithy/sdk/shapes:define-error precondition-failed-exception common-lisp:nil
                                 ((code :target-type string :required
@@ -543,7 +555,7 @@
                                  (message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "PreconditionFailedException")
-                                (:error-code 412))
+                                (:error-code 412) (:base-class schemas-error))
 
 (smithy/sdk/shapes:define-input put-code-binding-request common-lisp:nil
                                 ((language :target-type string :required
@@ -673,7 +685,7 @@
                                  (message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class schemas-error))
 
 (smithy/sdk/shapes:define-input start-discoverer-request common-lisp:nil
                                 ((discoverer-id :target-type string :required
@@ -722,7 +734,7 @@
                                  (message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class schemas-error))
 
 (smithy/sdk/shapes:define-enum type
     common-lisp:nil
@@ -735,7 +747,7 @@
                                  (message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class schemas-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required

@@ -19,20 +19,27 @@
                               #:grantee #:initiate-job
                               #:initiate-multipart-upload #:initiate-vault-lock
                               #:input-serialization
+                              #:insufficient-capacity-exception
+                              #:invalid-parameter-value-exception
                               #:inventory-retrieval-job-description
                               #:inventory-retrieval-job-input #:job-list
-                              #:job-parameters #:list-jobs
-                              #:list-multipart-uploads #:list-parts
+                              #:job-parameters #:limit-exceeded-exception
+                              #:list-jobs #:list-multipart-uploads #:list-parts
                               #:list-provisioned-capacity #:list-tags-for-vault
-                              #:list-vaults #:notification-event-list
-                              #:nullable-long #:output-location
-                              #:output-serialization #:part-list
-                              #:part-list-element #:permission
+                              #:list-vaults #:missing-parameter-value-exception
+                              #:notification-event-list #:nullable-long
+                              #:output-location #:output-serialization
+                              #:part-list #:part-list-element #:permission
+                              #:policy-enforced-exception
                               #:provisioned-capacity-description
                               #:provisioned-capacity-list
                               #:purchase-provisioned-capacity #:quote-fields
-                              #:remove-tags-from-vault #:s3location
-                              #:select-parameters #:set-data-retrieval-policy
+                              #:remove-tags-from-vault
+                              #:request-timeout-exception
+                              #:resource-not-found-exception #:s3location
+                              #:select-parameters
+                              #:service-unavailable-exception
+                              #:set-data-retrieval-policy
                               #:set-vault-access-policy
                               #:set-vault-notifications #:size #:status-code
                               #:storage-class #:stream #:tag-key #:tag-key-list
@@ -40,8 +47,13 @@
                               #:upload-list-element #:upload-multipart-part
                               #:uploads-list #:vault-access-policy #:vault-list
                               #:vault-lock-policy #:vault-notification-config
-                              #:boolean #:hashmap #:httpstatus #:long #:string))
+                              #:boolean #:hashmap #:httpstatus #:long #:string
+                              #:glacier-error))
 (common-lisp:in-package #:pira/glacier)
+
+(common-lisp:define-condition glacier-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service glacier :shape-name "Glacier" :version
                                    "2012-06-01" :title "Amazon Glacier"
@@ -579,7 +591,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InsufficientCapacityException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glacier-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
@@ -588,7 +600,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterValueException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glacier-error))
 
 (smithy/sdk/shapes:define-structure inventory-retrieval-job-description
                                     common-lisp:nil
@@ -653,7 +665,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glacier-error))
 
 (smithy/sdk/shapes:define-input list-jobs-input common-lisp:nil
                                 ((account-id :target-type string :required
@@ -787,7 +799,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "MissingParameterValueException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glacier-error))
 
 (smithy/sdk/shapes:define-list notification-event-list :member string)
 
@@ -826,7 +838,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "PolicyEnforcedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class glacier-error))
 
 (smithy/sdk/shapes:define-structure provisioned-capacity-description
                                     common-lisp:nil
@@ -880,7 +892,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "RequestTimeoutException")
-                                (:error-code 408))
+                                (:error-code 408) (:base-class glacier-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((type :target-type string :member-name "type")
@@ -888,7 +900,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class glacier-error))
 
 (smithy/sdk/shapes:define-structure s3location common-lisp:nil
                                     ((bucket-name :target-type string
@@ -930,7 +942,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class glacier-error))
 
 (smithy/sdk/shapes:define-input set-data-retrieval-policy-input common-lisp:nil
                                 ((account-id :target-type string :required

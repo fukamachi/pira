@@ -5,30 +5,43 @@
                               #:active-context-time-to-live
                               #:active-context-time-to-live-in-seconds
                               #:active-context-turns-to-live
-                              #:active-contexts-list #:blob-stream #:bot-alias
+                              #:active-contexts-list #:bad-gateway-exception
+                              #:bad-request-exception #:blob-stream #:bot-alias
                               #:bot-name #:bot-version #:button
                               #:button-text-string-with-length
                               #:button-value-string-with-length
-                              #:confirmation-status #:content-type
-                              #:delete-session #:dialog-action
+                              #:confirmation-status #:conflict-exception
+                              #:content-type #:delete-session
+                              #:dependency-failed-exception #:dialog-action
                               #:dialog-action-type #:dialog-state #:double
                               #:error-message #:fulfillment-state
                               #:generic-attachment #:get-session
                               #:http-content-type #:intent-confidence
                               #:intent-list #:intent-name #:intent-summary
                               #:intent-summary-checkpoint-label
-                              #:intent-summary-list #:message-format-type
+                              #:intent-summary-list
+                              #:internal-failure-exception
+                              #:limit-exceeded-exception
+                              #:loop-detected-exception #:message-format-type
+                              #:not-acceptable-exception #:not-found-exception
                               #:parameter-name #:post-content #:post-text
-                              #:predicted-intent #:put-session #:response-card
+                              #:predicted-intent #:put-session
+                              #:request-timeout-exception #:response-card
                               #:sensitive-string #:sensitive-string-unbounded
                               #:sentiment-label #:sentiment-response
                               #:sentiment-score #:string #:string-map
                               #:string-url-with-length #:string-with-length
                               #:synthesized-json-active-contexts-string
                               #:synthesized-json-attributes-string
-                              #:synthesized-json-string #:text #:user-id
-                              #:generic-attachment-list #:list-of-buttons))
+                              #:synthesized-json-string #:text
+                              #:unsupported-media-type-exception #:user-id
+                              #:generic-attachment-list #:list-of-buttons
+                              #:lex-runtime-service-error))
 (common-lisp:in-package #:pira/lex-runtime-service)
+
+(common-lisp:define-condition lex-runtime-service-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsdeep-sense-run-time-service :shape-name
                                    "AWSDeepSenseRunTimeService" :version
@@ -90,13 +103,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "BadGatewayException")
-                                (:error-code 502))
+                                (:error-code 502)
+                                (:base-class lex-runtime-service-error))
 
 (smithy/sdk/shapes:define-error bad-request-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lex-runtime-service-error))
 
 (smithy/sdk/shapes:define-type blob-stream smithy/sdk/smithy-types:blob
                                :streaming common-lisp:t)
@@ -132,7 +147,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class lex-runtime-service-error))
 
 (smithy/sdk/shapes:define-enum content-type
     common-lisp:nil
@@ -165,7 +181,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DependencyFailedException")
-                                (:error-code 424))
+                                (:error-code 424)
+                                (:base-class lex-runtime-service-error))
 
 (smithy/sdk/shapes:define-structure dialog-action common-lisp:nil
                                     ((type :target-type dialog-action-type
@@ -302,7 +319,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class lex-runtime-service-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((retry-after-seconds :target-type string
@@ -311,13 +329,15 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class lex-runtime-service-error))
 
 (smithy/sdk/shapes:define-error loop-detected-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LoopDetectedException")
-                                (:error-code 508))
+                                (:error-code 508)
+                                (:base-class lex-runtime-service-error))
 
 (smithy/sdk/shapes:define-enum message-format-type
     common-lisp:nil
@@ -330,13 +350,15 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "NotAcceptableException")
-                                (:error-code 406))
+                                (:error-code 406)
+                                (:base-class lex-runtime-service-error))
 
 (smithy/sdk/shapes:define-error not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class lex-runtime-service-error))
 
 (smithy/sdk/shapes:define-type parameter-name smithy/sdk/smithy-types:string)
 
@@ -571,7 +593,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "RequestTimeoutException")
-                                (:error-code 408))
+                                (:error-code 408)
+                                (:base-class lex-runtime-service-error))
 
 (smithy/sdk/shapes:define-structure response-card common-lisp:nil
                                     ((version :target-type string :member-name
@@ -630,7 +653,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "UnsupportedMediaTypeException")
-                                (:error-code 415))
+                                (:error-code 415)
+                                (:base-class lex-runtime-service-error))
 
 (smithy/sdk/shapes:define-type user-id smithy/sdk/smithy-types:string)
 

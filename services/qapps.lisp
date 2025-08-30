@@ -1,7 +1,7 @@
 (uiop/package:define-package #:pira/qapps (:use)
-                             (:export #:action #:action-identifier
-                              #:amazon-resource-name #:app-arn #:app-definition
-                              #:app-definition-input
+                             (:export #:access-denied-exception #:action
+                              #:action-identifier #:amazon-resource-name
+                              #:app-arn #:app-definition #:app-definition-input
                               #:app-required-capabilities
                               #:app-required-capability #:app-status
                               #:app-version #:associate-library-item-review
@@ -16,6 +16,8 @@
                               #:card-value-list #:categories-list #:category
                               #:category-id-list #:category-input
                               #:category-list #:category-list-input
+                              #:conflict-exception
+                              #:content-too-large-exception
                               #:conversation-message #:create-library-item
                               #:create-presigned-url #:create-qapp #:default
                               #:delete-category-input-list
@@ -36,11 +38,11 @@
                               #:get-library-item #:get-qapp #:get-qapp-session
                               #:get-qapp-session-metadata #:import-document
                               #:initial-prompt #:input-card-compute-mode
-                              #:instance-id #:library-item-list
-                              #:library-item-member #:library-item-status
-                              #:list-categories #:list-library-items
-                              #:list-qapp-session-data #:list-qapps
-                              #:list-tags-for-resource #:long
+                              #:instance-id #:internal-server-exception
+                              #:library-item-list #:library-item-member
+                              #:library-item-status #:list-categories
+                              #:list-library-items #:list-qapp-session-data
+                              #:list-qapps #:list-tags-for-resource #:long
                               #:memory-reference-list #:message-list
                               #:page-limit #:pagination-token
                               #:permission-input #:permission-output
@@ -54,7 +56,9 @@
                               #:qapp-session-data-list #:qapps-service
                               #:qapps-timestamp #:qplugin-card
                               #:qplugin-card-input #:qquery-card
-                              #:qquery-card-input #:sender #:session-name
+                              #:qquery-card-input
+                              #:resource-not-found-exception #:sender
+                              #:service-quota-exceeded-exception #:session-name
                               #:session-sharing-accept-responses
                               #:session-sharing-configuration
                               #:session-sharing-enabled
@@ -64,14 +68,20 @@
                               #:submission-mutation #:submission-mutation-kind
                               #:tag-key #:tag-keys #:tag-map #:tag-resource
                               #:tag-value #:tags #:text-input-card
-                              #:text-input-card-input #:timestamp #:title
-                              #:uuid #:untag-resource #:update-library-item
+                              #:text-input-card-input #:throttling-exception
+                              #:timestamp #:title #:uuid
+                              #:unauthorized-exception #:untag-resource
+                              #:update-library-item
                               #:update-library-item-metadata #:update-qapp
                               #:update-qapp-permissions #:update-qapp-session
                               #:update-qapp-session-metadata #:user
                               #:user-app-item #:user-apps-list #:user-id
-                              #:user-type))
+                              #:user-type #:validation-exception #:qapps-error))
 (common-lisp:in-package #:pira/qapps)
+
+(common-lisp:define-condition qapps-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service qapps-service :shape-name "QAppsService"
                                    :version "2023-11-27" :title "QApps"
@@ -111,7 +121,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class qapps-error))
 
 (smithy/sdk/shapes:define-enum action
     common-lisp:nil
@@ -371,7 +381,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class qapps-error))
 
 (smithy/sdk/shapes:define-error content-too-large-exception common-lisp:nil
                                 ((message :target-type
@@ -384,7 +394,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ContentTooLargeException")
-                                (:error-code 413))
+                                (:error-code 413) (:base-class qapps-error))
 
 (smithy/sdk/shapes:define-structure conversation-message common-lisp:nil
                                     ((body :target-type
@@ -930,7 +940,7 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class qapps-error))
 
 (smithy/sdk/shapes:define-list library-item-list :member library-item-member)
 
@@ -1288,7 +1298,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class qapps-error))
 
 (smithy/sdk/shapes:define-enum sender
     common-lisp:nil
@@ -1313,7 +1323,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class qapps-error))
 
 (smithy/sdk/shapes:define-type session-name smithy/sdk/smithy-types:string)
 
@@ -1470,7 +1480,7 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class qapps-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -1483,7 +1493,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class qapps-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -1728,7 +1738,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class qapps-error))
 
 (smithy/sdk/operation:define-operation associate-library-item-review
                                        :shape-name "AssociateLibraryItemReview"

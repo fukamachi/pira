@@ -1,30 +1,33 @@
 (uiop/package:define-package #:pira/signer (:use)
-                             (:export #:account-id #:add-profile-permission
-                              #:arn #:blob #:bucket-name
+                             (:export #:access-denied-exception #:account-id
+                              #:add-profile-permission #:arn
+                              #:bad-request-exception #:blob #:bucket-name
                               #:cancel-signing-profile #:category
                               #:certificate-arn #:certificate-hashes
-                              #:client-request-token #:describe-signing-job
-                              #:destination #:display-name
-                              #:encryption-algorithm
+                              #:client-request-token #:conflict-exception
+                              #:describe-signing-job #:destination
+                              #:display-name #:encryption-algorithm
                               #:encryption-algorithm-options
                               #:encryption-algorithms #:error-code
                               #:error-message #:get-revocation-status
                               #:get-signing-platform #:get-signing-profile
                               #:hash-algorithm #:hash-algorithm-options
                               #:hash-algorithms #:image-format #:image-formats
-                              #:integer #:job-id #:key
-                              #:list-profile-permissions #:list-signing-jobs
-                              #:list-signing-platforms #:list-signing-profiles
-                              #:list-tags-for-resource #:max-results
-                              #:max-size-in-mb #:metadata #:next-token
-                              #:payload #:permission #:permissions
-                              #:platform-id #:policy-size-bytes #:prefix
-                              #:profile-name #:profile-version
-                              #:put-signing-profile #:remove-profile-permission
-                              #:requested-by #:revocation-reason-string
-                              #:revoke-signature #:revoke-signing-profile
-                              #:revoked-entities #:s3destination
-                              #:s3signed-object #:s3source #:sign-payload
+                              #:integer #:internal-service-error-exception
+                              #:job-id #:key #:list-profile-permissions
+                              #:list-signing-jobs #:list-signing-platforms
+                              #:list-signing-profiles #:list-tags-for-resource
+                              #:max-results #:max-size-in-mb #:metadata
+                              #:next-token #:not-found-exception #:payload
+                              #:permission #:permissions #:platform-id
+                              #:policy-size-bytes #:prefix #:profile-name
+                              #:profile-version #:put-signing-profile
+                              #:remove-profile-permission #:requested-by
+                              #:resource-not-found-exception
+                              #:revocation-reason-string #:revoke-signature
+                              #:revoke-signing-profile #:revoked-entities
+                              #:s3destination #:s3signed-object #:s3source
+                              #:service-limit-exceeded-exception #:sign-payload
                               #:signature-validity-period #:signed-object
                               #:signing-configuration
                               #:signing-configuration-overrides
@@ -39,10 +42,15 @@
                               #:signing-status #:source #:start-signing-job
                               #:status-reason #:statuses #:string #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-value #:timestamp #:untag-resource
-                              #:validity-type #:version #:wallaby-service
-                              #:bool))
+                              #:tag-value #:throttling-exception #:timestamp
+                              #:too-many-requests-exception #:untag-resource
+                              #:validation-exception #:validity-type #:version
+                              #:wallaby-service #:bool #:signer-error))
 (common-lisp:in-package #:pira/signer)
+
+(common-lisp:define-condition signer-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service wallaby-service :shape-name "WallabyService"
                                    :version "2017-08-25" :title "AWS Signer"
@@ -75,7 +83,7 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class signer-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -109,7 +117,7 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class signer-error))
 
 (smithy/sdk/shapes:define-type blob smithy/sdk/smithy-types:blob)
 
@@ -138,7 +146,7 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class signer-error))
 
 (smithy/sdk/shapes:define-input describe-signing-job-request common-lisp:nil
                                 ((job-id :target-type job-id :required
@@ -357,7 +365,7 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "InternalServiceErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class signer-error))
 
 (smithy/sdk/shapes:define-type job-id smithy/sdk/smithy-types:string)
 
@@ -494,7 +502,7 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class signer-error))
 
 (smithy/sdk/shapes:define-type payload smithy/sdk/smithy-types:blob)
 
@@ -582,7 +590,7 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class signer-error))
 
 (smithy/sdk/shapes:define-type revocation-reason-string
                                smithy/sdk/smithy-types:string)
@@ -645,7 +653,7 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "ServiceLimitExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class signer-error))
 
 (smithy/sdk/shapes:define-input sign-payload-request common-lisp:nil
                                 ((profile-name :target-type profile-name
@@ -927,7 +935,7 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class signer-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -937,7 +945,7 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class signer-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required
@@ -958,7 +966,7 @@
                                  (code :target-type error-code :member-name
                                   "code"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class signer-error))
 
 (smithy/sdk/shapes:define-enum validity-type
     common-lisp:nil

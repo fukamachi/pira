@@ -1,13 +1,14 @@
 (uiop/package:define-package #:pira/gameliftstreams (:use)
-                             (:export #:add-stream-group-locations
-                              #:always-on-capacity #:application-log-output-uri
+                             (:export #:access-denied-exception
+                              #:add-stream-group-locations #:always-on-capacity
+                              #:application-log-output-uri
                               #:application-resource #:application-source-uri
                               #:application-status #:application-status-reason
                               #:application-summary #:application-summary-list
                               #:arn #:arn-list #:associate-applications
                               #:capacity-value #:client-token
-                              #:connection-timeout-seconds #:create-application
-                              #:create-stream-group
+                              #:conflict-exception #:connection-timeout-seconds
+                              #:create-application #:create-stream-group
                               #:create-stream-session-connection
                               #:default-application #:delete-application
                               #:delete-stream-group #:description
@@ -19,7 +20,8 @@
                               #:file-path #:file-paths #:game-launch-arg-list
                               #:game-lift-streams #:get-application
                               #:get-stream-group #:get-stream-session #:id
-                              #:identifier #:identifiers #:list-applications
+                              #:identifier #:identifiers
+                              #:internal-server-exception #:list-applications
                               #:list-stream-groups #:list-stream-sessions
                               #:list-stream-sessions-by-account
                               #:list-tags-for-resource #:location-configuration
@@ -29,9 +31,11 @@
                               #:next-token #:on-demand-capacity #:output-uri
                               #:protocol #:remove-stream-group-locations
                               #:replication-status #:replication-status-type
-                              #:replication-statuses #:runtime-environment
-                              #:runtime-environment-type
+                              #:replication-statuses
+                              #:resource-not-found-exception
+                              #:runtime-environment #:runtime-environment-type
                               #:runtime-environment-version
+                              #:service-quota-exceeded-exception
                               #:session-length-seconds #:signal-request
                               #:signal-response #:start-stream-session
                               #:stream-class #:stream-group-location-status
@@ -44,10 +48,16 @@
                               #:stream-session-summary
                               #:stream-session-summary-list #:tag-key
                               #:tag-key-list #:tag-resource #:tag-value #:tags
-                              #:terminate-stream-session #:untag-resource
-                              #:update-application #:update-stream-group
-                              #:user-id #:web-sdk-protocol-url))
+                              #:terminate-stream-session #:throttling-exception
+                              #:untag-resource #:update-application
+                              #:update-stream-group #:user-id
+                              #:validation-exception #:web-sdk-protocol-url
+                              #:gameliftstreams-error))
 (common-lisp:in-package #:pira/gameliftstreams)
+
+(common-lisp:define-condition gameliftstreams-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service game-lift-streams :shape-name
                                    "GameLiftStreams" :version "2018-05-10"
@@ -103,7 +113,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class gameliftstreams-error))
 
 (smithy/sdk/shapes:define-input add-stream-group-locations-input
                                 common-lisp:nil
@@ -199,7 +210,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class gameliftstreams-error))
 
 (smithy/sdk/shapes:define-type connection-timeout-seconds
                                smithy/sdk/smithy-types:integer)
@@ -578,7 +590,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class gameliftstreams-error))
 
 (smithy/sdk/shapes:define-input list-applications-input common-lisp:nil
                                 ((next-token :target-type next-token
@@ -765,7 +778,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class gameliftstreams-error))
 
 (smithy/sdk/shapes:define-structure runtime-environment common-lisp:nil
                                     ((type :target-type
@@ -791,7 +805,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class gameliftstreams-error))
 
 (smithy/sdk/shapes:define-type session-length-seconds
                                smithy/sdk/smithy-types:integer)
@@ -1022,7 +1037,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class gameliftstreams-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -1136,7 +1152,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class gameliftstreams-error))
 
 (smithy/sdk/shapes:define-type web-sdk-protocol-url
                                smithy/sdk/smithy-types:string)

@@ -1,15 +1,23 @@
 (uiop/package:define-package #:pira/mediastore-data (:use)
-                             (:export #:content-range-pattern #:content-type
+                             (:export #:container-not-found-exception
+                              #:content-range-pattern #:content-type
                               #:delete-object #:describe-object #:etag
-                              #:error-message #:get-object #:item #:item-list
+                              #:error-message #:get-object
+                              #:internal-server-error #:item #:item-list
                               #:item-name #:item-type #:list-items #:list-limit
                               #:list-path-naming #:media-store-object-20170901
-                              #:non-negative-long #:pagination-token
-                              #:path-naming #:payload-blob #:put-object
-                              #:range-pattern #:sha256hash #:storage-class
-                              #:string-primitive #:time-stamp
-                              #:upload-availability #:status-code))
+                              #:non-negative-long #:object-not-found-exception
+                              #:pagination-token #:path-naming #:payload-blob
+                              #:put-object #:range-pattern
+                              #:requested-range-not-satisfiable-exception
+                              #:sha256hash #:storage-class #:string-primitive
+                              #:time-stamp #:upload-availability #:status-code
+                              #:mediastore-data-error))
 (common-lisp:in-package #:pira/mediastore-data)
+
+(common-lisp:define-condition mediastore-data-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service media-store-object-20170901 :shape-name
                                    "MediaStoreObject_20170901" :version
@@ -37,7 +45,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ContainerNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class mediastore-data-error))
 
 (smithy/sdk/shapes:define-type content-range-pattern
                                smithy/sdk/smithy-types:string)
@@ -121,7 +130,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class mediastore-data-error))
 
 (smithy/sdk/shapes:define-structure item common-lisp:nil
                                     ((name :target-type item-name :member-name
@@ -176,7 +186,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ObjectNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class mediastore-data-error))
 
 (smithy/sdk/shapes:define-type pagination-token smithy/sdk/smithy-types:string)
 
@@ -223,7 +234,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "RequestedRangeNotSatisfiableException")
-                                (:error-code 416))
+                                (:error-code 416)
+                                (:base-class mediastore-data-error))
 
 (smithy/sdk/shapes:define-type sha256hash smithy/sdk/smithy-types:string)
 

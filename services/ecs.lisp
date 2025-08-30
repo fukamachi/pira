@@ -1,18 +1,19 @@
 (uiop/package:define-package #:pira/ecs (:use)
-                             (:export #:advanced-configuration
-                              #:agent-update-status
+                             (:export #:access-denied-exception
+                              #:advanced-configuration #:agent-update-status
                               #:amazon-ec2container-service-v20141113
                               #:application-protocol #:assign-public-ip
                               #:attachment #:attachment-details
                               #:attachment-state-change
                               #:attachment-state-changes #:attachments
-                              #:attribute #:attributes
-                              #:auto-scaling-group-provider
+                              #:attribute #:attribute-limit-exceeded-exception
+                              #:attributes #:auto-scaling-group-provider
                               #:auto-scaling-group-provider-update
                               #:availability-zone-rebalancing
-                              #:aws-vpc-configuration #:boolean #:boxed-boolean
-                              #:boxed-integer #:cpuarchitecture
-                              #:capacity-provider #:capacity-provider-field
+                              #:aws-vpc-configuration #:blocked-exception
+                              #:boolean #:boxed-boolean #:boxed-integer
+                              #:cpuarchitecture #:capacity-provider
+                              #:capacity-provider-field
                               #:capacity-provider-field-list
                               #:capacity-provider-status
                               #:capacity-provider-strategy
@@ -20,19 +21,23 @@
                               #:capacity-provider-strategy-item-base
                               #:capacity-provider-strategy-item-weight
                               #:capacity-provider-update-status
-                              #:capacity-providers #:cluster
-                              #:cluster-configuration #:cluster-field
-                              #:cluster-field-list
+                              #:capacity-providers #:client-exception #:cluster
+                              #:cluster-configuration
+                              #:cluster-contains-container-instances-exception
+                              #:cluster-contains-services-exception
+                              #:cluster-contains-tasks-exception
+                              #:cluster-field #:cluster-field-list
+                              #:cluster-not-found-exception
                               #:cluster-service-connect-defaults
                               #:cluster-service-connect-defaults-request
                               #:cluster-setting #:cluster-setting-name
                               #:cluster-settings #:clusters #:compatibility
-                              #:compatibility-list #:connectivity #:container
-                              #:container-condition #:container-definition
-                              #:container-definitions #:container-dependencies
-                              #:container-dependency #:container-image
-                              #:container-images #:container-instance
-                              #:container-instance-field
+                              #:compatibility-list #:conflict-exception
+                              #:connectivity #:container #:container-condition
+                              #:container-definition #:container-definitions
+                              #:container-dependencies #:container-dependency
+                              #:container-image #:container-images
+                              #:container-instance #:container-instance-field
                               #:container-instance-field-list
                               #:container-instance-health-status
                               #:container-instance-status #:container-instances
@@ -96,10 +101,12 @@
                               #:instance-health-check-result-list
                               #:instance-health-check-state
                               #:instance-health-check-type #:integer
-                              #:integer-list #:ipc-mode #:kernel-capabilities
-                              #:key-value-pair #:launch-type #:linux-parameters
-                              #:list-account-settings #:list-attributes
-                              #:list-clusters #:list-container-instances
+                              #:integer-list #:invalid-parameter-exception
+                              #:ipc-mode #:kernel-capabilities #:key-value-pair
+                              #:launch-type #:limit-exceeded-exception
+                              #:linux-parameters #:list-account-settings
+                              #:list-attributes #:list-clusters
+                              #:list-container-instances
                               #:list-service-deployments #:list-services
                               #:list-services-by-namespace
                               #:list-tags-for-resource
@@ -117,17 +124,21 @@
                               #:managed-scaling-step-size
                               #:managed-scaling-target-capacity
                               #:managed-storage-configuration
-                              #:managed-termination-protection #:mount-point
-                              #:mount-point-list #:network-binding
+                              #:managed-termination-protection
+                              #:missing-version-exception #:mount-point
+                              #:mount-point-list
+                              #:namespace-not-found-exception #:network-binding
                               #:network-bindings #:network-configuration
                               #:network-interface #:network-interfaces
-                              #:network-mode #:osfamily #:pid-mode
-                              #:placement-constraint
+                              #:network-mode #:no-update-available-exception
+                              #:osfamily #:pid-mode #:placement-constraint
                               #:placement-constraint-type
                               #:placement-constraints #:placement-strategies
                               #:placement-strategy #:placement-strategy-type
                               #:platform-device #:platform-device-type
-                              #:platform-devices #:port-mapping
+                              #:platform-devices
+                              #:platform-task-definition-incompatibility-exception
+                              #:platform-unknown-exception #:port-mapping
                               #:port-mapping-list #:port-number
                               #:propagate-tags #:protected-task
                               #:protected-tasks #:proxy-configuration
@@ -139,12 +150,14 @@
                               #:register-task-definition
                               #:repository-credentials #:requires-attributes
                               #:resolved-configuration #:resource
-                              #:resource-ids #:resource-requirement
-                              #:resource-requirements #:resource-type
-                              #:resources #:rollback #:run-task
+                              #:resource-ids #:resource-in-use-exception
+                              #:resource-not-found-exception
+                              #:resource-requirement #:resource-requirements
+                              #:resource-type #:resources #:rollback #:run-task
                               #:runtime-platform #:scale #:scale-unit
                               #:scheduling-strategy #:scope #:secret
-                              #:secret-list #:sensitive-string #:service
+                              #:secret-list #:sensitive-string
+                              #:server-exception #:service
                               #:service-connect-client-alias
                               #:service-connect-client-alias-list
                               #:service-connect-configuration
@@ -161,6 +174,7 @@
                               #:service-deployment-brief
                               #:service-deployment-circuit-breaker
                               #:service-deployment-lifecycle-stage
+                              #:service-deployment-not-found-exception
                               #:service-deployment-rollback-monitors-status
                               #:service-deployment-status
                               #:service-deployment-status-list
@@ -168,6 +182,8 @@
                               #:service-event #:service-events #:service-field
                               #:service-field-list
                               #:service-managed-ebsvolume-configuration
+                              #:service-not-active-exception
+                              #:service-not-found-exception
                               #:service-registries #:service-registry
                               #:service-revision
                               #:service-revision-load-balancer
@@ -186,9 +202,10 @@
                               #:submit-container-state-change
                               #:submit-task-state-change #:system-control
                               #:system-controls #:tag #:tag-key #:tag-keys
-                              #:tag-resource #:tag-value #:tags #:target-type
-                              #:task #:task-definition
-                              #:task-definition-family-status
+                              #:tag-resource #:tag-value #:tags
+                              #:target-not-connected-exception
+                              #:target-not-found-exception #:target-type #:task
+                              #:task-definition #:task-definition-family-status
                               #:task-definition-field
                               #:task-definition-field-list
                               #:task-definition-list
@@ -201,24 +218,30 @@
                               #:task-managed-ebsvolume-configuration
                               #:task-managed-ebsvolume-termination-policy
                               #:task-override #:task-set #:task-set-field
-                              #:task-set-field-list #:task-sets
+                              #:task-set-field-list
+                              #:task-set-not-found-exception #:task-sets
                               #:task-stop-code #:task-volume-configuration
                               #:task-volume-configurations #:tasks
                               #:timeout-configuration #:timestamp #:tmpfs
                               #:tmpfs-list #:transport-protocol #:ulimit
-                              #:ulimit-list #:ulimit-name #:untag-resource
+                              #:ulimit-list #:ulimit-name
+                              #:unsupported-feature-exception #:untag-resource
                               #:update-capacity-provider #:update-cluster
                               #:update-cluster-settings
                               #:update-container-agent
                               #:update-container-instances-state
-                              #:update-service
+                              #:update-in-progress-exception #:update-service
                               #:update-service-primary-task-set
                               #:update-task-protection #:update-task-set
                               #:version-consistency #:version-info #:volume
                               #:volume-from #:volume-from-list #:volume-list
                               #:vpc-lattice-configuration
-                              #:vpc-lattice-configurations))
+                              #:vpc-lattice-configurations #:ecs-error))
 (common-lisp:in-package #:pira/ecs)
+
+(common-lisp:define-condition ecs-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-ec2container-service-v20141113
                                    :shape-name
@@ -283,7 +306,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-structure advanced-configuration common-lisp:nil
                                     ((alternate-target-group-arn :target-type
@@ -359,7 +382,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "AttributeLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-list attributes :member attribute)
 
@@ -416,7 +439,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "BlockedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-type boolean smithy/sdk/smithy-types:boolean)
 
@@ -499,7 +522,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ClientException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-structure cluster common-lisp:nil
                                     ((cluster-arn :target-type string
@@ -562,7 +585,7 @@
                                   "message"))
                                 (:shape-name
                                  "ClusterContainsContainerInstancesException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-error cluster-contains-services-exception
                                 common-lisp:nil
@@ -570,14 +593,14 @@
                                   "message"))
                                 (:shape-name
                                  "ClusterContainsServicesException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-error cluster-contains-tasks-exception
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ClusterContainsTasksException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-enum cluster-field
     common-lisp:nil
@@ -593,7 +616,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ClusterNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-structure cluster-service-connect-defaults
                                     common-lisp:nil
@@ -638,7 +661,7 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-enum connectivity
     common-lisp:nil
@@ -1923,7 +1946,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-enum ipc-mode
     common-lisp:nil
@@ -1955,7 +1978,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-structure linux-parameters common-lisp:nil
                                     ((capabilities :target-type
@@ -2339,7 +2362,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "MissingVersionException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-structure mount-point common-lisp:nil
                                     ((source-volume :target-type string
@@ -2356,7 +2379,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "NamespaceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-structure network-binding common-lisp:nil
                                     ((bind-ip :target-type string :member-name
@@ -2403,7 +2426,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "NoUpdateAvailableException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-enum osfamily
     common-lisp:nil
@@ -2472,13 +2495,13 @@
  platform-task-definition-incompatibility-exception common-lisp:nil
  ((message :target-type string :member-name "message"))
  (:shape-name "PlatformTaskDefinitionIncompatibilityException")
- (:error-code 400))
+ (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-error platform-unknown-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "PlatformUnknownException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-structure port-mapping common-lisp:nil
                                     ((container-port :target-type boxed-integer
@@ -2719,13 +2742,13 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-structure resource-requirement common-lisp:nil
                                     ((value :target-type string :required
@@ -2850,7 +2873,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-structure service common-lisp:nil
                                     ((service-arn :target-type string
@@ -3152,7 +3175,7 @@
                                   "message"))
                                 (:shape-name
                                  "ServiceDeploymentNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-enum service-deployment-rollback-monitors-status
     common-lisp:nil
@@ -3232,13 +3255,13 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ServiceNotActiveException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-error service-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ServiceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-list service-registries :member service-registry)
 
@@ -3594,13 +3617,13 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TargetNotConnectedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-error target-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TargetNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-enum target-type
     common-lisp:nil
@@ -3946,7 +3969,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TaskSetNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-list task-sets :member task-set)
 
@@ -4034,7 +4057,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "UnsupportedFeatureException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required
@@ -4138,7 +4161,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "UpdateInProgressException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ecs-error))
 
 (smithy/sdk/shapes:define-input update-service-primary-task-set-request
                                 common-lisp:nil

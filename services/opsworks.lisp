@@ -65,10 +65,10 @@
                               #:register-ecs-cluster #:register-elastic-ip
                               #:register-instance #:register-rds-db-instance
                               #:register-volume #:reported-os #:resource-arn
-                              #:root-device-type #:self-user-profile
-                              #:service-error #:service-errors
-                              #:set-load-based-auto-scaling #:set-permission
-                              #:set-time-based-auto-scaling
+                              #:resource-not-found-exception #:root-device-type
+                              #:self-user-profile #:service-error
+                              #:service-errors #:set-load-based-auto-scaling
+                              #:set-permission #:set-time-based-auto-scaling
                               #:shutdown-event-configuration #:source
                               #:source-type #:ssl-configuration #:stack
                               #:stack-attributes #:stack-attributes-keys
@@ -85,11 +85,16 @@
                               #:update-my-user-profile #:update-rds-db-instance
                               #:update-stack #:update-user-profile
                               #:update-volume #:user-profile #:user-profiles
-                              #:valid-for-in-minutes #:virtualization-type
-                              #:volume #:volume-configuration
-                              #:volume-configurations #:volume-type #:volumes
-                              #:weekly-auto-scaling-schedule))
+                              #:valid-for-in-minutes #:validation-exception
+                              #:virtualization-type #:volume
+                              #:volume-configuration #:volume-configurations
+                              #:volume-type #:volumes
+                              #:weekly-auto-scaling-schedule #:opsworks-error))
 (common-lisp:in-package #:pira/opsworks)
+
+(common-lisp:define-condition opsworks-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ops-works-20130218 :shape-name
                                    "OpsWorks_20130218" :version "2013-02-18"
@@ -1801,7 +1806,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class opsworks-error))
 
 (smithy/sdk/shapes:define-enum root-device-type
     common-lisp:nil
@@ -2286,7 +2291,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class opsworks-error))
 
 (smithy/sdk/shapes:define-enum virtualization-type
     common-lisp:nil

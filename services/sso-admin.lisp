@@ -5,6 +5,7 @@
                               #:access-control-attribute-value
                               #:access-control-attribute-value-source
                               #:access-control-attribute-value-source-list
+                              #:access-denied-exception
                               #:access-denied-exception-message
                               #:account-assignment
                               #:account-assignment-for-principal
@@ -38,7 +39,8 @@
                               #:authorization-code-grant
                               #:authorized-token-issuer
                               #:authorized-token-issuers #:claim-attribute-path
-                              #:client-token #:conflict-exception-message
+                              #:client-token #:conflict-exception
+                              #:conflict-exception-message
                               #:create-account-assignment #:create-application
                               #:create-application-assignment #:create-instance
                               #:create-instance-access-control-attribute-configuration
@@ -83,7 +85,8 @@
                               #:instance-access-control-attribute-configuration-status-reason
                               #:instance-arn #:instance-list
                               #:instance-metadata #:instance-status
-                              #:internal-failure-message #:jmespath
+                              #:internal-failure-message
+                              #:internal-server-exception #:jmespath
                               #:jwks-retrieval-option #:jwt-bearer-grant
                               #:list-account-assignment-creation-status
                               #:list-account-assignment-deletion-status
@@ -129,17 +132,20 @@
                               #:put-inline-policy-to-permission-set
                               #:put-permissions-boundary-to-permission-set
                               #:reason #:redirect-uris #:refresh-token-grant
-                              #:relay-state #:resource-not-found-message
+                              #:relay-state #:resource-not-found-exception
+                              #:resource-not-found-message
                               #:resource-server-config #:resource-server-scope
                               #:resource-server-scope-details
                               #:resource-server-scopes #:swbexternal-service
                               #:scope #:scope-details #:scope-target
                               #:scope-targets #:scopes
+                              #:service-quota-exceeded-exception
                               #:service-quota-exceeded-message
                               #:sign-in-options #:sign-in-origin
                               #:status-values #:tag #:tag-key #:tag-key-list
                               #:tag-list #:tag-resource #:tag-value
                               #:taggable-resource-arn #:target-id #:target-type
+                              #:throttling-exception
                               #:throttling-exception-message #:token
                               #:token-exchange-grant #:token-issuer-audience
                               #:token-issuer-audiences
@@ -157,8 +163,13 @@
                               #:update-instance-access-control-attribute-configuration
                               #:update-permission-set
                               #:update-trusted-token-issuer
-                              #:validation-exception-message))
+                              #:validation-exception
+                              #:validation-exception-message #:sso-admin-error))
 (common-lisp:in-package #:pira/sso-admin)
+
+(common-lisp:define-condition sso-admin-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service swbexternal-service :shape-name
                                    "SWBExternalService" :version "2020-07-20"
@@ -267,7 +278,7 @@
                                   access-denied-exception-message :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sso-admin-error))
 
 (smithy/sdk/shapes:define-type access-denied-exception-message
                                smithy/sdk/smithy-types:string)
@@ -546,7 +557,7 @@ common-lisp:nil
                                   conflict-exception-message :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class sso-admin-error))
 
 (smithy/sdk/shapes:define-type conflict-exception-message
                                smithy/sdk/smithy-types:string)
@@ -1326,7 +1337,7 @@ common-lisp:nil
                                 ((message :target-type internal-failure-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class sso-admin-error))
 
 (smithy/sdk/shapes:define-type jmespath smithy/sdk/smithy-types:string)
 
@@ -2041,7 +2052,7 @@ common-lisp:nil
                                   resource-not-found-message :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class sso-admin-error))
 
 (smithy/sdk/shapes:define-type resource-not-found-message
                                smithy/sdk/smithy-types:string)
@@ -2088,7 +2099,7 @@ common-lisp:nil
                                   service-quota-exceeded-message :member-name
                                   "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class sso-admin-error))
 
 (smithy/sdk/shapes:define-type service-quota-exceeded-message
                                smithy/sdk/smithy-types:string)
@@ -2156,7 +2167,7 @@ common-lisp:nil
                                   throttling-exception-message :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class sso-admin-error))
 
 (smithy/sdk/shapes:define-type throttling-exception-message
                                smithy/sdk/smithy-types:string)
@@ -2333,7 +2344,7 @@ common-lisp:nil
                                   validation-exception-message :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sso-admin-error))
 
 (smithy/sdk/shapes:define-type validation-exception-message
                                smithy/sdk/smithy-types:string)

@@ -27,7 +27,8 @@
                               #:get-performance-analysis-report
                               #:get-resource-metadata #:get-resource-metrics
                               #:isotimestamp #:identifier-string #:insight
-                              #:insight-list #:integer #:limit
+                              #:insight-list #:integer #:internal-service-error
+                              #:invalid-argument-exception #:limit
                               #:list-available-resource-dimensions
                               #:list-available-resource-metrics
                               #:list-performance-analysis-reports
@@ -37,7 +38,8 @@
                               #:metric-key-data-points-list #:metric-query
                               #:metric-query-filter-map #:metric-query-list
                               #:metric-type-list #:metric-values-list
-                              #:next-token #:performance-insights-metric
+                              #:next-token #:not-authorized-exception
+                              #:performance-insights-metric
                               #:performance-insightsv20180227
                               #:period-alignment #:recommendation
                               #:recommendation-list #:request-string
@@ -51,8 +53,12 @@
                               #:service-type #:severity #:string #:tag
                               #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-value #:text-format
-                              #:untag-resource))
+                              #:untag-resource #:pi-error))
 (common-lisp:in-package #:pira/pi)
+
+(common-lisp:define-condition pi-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service performance-insightsv20180227 :shape-name
                                    "PerformanceInsightsv20180227" :version
@@ -512,13 +518,13 @@
                                 ((message :target-type error-string
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceError")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class pi-error))
 
 (smithy/sdk/shapes:define-error invalid-argument-exception common-lisp:nil
                                 ((message :target-type error-string
                                   :member-name "Message"))
                                 (:shape-name "InvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class pi-error))
 
 (smithy/sdk/shapes:define-type limit smithy/sdk/smithy-types:integer)
 
@@ -675,7 +681,7 @@
                                 ((message :target-type error-string
                                   :member-name "Message"))
                                 (:shape-name "NotAuthorizedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class pi-error))
 
 (smithy/sdk/shapes:define-structure performance-insights-metric common-lisp:nil
                                     ((metric :target-type descriptive-string

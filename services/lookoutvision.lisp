@@ -1,10 +1,11 @@
 (uiop/package:define-package #:pira/lookoutvision (:use)
-                             (:export #:anomaly #:anomaly-class-filter
-                              #:anomaly-list #:anomaly-mask #:anomaly-name
-                              #:boolean #:client-token #:color
-                              #:compiler-options #:component-description
-                              #:component-name #:component-version
-                              #:component-version-arn #:content-type
+                             (:export #:access-denied-exception #:anomaly
+                              #:anomaly-class-filter #:anomaly-list
+                              #:anomaly-mask #:anomaly-name #:boolean
+                              #:client-token #:color #:compiler-options
+                              #:component-description #:component-name
+                              #:component-version #:component-version-arn
+                              #:conflict-exception #:content-type
                               #:create-dataset #:create-model #:create-project
                               #:dataset-changes #:dataset-description
                               #:dataset-entry #:dataset-entry-list
@@ -21,7 +22,8 @@
                               #:greengrass-configuration
                               #:greengrass-output-details #:image-source
                               #:image-source-type #:inference-units
-                              #:input-s3object #:integer #:is-labeled
+                              #:input-s3object #:integer
+                              #:internal-server-exception #:is-labeled
                               #:kms-key-id #:list-dataset-entries
                               #:list-model-packaging-jobs #:list-models
                               #:list-projects #:list-tags-for-resource
@@ -46,18 +48,25 @@
                               #:pixel-anomaly #:project-arn
                               #:project-description #:project-metadata
                               #:project-metadata-list #:project-name
-                              #:query-string #:resource-type
-                              #:retry-after-seconds #:s3bucket-name
-                              #:s3key-prefix #:s3location #:s3object-key
-                              #:s3object-version #:start-model
+                              #:query-string #:resource-not-found-exception
+                              #:resource-type #:retry-after-seconds
+                              #:s3bucket-name #:s3key-prefix #:s3location
+                              #:s3object-key #:s3object-version
+                              #:service-quota-exceeded-exception #:start-model
                               #:start-model-packaging-job #:stop-model #:stream
                               #:tag #:tag-arn #:tag-key #:tag-key-list
                               #:tag-list #:tag-resource #:tag-value
                               #:target-device #:target-platform
                               #:target-platform-accelerator
                               #:target-platform-arch #:target-platform-os
-                              #:untag-resource #:update-dataset-entries))
+                              #:throttling-exception #:untag-resource
+                              #:update-dataset-entries #:validation-exception
+                              #:lookoutvision-error))
 (common-lisp:in-package #:pira/lookoutvision)
+
+(common-lisp:define-condition lookoutvision-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service lookout-vision-service :shape-name
                                    "LookoutVisionService" :version "2020-11-20"
@@ -91,7 +100,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class lookoutvision-error))
 
 (smithy/sdk/shapes:define-structure anomaly common-lisp:nil
                                     ((name :target-type anomaly-name
@@ -138,7 +148,8 @@
                                   :required common-lisp:t :member-name
                                   "ResourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class lookoutvision-error))
 
 (smithy/sdk/shapes:define-type content-type smithy/sdk/smithy-types:string)
 
@@ -499,7 +510,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class lookoutvision-error))
 
 (smithy/sdk/shapes:define-type is-labeled smithy/sdk/smithy-types:boolean)
 
@@ -884,7 +896,8 @@
                                   :required common-lisp:t :member-name
                                   "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class lookoutvision-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -929,7 +942,8 @@
                                   :required common-lisp:t :member-name
                                   "ServiceCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class lookoutvision-error))
 
 (smithy/sdk/shapes:define-input start-model-packaging-job-request
                                 common-lisp:nil
@@ -1074,7 +1088,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class lookoutvision-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type tag-arn :required
@@ -1115,7 +1130,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lookoutvision-error))
 
 (smithy/sdk/operation:define-operation create-dataset :shape-name
                                        "CreateDataset" :input

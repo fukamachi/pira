@@ -1,15 +1,23 @@
 (uiop/package:define-package #:pira/global-accelerator (:use)
                              (:export #:accelerator #:accelerator-attributes
                               #:accelerator-event #:accelerator-events
+                              #:accelerator-not-disabled-exception
+                              #:accelerator-not-found-exception
                               #:accelerator-status #:accelerators
+                              #:access-denied-exception
                               #:add-custom-routing-endpoints #:add-endpoints
                               #:advertise-byoip-cidr
-                              #:allow-custom-routing-traffic #:attachment
-                              #:attachment-name #:attachments #:aws-account-id
-                              #:aws-account-ids #:byoip-cidr #:byoip-cidr-event
-                              #:byoip-cidr-events #:byoip-cidr-state
-                              #:byoip-cidrs #:cidr-authorization-context
-                              #:client-affinity #:create-accelerator
+                              #:allow-custom-routing-traffic
+                              #:associated-endpoint-group-found-exception
+                              #:associated-listener-found-exception
+                              #:attachment #:attachment-name
+                              #:attachment-not-found-exception #:attachments
+                              #:aws-account-id #:aws-account-ids #:byoip-cidr
+                              #:byoip-cidr-event #:byoip-cidr-events
+                              #:byoip-cidr-not-found-exception
+                              #:byoip-cidr-state #:byoip-cidrs
+                              #:cidr-authorization-context #:client-affinity
+                              #:conflict-exception #:create-accelerator
                               #:create-cross-account-attachment
                               #:create-custom-routing-accelerator
                               #:create-custom-routing-endpoint-group
@@ -53,21 +61,30 @@
                               #:destination-addresses
                               #:destination-port-mapping
                               #:destination-port-mappings #:destination-ports
+                              #:endpoint-already-exists-exception
                               #:endpoint-configuration
                               #:endpoint-configurations #:endpoint-description
                               #:endpoint-descriptions #:endpoint-group
+                              #:endpoint-group-already-exists-exception
+                              #:endpoint-group-not-found-exception
                               #:endpoint-groups #:endpoint-identifier
                               #:endpoint-identifiers #:endpoint-ids
-                              #:endpoint-weight #:error-message
-                              #:generic-boolean #:generic-string
-                              #:global-accelerator-v20180706
+                              #:endpoint-not-found-exception #:endpoint-weight
+                              #:error-message #:generic-boolean
+                              #:generic-string #:global-accelerator-v20180706
                               #:health-check-interval-seconds
                               #:health-check-path #:health-check-port
                               #:health-check-protocol #:health-state
-                              #:idempotency-token #:ip-address
+                              #:idempotency-token
+                              #:incorrect-cidr-state-exception
+                              #:internal-service-error-exception
+                              #:invalid-argument-exception
+                              #:invalid-next-token-exception
+                              #:invalid-port-range-exception #:ip-address
                               #:ip-address-family #:ip-address-type
                               #:ip-addresses #:ip-set #:ip-sets
-                              #:list-accelerators #:list-byoip-cidrs
+                              #:limit-exceeded-exception #:list-accelerators
+                              #:list-byoip-cidrs
                               #:list-cross-account-attachments
                               #:list-cross-account-resource-accounts
                               #:list-cross-account-resources
@@ -77,7 +94,8 @@
                               #:list-custom-routing-port-mappings
                               #:list-custom-routing-port-mappings-by-destination
                               #:list-endpoint-groups #:list-listeners
-                              #:list-tags-for-resource #:listener #:listeners
+                              #:list-tags-for-resource #:listener
+                              #:listener-not-found-exception #:listeners
                               #:max-results #:port-mapping #:port-mappings
                               #:port-mappings-max-results #:port-number
                               #:port-override #:port-overrides #:port-range
@@ -88,16 +106,21 @@
                               #:resources #:socket-address #:socket-addresses
                               #:tag #:tag-key #:tag-keys #:tag-resource
                               #:tag-value #:tags #:threshold-count #:timestamp
-                              #:traffic-dial-percentage #:untag-resource
-                              #:update-accelerator
+                              #:traffic-dial-percentage
+                              #:transaction-in-progress-exception
+                              #:untag-resource #:update-accelerator
                               #:update-accelerator-attributes
                               #:update-cross-account-attachment
                               #:update-custom-routing-accelerator
                               #:update-custom-routing-accelerator-attributes
                               #:update-custom-routing-listener
                               #:update-endpoint-group #:update-listener
-                              #:withdraw-byoip-cidr))
+                              #:withdraw-byoip-cidr #:global-accelerator-error))
 (common-lisp:in-package #:pira/global-accelerator)
+
+(common-lisp:define-condition global-accelerator-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service global-accelerator-v20180706 :shape-name
                                    "GlobalAccelerator_V20180706" :version
@@ -219,13 +242,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AcceleratorNotDisabledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-error accelerator-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AcceleratorNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-enum accelerator-status
     common-lisp:nil
@@ -238,7 +263,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-input add-custom-routing-endpoints-request
                                 common-lisp:nil
@@ -318,7 +344,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "AssociatedEndpointGroupFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-error associated-listener-found-exception
                                 common-lisp:nil
@@ -326,7 +353,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "AssociatedListenerFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-structure attachment common-lisp:nil
                                     ((attachment-arn :target-type
@@ -350,7 +378,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AttachmentNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-list attachments :member attachment)
 
@@ -380,7 +409,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ByoipCidrNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-enum byoip-cidr-state
     common-lisp:nil
@@ -416,7 +446,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-input create-accelerator-request common-lisp:nil
                                 ((name :target-type generic-string :required
@@ -991,7 +1022,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "EndpointAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-structure endpoint-configuration common-lisp:nil
                                     ((endpoint-id :target-type generic-string
@@ -1067,14 +1099,16 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "EndpointGroupAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-error endpoint-group-not-found-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "EndpointGroupNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-list endpoint-groups :member endpoint-group)
 
@@ -1095,7 +1129,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "EndpointNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-type endpoint-weight smithy/sdk/smithy-types:integer)
 
@@ -1131,32 +1166,37 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "IncorrectCidrStateException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-error internal-service-error-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-error invalid-argument-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-error invalid-port-range-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidPortRangeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-type ip-address smithy/sdk/smithy-types:string)
 
@@ -1188,7 +1228,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-input list-accelerators-request common-lisp:nil
                                 ((max-results :target-type max-results
@@ -1441,7 +1482,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ListenerNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-list listeners :member listener)
 
@@ -1597,7 +1639,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "TransactionInProgressException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class global-accelerator-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type resource-arn

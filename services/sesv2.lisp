@@ -1,16 +1,18 @@
 (uiop/package:define-package #:pira/sesv2 (:use)
                              (:export #:account-details
+                              #:account-suspended-exception
                               #:additional-contact-email-address
                               #:additional-contact-email-addresses
-                              #:admin-email #:amazon-resource-name
-                              #:archive-arn #:archiving-options #:attachment
+                              #:admin-email #:already-exists-exception
+                              #:amazon-resource-name #:archive-arn
+                              #:archiving-options #:attachment
                               #:attachment-content-description
                               #:attachment-content-disposition
                               #:attachment-content-id
                               #:attachment-content-transfer-encoding
                               #:attachment-content-type #:attachment-file-name
                               #:attachment-list #:attributes-data
-                              #:batch-get-metric-data
+                              #:bad-request-exception #:batch-get-metric-data
                               #:batch-get-metric-data-queries
                               #:batch-get-metric-data-query
                               #:behavior-on-mx-failure #:blacklist-entries
@@ -27,10 +29,12 @@
                               #:cloud-watch-dimension-configuration
                               #:cloud-watch-dimension-configurations
                               #:complaint #:complaint-feedback-type
-                              #:complaint-sub-type #:configuration-set-name
-                              #:configuration-set-name-list #:contact
-                              #:contact-language #:contact-list
-                              #:contact-list-destination
+                              #:complaint-sub-type
+                              #:concurrent-modification-exception
+                              #:configuration-set-name
+                              #:configuration-set-name-list
+                              #:conflict-exception #:contact #:contact-language
+                              #:contact-list #:contact-list-destination
                               #:contact-list-import-action #:contact-list-name
                               #:content #:counter #:create-configuration-set
                               #:create-configuration-set-event-destination
@@ -132,12 +136,16 @@
                               #:import-job-summary-list
                               #:inbox-placement-tracking-option
                               #:insights-email-address #:insights-event
-                              #:insights-events #:ip #:ip-list #:isp
-                              #:isp-filter-list #:isp-name #:isp-name-list
-                              #:isp-placement #:isp-placements #:job-id
-                              #:job-status #:kinesis-firehose-destination
+                              #:insights-events
+                              #:internal-service-error-exception
+                              #:invalid-next-token-exception #:ip #:ip-list
+                              #:isp #:isp-filter-list #:isp-name
+                              #:isp-name-list #:isp-placement #:isp-placements
+                              #:job-id #:job-status
+                              #:kinesis-firehose-destination
                               #:last-delivery-event-list
                               #:last-engagement-event-list #:last-fresh-start
+                              #:limit-exceeded-exception
                               #:list-configuration-sets #:list-contact-lists
                               #:list-contacts #:list-contacts-filter
                               #:list-custom-verification-email-templates
@@ -162,25 +170,27 @@
                               #:list-tenant-resources-filter-key
                               #:list-tenant-resources-filter-value
                               #:list-tenants #:mail-from-attributes
-                              #:mail-from-domain-name #:mail-from-domain-status
-                              #:mail-type #:max24hour-send
-                              #:max-delivery-seconds #:max-items
-                              #:max-send-rate #:message #:message-content
-                              #:message-data #:message-header
+                              #:mail-from-domain-name
+                              #:mail-from-domain-not-verified-exception
+                              #:mail-from-domain-status #:mail-type
+                              #:max24hour-send #:max-delivery-seconds
+                              #:max-items #:max-send-rate #:message
+                              #:message-content #:message-data #:message-header
                               #:message-header-list #:message-header-name
                               #:message-header-value
                               #:message-insights-data-source
                               #:message-insights-export-max-results
-                              #:message-insights-filters #:message-tag
-                              #:message-tag-list #:message-tag-name
-                              #:message-tag-value #:metric #:metric-aggregation
-                              #:metric-data-error #:metric-data-error-list
-                              #:metric-data-result #:metric-data-result-list
-                              #:metric-dimension-name #:metric-dimension-value
-                              #:metric-namespace #:metric-value-list
-                              #:metrics-data-source #:multi-region-endpoint
-                              #:multi-region-endpoints #:next-token
-                              #:next-token-v2 #:outbound-message-id
+                              #:message-insights-filters #:message-rejected
+                              #:message-tag #:message-tag-list
+                              #:message-tag-name #:message-tag-value #:metric
+                              #:metric-aggregation #:metric-data-error
+                              #:metric-data-error-list #:metric-data-result
+                              #:metric-data-result-list #:metric-dimension-name
+                              #:metric-dimension-value #:metric-namespace
+                              #:metric-value-list #:metrics-data-source
+                              #:multi-region-endpoint #:multi-region-endpoints
+                              #:next-token #:next-token-v2
+                              #:not-found-exception #:outbound-message-id
                               #:overall-volume #:page-size-v2 #:percentage
                               #:percentage100wrapper #:pinpoint-destination
                               #:placement-statistics #:policy #:policy-map
@@ -231,11 +241,12 @@
                               #:send-bulk-email
                               #:send-custom-verification-email #:send-email
                               #:send-quota #:sending-options
-                              #:sending-pool-name #:sending-status
-                              #:sent-last24hours #:serial-number
-                              #:simple-email-service-v2 #:sns-destination
-                              #:status #:status-cause #:status-record #:subject
-                              #:subscription-status #:success-redirection-url
+                              #:sending-paused-exception #:sending-pool-name
+                              #:sending-status #:sent-last24hours
+                              #:serial-number #:simple-email-service-v2
+                              #:sns-destination #:status #:status-cause
+                              #:status-record #:subject #:subscription-status
+                              #:success-redirection-url
                               #:suppressed-destination
                               #:suppressed-destination-attributes
                               #:suppressed-destination-summaries
@@ -251,7 +262,8 @@
                               #:tenant-info #:tenant-info-list #:tenant-name
                               #:tenant-resource #:tenant-resource-list
                               #:test-render-email-template #:timestamp
-                              #:timestamp-list #:tls-policy #:topic
+                              #:timestamp-list #:tls-policy
+                              #:too-many-requests-exception #:topic
                               #:topic-filter #:topic-name #:topic-preference
                               #:topic-preference-list #:topics
                               #:tracking-options #:unsubscribe-all
@@ -268,9 +280,13 @@
                               #:vdm-attributes #:vdm-options
                               #:verification-error #:verification-info
                               #:verification-status #:volume
-                              #:volume-statistics #:warmup-status
-                              #:website-url))
+                              #:volume-statistics #:warmup-status #:website-url
+                              #:sesv2-error))
 (common-lisp:in-package #:pira/sesv2)
+
+(common-lisp:define-condition sesv2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service simple-email-service-v2 :shape-name
                                    "SimpleEmailService_v2" :version
@@ -401,7 +417,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccountSuspendedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-type additional-contact-email-address
                                smithy/sdk/smithy-types:string)
@@ -415,7 +431,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-type amazon-resource-name
                                smithy/sdk/smithy-types:string)
@@ -482,7 +498,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-list batch-get-metric-data-queries :member
                                batch-get-metric-data-query)
@@ -686,7 +702,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-type configuration-set-name
                                smithy/sdk/smithy-types:string)
@@ -698,7 +714,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-structure contact common-lisp:nil
                                     ((email-address :target-type email-address
@@ -2438,13 +2454,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServiceErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-type ip smithy/sdk/smithy-types:string)
 
@@ -2502,7 +2518,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-input list-configuration-sets-request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -2934,7 +2950,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MailFromDomainNotVerifiedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-enum mail-from-domain-status
     common-lisp:nil
@@ -3034,7 +3050,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "MessageRejected")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-structure message-tag common-lisp:nil
                                     ((name :target-type message-tag-name
@@ -3151,7 +3167,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-type outbound-message-id
                                smithy/sdk/smithy-types:string)
@@ -3882,7 +3898,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "SendingPausedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-type sending-pool-name smithy/sdk/smithy-types:string)
 
@@ -4133,7 +4149,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class sesv2-error))
 
 (smithy/sdk/shapes:define-structure topic common-lisp:nil
                                     ((topic-name :target-type topic-name

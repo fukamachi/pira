@@ -59,6 +59,8 @@
                               #:get-dataset-content #:glue-configuration
                               #:glue-database-name #:glue-table-name #:image
                               #:include-statistics-flag
+                              #:internal-failure-exception
+                              #:invalid-request-exception
                               #:iot-events-destination-configuration
                               #:iot-events-input-name
                               #:iot-site-wise-customer-managed-datastore-s3storage
@@ -67,10 +69,11 @@
                               #:lambda-name #:late-data-rule
                               #:late-data-rule-configuration
                               #:late-data-rule-name #:late-data-rules
-                              #:list-channels #:list-dataset-contents
-                              #:list-datasets #:list-datastores
-                              #:list-pipelines #:list-tags-for-resource
-                              #:log-result #:logging-enabled #:logging-level
+                              #:limit-exceeded-exception #:list-channels
+                              #:list-dataset-contents #:list-datasets
+                              #:list-datastores #:list-pipelines
+                              #:list-tags-for-resource #:log-result
+                              #:logging-enabled #:logging-level
                               #:logging-options #:math-activity
                               #:math-expression #:max-messages #:max-results
                               #:max-versions #:message #:message-id
@@ -86,10 +89,13 @@
                               #:query-filters #:reason
                               #:remove-attributes-activity #:reprocessing-id
                               #:reprocessing-status #:reprocessing-summaries
-                              #:reprocessing-summary #:resource-arn
-                              #:resource-arn2 #:resource-configuration
-                              #:retention-period #:retention-period-in-days
-                              #:role-arn #:run-pipeline-activity
+                              #:reprocessing-summary
+                              #:resource-already-exists-exception
+                              #:resource-arn #:resource-arn2
+                              #:resource-configuration
+                              #:resource-not-found-exception #:retention-period
+                              #:retention-period-in-days #:role-arn
+                              #:run-pipeline-activity
                               #:s3destination-configuration #:s3key-prefix
                               #:s3path-channel-message
                               #:s3path-channel-messages #:sample-channel-data
@@ -99,12 +105,14 @@
                               #:service-managed-channel-s3storage-summary
                               #:service-managed-datastore-s3storage
                               #:service-managed-datastore-s3storage-summary
+                              #:service-unavailable-exception
                               #:session-timeout-in-minutes #:size-in-bytes
                               #:sql-query #:sql-query-dataset-action
                               #:start-pipeline-reprocessing #:start-time
                               #:string-value #:tag #:tag-key #:tag-key-list
                               #:tag-list #:tag-resource #:tag-value
-                              #:time-expression #:timestamp #:timestamp-format
+                              #:throttling-exception #:time-expression
+                              #:timestamp #:timestamp-format
                               #:timestamp-partition #:triggering-dataset
                               #:unlimited-retention-period
                               #:unlimited-versioning #:untag-resource
@@ -112,8 +120,12 @@
                               #:update-datastore #:update-pipeline #:variable
                               #:variable-name #:variables
                               #:versioning-configuration #:volume-size-in-gb
-                              #:resource-id))
+                              #:resource-id #:iotanalytics-error))
 (common-lisp:in-package #:pira/iotanalytics)
+
+(common-lisp:define-condition iotanalytics-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsio-tanalytics :shape-name
                                    "AWSIoTAnalytics" :version "2017-11-27"
@@ -1047,13 +1059,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iotanalytics-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotanalytics-error))
 
 (smithy/sdk/shapes:define-structure iot-events-destination-configuration
                                     common-lisp:nil
@@ -1128,7 +1142,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 410))
+                                (:error-code 410)
+                                (:base-class iotanalytics-error))
 
 (smithy/sdk/shapes:define-input list-channels-request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -1445,7 +1460,8 @@
                                  (resource-arn :target-type resource-arn2
                                   :member-name "resourceArn"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iotanalytics-error))
 
 (smithy/sdk/shapes:define-type resource-arn smithy/sdk/smithy-types:string)
 
@@ -1464,7 +1480,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iotanalytics-error))
 
 (smithy/sdk/shapes:define-structure retention-period common-lisp:nil
                                     ((unlimited :target-type
@@ -1584,7 +1601,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class iotanalytics-error))
 
 (smithy/sdk/shapes:define-type session-timeout-in-minutes
                                smithy/sdk/smithy-types:integer)
@@ -1658,7 +1676,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class iotanalytics-error))
 
 (smithy/sdk/shapes:define-type time-expression smithy/sdk/smithy-types:string)
 

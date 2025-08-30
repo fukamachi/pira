@@ -36,14 +36,20 @@
                               #:get-upload-status #:greengrass-deployment-id
                               #:greengrass-group-id
                               #:greengrass-group-version-id #:group-name
+                              #:internal-failure-exception
+                              #:invalid-request-exception
                               #:iot-things-graph-front-end-service
+                              #:limit-exceeded-exception
                               #:list-flow-execution-messages
                               #:list-tags-for-resource #:max-results
                               #:metrics-configuration
                               #:namespace-deletion-status
                               #:namespace-deletion-status-error-codes
-                              #:namespace-name #:next-token #:resource-arn
-                              #:role-arn #:s3bucket-name #:search-entities
+                              #:namespace-name #:next-token
+                              #:resource-already-exists-exception
+                              #:resource-arn #:resource-in-use-exception
+                              #:resource-not-found-exception #:role-arn
+                              #:s3bucket-name #:search-entities
                               #:search-flow-executions #:search-flow-templates
                               #:search-system-instances
                               #:search-system-templates #:search-things
@@ -68,12 +74,17 @@
                               #:system-template-summary #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-value #:thing #:thing-arn #:thing-name
-                              #:things #:timestamp #:undeploy-system-instance
-                              #:untag-resource #:update-flow-template
-                              #:update-system-template
+                              #:things #:throttling-exception #:timestamp
+                              #:undeploy-system-instance #:untag-resource
+                              #:update-flow-template #:update-system-template
                               #:upload-entity-definitions #:upload-id
-                              #:upload-status #:urn #:urns #:version))
+                              #:upload-status #:urn #:urns #:version
+                              #:iotthingsgraph-error))
 (common-lisp:in-package #:pira/iotthingsgraph)
+
+(common-lisp:define-condition iotthingsgraph-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service iot-things-graph-front-end-service
                                    :shape-name "IotThingsGraphFrontEndService"
@@ -650,19 +661,22 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iotthingsgraph-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iotthingsgraph-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 410))
+                                (:error-code 410)
+                                (:base-class iotthingsgraph-error))
 
 (smithy/sdk/shapes:define-input list-flow-execution-messages-request
                                 common-lisp:nil
@@ -733,7 +747,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iotthingsgraph-error))
 
 (smithy/sdk/shapes:define-type resource-arn smithy/sdk/smithy-types:string)
 
@@ -741,13 +756,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 412))
+                                (:error-code 412)
+                                (:base-class iotthingsgraph-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iotthingsgraph-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -1054,7 +1071,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class iotthingsgraph-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 

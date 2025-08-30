@@ -43,8 +43,8 @@
                               #:delete-ephemeris #:delete-ephemeris-request
                               #:delete-mission-profile
                               #:delete-mission-profile-request
-                              #:demodulation-config #:describe-contact
-                              #:describe-contact-request
+                              #:demodulation-config #:dependency-exception
+                              #:describe-contact #:describe-contact-request
                               #:describe-contact-response #:describe-ephemeris
                               #:describe-ephemeris-request
                               #:describe-ephemeris-response #:destination
@@ -75,9 +75,10 @@
                               #:ground-station-id-list #:ground-station-list
                               #:ground-station-name #:ground-station-resource
                               #:instance-id #:instance-type #:integer-range
-                              #:ip-address-list #:ip-v4address #:json-string
-                              #:key-alias-arn #:key-alias-name #:key-arn
-                              #:kms-key #:list-configs #:list-configs-request
+                              #:invalid-parameter-exception #:ip-address-list
+                              #:ip-v4address #:json-string #:key-alias-arn
+                              #:key-alias-name #:key-arn #:kms-key
+                              #:list-configs #:list-configs-request
                               #:list-configs-response #:list-contacts
                               #:list-contacts-request #:list-contacts-response
                               #:list-dataflow-endpoint-groups
@@ -107,7 +108,9 @@
                               #:ranged-socket-address #:register-agent
                               #:register-agent-request
                               #:register-agent-response #:reserve-contact
-                              #:reserve-contact-request #:role-arn
+                              #:reserve-contact-request
+                              #:resource-limit-exceeded-exception
+                              #:resource-not-found-exception #:role-arn
                               #:s3bucket-name #:s3key-prefix #:s3object
                               #:s3object-key #:s3recording-config
                               #:s3recording-details #:s3version-id #:safe-name
@@ -131,8 +134,13 @@
                               #:update-mission-profile-request
                               #:uplink-echo-config #:uplink-spectrum-config
                               #:uuid #:version-string #:version-string-list
-                              #:year #:norad-satellite-id #:satellite-arn))
+                              #:year #:norad-satellite-id #:satellite-arn
+                              #:groundstation-error))
 (common-lisp:in-package #:pira/groundstation)
+
+(common-lisp:define-condition groundstation-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ground-station :shape-name "GroundStation"
                                    :version "2019-05-23" :title
@@ -711,7 +719,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "parameterName"))
                                 (:shape-name "DependencyException")
-                                (:error-code 531))
+                                (:error-code 531)
+                                (:base-class groundstation-error))
 
 (smithy/sdk/shapes:define-input describe-contact-request common-lisp:nil
                                 ((contact-id :target-type uuid :required
@@ -1208,7 +1217,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "parameterName"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 431))
+                                (:error-code 431)
+                                (:base-class groundstation-error))
 
 (smithy/sdk/shapes:define-list ip-address-list :member ip-v4address)
 
@@ -1510,14 +1520,16 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "parameterName"))
                                 (:shape-name "ResourceLimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class groundstation-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 434))
+                                (:error-code 434)
+                                (:base-class groundstation-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 

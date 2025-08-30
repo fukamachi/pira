@@ -1,11 +1,12 @@
 (uiop/package:define-package #:pira/account (:use)
-                             (:export #:accept-primary-email-update #:account
+                             (:export #:accept-primary-email-update
+                              #:access-denied-exception #:account
                               #:account-created-date #:account-id
                               #:account-name #:account-name-resource
                               #:address-line #:alternate-contact
                               #:alternate-contact-resource
                               #:alternate-contact-type #:city #:company-name
-                              #:contact-information
+                              #:conflict-exception #:contact-information
                               #:contact-information-phone-number
                               #:contact-information-resource #:country-code
                               #:delete-alternate-contact #:disable-region
@@ -13,19 +14,28 @@
                               #:enable-region #:full-name
                               #:get-account-information #:get-alternate-contact
                               #:get-contact-information #:get-primary-email
-                              #:get-region-opt-status #:list-regions #:name
+                              #:get-region-opt-status
+                              #:internal-server-exception #:list-regions #:name
                               #:otp #:phone-number #:postal-code
                               #:primary-email-address #:primary-email-resource
                               #:primary-email-update-status #:put-account-name
                               #:put-alternate-contact #:put-contact-information
                               #:region #:region-name #:region-opt-list
                               #:region-opt-resource #:region-opt-status
-                              #:region-opt-status-list #:sensitive-string
+                              #:region-opt-status-list
+                              #:resource-not-found-exception #:sensitive-string
                               #:start-primary-email-update #:state-or-region
-                              #:title #:validation-exception-field
+                              #:title #:too-many-requests-exception
+                              #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason #:website-url))
+                              #:validation-exception-reason #:website-url
+                              #:account-error))
 (common-lisp:in-package #:pira/account)
+
+(common-lisp:define-condition account-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service account :shape-name "Account" :version
                                    "2021-02-01" :title "AWS Account"
@@ -67,7 +77,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "errorType" :http-header "x-amzn-ErrorType"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class account-error))
 
 (smithy/sdk/shapes:define-type account-created-date
                                smithy/sdk/smithy-types:timestamp
@@ -112,7 +122,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "errorType" :http-header "x-amzn-ErrorType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class account-error))
 
 (smithy/sdk/shapes:define-structure contact-information common-lisp:nil
                                     ((full-name :target-type full-name
@@ -267,7 +277,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "errorType" :http-header "x-amzn-ErrorType"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class account-error))
 
 (smithy/sdk/shapes:define-input list-regions-request common-lisp:nil
                                 ((account-id :target-type account-id
@@ -368,7 +378,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "errorType" :http-header "x-amzn-ErrorType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class account-error))
 
 (smithy/sdk/shapes:define-type sensitive-string smithy/sdk/smithy-types:string)
 
@@ -401,7 +411,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "errorType" :http-header "x-amzn-ErrorType"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class account-error))
 
 (smithy/sdk/shapes:define-error validation-exception common-lisp:nil
                                 ((message :target-type sensitive-string
@@ -414,7 +424,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class account-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

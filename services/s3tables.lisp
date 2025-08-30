@@ -1,13 +1,15 @@
 (uiop/package:define-package #:pira/s3tables (:use)
-                             (:export #:account-id #:create-namespace
-                              #:create-table #:create-table-bucket
-                              #:delete-namespace #:delete-table
-                              #:delete-table-bucket
+                             (:export #:access-denied-exception #:account-id
+                              #:bad-request-exception #:conflict-exception
+                              #:create-namespace #:create-table
+                              #:create-table-bucket #:delete-namespace
+                              #:delete-table #:delete-table-bucket
                               #:delete-table-bucket-encryption
                               #:delete-table-bucket-policy
                               #:delete-table-policy #:encryption-configuration
-                              #:error-message #:get-namespace #:get-table
-                              #:get-table-bucket #:get-table-bucket-encryption
+                              #:error-message #:forbidden-exception
+                              #:get-namespace #:get-table #:get-table-bucket
+                              #:get-table-bucket-encryption
                               #:get-table-bucket-maintenance-configuration
                               #:get-table-bucket-policy #:get-table-encryption
                               #:get-table-maintenance-configuration
@@ -18,16 +20,16 @@
                               #:iceberg-schema
                               #:iceberg-snapshot-management-settings
                               #:iceberg-unreferenced-file-removal-settings
-                              #:job-status #:list-namespaces
-                              #:list-namespaces-limit #:list-table-buckets
-                              #:list-table-buckets-limit #:list-tables
-                              #:list-tables-limit #:maintenance-status
-                              #:metadata-location #:namespace-id
-                              #:namespace-list #:namespace-name
+                              #:internal-server-error-exception #:job-status
+                              #:list-namespaces #:list-namespaces-limit
+                              #:list-table-buckets #:list-table-buckets-limit
+                              #:list-tables #:list-tables-limit
+                              #:maintenance-status #:metadata-location
+                              #:namespace-id #:namespace-list #:namespace-name
                               #:namespace-resource #:namespace-summary
                               #:namespace-summary-list #:next-token
-                              #:open-table-format #:positive-integer
-                              #:put-table-bucket-encryption
+                              #:not-found-exception #:open-table-format
+                              #:positive-integer #:put-table-bucket-encryption
                               #:put-table-bucket-maintenance-configuration
                               #:put-table-bucket-policy
                               #:put-table-maintenance-configuration
@@ -56,9 +58,14 @@
                               #:table-name #:table-policy-resource
                               #:table-resource #:table-summary
                               #:table-summary-list #:table-type
+                              #:too-many-requests-exception
                               #:update-table-metadata-location #:version-token
-                              #:warehouse-location))
+                              #:warehouse-location #:s3tables-error))
 (common-lisp:in-package #:pira/s3tables)
+
+(common-lisp:define-condition s3tables-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service s3table-buckets :shape-name "S3TableBuckets"
                                    :version "2018-05-10" :title
@@ -75,7 +82,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class s3tables-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -83,13 +90,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class s3tables-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class s3tables-error))
 
 (smithy/sdk/shapes:define-input create-namespace-request common-lisp:nil
                                 ((table-bucket-arn :target-type
@@ -229,7 +236,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class s3tables-error))
 
 (smithy/sdk/shapes:define-input get-namespace-request common-lisp:nil
                                 ((table-bucket-arn :target-type
@@ -562,7 +569,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class s3tables-error))
 
 (smithy/sdk/shapes:define-enum job-status
     common-lisp:nil
@@ -698,7 +705,7 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class s3tables-error))
 
 (smithy/sdk/shapes:define-enum open-table-format
     common-lisp:nil
@@ -989,7 +996,7 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class s3tables-error))
 
 (smithy/sdk/shapes:define-input update-table-metadata-location-request
                                 common-lisp:nil

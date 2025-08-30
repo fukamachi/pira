@@ -1,17 +1,25 @@
 (uiop/package:define-package #:pira/geo-maps (:use)
-                             (:export #:api-key #:color-scheme
-                              #:compact-overlay #:country-code
+                             (:export #:access-denied-exception #:api-key
+                              #:color-scheme #:compact-overlay #:country-code
                               #:distance-meters #:geo-json-overlay #:get-glyphs
                               #:get-sprites #:get-static-map
-                              #:get-style-descriptor #:get-tile #:label-size
+                              #:get-style-descriptor #:get-tile
+                              #:internal-server-exception #:label-size
                               #:language-tag #:map-feature-mode #:map-style
                               #:maps-service #:position-list-string
                               #:position-string #:provider-resource
-                              #:scale-bar-unit #:static-map-style #:tileset
+                              #:scale-bar-unit #:static-map-style
+                              #:throttling-exception #:tileset
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason #:variant))
+                              #:validation-exception-reason #:variant
+                              #:geo-maps-error))
 (common-lisp:in-package #:pira/geo-maps)
+
+(common-lisp:define-condition geo-maps-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service maps-service :shape-name "MapsService"
                                    :version "2020-11-19" :title
@@ -62,7 +70,7 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class geo-maps-error))
 
 (smithy/sdk/shapes:define-type api-key smithy/sdk/smithy-types:string)
 
@@ -286,7 +294,7 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class geo-maps-error))
 
 (smithy/sdk/shapes:define-type label-size smithy/sdk/smithy-types:string)
 
@@ -313,7 +321,7 @@ common-lisp:nil
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class geo-maps-error))
 
 (smithy/sdk/shapes:define-type tileset smithy/sdk/smithy-types:string)
 
@@ -331,7 +339,7 @@ common-lisp:nil
                                   common-lisp:t :member-name "FieldList"
                                   :json-name "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class geo-maps-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

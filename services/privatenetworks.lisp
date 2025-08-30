@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/privatenetworks (:use)
-                             (:export #:acknowledge-order-receipt
+                             (:export #:access-denied-exception
+                              #:acknowledge-order-receipt
                               #:acknowledge-order-receipt-request
                               #:acknowledge-order-receipt-response
                               #:acknowledgment-status
@@ -44,7 +45,9 @@
                               #:get-network-site-request
                               #:get-network-site-response #:get-order
                               #:get-order-request #:get-order-response
-                              #:health-status #:list-device-identifiers
+                              #:health-status #:internal-server-exception
+                              #:limit-exceeded-exception
+                              #:list-device-identifiers
                               #:list-device-identifiers-request
                               #:list-device-identifiers-response
                               #:list-network-resources
@@ -77,13 +80,15 @@
                               #:ordered-resource-definition
                               #:ordered-resource-definitions #:pagination-token
                               #:ping #:ping-response #:position
+                              #:resource-not-found-exception
                               #:return-information #:sensitive-string
                               #:site-plan #:start-network-resource-update
                               #:start-network-resource-update-request
                               #:start-network-resource-update-response
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:timestamp #:tracking-information
+                              #:tag-value #:throttling-exception #:timestamp
+                              #:tracking-information
                               #:tracking-information-list #:untag-resource
                               #:untag-resource-request
                               #:untag-resource-response #:update-network-site
@@ -91,10 +96,16 @@
                               #:update-network-site-plan-request
                               #:update-network-site-request
                               #:update-network-site-response #:update-type
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason))
+                              #:validation-exception-reason
+                              #:privatenetworks-error))
 (common-lisp:in-package #:pira/privatenetworks)
+
+(common-lisp:define-condition privatenetworks-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service e5gnetwork-controller-lambda :shape-name
                                    "E5GNetworkControllerLambda" :version
@@ -129,7 +140,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class privatenetworks-error))
 
 (smithy/sdk/shapes:define-structure acknowledge-order-receipt-request
                                     common-lisp:nil
@@ -502,14 +514,16 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class privatenetworks-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class privatenetworks-error))
 
 (smithy/sdk/shapes:define-structure list-device-identifiers-request
                                     common-lisp:nil
@@ -884,7 +898,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class privatenetworks-error))
 
 (smithy/sdk/shapes:define-structure return-information common-lisp:nil
                                     ((shipping-address :target-type address
@@ -961,7 +976,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class privatenetworks-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -1032,7 +1048,8 @@
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class privatenetworks-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

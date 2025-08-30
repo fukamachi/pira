@@ -4,15 +4,18 @@
                               #:binary-set-attribute-value
                               #:boolean-attribute-value #:date
                               #:describe-stream #:dynamo-dbstreams-20120810
-                              #:error-message #:get-records
-                              #:get-shard-iterator #:identity #:key-schema
+                              #:error-message #:expired-iterator-exception
+                              #:get-records #:get-shard-iterator #:identity
+                              #:internal-server-error #:key-schema
                               #:key-schema-attribute-name #:key-schema-element
-                              #:key-type #:list-attribute-value #:list-streams
+                              #:key-type #:limit-exceeded-exception
+                              #:list-attribute-value #:list-streams
                               #:map-attribute-value #:null-attribute-value
                               #:number-attribute-value
                               #:number-set-attribute-value #:operation-type
                               #:positive-integer-object #:positive-long-object
-                              #:record #:record-list #:sequence-number
+                              #:record #:record-list
+                              #:resource-not-found-exception #:sequence-number
                               #:sequence-number-range #:shard
                               #:shard-description-list #:shard-filter
                               #:shard-filter-type #:shard-id #:shard-iterator
@@ -21,8 +24,14 @@
                               #:stream-record #:stream-status
                               #:stream-view-type #:string
                               #:string-attribute-value
-                              #:string-set-attribute-value #:table-name))
+                              #:string-set-attribute-value #:table-name
+                              #:trimmed-data-access-exception
+                              #:dynamodb-streams-error))
 (common-lisp:in-package #:pira/dynamodb-streams)
+
+(common-lisp:define-condition dynamodb-streams-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service dynamo-dbstreams-20120810 :shape-name
                                    "DynamoDBStreams_20120810" :version
@@ -110,7 +119,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ExpiredIteratorException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class dynamodb-streams-error))
 
 (smithy/sdk/shapes:define-input get-records-input common-lisp:nil
                                 ((shard-iterator :target-type shard-iterator
@@ -156,7 +166,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class dynamodb-streams-error))
 
 (smithy/sdk/shapes:define-list key-schema :member key-schema-element)
 
@@ -181,7 +192,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class dynamodb-streams-error))
 
 (smithy/sdk/shapes:define-list list-attribute-value :member attribute-value)
 
@@ -250,7 +262,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class dynamodb-streams-error))
 
 (smithy/sdk/shapes:define-type sequence-number smithy/sdk/smithy-types:string)
 
@@ -384,7 +397,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TrimmedDataAccessException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class dynamodb-streams-error))
 
 (smithy/sdk/operation:define-operation describe-stream :shape-name
                                        "DescribeStream" :input

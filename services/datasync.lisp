@@ -53,6 +53,7 @@
                               #:hdfs-server-port #:hdfs-subdirectory
                               #:hdfs-user #:iam-role-arn
                               #:iam-role-arn-or-empty-string #:input-tag-list
+                              #:internal-exception #:invalid-request-exception
                               #:kerberos-keytab-file #:kerberos-krb5conf-file
                               #:kerberos-principal #:kms-key-arn
                               #:kms-key-provider-uri #:list-agents
@@ -121,8 +122,13 @@
                               #:update-task-execution
                               #:updated-efs-access-point-arn
                               #:updated-efs-iam-role-arn #:verify-mode
-                              #:vpc-endpoint-id #:long #:string))
+                              #:vpc-endpoint-id #:long #:string
+                              #:datasync-error))
 (common-lisp:in-package #:pira/datasync)
+
+(common-lisp:define-condition datasync-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service fmrs-service :shape-name "FmrsService"
                                    :version "2018-11-09" :title "AWS DataSync"
@@ -1346,7 +1352,7 @@
                                  (error-code :target-type string :member-name
                                   "errorCode"))
                                 (:shape-name "InternalException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class datasync-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -1356,7 +1362,7 @@
                                  (datasync-error-code :target-type string
                                   :member-name "datasyncErrorCode"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class datasync-error))
 
 (smithy/sdk/shapes:define-type kerberos-keytab-file
                                smithy/sdk/smithy-types:blob)

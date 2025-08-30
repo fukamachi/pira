@@ -2325,8 +2325,12 @@
                               #:customer-gateway-configuration #:pre-shared-key
                               #:scope #:snapshot-tier-status-set
                               #:total-fpga-memory #:total-gpu-memory
-                              #:total-inference-memory))
+                              #:total-inference-memory #:ec2-error))
 (common-lisp:in-package #:pira/ec2)
+
+(common-lisp:define-condition ec2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-ec2 :shape-name "AmazonEC2" :version
                                    "2016-11-15" :title

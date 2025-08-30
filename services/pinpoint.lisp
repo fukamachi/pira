@@ -18,8 +18,9 @@
                               #:application-settings-resource
                               #:applications-response #:attribute-dimension
                               #:attribute-type #:attributes-resource
-                              #:baidu-channel-request #:baidu-channel-response
-                              #:baidu-message #:base-kpi-result #:button-action
+                              #:bad-request-exception #:baidu-channel-request
+                              #:baidu-channel-response #:baidu-message
+                              #:base-kpi-result #:button-action
                               #:campaign-custom-message
                               #:campaign-date-range-kpi-response
                               #:campaign-email-message #:campaign-event-filter
@@ -30,7 +31,7 @@
                               #:channel-response #:channel-type
                               #:channels-response #:closed-days
                               #:closed-days-rule #:condition
-                              #:conditional-split-activity
+                              #:conditional-split-activity #:conflict-exception
                               #:contact-center-activity #:create-app
                               #:create-application-request #:create-campaign
                               #:create-email-template #:create-export-job
@@ -76,11 +77,12 @@
                               #:events-batch #:events-request #:events-response
                               #:export-job-request #:export-job-resource
                               #:export-job-response #:export-jobs-response
-                              #:filter-type #:format #:frequency
-                              #:gcmchannel-request #:gcmchannel-response
-                              #:gcmmessage #:gpscoordinates
-                              #:gpspoint-dimension #:get-adm-channel
-                              #:get-apns-channel #:get-apns-sandbox-channel
+                              #:filter-type #:forbidden-exception #:format
+                              #:frequency #:gcmchannel-request
+                              #:gcmchannel-response #:gcmmessage
+                              #:gpscoordinates #:gpspoint-dimension
+                              #:get-adm-channel #:get-apns-channel
+                              #:get-apns-sandbox-channel
                               #:get-apns-voip-channel
                               #:get-apns-voip-sandbox-channel #:get-app
                               #:get-application-date-range-kpi
@@ -120,8 +122,8 @@
                               #:in-app-messages-response
                               #:in-app-template-request
                               #:in-app-template-response #:include
-                              #:item-response #:job-status
-                              #:journey-channel-settings
+                              #:internal-server-error-exception #:item-response
+                              #:job-status #:journey-channel-settings
                               #:journey-custom-message
                               #:journey-date-range-kpi-response
                               #:journey-email-message
@@ -184,13 +186,15 @@
                               #:message #:message-body #:message-configuration
                               #:message-header #:message-request
                               #:message-response #:message-result
-                              #:message-type #:metric-dimension #:mode
+                              #:message-type #:method-not-allowed-exception
+                              #:metric-dimension #:mode
                               #:multi-conditional-branch
                               #:multi-conditional-split-activity
-                              #:number-validate-request
+                              #:not-found-exception #:number-validate-request
                               #:number-validate-response #:open-hours
                               #:open-hours-rule #:operator
                               #:override-button-configuration
+                              #:payload-too-large-exception
                               #:phone-number-validate #:pinpoint
                               #:public-endpoint #:push-message-activity
                               #:push-notification-template-request
@@ -225,6 +229,7 @@
                               #:template-response #:template-type
                               #:template-version-response
                               #:template-versions-response #:templates-response
+                              #:too-many-requests-exception
                               #:treatment-resource #:type #:untag-resource
                               #:update-adm-channel #:update-apns-channel
                               #:update-apns-sandbox-channel
@@ -256,8 +261,12 @@
                               #:endpoint-types-element
                               #:timezone-estimation-methods-element #:blob
                               #:boolean #:double #:integer #:string
-                              #:timestamp-iso8601))
+                              #:timestamp-iso8601 #:pinpoint-error))
 (common-lisp:in-package #:pira/pinpoint)
+
+(common-lisp:define-condition pinpoint-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service pinpoint :shape-name "Pinpoint" :version
                                    "2016-12-01" :title "Amazon Pinpoint"
@@ -902,7 +911,7 @@
                                  (request-id :target-type string :member-name
                                   "RequestID"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class pinpoint-error))
 
 (smithy/sdk/shapes:define-structure baidu-channel-request common-lisp:nil
                                     ((api-key :target-type string :required
@@ -1263,7 +1272,7 @@
                                  (request-id :target-type string :member-name
                                   "RequestID"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class pinpoint-error))
 
 (smithy/sdk/shapes:define-structure contact-center-activity common-lisp:nil
                                     ((next-activity :target-type string
@@ -2519,7 +2528,7 @@
                                  (request-id :target-type string :member-name
                                   "RequestID"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class pinpoint-error))
 
 (smithy/sdk/shapes:define-enum format
     common-lisp:nil
@@ -3773,7 +3782,7 @@
                                  (request-id :target-type string :member-name
                                   "RequestID"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class pinpoint-error))
 
 (smithy/sdk/shapes:define-structure item-response common-lisp:nil
                                     ((endpoint-item-response :target-type
@@ -4408,7 +4417,7 @@
                                  (request-id :target-type string :member-name
                                   "RequestID"))
                                 (:shape-name "MethodNotAllowedException")
-                                (:error-code 405))
+                                (:error-code 405) (:base-class pinpoint-error))
 
 (smithy/sdk/shapes:define-structure metric-dimension common-lisp:nil
                                     ((comparison-operator :target-type string
@@ -4449,7 +4458,7 @@
                                  (request-id :target-type string :member-name
                                   "RequestID"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class pinpoint-error))
 
 (smithy/sdk/shapes:define-structure number-validate-request common-lisp:nil
                                     ((iso-country-code :target-type string
@@ -4537,7 +4546,7 @@
                                  (request-id :target-type string :member-name
                                   "RequestID"))
                                 (:shape-name "PayloadTooLargeException")
-                                (:error-code 413))
+                                (:error-code 413) (:base-class pinpoint-error))
 
 (smithy/sdk/shapes:define-input phone-number-validate-request common-lisp:nil
                                 ((number-validate-request :target-type
@@ -5414,7 +5423,7 @@
                                  (request-id :target-type string :member-name
                                   "RequestID"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class pinpoint-error))
 
 (smithy/sdk/shapes:define-structure treatment-resource common-lisp:nil
                                     ((custom-delivery-configuration

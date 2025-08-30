@@ -6,8 +6,8 @@
                               #:capacity-provider-strategy-item
                               #:capacity-provider-strategy-item-base
                               #:capacity-provider-strategy-item-weight
-                              #:client-token #:create-schedule
-                              #:create-schedule-group
+                              #:client-token #:conflict-exception
+                              #:create-schedule #:create-schedule-group
                               #:create-schedule-group-input
                               #:create-schedule-group-output
                               #:create-schedule-input #:create-schedule-output
@@ -24,9 +24,9 @@
                               #:get-schedule-group #:get-schedule-group-input
                               #:get-schedule-group-output #:get-schedule-input
                               #:get-schedule-output #:group
-                              #:kinesis-parameters #:kms-key-arn
-                              #:last-modification-date #:launch-type
-                              #:list-schedule-groups
+                              #:internal-server-exception #:kinesis-parameters
+                              #:kms-key-arn #:last-modification-date
+                              #:launch-type #:list-schedule-groups
                               #:list-schedule-groups-input
                               #:list-schedule-groups-output #:list-schedules
                               #:list-schedules-input #:list-schedules-output
@@ -44,8 +44,8 @@
                               #:placement-strategy #:placement-strategy-field
                               #:placement-strategy-type #:platform-version
                               #:propagate-tags #:reference-id #:resource-arn
-                              #:retry-policy #:role-arn
-                              #:sage-maker-pipeline-parameter
+                              #:resource-not-found-exception #:retry-policy
+                              #:role-arn #:sage-maker-pipeline-parameter
                               #:sage-maker-pipeline-parameter-list
                               #:sage-maker-pipeline-parameter-name
                               #:sage-maker-pipeline-parameter-value
@@ -58,19 +58,25 @@
                               #:schedule-group-state #:schedule-group-summary
                               #:schedule-list #:schedule-state
                               #:schedule-summary #:security-group
-                              #:security-groups #:source #:sqs-parameters
-                              #:start-date #:subnet #:subnets #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-map
-                              #:tag-resource #:tag-resource-arn
+                              #:security-groups
+                              #:service-quota-exceeded-exception #:source
+                              #:sqs-parameters #:start-date #:subnet #:subnets
+                              #:tag #:tag-key #:tag-key-list #:tag-list
+                              #:tag-map #:tag-resource #:tag-resource-arn
                               #:tag-resource-input #:tag-resource-output
                               #:tag-value #:tags #:target #:target-arn
                               #:target-input #:target-partition-key
                               #:target-summary #:task-count
-                              #:task-definition-arn #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
-                              #:update-schedule #:update-schedule-input
-                              #:update-schedule-output))
+                              #:task-definition-arn #:throttling-exception
+                              #:untag-resource #:untag-resource-input
+                              #:untag-resource-output #:update-schedule
+                              #:update-schedule-input #:update-schedule-output
+                              #:validation-exception #:scheduler-error))
 (common-lisp:in-package #:pira/scheduler)
+
+(common-lisp:define-condition scheduler-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awschronos-service :shape-name
                                    "AWSChronosService" :version "2021-06-30"
@@ -133,7 +139,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class scheduler-error))
 
 (smithy/sdk/shapes:define-input create-schedule-group-input common-lisp:nil
                                 ((name :target-type schedule-group-name
@@ -377,7 +383,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class scheduler-error))
 
 (smithy/sdk/shapes:define-structure kinesis-parameters common-lisp:nil
                                     ((partition-key :target-type
@@ -523,7 +529,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class scheduler-error))
 
 (smithy/sdk/shapes:define-structure retry-policy common-lisp:nil
                                     ((maximum-event-age-in-seconds :target-type
@@ -638,7 +644,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class scheduler-error))
 
 (smithy/sdk/shapes:define-type source smithy/sdk/smithy-types:string)
 
@@ -740,7 +746,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class scheduler-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type tag-resource-arn
@@ -800,7 +806,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class scheduler-error))
 
 (smithy/sdk/operation:define-operation create-schedule :shape-name
                                        "CreateSchedule" :input

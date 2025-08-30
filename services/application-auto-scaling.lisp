@@ -2,7 +2,8 @@
                              (:export #:adjustment-type #:alarm #:alarms
                               #:amazon-resource-name
                               #:any-scale-frontend-service #:capacity-forecast
-                              #:cooldown #:customized-metric-specification
+                              #:concurrent-update-exception #:cooldown
+                              #:customized-metric-specification
                               #:delete-scaling-policy #:delete-scheduled-action
                               #:deregister-scalable-target
                               #:describe-scalable-targets
@@ -10,8 +11,12 @@
                               #:describe-scaling-policies
                               #:describe-scheduled-actions #:disable-scale-in
                               #:error-message #:exception-message #:expression
+                              #:failed-resource-access-exception
                               #:get-predictive-scaling-forecast #:id
                               #:include-not-scaled-activities
+                              #:internal-service-exception
+                              #:invalid-next-token-exception
+                              #:limit-exceeded-exception
                               #:list-tags-for-resource #:load-forecast
                               #:load-forecasts #:max-results
                               #:metric-aggregation-type #:metric-dimension
@@ -20,7 +25,8 @@
                               #:metric-namespace #:metric-scale
                               #:metric-statistic #:metric-type #:metric-unit
                               #:min-adjustment-magnitude #:not-scaled-reason
-                              #:not-scaled-reasons #:policy-name #:policy-type
+                              #:not-scaled-reasons #:object-not-found-exception
+                              #:policy-name #:policy-type
                               #:predefined-metric-specification
                               #:predictive-scaling-customized-metric-specification
                               #:predictive-scaling-forecast-timestamps
@@ -51,10 +57,11 @@
                               #:register-scalable-target #:resource-capacity
                               #:resource-id #:resource-id-max-len1600
                               #:resource-ids-max-len1600 #:resource-label
-                              #:return-data #:scalable-dimension
-                              #:scalable-target #:scalable-target-action
-                              #:scalable-targets #:scaling-activities
-                              #:scaling-activity #:scaling-activity-status-code
+                              #:resource-not-found-exception #:return-data
+                              #:scalable-dimension #:scalable-target
+                              #:scalable-target-action #:scalable-targets
+                              #:scaling-activities #:scaling-activity
+                              #:scaling-activity-status-code
                               #:scaling-adjustment #:scaling-policies
                               #:scaling-policy #:scaling-suspended
                               #:scheduled-action #:scheduled-action-name
@@ -75,8 +82,14 @@
                               #:target-tracking-metric-stat
                               #:target-tracking-metric-unit
                               #:target-tracking-scaling-policy-configuration
-                              #:timestamp-type #:untag-resource #:xml-string))
+                              #:timestamp-type #:too-many-tags-exception
+                              #:untag-resource #:validation-exception
+                              #:xml-string #:application-auto-scaling-error))
 (common-lisp:in-package #:pira/application-auto-scaling)
+
+(common-lisp:define-condition application-auto-scaling-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service any-scale-frontend-service :shape-name
                                    "AnyScaleFrontendService" :version
@@ -147,7 +160,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentUpdateException")
                                 (:error-name "ConcurrentUpdateException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class application-auto-scaling-error))
 
 (smithy/sdk/shapes:define-type cooldown smithy/sdk/smithy-types:integer)
 
@@ -358,7 +372,8 @@
                                   :member-name "Message"))
                                 (:shape-name "FailedResourceAccessException")
                                 (:error-name "FailedResourceAccessException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class application-auto-scaling-error))
 
 (smithy/sdk/shapes:define-input get-predictive-scaling-forecast-request
                                 common-lisp:nil
@@ -405,21 +420,24 @@
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceException")
                                 (:error-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class application-auto-scaling-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
                                 (:error-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class application-auto-scaling-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
                                 (:error-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class application-auto-scaling-error))
 
 (smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -564,7 +582,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ObjectNotFoundException")
                                 (:error-name "ObjectNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class application-auto-scaling-error))
 
 (smithy/sdk/shapes:define-type policy-name smithy/sdk/smithy-types:string)
 
@@ -891,7 +910,8 @@
                                   amazon-resource-name :member-name
                                   "ResourceName"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class application-auto-scaling-error))
 
 (smithy/sdk/shapes:define-type return-data smithy/sdk/smithy-types:boolean)
 
@@ -1297,7 +1317,8 @@
                                   amazon-resource-name :member-name
                                   "ResourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class application-auto-scaling-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -1316,7 +1337,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
                                 (:error-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class application-auto-scaling-error))
 
 (smithy/sdk/shapes:define-type xml-string smithy/sdk/smithy-types:string)
 

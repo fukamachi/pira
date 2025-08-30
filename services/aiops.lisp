@@ -1,18 +1,20 @@
 (uiop/package:define-package #:pira/aiops (:use)
-                             (:export #:aiops #:chat-configuration-arn
+                             (:export #:aiops #:access-denied-exception
+                              #:chat-configuration-arn
                               #:chat-configuration-arns
                               #:chatbot-notification-channel
-                              #:create-investigation-group
+                              #:conflict-exception #:create-investigation-group
                               #:cross-account-configuration
                               #:cross-account-configurations
                               #:delete-investigation-group
                               #:delete-investigation-group-policy
                               #:encryption-configuration
                               #:encryption-configuration-type
-                              #:get-investigation-group
+                              #:forbidden-exception #:get-investigation-group
                               #:get-investigation-group-policy
                               #:identifier-string-with-pattern-and-length-limits
-                              #:investigation-group #:investigation-group-arn
+                              #:internal-server-exception #:investigation-group
+                              #:investigation-group-arn
                               #:investigation-group-identifier
                               #:investigation-group-policy
                               #:investigation-group-policy-document
@@ -20,14 +22,21 @@
                               #:list-investigation-groups
                               #:list-investigation-groups-model
                               #:list-tags-for-resource
-                              #:put-investigation-group-policy #:retention
+                              #:put-investigation-group-policy
+                              #:resource-not-found-exception #:retention
                               #:role-arn #:snstopic-arn
                               #:sensitive-string-with-length-limits
+                              #:service-quota-exceeded-exception
                               #:string-with-pattern-and-length-limits #:tag-key
                               #:tag-key-boundaries #:tag-keys #:tag-resource
-                              #:tag-value #:tags #:untag-resource
-                              #:update-investigation-group))
+                              #:tag-value #:tags #:throttling-exception
+                              #:untag-resource #:update-investigation-group
+                              #:validation-exception #:aiops-error))
 (common-lisp:in-package #:pira/aiops)
+
+(common-lisp:define-condition aiops-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service aiops :shape-name "AIOps" :version
                                    "2018-05-10" :title "AWS AI Ops" :operations
@@ -52,7 +61,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class aiops-error))
 
 (smithy/sdk/shapes:define-type chat-configuration-arn
                                smithy/sdk/smithy-types:string)
@@ -68,7 +77,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class aiops-error))
 
 (smithy/sdk/shapes:define-input create-investigation-group-input
                                 common-lisp:nil
@@ -152,7 +161,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class aiops-error))
 
 (smithy/sdk/shapes:define-input get-investigation-group-policy-request
                                 common-lisp:nil
@@ -230,7 +239,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class aiops-error))
 
 common-lisp:nil
 
@@ -316,7 +325,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class aiops-error))
 
 (smithy/sdk/shapes:define-type retention smithy/sdk/smithy-types:long)
 
@@ -345,7 +354,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class aiops-error))
 
 (smithy/sdk/shapes:define-type string-with-pattern-and-length-limits
                                smithy/sdk/smithy-types:string)
@@ -378,7 +387,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class aiops-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -429,7 +438,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class aiops-error))
 
 (smithy/sdk/operation:define-operation create-investigation-group :shape-name
                                        "CreateInvestigationGroup" :input

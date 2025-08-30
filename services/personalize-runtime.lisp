@@ -7,13 +7,19 @@
                               #:filter-attribute-name #:filter-attribute-value
                               #:filter-values #:get-action-recommendations
                               #:get-personalized-ranking #:get-recommendations
-                              #:input-list #:item-id #:item-list #:metadata
-                              #:metadata-columns #:name #:num-results
-                              #:percent-promoted-items #:predicted-action
-                              #:predicted-item #:promotion #:promotion-list
-                              #:reason #:reason-list #:recommendation-id
-                              #:score #:user-id))
+                              #:input-list #:invalid-input-exception #:item-id
+                              #:item-list #:metadata #:metadata-columns #:name
+                              #:num-results #:percent-promoted-items
+                              #:predicted-action #:predicted-item #:promotion
+                              #:promotion-list #:reason #:reason-list
+                              #:recommendation-id
+                              #:resource-not-found-exception #:score #:user-id
+                              #:personalize-runtime-error))
 (common-lisp:in-package #:pira/personalize-runtime)
+
+(common-lisp:define-condition personalize-runtime-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-personalize-runtime :shape-name
                                    "AmazonPersonalizeRuntime" :version
@@ -158,7 +164,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class personalize-runtime-error))
 
 (smithy/sdk/shapes:define-type item-id smithy/sdk/smithy-types:string)
 
@@ -220,7 +227,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class personalize-runtime-error))
 
 (smithy/sdk/shapes:define-type score smithy/sdk/smithy-types:double)
 

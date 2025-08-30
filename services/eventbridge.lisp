@@ -1,7 +1,7 @@
 (uiop/package:define-package #:pira/eventbridge (:use)
-                             (:export #:awsevents #:account-id #:action
-                              #:activate-event-source #:api-destination
-                              #:api-destination-arn
+                             (:export #:awsevents #:access-denied-exception
+                              #:account-id #:action #:activate-event-source
+                              #:api-destination #:api-destination-arn
                               #:api-destination-description
                               #:api-destination-http-method
                               #:api-destination-invocation-rate-limit-per-second
@@ -20,7 +20,8 @@
                               #:capacity-provider-strategy-item
                               #:capacity-provider-strategy-item-base
                               #:capacity-provider-strategy-item-weight
-                              #:condition #:connection
+                              #:concurrent-modification-exception #:condition
+                              #:connection
                               #:connection-api-key-auth-response-parameters
                               #:connection-arn
                               #:connection-auth-response-parameters
@@ -81,25 +82,31 @@
                               #:header-parameters-map #:header-value
                               #:header-value-sensitive #:health-check
                               #:home-region #:http-parameters #:https-endpoint
-                              #:iam-role-arn #:include-detail
-                              #:input-transformer #:input-transformer-path-key
-                              #:integer #:kinesis-parameters
+                              #:iam-role-arn #:illegal-status-exception
+                              #:include-detail #:input-transformer
+                              #:input-transformer-path-key #:integer
+                              #:internal-exception
+                              #:invalid-event-pattern-exception
+                              #:invalid-state-exception #:kinesis-parameters
                               #:kms-key-identifier #:launch-type #:level
-                              #:limit-max100 #:limit-min1
-                              #:list-api-destinations #:list-archives
-                              #:list-connections #:list-endpoints
-                              #:list-event-buses #:list-event-sources
+                              #:limit-exceeded-exception #:limit-max100
+                              #:limit-min1 #:list-api-destinations
+                              #:list-archives #:list-connections
+                              #:list-endpoints #:list-event-buses
+                              #:list-event-sources
                               #:list-partner-event-source-accounts
                               #:list-partner-event-sources #:list-replays
                               #:list-rule-names-by-target #:list-rules
                               #:list-tags-for-resource #:list-targets-by-rule
                               #:log-config #:long #:managed-by
+                              #:managed-rule-exception
                               #:maximum-event-age-in-seconds
                               #:maximum-retry-attempts #:message-group-id
                               #:network-configuration #:next-token
                               #:non-partner-event-bus-arn
                               #:non-partner-event-bus-name
                               #:non-partner-event-bus-name-or-arn
+                              #:operation-disabled-exception
                               #:partner-event-source
                               #:partner-event-source-account
                               #:partner-event-source-account-list
@@ -111,8 +118,9 @@
                               #:placement-constraint-type
                               #:placement-constraints #:placement-strategies
                               #:placement-strategy #:placement-strategy-field
-                              #:placement-strategy-type #:primary #:principal
-                              #:propagate-tags #:put-events
+                              #:placement-strategy-type
+                              #:policy-length-exceeded-exception #:primary
+                              #:principal #:propagate-tags #:put-events
                               #:put-events-request-entry
                               #:put-events-request-entry-list
                               #:put-events-result-entry
@@ -137,9 +145,11 @@
                               #:replay-destination #:replay-destination-filters
                               #:replay-list #:replay-name #:replay-state
                               #:replay-state-reason #:replication-config
-                              #:replication-state #:resource-arn
-                              #:resource-association-arn
-                              #:resource-configuration-arn #:retention-days
+                              #:replication-state
+                              #:resource-already-exists-exception
+                              #:resource-arn #:resource-association-arn
+                              #:resource-configuration-arn
+                              #:resource-not-found-exception #:retention-days
                               #:retry-policy #:role-arn #:route
                               #:routing-config #:rule #:rule-arn
                               #:rule-description #:rule-name #:rule-name-list
@@ -162,17 +172,22 @@
                               #:target-arn #:target-id #:target-id-list
                               #:target-input #:target-input-path #:target-list
                               #:target-partition-key-path #:test-event-pattern
-                              #:timestamp #:trace-header #:transformer-input
-                              #:transformer-paths #:untag-resource
-                              #:update-api-destination #:update-archive
-                              #:update-connection
+                              #:throttling-exception #:timestamp #:trace-header
+                              #:transformer-input #:transformer-paths
+                              #:untag-resource #:update-api-destination
+                              #:update-archive #:update-connection
                               #:update-connection-api-key-auth-request-parameters
                               #:update-connection-auth-request-parameters
                               #:update-connection-basic-auth-request-parameters
                               #:update-connection-oauth-client-request-parameters
                               #:update-connection-oauth-request-parameters
-                              #:update-endpoint #:update-event-bus))
+                              #:update-endpoint #:update-event-bus
+                              #:eventbridge-error))
 (common-lisp:in-package #:pira/eventbridge)
+
+(common-lisp:define-condition eventbridge-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsevents :shape-name "AWSEvents" :version
                                    "2015-10-07" :title "Amazon EventBridge"
@@ -228,7 +243,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -443,7 +459,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-structure condition common-lisp:nil
                                     ((type :target-type string :required
@@ -1546,7 +1563,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "IllegalStatusException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-enum include-detail
     common-lisp:nil
@@ -1571,19 +1589,22 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-error invalid-event-pattern-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidEventPatternException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-structure kinesis-parameters common-lisp:nil
                                     ((partition-key-path :target-type
@@ -1612,7 +1633,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-type limit-max100 smithy/sdk/smithy-types:integer)
 
@@ -1877,7 +1899,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ManagedRuleException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-type maximum-event-age-in-seconds
                                smithy/sdk/smithy-types:integer)
@@ -1908,7 +1931,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "OperationDisabledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-structure partner-event-source common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -1986,7 +2010,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "PolicyLengthExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-structure primary common-lisp:nil
                                     ((health-check :target-type health-check
@@ -2314,7 +2339,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-type resource-arn smithy/sdk/smithy-types:string)
 
@@ -2328,7 +2354,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-type retention-days smithy/sdk/smithy-types:integer)
 
@@ -2617,7 +2644,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class eventbridge-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 

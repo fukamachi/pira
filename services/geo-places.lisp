@@ -1,7 +1,8 @@
 (uiop/package:define-package #:pira/geo-places (:use)
-                             (:export #:access-point #:access-point-list
-                              #:access-restriction #:access-restriction-list
-                              #:address #:address-component-match-scores
+                             (:export #:access-denied-exception #:access-point
+                              #:access-point-list #:access-restriction
+                              #:access-restriction-list #:address
+                              #:address-component-match-scores
                               #:address-component-phonemes #:api-key
                               #:autocomplete #:autocomplete-additional-feature
                               #:autocomplete-additional-feature-list
@@ -35,8 +36,8 @@
                               #:get-place-additional-feature
                               #:get-place-additional-feature-list
                               #:get-place-intended-use #:highlight
-                              #:highlight-list #:intersection
-                              #:intersection-highlights-list
+                              #:highlight-list #:internal-server-exception
+                              #:intersection #:intersection-highlights-list
                               #:intersection-list #:intersection-street
                               #:intersection-street-list #:language-tag
                               #:match-score #:match-score-details
@@ -92,13 +93,19 @@
                               #:suggest-highlights #:suggest-intended-use
                               #:suggest-place-result #:suggest-query-result
                               #:suggest-result-item #:suggest-result-item-list
-                              #:suggest-result-item-type #:time-zone #:token
-                              #:type-placement #:type-separator #:usps-zip
-                              #:usps-zip-plus4 #:validation-exception-field
+                              #:suggest-result-item-type #:throttling-exception
+                              #:time-zone #:token #:type-placement
+                              #:type-separator #:usps-zip #:usps-zip-plus4
+                              #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason
-                              #:zip-classification-code))
+                              #:zip-classification-code #:geo-places-error))
 (common-lisp:in-package #:pira/geo-places)
+
+(common-lisp:define-condition geo-places-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service places-service :shape-name "PlacesService"
                                    :version "2020-11-19" :title
@@ -150,7 +157,8 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class geo-places-error))
 
 (smithy/sdk/shapes:define-structure access-point common-lisp:nil
                                     ((position :target-type position
@@ -818,7 +826,8 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class geo-places-error))
 
 (smithy/sdk/shapes:define-structure intersection common-lisp:nil
                                     ((place-id :target-type sensitive-string
@@ -1586,7 +1595,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class geo-places-error))
 
 (smithy/sdk/shapes:define-structure time-zone common-lisp:nil
                                     ((name :target-type sensitive-string
@@ -1631,7 +1641,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "FieldList"
                                   :json-name "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class geo-places-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

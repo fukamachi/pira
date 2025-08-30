@@ -7,21 +7,25 @@
                               #:digest #:encryption-status #:error-cause
                               #:error-message #:export-journal-to-s3
                               #:export-status #:get-block #:get-digest
-                              #:get-revision #:ion-text
-                              #:journal-kinesis-stream-description
+                              #:get-revision #:invalid-parameter-exception
+                              #:ion-text #:journal-kinesis-stream-description
                               #:journal-kinesis-stream-description-list
                               #:journal-s3export-description
                               #:journal-s3export-list #:kinesis-configuration
                               #:kms-key #:ledger-encryption-description
                               #:ledger-list #:ledger-name #:ledger-state
-                              #:ledger-summary
+                              #:ledger-summary #:limit-exceeded-exception
                               #:list-journal-kinesis-streams-for-ledger
                               #:list-journal-s3exports
                               #:list-journal-s3exports-for-ledger
                               #:list-ledgers #:list-tags-for-resource
                               #:max-results #:next-token #:output-format
                               #:parameter-name #:permissions-mode
-                              #:resource-name #:resource-type #:s3bucket
+                              #:resource-already-exists-exception
+                              #:resource-in-use-exception #:resource-name
+                              #:resource-not-found-exception
+                              #:resource-precondition-not-met-exception
+                              #:resource-type #:s3bucket
                               #:s3encryption-configuration
                               #:s3export-configuration
                               #:s3object-encryption-type #:s3prefix
@@ -29,8 +33,13 @@
                               #:stream-status #:tag-key #:tag-key-list
                               #:tag-resource #:tag-value #:tags #:timestamp
                               #:unique-id #:untag-resource #:update-ledger
-                              #:update-ledger-permissions-mode #:value-holder))
+                              #:update-ledger-permissions-mode #:value-holder
+                              #:qldb-error))
 (common-lisp:in-package #:pira/qldb)
+
+(common-lisp:define-condition qldb-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-qldb :shape-name "AmazonQLDB"
                                    :version "2019-01-02" :title "Amazon QLDB"
@@ -292,7 +301,7 @@
                                  (parameter-name :target-type parameter-name
                                   :member-name "ParameterName"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class qldb-error))
 
 (smithy/sdk/shapes:define-type ion-text smithy/sdk/smithy-types:string)
 
@@ -412,7 +421,7 @@
                                  (resource-type :target-type resource-type
                                   :member-name "ResourceType"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class qldb-error))
 
 (smithy/sdk/shapes:define-input list-journal-kinesis-streams-for-ledger-request
                                 common-lisp:nil
@@ -530,7 +539,7 @@
                                  (resource-name :target-type resource-name
                                   :member-name "ResourceName"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class qldb-error))
 
 (smithy/sdk/shapes:define-error resource-in-use-exception common-lisp:nil
                                 ((message :target-type error-message
@@ -540,7 +549,7 @@
                                  (resource-name :target-type resource-name
                                   :member-name "ResourceName"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class qldb-error))
 
 (smithy/sdk/shapes:define-type resource-name smithy/sdk/smithy-types:string)
 
@@ -552,7 +561,7 @@
                                  (resource-name :target-type resource-name
                                   :member-name "ResourceName"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class qldb-error))
 
 (smithy/sdk/shapes:define-error resource-precondition-not-met-exception
                                 common-lisp:nil
@@ -564,7 +573,7 @@
                                   :member-name "ResourceName"))
                                 (:shape-name
                                  "ResourcePreconditionNotMetException")
-                                (:error-code 412))
+                                (:error-code 412) (:base-class qldb-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 

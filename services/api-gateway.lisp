@@ -4,14 +4,16 @@
                               #:api-key-ids #:api-key-source-type #:api-keys
                               #:api-keys-format #:api-stage #:authorizer
                               #:authorizer-type #:authorizers
-                              #:backplane-control-service #:base-path-mapping
+                              #:backplane-control-service
+                              #:bad-request-exception #:base-path-mapping
                               #:base-path-mappings #:blob #:boolean
                               #:cache-cluster-size #:cache-cluster-status
                               #:canary-settings #:client-certificate
-                              #:client-certificates #:connection-type
-                              #:content-handling-strategy #:create-api-key
-                              #:create-authorizer #:create-base-path-mapping
-                              #:create-deployment #:create-documentation-part
+                              #:client-certificates #:conflict-exception
+                              #:connection-type #:content-handling-strategy
+                              #:create-api-key #:create-authorizer
+                              #:create-base-path-mapping #:create-deployment
+                              #:create-documentation-part
                               #:create-documentation-version
                               #:create-domain-name
                               #:create-domain-name-access-association
@@ -71,9 +73,10 @@
                               #:import-api-keys #:import-documentation-parts
                               #:import-rest-api #:integer #:integration
                               #:integration-response #:integration-type
-                              #:ip-address-type #:list-of-arns
-                              #:list-of-api-key #:list-of-api-stage
-                              #:list-of-authorizer #:list-of-base-path-mapping
+                              #:ip-address-type #:limit-exceeded-exception
+                              #:list-of-arns #:list-of-api-key
+                              #:list-of-api-stage #:list-of-authorizer
+                              #:list-of-base-path-mapping
                               #:list-of-client-certificate #:list-of-deployment
                               #:list-of-documentation-part
                               #:list-of-documentation-version
@@ -100,8 +103,8 @@
                               #:method-snapshot #:model #:models
                               #:mutual-tls-authentication
                               #:mutual-tls-authentication-input
-                              #:nullable-boolean #:nullable-integer #:op
-                              #:patch-operation
+                              #:not-found-exception #:nullable-boolean
+                              #:nullable-integer #:op #:patch-operation
                               #:path-to-map-of-method-snapshot #:provider-arn
                               #:put-gateway-response #:put-integration
                               #:put-integration-response #:put-method
@@ -112,15 +115,17 @@
                               #:resource #:resource-owner #:resources
                               #:rest-api #:rest-apis #:routing-mode
                               #:sdk-configuration-property #:sdk-type
-                              #:sdk-types #:security-policy #:stage #:stage-key
-                              #:stages #:status-code #:string #:tag-resource
-                              #:tags #:template #:test-invoke-authorizer
-                              #:test-invoke-method #:throttle-settings
-                              #:timestamp #:tls-config
+                              #:sdk-types #:security-policy
+                              #:service-unavailable-exception #:stage
+                              #:stage-key #:stages #:status-code #:string
+                              #:tag-resource #:tags #:template
+                              #:test-invoke-authorizer #:test-invoke-method
+                              #:throttle-settings #:timestamp #:tls-config
+                              #:too-many-requests-exception
                               #:unauthorized-cache-control-header-strategy
-                              #:untag-resource #:update-account
-                              #:update-api-key #:update-authorizer
-                              #:update-base-path-mapping
+                              #:unauthorized-exception #:untag-resource
+                              #:update-account #:update-api-key
+                              #:update-authorizer #:update-base-path-mapping
                               #:update-client-certificate #:update-deployment
                               #:update-documentation-part
                               #:update-documentation-version
@@ -133,8 +138,12 @@
                               #:update-usage-plan #:update-vpc-link #:usage
                               #:usage-plan #:usage-plan-key #:usage-plan-keys
                               #:usage-plans #:vpc-link #:vpc-link-status
-                              #:vpc-links))
+                              #:vpc-links #:api-gateway-error))
 (common-lisp:in-package #:pira/api-gateway)
+
+(common-lisp:define-condition api-gateway-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service backplane-control-service :shape-name
                                    "BackplaneControlService" :version
@@ -346,7 +355,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class api-gateway-error))
 
 (smithy/sdk/shapes:define-structure base-path-mapping common-lisp:nil
                                     ((base-path :target-type string
@@ -426,7 +436,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class api-gateway-error))
 
 (smithy/sdk/shapes:define-enum connection-type
     common-lisp:nil
@@ -1870,7 +1881,8 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class api-gateway-error))
 
 (smithy/sdk/shapes:define-list list-of-arns :member provider-arn)
 
@@ -2090,7 +2102,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class api-gateway-error))
 
 (smithy/sdk/shapes:define-type nullable-boolean smithy/sdk/smithy-types:boolean)
 
@@ -2458,7 +2471,8 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class api-gateway-error))
 
 (smithy/sdk/shapes:define-structure stage common-lisp:nil
                                     ((deployment-id :target-type string
@@ -2641,7 +2655,8 @@
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class api-gateway-error))
 
 (smithy/sdk/shapes:define-enum unauthorized-cache-control-header-strategy
     common-lisp:nil
@@ -2653,7 +2668,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class api-gateway-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required

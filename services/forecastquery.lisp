@@ -2,10 +2,19 @@
                              (:export #:amazon-forecast-runtime #:arn
                               #:attribute-name #:attribute-value #:data-point
                               #:date-time #:double #:error-message #:filters
-                              #:forecast #:long-arn #:next-token #:predictions
-                              #:query-forecast #:query-what-if-forecast
-                              #:statistic #:time-series #:timestamp))
+                              #:forecast #:invalid-input-exception
+                              #:invalid-next-token-exception
+                              #:limit-exceeded-exception #:long-arn
+                              #:next-token #:predictions #:query-forecast
+                              #:query-what-if-forecast
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception #:statistic
+                              #:time-series #:timestamp #:forecastquery-error))
 (common-lisp:in-package #:pira/forecastquery)
+
+(common-lisp:define-condition forecastquery-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-forecast-runtime :shape-name
                                    "AmazonForecastRuntime" :version
@@ -54,19 +63,22 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class forecastquery-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class forecastquery-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class forecastquery-error))
 
 (smithy/sdk/shapes:define-type long-arn smithy/sdk/smithy-types:string)
 
@@ -116,13 +128,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class forecastquery-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class forecastquery-error))
 
 (smithy/sdk/shapes:define-type statistic smithy/sdk/smithy-types:string)
 

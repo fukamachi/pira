@@ -1,5 +1,5 @@
 (uiop/package:define-package #:pira/connectparticipant (:use)
-                             (:export #:arn
+                             (:export #:arn #:access-denied-exception
                               #:amazon-connect-participant-service-lambda
                               #:artifact-id #:artifact-status
                               #:attachment-id-list #:attachment-item
@@ -8,33 +8,42 @@
                               #:cancel-participant-authentication
                               #:chat-content #:chat-content-type #:chat-item-id
                               #:chat-item-type #:client-token
-                              #:complete-attachment-upload
+                              #:complete-attachment-upload #:conflict-exception
                               #:connection-credentials #:connection-type
                               #:connection-type-list #:contact-id
                               #:content-type #:create-participant-connection
                               #:describe-view #:disconnect-participant
                               #:display-name #:get-attachment
                               #:get-authentication-url #:get-transcript
-                              #:iso8601datetime #:instant #:item #:max-results
+                              #:iso8601datetime #:instant
+                              #:internal-server-exception #:item #:max-results
                               #:message #:message-metadata #:most-recent
                               #:next-token #:non-empty-client-token
                               #:participant-id #:participant-role
                               #:participant-token #:pre-signed-attachment-url
                               #:pre-signed-connection-url #:reason #:receipt
                               #:receipts #:redirect-uri #:resource-id
-                              #:resource-type #:scan-direction #:send-event
-                              #:send-message #:session-id #:sort-key
-                              #:start-attachment-upload #:start-position
+                              #:resource-not-found-exception #:resource-type
+                              #:scan-direction #:send-event #:send-message
+                              #:service-quota-exceeded-exception #:session-id
+                              #:sort-key #:start-attachment-upload
+                              #:start-position #:throttling-exception
                               #:transcript #:urlexpiry-in-seconds
                               #:upload-metadata
                               #:upload-metadata-signed-headers
                               #:upload-metadata-signed-headers-key
                               #:upload-metadata-signed-headers-value
-                              #:upload-metadata-url #:view #:view-action
-                              #:view-actions #:view-content #:view-id
-                              #:view-input-schema #:view-name #:view-template
-                              #:view-token #:view-version #:websocket))
+                              #:upload-metadata-url #:validation-exception
+                              #:view #:view-action #:view-actions
+                              #:view-content #:view-id #:view-input-schema
+                              #:view-name #:view-template #:view-token
+                              #:view-version #:websocket
+                              #:connectparticipant-error))
 (common-lisp:in-package #:pira/connectparticipant)
+
+(common-lisp:define-condition connectparticipant-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-connect-participant-service-lambda
                                    :shape-name
@@ -69,7 +78,8 @@
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class connectparticipant-error))
 
 (smithy/sdk/shapes:define-type artifact-id smithy/sdk/smithy-types:string)
 
@@ -167,7 +177,8 @@
                                 ((message :target-type reason :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class connectparticipant-error))
 
 (smithy/sdk/shapes:define-structure connection-credentials common-lisp:nil
                                     ((connection-token :target-type
@@ -319,7 +330,8 @@
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class connectparticipant-error))
 
 (smithy/sdk/shapes:define-structure item common-lisp:nil
                                     ((absolute-time :target-type instant
@@ -415,7 +427,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class connectparticipant-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -480,7 +493,8 @@
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class connectparticipant-error))
 
 (smithy/sdk/shapes:define-type session-id smithy/sdk/smithy-types:string)
 
@@ -530,7 +544,8 @@
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class connectparticipant-error))
 
 (smithy/sdk/shapes:define-list transcript :member item)
 
@@ -564,7 +579,8 @@
                                 ((message :target-type reason :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class connectparticipant-error))
 
 (smithy/sdk/shapes:define-structure view common-lisp:nil
                                     ((id :target-type view-id :member-name

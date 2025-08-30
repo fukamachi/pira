@@ -94,9 +94,11 @@
                               #:gateway-timezone #:gateway-type #:gateways
                               #:host #:host-environment #:host-environment-id
                               #:hosts #:hour-of-day #:ipv4address #:initiator
-                              #:initiators #:ip-address-list
-                              #:ipv4or-ipv6address-cidr #:iqn-name
-                              #:join-domain #:kmskey #:last-software-update
+                              #:initiators #:internal-server-error
+                              #:invalid-gateway-request-exception
+                              #:ip-address-list #:ipv4or-ipv6address-cidr
+                              #:iqn-name #:join-domain #:kmskey
+                              #:last-software-update
                               #:list-automatic-tape-creation-policies
                               #:list-cache-reports #:list-file-shares
                               #:list-file-system-associations #:list-gateways
@@ -125,6 +127,7 @@
                               #:smbfile-share-info #:smbfile-share-info-list
                               #:smbguest-password #:smblocal-groups
                               #:smbsecurity-strategy
+                              #:service-unavailable-error
                               #:set-local-console-password
                               #:set-smbguest-password #:shutdown-gateway
                               #:snapshot-description #:snapshot-id
@@ -171,8 +174,13 @@
                               #:volume-recovery-point-infos #:volume-status
                               #:volume-type #:volume-used-in-bytes
                               #:volumei-scsiattributes #:double #:error-details
-                              #:integer #:long #:string))
+                              #:integer #:long #:string
+                              #:storage-gateway-error))
 (common-lisp:in-package #:pira/storage-gateway)
+
+(common-lisp:define-condition storage-gateway-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service storage-gateway-20130630 :shape-name
                                    "StorageGateway_20130630" :version
@@ -2026,7 +2034,8 @@
                                  (error :target-type storage-gateway-error
                                   :member-name "error"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class storage-gateway-error))
 
 (smithy/sdk/shapes:define-error invalid-gateway-request-exception
                                 common-lisp:nil
@@ -2035,7 +2044,8 @@
                                  (error :target-type storage-gateway-error
                                   :member-name "error"))
                                 (:shape-name "InvalidGatewayRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class storage-gateway-error))
 
 (smithy/sdk/shapes:define-list ip-address-list :member ipv4address)
 
@@ -2651,7 +2661,8 @@
                                  (error :target-type storage-gateway-error
                                   :member-name "error"))
                                 (:shape-name "ServiceUnavailableError")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class storage-gateway-error))
 
 (smithy/sdk/shapes:define-input set-local-console-password-input
                                 common-lisp:nil

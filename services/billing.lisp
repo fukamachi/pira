@@ -1,30 +1,39 @@
 (uiop/package:define-package #:pira/billing (:use)
-                             (:export #:awsbilling #:account-id
-                              #:active-time-range #:billing-view-arn
-                              #:billing-view-arn-list
+                             (:export #:awsbilling #:access-denied-exception
+                              #:account-id #:active-time-range
+                              #:billing-view-arn #:billing-view-arn-list
                               #:billing-view-description #:billing-view-element
                               #:billing-view-list #:billing-view-list-element
                               #:billing-view-name
                               #:billing-view-source-views-list
                               #:billing-view-type #:billing-view-type-list
                               #:billing-views-max-results #:client-token
-                              #:create-billing-view #:delete-billing-view
-                              #:dimension #:dimension-values #:error-message
-                              #:expression #:field-name #:get-billing-view
-                              #:get-resource-policy #:list-billing-views
+                              #:conflict-exception #:create-billing-view
+                              #:delete-billing-view #:dimension
+                              #:dimension-values #:error-message #:expression
+                              #:field-name #:get-billing-view
+                              #:get-resource-policy #:internal-server-exception
+                              #:list-billing-views
                               #:list-source-views-for-billing-view
                               #:list-tags-for-resource #:page-token
                               #:policy-document #:quota-code #:resource-arn
-                              #:resource-id #:resource-tag #:resource-tag-key
+                              #:resource-id #:resource-not-found-exception
+                              #:resource-tag #:resource-tag-key
                               #:resource-tag-key-list #:resource-tag-list
                               #:resource-tag-value #:resource-type
-                              #:service-code #:tag-key #:tag-resource
-                              #:tag-values #:untag-resource
-                              #:update-billing-view
+                              #:service-code #:service-quota-exceeded-exception
+                              #:tag-key #:tag-resource #:tag-values
+                              #:throttling-exception #:untag-resource
+                              #:update-billing-view #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason #:value #:values))
+                              #:validation-exception-reason #:value #:values
+                              #:billing-error))
 (common-lisp:in-package #:pira/billing)
+
+(common-lisp:define-condition billing-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsbilling :shape-name "AWSBilling" :version
                                    "2023-09-07" :title "AWS Billing"
@@ -53,7 +62,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
                                 (:error-name "BillingAccessDenied")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class billing-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -146,7 +155,7 @@
                                   "resourceType"))
                                 (:shape-name "ConflictException")
                                 (:error-name "BillingConflict")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class billing-error))
 
 (smithy/sdk/shapes:define-input create-billing-view-request common-lisp:nil
                                 ((name :target-type billing-view-name :required
@@ -237,7 +246,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
                                 (:error-name "BillingInternalServer")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class billing-error))
 
 (smithy/sdk/shapes:define-input list-billing-views-request common-lisp:nil
                                 ((active-time-range :target-type
@@ -320,7 +329,7 @@
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "BillingResourceNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class billing-error))
 
 (smithy/sdk/shapes:define-structure resource-tag common-lisp:nil
                                     ((key :target-type resource-tag-key
@@ -360,7 +369,7 @@
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
                                 (:error-name "BillingServiceQuotaExceeded")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class billing-error))
 
 (smithy/sdk/shapes:define-type tag-key smithy/sdk/smithy-types:string)
 
@@ -389,7 +398,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
                                 (:error-name "BillingThrottling")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class billing-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type resource-arn
@@ -436,7 +445,7 @@
                                   "fieldList"))
                                 (:shape-name "ValidationException")
                                 (:error-name "BillingValidation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class billing-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type field-name :required

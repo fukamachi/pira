@@ -1,9 +1,9 @@
 (uiop/package:define-package #:pira/securityhub (:use)
                              (:export #:accept-administrator-invitation
-                              #:accept-invitation #:account-details
-                              #:account-details-list #:account-id
-                              #:account-id-list #:action #:action-list
-                              #:action-local-ip-details
+                              #:accept-invitation #:access-denied-exception
+                              #:account-details #:account-details-list
+                              #:account-id #:account-id-list #:action
+                              #:action-list #:action-local-ip-details
                               #:action-local-port-details
                               #:action-remote-ip-details
                               #:action-remote-port-details #:action-target
@@ -714,8 +714,8 @@
                               #:configuration-policy-associations-list
                               #:configuration-policy-summary
                               #:configuration-policy-summary-list
-                              #:connection-direction #:connector-auth-status
-                              #:connector-provider-name
+                              #:conflict-exception #:connection-direction
+                              #:connector-auth-status #:connector-provider-name
                               #:connector-registrations-v2 #:connector-status
                               #:connector-summary #:connector-summary-list
                               #:container-details #:control-finding-generator
@@ -805,16 +805,19 @@
                               #:integer-list-configuration-options
                               #:integration-type #:integration-type-list
                               #:integration-v2type #:integration-v2type-list
-                              #:invitation #:invitation-list #:invite-members
-                              #:ip-filter #:ip-filter-list
-                              #:ip-organization-details
+                              #:internal-exception #:internal-server-exception
+                              #:invalid-access-exception
+                              #:invalid-input-exception #:invitation
+                              #:invitation-list #:invite-members #:ip-filter
+                              #:ip-filter-list #:ip-organization-details
                               #:ipv6cidr-block-association
                               #:ipv6cidr-block-association-list
                               #:jira-cloud-detail
                               #:jira-cloud-provider-configuration
                               #:jira-cloud-update-configuration
                               #:keyword-filter #:keyword-filter-list
-                              #:list-aggregators-v2 #:list-automation-rules
+                              #:limit-exceeded-exception #:list-aggregators-v2
+                              #:list-automation-rules
                               #:list-automation-rules-v2
                               #:list-configuration-policies
                               #:list-configuration-policy-associations
@@ -875,14 +878,16 @@
                               #:related-finding-list
                               #:related-requirements-list #:remediation
                               #:resource #:resource-arn #:resource-category
-                              #:resource-config #:resource-details
-                              #:resource-findings-summary
+                              #:resource-config #:resource-conflict-exception
+                              #:resource-details #:resource-findings-summary
                               #:resource-findings-summary-list
                               #:resource-group-by-field
                               #:resource-group-by-rule
-                              #:resource-group-by-rules #:resource-list
-                              #:resource-result #:resource-severity-breakdown
-                              #:resource-tag #:resource-tag-list #:resources
+                              #:resource-group-by-rules
+                              #:resource-in-use-exception #:resource-list
+                              #:resource-not-found-exception #:resource-result
+                              #:resource-severity-breakdown #:resource-tag
+                              #:resource-tag-list #:resources
                               #:resources-composite-filter
                               #:resources-composite-filter-list
                               #:resources-date-field #:resources-date-filter
@@ -987,7 +992,7 @@
                               #:threat-intel-indicator-category
                               #:threat-intel-indicator-list
                               #:threat-intel-indicator-type #:threat-list
-                              #:timestamp #:type-list
+                              #:throttling-exception #:timestamp #:type-list
                               #:unprocessed-automation-rule
                               #:unprocessed-automation-rules-list
                               #:unprocessed-configuration-policy-association
@@ -1011,8 +1016,9 @@
                               #:update-security-control
                               #:update-security-hub-configuration
                               #:update-standards-control #:update-status
-                              #:user-account #:verification-state
-                              #:volume-mount #:volume-mount-list
+                              #:user-account #:validation-exception
+                              #:verification-state #:volume-mount
+                              #:volume-mount-list
                               #:vpc-info-cidr-block-set-details
                               #:vpc-info-cidr-block-set-list
                               #:vpc-info-ipv6cidr-block-set-details
@@ -1027,8 +1033,12 @@
                               #:waf-action #:waf-excluded-rule
                               #:waf-excluded-rule-list #:waf-override-action
                               #:workflow #:workflow-state #:workflow-status
-                              #:workflow-update))
+                              #:workflow-update #:securityhub-error))
 (common-lisp:in-package #:pira/securityhub)
+
+(common-lisp:define-condition securityhub-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service security-hub-apiservice :shape-name
                                    "SecurityHubAPIService" :version
@@ -1165,7 +1175,8 @@
                                  (code :target-type non-empty-string
                                   :member-name "Code"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class securityhub-error))
 
 (smithy/sdk/shapes:define-structure account-details common-lisp:nil
                                     ((account-id :target-type account-id
@@ -10705,7 +10716,8 @@
                                  (code :target-type non-empty-string
                                   :member-name "Code"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class securityhub-error))
 
 (smithy/sdk/shapes:define-enum connection-direction
     common-lisp:nil
@@ -12320,7 +12332,8 @@
                                  (code :target-type non-empty-string
                                   :member-name "Code"))
                                 (:shape-name "InternalException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class securityhub-error))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil
                                 ((message :target-type non-empty-string
@@ -12328,7 +12341,8 @@
                                  (code :target-type non-empty-string
                                   :member-name "Code"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class securityhub-error))
 
 (smithy/sdk/shapes:define-error invalid-access-exception common-lisp:nil
                                 ((message :target-type non-empty-string
@@ -12336,7 +12350,8 @@
                                  (code :target-type non-empty-string
                                   :member-name "Code"))
                                 (:shape-name "InvalidAccessException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class securityhub-error))
 
 (smithy/sdk/shapes:define-error invalid-input-exception common-lisp:nil
                                 ((message :target-type non-empty-string
@@ -12344,7 +12359,8 @@
                                  (code :target-type non-empty-string
                                   :member-name "Code"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class securityhub-error))
 
 (smithy/sdk/shapes:define-structure invitation common-lisp:nil
                                     ((account-id :target-type account-id
@@ -12448,7 +12464,8 @@
                                  (code :target-type non-empty-string
                                   :member-name "Code"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class securityhub-error))
 
 (smithy/sdk/shapes:define-input list-aggregators-v2request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -13538,7 +13555,8 @@
                                  (code :target-type non-empty-string
                                   :member-name "Code"))
                                 (:shape-name "ResourceConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class securityhub-error))
 
 (smithy/sdk/shapes:define-structure resource-details common-lisp:nil
                                     ((aws-auto-scaling-auto-scaling-group
@@ -13912,7 +13930,8 @@
                                  (code :target-type non-empty-string
                                   :member-name "Code"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class securityhub-error))
 
 (smithy/sdk/shapes:define-list resource-list :member resource)
 
@@ -13922,7 +13941,8 @@
                                  (code :target-type non-empty-string
                                   :member-name "Code"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class securityhub-error))
 
 (smithy/sdk/shapes:define-structure resource-result common-lisp:nil
                                     ((resource-arn :target-type
@@ -15190,7 +15210,8 @@
                                  (code :target-type non-empty-string
                                   :member-name "Code"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class securityhub-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -15579,7 +15600,8 @@
                                  (code :target-type non-empty-string
                                   :member-name "Code"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class securityhub-error))
 
 (smithy/sdk/shapes:define-enum verification-state
     common-lisp:nil

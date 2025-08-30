@@ -1,15 +1,16 @@
 (uiop/package:define-package #:pira/codeartifact (:use)
-                             (:export #:account-id #:allow-publish
-                              #:allow-upstream #:arn #:asset #:asset-hashes
-                              #:asset-name #:asset-summary #:asset-summary-list
+                             (:export #:access-denied-exception #:account-id
+                              #:allow-publish #:allow-upstream #:arn #:asset
+                              #:asset-hashes #:asset-name #:asset-summary
+                              #:asset-summary-list
                               #:associate-external-connection
                               #:associated-package #:associated-package-list
                               #:authorization-token-duration-seconds
                               #:boolean-optional
                               #:code-artifact-control-plane-service
-                              #:copy-package-versions #:create-domain
-                              #:create-package-group #:create-repository
-                              #:delete-domain
+                              #:conflict-exception #:copy-package-versions
+                              #:create-domain #:create-package-group
+                              #:create-repository #:delete-domain
                               #:delete-domain-permissions-policy
                               #:delete-package #:delete-package-group
                               #:delete-package-versions #:delete-repository
@@ -32,7 +33,8 @@
                               #:get-repository-endpoint
                               #:get-repository-permissions-policy
                               #:hash-algorithm #:hash-value #:integer
-                              #:license-info #:license-info-list
+                              #:internal-server-exception #:license-info
+                              #:license-info-list
                               #:list-allowed-repositories-for-group
                               #:list-allowed-repositories-for-group-max-results
                               #:list-associated-packages #:list-domains
@@ -95,21 +97,28 @@
                               #:repository-external-connection-info-list
                               #:repository-name #:repository-name-list
                               #:repository-summary #:repository-summary-list
-                              #:resource-policy #:resource-type
-                              #:retry-after-seconds #:sha256 #:string
+                              #:resource-not-found-exception #:resource-policy
+                              #:resource-type #:retry-after-seconds #:sha256
+                              #:service-quota-exceeded-exception #:string
                               #:string255 #:successful-package-version-info
                               #:successful-package-version-info-map #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-value #:timestamp
-                              #:untag-resource #:update-package-group
+                              #:tag-resource #:tag-value #:throttling-exception
+                              #:timestamp #:untag-resource
+                              #:update-package-group
                               #:update-package-group-origin-configuration
                               #:update-package-versions-status
                               #:update-repository #:upstream-repository
                               #:upstream-repository-info
                               #:upstream-repository-info-list
-                              #:upstream-repository-list
-                              #:validation-exception-reason))
+                              #:upstream-repository-list #:validation-exception
+                              #:validation-exception-reason
+                              #:codeartifact-error))
 (common-lisp:in-package #:pira/codeartifact)
+
+(common-lisp:define-condition codeartifact-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service code-artifact-control-plane-service
                                    :shape-name
@@ -171,7 +180,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class codeartifact-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -261,7 +271,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codeartifact-error))
 
 (smithy/sdk/shapes:define-input copy-package-versions-request common-lisp:nil
                                 ((domain :target-type domain-name :required
@@ -995,7 +1006,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class codeartifact-error))
 
 (smithy/sdk/shapes:define-structure license-info common-lisp:nil
                                     ((name :target-type string :member-name
@@ -1966,7 +1978,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class codeartifact-error))
 
 (smithy/sdk/shapes:define-structure resource-policy common-lisp:nil
                                     ((resource-arn :target-type arn
@@ -1999,7 +2012,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "resourceType"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class codeartifact-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -2054,7 +2068,8 @@
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class codeartifact-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -2212,7 +2227,8 @@
                                   validation-exception-reason :member-name
                                   "reason"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codeartifact-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-reason
     common-lisp:nil

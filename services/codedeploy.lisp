@@ -2,11 +2,18 @@
                              (:export #:add-tags-to-on-premises-instances
                               #:additional-deployment-status-info #:alarm
                               #:alarm-configuration #:alarm-list #:alarm-name
-                              #:app-spec-content #:application-id
-                              #:application-info #:application-name
+                              #:alarms-limit-exceeded-exception
+                              #:app-spec-content
+                              #:application-already-exists-exception
+                              #:application-does-not-exist-exception
+                              #:application-id #:application-info
+                              #:application-limit-exceeded-exception
+                              #:application-name
+                              #:application-name-required-exception
                               #:application-revision-sort-by
                               #:applications-info-list #:applications-list
-                              #:arn #:auto-rollback-configuration
+                              #:arn #:arn-not-supported-exception
+                              #:auto-rollback-configuration
                               #:auto-rollback-event #:auto-rollback-events-list
                               #:auto-scaling-group #:auto-scaling-group-hook
                               #:auto-scaling-group-list
@@ -19,8 +26,10 @@
                               #:batch-get-deployment-targets
                               #:batch-get-deployments
                               #:batch-get-on-premises-instances
+                              #:batch-limit-exceeded-exception
                               #:blue-green-deployment-configuration
                               #:blue-instance-termination-option #:boolean
+                              #:bucket-name-filter-required-exception
                               #:bundle-type #:cloud-formation-resource-type
                               #:cloud-formation-target #:code-deploy-20141006
                               #:commit-id #:compute-platform
@@ -31,32 +40,55 @@
                               #:delete-deployment-group
                               #:delete-git-hub-account-token
                               #:delete-resources-by-external-id
-                              #:deployment-config-id #:deployment-config-info
+                              #:deployment-already-completed-exception
+                              #:deployment-config-already-exists-exception
+                              #:deployment-config-does-not-exist-exception
+                              #:deployment-config-id
+                              #:deployment-config-in-use-exception
+                              #:deployment-config-info
+                              #:deployment-config-limit-exceeded-exception
                               #:deployment-config-name
+                              #:deployment-config-name-required-exception
                               #:deployment-configs-list #:deployment-creator
+                              #:deployment-does-not-exist-exception
+                              #:deployment-group-already-exists-exception
+                              #:deployment-group-does-not-exist-exception
                               #:deployment-group-id #:deployment-group-info
                               #:deployment-group-info-list
-                              #:deployment-group-name #:deployment-groups-list
-                              #:deployment-id #:deployment-info
+                              #:deployment-group-limit-exceeded-exception
+                              #:deployment-group-name
+                              #:deployment-group-name-required-exception
+                              #:deployment-groups-list #:deployment-id
+                              #:deployment-id-required-exception
+                              #:deployment-info
+                              #:deployment-is-not-in-ready-state-exception
+                              #:deployment-limit-exceeded-exception
+                              #:deployment-not-started-exception
                               #:deployment-option #:deployment-overview
                               #:deployment-ready-action
                               #:deployment-ready-option #:deployment-status
                               #:deployment-status-list
                               #:deployment-status-message-list
                               #:deployment-style #:deployment-target
-                              #:deployment-target-list #:deployment-target-type
-                              #:deployment-type #:deployment-wait-type
-                              #:deployments-info-list #:deployments-list
+                              #:deployment-target-does-not-exist-exception
+                              #:deployment-target-id-required-exception
+                              #:deployment-target-list
+                              #:deployment-target-list-size-exceeded-exception
+                              #:deployment-target-type #:deployment-type
+                              #:deployment-wait-type #:deployments-info-list
+                              #:deployments-list
                               #:deregister-on-premises-instance #:description
-                              #:diagnostics #:duration #:ec2tag-filter
-                              #:ec2tag-filter-list #:ec2tag-filter-type
-                              #:ec2tag-set #:ec2tag-set-list #:ecscluster-name
-                              #:ecsservice #:ecsservice-list #:ecsservice-name
-                              #:ecstarget #:ecstask-set #:ecstask-set-count
-                              #:ecstask-set-identifier #:ecstask-set-list
-                              #:ecstask-set-status #:elbinfo #:elbinfo-list
-                              #:elbname #:etag #:error-code #:error-information
-                              #:error-message #:external-id
+                              #:description-too-long-exception #:diagnostics
+                              #:duration #:ec2tag-filter #:ec2tag-filter-list
+                              #:ec2tag-filter-type #:ec2tag-set
+                              #:ec2tag-set-list #:ecscluster-name #:ecsservice
+                              #:ecsservice-list
+                              #:ecsservice-mapping-limit-exceeded-exception
+                              #:ecsservice-name #:ecstarget #:ecstask-set
+                              #:ecstask-set-count #:ecstask-set-identifier
+                              #:ecstask-set-list #:ecstask-set-status #:elbinfo
+                              #:elbinfo-list #:elbname #:etag #:error-code
+                              #:error-information #:error-message #:external-id
                               #:file-exists-behavior #:filter-value
                               #:filter-value-list #:generic-revision-info
                               #:get-application #:get-application-revision
@@ -64,28 +96,98 @@
                               #:get-deployment-group #:get-deployment-instance
                               #:get-deployment-target
                               #:get-on-premises-instance
+                              #:git-hub-account-token-does-not-exist-exception
                               #:git-hub-account-token-name
                               #:git-hub-account-token-name-list
+                              #:git-hub-account-token-name-required-exception
                               #:git-hub-location
                               #:green-fleet-provisioning-action
                               #:green-fleet-provisioning-option
-                              #:iam-session-arn #:iam-user-arn
+                              #:iam-arn-required-exception #:iam-session-arn
+                              #:iam-session-arn-already-registered-exception
+                              #:iam-user-arn
+                              #:iam-user-arn-already-registered-exception
+                              #:iam-user-arn-required-exception
                               #:instance-action #:instance-arn #:instance-count
-                              #:instance-id #:instance-info
-                              #:instance-info-list #:instance-name
-                              #:instance-name-list #:instance-status
-                              #:instance-status-list #:instance-summary
-                              #:instance-summary-list #:instance-target
-                              #:instance-type #:instance-type-list
-                              #:instances-list #:key #:lambda-function-alias
+                              #:instance-does-not-exist-exception #:instance-id
+                              #:instance-id-required-exception #:instance-info
+                              #:instance-info-list
+                              #:instance-limit-exceeded-exception
+                              #:instance-name
+                              #:instance-name-already-registered-exception
+                              #:instance-name-list
+                              #:instance-name-required-exception
+                              #:instance-not-registered-exception
+                              #:instance-status #:instance-status-list
+                              #:instance-summary #:instance-summary-list
+                              #:instance-target #:instance-type
+                              #:instance-type-list #:instances-list
+                              #:invalid-alarm-config-exception
+                              #:invalid-application-name-exception
+                              #:invalid-arn-exception
+                              #:invalid-auto-rollback-config-exception
+                              #:invalid-auto-scaling-group-exception
+                              #:invalid-blue-green-deployment-configuration-exception
+                              #:invalid-bucket-name-filter-exception
+                              #:invalid-compute-platform-exception
+                              #:invalid-deployed-state-filter-exception
+                              #:invalid-deployment-config-name-exception
+                              #:invalid-deployment-group-name-exception
+                              #:invalid-deployment-id-exception
+                              #:invalid-deployment-instance-type-exception
+                              #:invalid-deployment-status-exception
+                              #:invalid-deployment-style-exception
+                              #:invalid-deployment-target-id-exception
+                              #:invalid-deployment-wait-type-exception
+                              #:invalid-ec2tag-combination-exception
+                              #:invalid-ec2tag-exception
+                              #:invalid-ecsservice-exception
+                              #:invalid-external-id-exception
+                              #:invalid-file-exists-behavior-exception
+                              #:invalid-git-hub-account-token-exception
+                              #:invalid-git-hub-account-token-name-exception
+                              #:invalid-iam-session-arn-exception
+                              #:invalid-iam-user-arn-exception
+                              #:invalid-ignore-application-stop-failures-value-exception
+                              #:invalid-input-exception
+                              #:invalid-instance-name-exception
+                              #:invalid-instance-status-exception
+                              #:invalid-instance-type-exception
+                              #:invalid-key-prefix-filter-exception
+                              #:invalid-lifecycle-event-hook-execution-id-exception
+                              #:invalid-lifecycle-event-hook-execution-status-exception
+                              #:invalid-load-balancer-info-exception
+                              #:invalid-minimum-healthy-host-value-exception
+                              #:invalid-next-token-exception
+                              #:invalid-on-premises-tag-combination-exception
+                              #:invalid-operation-exception
+                              #:invalid-registration-status-exception
+                              #:invalid-revision-exception
+                              #:invalid-role-exception
+                              #:invalid-sort-by-exception
+                              #:invalid-sort-order-exception
+                              #:invalid-tag-exception
+                              #:invalid-tag-filter-exception
+                              #:invalid-tags-to-add-exception
+                              #:invalid-target-filter-name-exception
+                              #:invalid-target-group-pair-exception
+                              #:invalid-target-instances-exception
+                              #:invalid-time-range-exception
+                              #:invalid-traffic-routing-configuration-exception
+                              #:invalid-trigger-config-exception
+                              #:invalid-update-outdated-instances-only-value-exception
+                              #:invalid-zonal-deployment-configuration-exception
+                              #:key #:lambda-function-alias
                               #:lambda-function-info #:lambda-function-name
                               #:lambda-target #:last-deployment-info
                               #:lifecycle-error-code #:lifecycle-event
+                              #:lifecycle-event-already-completed-exception
                               #:lifecycle-event-hook-execution-id
                               #:lifecycle-event-list #:lifecycle-event-name
-                              #:lifecycle-event-status #:lifecycle-message
-                              #:list-application-revisions #:list-applications
-                              #:list-deployment-configs
+                              #:lifecycle-event-status
+                              #:lifecycle-hook-limit-exceeded-exception
+                              #:lifecycle-message #:list-application-revisions
+                              #:list-applications #:list-deployment-configs
                               #:list-deployment-groups
                               #:list-deployment-instances
                               #:list-deployment-targets #:list-deployments
@@ -99,9 +201,11 @@
                               #:minimum-healthy-hosts-per-zone-type
                               #:minimum-healthy-hosts-per-zone-value
                               #:minimum-healthy-hosts-type
-                              #:minimum-healthy-hosts-value #:next-token
-                              #:nullable-boolean #:on-premises-tag-set
-                              #:on-premises-tag-set-list
+                              #:minimum-healthy-hosts-value
+                              #:multiple-iam-arns-provided-exception
+                              #:next-token #:nullable-boolean
+                              #:on-premises-tag-set #:on-premises-tag-set-list
+                              #:operation-not-supported-exception
                               #:outdated-instances-strategy #:percentage
                               #:put-lifecycle-event-hook-execution-status
                               #:raw-string #:raw-string-content
@@ -110,33 +214,48 @@
                               #:register-on-premises-instance
                               #:registration-status #:related-deployments
                               #:remove-tags-from-on-premises-instances
-                              #:repository #:revision-info #:revision-info-list
+                              #:repository #:resource-arn-required-exception
+                              #:resource-validation-exception
+                              #:revision-does-not-exist-exception
+                              #:revision-info #:revision-info-list
                               #:revision-location #:revision-location-list
-                              #:revision-location-type #:role #:rollback-info
+                              #:revision-location-type
+                              #:revision-required-exception #:role
+                              #:role-required-exception #:rollback-info
                               #:s3bucket #:s3key #:s3location #:script-name
                               #:skip-wait-time-for-instance-termination
                               #:sort-order #:stop-deployment #:stop-status
                               #:tag #:tag-filter #:tag-filter-list
-                              #:tag-filter-type #:tag-key-list #:tag-list
-                              #:tag-resource #:target-arn #:target-filter-name
+                              #:tag-filter-type #:tag-key-list
+                              #:tag-limit-exceeded-exception #:tag-list
+                              #:tag-required-exception #:tag-resource
+                              #:tag-set-list-limit-exceeded-exception
+                              #:target-arn #:target-filter-name
                               #:target-filters #:target-group-info
                               #:target-group-info-list #:target-group-name
                               #:target-group-pair-info
                               #:target-group-pair-info-list #:target-id
                               #:target-id-list #:target-instances
-                              #:target-label #:target-status #:time
-                              #:time-based-canary #:time-based-linear
-                              #:time-range #:timestamp #:traffic-route
-                              #:traffic-routing-config #:traffic-routing-type
-                              #:traffic-weight #:trigger-config
-                              #:trigger-config-list #:trigger-event-type
-                              #:trigger-event-type-list #:trigger-name
-                              #:trigger-target-arn #:untag-resource
-                              #:update-application #:update-deployment-group
-                              #:value #:version #:version-id
-                              #:wait-time-in-mins #:wait-time-in-seconds
-                              #:zonal-config))
+                              #:target-label #:target-status
+                              #:throttling-exception #:time #:time-based-canary
+                              #:time-based-linear #:time-range #:timestamp
+                              #:traffic-route #:traffic-routing-config
+                              #:traffic-routing-type #:traffic-weight
+                              #:trigger-config #:trigger-config-list
+                              #:trigger-event-type #:trigger-event-type-list
+                              #:trigger-name #:trigger-target-arn
+                              #:trigger-targets-limit-exceeded-exception
+                              #:unsupported-action-for-deployment-type-exception
+                              #:untag-resource #:update-application
+                              #:update-deployment-group #:value #:version
+                              #:version-id #:wait-time-in-mins
+                              #:wait-time-in-seconds #:zonal-config
+                              #:codedeploy-error))
 (common-lisp:in-package #:pira/codedeploy)
+
+(common-lisp:define-condition codedeploy-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service code-deploy-20141006 :shape-name
                                    "CodeDeploy_20141006" :version "2014-10-06"
@@ -230,7 +349,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "AlarmsLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-structure app-spec-content common-lisp:nil
                                     ((content :target-type raw-string-content
@@ -245,7 +365,8 @@
                                   "message"))
                                 (:shape-name
                                  "ApplicationAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error application-does-not-exist-exception
                                 common-lisp:nil
@@ -253,7 +374,8 @@
                                   "message"))
                                 (:shape-name
                                  "ApplicationDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type application-id smithy/sdk/smithy-types:string)
 
@@ -282,7 +404,8 @@
                                   "message"))
                                 (:shape-name
                                  "ApplicationLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type application-name smithy/sdk/smithy-types:string)
 
@@ -292,7 +415,8 @@
                                   "message"))
                                 (:shape-name
                                  "ApplicationNameRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-enum application-revision-sort-by
     common-lisp:nil
@@ -310,7 +434,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ArnNotSupportedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-structure auto-rollback-configuration common-lisp:nil
                                     ((enabled :target-type boolean :member-name
@@ -477,7 +602,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "BatchLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-structure blue-green-deployment-configuration
                                     common-lisp:nil
@@ -515,7 +641,8 @@
                                   "message"))
                                 (:shape-name
                                  "BucketNameFilterRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-enum bundle-type
     common-lisp:nil
@@ -768,7 +895,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentAlreadyCompletedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error deployment-config-already-exists-exception
                                 common-lisp:nil
@@ -776,7 +904,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentConfigAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error deployment-config-does-not-exist-exception
                                 common-lisp:nil
@@ -784,7 +913,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentConfigDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type deployment-config-id
                                smithy/sdk/smithy-types:string)
@@ -794,7 +924,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "DeploymentConfigInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-structure deployment-config-info common-lisp:nil
                                     ((deployment-config-id :target-type
@@ -824,7 +955,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentConfigLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type deployment-config-name
                                smithy/sdk/smithy-types:string)
@@ -835,7 +967,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentConfigNameRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-list deployment-configs-list :member
                                deployment-config-name)
@@ -856,7 +989,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "DeploymentDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error deployment-group-already-exists-exception
                                 common-lisp:nil
@@ -864,7 +998,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentGroupAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error deployment-group-does-not-exist-exception
                                 common-lisp:nil
@@ -872,7 +1007,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentGroupDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type deployment-group-id
                                smithy/sdk/smithy-types:string)
@@ -957,7 +1093,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentGroupLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type deployment-group-name
                                smithy/sdk/smithy-types:string)
@@ -968,7 +1105,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentGroupNameRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-list deployment-groups-list :member
                                deployment-group-name)
@@ -980,7 +1118,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "DeploymentIdRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-structure deployment-info common-lisp:nil
                                     ((application-name :target-type
@@ -1075,7 +1214,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentIsNotInReadyStateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error deployment-limit-exceeded-exception
                                 common-lisp:nil
@@ -1083,14 +1223,16 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error deployment-not-started-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "DeploymentNotStartedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-enum deployment-option
     common-lisp:nil
@@ -1173,7 +1315,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentTargetDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error deployment-target-id-required-exception
                                 common-lisp:nil
@@ -1181,7 +1324,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentTargetIdRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-list deployment-target-list :member deployment-target)
 
@@ -1191,7 +1335,8 @@
                                   "message"))
                                 (:shape-name
                                  "DeploymentTargetListSizeExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-enum deployment-target-type
     common-lisp:nil
@@ -1228,7 +1373,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "DescriptionTooLongException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-structure diagnostics common-lisp:nil
                                     ((error-code :target-type
@@ -1285,7 +1431,8 @@
                                   "message"))
                                 (:shape-name
                                  "ECSServiceMappingLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type ecsservice-name smithy/sdk/smithy-types:string)
 
@@ -1545,7 +1692,8 @@
                                   "message"))
                                 (:shape-name
                                  "GitHubAccountTokenDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type git-hub-account-token-name
                                smithy/sdk/smithy-types:string)
@@ -1559,7 +1707,8 @@
                                   "message"))
                                 (:shape-name
                                  "GitHubAccountTokenNameRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-structure git-hub-location common-lisp:nil
                                     ((repository :target-type repository
@@ -1585,7 +1734,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "IamArnRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type iam-session-arn smithy/sdk/smithy-types:string)
 
@@ -1595,7 +1745,8 @@
                                   "message"))
                                 (:shape-name
                                  "IamSessionArnAlreadyRegisteredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type iam-user-arn smithy/sdk/smithy-types:string)
 
@@ -1605,13 +1756,15 @@
                                   "message"))
                                 (:shape-name
                                  "IamUserArnAlreadyRegisteredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error iam-user-arn-required-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "IamUserArnRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-enum instance-action
     common-lisp:nil
@@ -1627,7 +1780,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InstanceDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type instance-id smithy/sdk/smithy-types:string)
 
@@ -1635,7 +1789,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InstanceIdRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-structure instance-info common-lisp:nil
                                     ((instance-name :target-type instance-name
@@ -1662,7 +1817,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InstanceLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type instance-name smithy/sdk/smithy-types:string)
 
@@ -1672,7 +1828,8 @@
                                   "message"))
                                 (:shape-name
                                  "InstanceNameAlreadyRegisteredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-list instance-name-list :member instance-name)
 
@@ -1681,14 +1838,16 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InstanceNameRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error instance-not-registered-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InstanceNotRegisteredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-enum instance-status
     common-lisp:nil
@@ -1751,20 +1910,23 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidAlarmConfigException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-application-name-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidApplicationNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-arn-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidArnException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-auto-rollback-config-exception
                                 common-lisp:nil
@@ -1772,7 +1934,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidAutoRollbackConfigException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-auto-scaling-group-exception
                                 common-lisp:nil
@@ -1780,13 +1943,14 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidAutoScalingGroupException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error
  invalid-blue-green-deployment-configuration-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "InvalidBlueGreenDeploymentConfigurationException")
- (:error-code 400))
+ (:error-code 400) (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-bucket-name-filter-exception
                                 common-lisp:nil
@@ -1794,14 +1958,16 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidBucketNameFilterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-compute-platform-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidComputePlatformException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-deployed-state-filter-exception
                                 common-lisp:nil
@@ -1809,7 +1975,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidDeployedStateFilterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-deployment-config-name-exception
                                 common-lisp:nil
@@ -1817,7 +1984,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidDeploymentConfigNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-deployment-group-name-exception
                                 common-lisp:nil
@@ -1825,13 +1993,15 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidDeploymentGroupNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-deployment-id-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidDeploymentIdException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-deployment-instance-type-exception
                                 common-lisp:nil
@@ -1839,7 +2009,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidDeploymentInstanceTypeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-deployment-status-exception
                                 common-lisp:nil
@@ -1847,14 +2018,16 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidDeploymentStatusException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-deployment-style-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidDeploymentStyleException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-deployment-target-id-exception
                                 common-lisp:nil
@@ -1862,7 +2035,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidDeploymentTargetIdException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-deployment-wait-type-exception
                                 common-lisp:nil
@@ -1870,7 +2044,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidDeploymentWaitTypeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-ec2tag-combination-exception
                                 common-lisp:nil
@@ -1878,25 +2053,29 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidEC2TagCombinationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-ec2tag-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidEC2TagException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-ecsservice-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidECSServiceException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-external-id-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidExternalIdException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-file-exists-behavior-exception
                                 common-lisp:nil
@@ -1904,7 +2083,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidFileExistsBehaviorException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-git-hub-account-token-exception
                                 common-lisp:nil
@@ -1912,7 +2092,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidGitHubAccountTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-git-hub-account-token-name-exception
                                 common-lisp:nil
@@ -1920,70 +2101,78 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidGitHubAccountTokenNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-iam-session-arn-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidIamSessionArnException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-iam-user-arn-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidIamUserArnException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error
  invalid-ignore-application-stop-failures-value-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "InvalidIgnoreApplicationStopFailuresValueException")
- (:error-code 400))
+ (:error-code 400) (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-input-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-instance-name-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidInstanceNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-instance-status-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidInstanceStatusException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-instance-type-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidInstanceTypeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-key-prefix-filter-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidKeyPrefixFilterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error
  invalid-lifecycle-event-hook-execution-id-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "InvalidLifecycleEventHookExecutionIdException")
- (:error-code 400))
+ (:error-code 400) (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error
  invalid-lifecycle-event-hook-execution-status-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "InvalidLifecycleEventHookExecutionStatusException")
- (:error-code 400))
+ (:error-code 400) (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-load-balancer-info-exception
                                 common-lisp:nil
@@ -1991,7 +2180,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidLoadBalancerInfoException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-minimum-healthy-host-value-exception
                                 common-lisp:nil
@@ -1999,13 +2189,15 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidMinimumHealthyHostValueException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-on-premises-tag-combination-exception
                                 common-lisp:nil
@@ -2013,13 +2205,15 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidOnPremisesTagCombinationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-operation-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-registration-status-exception
                                 common-lisp:nil
@@ -2027,49 +2221,57 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidRegistrationStatusException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-revision-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidRevisionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-role-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidRoleException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-sort-by-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidSortByException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-sort-order-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidSortOrderException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-tag-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTagException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-tag-filter-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTagFilterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-tags-to-add-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTagsToAddException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-target-filter-name-exception
                                 common-lisp:nil
@@ -2077,27 +2279,31 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidTargetFilterNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-target-group-pair-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTargetGroupPairException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-target-instances-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTargetInstancesException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-time-range-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTimeRangeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-traffic-routing-configuration-exception
                                 common-lisp:nil
@@ -2105,25 +2311,28 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidTrafficRoutingConfigurationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error invalid-trigger-config-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTriggerConfigException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error
  invalid-update-outdated-instances-only-value-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "InvalidUpdateOutdatedInstancesOnlyValueException")
- (:error-code 400))
+ (:error-code 400) (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error
  invalid-zonal-deployment-configuration-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
- (:shape-name "InvalidZonalDeploymentConfigurationException") (:error-code 400))
+ (:shape-name "InvalidZonalDeploymentConfigurationException") (:error-code 400)
+ (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type key smithy/sdk/smithy-types:string)
 
@@ -2209,7 +2418,8 @@
                                   "message"))
                                 (:shape-name
                                  "LifecycleEventAlreadyCompletedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type lifecycle-event-hook-execution-id
                                smithy/sdk/smithy-types:string)
@@ -2234,7 +2444,8 @@
                                   "message"))
                                 (:shape-name
                                  "LifecycleHookLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type lifecycle-message smithy/sdk/smithy-types:string)
 
@@ -2493,7 +2704,8 @@
                                   "message"))
                                 (:shape-name
                                  "MultipleIamArnsProvidedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
 
@@ -2512,7 +2724,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "OperationNotSupportedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-enum outdated-instances-strategy
     common-lisp:nil
@@ -2608,20 +2821,23 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ResourceArnRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error resource-validation-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ResourceValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error revision-does-not-exist-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "RevisionDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-structure revision-info common-lisp:nil
                                     ((revision-location :target-type
@@ -2663,7 +2879,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "RevisionRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type role smithy/sdk/smithy-types:string)
 
@@ -2671,7 +2888,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "RoleRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-structure rollback-info common-lisp:nil
                                     ((rollback-deployment-id :target-type
@@ -2764,7 +2982,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "TagLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-list tag-list :member tag)
 
@@ -2772,7 +2991,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "TagRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-input tag-resource-input common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -2791,7 +3011,8 @@
                                   "message"))
                                 (:shape-name
                                  "TagSetListLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type target-arn smithy/sdk/smithy-types:string)
 
@@ -2861,7 +3082,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-type time smithy/sdk/smithy-types:timestamp)
 
@@ -2955,12 +3177,14 @@
                                   "message"))
                                 (:shape-name
                                  "TriggerTargetsLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-error
  unsupported-action-for-deployment-type-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
- (:shape-name "UnsupportedActionForDeploymentTypeException") (:error-code 400))
+ (:shape-name "UnsupportedActionForDeploymentTypeException") (:error-code 400)
+ (:base-class codedeploy-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type arn :required

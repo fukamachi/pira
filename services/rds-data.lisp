@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/rds-data (:use)
-                             (:export #:arn #:array-of-array #:array-value
-                              #:array-value-list #:batch-execute-statement
+                             (:export #:access-denied-exception #:arn
+                              #:array-of-array #:array-value #:array-value-list
+                              #:bad-request-exception #:batch-execute-statement
                               #:batch-execute-statement-request
                               #:batch-execute-statement-response
                               #:begin-transaction #:begin-transaction-request
@@ -9,27 +10,45 @@
                               #:boxed-float #:boxed-integer #:boxed-long
                               #:column-metadata #:commit-transaction
                               #:commit-transaction-request
-                              #:commit-transaction-response #:db-name
+                              #:commit-transaction-response
+                              #:database-error-exception
+                              #:database-not-found-exception
+                              #:database-resuming-exception
+                              #:database-unavailable-exception #:db-name
                               #:decimal-return-type #:double-array
                               #:error-message #:execute-sql
                               #:execute-sql-request #:execute-sql-response
                               #:execute-statement #:execute-statement-request
                               #:execute-statement-response #:field #:field-list
-                              #:formatted-sql-records #:id #:integer #:long
-                              #:long-array #:long-return-type #:metadata
-                              #:parameter-name #:rds-data-service #:record
-                              #:records #:records-format-type #:records-updated
+                              #:forbidden-exception #:formatted-sql-records
+                              #:http-endpoint-not-enabled-exception #:id
+                              #:integer #:internal-server-error-exception
+                              #:invalid-resource-state-exception
+                              #:invalid-secret-exception #:long #:long-array
+                              #:long-return-type #:metadata
+                              #:not-found-exception #:parameter-name
+                              #:rds-data-service #:record #:records
+                              #:records-format-type #:records-updated
                               #:result-frame #:result-set-metadata
                               #:result-set-options #:rollback-transaction
                               #:rollback-transaction-request
                               #:rollback-transaction-response #:row
-                              #:sql-parameter #:sql-parameter-sets
-                              #:sql-parameters-list #:sql-records
-                              #:sql-statement #:sql-statement-result
-                              #:sql-statement-results #:string #:string-array
-                              #:struct-value #:transaction-status #:type-hint
-                              #:update-result #:update-results #:value))
+                              #:secrets-error-exception
+                              #:service-unavailable-error #:sql-parameter
+                              #:sql-parameter-sets #:sql-parameters-list
+                              #:sql-records #:sql-statement
+                              #:sql-statement-result #:sql-statement-results
+                              #:statement-timeout-exception #:string
+                              #:string-array #:struct-value
+                              #:transaction-not-found-exception
+                              #:transaction-status #:type-hint
+                              #:unsupported-result-exception #:update-result
+                              #:update-results #:value #:rds-data-error))
 (common-lisp:in-package #:pira/rds-data)
+
+(common-lisp:define-condition rds-data-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service rds-data-service :shape-name
                                    "RdsDataService" :version "2018-08-01"
@@ -47,7 +66,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
 
@@ -72,7 +91,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-structure batch-execute-statement-request
                                     common-lisp:nil
@@ -186,24 +205,24 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DatabaseErrorException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-error database-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DatabaseNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-error database-resuming-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DatabaseResumingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-error database-unavailable-exception common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "DatabaseUnavailableException")
-                                (:error-code 504))
+                                (:error-code 504) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-type db-name smithy/sdk/smithy-types:string)
 
@@ -304,7 +323,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-type formatted-sql-records
                                smithy/sdk/smithy-types:string)
@@ -314,7 +333,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "HttpEndpointNotEnabledException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-type id smithy/sdk/smithy-types:string)
 
@@ -323,20 +342,20 @@
 (smithy/sdk/shapes:define-error internal-server-error-exception common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-state-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidResourceStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-error invalid-secret-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSecretException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-type long smithy/sdk/smithy-types:long)
 
@@ -350,7 +369,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-type parameter-name smithy/sdk/smithy-types:string)
 
@@ -414,12 +433,12 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "SecretsErrorException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-error common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "ServiceUnavailableError")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-structure sql-parameter common-lisp:nil
                                     ((name :target-type parameter-name
@@ -455,7 +474,7 @@
                                  (db-connection-id :target-type long
                                   :member-name "dbConnectionId"))
                                 (:shape-name "StatementTimeoutException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -470,7 +489,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TransactionNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-type transaction-status
                                smithy/sdk/smithy-types:string)
@@ -481,7 +500,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnsupportedResultException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class rds-data-error))
 
 (smithy/sdk/shapes:define-structure update-result common-lisp:nil
                                     ((generated-fields :target-type field-list

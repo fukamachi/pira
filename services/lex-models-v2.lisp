@@ -186,7 +186,7 @@
                               #:condition-operator #:condition-value
                               #:conditional-branch #:conditional-branches
                               #:conditional-specification
-                              #:confidence-threshold
+                              #:confidence-threshold #:conflict-exception
                               #:context-time-to-live-in-seconds
                               #:context-turns-to-live #:conversation-end-state
                               #:conversation-level-intent-classification-result-item
@@ -301,6 +301,7 @@
                               #:intent-sort-attribute #:intent-sort-by
                               #:intent-state #:intent-statistics
                               #:intent-summary #:intent-summary-list
+                              #:internal-server-exception
                               #:invoked-intent-sample #:invoked-intent-samples
                               #:item-id #:kendra-configuration
                               #:kendra-index-arn #:kms-key-arn #:lambda-arn
@@ -348,9 +349,10 @@
                               #:policy
                               #:post-dialog-code-hook-invocation-specification
                               #:post-fulfillment-status-specification
-                              #:presigned-s3url #:principal #:principal-arn
-                              #:principal-list #:priority-value
-                              #:prompt-attempt #:prompt-attempt-specification
+                              #:precondition-failed-exception #:presigned-s3url
+                              #:principal #:principal-arn #:principal-list
+                              #:priority-value #:prompt-attempt
+                              #:prompt-attempt-specification
                               #:prompt-attempts-specification-map
                               #:prompt-max-retries #:prompt-specification
                               #:qin-connect-assistant-arn
@@ -364,6 +366,7 @@
                               #:recommended-intent-summary-list #:record-number
                               #:regex-pattern #:relative-aggregation-duration
                               #:replica-region #:resource-count
+                              #:resource-not-found-exception
                               #:response-specification #:retry-after-seconds
                               #:revision-id #:role-arn #:runtime-hint-details
                               #:runtime-hint-phrase #:runtime-hint-value
@@ -378,6 +381,7 @@
                               #:sample-utterances-list #:sample-value
                               #:search-associated-transcripts #:search-order
                               #:sentiment-analysis-settings #:service-principal
+                              #:service-quota-exceeded-exception
                               #:session-data-sort-by #:session-id
                               #:session-specification #:session-specifications
                               #:session-ttl #:skip-resource-in-use-check
@@ -460,12 +464,12 @@
                               #:test-set-turn-result #:test-set-utterance-text
                               #:text-input-specification #:text-log-destination
                               #:text-log-setting #:text-log-settings-list
-                              #:time-dimension #:time-in-milli-seconds
-                              #:time-value #:timestamp #:transcript
-                              #:transcript-filter #:transcript-format
-                              #:transcript-source-setting #:turn-number
-                              #:turn-specification #:untag-resource
-                              #:update-bot #:update-bot-alias
+                              #:throttling-exception #:time-dimension
+                              #:time-in-milli-seconds #:time-value #:timestamp
+                              #:transcript #:transcript-filter
+                              #:transcript-format #:transcript-source-setting
+                              #:turn-number #:turn-specification
+                              #:untag-resource #:update-bot #:update-bot-alias
                               #:update-bot-locale #:update-bot-recommendation
                               #:update-custom-vocabulary-items-list
                               #:update-export #:update-intent
@@ -489,10 +493,15 @@
                               #:utterance-level-test-results
                               #:utterance-specification
                               #:utterance-specifications #:utterance-understood
-                              #:value #:voice-engine #:voice-id
-                              #:voice-settings
-                              #:wait-and-continue-specification #:weight))
+                              #:validation-exception #:value #:voice-engine
+                              #:voice-id #:voice-settings
+                              #:wait-and-continue-specification #:weight
+                              #:lex-models-v2-error))
 (common-lisp:in-package #:pira/lex-models-v2)
+
+(common-lisp:define-condition lex-models-v2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service lex-model-building-service-v2 :shape-name
                                    "LexModelBuildingServiceV2" :version
@@ -2246,7 +2255,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class lex-models-v2-error))
 
 (smithy/sdk/shapes:define-type context-time-to-live-in-seconds
                                smithy/sdk/smithy-types:integer)
@@ -4866,7 +4876,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class lex-models-v2-error))
 
 (smithy/sdk/shapes:define-structure invoked-intent-sample common-lisp:nil
                                     ((intent-name :target-type name
@@ -6052,7 +6063,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "PreconditionFailedException")
-                                (:error-code 412))
+                                (:error-code 412)
+                                (:base-class lex-models-v2-error))
 
 (smithy/sdk/shapes:define-type presigned-s3url smithy/sdk/smithy-types:string)
 
@@ -6215,7 +6227,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class lex-models-v2-error))
 
 (smithy/sdk/shapes:define-structure response-specification common-lisp:nil
                                     ((message-groups :target-type
@@ -6401,7 +6414,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class lex-models-v2-error))
 
 (smithy/sdk/shapes:define-structure session-data-sort-by common-lisp:nil
                                     ((name :target-type
@@ -7507,7 +7521,8 @@
                                  (message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class lex-models-v2-error))
 
 (smithy/sdk/shapes:define-enum time-dimension
     common-lisp:nil
@@ -8366,7 +8381,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class lex-models-v2-error))
 
 (smithy/sdk/shapes:define-type value smithy/sdk/smithy-types:string)
 

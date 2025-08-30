@@ -20,7 +20,8 @@
                               #:capacity-provider-strategy-item
                               #:capacity-provider-strategy-item-base
                               #:capacity-provider-strategy-item-weight
-                              #:condition #:connection
+                              #:concurrent-modification-exception #:condition
+                              #:connection
                               #:connection-api-key-auth-response-parameters
                               #:connection-arn
                               #:connection-auth-response-parameters
@@ -67,8 +68,12 @@
                               #:event-time #:header-key #:header-parameters-map
                               #:header-value #:header-value-sensitive
                               #:http-parameters #:https-endpoint
-                              #:input-transformer #:input-transformer-path-key
-                              #:integer #:kinesis-parameters #:launch-type
+                              #:illegal-status-exception #:input-transformer
+                              #:input-transformer-path-key #:integer
+                              #:internal-exception
+                              #:invalid-event-pattern-exception
+                              #:invalid-state-exception #:kinesis-parameters
+                              #:launch-type #:limit-exceeded-exception
                               #:limit-max100 #:limit-min1
                               #:list-api-destinations #:list-archives
                               #:list-connections #:list-event-buses
@@ -77,12 +82,13 @@
                               #:list-partner-event-sources #:list-replays
                               #:list-rule-names-by-target #:list-rules
                               #:list-tags-for-resource #:list-targets-by-rule
-                              #:long #:managed-by
+                              #:long #:managed-by #:managed-rule-exception
                               #:maximum-event-age-in-seconds
                               #:maximum-retry-attempts #:message-group-id
                               #:network-configuration #:next-token
                               #:non-partner-event-bus-name
                               #:non-partner-event-bus-name-or-arn
+                              #:operation-disabled-exception
                               #:partner-event-source
                               #:partner-event-source-account
                               #:partner-event-source-account-list
@@ -94,7 +100,8 @@
                               #:placement-constraint-type
                               #:placement-constraints #:placement-strategies
                               #:placement-strategy #:placement-strategy-field
-                              #:placement-strategy-type #:principal
+                              #:placement-strategy-type
+                              #:policy-length-exceeded-exception #:principal
                               #:propagate-tags #:put-events
                               #:put-events-request-entry
                               #:put-events-request-entry-list
@@ -119,7 +126,9 @@
                               #:replay-arn #:replay-description
                               #:replay-destination #:replay-destination-filters
                               #:replay-list #:replay-name #:replay-state
-                              #:replay-state-reason #:resource-arn
+                              #:replay-state-reason
+                              #:resource-already-exists-exception
+                              #:resource-arn #:resource-not-found-exception
                               #:retention-days #:retry-policy #:role-arn #:rule
                               #:rule-arn #:rule-description #:rule-name
                               #:rule-name-list #:rule-response-list
@@ -149,8 +158,13 @@
                               #:update-connection-auth-request-parameters
                               #:update-connection-basic-auth-request-parameters
                               #:update-connection-oauth-client-request-parameters
-                              #:update-connection-oauth-request-parameters))
+                              #:update-connection-oauth-request-parameters
+                              #:cloudwatch-events-error))
 (common-lisp:in-package #:pira/cloudwatch-events)
+
+(common-lisp:define-condition cloudwatch-events-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsevents :shape-name "AWSEvents" :version
                                    "2015-10-07" :title
@@ -405,7 +419,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-events-error))
 
 (smithy/sdk/shapes:define-structure condition common-lisp:nil
                                     ((type :target-type string :required
@@ -1217,7 +1232,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "IllegalStatusException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-events-error))
 
 (smithy/sdk/shapes:define-structure input-transformer common-lisp:nil
                                     ((input-paths-map :target-type
@@ -1237,19 +1253,22 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class cloudwatch-events-error))
 
 (smithy/sdk/shapes:define-error invalid-event-pattern-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidEventPatternException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-events-error))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-events-error))
 
 (smithy/sdk/shapes:define-structure kinesis-parameters common-lisp:nil
                                     ((partition-key-path :target-type
@@ -1268,7 +1287,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-events-error))
 
 (smithy/sdk/shapes:define-type limit-max100 smithy/sdk/smithy-types:integer)
 
@@ -1507,7 +1527,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ManagedRuleException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-events-error))
 
 (smithy/sdk/shapes:define-type maximum-event-age-in-seconds
                                smithy/sdk/smithy-types:integer)
@@ -1535,7 +1556,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "OperationDisabledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-events-error))
 
 (smithy/sdk/shapes:define-structure partner-event-source common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -1613,7 +1635,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "PolicyLengthExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-events-error))
 
 (smithy/sdk/shapes:define-type principal smithy/sdk/smithy-types:string)
 
@@ -1922,7 +1945,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-events-error))
 
 (smithy/sdk/shapes:define-type resource-arn smithy/sdk/smithy-types:string)
 
@@ -1930,7 +1954,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudwatch-events-error))
 
 (smithy/sdk/shapes:define-type retention-days smithy/sdk/smithy-types:integer)
 

@@ -14,23 +14,27 @@
                               #:action-execution-detail-list
                               #:action-execution-filter #:action-execution-id
                               #:action-execution-input
+                              #:action-execution-not-found-exception
                               #:action-execution-output
                               #:action-execution-result
                               #:action-execution-status
                               #:action-execution-token #:action-name
-                              #:action-namespace #:action-owner
-                              #:action-provider #:action-revision
-                              #:action-run-order #:action-state
-                              #:action-state-list #:action-timeout
-                              #:action-type #:action-type-artifact-details
+                              #:action-namespace #:action-not-found-exception
+                              #:action-owner #:action-provider
+                              #:action-revision #:action-run-order
+                              #:action-state #:action-state-list
+                              #:action-timeout #:action-type
+                              #:action-type-artifact-details
                               #:action-type-declaration
                               #:action-type-description #:action-type-executor
                               #:action-type-id #:action-type-identifier
-                              #:action-type-list #:action-type-owner
-                              #:action-type-permissions
+                              #:action-type-list
+                              #:action-type-not-found-exception
+                              #:action-type-owner #:action-type-permissions
                               #:action-type-properties #:action-type-property
                               #:action-type-settings #:action-type-urls
                               #:allowed-account #:allowed-accounts
+                              #:approval-already-completed-exception
                               #:approval-result #:approval-status
                               #:approval-summary #:approval-token #:artifact
                               #:artifact-detail #:artifact-detail-list
@@ -44,22 +48,27 @@
                               #:blocker-type #:boolean #:client-id
                               #:client-request-token #:client-token #:code
                               #:code-pipeline-20150709 #:command #:command-list
+                              #:concurrent-modification-exception
+                              #:concurrent-pipeline-executions-limit-exceeded-exception
                               #:condition #:condition-execution
                               #:condition-execution-status #:condition-list
+                              #:condition-not-overridable-exception
                               #:condition-state #:condition-state-list
-                              #:condition-type #:continuation-token
-                              #:create-custom-action-type #:create-pipeline
-                              #:current-revision #:delete-custom-action-type
-                              #:delete-pipeline #:delete-webhook
-                              #:deploy-action-execution-target
+                              #:condition-type #:conflict-exception
+                              #:continuation-token #:create-custom-action-type
+                              #:create-pipeline #:current-revision
+                              #:delete-custom-action-type #:delete-pipeline
+                              #:delete-webhook #:deploy-action-execution-target
                               #:deploy-action-execution-target-list
                               #:deploy-target-event
                               #:deploy-target-event-context
                               #:deploy-target-event-list
                               #:deregister-webhook-with-third-party
                               #:description #:disable-stage-transition
-                              #:disabled-reason #:enable-stage-transition
-                              #:enabled #:encryption-key #:encryption-key-id
+                              #:disabled-reason
+                              #:duplicated-stop-request-exception
+                              #:enable-stage-transition #:enabled
+                              #:encryption-key #:encryption-key-id
                               #:encryption-key-type #:environment-variable
                               #:environment-variable-list
                               #:environment-variable-name
@@ -88,14 +97,29 @@
                               #:git-pull-request-filter-list #:git-push-filter
                               #:git-push-filter-list #:git-tag-filter-criteria
                               #:git-tag-name-pattern #:git-tag-pattern-list
-                              #:input-artifact #:input-artifact-list #:job
+                              #:input-artifact #:input-artifact-list
+                              #:invalid-action-declaration-exception
+                              #:invalid-approval-token-exception
+                              #:invalid-arn-exception
+                              #:invalid-blocker-declaration-exception
+                              #:invalid-client-token-exception
+                              #:invalid-job-exception
+                              #:invalid-job-state-exception
+                              #:invalid-next-token-exception
+                              #:invalid-nonce-exception
+                              #:invalid-stage-declaration-exception
+                              #:invalid-structure-exception
+                              #:invalid-tags-exception
+                              #:invalid-webhook-authentication-parameters-exception
+                              #:invalid-webhook-filter-pattern-exception #:job
                               #:job-data #:job-details #:job-id #:job-list
-                              #:job-status #:job-timeout
-                              #:job-worker-executor-configuration #:json-path
-                              #:lambda-executor-configuration
+                              #:job-not-found-exception #:job-status
+                              #:job-timeout #:job-worker-executor-configuration
+                              #:json-path #:lambda-executor-configuration
                               #:lambda-function-arn #:last-changed-at
                               #:last-changed-by #:last-updated-by
                               #:latest-in-pipeline-execution-filter
+                              #:limit-exceeded-exception
                               #:list-action-executions #:list-action-types
                               #:list-deploy-action-execution-targets
                               #:list-pipeline-executions #:list-pipelines
@@ -107,20 +131,27 @@
                               #:maximum-artifact-count #:message
                               #:minimum-action-type-artifact-count
                               #:minimum-artifact-count #:next-token #:nonce
+                              #:not-latest-pipeline-execution-exception
                               #:output-artifact #:output-artifact-list
                               #:output-variable #:output-variable-list
                               #:output-variables-key #:output-variables-map
+                              #:output-variables-size-exceeded-exception
                               #:output-variables-value
                               #:override-stage-condition #:percentage
                               #:pipeline-arn #:pipeline-context
                               #:pipeline-declaration #:pipeline-execution
                               #:pipeline-execution-filter
                               #:pipeline-execution-id
+                              #:pipeline-execution-not-found-exception
+                              #:pipeline-execution-not-stoppable-exception
+                              #:pipeline-execution-outdated-exception
                               #:pipeline-execution-status
                               #:pipeline-execution-status-summary
                               #:pipeline-execution-summary
                               #:pipeline-execution-summary-list #:pipeline-list
                               #:pipeline-metadata #:pipeline-name
+                              #:pipeline-name-in-use-exception
+                              #:pipeline-not-found-exception
                               #:pipeline-rollback-metadata
                               #:pipeline-stage-declaration-list
                               #:pipeline-summary #:pipeline-trigger-declaration
@@ -132,6 +163,7 @@
                               #:pipeline-variable-description
                               #:pipeline-variable-list #:pipeline-variable-name
                               #:pipeline-variable-value #:pipeline-version
+                              #:pipeline-version-not-found-exception
                               #:policy-statements-template #:poll-for-jobs
                               #:poll-for-third-party-jobs
                               #:polling-account-list
@@ -143,11 +175,13 @@
                               #:put-third-party-job-success-result
                               #:put-webhook #:query-param-map
                               #:register-webhook-with-third-party
+                              #:request-failed-exception
                               #:resolved-action-configuration-map
                               #:resolved-pipeline-variable
                               #:resolved-pipeline-variable-list
                               #:resolved-rule-configuration-map #:resource-arn
-                              #:result #:retry-attempt #:retry-configuration
+                              #:resource-not-found-exception #:result
+                              #:retry-attempt #:retry-configuration
                               #:retry-stage-execution #:retry-stage-metadata
                               #:retry-trigger #:revision
                               #:revision-change-identifier #:revision-summary
@@ -181,7 +215,9 @@
                               #:stage-conditions-execution #:stage-context
                               #:stage-declaration #:stage-execution
                               #:stage-execution-list #:stage-execution-status
-                              #:stage-name #:stage-retry-mode #:stage-state
+                              #:stage-name #:stage-not-found-exception
+                              #:stage-not-retryable-exception
+                              #:stage-retry-mode #:stage-state
                               #:stage-state-list #:stage-transition-type
                               #:start-pipeline-execution #:start-time-range
                               #:stop-execution-trigger
@@ -195,10 +231,12 @@
                               #:third-party-job #:third-party-job-data
                               #:third-party-job-details #:third-party-job-id
                               #:third-party-job-list #:time #:timestamp
-                              #:transition-state #:trigger-detail
-                              #:trigger-type #:untag-resource
-                              #:update-action-type #:update-pipeline #:url
-                              #:url-template #:version #:webhook-arn
+                              #:too-many-tags-exception #:transition-state
+                              #:trigger-detail #:trigger-type
+                              #:unable-to-rollback-stage-exception
+                              #:untag-resource #:update-action-type
+                              #:update-pipeline #:url #:url-template
+                              #:validation-exception #:version #:webhook-arn
                               #:webhook-auth-configuration
                               #:webhook-auth-configuration-allowed-iprange
                               #:webhook-auth-configuration-secret-token
@@ -206,8 +244,14 @@
                               #:webhook-definition #:webhook-error-code
                               #:webhook-error-message #:webhook-filter-rule
                               #:webhook-filters #:webhook-last-triggered
-                              #:webhook-list #:webhook-name #:webhook-url))
+                              #:webhook-list #:webhook-name
+                              #:webhook-not-found-exception #:webhook-url
+                              #:codepipeline-error))
 (common-lisp:in-package #:pira/codepipeline)
+
+(common-lisp:define-condition codepipeline-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service code-pipeline-20150709 :shape-name
                                    "CodePipeline_20150709" :version
@@ -511,7 +555,8 @@
                                   "message"))
                                 (:shape-name
                                  "ActionExecutionNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-structure action-execution-output common-lisp:nil
                                     ((output-artifacts :target-type
@@ -559,7 +604,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ActionNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-enum action-owner
     common-lisp:nil
@@ -711,7 +757,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ActionTypeNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-type action-type-owner smithy/sdk/smithy-types:string)
 
@@ -780,7 +827,8 @@
                                   "message"))
                                 (:shape-name
                                  "ApprovalAlreadyCompletedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-structure approval-result common-lisp:nil
                                     ((summary :target-type approval-summary
@@ -925,13 +973,14 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error
  concurrent-pipeline-executions-limit-exceeded-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "ConcurrentPipelineExecutionsLimitExceededException")
- (:error-code 400))
+ (:error-code 400) (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-structure condition common-lisp:nil
                                     ((result :target-type result :member-name
@@ -968,7 +1017,8 @@
                                   "message"))
                                 (:shape-name
                                  "ConditionNotOverridableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-structure condition-state common-lisp:nil
                                     ((latest-execution :target-type
@@ -989,7 +1039,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-type continuation-token
                                smithy/sdk/smithy-types:string)
@@ -1159,7 +1210,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "DuplicatedStopRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-input enable-stage-transition-input common-lisp:nil
                                 ((pipeline-name :target-type pipeline-name
@@ -1512,20 +1564,23 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidActionDeclarationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-approval-token-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidApprovalTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-arn-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidArnException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-blocker-declaration-exception
                                 common-lisp:nil
@@ -1533,37 +1588,43 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidBlockerDeclarationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-client-token-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidClientTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-job-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidJobException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-job-state-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidJobStateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-nonce-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidNonceException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-stage-declaration-exception
                                 common-lisp:nil
@@ -1571,25 +1632,28 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidStageDeclarationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-structure-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidStructureException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-tags-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error
  invalid-webhook-authentication-parameters-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "InvalidWebhookAuthenticationParametersException")
- (:error-code 400))
+ (:error-code 400) (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-webhook-filter-pattern-exception
                                 common-lisp:nil
@@ -1597,7 +1661,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidWebhookFilterPatternException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-structure job common-lisp:nil
                                     ((id :target-type job-id :member-name "id")
@@ -1652,7 +1717,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "JobNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-enum job-status
     common-lisp:nil
@@ -1713,7 +1779,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-input list-action-executions-input common-lisp:nil
                                 ((pipeline-name :target-type pipeline-name
@@ -1932,7 +1999,8 @@
                                   "message"))
                                 (:shape-name
                                  "NotLatestPipelineExecutionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-structure output-artifact common-lisp:nil
                                     ((name :target-type artifact-name :required
@@ -1959,7 +2027,8 @@
                                   "message"))
                                 (:shape-name
                                  "OutputVariablesSizeExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-type output-variables-value
                                smithy/sdk/smithy-types:string)
@@ -2074,7 +2143,8 @@
                                   "message"))
                                 (:shape-name
                                  "PipelineExecutionNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error pipeline-execution-not-stoppable-exception
                                 common-lisp:nil
@@ -2082,7 +2152,8 @@
                                   "message"))
                                 (:shape-name
                                  "PipelineExecutionNotStoppableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error pipeline-execution-outdated-exception
                                 common-lisp:nil
@@ -2090,7 +2161,8 @@
                                   "message"))
                                 (:shape-name
                                  "PipelineExecutionOutdatedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-enum pipeline-execution-status
     common-lisp:nil
@@ -2161,13 +2233,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "PipelineNameInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error pipeline-not-found-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "PipelineNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-structure pipeline-rollback-metadata common-lisp:nil
                                     ((rollback-target-pipeline-execution-id
@@ -2262,7 +2336,8 @@
                                   "message"))
                                 (:shape-name
                                  "PipelineVersionNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-type policy-statements-template
                                smithy/sdk/smithy-types:string)
@@ -2435,7 +2510,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "RequestFailedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-map resolved-action-configuration-map :key string
                               :value string)
@@ -2459,7 +2535,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-enum result
     common-lisp:nil
@@ -2950,13 +3027,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "StageNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-error stage-not-retryable-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "StageNotRetryableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-enum stage-retry-mode
     common-lisp:nil
@@ -3172,7 +3251,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-structure transition-state common-lisp:nil
                                     ((enabled :target-type enabled :member-name
@@ -3207,7 +3287,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "UnableToRollbackStageException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type resource-arn
@@ -3246,7 +3327,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-type version smithy/sdk/smithy-types:string)
 
@@ -3321,7 +3403,8 @@
 (smithy/sdk/shapes:define-error webhook-not-found-exception common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "WebhookNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codepipeline-error))
 
 (smithy/sdk/shapes:define-type webhook-url smithy/sdk/smithy-types:string)
 

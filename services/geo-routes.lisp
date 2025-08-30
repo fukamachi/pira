@@ -1,15 +1,15 @@
 (uiop/package:define-package #:pira/geo-routes (:use)
-                             (:export #:api-key #:before-waypoints-list
-                              #:bounding-box #:calculate-isolines
-                              #:calculate-route-matrix #:calculate-routes
-                              #:circle #:cluster-index #:corridor
-                              #:country-code #:country-code3
+                             (:export #:access-denied-exception #:api-key
+                              #:before-waypoints-list #:bounding-box
+                              #:calculate-isolines #:calculate-route-matrix
+                              #:calculate-routes #:circle #:cluster-index
+                              #:corridor #:country-code #:country-code3
                               #:country-code-list #:currency-code #:day-of-week
                               #:dimension-centimeters #:distance-meters
                               #:distance-threshold-list #:duration-seconds
                               #:geometry-format #:heading #:index-list
-                              #:isoline #:isoline-allow-options
-                              #:isoline-avoidance-area
+                              #:internal-server-exception #:isoline
+                              #:isoline-allow-options #:isoline-avoidance-area
                               #:isoline-avoidance-area-geometry
                               #:isoline-avoidance-area-geometry-list
                               #:isoline-avoidance-area-list
@@ -230,10 +230,12 @@
                               #:sensitive-string
                               #:side-of-street-matching-strategy
                               #:snap-to-roads #:speed-kilometers-per-hour
-                              #:time-of-day #:time-threshold-list
+                              #:throttling-exception #:time-of-day
+                              #:time-threshold-list
                               #:timestamp-with-timezone-offset #:traffic-usage
                               #:truck-road-type #:truck-road-type-list
                               #:tunnel-restriction-code #:turn-angle
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:waypoint-id
@@ -278,8 +280,13 @@
                               #:waypoint-optimization-truck-type
                               #:waypoint-optimization-waypoint
                               #:waypoint-optimization-waypoint-list
-                              #:weight-kilograms #:weight-per-axle-group))
+                              #:weight-kilograms #:weight-per-axle-group
+                              #:geo-routes-error))
 (common-lisp:in-package #:pira/geo-routes)
+
+(common-lisp:define-condition geo-routes-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service routes-service :shape-name "RoutesService"
                                    :version "2020-11-19" :title
@@ -331,7 +338,8 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class geo-routes-error))
 
 (smithy/sdk/shapes:define-type api-key smithy/sdk/smithy-types:string)
 
@@ -602,7 +610,8 @@
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class geo-routes-error))
 
 (smithy/sdk/shapes:define-structure isoline common-lisp:nil
                                     ((connections :target-type
@@ -3313,7 +3322,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "Message"
                                   :json-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class geo-routes-error))
 
 (smithy/sdk/shapes:define-type time-of-day smithy/sdk/smithy-types:string)
 
@@ -3347,7 +3357,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "FieldList"
                                   :json-name "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class geo-routes-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

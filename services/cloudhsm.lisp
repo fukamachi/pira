@@ -4,13 +4,16 @@
                               #:client-arn #:client-label #:client-list
                               #:client-token #:client-version
                               #:cloud-hsm-frontend-service
-                              #:cloud-hsm-object-state #:create-hapg
+                              #:cloud-hsm-internal-exception
+                              #:cloud-hsm-object-state
+                              #:cloud-hsm-service-exception #:create-hapg
                               #:create-hsm #:create-luna-client #:delete-hapg
                               #:delete-hsm #:delete-luna-client #:describe-hapg
                               #:describe-hsm #:describe-luna-client #:eni-id
                               #:external-id #:get-config #:hapg-arn #:hapg-list
                               #:hsm-arn #:hsm-list #:hsm-serial-number
-                              #:hsm-status #:iam-role-arn #:ip-address #:label
+                              #:hsm-status #:iam-role-arn
+                              #:invalid-request-exception #:ip-address #:label
                               #:list-available-zones #:list-hapgs #:list-hsms
                               #:list-luna-clients #:list-tags-for-resource
                               #:modify-hapg #:modify-hsm #:modify-luna-client
@@ -20,8 +23,12 @@
                               #:remove-tags-from-resource #:ssh-key #:string
                               #:subnet-id #:subscription-type #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-value #:timestamp
-                              #:vpc-id))
+                              #:vpc-id #:cloudhsm-error))
 (common-lisp:in-package #:pira/cloudhsm)
+
+(common-lisp:define-condition cloudhsm-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service cloud-hsm-frontend-service :shape-name
                                    "CloudHsmFrontendService" :version
@@ -88,7 +95,7 @@
                                  (retryable :target-type boolean :member-name
                                   "retryable"))
                                 (:shape-name "CloudHsmInternalException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class cloudhsm-error))
 
 (smithy/sdk/shapes:define-enum cloud-hsm-object-state
     common-lisp:nil
@@ -102,7 +109,7 @@
                                  (retryable :target-type boolean :member-name
                                   "retryable"))
                                 (:shape-name "CloudHsmServiceException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class cloudhsm-error))
 
 (smithy/sdk/shapes:define-input create-hapg-request common-lisp:nil
                                 ((label :target-type label :required
@@ -352,7 +359,7 @@
                                  (retryable :target-type boolean :member-name
                                   "retryable"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class cloudhsm-error))
 
 (smithy/sdk/shapes:define-type ip-address smithy/sdk/smithy-types:string)
 

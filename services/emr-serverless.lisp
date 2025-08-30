@@ -12,7 +12,8 @@
                               #:configuration #:configuration-list
                               #:configuration-overrides
                               #:configuration-property-key
-                              #:configuration-property-value #:cpu-size
+                              #:configuration-property-value
+                              #:conflict-exception #:cpu-size
                               #:create-application #:create-application-request
                               #:create-application-response #:date
                               #:delete-application #:delete-application-request
@@ -36,7 +37,8 @@
                               #:image-digest #:image-uri #:init-script-path
                               #:initial-capacity-config
                               #:initial-capacity-config-map
-                              #:interactive-configuration #:job-arn
+                              #:interactive-configuration
+                              #:internal-server-exception #:job-arn
                               #:job-driver #:job-run #:job-run-attempt-summary
                               #:job-run-attempts #:job-run-execution-iam-policy
                               #:job-run-id #:job-run-mode #:job-run-resource
@@ -59,11 +61,13 @@
                               #:prometheus-monitoring-configuration
                               #:prometheus-url-string #:query #:release-label
                               #:request-identity-user-arn #:resource-arn
+                              #:resource-not-found-exception
                               #:resource-utilization #:retry-policy
                               #:s3monitoring-configuration
                               #:scheduler-configuration #:security-group-ids
                               #:security-group-string
                               #:sensitive-properties-map
+                              #:service-quota-exceeded-exception
                               #:shutdown-grace-period-in-seconds #:spark-submit
                               #:spark-submit-parameters #:start-application
                               #:start-application-request
@@ -79,13 +83,18 @@
                               #:untag-resource-response #:update-application
                               #:update-application-request
                               #:update-application-response #:uri-string #:url
-                              #:worker-counts #:worker-resource-config
+                              #:validation-exception #:worker-counts
+                              #:worker-resource-config
                               #:worker-type-specification
                               #:worker-type-specification-input
                               #:worker-type-specification-input-map
                               #:worker-type-specification-map
-                              #:worker-type-string))
+                              #:worker-type-string #:emr-serverless-error))
 (common-lisp:in-package #:pira/emr-serverless)
+
+(common-lisp:define-condition emr-serverless-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service aws-toledo-web-service :shape-name
                                    "AwsToledoWebService" :version "2021-07-13"
@@ -305,7 +314,8 @@ common-lisp:nil
                                 ((message :target-type string1024 :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class emr-serverless-error))
 
 (smithy/sdk/shapes:define-type cpu-size smithy/sdk/smithy-types:string)
 
@@ -544,7 +554,8 @@ common-lisp:nil
                                 ((message :target-type string1024 :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class emr-serverless-error))
 
 (smithy/sdk/shapes:define-type job-arn smithy/sdk/smithy-types:string)
 
@@ -908,7 +919,8 @@ common-lisp:nil
                                 ((message :target-type string1024 :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class emr-serverless-error))
 
 (smithy/sdk/shapes:define-structure resource-utilization common-lisp:nil
                                     ((v-cpuhour :target-type
@@ -961,7 +973,8 @@ common-lisp:nil
                                 ((message :target-type string1024 :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class emr-serverless-error))
 
 (smithy/sdk/shapes:define-type shutdown-grace-period-in-seconds
                                smithy/sdk/smithy-types:integer)
@@ -1159,7 +1172,8 @@ common-lisp:nil
                                 ((message :target-type string1024 :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class emr-serverless-error))
 
 (smithy/sdk/shapes:define-type worker-counts smithy/sdk/smithy-types:long)
 

@@ -1,12 +1,14 @@
 (uiop/package:define-package #:pira/b2bi (:use)
-                             (:export #:advanced-options #:amazon-resource-name
-                              #:b2bi #:bucket-name #:business-name #:capability
+                             (:export #:access-denied-exception
+                              #:advanced-options #:amazon-resource-name #:b2bi
+                              #:bucket-name #:business-name #:capability
                               #:capability-configuration #:capability-direction
                               #:capability-id #:capability-list
                               #:capability-name #:capability-options
                               #:capability-summary #:capability-type
-                              #:conversion-source #:conversion-source-format
-                              #:conversion-target #:conversion-target-format
+                              #:conflict-exception #:conversion-source
+                              #:conversion-source-format #:conversion-target
+                              #:conversion-target-format
                               #:conversion-target-format-details
                               #:create-capability #:create-partnership
                               #:create-profile
@@ -23,7 +25,8 @@
                               #:get-transformer #:get-transformer-job
                               #:inbound-edi-options #:input-conversion
                               #:input-file-source #:instructions-documents
-                              #:key-list #:line-length #:line-terminator
+                              #:internal-server-exception #:key-list
+                              #:line-length #:line-terminator
                               #:list-capabilities #:list-partnerships
                               #:list-profiles #:list-tags-for-resource
                               #:list-transformers #:log-group-name #:logging
@@ -37,9 +40,11 @@
                               #:partnership-id #:partnership-list
                               #:partnership-summary #:phone #:profile
                               #:profile-id #:profile-list #:profile-name
-                              #:profile-summary #:resource-arn #:s3key
+                              #:profile-summary #:resource-arn
+                              #:resource-not-found-exception #:s3key
                               #:s3location #:s3location-list
                               #:sample-document-keys #:sample-documents
+                              #:service-quota-exceeded-exception
                               #:start-transformer-job
                               #:starting-functional-group-control-number
                               #:starting-interchange-control-number
@@ -48,15 +53,17 @@
                               #:tag-resource #:tag-value #:template-details
                               #:test-conversion #:test-mapping
                               #:test-mapping-input-file-content #:test-parsing
-                              #:to-format #:trading-partner-id #:transformer
+                              #:throttling-exception #:to-format
+                              #:trading-partner-id #:transformer
                               #:transformer-id #:transformer-job-id
                               #:transformer-job-status #:transformer-list
                               #:transformer-name #:transformer-status
                               #:transformer-summary #:untag-resource
                               #:update-capability #:update-partnership
                               #:update-profile #:update-transformer
-                              #:validation-messages #:wrap-format
-                              #:wrap-options #:x12acknowledgment-options
+                              #:validation-exception #:validation-messages
+                              #:wrap-format #:wrap-options
+                              #:x12acknowledgment-options
                               #:x12acknowledgment-requested-code
                               #:x12advanced-options
                               #:x12application-receiver-code
@@ -76,8 +83,12 @@
                               #:x12split-by #:x12split-options
                               #:x12technical-acknowledgment
                               #:x12transaction-set #:x12usage-indicator-code
-                              #:x12validate-edi #:x12version))
+                              #:x12validate-edi #:x12version #:b2bi-error))
 (common-lisp:in-package #:pira/b2bi)
+
+(common-lisp:define-condition b2bi-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service b2bi :shape-name "B2BI" :version
                                    "2022-06-23" :title
@@ -99,7 +110,7 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class b2bi-error))
 
 (smithy/sdk/shapes:define-structure advanced-options common-lisp:nil
                                     ((x12 :target-type x12advanced-options
@@ -165,7 +176,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class b2bi-error))
 
 (smithy/sdk/shapes:define-structure conversion-source common-lisp:nil
                                     ((file-format :target-type
@@ -725,7 +736,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class b2bi-error))
 
 (smithy/sdk/shapes:define-list key-list :member sample-document-keys)
 
@@ -949,7 +960,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class b2bi-error))
 
 (smithy/sdk/shapes:define-type s3key smithy/sdk/smithy-types:string)
 
@@ -994,7 +1005,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class b2bi-error))
 
 (smithy/sdk/shapes:define-input start-transformer-job-request common-lisp:nil
                                 ((input-file :target-type s3location :required
@@ -1127,7 +1138,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class b2bi-error))
 
 (smithy/sdk/shapes:define-enum to-format
     common-lisp:nil
@@ -1403,7 +1414,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class b2bi-error))
 
 (smithy/sdk/shapes:define-list validation-messages :member
                                smithy/sdk/smithy-types:string)

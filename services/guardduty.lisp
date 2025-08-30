@@ -1,9 +1,9 @@
 (uiop/package:define-package #:pira/guardduty (:use)
                              (:export #:accept-administrator-invitation
                               #:accept-invitation #:access-control-list
-                              #:access-key #:access-key-details #:account
-                              #:account-detail #:account-details
-                              #:account-free-trial-info
+                              #:access-denied-exception #:access-key
+                              #:access-key-details #:account #:account-detail
+                              #:account-details #:account-free-trial-info
                               #:account-free-trial-infos #:account-id
                               #:account-ids #:account-level-permissions
                               #:account-statistics #:action #:actor #:actor-ids
@@ -18,11 +18,12 @@
                               #:anomaly-unusual-behavior-feature
                               #:archive-findings #:auto-enable-members
                               #:autonomous-system #:aws-api-call-action
-                              #:behavior #:block-public-access #:boolean
+                              #:bad-request-exception #:behavior
+                              #:block-public-access #:boolean
                               #:bucket-level-permissions #:bucket-policy #:city
                               #:client-token #:cloud-trail-configuration-result
-                              #:cluster-status #:condition #:container
-                              #:container-finding-resource
+                              #:cluster-status #:condition #:conflict-exception
+                              #:container #:container-finding-resource
                               #:container-image-uid
                               #:container-instance-details #:container-uid
                               #:container-uids #:containers
@@ -127,7 +128,8 @@
                               #:indicator #:indicator-title #:indicator-type
                               #:indicator-value-string #:indicator-values
                               #:indicators #:instance-arn #:instance-details
-                              #:integer #:integer-value-with-max #:invitation
+                              #:integer #:integer-value-with-max
+                              #:internal-server-error-exception #:invitation
                               #:invitations #:invite-members #:ip-set-format
                               #:ip-set-ids #:ip-set-status #:ipv6addresses
                               #:issues #:item-path #:item-paths
@@ -233,10 +235,11 @@
                               #:remote-account-details #:remote-ip-details
                               #:remote-port-details #:resource #:resource-arn
                               #:resource-data #:resource-details
-                              #:resource-list #:resource-statistics
-                              #:resource-type #:resource-uids #:resource-v2
-                              #:resources #:runtime-context #:runtime-details
-                              #:s3bucket #:s3bucket-detail #:s3bucket-details
+                              #:resource-list #:resource-not-found-exception
+                              #:resource-statistics #:resource-type
+                              #:resource-uids #:resource-v2 #:resources
+                              #:runtime-context #:runtime-details #:s3bucket
+                              #:s3bucket-detail #:s3bucket-details
                               #:s3logs-configuration
                               #:s3logs-configuration-result #:s3object
                               #:s3object-detail #:s3object-details
@@ -293,8 +296,13 @@
                               #:usage-top-accounts-result
                               #:usage-top-accounts-result-list #:user #:volume
                               #:volume-detail #:volume-details #:volume-mount
-                              #:volume-mounts #:volumes #:vpc-config))
+                              #:volume-mounts #:volumes #:vpc-config
+                              #:guardduty-error))
 (common-lisp:in-package #:pira/guardduty)
+
+(common-lisp:define-condition guardduty-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service guard-duty-apiservice :shape-name
                                    "GuardDutyAPIService" :version "2017-11-28"
@@ -417,7 +425,7 @@
                                  (type :target-type string :member-name "Type"
                                   :json-name "__type"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class guardduty-error))
 
 (smithy/sdk/shapes:define-structure access-key common-lisp:nil
                                     ((principal-id :target-type string
@@ -737,7 +745,7 @@
                                  (type :target-type string :member-name "Type"
                                   :json-name "__type"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class guardduty-error))
 
 (smithy/sdk/shapes:define-map behavior :key string :value
                               anomaly-unusual-behavior-feature)
@@ -847,7 +855,7 @@
                                  (type :target-type string :member-name "Type"
                                   :json-name "__type"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class guardduty-error))
 
 (smithy/sdk/shapes:define-structure container common-lisp:nil
                                     ((container-runtime :target-type string
@@ -2943,7 +2951,7 @@
                                  (type :target-type string :member-name "Type"
                                   :json-name "__type"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class guardduty-error))
 
 (smithy/sdk/shapes:define-structure invitation common-lisp:nil
                                     ((account-id :target-type account-id
@@ -4594,7 +4602,7 @@
                                  (type :target-type string :member-name "Type"
                                   :json-name "__type"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class guardduty-error))
 
 (smithy/sdk/shapes:define-structure resource-statistics common-lisp:nil
                                     ((account-id :target-type string

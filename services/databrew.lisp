@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/databrew (:use)
-                             (:export #:awsglue-data-brew #:account-id
+                             (:export #:awsglue-data-brew
+                              #:access-denied-exception #:account-id
                               #:action-id #:allowed-statistic-list
                               #:allowed-statistics #:analytics-mode #:arn
                               #:assume-control #:attempt
@@ -12,12 +13,12 @@
                               #:compression-format #:condition
                               #:condition-expression
                               #:condition-expression-list #:condition-value
-                              #:create-column #:create-dataset
-                              #:create-profile-job #:create-project
-                              #:create-recipe #:create-recipe-job
-                              #:create-ruleset #:create-schedule #:created-by
-                              #:cron-expression #:csv-options
-                              #:csv-output-options
+                              #:conflict-exception #:create-column
+                              #:create-dataset #:create-profile-job
+                              #:create-project #:create-recipe
+                              #:create-recipe-job #:create-ruleset
+                              #:create-schedule #:created-by #:cron-expression
+                              #:csv-options #:csv-output-options
                               #:data-catalog-input-definition
                               #:data-catalog-output #:data-catalog-output-list
                               #:database-input-definition #:database-name
@@ -38,8 +39,9 @@
                               #:execution-time #:expression #:files-limit
                               #:filter-expression #:format-options
                               #:glue-connection-name #:header-row
-                              #:hidden-column-list #:input #:input-format #:job
-                              #:job-list #:job-name #:job-name-list #:job-run
+                              #:hidden-column-list #:input #:input-format
+                              #:internal-server-exception #:job #:job-list
+                              #:job-name #:job-name-list #:job-run
                               #:job-run-error-message #:job-run-id
                               #:job-run-list #:job-run-state #:job-sample
                               #:job-size #:job-type #:json-options #:key
@@ -66,20 +68,22 @@
                               #:recipe-list #:recipe-name #:recipe-reference
                               #:recipe-step #:recipe-step-list #:recipe-version
                               #:recipe-version-error-detail
-                              #:recipe-version-list #:result #:row-range #:rule
-                              #:rule-count #:rule-list #:rule-name
-                              #:ruleset-description #:ruleset-item
+                              #:recipe-version-list
+                              #:resource-not-found-exception #:result
+                              #:row-range #:rule #:rule-count #:rule-list
+                              #:rule-name #:ruleset-description #:ruleset-item
                               #:ruleset-item-list #:ruleset-name #:s3location
                               #:s3table-output-options #:sample #:sample-mode
                               #:sample-size #:sample-type #:schedule
                               #:schedule-list #:schedule-name
-                              #:send-project-session-action #:session-status
-                              #:sheet-index #:sheet-index-list #:sheet-name
-                              #:sheet-name-list #:source #:start-column-index
-                              #:start-job-run #:start-project-session
-                              #:start-row-index #:started-by #:statistic
-                              #:statistic-list #:statistic-override
-                              #:statistic-override-list
+                              #:send-project-session-action
+                              #:service-quota-exceeded-exception
+                              #:session-status #:sheet-index #:sheet-index-list
+                              #:sheet-name #:sheet-name-list #:source
+                              #:start-column-index #:start-job-run
+                              #:start-project-session #:start-row-index
+                              #:started-by #:statistic #:statistic-list
+                              #:statistic-override #:statistic-override-list
                               #:statistics-configuration #:step-index
                               #:stop-job-run #:table-name #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
@@ -91,9 +95,15 @@
                               #:update-recipe #:update-recipe-job
                               #:update-ruleset #:update-schedule
                               #:validation-configuration
-                              #:validation-configuration-list #:validation-mode
-                              #:value-reference #:values-map #:view-frame))
+                              #:validation-configuration-list
+                              #:validation-exception #:validation-mode
+                              #:value-reference #:values-map #:view-frame
+                              #:databrew-error))
 (common-lisp:in-package #:pira/databrew)
+
+(common-lisp:define-condition databrew-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsglue-data-brew :shape-name
                                    "AWSGlueDataBrew" :version "2017-07-25"
@@ -133,7 +143,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class databrew-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -249,7 +259,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class databrew-error))
 
 (smithy/sdk/shapes:define-type create-column smithy/sdk/smithy-types:boolean)
 
@@ -1065,7 +1075,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class databrew-error))
 
 (smithy/sdk/shapes:define-structure job common-lisp:nil
                                     ((account-id :target-type account-id
@@ -1662,7 +1672,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class databrew-error))
 
 (smithy/sdk/shapes:define-type result smithy/sdk/smithy-types:string)
 
@@ -1822,7 +1832,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class databrew-error))
 
 (smithy/sdk/shapes:define-enum session-status
     common-lisp:nil
@@ -2161,7 +2171,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class databrew-error))
 
 (smithy/sdk/shapes:define-enum validation-mode
     common-lisp:nil

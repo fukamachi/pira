@@ -1,8 +1,11 @@
 (uiop/package:define-package #:pira/connect-contact-lens (:use)
-                             (:export #:amazon-connect-contact-lens
-                              #:categories #:category-details #:category-name
+                             (:export #:access-denied-exception
+                              #:amazon-connect-contact-lens #:categories
+                              #:category-details #:category-name
                               #:character-offset #:character-offsets
-                              #:contact-id #:instance-id #:issue-detected
+                              #:contact-id #:instance-id
+                              #:internal-service-exception
+                              #:invalid-request-exception #:issue-detected
                               #:issues-detected
                               #:list-realtime-contact-analysis-segments
                               #:matched-categories #:matched-details
@@ -15,9 +18,15 @@
                               #:post-contact-summary-status
                               #:realtime-contact-analysis-segment
                               #:realtime-contact-analysis-segments
-                              #:sentiment-value #:transcript
-                              #:transcript-content #:transcript-id))
+                              #:resource-not-found-exception #:sentiment-value
+                              #:throttling-exception #:transcript
+                              #:transcript-content #:transcript-id
+                              #:connect-contact-lens-error))
 (common-lisp:in-package #:pira/connect-contact-lens)
+
+(common-lisp:define-condition connect-contact-lens-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-connect-contact-lens :shape-name
                                    "AmazonConnectContactLens" :version
@@ -40,7 +49,8 @@
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class connect-contact-lens-error))
 
 (smithy/sdk/shapes:define-structure categories common-lisp:nil
                                     ((matched-categories :target-type
@@ -80,13 +90,15 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class connect-contact-lens-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class connect-contact-lens-error))
 
 (smithy/sdk/shapes:define-structure issue-detected common-lisp:nil
                                     ((character-offsets :target-type
@@ -192,7 +204,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class connect-contact-lens-error))
 
 (smithy/sdk/shapes:define-enum sentiment-value
     common-lisp:nil
@@ -204,7 +217,8 @@
                                 ((message :target-type message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class connect-contact-lens-error))
 
 (smithy/sdk/shapes:define-structure transcript common-lisp:nil
                                     ((id :target-type transcript-id :required

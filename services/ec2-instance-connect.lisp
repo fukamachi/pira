@@ -1,11 +1,25 @@
 (uiop/package:define-package #:pira/ec2-instance-connect (:use)
                              (:export #:awsec2instance-connect-service
-                              #:availability-zone #:instance-id
-                              #:instance-osuser #:request-id #:sshpublic-key
-                              #:send-sshpublic-key
-                              #:send-serial-console-sshpublic-key #:serial-port
-                              #:string #:success))
+                              #:auth-exception #:availability-zone
+                              #:ec2instance-not-found-exception
+                              #:ec2instance-state-invalid-exception
+                              #:ec2instance-type-invalid-exception
+                              #:ec2instance-unavailable-exception #:instance-id
+                              #:instance-osuser #:invalid-args-exception
+                              #:request-id #:sshpublic-key #:send-sshpublic-key
+                              #:send-serial-console-sshpublic-key
+                              #:serial-console-access-disabled-exception
+                              #:serial-console-session-limit-exceeded-exception
+                              #:serial-console-session-unavailable-exception
+                              #:serial-console-session-unsupported-exception
+                              #:serial-port #:service-exception #:string
+                              #:success #:throttling-exception
+                              #:ec2-instance-connect-error))
 (common-lisp:in-package #:pira/ec2-instance-connect)
+
+(common-lisp:define-condition ec2-instance-connect-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsec2instance-connect-service :shape-name
                                    "AWSEC2InstanceConnectService" :version
@@ -31,7 +45,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "AuthException")
-                                (:error-name "Forbidden") (:error-code 403))
+                                (:error-name "Forbidden") (:error-code 403)
+                                (:base-class ec2-instance-connect-error))
 
 (smithy/sdk/shapes:define-type availability-zone smithy/sdk/smithy-types:string)
 
@@ -40,7 +55,8 @@
                                   "Message"))
                                 (:shape-name "EC2InstanceNotFoundException")
                                 (:error-name "EC2InstanceNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class ec2-instance-connect-error))
 
 (smithy/sdk/shapes:define-error ec2instance-state-invalid-exception
                                 common-lisp:nil
@@ -49,7 +65,8 @@
                                 (:shape-name
                                  "EC2InstanceStateInvalidException")
                                 (:error-name "EC2InstanceStateInvalid")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ec2-instance-connect-error))
 
 (smithy/sdk/shapes:define-error ec2instance-type-invalid-exception
                                 common-lisp:nil
@@ -57,7 +74,8 @@
                                   "Message"))
                                 (:shape-name "EC2InstanceTypeInvalidException")
                                 (:error-name "EC2InstanceTypeInvalid")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ec2-instance-connect-error))
 
 (smithy/sdk/shapes:define-error ec2instance-unavailable-exception
                                 common-lisp:nil
@@ -65,7 +83,8 @@
                                   "Message"))
                                 (:shape-name "EC2InstanceUnavailableException")
                                 (:error-name "EC2InstanceUnavailable")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class ec2-instance-connect-error))
 
 (smithy/sdk/shapes:define-type instance-id smithy/sdk/smithy-types:string)
 
@@ -76,7 +95,8 @@
                                   "Message"))
                                 (:shape-name "InvalidArgsException")
                                 (:error-name "InvalidArguments")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ec2-instance-connect-error))
 
 (smithy/sdk/shapes:define-type request-id smithy/sdk/smithy-types:string)
 
@@ -133,7 +153,8 @@
                                 (:shape-name
                                  "SerialConsoleAccessDisabledException")
                                 (:error-name "SerialConsoleAccessDisabled")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class ec2-instance-connect-error))
 
 (smithy/sdk/shapes:define-error serial-console-session-limit-exceeded-exception
                                 common-lisp:nil
@@ -143,7 +164,8 @@
                                  "SerialConsoleSessionLimitExceededException")
                                 (:error-name
                                  "SerialConsoleSessionLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ec2-instance-connect-error))
 
 (smithy/sdk/shapes:define-error serial-console-session-unavailable-exception
                                 common-lisp:nil
@@ -152,7 +174,8 @@
                                 (:shape-name
                                  "SerialConsoleSessionUnavailableException")
                                 (:error-name "SerialConsoleSessionUnavailable")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class ec2-instance-connect-error))
 
 (smithy/sdk/shapes:define-error serial-console-session-unsupported-exception
                                 common-lisp:nil
@@ -161,7 +184,8 @@
                                 (:shape-name
                                  "SerialConsoleSessionUnsupportedException")
                                 (:error-name "SerialConsoleSessionUnsupported")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class ec2-instance-connect-error))
 
 (smithy/sdk/shapes:define-type serial-port smithy/sdk/smithy-types:integer)
 
@@ -170,7 +194,8 @@
                                   "Message"))
                                 (:shape-name "ServiceException")
                                 (:error-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class ec2-instance-connect-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -181,7 +206,8 @@
                                   "Message"))
                                 (:shape-name "ThrottlingException")
                                 (:error-name "TooManyRequests")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class ec2-instance-connect-error))
 
 (smithy/sdk/operation:define-operation send-sshpublic-key :shape-name
                                        "SendSSHPublicKey" :input

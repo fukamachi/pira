@@ -15,7 +15,8 @@
                               #:deployment-specifications-field
                               #:deployment-status #:event-id #:event-status
                               #:get-deployment #:get-workload
-                              #:get-workload-deployment-pattern #:key-string
+                              #:get-workload-deployment-pattern
+                              #:internal-server-exception #:key-string
                               #:launch-wizard #:list-deployment-events
                               #:list-deployments #:list-tags-for-resource
                               #:list-workload-deployment-patterns
@@ -23,11 +24,14 @@
                               #:max-deployment-results
                               #:max-workload-deployment-pattern-results
                               #:max-workload-results #:next-token
-                              #:settings-set #:settings-set-name
+                              #:resource-limit-exception
+                              #:resource-not-found-exception #:settings-set
+                              #:settings-set-name
                               #:specifications-conditional-data #:tag-key
                               #:tag-key-list #:tag-resource #:tag-value #:tags
-                              #:untag-resource #:value-string #:workload
-                              #:workload-data #:workload-data-summary
+                              #:untag-resource #:validation-exception
+                              #:value-string #:workload #:workload-data
+                              #:workload-data-summary
                               #:workload-data-summary-list
                               #:workload-deployment-pattern
                               #:workload-deployment-pattern-data
@@ -35,8 +39,12 @@
                               #:workload-deployment-pattern-data-summary-list
                               #:workload-deployment-pattern-status
                               #:workload-name #:workload-status
-                              #:workload-version-name))
+                              #:workload-version-name #:launch-wizard-error))
 (common-lisp:in-package #:pira/launch-wizard)
+
+(common-lisp:define-condition launch-wizard-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service launch-wizard :shape-name "LaunchWizard"
                                    :version "2018-05-10" :title
@@ -309,7 +317,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class launch-wizard-error))
 
 (smithy/sdk/shapes:define-type key-string smithy/sdk/smithy-types:string)
 
@@ -418,14 +427,16 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceLimitException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class launch-wizard-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class launch-wizard-error))
 
 common-lisp:nil
 
@@ -474,7 +485,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class launch-wizard-error))
 
 (smithy/sdk/shapes:define-type value-string smithy/sdk/smithy-types:string)
 

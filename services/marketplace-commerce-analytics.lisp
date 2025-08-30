@@ -5,10 +5,16 @@
                               #:destination-s3prefix #:exception-message
                               #:from-date #:generate-data-set
                               #:marketplace-commerce-analytics20150701
+                              #:marketplace-commerce-analytics-exception
                               #:optional-key #:optional-value #:role-name-arn
                               #:sns-topic-arn #:start-support-data-export
-                              #:support-data-set-type))
+                              #:support-data-set-type
+                              #:marketplace-commerce-analytics-error))
 (common-lisp:in-package #:pira/marketplace-commerce-analytics)
+
+(common-lisp:define-condition marketplace-commerce-analytics-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service marketplace-commerce-analytics20150701
                                    :shape-name
@@ -136,7 +142,9 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MarketplaceCommerceAnalyticsException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class
+                                 marketplace-commerce-analytics-error))
 
 (smithy/sdk/shapes:define-type optional-key smithy/sdk/smithy-types:string)
 

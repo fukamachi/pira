@@ -1,11 +1,14 @@
 (uiop/package:define-package #:pira/elasticache (:use)
-                             (:export #:azmode #:access-string
-                              #:add-tags-to-resource #:allowed-node-group-id
-                              #:amazon-elasti-cache-v9
+                             (:export
+                              #:apicall-rate-for-customer-exceeded-fault
+                              #:azmode #:access-string #:add-tags-to-resource
+                              #:allowed-node-group-id #:amazon-elasti-cache-v9
                               #:auth-token-update-status
                               #:auth-token-update-strategy-type
                               #:authentication #:authentication-mode
                               #:authentication-type
+                              #:authorization-already-exists-fault
+                              #:authorization-not-found-fault
                               #:authorize-cache-security-group-ingress
                               #:automatic-failover-status #:availability-zone
                               #:availability-zones-list
@@ -13,7 +16,9 @@
                               #:batch-apply-update-action
                               #:batch-stop-update-action #:boolean
                               #:boolean-optional #:cache-cluster
+                              #:cache-cluster-already-exists-fault
                               #:cache-cluster-id-list #:cache-cluster-list
+                              #:cache-cluster-not-found-fault
                               #:cache-engine-version
                               #:cache-engine-version-list #:cache-node
                               #:cache-node-ids-list #:cache-node-list
@@ -24,19 +29,31 @@
                               #:cache-node-update-status
                               #:cache-node-update-status-list
                               #:cache-parameter-group
+                              #:cache-parameter-group-already-exists-fault
                               #:cache-parameter-group-details
                               #:cache-parameter-group-list
                               #:cache-parameter-group-name-message
+                              #:cache-parameter-group-not-found-fault
+                              #:cache-parameter-group-quota-exceeded-fault
                               #:cache-parameter-group-status
                               #:cache-security-group
+                              #:cache-security-group-already-exists-fault
                               #:cache-security-group-membership
                               #:cache-security-group-membership-list
                               #:cache-security-group-name-list
+                              #:cache-security-group-not-found-fault
+                              #:cache-security-group-quota-exceeded-fault
                               #:cache-security-groups #:cache-subnet-group
-                              #:cache-subnet-groups #:cache-usage-limits
-                              #:change-type
+                              #:cache-subnet-group-already-exists-fault
+                              #:cache-subnet-group-in-use
+                              #:cache-subnet-group-not-found-fault
+                              #:cache-subnet-group-quota-exceeded-fault
+                              #:cache-subnet-groups
+                              #:cache-subnet-quota-exceeded-fault
+                              #:cache-usage-limits #:change-type
                               #:cloud-watch-logs-destination-details
                               #:cluster-id-list #:cluster-mode
+                              #:cluster-quota-for-customer-exceeded-fault
                               #:complete-migration #:configure-shard
                               #:copy-serverless-cache-snapshot #:copy-snapshot
                               #:create-cache-cluster
@@ -52,7 +69,9 @@
                               #:customer-node-endpoint-list #:data-storage
                               #:data-storage-unit #:data-tiering-status
                               #:decrease-node-groups-in-global-replication-group
-                              #:decrease-replica-count #:delete-cache-cluster
+                              #:decrease-replica-count
+                              #:default-user-associated-to-user-group-fault
+                              #:default-user-required #:delete-cache-cluster
                               #:delete-cache-parameter-group
                               #:delete-cache-security-group
                               #:delete-cache-subnet-group
@@ -80,10 +99,10 @@
                               #:describe-users #:destination-details
                               #:destination-type
                               #:disassociate-global-replication-group #:double
-                              #:ec2security-group #:ec2security-group-list
-                              #:ecpuper-second #:endpoint #:engine-defaults
-                              #:engine-type #:event #:event-list
-                              #:exception-message
+                              #:duplicate-user-name-fault #:ec2security-group
+                              #:ec2security-group-list #:ecpuper-second
+                              #:endpoint #:engine-defaults #:engine-type
+                              #:event #:event-list #:exception-message
                               #:export-serverless-cache-snapshot
                               #:failover-global-replication-group #:filter
                               #:filter-list #:filter-name #:filter-value
@@ -91,15 +110,33 @@
                               #:global-node-group-id-list
                               #:global-node-group-list
                               #:global-replication-group
+                              #:global-replication-group-already-exists-fault
                               #:global-replication-group-info
                               #:global-replication-group-list
                               #:global-replication-group-member
                               #:global-replication-group-member-list
+                              #:global-replication-group-not-found-fault
                               #:increase-node-groups-in-global-replication-group
                               #:increase-replica-count
-                              #:input-authentication-type #:integer
-                              #:integer-optional #:ip-discovery #:key-list
-                              #:kinesis-firehose-destination-details
+                              #:input-authentication-type
+                              #:insufficient-cache-cluster-capacity-fault
+                              #:integer #:integer-optional #:invalid-arnfault
+                              #:invalid-cache-cluster-state-fault
+                              #:invalid-cache-parameter-group-state-fault
+                              #:invalid-cache-security-group-state-fault
+                              #:invalid-credentials-exception
+                              #:invalid-global-replication-group-state-fault
+                              #:invalid-kmskey-fault
+                              #:invalid-parameter-combination-exception
+                              #:invalid-parameter-value-exception
+                              #:invalid-replication-group-state-fault
+                              #:invalid-serverless-cache-snapshot-state-fault
+                              #:invalid-serverless-cache-state-fault
+                              #:invalid-snapshot-state-fault #:invalid-subnet
+                              #:invalid-user-group-state-fault
+                              #:invalid-user-state-fault
+                              #:invalid-vpcnetwork-state-fault #:ip-discovery
+                              #:key-list #:kinesis-firehose-destination-details
                               #:list-allowed-node-type-modifications
                               #:list-tags-for-resource
                               #:log-delivery-configuration
@@ -115,20 +152,26 @@
                               #:modify-replication-group-shard-configuration
                               #:modify-serverless-cache #:modify-user
                               #:modify-user-group #:multi-azstatus
-                              #:network-type #:network-type-list #:node-group
+                              #:network-type #:network-type-list
+                              #:no-operation-fault #:node-group
                               #:node-group-configuration
                               #:node-group-configuration-list #:node-group-list
                               #:node-group-member #:node-group-member-list
                               #:node-group-member-update-status
                               #:node-group-member-update-status-list
+                              #:node-group-not-found-fault
                               #:node-group-update-status
                               #:node-group-update-status-list
+                              #:node-groups-per-replication-group-quota-exceeded-fault
                               #:node-groups-to-remove-list
-                              #:node-groups-to-retain-list #:node-snapshot
-                              #:node-snapshot-list #:node-type-list
-                              #:node-update-initiated-by #:node-update-status
-                              #:notification-configuration #:outpost-arns-list
-                              #:outpost-mode #:parameter #:parameter-name-value
+                              #:node-groups-to-retain-list
+                              #:node-quota-for-cluster-exceeded-fault
+                              #:node-quota-for-customer-exceeded-fault
+                              #:node-snapshot #:node-snapshot-list
+                              #:node-type-list #:node-update-initiated-by
+                              #:node-update-status #:notification-configuration
+                              #:outpost-arns-list #:outpost-mode #:parameter
+                              #:parameter-name-value
                               #:parameter-name-value-list #:parameters-list
                               #:password-list-input
                               #:pending-automatic-failover-status
@@ -147,13 +190,22 @@
                               #:remove-replicas-list
                               #:remove-tags-from-resource
                               #:replica-configuration-list #:replication-group
+                              #:replication-group-already-exists-fault
+                              #:replication-group-already-under-migration-fault
                               #:replication-group-id-list
                               #:replication-group-list
+                              #:replication-group-not-found-fault
+                              #:replication-group-not-under-migration-fault
                               #:replication-group-outpost-arn-list
                               #:replication-group-pending-modified-values
-                              #:reserved-cache-node #:reserved-cache-node-list
+                              #:reserved-cache-node
+                              #:reserved-cache-node-already-exists-fault
+                              #:reserved-cache-node-list
+                              #:reserved-cache-node-not-found-fault
+                              #:reserved-cache-node-quota-exceeded-fault
                               #:reserved-cache-nodes-offering
                               #:reserved-cache-nodes-offering-list
+                              #:reserved-cache-nodes-offering-not-found-fault
                               #:reset-cache-parameter-group
                               #:resharding-configuration
                               #:resharding-configuration-list
@@ -163,19 +215,35 @@
                               #:security-group-membership
                               #:security-group-membership-list
                               #:serverless-cache
+                              #:serverless-cache-already-exists-fault
                               #:serverless-cache-configuration
                               #:serverless-cache-list
+                              #:serverless-cache-not-found-fault
+                              #:serverless-cache-quota-for-customer-exceeded-fault
                               #:serverless-cache-snapshot
-                              #:serverless-cache-snapshot-list #:service-update
-                              #:service-update-list #:service-update-severity
-                              #:service-update-status
+                              #:serverless-cache-snapshot-already-exists-fault
+                              #:serverless-cache-snapshot-list
+                              #:serverless-cache-snapshot-not-found-fault
+                              #:serverless-cache-snapshot-quota-exceeded-fault
+                              #:service-linked-role-not-found-fault
+                              #:service-update #:service-update-list
+                              #:service-update-not-found-fault
+                              #:service-update-severity #:service-update-status
                               #:service-update-status-list
                               #:service-update-type #:sla-met #:slot-migration
-                              #:snapshot #:snapshot-arns-list #:snapshot-list
-                              #:source-type #:start-migration #:string #:subnet
+                              #:snapshot #:snapshot-already-exists-fault
+                              #:snapshot-arns-list
+                              #:snapshot-feature-not-supported-fault
+                              #:snapshot-list #:snapshot-not-found-fault
+                              #:snapshot-quota-exceeded-fault #:source-type
+                              #:start-migration #:string #:subnet
                               #:subnet-identifier-list #:subnet-ids-list
-                              #:subnet-list #:subnet-outpost #:tstamp #:tag
-                              #:tag-list #:tag-list-message #:test-failover
+                              #:subnet-in-use #:subnet-list
+                              #:subnet-not-allowed-fault #:subnet-outpost
+                              #:tstamp #:tag #:tag-list #:tag-list-message
+                              #:tag-not-found-fault
+                              #:tag-quota-per-resource-exceeded #:test-failover
+                              #:test-failover-not-available-fault
                               #:test-migration #:time-range-filter
                               #:transit-encryption-mode
                               #:ugreplication-group-id-list
@@ -185,14 +253,22 @@
                               #:update-action-list
                               #:update-action-results-message
                               #:update-action-status
-                              #:update-action-status-list #:user #:user-group
-                              #:user-group-id #:user-group-id-list
-                              #:user-group-id-list-input #:user-group-list
+                              #:update-action-status-list #:user
+                              #:user-already-exists-fault #:user-group
+                              #:user-group-already-exists-fault #:user-group-id
+                              #:user-group-id-list #:user-group-id-list-input
+                              #:user-group-list #:user-group-not-found-fault
                               #:user-group-pending-changes
+                              #:user-group-quota-exceeded-fault
                               #:user-groups-update-status #:user-id
                               #:user-id-list #:user-id-list-input #:user-list
-                              #:user-name))
+                              #:user-name #:user-not-found-fault
+                              #:user-quota-exceeded-fault #:elasticache-error))
 (common-lisp:in-package #:pira/elasticache)
+
+(common-lisp:define-condition elasticache-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-elasti-cache-v9 :shape-name
                                    "AmazonElastiCacheV9" :version "2015-02-02"
@@ -287,7 +363,8 @@
                                 (:shape-name
                                  "APICallRateForCustomerExceededFault")
                                 (:error-name "APICallRateForCustomerExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-enum azmode
     common-lisp:nil
@@ -357,14 +434,16 @@
                                   :member-name "message"))
                                 (:shape-name "AuthorizationAlreadyExistsFault")
                                 (:error-name "AuthorizationAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error authorization-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AuthorizationNotFoundFault")
                                 (:error-name "AuthorizationNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-input authorize-cache-security-group-ingress-message
                                 common-lisp:nil
@@ -532,7 +611,8 @@
                                   :member-name "message"))
                                 (:shape-name "CacheClusterAlreadyExistsFault")
                                 (:error-name "CacheClusterAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-list cache-cluster-id-list :member string)
 
@@ -552,7 +632,8 @@
                                   :member-name "message"))
                                 (:shape-name "CacheClusterNotFoundFault")
                                 (:error-name "CacheClusterNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure cache-engine-version common-lisp:nil
                                     ((engine :target-type string :member-name
@@ -704,7 +785,8 @@
                                  "CacheParameterGroupAlreadyExistsFault")
                                 (:error-name
                                  "CacheParameterGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure cache-parameter-group-details
                                     common-lisp:nil
@@ -738,7 +820,8 @@
                                 (:shape-name
                                  "CacheParameterGroupNotFoundFault")
                                 (:error-name "CacheParameterGroupNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error cache-parameter-group-quota-exceeded-fault
                                 common-lisp:nil
@@ -748,7 +831,8 @@
                                  "CacheParameterGroupQuotaExceededFault")
                                 (:error-name
                                  "CacheParameterGroupQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure cache-parameter-group-status
                                     common-lisp:nil
@@ -793,7 +877,8 @@
                                 (:shape-name
                                  "CacheSecurityGroupAlreadyExistsFault")
                                 (:error-name "CacheSecurityGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure cache-security-group-membership
                                     common-lisp:nil
@@ -826,7 +911,8 @@
                                   :member-name "message"))
                                 (:shape-name "CacheSecurityGroupNotFoundFault")
                                 (:error-name "CacheSecurityGroupNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error cache-security-group-quota-exceeded-fault
                                 common-lisp:nil
@@ -836,7 +922,8 @@
                                  "CacheSecurityGroupQuotaExceededFault")
                                 (:error-name
                                  "QuotaExceeded.CacheSecurityGroup")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-list cache-security-groups :member
                                (cache-security-group :xml-name
@@ -867,14 +954,16 @@
                                 (:shape-name
                                  "CacheSubnetGroupAlreadyExistsFault")
                                 (:error-name "CacheSubnetGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error cache-subnet-group-in-use common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "CacheSubnetGroupInUse")
                                 (:error-name "CacheSubnetGroupInUse")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-output cache-subnet-group-message common-lisp:nil
                                  ((marker :target-type string :member-name
@@ -890,7 +979,8 @@
                                   :member-name "message"))
                                 (:shape-name "CacheSubnetGroupNotFoundFault")
                                 (:error-name "CacheSubnetGroupNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error cache-subnet-group-quota-exceeded-fault
                                 common-lisp:nil
@@ -899,7 +989,8 @@
                                 (:shape-name
                                  "CacheSubnetGroupQuotaExceededFault")
                                 (:error-name "CacheSubnetGroupQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-list cache-subnet-groups :member
                                (cache-subnet-group :xml-name
@@ -911,7 +1002,8 @@
                                   :member-name "message"))
                                 (:shape-name "CacheSubnetQuotaExceededFault")
                                 (:error-name "CacheSubnetQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure cache-usage-limits common-lisp:nil
                                     ((data-storage :target-type data-storage
@@ -949,7 +1041,8 @@
                                 (:shape-name
                                  "ClusterQuotaForCustomerExceededFault")
                                 (:error-name "ClusterQuotaForCustomerExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-input complete-migration-message common-lisp:nil
                                 ((replication-group-id :target-type string
@@ -1498,14 +1591,16 @@
                                  "DefaultUserAssociatedToUserGroupFault")
                                 (:error-name
                                  "DefaultUserAssociatedToUserGroup")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error default-user-required common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "DefaultUserRequired")
                                 (:error-name "DefaultUserRequired")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-input delete-cache-cluster-message common-lisp:nil
                                 ((cache-cluster-id :target-type string
@@ -2018,7 +2113,8 @@
                                   :member-name "message"))
                                 (:shape-name "DuplicateUserNameFault")
                                 (:error-name "DuplicateUserName")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure ec2security-group common-lisp:nil
                                     ((status :target-type string :member-name
@@ -2200,7 +2296,8 @@
                                  "GlobalReplicationGroupAlreadyExistsFault")
                                 (:error-name
                                  "GlobalReplicationGroupAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure global-replication-group-info
                                     common-lisp:nil
@@ -2245,7 +2342,8 @@
                                  "GlobalReplicationGroupNotFoundFault")
                                 (:error-name
                                  "GlobalReplicationGroupNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-input
  increase-node-groups-in-global-replication-group-message common-lisp:nil
@@ -2300,7 +2398,8 @@
                                  "InsufficientCacheClusterCapacityFault")
                                 (:error-name
                                  "InsufficientCacheClusterCapacity")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
 
@@ -2310,7 +2409,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidARNFault")
-                                (:error-name "InvalidARN") (:error-code 400))
+                                (:error-name "InvalidARN") (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-cache-cluster-state-fault
                                 common-lisp:nil
@@ -2318,7 +2418,8 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidCacheClusterStateFault")
                                 (:error-name "InvalidCacheClusterState")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-cache-parameter-group-state-fault
                                 common-lisp:nil
@@ -2327,7 +2428,8 @@
                                 (:shape-name
                                  "InvalidCacheParameterGroupStateFault")
                                 (:error-name "InvalidCacheParameterGroupState")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-cache-security-group-state-fault
                                 common-lisp:nil
@@ -2336,14 +2438,16 @@
                                 (:shape-name
                                  "InvalidCacheSecurityGroupStateFault")
                                 (:error-name "InvalidCacheSecurityGroupState")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-credentials-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidCredentialsException")
                                 (:error-name "InvalidCredentialsException")
-                                (:error-code 408))
+                                (:error-code 408)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-global-replication-group-state-fault
                                 common-lisp:nil
@@ -2353,14 +2457,16 @@
                                  "InvalidGlobalReplicationGroupStateFault")
                                 (:error-name
                                  "InvalidGlobalReplicationGroupState")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-kmskey-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidKMSKeyFault")
                                 (:error-name "InvalidKMSKeyFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-combination-exception
                                 common-lisp:nil
@@ -2369,7 +2475,8 @@
                                 (:shape-name
                                  "InvalidParameterCombinationException")
                                 (:error-name "InvalidParameterCombination")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
@@ -2377,7 +2484,8 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterValueException")
                                 (:error-name "InvalidParameterValue")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-replication-group-state-fault
                                 common-lisp:nil
@@ -2386,7 +2494,8 @@
                                 (:shape-name
                                  "InvalidReplicationGroupStateFault")
                                 (:error-name "InvalidReplicationGroupState")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-serverless-cache-snapshot-state-fault
                                 common-lisp:nil
@@ -2396,7 +2505,8 @@
                                  "InvalidServerlessCacheSnapshotStateFault")
                                 (:error-name
                                  "InvalidServerlessCacheSnapshotStateFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-serverless-cache-state-fault
                                 common-lisp:nil
@@ -2406,41 +2516,47 @@
                                  "InvalidServerlessCacheStateFault")
                                 (:error-name
                                  "InvalidServerlessCacheStateFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-snapshot-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSnapshotStateFault")
                                 (:error-name "InvalidSnapshotState")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-subnet common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSubnet")
-                                (:error-name "InvalidSubnet") (:error-code 400))
+                                (:error-name "InvalidSubnet") (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-user-group-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidUserGroupStateFault")
                                 (:error-name "InvalidUserGroupState")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-user-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidUserStateFault")
                                 (:error-name "InvalidUserState")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error invalid-vpcnetwork-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidVPCNetworkStateFault")
                                 (:error-name "InvalidVPCNetworkStateFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-enum ip-discovery
     common-lisp:nil
@@ -2857,7 +2973,8 @@
                                   :member-name "message"))
                                 (:shape-name "NoOperationFault")
                                 (:error-name "NoOperationFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure node-group common-lisp:nil
                                     ((node-group-id :target-type string
@@ -2959,7 +3076,8 @@
                                   :member-name "message"))
                                 (:shape-name "NodeGroupNotFoundFault")
                                 (:error-name "NodeGroupNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure node-group-update-status common-lisp:nil
                                     ((node-group-id :target-type string
@@ -2979,7 +3097,8 @@
  node-groups-per-replication-group-quota-exceeded-fault common-lisp:nil
  ((message :target-type exception-message :member-name "message"))
  (:shape-name "NodeGroupsPerReplicationGroupQuotaExceededFault")
- (:error-name "NodeGroupsPerReplicationGroupQuotaExceeded") (:error-code 400))
+ (:error-name "NodeGroupsPerReplicationGroupQuotaExceeded") (:error-code 400)
+ (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-list node-groups-to-remove-list :member
                                (allowed-node-group-id :xml-name
@@ -2996,7 +3115,8 @@
                                 (:shape-name
                                  "NodeQuotaForClusterExceededFault")
                                 (:error-name "NodeQuotaForClusterExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error node-quota-for-customer-exceeded-fault
                                 common-lisp:nil
@@ -3005,7 +3125,8 @@
                                 (:shape-name
                                  "NodeQuotaForCustomerExceededFault")
                                 (:error-name "NodeQuotaForCustomerExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure node-snapshot common-lisp:nil
                                     ((cache-cluster-id :target-type string
@@ -3358,7 +3479,8 @@
                                 (:shape-name
                                  "ReplicationGroupAlreadyExistsFault")
                                 (:error-name "ReplicationGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error replication-group-already-under-migration-fault
                                 common-lisp:nil
@@ -3368,7 +3490,8 @@
                                  "ReplicationGroupAlreadyUnderMigrationFault")
                                 (:error-name
                                  "ReplicationGroupAlreadyUnderMigrationFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-list replication-group-id-list :member string)
 
@@ -3389,7 +3512,8 @@
                                   :member-name "message"))
                                 (:shape-name "ReplicationGroupNotFoundFault")
                                 (:error-name "ReplicationGroupNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error replication-group-not-under-migration-fault
                                 common-lisp:nil
@@ -3399,7 +3523,8 @@
                                  "ReplicationGroupNotUnderMigrationFault")
                                 (:error-name
                                  "ReplicationGroupNotUnderMigrationFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-list replication-group-outpost-arn-list :member
                                (string :xml-name "ReplicationGroupOutpostArn"))
@@ -3472,7 +3597,8 @@
                                 (:shape-name
                                  "ReservedCacheNodeAlreadyExistsFault")
                                 (:error-name "ReservedCacheNodeAlreadyExists")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-list reserved-cache-node-list :member
                                (reserved-cache-node :xml-name
@@ -3492,7 +3618,8 @@
                                   :member-name "message"))
                                 (:shape-name "ReservedCacheNodeNotFoundFault")
                                 (:error-name "ReservedCacheNodeNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error reserved-cache-node-quota-exceeded-fault
                                 common-lisp:nil
@@ -3501,7 +3628,8 @@
                                 (:shape-name
                                  "ReservedCacheNodeQuotaExceededFault")
                                 (:error-name "ReservedCacheNodeQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure reserved-cache-nodes-offering
                                     common-lisp:nil
@@ -3547,7 +3675,8 @@
                                  "ReservedCacheNodesOfferingNotFoundFault")
                                 (:error-name
                                  "ReservedCacheNodesOfferingNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-input reset-cache-parameter-group-message
                                 common-lisp:nil
@@ -3672,7 +3801,8 @@
                                  "ServerlessCacheAlreadyExistsFault")
                                 (:error-name
                                  "ServerlessCacheAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure serverless-cache-configuration
                                     common-lisp:nil
@@ -3693,13 +3823,15 @@
                                   :member-name "message"))
                                 (:shape-name "ServerlessCacheNotFoundFault")
                                 (:error-name "ServerlessCacheNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error
  serverless-cache-quota-for-customer-exceeded-fault common-lisp:nil
  ((message :target-type exception-message :member-name "message"))
  (:shape-name "ServerlessCacheQuotaForCustomerExceededFault")
- (:error-name "ServerlessCacheQuotaForCustomerExceededFault") (:error-code 400))
+ (:error-name "ServerlessCacheQuotaForCustomerExceededFault") (:error-code 400)
+ (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure serverless-cache-snapshot common-lisp:nil
                                     ((serverless-cache-snapshot-name
@@ -3734,7 +3866,8 @@
                                  "ServerlessCacheSnapshotAlreadyExistsFault")
                                 (:error-name
                                  "ServerlessCacheSnapshotAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-list serverless-cache-snapshot-list :member
                                (serverless-cache-snapshot :xml-name
@@ -3748,7 +3881,8 @@
                                  "ServerlessCacheSnapshotNotFoundFault")
                                 (:error-name
                                  "ServerlessCacheSnapshotNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error serverless-cache-snapshot-quota-exceeded-fault
                                 common-lisp:nil
@@ -3758,7 +3892,8 @@
                                  "ServerlessCacheSnapshotQuotaExceededFault")
                                 (:error-name
                                  "ServerlessCacheSnapshotQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error service-linked-role-not-found-fault
                                 common-lisp:nil
@@ -3766,7 +3901,8 @@
                                   :member-name "message"))
                                 (:shape-name "ServiceLinkedRoleNotFoundFault")
                                 (:error-name "ServiceLinkedRoleNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure service-update common-lisp:nil
                                     ((service-update-name :target-type string
@@ -3812,7 +3948,8 @@
                                   :member-name "message"))
                                 (:shape-name "ServiceUpdateNotFoundFault")
                                 (:error-name "ServiceUpdateNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-enum service-update-severity
     common-lisp:nil
@@ -3930,7 +4067,8 @@
                                   :member-name "message"))
                                 (:shape-name "SnapshotAlreadyExistsFault")
                                 (:error-name "SnapshotAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-list snapshot-arns-list :member
                                (string :xml-name "SnapshotArn"))
@@ -3943,7 +4081,8 @@
                                  "SnapshotFeatureNotSupportedFault")
                                 (:error-name
                                  "SnapshotFeatureNotSupportedFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-list snapshot-list :member
                                (snapshot :xml-name "Snapshot"))
@@ -3953,14 +4092,16 @@
                                   :member-name "message"))
                                 (:shape-name "SnapshotNotFoundFault")
                                 (:error-name "SnapshotNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error snapshot-quota-exceeded-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SnapshotQuotaExceededFault")
                                 (:error-name "SnapshotQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-enum source-type
     common-lisp:nil
@@ -4016,7 +4157,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SubnetInUse")
-                                (:error-name "SubnetInUse") (:error-code 400))
+                                (:error-name "SubnetInUse") (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-list subnet-list :member (subnet :xml-name "Subnet"))
 
@@ -4025,7 +4167,8 @@
                                   :member-name "message"))
                                 (:shape-name "SubnetNotAllowedFault")
                                 (:error-name "SubnetNotAllowedFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure subnet-outpost common-lisp:nil
                                     ((subnet-outpost-arn :target-type string
@@ -4052,14 +4195,16 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TagNotFoundFault")
-                                (:error-name "TagNotFound") (:error-code 404))
+                                (:error-name "TagNotFound") (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error tag-quota-per-resource-exceeded common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TagQuotaPerResourceExceeded")
                                 (:error-name "TagQuotaPerResourceExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-input test-failover-message common-lisp:nil
                                 ((replication-group-id :target-type string
@@ -4076,7 +4221,8 @@
                                   :member-name "message"))
                                 (:shape-name "TestFailoverNotAvailableFault")
                                 (:error-name "TestFailoverNotAvailableFault")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-output test-failover-result common-lisp:nil
                                  ((replication-group :target-type
@@ -4245,7 +4391,8 @@
                                   :member-name "message"))
                                 (:shape-name "UserAlreadyExistsFault")
                                 (:error-name "UserAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure user-group common-lisp:nil
                                     ((user-group-id :target-type string
@@ -4277,7 +4424,8 @@
                                   :member-name "message"))
                                 (:shape-name "UserGroupAlreadyExistsFault")
                                 (:error-name "UserGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-type user-group-id smithy/sdk/smithy-types:string)
 
@@ -4292,7 +4440,8 @@
                                   :member-name "message"))
                                 (:shape-name "UserGroupNotFoundFault")
                                 (:error-name "UserGroupNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure user-group-pending-changes common-lisp:nil
                                     ((user-ids-to-remove :target-type
@@ -4307,7 +4456,8 @@
                                   :member-name "message"))
                                 (:shape-name "UserGroupQuotaExceededFault")
                                 (:error-name "UserGroupQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-structure user-groups-update-status common-lisp:nil
                                     ((user-group-ids-to-add :target-type
@@ -4332,14 +4482,16 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UserNotFoundFault")
-                                (:error-name "UserNotFound") (:error-code 404))
+                                (:error-name "UserNotFound") (:error-code 404)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/shapes:define-error user-quota-exceeded-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UserQuotaExceededFault")
                                 (:error-name "UserQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class elasticache-error))
 
 (smithy/sdk/operation:define-operation add-tags-to-resource :shape-name
                                        "AddTagsToResource" :input

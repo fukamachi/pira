@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/braket (:use)
-                             (:export #:algorithm-specification #:association
+                             (:export #:access-denied-exception
+                              #:algorithm-specification #:association
                               #:association-type #:associations #:braket
                               #:braket-resource-arn #:cancel-job
                               #:cancel-job-request #:cancel-job-response
@@ -7,24 +8,27 @@
                               #:cancel-quantum-task-request
                               #:cancel-quantum-task-response
                               #:cancellation-status #:compression-type
-                              #:container-image #:create-job
-                              #:create-job-request #:create-job-response
-                              #:create-quantum-task
+                              #:conflict-exception #:container-image
+                              #:create-job #:create-job-request
+                              #:create-job-response #:create-quantum-task
                               #:create-quantum-task-request
                               #:create-quantum-task-response #:data-source
-                              #:device-arn #:device-config #:device-queue-info
+                              #:device-arn #:device-config
+                              #:device-offline-exception #:device-queue-info
                               #:device-queue-info-list #:device-resource
-                              #:device-status #:device-summary
-                              #:device-summary-list #:device-type #:get-device
-                              #:get-device-request #:get-device-response
-                              #:get-job #:get-job-request #:get-job-response
-                              #:get-quantum-task #:get-quantum-task-request
+                              #:device-retired-exception #:device-status
+                              #:device-summary #:device-summary-list
+                              #:device-type #:get-device #:get-device-request
+                              #:get-device-response #:get-job #:get-job-request
+                              #:get-job-response #:get-quantum-task
+                              #:get-quantum-task-request
                               #:get-quantum-task-response
                               #:hybrid-job-additional-attribute-name
                               #:hybrid-job-additional-attribute-names-list
                               #:hybrid-job-queue-info #:hyper-parameters
                               #:input-config-list #:input-file-config
-                              #:instance-config #:instance-type #:job-arn
+                              #:instance-config #:instance-type
+                              #:internal-service-exception #:job-arn
                               #:job-checkpoint-config #:job-event-details
                               #:job-event-type #:job-events
                               #:job-output-data-config #:job-primary-status
@@ -39,8 +43,9 @@
                               #:quantum-task-resource #:quantum-task-status
                               #:quantum-task-summary
                               #:quantum-task-summary-list #:queue-name
-                              #:queue-priority #:role-arn #:s3data-source
-                              #:s3path #:script-mode-config #:search-devices
+                              #:queue-priority #:resource-not-found-exception
+                              #:role-arn #:s3data-source #:s3path
+                              #:script-mode-config #:search-devices
                               #:search-devices-filter
                               #:search-devices-filter-list
                               #:search-devices-request
@@ -53,14 +58,20 @@
                               #:search-quantum-tasks-filter-list
                               #:search-quantum-tasks-filter-operator
                               #:search-quantum-tasks-request
-                              #:search-quantum-tasks-response #:string1024
+                              #:search-quantum-tasks-response
+                              #:service-quota-exceeded-exception #:string1024
                               #:string2048 #:string256 #:string256list
                               #:string4096 #:string64 #:tag-keys #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tags-map #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:uri))
+                              #:tags-map #:throttling-exception
+                              #:untag-resource #:untag-resource-request
+                              #:untag-resource-response #:uri
+                              #:validation-exception #:braket-error))
 (common-lisp:in-package #:pira/braket)
+
+(common-lisp:define-condition braket-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service braket :shape-name "Braket" :version
                                    "2019-09-01" :title "Braket" :operations
@@ -78,7 +89,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class braket-error))
 
 (smithy/sdk/shapes:define-structure algorithm-specification common-lisp:nil
                                     ((script-mode-config :target-type
@@ -150,7 +161,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class braket-error))
 
 (smithy/sdk/shapes:define-structure container-image common-lisp:nil
                                     ((uri :target-type uri :required
@@ -258,7 +269,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "DeviceOfflineException")
-                                (:error-code 424))
+                                (:error-code 424) (:base-class braket-error))
 
 (smithy/sdk/shapes:define-structure device-queue-info common-lisp:nil
                                     ((queue :target-type queue-name :required
@@ -280,7 +291,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "DeviceRetiredException")
-                                (:error-code 410))
+                                (:error-code 410) (:base-class braket-error))
 
 (smithy/sdk/shapes:define-type device-status smithy/sdk/smithy-types:string)
 
@@ -524,7 +535,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class braket-error))
 
 (smithy/sdk/shapes:define-type job-arn smithy/sdk/smithy-types:string)
 
@@ -690,7 +701,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class braket-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -832,7 +843,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class braket-error))
 
 (smithy/sdk/shapes:define-type string1024 smithy/sdk/smithy-types:string)
 
@@ -869,7 +880,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class braket-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -892,7 +903,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class braket-error))
 
 (smithy/sdk/operation:define-operation cancel-job :shape-name "CancelJob"
                                        :input cancel-job-request :output

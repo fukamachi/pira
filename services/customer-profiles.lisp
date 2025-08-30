@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/customer-profiles (:use)
-                             (:export #:add-profile-key #:additional-search-key
+                             (:export #:access-denied-exception
+                              #:add-profile-key #:additional-search-key
                               #:address #:address-dimension #:address-list
                               #:appflow-integration
                               #:appflow-integration-workflow-attributes
@@ -12,7 +13,7 @@
                               #:attribute-source-id-map
                               #:attribute-types-selector #:attribute-value-item
                               #:attribute-value-item-list #:attributes
-                              #:auto-merging #:batch
+                              #:auto-merging #:bad-request-exception #:batch
                               #:batch-get-calculated-attribute-for-profile
                               #:batch-get-calculated-attribute-for-profile-error
                               #:batch-get-calculated-attribute-for-profile-error-list
@@ -101,7 +102,8 @@
                               #:identity-resolution-jobs-list #:include
                               #:include-options #:incremental-pull-config
                               #:integration-config #:integration-list
-                              #:job-schedule #:job-schedule-day-of-the-week
+                              #:internal-server-exception #:job-schedule
+                              #:job-schedule-day-of-the-week
                               #:job-schedule-time #:job-stats #:key-map
                               #:kms-arn #:layout-item #:layout-list
                               #:layout-type #:list-account-integrations
@@ -158,7 +160,8 @@
                               #:put-integration #:put-profile-object
                               #:put-profile-object-type #:query-result #:range
                               #:range-override #:range-unit #:readiness
-                              #:readiness-status #:results-summary #:role-arn
+                              #:readiness-status #:resource-not-found-exception
+                              #:results-summary #:role-arn
                               #:rule-based-matching-request
                               #:rule-based-matching-response
                               #:rule-based-matching-status #:rule-level
@@ -185,7 +188,8 @@
                               #:string-dimension-type #:tag-arn #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
                               #:tag-value #:task #:task-properties-map
-                              #:task-type #:tasks #:threshold #:timezone
+                              #:task-type #:tasks #:threshold
+                              #:throttling-exception #:timezone
                               #:trigger-config #:trigger-properties
                               #:trigger-type #:type #:unit #:untag-resource
                               #:update-address #:update-attributes
@@ -218,8 +222,13 @@
                               #:sensitive-string1to255 #:sensitive-text
                               #:sqs-queue-url #:string0to255 #:string1to1000
                               #:string1to255 #:string-to2048 #:stringified-json
-                              #:text #:timestamp #:token #:type-name #:uuid))
+                              #:text #:timestamp #:token #:type-name #:uuid
+                              #:customer-profiles-error))
 (common-lisp:in-package #:pira/customer-profiles)
+
+(common-lisp:define-condition customer-profiles-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service customer-profiles-20200815 :shape-name
                                    "CustomerProfiles_20200815" :version
@@ -298,7 +307,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class customer-profiles-error))
 
 (smithy/sdk/shapes:define-input add-profile-key-request common-lisp:nil
                                 ((profile-id :target-type uuid :required
@@ -535,7 +545,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class customer-profiles-error))
 
 (smithy/sdk/shapes:define-structure batch common-lisp:nil
                                     ((start-time :target-type timestamp
@@ -2569,7 +2580,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class customer-profiles-error))
 
 (smithy/sdk/shapes:define-structure job-schedule common-lisp:nil
                                     ((day-of-the-week :target-type
@@ -3833,7 +3845,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class customer-profiles-error))
 
 (smithy/sdk/shapes:define-structure results-summary common-lisp:nil
                                     ((updated-records :target-type
@@ -4344,7 +4357,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class customer-profiles-error))
 
 (smithy/sdk/shapes:define-type timezone smithy/sdk/smithy-types:string)
 

@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/snow-device-management (:use)
-                             (:export #:attachment-status #:cancel-task
+                             (:export #:access-denied-exception
+                              #:attachment-status #:cancel-task
                               #:cancel-task-input #:cancel-task-output
                               #:capacity #:capacity-list #:command
                               #:cpu-options #:create-task #:create-task-input
@@ -20,8 +21,10 @@
                               #:instance-block-device-mapping-list
                               #:instance-ids-list #:instance-state
                               #:instance-state-name #:instance-summary
-                              #:instance-summary-list #:ip-address-assignment
-                              #:job-id #:list-device-resources
+                              #:instance-summary-list
+                              #:internal-server-exception
+                              #:ip-address-assignment #:job-id
+                              #:list-device-resources
                               #:list-device-resources-input
                               #:list-device-resources-output #:list-devices
                               #:list-devices-input #:list-devices-output
@@ -35,17 +38,25 @@
                               #:physical-connector-type
                               #:physical-network-interface
                               #:physical-network-interface-list #:reboot
-                              #:resource-summary #:resource-summary-list
+                              #:resource-not-found-exception #:resource-summary
+                              #:resource-summary-list
                               #:security-group-identifier
                               #:security-group-identifier-list
+                              #:service-quota-exceeded-exception
                               #:snow-device-management #:software-information
                               #:tag-keys #:tag-map #:tag-resource
                               #:tag-resource-input #:target-list #:task
                               #:task-description-string #:task-id #:task-state
-                              #:task-summary #:task-summary-list #:unlock
-                              #:unlock-state #:untag-resource
-                              #:untag-resource-input))
+                              #:task-summary #:task-summary-list
+                              #:throttling-exception #:unlock #:unlock-state
+                              #:untag-resource #:untag-resource-input
+                              #:validation-exception
+                              #:snow-device-management-error))
 (common-lisp:in-package #:pira/snow-device-management)
+
+(common-lisp:define-condition snow-device-management-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service snow-device-management :shape-name
                                    "SnowDeviceManagement" :version "2021-08-04"
@@ -67,7 +78,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class snow-device-management-error))
 
 (smithy/sdk/shapes:define-type attachment-status smithy/sdk/smithy-types:string)
 
@@ -396,7 +408,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class snow-device-management-error))
 
 (smithy/sdk/shapes:define-type ip-address-assignment
                                smithy/sdk/smithy-types:string)
@@ -547,7 +560,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class snow-device-management-error))
 
 (smithy/sdk/shapes:define-structure resource-summary common-lisp:nil
                                     ((resource-type :target-type
@@ -582,7 +596,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class snow-device-management-error))
 
 (smithy/sdk/shapes:define-structure software-information common-lisp:nil
                                     ((installed-version :target-type
@@ -641,7 +656,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class snow-device-management-error))
 
 (smithy/sdk/shapes:define-structure unlock common-lisp:nil common-lisp:nil
                                     (:shape-name "Unlock"))
@@ -663,7 +679,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class snow-device-management-error))
 
 (smithy/sdk/operation:define-operation cancel-task :shape-name "CancelTask"
                                        :input cancel-task-input :output

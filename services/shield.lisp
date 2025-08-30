@@ -1,5 +1,7 @@
 (uiop/package:define-package #:pira/shield (:use)
                              (:export #:awsshield-20160616
+                              #:access-denied-exception
+                              #:access-denied-for-dependency-exception
                               #:application-layer-automatic-response-configuration
                               #:application-layer-automatic-response-status
                               #:associate-drtlog-bucket #:associate-drtrole
@@ -36,13 +38,21 @@
                               #:health-check-id #:health-check-ids
                               #:inclusion-protection-filters
                               #:inclusion-protection-group-filters #:integer
-                              #:limit #:limit-number #:limit-type #:limits
-                              #:list-attacks #:list-protection-groups
-                              #:list-protections
+                              #:internal-error-exception
+                              #:invalid-operation-exception
+                              #:invalid-pagination-token-exception
+                              #:invalid-parameter-exception
+                              #:invalid-resource-exception #:limit
+                              #:limit-number #:limit-type #:limits
+                              #:limits-exceeded-exception #:list-attacks
+                              #:list-protection-groups #:list-protections
                               #:list-resources-in-protection-group
-                              #:list-tags-for-resource #:log-bucket
+                              #:list-tags-for-resource
+                              #:locked-subscription-exception #:log-bucket
                               #:log-bucket-list #:long #:max-results
-                              #:mitigation #:mitigation-list #:phone-number
+                              #:mitigation #:mitigation-list
+                              #:no-associated-role-exception
+                              #:optimistic-lock-exception #:phone-number
                               #:proactive-engagement-status
                               #:protected-resource-type
                               #:protected-resource-type-filters #:protection
@@ -59,10 +69,11 @@
                               #:protection-groups #:protection-id
                               #:protection-limits #:protection-name
                               #:protection-name-filters #:protections
+                              #:resource-already-exists-exception
                               #:resource-arn #:resource-arn-filter-list
                               #:resource-arn-filters #:resource-arn-list
-                              #:response-action #:role-arn #:string
-                              #:sub-resource-summary
+                              #:resource-not-found-exception #:response-action
+                              #:role-arn #:string #:sub-resource-summary
                               #:sub-resource-summary-list #:sub-resource-type
                               #:subscription #:subscription-limits
                               #:subscription-state #:summarized-attack-vector
@@ -77,8 +88,13 @@
                               #:update-protection-group #:update-subscription
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason #:error-message))
+                              #:validation-exception-reason #:error-message
+                              #:shield-error))
 (common-lisp:in-package #:pira/shield)
+
+(common-lisp:define-condition shield-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsshield-20160616 :shape-name
                                    "AWSShield_20160616" :version "2016-06-02"
@@ -130,7 +146,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-error access-denied-for-dependency-exception
                                 common-lisp:nil
@@ -138,7 +154,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "AccessDeniedForDependencyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-structure
  application-layer-automatic-response-configuration common-lisp:nil
@@ -636,20 +652,20 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-error invalid-operation-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidOperationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-error invalid-pagination-token-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidPaginationTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type error-message
@@ -661,13 +677,13 @@
                                   validation-exception-field-list :member-name
                                   "fields"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidResourceException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-structure limit common-lisp:nil
                                     ((type :target-type string :member-name
@@ -690,7 +706,7 @@
                                  (limit :target-type limit-number :member-name
                                   "Limit"))
                                 (:shape-name "LimitsExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-input list-attacks-request common-lisp:nil
                                 ((resource-arns :target-type
@@ -788,7 +804,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LockedSubscriptionException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-type log-bucket smithy/sdk/smithy-types:string)
 
@@ -809,13 +825,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoAssociatedRoleException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-error optimistic-lock-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "OptimisticLockException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-type phone-number smithy/sdk/smithy-types:string)
 
@@ -954,7 +970,7 @@
                                  (resource-type :target-type string
                                   :member-name "resourceType"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-type resource-arn smithy/sdk/smithy-types:string)
 
@@ -970,7 +986,7 @@
                                  (resource-type :target-type string
                                   :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class shield-error))
 
 (smithy/sdk/shapes:define-structure response-action common-lisp:nil
                                     ((block :target-type block-action

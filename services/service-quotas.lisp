@@ -1,10 +1,12 @@
 (uiop/package:define-package #:pira/service-quotas (:use)
-                             (:export #:amazon-resource-name
+                             (:export #:awsservice-access-not-enabled-exception
+                              #:access-denied-exception #:amazon-resource-name
                               #:applied-level-enum
                               #:associate-service-quota-template #:aws-region
                               #:create-support-case
                               #:customer-service-engagement-id #:date-time
                               #:delete-service-quota-increase-request-from-template
+                              #:dependency-access-denied-exception
                               #:disassociate-service-quota-template
                               #:error-code #:error-message #:error-reason
                               #:exception-message
@@ -13,7 +15,10 @@
                               #:get-requested-service-quota-change
                               #:get-service-quota
                               #:get-service-quota-increase-request-from-template
-                              #:global-quota #:input-tag-keys #:input-tags
+                              #:global-quota #:illegal-argument-exception
+                              #:input-tag-keys #:input-tags
+                              #:invalid-pagination-token-exception
+                              #:invalid-resource-state-exception
                               #:list-awsdefault-service-quotas
                               #:list-requested-service-quota-change-history
                               #:list-requested-service-quota-change-history-by-quota
@@ -22,29 +27,44 @@
                               #:list-tags-for-resource #:max-results
                               #:metric-dimension-name #:metric-dimension-value
                               #:metric-dimensions-map-definition #:metric-info
-                              #:next-token #:output-tags #:period-unit
-                              #:period-value
+                              #:next-token
+                              #:no-available-organization-exception
+                              #:no-such-resource-exception
+                              #:organization-not-in-all-features-mode-exception
+                              #:output-tags #:period-unit #:period-value
                               #:put-service-quota-increase-request-into-template
                               #:quota-adjustable #:quota-arn #:quota-code
                               #:quota-context-id #:quota-context-info
                               #:quota-context-scope #:quota-context-scope-type
-                              #:quota-description #:quota-metric-name
-                              #:quota-metric-namespace #:quota-name
-                              #:quota-period #:quota-unit #:quota-value
-                              #:request-id #:request-service-quota-increase
-                              #:request-status #:requested-service-quota-change
+                              #:quota-description #:quota-exceeded-exception
+                              #:quota-metric-name #:quota-metric-namespace
+                              #:quota-name #:quota-period #:quota-unit
+                              #:quota-value #:request-id
+                              #:request-service-quota-increase #:request-status
+                              #:requested-service-quota-change
                               #:requested-service-quota-change-history-list-definition
-                              #:requester #:service-code #:service-info
+                              #:requester #:resource-already-exists-exception
+                              #:service-code #:service-exception #:service-info
                               #:service-info-list-definition #:service-name
                               #:service-quota
                               #:service-quota-increase-request-in-template
                               #:service-quota-increase-request-in-template-list
                               #:service-quota-list-definition
                               #:service-quota-template-association-status
+                              #:service-quota-template-not-in-use-exception
                               #:service-quotas-v20190624 #:statistic
                               #:support-case-allowed #:tag #:tag-key
-                              #:tag-resource #:tag-value #:untag-resource))
+                              #:tag-policy-violation-exception #:tag-resource
+                              #:tag-value
+                              #:templates-not-available-in-region-exception
+                              #:too-many-requests-exception
+                              #:too-many-tags-exception #:untag-resource
+                              #:service-quotas-error))
 (common-lisp:in-package #:pira/service-quotas)
+
+(common-lisp:define-condition service-quotas-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service service-quotas-v20190624 :shape-name
                                    "ServiceQuotasV20190624" :version
@@ -86,13 +106,15 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "AWSServiceAccessNotEnabledException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-error access-denied-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-type amazon-resource-name
                                smithy/sdk/smithy-types:string)
@@ -149,7 +171,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "DependencyAccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-input disassociate-service-quota-template-request
                                 common-lisp:nil common-lisp:nil
@@ -260,7 +283,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "IllegalArgumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-list input-tag-keys :member tag-key)
 
@@ -271,14 +295,16 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidPaginationTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-state-exception
                                 common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidResourceStateException")
-                                (:error-code 405))
+                                (:error-code 405)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-input list-awsdefault-service-quotas-request
                                 common-lisp:nil
@@ -442,13 +468,15 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "NoAvailableOrganizationException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-error no-such-resource-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "NoSuchResourceException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-error organization-not-in-all-features-mode-exception
                                 common-lisp:nil
@@ -456,7 +484,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "OrganizationNotInAllFeaturesModeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-list output-tags :member tag)
 
@@ -524,7 +553,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "QuotaExceededException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-type quota-metric-name smithy/sdk/smithy-types:string)
 
@@ -632,7 +662,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-type service-code smithy/sdk/smithy-types:string)
 
@@ -640,7 +671,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-structure service-info common-lisp:nil
                                     ((service-code :target-type service-code
@@ -729,7 +761,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ServiceQuotaTemplateNotInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-type statistic smithy/sdk/smithy-types:string)
 
@@ -749,7 +782,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "TagPolicyViolationException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -771,19 +805,22 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "TemplatesNotAvailableInRegionException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-error too-many-requests-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class service-quotas-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type

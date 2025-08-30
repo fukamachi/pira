@@ -81,10 +81,11 @@
                               #:get-metadata-response #:get-theme
                               #:get-theme-request #:get-theme-response
                               #:graph-qlrender-config #:identifier-list
-                              #:jsmodule #:jsscript #:jstarget
-                              #:label-decorator #:list-codegen-jobs
-                              #:list-codegen-jobs-limit #:list-components
-                              #:list-components-request
+                              #:internal-server-exception
+                              #:invalid-parameter-exception #:jsmodule
+                              #:jsscript #:jstarget #:label-decorator
+                              #:list-codegen-jobs #:list-codegen-jobs-limit
+                              #:list-components #:list-components-request
                               #:list-components-response #:list-entity-limit
                               #:list-forms #:list-forms-request
                               #:list-forms-response #:list-tags-for-resource
@@ -100,8 +101,12 @@
                               #:refresh-token-request
                               #:refresh-token-request-body
                               #:refresh-token-response
-                              #:related-model-fields-list #:sectional-element
-                              #:sectional-element-map #:sensitive-string
+                              #:related-model-fields-list
+                              #:resource-conflict-exception
+                              #:resource-not-found-exception
+                              #:sectional-element #:sectional-element-map
+                              #:sensitive-string
+                              #:service-quota-exceeded-exception
                               #:sort-direction #:sort-property
                               #:sort-property-list #:start-codegen-job
                               #:start-codegen-job-data #:storage-access-level
@@ -110,7 +115,8 @@
                               #:theme-list #:theme-name #:theme-resource
                               #:theme-summary #:theme-summary-list
                               #:theme-value #:theme-values #:theme-values-list
-                              #:token-providers #:untag-resource
+                              #:throttling-exception #:token-providers
+                              #:unauthorized-exception #:untag-resource
                               #:update-component #:update-component-data
                               #:update-component-request
                               #:update-component-response #:update-form
@@ -119,8 +125,12 @@
                               #:update-theme-data #:update-theme-request
                               #:update-theme-response #:uuid #:validations-list
                               #:value-mapping #:value-mapping-list
-                              #:value-mappings))
+                              #:value-mappings #:amplifyuibuilder-error))
 (common-lisp:in-package #:pira/amplifyuibuilder)
+
+(common-lisp:define-condition amplifyuibuilder-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amplify-uibuilder :shape-name
                                    "AmplifyUIBuilder" :version "2021-08-11"
@@ -1489,14 +1499,16 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class amplifyuibuilder-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class amplifyuibuilder-error))
 
 (smithy/sdk/shapes:define-enum jsmodule
     common-lisp:nil
@@ -1767,14 +1779,16 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class amplifyuibuilder-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class amplifyuibuilder-error))
 
 (smithy/sdk/shapes:define-structure sectional-element common-lisp:nil
                                     ((type :target-type
@@ -1808,7 +1822,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class amplifyuibuilder-error))
 
 (smithy/sdk/shapes:define-enum sort-direction
     common-lisp:nil
@@ -1972,7 +1987,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class amplifyuibuilder-error))
 
 (smithy/sdk/shapes:define-type token-providers smithy/sdk/smithy-types:string)
 
@@ -1981,7 +1997,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class amplifyuibuilder-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type

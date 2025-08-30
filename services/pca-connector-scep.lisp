@@ -1,25 +1,36 @@
 (uiop/package:define-package #:pira/pca-connector-scep (:use)
-                             (:export #:azure-application-id #:azure-domain
+                             (:export #:access-denied-exception
+                              #:azure-application-id #:azure-domain
+                              #:bad-request-exception
                               #:certificate-authority-arn #:challenge
                               #:challenge-arn #:challenge-metadata
                               #:challenge-metadata-list
                               #:challenge-metadata-summary #:challenge-resource
-                              #:client-token #:connector #:connector-arn
-                              #:connector-list #:connector-resource
-                              #:connector-status #:connector-status-reason
-                              #:connector-summary #:connector-type
-                              #:create-challenge #:create-connector
-                              #:delete-challenge #:delete-connector
-                              #:get-challenge-metadata #:get-challenge-password
-                              #:get-connector #:intune-configuration
-                              #:list-challenge-metadata #:list-connectors
-                              #:list-tags-for-resource #:max-results
-                              #:mobile-device-management #:next-token
-                              #:open-id-configuration #:pca-connector-scep
-                              #:sensitive-string #:tag-key-list #:tag-resource
-                              #:tags #:untag-resource
-                              #:validation-exception-reason))
+                              #:client-token #:conflict-exception #:connector
+                              #:connector-arn #:connector-list
+                              #:connector-resource #:connector-status
+                              #:connector-status-reason #:connector-summary
+                              #:connector-type #:create-challenge
+                              #:create-connector #:delete-challenge
+                              #:delete-connector #:get-challenge-metadata
+                              #:get-challenge-password #:get-connector
+                              #:internal-server-exception
+                              #:intune-configuration #:list-challenge-metadata
+                              #:list-connectors #:list-tags-for-resource
+                              #:max-results #:mobile-device-management
+                              #:next-token #:open-id-configuration
+                              #:pca-connector-scep
+                              #:resource-not-found-exception #:sensitive-string
+                              #:service-quota-exceeded-exception #:tag-key-list
+                              #:tag-resource #:tags #:throttling-exception
+                              #:untag-resource #:validation-exception
+                              #:validation-exception-reason
+                              #:pca-connector-scep-error))
 (common-lisp:in-package #:pira/pca-connector-scep)
+
+(common-lisp:define-condition pca-connector-scep-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service pca-connector-scep :shape-name
                                    "PcaConnectorScep" :version "2018-05-10"
@@ -45,7 +56,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class pca-connector-scep-error))
 
 (smithy/sdk/shapes:define-type azure-application-id
                                smithy/sdk/smithy-types:string)
@@ -57,7 +69,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pca-connector-scep-error))
 
 (smithy/sdk/shapes:define-type certificate-authority-arn
                                smithy/sdk/smithy-types:string)
@@ -123,7 +136,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class pca-connector-scep-error))
 
 (smithy/sdk/shapes:define-structure connector common-lisp:nil
                                     ((arn :target-type connector-arn
@@ -295,7 +309,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class pca-connector-scep-error))
 
 (smithy/sdk/shapes:define-structure intune-configuration common-lisp:nil
                                     ((azure-application-id :target-type
@@ -388,7 +403,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class pca-connector-scep-error))
 
 (smithy/sdk/shapes:define-type sensitive-string smithy/sdk/smithy-types:string)
 
@@ -407,7 +423,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "QuotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class pca-connector-scep-error))
 
 (smithy/sdk/shapes:define-list tag-key-list :member
                                smithy/sdk/smithy-types:string)
@@ -429,7 +446,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class pca-connector-scep-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -449,7 +467,8 @@ common-lisp:nil
                                   validation-exception-reason :member-name
                                   "Reason"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class pca-connector-scep-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-reason
     common-lisp:nil

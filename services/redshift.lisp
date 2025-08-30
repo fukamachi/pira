@@ -1,5 +1,7 @@
 (uiop/package:define-package #:pira/redshift (:use)
                              (:export #:accept-reserved-node-exchange
+                              #:access-to-cluster-denied-fault
+                              #:access-to-snapshot-denied-fault
                               #:account-attribute #:account-attribute-list
                               #:account-with-restore-access
                               #:accounts-with-restore-access-list #:action-type
@@ -10,8 +12,14 @@
                               #:association-list #:attribute-list
                               #:attribute-name-list #:attribute-value-list
                               #:attribute-value-target #:authentication-profile
+                              #:authentication-profile-already-exists-fault
                               #:authentication-profile-list
                               #:authentication-profile-name-string
+                              #:authentication-profile-not-found-fault
+                              #:authentication-profile-quota-exceeded-fault
+                              #:authorization-already-exists-fault
+                              #:authorization-not-found-fault
+                              #:authorization-quota-exceeded-fault
                               #:authorization-status
                               #:authorize-cluster-security-group-ingress
                               #:authorize-data-share
@@ -22,35 +30,57 @@
                               #:authorized-token-issuer-list
                               #:availability-zone #:availability-zone-list
                               #:batch-delete-cluster-snapshots
+                              #:batch-delete-request-size-exceeded-fault
                               #:batch-modify-cluster-snapshots
+                              #:batch-modify-cluster-snapshots-limit-exceeded-fault
                               #:batch-snapshot-operation-error-list
                               #:batch-snapshot-operation-errors #:boolean
-                              #:boolean-optional #:cancel-resize
-                              #:certificate-association
+                              #:boolean-optional #:bucket-not-found-fault
+                              #:cancel-resize #:certificate-association
                               #:certificate-association-list #:cluster
+                              #:cluster-already-exists-fault
                               #:cluster-associated-to-schedule
                               #:cluster-credentials #:cluster-db-revision
                               #:cluster-db-revisions-list
                               #:cluster-extended-credentials #:cluster-iam-role
                               #:cluster-iam-role-list #:cluster-list
                               #:cluster-node #:cluster-nodes-list
+                              #:cluster-not-found-fault
+                              #:cluster-on-latest-revision-fault
                               #:cluster-parameter-group
+                              #:cluster-parameter-group-already-exists-fault
                               #:cluster-parameter-group-details
                               #:cluster-parameter-group-name-message
+                              #:cluster-parameter-group-not-found-fault
+                              #:cluster-parameter-group-quota-exceeded-fault
                               #:cluster-parameter-group-status
                               #:cluster-parameter-group-status-list
                               #:cluster-parameter-status
                               #:cluster-parameter-status-list
+                              #:cluster-quota-exceeded-fault
                               #:cluster-security-group
+                              #:cluster-security-group-already-exists-fault
                               #:cluster-security-group-membership
                               #:cluster-security-group-membership-list
                               #:cluster-security-group-name-list
+                              #:cluster-security-group-not-found-fault
+                              #:cluster-security-group-quota-exceeded-fault
                               #:cluster-security-groups
+                              #:cluster-snapshot-already-exists-fault
                               #:cluster-snapshot-copy-status
-                              #:cluster-subnet-group #:cluster-subnet-groups
+                              #:cluster-snapshot-not-found-fault
+                              #:cluster-snapshot-quota-exceeded-fault
+                              #:cluster-subnet-group
+                              #:cluster-subnet-group-already-exists-fault
+                              #:cluster-subnet-group-not-found-fault
+                              #:cluster-subnet-group-quota-exceeded-fault
+                              #:cluster-subnet-groups
+                              #:cluster-subnet-quota-exceeded-fault
                               #:cluster-version #:cluster-version-list
+                              #:conflict-policy-update-fault
                               #:consumer-identifier-list
                               #:copy-cluster-snapshot
+                              #:copy-to-region-disabled-fault
                               #:create-authentication-profile #:create-cluster
                               #:create-cluster-parameter-group
                               #:create-cluster-security-group
@@ -66,6 +96,8 @@
                               #:create-snapshot-copy-grant
                               #:create-snapshot-schedule #:create-tags
                               #:create-usage-limit
+                              #:custom-cname-association-fault
+                              #:custom-domain-association-not-found-fault
                               #:custom-domain-certificate-arn-string
                               #:custom-domain-name-string #:data-share
                               #:data-share-association
@@ -96,7 +128,11 @@
                               #:delete-scheduled-action
                               #:delete-snapshot-copy-grant
                               #:delete-snapshot-schedule #:delete-tags
-                              #:delete-usage-limit #:deregister-namespace
+                              #:delete-usage-limit
+                              #:dependent-service-access-denied-fault
+                              #:dependent-service-request-throttling-fault
+                              #:dependent-service-unavailable-fault
+                              #:deregister-namespace
                               #:describe-account-attributes
                               #:describe-authentication-profiles
                               #:describe-cluster-db-revisions
@@ -145,39 +181,98 @@
                               #:enable-snapshot-copy #:encryption-context-map
                               #:endpoint #:endpoint-access
                               #:endpoint-access-list #:endpoint-accesses
+                              #:endpoint-already-exists-fault
                               #:endpoint-authorization
+                              #:endpoint-authorization-already-exists-fault
                               #:endpoint-authorization-list
-                              #:endpoint-authorizations #:event
-                              #:event-categories-list #:event-categories-map
+                              #:endpoint-authorization-not-found-fault
+                              #:endpoint-authorizations
+                              #:endpoint-authorizations-per-cluster-limit-exceeded-fault
+                              #:endpoint-not-found-fault
+                              #:endpoints-per-authorization-limit-exceeded-fault
+                              #:endpoints-per-cluster-limit-exceeded-fault
+                              #:event #:event-categories-list
+                              #:event-categories-map
                               #:event-categories-map-list #:event-info-map
                               #:event-info-map-list #:event-list
-                              #:event-subscription #:event-subscriptions-list
-                              #:exception-message #:failover-primary-compute
+                              #:event-subscription
+                              #:event-subscription-quota-exceeded-fault
+                              #:event-subscriptions-list #:exception-message
+                              #:failover-primary-compute
                               #:get-cluster-credentials
                               #:get-cluster-credentials-with-iam
                               #:get-reserved-node-exchange-configuration-options
                               #:get-reserved-node-exchange-offerings
                               #:get-resource-policy #:hsm-client-certificate
-                              #:hsm-client-certificate-list #:hsm-configuration
-                              #:hsm-configuration-list #:hsm-status #:iprange
-                              #:iprange-list #:iam-role-arn-list
-                              #:idc-display-name-string
+                              #:hsm-client-certificate-already-exists-fault
+                              #:hsm-client-certificate-list
+                              #:hsm-client-certificate-not-found-fault
+                              #:hsm-client-certificate-quota-exceeded-fault
+                              #:hsm-configuration
+                              #:hsm-configuration-already-exists-fault
+                              #:hsm-configuration-list
+                              #:hsm-configuration-not-found-fault
+                              #:hsm-configuration-quota-exceeded-fault
+                              #:hsm-status #:iprange #:iprange-list
+                              #:iam-role-arn-list #:idc-display-name-string
                               #:identity-namespace-string #:impact-ranking-type
                               #:import-tables-completed
                               #:import-tables-in-progress
-                              #:import-tables-not-started #:inbound-integration
-                              #:inbound-integration-arn
-                              #:inbound-integration-list #:integer
+                              #:import-tables-not-started
+                              #:in-progress-table-restore-quota-exceeded-fault
+                              #:inbound-integration #:inbound-integration-arn
+                              #:inbound-integration-list
+                              #:incompatible-orderable-options
+                              #:insufficient-cluster-capacity-fault
+                              #:insufficient-s3bucket-policy-fault #:integer
                               #:integer-optional #:integration
-                              #:integration-arn #:integration-description
-                              #:integration-error #:integration-error-list
-                              #:integration-list #:integration-name
+                              #:integration-already-exists-fault
+                              #:integration-arn
+                              #:integration-conflict-operation-fault
+                              #:integration-conflict-state-fault
+                              #:integration-description #:integration-error
+                              #:integration-error-list #:integration-list
+                              #:integration-name #:integration-not-found-fault
+                              #:integration-quota-exceeded-fault
+                              #:integration-source-not-found-fault
+                              #:integration-target-not-found-fault
+                              #:invalid-authentication-profile-request-fault
+                              #:invalid-authorization-state-fault
+                              #:invalid-cluster-parameter-group-state-fault
+                              #:invalid-cluster-security-group-state-fault
+                              #:invalid-cluster-snapshot-schedule-state-fault
+                              #:invalid-cluster-snapshot-state-fault
+                              #:invalid-cluster-state-fault
+                              #:invalid-cluster-subnet-group-state-fault
+                              #:invalid-cluster-subnet-state-fault
+                              #:invalid-cluster-track-fault
+                              #:invalid-data-share-fault
+                              #:invalid-elastic-ip-fault
+                              #:invalid-endpoint-state-fault
+                              #:invalid-hsm-client-certificate-state-fault
+                              #:invalid-hsm-configuration-state-fault
+                              #:invalid-namespace-fault #:invalid-policy-fault
+                              #:invalid-reserved-node-state-fault
+                              #:invalid-restore-fault
+                              #:invalid-retention-period-fault
+                              #:invalid-s3bucket-name-fault
+                              #:invalid-s3key-prefix-fault
+                              #:invalid-schedule-fault
+                              #:invalid-scheduled-action-fault
+                              #:invalid-snapshot-copy-grant-state-fault
+                              #:invalid-subnet
+                              #:invalid-subscription-state-fault
+                              #:invalid-table-restore-argument-fault
+                              #:invalid-tag-fault #:invalid-usage-limit-fault
+                              #:invalid-vpcnetwork-state-fault
+                              #:ipv6cidr-block-not-found-fault
                               #:lake-formation-query
                               #:lake-formation-scope-union
                               #:lake-formation-service-integrations
-                              #:list-recommendations #:log-destination-type
-                              #:log-type-list #:logging-status #:long
-                              #:long-optional #:maintenance-track #:mode
+                              #:limit-exceeded-fault #:list-recommendations
+                              #:log-destination-type #:log-type-list
+                              #:logging-status #:long #:long-optional
+                              #:maintenance-track #:mode
                               #:modify-aqua-configuration
                               #:modify-authentication-profile #:modify-cluster
                               #:modify-cluster-db-revision
@@ -202,6 +297,8 @@
                               #:node-configuration-options-filter
                               #:node-configuration-options-filter-list
                               #:node-configuration-options-filter-name
+                              #:number-of-nodes-per-cluster-limit-exceeded-fault
+                              #:number-of-nodes-quota-exceeded-fault
                               #:operator-type #:orderable-cluster-option
                               #:orderable-cluster-options-list #:parameter
                               #:parameter-apply-type #:parameter-group-list
@@ -216,8 +313,9 @@
                               #:partner-integration-partner-name
                               #:partner-integration-status
                               #:partner-integration-status-message
-                              #:pause-cluster #:pause-cluster-message
-                              #:pending-actions-list #:pending-modified-values
+                              #:partner-not-found-fault #:pause-cluster
+                              #:pause-cluster-message #:pending-actions-list
+                              #:pending-modified-values
                               #:provisioned-identifier
                               #:purchase-reserved-node-offering
                               #:put-resource-policy #:read-write-access
@@ -227,24 +325,36 @@
                               #:recommended-action-type #:recurring-charge
                               #:recurring-charge-list
                               #:redshift-idc-application
+                              #:redshift-idc-application-already-exists-fault
                               #:redshift-idc-application-list
                               #:redshift-idc-application-name
+                              #:redshift-idc-application-not-exists-fault
+                              #:redshift-idc-application-quota-exceeded-fault
                               #:redshift-service-version20121201
                               #:reference-link #:reference-link-list
                               #:register-namespace #:reject-data-share
                               #:reserved-node
+                              #:reserved-node-already-exists-fault
+                              #:reserved-node-already-migrated-fault
                               #:reserved-node-configuration-option
                               #:reserved-node-configuration-option-list
                               #:reserved-node-exchange-action-type
+                              #:reserved-node-exchange-not-found-fault
                               #:reserved-node-exchange-status
                               #:reserved-node-exchange-status-list
                               #:reserved-node-exchange-status-type
-                              #:reserved-node-list #:reserved-node-offering
+                              #:reserved-node-list
+                              #:reserved-node-not-found-fault
+                              #:reserved-node-offering
                               #:reserved-node-offering-list
+                              #:reserved-node-offering-not-found-fault
                               #:reserved-node-offering-type
+                              #:reserved-node-quota-exceeded-fault
                               #:reset-cluster-parameter-group #:resize-cluster
                               #:resize-cluster-message #:resize-info
-                              #:resize-progress-message #:resource-policy
+                              #:resize-not-found-fault
+                              #:resize-progress-message
+                              #:resource-not-found-fault #:resource-policy
                               #:restorable-node-type-list
                               #:restore-from-cluster-snapshot #:restore-status
                               #:restore-table-from-cluster-snapshot
@@ -255,14 +365,23 @@
                               #:rotate-encryption-key
                               #:s3access-grants-scope-union
                               #:s3access-grants-service-integrations
-                              #:s3key-prefix-value #:schedule-definition-list
+                              #:s3key-prefix-value #:snsinvalid-topic-fault
+                              #:snsno-authorization-fault
+                              #:snstopic-arn-not-found-fault
+                              #:schedule-definition-list
+                              #:schedule-definition-type-unsupported-fault
                               #:schedule-state #:scheduled-action
+                              #:scheduled-action-already-exists-fault
                               #:scheduled-action-filter
                               #:scheduled-action-filter-list
                               #:scheduled-action-filter-name
-                              #:scheduled-action-list #:scheduled-action-state
+                              #:scheduled-action-list
+                              #:scheduled-action-not-found-fault
+                              #:scheduled-action-quota-exceeded-fault
+                              #:scheduled-action-state
                               #:scheduled-action-time-list
                               #:scheduled-action-type
+                              #:scheduled-action-type-unsupported-fault
                               #:scheduled-action-type-values
                               #:scheduled-snapshot-time-list
                               #:secondary-cluster-info #:sensitive-string
@@ -270,34 +389,66 @@
                               #:service-integration-list
                               #:service-integrations-union #:snapshot
                               #:snapshot-attribute-to-sort-by
-                              #:snapshot-copy-grant #:snapshot-copy-grant-list
+                              #:snapshot-copy-already-disabled-fault
+                              #:snapshot-copy-already-enabled-fault
+                              #:snapshot-copy-disabled-fault
+                              #:snapshot-copy-grant
+                              #:snapshot-copy-grant-already-exists-fault
+                              #:snapshot-copy-grant-list
+                              #:snapshot-copy-grant-not-found-fault
+                              #:snapshot-copy-grant-quota-exceeded-fault
                               #:snapshot-error-message
                               #:snapshot-identifier-list #:snapshot-list
-                              #:snapshot-schedule #:snapshot-schedule-list
+                              #:snapshot-schedule
+                              #:snapshot-schedule-already-exists-fault
+                              #:snapshot-schedule-list
+                              #:snapshot-schedule-not-found-fault
+                              #:snapshot-schedule-quota-exceeded-fault
+                              #:snapshot-schedule-update-in-progress-fault
                               #:snapshot-sorting-entity
                               #:snapshot-sorting-entity-list #:sort-by-order
-                              #:source-arn #:source-ids-list #:source-type
-                              #:string #:subnet #:subnet-identifier-list
-                              #:subnet-list #:supported-operation
-                              #:supported-operation-list #:supported-platform
-                              #:supported-platforms-list #:tstamp
+                              #:source-arn #:source-ids-list
+                              #:source-not-found-fault #:source-type #:string
+                              #:subnet #:subnet-already-in-use
+                              #:subnet-identifier-list #:subnet-list
+                              #:subscription-already-exist-fault
+                              #:subscription-category-not-found-fault
+                              #:subscription-event-id-not-found-fault
+                              #:subscription-not-found-fault
+                              #:subscription-severity-not-found-fault
+                              #:supported-operation #:supported-operation-list
+                              #:supported-platform #:supported-platforms-list
+                              #:tstamp #:table-limit-exceeded-fault
+                              #:table-restore-not-found-fault
                               #:table-restore-status
                               #:table-restore-status-list
                               #:table-restore-status-type #:tag #:tag-key-list
-                              #:tag-list #:tag-value-list #:tagged-resource
+                              #:tag-limit-exceeded-fault #:tag-list
+                              #:tag-value-list #:tagged-resource
                               #:tagged-resource-list #:target-arn #:track-list
+                              #:unauthorized-operation
+                              #:unauthorized-partner-integration-fault
+                              #:unknown-snapshot-copy-region-fault
+                              #:unsupported-operation-fault
+                              #:unsupported-option-fault
                               #:update-partner-status #:update-target
-                              #:usage-limit #:usage-limit-breach-action
+                              #:usage-limit #:usage-limit-already-exists-fault
+                              #:usage-limit-breach-action
                               #:usage-limit-feature-type
                               #:usage-limit-limit-type #:usage-limit-list
+                              #:usage-limit-not-found-fault
                               #:usage-limit-period #:usage-limits
                               #:value-string-list #:vpc-endpoint
                               #:vpc-endpoints-list #:vpc-identifier-list
                               #:vpc-security-group-id-list
                               #:vpc-security-group-membership
                               #:vpc-security-group-membership-list
-                              #:zero-etlintegration-status))
+                              #:zero-etlintegration-status #:redshift-error))
 (common-lisp:in-package #:pira/redshift)
+
+(common-lisp:define-condition redshift-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service redshift-service-version20121201 :shape-name
                                    "RedshiftServiceVersion20121201" :version
@@ -463,14 +614,14 @@
                                   :member-name "message"))
                                 (:shape-name "AccessToClusterDeniedFault")
                                 (:error-name "AccessToClusterDenied")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error access-to-snapshot-denied-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AccessToSnapshotDeniedFault")
                                 (:error-name "AccessToSnapshotDenied")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure account-attribute common-lisp:nil
                                     ((attribute-name :target-type string
@@ -590,7 +741,7 @@
                                  "AuthenticationProfileAlreadyExistsFault")
                                 (:error-name
                                  "AuthenticationProfileAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list authentication-profile-list :member
                                authentication-profile)
@@ -606,7 +757,7 @@
                                  "AuthenticationProfileNotFoundFault")
                                 (:error-name
                                  "AuthenticationProfileNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error authentication-profile-quota-exceeded-fault
                                 common-lisp:nil
@@ -616,7 +767,7 @@
                                  "AuthenticationProfileQuotaExceededFault")
                                 (:error-name
                                  "AuthenticationProfileQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error authorization-already-exists-fault
                                 common-lisp:nil
@@ -624,14 +775,14 @@
                                   :member-name "message"))
                                 (:shape-name "AuthorizationAlreadyExistsFault")
                                 (:error-name "AuthorizationAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error authorization-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AuthorizationNotFoundFault")
                                 (:error-name "AuthorizationNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error authorization-quota-exceeded-fault
                                 common-lisp:nil
@@ -639,7 +790,7 @@
                                   :member-name "message"))
                                 (:shape-name "AuthorizationQuotaExceededFault")
                                 (:error-name "AuthorizationQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-enum authorization-status
     common-lisp:nil
@@ -755,14 +906,14 @@
                                 (:shape-name
                                  "BatchDeleteRequestSizeExceededFault")
                                 (:error-name "BatchDeleteRequestSizeExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error
  batch-modify-cluster-snapshots-limit-exceeded-fault common-lisp:nil
  ((message :target-type exception-message :member-name "message"))
  (:shape-name "BatchModifyClusterSnapshotsLimitExceededFault")
  (:error-name "BatchModifyClusterSnapshotsLimitExceededFault")
- (:error-code 400))
+ (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-input batch-modify-cluster-snapshots-message
                                 common-lisp:nil
@@ -806,7 +957,7 @@
                                   :member-name "message"))
                                 (:shape-name "BucketNotFoundFault")
                                 (:error-name "BucketNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-input cancel-resize-message common-lisp:nil
                                 ((cluster-identifier :target-type string
@@ -991,7 +1142,7 @@
                                   :member-name "message"))
                                 (:shape-name "ClusterAlreadyExistsFault")
                                 (:error-name "ClusterAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure cluster-associated-to-schedule
                                     common-lisp:nil
@@ -1078,7 +1229,7 @@
                                   :member-name "message"))
                                 (:shape-name "ClusterNotFoundFault")
                                 (:error-name "ClusterNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error cluster-on-latest-revision-fault
                                 common-lisp:nil
@@ -1086,7 +1237,7 @@
                                   :member-name "message"))
                                 (:shape-name "ClusterOnLatestRevisionFault")
                                 (:error-name "ClusterOnLatestRevision")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure cluster-parameter-group common-lisp:nil
                                     ((parameter-group-name :target-type string
@@ -1108,7 +1259,7 @@
                                  "ClusterParameterGroupAlreadyExistsFault")
                                 (:error-name
                                  "ClusterParameterGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure cluster-parameter-group-details
                                     common-lisp:nil
@@ -1136,7 +1287,7 @@
                                 (:shape-name
                                  "ClusterParameterGroupNotFoundFault")
                                 (:error-name "ClusterParameterGroupNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error cluster-parameter-group-quota-exceeded-fault
                                 common-lisp:nil
@@ -1146,7 +1297,7 @@
                                  "ClusterParameterGroupQuotaExceededFault")
                                 (:error-name
                                  "ClusterParameterGroupQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure cluster-parameter-group-status
                                     common-lisp:nil
@@ -1194,7 +1345,7 @@
                                   :member-name "message"))
                                 (:shape-name "ClusterQuotaExceededFault")
                                 (:error-name "ClusterQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure cluster-security-group common-lisp:nil
                                     ((cluster-security-group-name :target-type
@@ -1219,7 +1370,7 @@
                                  "ClusterSecurityGroupAlreadyExistsFault")
                                 (:error-name
                                  "ClusterSecurityGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure cluster-security-group-membership
                                     common-lisp:nil
@@ -1253,7 +1404,7 @@
                                 (:shape-name
                                  "ClusterSecurityGroupNotFoundFault")
                                 (:error-name "ClusterSecurityGroupNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error cluster-security-group-quota-exceeded-fault
                                 common-lisp:nil
@@ -1263,7 +1414,7 @@
                                  "ClusterSecurityGroupQuotaExceededFault")
                                 (:error-name
                                  "QuotaExceeded.ClusterSecurityGroup")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list cluster-security-groups :member
                                (cluster-security-group :xml-name
@@ -1276,7 +1427,7 @@
                                 (:shape-name
                                  "ClusterSnapshotAlreadyExistsFault")
                                 (:error-name "ClusterSnapshotAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure cluster-snapshot-copy-status
                                     common-lisp:nil
@@ -1298,7 +1449,7 @@
                                   :member-name "message"))
                                 (:shape-name "ClusterSnapshotNotFoundFault")
                                 (:error-name "ClusterSnapshotNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error cluster-snapshot-quota-exceeded-fault
                                 common-lisp:nil
@@ -1307,7 +1458,7 @@
                                 (:shape-name
                                  "ClusterSnapshotQuotaExceededFault")
                                 (:error-name "ClusterSnapshotQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure cluster-subnet-group common-lisp:nil
                                     ((cluster-subnet-group-name :target-type
@@ -1336,7 +1487,7 @@
                                 (:shape-name
                                  "ClusterSubnetGroupAlreadyExistsFault")
                                 (:error-name "ClusterSubnetGroupAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-output cluster-subnet-group-message common-lisp:nil
                                  ((marker :target-type string :member-name
@@ -1352,7 +1503,7 @@
                                   :member-name "message"))
                                 (:shape-name "ClusterSubnetGroupNotFoundFault")
                                 (:error-name "ClusterSubnetGroupNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error cluster-subnet-group-quota-exceeded-fault
                                 common-lisp:nil
@@ -1361,7 +1512,7 @@
                                 (:shape-name
                                  "ClusterSubnetGroupQuotaExceededFault")
                                 (:error-name "ClusterSubnetGroupQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list cluster-subnet-groups :member
                                (cluster-subnet-group :xml-name
@@ -1373,7 +1524,7 @@
                                   :member-name "message"))
                                 (:shape-name "ClusterSubnetQuotaExceededFault")
                                 (:error-name "ClusterSubnetQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure cluster-version common-lisp:nil
                                     ((cluster-version :target-type string
@@ -1408,7 +1559,7 @@
                                   :member-name "message"))
                                 (:shape-name "ConflictPolicyUpdateFault")
                                 (:error-name "ConflictPolicyUpdateFault")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list consumer-identifier-list :member string)
 
@@ -1437,7 +1588,7 @@
                                   :member-name "message"))
                                 (:shape-name "CopyToRegionDisabledFault")
                                 (:error-name "CopyToRegionDisabledFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-input create-authentication-profile-message
                                 common-lisp:nil
@@ -1919,7 +2070,7 @@
                                   :member-name "message"))
                                 (:shape-name "CustomCnameAssociationFault")
                                 (:error-name "CustomCnameAssociationFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error custom-domain-association-not-found-fault
                                 common-lisp:nil
@@ -1929,7 +2080,7 @@
                                  "CustomDomainAssociationNotFoundFault")
                                 (:error-name
                                  "CustomDomainAssociationNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-output custom-domain-associations-message
                                  common-lisp:nil
@@ -2257,7 +2408,7 @@
                                 (:shape-name
                                  "DependentServiceAccessDeniedFault")
                                 (:error-name "DependentServiceAccessDenied")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error dependent-service-request-throttling-fault
                                 common-lisp:nil
@@ -2267,7 +2418,7 @@
                                  "DependentServiceRequestThrottlingFault")
                                 (:error-name
                                  "DependentServiceRequestThrottlingFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error dependent-service-unavailable-fault
                                 common-lisp:nil
@@ -2277,7 +2428,7 @@
                                  "DependentServiceUnavailableFault")
                                 (:error-name
                                  "DependentServiceUnavailableFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-input deregister-namespace-input-message
                                 common-lisp:nil
@@ -3101,7 +3252,7 @@
                                   :member-name "message"))
                                 (:shape-name "EndpointAlreadyExistsFault")
                                 (:error-name "EndpointAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure endpoint-authorization common-lisp:nil
                                     ((grantor :target-type string :member-name
@@ -3133,7 +3284,7 @@
                                  "EndpointAuthorizationAlreadyExistsFault")
                                 (:error-name
                                  "EndpointAuthorizationAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure endpoint-authorization-list common-lisp:nil
                                     ((endpoint-authorization-list :target-type
@@ -3150,7 +3301,7 @@
                                 (:shape-name
                                  "EndpointAuthorizationNotFoundFault")
                                 (:error-name "EndpointAuthorizationNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list endpoint-authorizations :member
                                endpoint-authorization)
@@ -3160,20 +3311,21 @@
  ((message :target-type exception-message :member-name "message"))
  (:shape-name "EndpointAuthorizationsPerClusterLimitExceededFault")
  (:error-name "EndpointAuthorizationsPerClusterLimitExceeded")
- (:error-code 400))
+ (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error endpoint-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "EndpointNotFoundFault")
                                 (:error-name "EndpointNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error
  endpoints-per-authorization-limit-exceeded-fault common-lisp:nil
  ((message :target-type exception-message :member-name "message"))
  (:shape-name "EndpointsPerAuthorizationLimitExceededFault")
- (:error-name "EndpointsPerAuthorizationLimitExceeded") (:error-code 400))
+ (:error-name "EndpointsPerAuthorizationLimitExceeded") (:error-code 400)
+ (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error endpoints-per-cluster-limit-exceeded-fault
                                 common-lisp:nil
@@ -3183,7 +3335,7 @@
                                  "EndpointsPerClusterLimitExceededFault")
                                 (:error-name
                                  "EndpointsPerClusterLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure event common-lisp:nil
                                     ((source-identifier :target-type string
@@ -3275,7 +3427,7 @@
                                 (:shape-name
                                  "EventSubscriptionQuotaExceededFault")
                                 (:error-name "EventSubscriptionQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list event-subscriptions-list :member
                                (event-subscription :xml-name
@@ -3407,7 +3559,7 @@
                                  "HsmClientCertificateAlreadyExistsFault")
                                 (:error-name
                                  "HsmClientCertificateAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list hsm-client-certificate-list :member
                                (hsm-client-certificate :xml-name
@@ -3429,7 +3581,7 @@
                                  "HsmClientCertificateNotFoundFault")
                                 (:error-name
                                  "HsmClientCertificateNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error hsm-client-certificate-quota-exceeded-fault
                                 common-lisp:nil
@@ -3439,7 +3591,7 @@
                                  "HsmClientCertificateQuotaExceededFault")
                                 (:error-name
                                  "HsmClientCertificateQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure hsm-configuration common-lisp:nil
                                     ((hsm-configuration-identifier :target-type
@@ -3463,7 +3615,7 @@
                                  "HsmConfigurationAlreadyExistsFault")
                                 (:error-name
                                  "HsmConfigurationAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list hsm-configuration-list :member
                                (hsm-configuration :xml-name "HsmConfiguration"))
@@ -3482,7 +3634,7 @@
                                   :member-name "message"))
                                 (:shape-name "HsmConfigurationNotFoundFault")
                                 (:error-name "HsmConfigurationNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error hsm-configuration-quota-exceeded-fault
                                 common-lisp:nil
@@ -3492,7 +3644,7 @@
                                  "HsmConfigurationQuotaExceededFault")
                                 (:error-name
                                  "HsmConfigurationQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure hsm-status common-lisp:nil
                                     ((hsm-client-certificate-identifier
@@ -3546,7 +3698,7 @@
                                  "InProgressTableRestoreQuotaExceededFault")
                                 (:error-name
                                  "InProgressTableRestoreQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure inbound-integration common-lisp:nil
                                     ((integration-arn :target-type
@@ -3586,7 +3738,7 @@
                                   :member-name "message"))
                                 (:shape-name "IncompatibleOrderableOptions")
                                 (:error-name "IncompatibleOrderableOptions")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error insufficient-cluster-capacity-fault
                                 common-lisp:nil
@@ -3595,7 +3747,7 @@
                                 (:shape-name
                                  "InsufficientClusterCapacityFault")
                                 (:error-name "InsufficientClusterCapacity")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error insufficient-s3bucket-policy-fault
                                 common-lisp:nil
@@ -3603,7 +3755,7 @@
                                   :member-name "message"))
                                 (:shape-name "InsufficientS3BucketPolicyFault")
                                 (:error-name "InsufficientS3BucketPolicyFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
 
@@ -3646,7 +3798,7 @@
                                   :member-name "message"))
                                 (:shape-name "IntegrationAlreadyExistsFault")
                                 (:error-name "IntegrationAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-type integration-arn smithy/sdk/smithy-types:string)
 
@@ -3658,7 +3810,7 @@
                                  "IntegrationConflictOperationFault")
                                 (:error-name
                                  "IntegrationConflictOperationFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error integration-conflict-state-fault
                                 common-lisp:nil
@@ -3666,7 +3818,7 @@
                                   :member-name "message"))
                                 (:shape-name "IntegrationConflictStateFault")
                                 (:error-name "IntegrationConflictStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-type integration-description
                                smithy/sdk/smithy-types:string)
@@ -3691,7 +3843,7 @@
                                   :member-name "message"))
                                 (:shape-name "IntegrationNotFoundFault")
                                 (:error-name "IntegrationNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error integration-quota-exceeded-fault
                                 common-lisp:nil
@@ -3699,7 +3851,7 @@
                                   :member-name "message"))
                                 (:shape-name "IntegrationQuotaExceededFault")
                                 (:error-name "IntegrationQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error integration-source-not-found-fault
                                 common-lisp:nil
@@ -3707,7 +3859,7 @@
                                   :member-name "message"))
                                 (:shape-name "IntegrationSourceNotFoundFault")
                                 (:error-name "IntegrationSourceNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error integration-target-not-found-fault
                                 common-lisp:nil
@@ -3715,7 +3867,7 @@
                                   :member-name "message"))
                                 (:shape-name "IntegrationTargetNotFoundFault")
                                 (:error-name "IntegrationTargetNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-output integrations-message common-lisp:nil
                                  ((marker :target-type string :member-name
@@ -3732,7 +3884,7 @@
                                  "InvalidAuthenticationProfileRequestFault")
                                 (:error-name
                                  "InvalidAuthenticationProfileRequestFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-authorization-state-fault
                                 common-lisp:nil
@@ -3740,7 +3892,7 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidAuthorizationStateFault")
                                 (:error-name "InvalidAuthorizationState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-cluster-parameter-group-state-fault
                                 common-lisp:nil
@@ -3750,7 +3902,7 @@
                                  "InvalidClusterParameterGroupStateFault")
                                 (:error-name
                                  "InvalidClusterParameterGroupState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-cluster-security-group-state-fault
                                 common-lisp:nil
@@ -3760,7 +3912,7 @@
                                  "InvalidClusterSecurityGroupStateFault")
                                 (:error-name
                                  "InvalidClusterSecurityGroupState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-cluster-snapshot-schedule-state-fault
                                 common-lisp:nil
@@ -3770,7 +3922,7 @@
                                  "InvalidClusterSnapshotScheduleStateFault")
                                 (:error-name
                                  "InvalidClusterSnapshotScheduleState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-cluster-snapshot-state-fault
                                 common-lisp:nil
@@ -3779,14 +3931,14 @@
                                 (:shape-name
                                  "InvalidClusterSnapshotStateFault")
                                 (:error-name "InvalidClusterSnapshotState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-cluster-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidClusterStateFault")
                                 (:error-name "InvalidClusterState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-cluster-subnet-group-state-fault
                                 common-lisp:nil
@@ -3796,7 +3948,7 @@
                                  "InvalidClusterSubnetGroupStateFault")
                                 (:error-name
                                  "InvalidClusterSubnetGroupStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-cluster-subnet-state-fault
                                 common-lisp:nil
@@ -3804,35 +3956,35 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidClusterSubnetStateFault")
                                 (:error-name "InvalidClusterSubnetStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-cluster-track-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidClusterTrackFault")
                                 (:error-name "InvalidClusterTrack")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-data-share-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidDataShareFault")
                                 (:error-name "InvalidDataShareFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-elastic-ip-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidElasticIpFault")
                                 (:error-name "InvalidElasticIpFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-endpoint-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidEndpointStateFault")
                                 (:error-name "InvalidEndpointState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-hsm-client-certificate-state-fault
                                 common-lisp:nil
@@ -3842,7 +3994,7 @@
                                  "InvalidHsmClientCertificateStateFault")
                                 (:error-name
                                  "InvalidHsmClientCertificateStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-hsm-configuration-state-fault
                                 common-lisp:nil
@@ -3852,21 +4004,21 @@
                                  "InvalidHsmConfigurationStateFault")
                                 (:error-name
                                  "InvalidHsmConfigurationStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-namespace-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidNamespaceFault")
                                 (:error-name "InvalidNamespaceFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-policy-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidPolicyFault")
                                 (:error-name "InvalidPolicyFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-reserved-node-state-fault
                                 common-lisp:nil
@@ -3874,49 +4026,49 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidReservedNodeStateFault")
                                 (:error-name "InvalidReservedNodeState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-restore-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRestoreFault")
                                 (:error-name "InvalidRestore")
-                                (:error-code 406))
+                                (:error-code 406) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-retention-period-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRetentionPeriodFault")
                                 (:error-name "InvalidRetentionPeriodFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-s3bucket-name-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidS3BucketNameFault")
                                 (:error-name "InvalidS3BucketNameFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-s3key-prefix-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidS3KeyPrefixFault")
                                 (:error-name "InvalidS3KeyPrefixFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-schedule-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidScheduleFault")
                                 (:error-name "InvalidSchedule")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-scheduled-action-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidScheduledActionFault")
                                 (:error-name "InvalidScheduledAction")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-snapshot-copy-grant-state-fault
                                 common-lisp:nil
@@ -3926,13 +4078,14 @@
                                  "InvalidSnapshotCopyGrantStateFault")
                                 (:error-name
                                  "InvalidSnapshotCopyGrantStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-subnet common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSubnet")
-                                (:error-name "InvalidSubnet") (:error-code 400))
+                                (:error-name "InvalidSubnet") (:error-code 400)
+                                (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-subscription-state-fault
                                 common-lisp:nil
@@ -3940,7 +4093,7 @@
                                   :member-name "message"))
                                 (:shape-name "InvalidSubscriptionStateFault")
                                 (:error-name "InvalidSubscriptionStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-table-restore-argument-fault
                                 common-lisp:nil
@@ -3949,35 +4102,35 @@
                                 (:shape-name
                                  "InvalidTableRestoreArgumentFault")
                                 (:error-name "InvalidTableRestoreArgument")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-tag-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTagFault")
                                 (:error-name "InvalidTagFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-usage-limit-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidUsageLimitFault")
                                 (:error-name "InvalidUsageLimit")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error invalid-vpcnetwork-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidVPCNetworkStateFault")
                                 (:error-name "InvalidVPCNetworkStateFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error ipv6cidr-block-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "Ipv6CidrBlockNotFoundFault")
                                 (:error-name "Ipv6CidrBlockNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure lake-formation-query common-lisp:nil
                                     ((authorization :target-type
@@ -4000,7 +4153,7 @@
                                   :member-name "message"))
                                 (:shape-name "LimitExceededFault")
                                 (:error-name "LimitExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-input list-recommendations-message common-lisp:nil
                                 ((cluster-identifier :target-type string
@@ -4567,7 +4720,8 @@
  number-of-nodes-per-cluster-limit-exceeded-fault common-lisp:nil
  ((message :target-type exception-message :member-name "message"))
  (:shape-name "NumberOfNodesPerClusterLimitExceededFault")
- (:error-name "NumberOfNodesPerClusterLimitExceeded") (:error-code 400))
+ (:error-name "NumberOfNodesPerClusterLimitExceeded") (:error-code 400)
+ (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error number-of-nodes-quota-exceeded-fault
                                 common-lisp:nil
@@ -4575,7 +4729,7 @@
                                   :member-name "message"))
                                 (:shape-name "NumberOfNodesQuotaExceededFault")
                                 (:error-name "NumberOfNodesQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-enum operator-type
     common-lisp:nil
@@ -4728,7 +4882,7 @@
                                   :member-name "message"))
                                 (:shape-name "PartnerNotFoundFault")
                                 (:error-name "PartnerNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure pause-cluster-message common-lisp:nil
                                     ((cluster-identifier :target-type string
@@ -4932,7 +5086,7 @@
                                  "RedshiftIdcApplicationAlreadyExistsFault")
                                 (:error-name
                                  "RedshiftIdcApplicationAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list redshift-idc-application-list :member
                                redshift-idc-application)
@@ -4947,7 +5101,7 @@
                                 (:shape-name
                                  "RedshiftIdcApplicationNotExistsFault")
                                 (:error-name "RedshiftIdcApplicationNotExists")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error redshift-idc-application-quota-exceeded-fault
                                 common-lisp:nil
@@ -4957,7 +5111,7 @@
                                  "RedshiftIdcApplicationQuotaExceededFault")
                                 (:error-name
                                  "RedshiftIdcApplicationQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure reference-link common-lisp:nil
                                     ((text :target-type string :member-name
@@ -5031,7 +5185,7 @@
                                   :member-name "message"))
                                 (:shape-name "ReservedNodeAlreadyExistsFault")
                                 (:error-name "ReservedNodeAlreadyExists")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error reserved-node-already-migrated-fault
                                 common-lisp:nil
@@ -5040,7 +5194,7 @@
                                 (:shape-name
                                  "ReservedNodeAlreadyMigratedFault")
                                 (:error-name "ReservedNodeAlreadyMigrated")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure reserved-node-configuration-option
                                     common-lisp:nil
@@ -5073,7 +5227,7 @@
                                 (:shape-name
                                  "ReservedNodeExchangeNotFoundFault")
                                 (:error-name "ReservedNodeExchangeNotFond")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure reserved-node-exchange-status
                                     common-lisp:nil
@@ -5126,7 +5280,7 @@
                                   :member-name "message"))
                                 (:shape-name "ReservedNodeNotFoundFault")
                                 (:error-name "ReservedNodeNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure reserved-node-offering common-lisp:nil
                                     ((reserved-node-offering-id :target-type
@@ -5163,7 +5317,7 @@
                                 (:shape-name
                                  "ReservedNodeOfferingNotFoundFault")
                                 (:error-name "ReservedNodeOfferingNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-enum reserved-node-offering-type
     common-lisp:nil
@@ -5185,7 +5339,7 @@
                                   :member-name "message"))
                                 (:shape-name "ReservedNodeQuotaExceededFault")
                                 (:error-name "ReservedNodeQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-output reserved-nodes-message common-lisp:nil
                                  ((marker :target-type string :member-name
@@ -5244,7 +5398,7 @@
                                   :member-name "message"))
                                 (:shape-name "ResizeNotFoundFault")
                                 (:error-name "ResizeNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure resize-progress-message common-lisp:nil
                                     ((target-node-type :target-type string
@@ -5297,7 +5451,7 @@
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundFault")
                                 (:error-name "ResourceNotFoundFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure resource-policy common-lisp:nil
                                     ((resource-arn :target-type string
@@ -5572,21 +5726,21 @@
                                   :member-name "message"))
                                 (:shape-name "SNSInvalidTopicFault")
                                 (:error-name "SNSInvalidTopic")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error snsno-authorization-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SNSNoAuthorizationFault")
                                 (:error-name "SNSNoAuthorization")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error snstopic-arn-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SNSTopicArnNotFoundFault")
                                 (:error-name "SNSTopicArnNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list schedule-definition-list :member
                                (string :xml-name "ScheduleDefinition"))
@@ -5599,7 +5753,7 @@
                                  "ScheduleDefinitionTypeUnsupportedFault")
                                 (:error-name
                                  "ScheduleDefinitionTypeUnsupported")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-enum schedule-state
     common-lisp:nil
@@ -5638,7 +5792,7 @@
                                 (:shape-name
                                  "ScheduledActionAlreadyExistsFault")
                                 (:error-name "ScheduledActionAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure scheduled-action-filter common-lisp:nil
                                     ((name :target-type
@@ -5667,7 +5821,7 @@
                                   :member-name "message"))
                                 (:shape-name "ScheduledActionNotFoundFault")
                                 (:error-name "ScheduledActionNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error scheduled-action-quota-exceeded-fault
                                 common-lisp:nil
@@ -5676,7 +5830,7 @@
                                 (:shape-name
                                  "ScheduledActionQuotaExceededFault")
                                 (:error-name "ScheduledActionQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-enum scheduled-action-state
     common-lisp:nil
@@ -5705,7 +5859,7 @@
                                 (:shape-name
                                  "ScheduledActionTypeUnsupportedFault")
                                 (:error-name "ScheduledActionTypeUnsupported")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-enum scheduled-action-type-values
     common-lisp:nil
@@ -5866,7 +6020,7 @@
                                  "SnapshotCopyAlreadyDisabledFault")
                                 (:error-name
                                  "SnapshotCopyAlreadyDisabledFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error snapshot-copy-already-enabled-fault
                                 common-lisp:nil
@@ -5874,14 +6028,14 @@
                                   :member-name "message"))
                                 (:shape-name "SnapshotCopyAlreadyEnabledFault")
                                 (:error-name "SnapshotCopyAlreadyEnabledFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error snapshot-copy-disabled-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SnapshotCopyDisabledFault")
                                 (:error-name "SnapshotCopyDisabledFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure snapshot-copy-grant common-lisp:nil
                                     ((snapshot-copy-grant-name :target-type
@@ -5901,7 +6055,7 @@
                                  "SnapshotCopyGrantAlreadyExistsFault")
                                 (:error-name
                                  "SnapshotCopyGrantAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list snapshot-copy-grant-list :member
                                (snapshot-copy-grant :xml-name
@@ -5921,7 +6075,7 @@
                                   :member-name "message"))
                                 (:shape-name "SnapshotCopyGrantNotFoundFault")
                                 (:error-name "SnapshotCopyGrantNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error snapshot-copy-grant-quota-exceeded-fault
                                 common-lisp:nil
@@ -5931,7 +6085,7 @@
                                  "SnapshotCopyGrantQuotaExceededFault")
                                 (:error-name
                                  "SnapshotCopyGrantQuotaExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure snapshot-error-message common-lisp:nil
                                     ((snapshot-identifier :target-type string
@@ -5986,7 +6140,7 @@
                                 (:shape-name
                                  "SnapshotScheduleAlreadyExistsFault")
                                 (:error-name "SnapshotScheduleAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list snapshot-schedule-list :member
                                (snapshot-schedule :xml-name "SnapshotSchedule"))
@@ -5997,7 +6151,7 @@
                                   :member-name "message"))
                                 (:shape-name "SnapshotScheduleNotFoundFault")
                                 (:error-name "SnapshotScheduleNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error snapshot-schedule-quota-exceeded-fault
                                 common-lisp:nil
@@ -6006,7 +6160,7 @@
                                 (:shape-name
                                  "SnapshotScheduleQuotaExceededFault")
                                 (:error-name "SnapshotScheduleQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error snapshot-schedule-update-in-progress-fault
                                 common-lisp:nil
@@ -6016,7 +6170,7 @@
                                  "SnapshotScheduleUpdateInProgressFault")
                                 (:error-name
                                  "SnapshotScheduleUpdateInProgress")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure snapshot-sorting-entity common-lisp:nil
                                     ((attribute :target-type
@@ -6045,7 +6199,7 @@
                                   :member-name "message"))
                                 (:shape-name "SourceNotFoundFault")
                                 (:error-name "SourceNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-enum source-type
     common-lisp:nil
@@ -6072,7 +6226,7 @@
                                   :member-name "message"))
                                 (:shape-name "SubnetAlreadyInUse")
                                 (:error-name "SubnetAlreadyInUse")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list subnet-identifier-list :member
                                (string :xml-name "SubnetIdentifier"))
@@ -6085,7 +6239,7 @@
                                   :member-name "message"))
                                 (:shape-name "SubscriptionAlreadyExistFault")
                                 (:error-name "SubscriptionAlreadyExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error subscription-category-not-found-fault
                                 common-lisp:nil
@@ -6094,7 +6248,7 @@
                                 (:shape-name
                                  "SubscriptionCategoryNotFoundFault")
                                 (:error-name "SubscriptionCategoryNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error subscription-event-id-not-found-fault
                                 common-lisp:nil
@@ -6103,14 +6257,14 @@
                                 (:shape-name
                                  "SubscriptionEventIdNotFoundFault")
                                 (:error-name "SubscriptionEventIdNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error subscription-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SubscriptionNotFoundFault")
                                 (:error-name "SubscriptionNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error subscription-severity-not-found-fault
                                 common-lisp:nil
@@ -6119,7 +6273,7 @@
                                 (:shape-name
                                  "SubscriptionSeverityNotFoundFault")
                                 (:error-name "SubscriptionSeverityNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure supported-operation common-lisp:nil
                                     ((operation-name :target-type string
@@ -6146,14 +6300,14 @@
                                   :member-name "message"))
                                 (:shape-name "TableLimitExceededFault")
                                 (:error-name "TableLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error table-restore-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TableRestoreNotFoundFault")
                                 (:error-name "TableRestoreNotFoundFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-structure table-restore-status common-lisp:nil
                                     ((table-restore-request-id :target-type
@@ -6224,7 +6378,7 @@
                                   :member-name "message"))
                                 (:shape-name "TagLimitExceededFault")
                                 (:error-name "TagLimitExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-list tag-list :member (tag :xml-name "Tag"))
 
@@ -6267,7 +6421,7 @@
                                   :member-name "message"))
                                 (:shape-name "UnauthorizedOperation")
                                 (:error-name "UnauthorizedOperation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error unauthorized-partner-integration-fault
                                 common-lisp:nil
@@ -6276,7 +6430,7 @@
                                 (:shape-name
                                  "UnauthorizedPartnerIntegrationFault")
                                 (:error-name "UnauthorizedPartnerIntegration")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error unknown-snapshot-copy-region-fault
                                 common-lisp:nil
@@ -6284,21 +6438,21 @@
                                   :member-name "message"))
                                 (:shape-name "UnknownSnapshotCopyRegionFault")
                                 (:error-name "UnknownSnapshotCopyRegionFault")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error unsupported-operation-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UnsupportedOperationFault")
                                 (:error-name "UnsupportedOperation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-error unsupported-option-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UnsupportedOptionFault")
                                 (:error-name "UnsupportedOptionFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-input update-partner-status-input-message
                                 common-lisp:nil
@@ -6362,7 +6516,7 @@
                                   :member-name "message"))
                                 (:shape-name "UsageLimitAlreadyExistsFault")
                                 (:error-name "UsageLimitAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-enum usage-limit-breach-action
     common-lisp:nil
@@ -6393,7 +6547,7 @@
                                   :member-name "message"))
                                 (:shape-name "UsageLimitNotFoundFault")
                                 (:error-name "UsageLimitNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class redshift-error))
 
 (smithy/sdk/shapes:define-enum usage-limit-period
     common-lisp:nil

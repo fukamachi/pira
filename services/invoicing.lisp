@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/invoicing (:use)
-                             (:export #:account-id-list #:account-id-string
+                             (:export #:access-denied-exception
+                              #:account-id-list #:account-id-string
                               #:amount-breakdown #:as-of-timestamp
                               #:basic-string #:basic-string-without-space
                               #:batch-get-invoice-profile #:billing-period
@@ -11,9 +12,9 @@
                               #:discounts-breakdown-amount-list #:entity
                               #:fees-breakdown #:fees-breakdown-amount
                               #:fees-breakdown-amount-list #:filters
-                              #:get-invoice-unit #:invoice-currency-amount
-                              #:invoice-profile #:invoice-summaries
-                              #:invoice-summaries-filter
+                              #:get-invoice-unit #:internal-server-exception
+                              #:invoice-currency-amount #:invoice-profile
+                              #:invoice-summaries #:invoice-summaries-filter
                               #:invoice-summaries-max-results
                               #:invoice-summaries-selector #:invoice-summary
                               #:invoice-type #:invoice-unit
@@ -25,19 +26,27 @@
                               #:list-invoice-summaries-resource-type
                               #:list-invoice-units #:list-tags-for-resource
                               #:max-results-integer #:month #:next-token-string
-                              #:profile-list #:receiver-address #:resource-tag
+                              #:profile-list #:receiver-address
+                              #:resource-not-found-exception #:resource-tag
                               #:resource-tag-key #:resource-tag-key-list
                               #:resource-tag-list #:resource-tag-value
                               #:sensitive-basic-string-without-space
+                              #:service-quota-exceeded-exception
                               #:string-without-new-line #:tag-resource
                               #:tagris-arn #:tax-inheritance-disabled-flag
                               #:taxes-breakdown #:taxes-breakdown-amount
-                              #:taxes-breakdown-amount-list #:untag-resource
-                              #:update-invoice-unit
+                              #:taxes-breakdown-amount-list
+                              #:throttling-exception #:untag-resource
+                              #:update-invoice-unit #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason #:year))
+                              #:validation-exception-reason #:year
+                              #:invoicing-error))
 (common-lisp:in-package #:pira/invoicing)
+
+(common-lisp:define-condition invoicing-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service invoicing :shape-name "Invoicing" :version
                                    "2024-12-01" :title "AWS Invoicing"
@@ -70,7 +79,7 @@
                                   "resourceName"))
                                 (:shape-name "AccessDeniedException")
                                 (:error-name "InvoicingAccessDenied")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class invoicing-error))
 
 (smithy/sdk/shapes:define-list account-id-list :member account-id-string)
 
@@ -273,7 +282,7 @@
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
                                 (:error-name "InvoicingInternalServer")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class invoicing-error))
 
 (smithy/sdk/shapes:define-structure invoice-currency-amount common-lisp:nil
                                     ((total-amount :target-type basic-string
@@ -513,7 +522,7 @@
                                   "resourceName"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "InvoicingResourceNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class invoicing-error))
 
 (smithy/sdk/shapes:define-structure resource-tag common-lisp:nil
                                     ((key :target-type resource-tag-key
@@ -542,7 +551,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
                                 (:error-name "InvoicingServiceQuotaExceeded")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class invoicing-error))
 
 (smithy/sdk/shapes:define-type string-without-new-line
                                smithy/sdk/smithy-types:string)
@@ -590,7 +599,7 @@
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
                                 (:error-name "InvoicingThrottling")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class invoicing-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type tagris-arn
@@ -638,7 +647,7 @@
                                   "fieldList"))
                                 (:shape-name "ValidationException")
                                 (:error-name "InvoicingValidation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class invoicing-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type basic-string :required

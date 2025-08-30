@@ -1,9 +1,10 @@
 (uiop/package:define-package #:pira/neptune-graph (:use)
-                             (:export #:amazon-neptune-graph #:arn
+                             (:export #:access-denied-exception
+                              #:amazon-neptune-graph #:arn
                               #:blank-node-handling #:cancel-export-task
                               #:cancel-import-task #:cancel-query
-                              #:conflict-exception-reason #:create-graph
-                              #:create-graph-snapshot
+                              #:conflict-exception #:conflict-exception-reason
+                              #:create-graph #:create-graph-snapshot
                               #:create-graph-using-import-task
                               #:create-private-graph-endpoint #:delete-graph
                               #:delete-graph-snapshot
@@ -33,9 +34,9 @@
                               #:graph-summary-mode #:import-options
                               #:import-task-details #:import-task-status
                               #:import-task-summary #:import-task-summary-list
-                              #:kms-key-arn #:list-export-tasks
-                              #:list-graph-snapshots #:list-graphs
-                              #:list-import-tasks
+                              #:internal-server-exception #:kms-key-arn
+                              #:list-export-tasks #:list-graph-snapshots
+                              #:list-graphs #:list-import-tasks
                               #:list-private-graph-endpoints #:list-queries
                               #:list-tags-for-resource #:long-valued-map
                               #:long-valued-map-list #:max-results
@@ -53,21 +54,28 @@
                               #:query-response-blob #:query-state
                               #:query-state-input #:query-summary
                               #:query-summary-list #:replica-count
-                              #:reset-graph #:restore-graph-from-snapshot
-                              #:role-arn #:security-group-id
-                              #:security-group-ids #:snapshot-id
+                              #:reset-graph #:resource-not-found-exception
+                              #:restore-graph-from-snapshot #:role-arn
+                              #:security-group-id #:security-group-ids
+                              #:service-quota-exceeded-exception #:snapshot-id
                               #:snapshot-identifier #:snapshot-name
                               #:snapshot-resource #:snapshot-status
                               #:start-export-task #:start-import-task
                               #:subnet-id #:subnet-ids #:tag-key #:tag-key-list
                               #:tag-map #:tag-resource #:tag-value #:task-id
-                              #:task-resource #:unprocessable-exception-reason
-                              #:untag-resource #:update-graph
+                              #:task-resource #:throttling-exception
+                              #:unprocessable-exception
+                              #:unprocessable-exception-reason #:untag-resource
+                              #:update-graph #:validation-exception
                               #:validation-exception-reason
                               #:vector-search-configuration
                               #:vector-search-dimension #:vpc-endpoint-id
-                              #:vpc-id))
+                              #:vpc-id #:neptune-graph-error))
 (common-lisp:in-package #:pira/neptune-graph)
+
+(common-lisp:define-condition neptune-graph-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-neptune-graph :shape-name
                                    "AmazonNeptuneGraph" :version "2023-11-29"
@@ -91,7 +99,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class neptune-graph-error))
 
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
 
@@ -174,7 +183,8 @@
                                  (reason :target-type conflict-exception-reason
                                   :member-name "reason"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class neptune-graph-error))
 
 (smithy/sdk/shapes:define-enum conflict-exception-reason
     common-lisp:nil
@@ -1076,7 +1086,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class neptune-graph-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -1407,7 +1418,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class neptune-graph-error))
 
 (smithy/sdk/shapes:define-input restore-graph-from-snapshot-input
                                 common-lisp:nil
@@ -1499,7 +1511,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class neptune-graph-error))
 
 (smithy/sdk/shapes:define-type snapshot-id smithy/sdk/smithy-types:string)
 
@@ -1645,7 +1658,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class neptune-graph-error))
 
 (smithy/sdk/shapes:define-error unprocessable-exception common-lisp:nil
                                 ((message :target-type
@@ -1655,7 +1669,8 @@ common-lisp:nil
                                   unprocessable-exception-reason :required
                                   common-lisp:t :member-name "reason"))
                                 (:shape-name "UnprocessableException")
-                                (:error-code 422))
+                                (:error-code 422)
+                                (:base-class neptune-graph-error))
 
 (smithy/sdk/shapes:define-enum unprocessable-exception-reason
     common-lisp:nil
@@ -1744,7 +1759,8 @@ common-lisp:nil
                                   validation-exception-reason :member-name
                                   "reason"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class neptune-graph-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-reason
     common-lisp:nil

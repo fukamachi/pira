@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/connectcampaignsv2 (:use)
-                             (:export #:agentless-config
+                             (:export #:access-denied-exception
+                              #:agentless-config
                               #:amazon-connect-campaign-service-v2
                               #:answer-machine-detection-config #:arn
                               #:attribute-name #:attribute-value #:attributes
@@ -18,7 +19,8 @@
                               #:communication-limits-config-type
                               #:communication-time-config
                               #:communication-time-config-type
-                              #:contact-flow-id #:create-campaign
+                              #:conflict-exception #:contact-flow-id
+                              #:create-campaign
                               #:customer-profiles-integration-config
                               #:customer-profiles-integration-identifier
                               #:customer-profiles-integration-summary
@@ -58,8 +60,10 @@
                               #:instance-onboarding-job-status-code
                               #:integration-config #:integration-identifier
                               #:integration-summary #:integration-summary-list
-                              #:iso8601date #:iso8601duration #:iso8601time
-                              #:list-campaigns
+                              #:internal-server-exception
+                              #:invalid-campaign-state-exception
+                              #:invalid-state-exception #:iso8601date
+                              #:iso8601duration #:iso8601time #:list-campaigns
                               #:list-connect-instance-integrations
                               #:list-tags-for-resource #:local-time-zone-config
                               #:local-time-zone-detection
@@ -80,10 +84,12 @@
                               #:qconnect-integration-config
                               #:qconnect-integration-identifier
                               #:qconnect-integration-summary #:queue-id
+                              #:resource-not-found-exception
                               #:restricted-period #:restricted-period-list
                               #:restricted-period-name #:restricted-periods
                               #:resume-campaign #:schedule
                               #:service-linked-role-arn
+                              #:service-quota-exceeded-exception
                               #:sms-channel-subtype-config
                               #:sms-channel-subtype-parameters
                               #:sms-outbound-config #:sms-outbound-mode
@@ -98,16 +104,21 @@
                               #:tag-value #:telephony-channel-subtype-config
                               #:telephony-channel-subtype-parameters
                               #:telephony-outbound-config
-                              #:telephony-outbound-mode #:time-range
-                              #:time-range-list #:time-stamp #:time-window
-                              #:time-zone #:untag-resource
+                              #:telephony-outbound-mode #:throttling-exception
+                              #:time-range #:time-range-list #:time-stamp
+                              #:time-window #:time-zone #:untag-resource
                               #:update-campaign-channel-subtype-config
                               #:update-campaign-communication-limits
                               #:update-campaign-communication-time
                               #:update-campaign-flow-association
                               #:update-campaign-name #:update-campaign-schedule
-                              #:update-campaign-source #:xamazon-error-type))
+                              #:update-campaign-source #:validation-exception
+                              #:xamazon-error-type #:connectcampaignsv2-error))
 (common-lisp:in-package #:pira/connectcampaignsv2)
+
+(common-lisp:define-condition connectcampaignsv2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-connect-campaign-service-v2
                                    :shape-name "AmazonConnectCampaignServiceV2"
@@ -161,7 +172,8 @@
                                   "xAmzErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class connectcampaignsv2-error))
 
 (smithy/sdk/shapes:define-structure agentless-config common-lisp:nil
                                     common-lisp:nil
@@ -360,7 +372,8 @@
                                   "xAmzErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class connectcampaignsv2-error))
 
 (smithy/sdk/shapes:define-type contact-flow-id smithy/sdk/smithy-types:string)
 
@@ -822,7 +835,8 @@
                                   "xAmzErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class connectcampaignsv2-error))
 
 (smithy/sdk/shapes:define-error invalid-campaign-state-exception
                                 common-lisp:nil
@@ -836,7 +850,8 @@
                                   "xAmzErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "InvalidCampaignStateException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class connectcampaignsv2-error))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type
@@ -847,7 +862,8 @@
                                   "xAmzErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "InvalidStateException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class connectcampaignsv2-error))
 
 (smithy/sdk/shapes:define-type iso8601date smithy/sdk/smithy-types:string)
 
@@ -1095,7 +1111,8 @@
                                   "xAmzErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class connectcampaignsv2-error))
 
 (smithy/sdk/shapes:define-structure restricted-period common-lisp:nil
                                     ((name :target-type restricted-period-name
@@ -1150,7 +1167,8 @@
                                   "xAmzErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class connectcampaignsv2-error))
 
 (smithy/sdk/shapes:define-structure sms-channel-subtype-config common-lisp:nil
                                     ((capacity :target-type capacity
@@ -1358,7 +1376,8 @@
                                   "xAmzErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class connectcampaignsv2-error))
 
 (smithy/sdk/shapes:define-structure time-range common-lisp:nil
                                     ((start-time :target-type iso8601time
@@ -1474,7 +1493,8 @@
                                   "xAmzErrorType" :http-header
                                   "x-amzn-ErrorType"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class connectcampaignsv2-error))
 
 (smithy/sdk/shapes:define-type xamazon-error-type
                                smithy/sdk/smithy-types:string)

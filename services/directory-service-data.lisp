@@ -1,30 +1,40 @@
 (uiop/package:define-package #:pira/directory-service-data (:use)
-                             (:export #:access-denied-reason #:add-group-member
+                             (:export #:access-denied-exception
+                              #:access-denied-reason #:add-group-member
                               #:attribute-value #:attributes
                               #:boolean-attribute-value #:client-token
-                              #:create-group #:create-user #:delete-group
-                              #:delete-user #:describe-group #:describe-user
-                              #:directory-id #:directory-service-data
+                              #:conflict-exception #:create-group #:create-user
+                              #:delete-group #:delete-user #:describe-group
+                              #:describe-user #:directory-id
+                              #:directory-service-data
+                              #:directory-unavailable-exception
                               #:directory-unavailable-reason #:disable-user
                               #:distinguished-name #:email-address
                               #:exception-message #:given-name #:group
                               #:group-list #:group-name #:group-scope
                               #:group-summary #:group-summary-list #:group-type
-                              #:ldap-display-name #:ldap-display-name-list
-                              #:list-group-members #:list-groups
-                              #:list-groups-for-member #:list-users
-                              #:max-results #:member #:member-list
+                              #:internal-server-exception #:ldap-display-name
+                              #:ldap-display-name-list #:list-group-members
+                              #:list-groups #:list-groups-for-member
+                              #:list-users #:max-results #:member #:member-list
                               #:member-name #:member-type #:next-token
                               #:number-attribute-value #:realm
-                              #:remove-group-member #:sid #:search-groups
-                              #:search-string #:search-users
+                              #:remove-group-member
+                              #:resource-not-found-exception #:sid
+                              #:search-groups #:search-string #:search-users
                               #:string-attribute-value
                               #:string-set-attribute-value #:surname
-                              #:update-group #:update-type #:update-user #:user
-                              #:user-list #:user-name #:user-principal-name
-                              #:user-summary #:user-summary-list
-                              #:validation-exception-reason))
+                              #:throttling-exception #:update-group
+                              #:update-type #:update-user #:user #:user-list
+                              #:user-name #:user-principal-name #:user-summary
+                              #:user-summary-list #:validation-exception
+                              #:validation-exception-reason
+                              #:directory-service-data-error))
 (common-lisp:in-package #:pira/directory-service-data)
+
+(common-lisp:define-condition directory-service-data-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service directory-service-data :shape-name
                                    "DirectoryServiceData" :version "2023-05-31"
@@ -59,7 +69,8 @@
                                  (reason :target-type access-denied-reason
                                   :member-name "Reason"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class directory-service-data-error))
 
 (smithy/sdk/shapes:define-enum access-denied-reason
     common-lisp:nil
@@ -109,7 +120,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class directory-service-data-error))
 
 (smithy/sdk/shapes:define-input create-group-request common-lisp:nil
                                 ((directory-id :target-type directory-id
@@ -276,7 +288,8 @@
                                   directory-unavailable-reason :member-name
                                   "Reason"))
                                 (:shape-name "DirectoryUnavailableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-data-error))
 
 (smithy/sdk/shapes:define-enum directory-unavailable-reason
     common-lisp:nil
@@ -362,7 +375,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class directory-service-data-error))
 
 (smithy/sdk/shapes:define-type ldap-display-name smithy/sdk/smithy-types:string)
 
@@ -527,7 +541,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class directory-service-data-error))
 
 (smithy/sdk/shapes:define-type sid smithy/sdk/smithy-types:string)
 
@@ -610,7 +625,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class directory-service-data-error))
 
 (smithy/sdk/shapes:define-input update-group-request common-lisp:nil
                                 ((directory-id :target-type directory-id
@@ -721,7 +737,8 @@
                                   validation-exception-reason :member-name
                                   "Reason"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class directory-service-data-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-reason
     common-lisp:nil

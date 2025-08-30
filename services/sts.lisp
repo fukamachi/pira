@@ -3,12 +3,20 @@
                               #:assume-role #:assume-role-with-saml
                               #:assume-role-with-web-identity #:assume-root
                               #:assumed-role-user #:audience #:credentials
-                              #:decode-authorization-message #:federated-user
+                              #:decode-authorization-message
+                              #:expired-token-exception #:federated-user
                               #:get-access-key-info #:get-caller-identity
                               #:get-federation-token #:get-session-token
-                              #:issuer #:name-qualifier
+                              #:idpcommunication-error-exception
+                              #:idprejected-claim-exception
+                              #:invalid-authorization-message-exception
+                              #:invalid-identity-token-exception #:issuer
+                              #:malformed-policy-document-exception
+                              #:name-qualifier
+                              #:packed-policy-too-large-exception
                               #:policy-descriptor-type #:provided-context
                               #:provided-contexts-list-type
+                              #:region-disabled-exception
                               #:root-duration-seconds-type #:samlassertion-type
                               #:subject #:subject-type #:tag
                               #:target-principal-type #:access-key-id-type
@@ -36,8 +44,12 @@
                               #:token-code-type #:token-type
                               #:unrestricted-session-policy-document-type
                               #:url-type #:user-id-type #:user-name-type
-                              #:web-identity-subject-type))
+                              #:web-identity-subject-type #:sts-error))
 (common-lisp:in-package #:pira/sts)
+
+(common-lisp:define-condition sts-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awssecurity-token-service-v20110615
                                    :shape-name
@@ -270,7 +282,7 @@
                                   "message"))
                                 (:shape-name "ExpiredTokenException")
                                 (:error-name "ExpiredTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sts-error))
 
 (smithy/sdk/shapes:define-structure federated-user common-lisp:nil
                                     ((federated-user-id :target-type
@@ -352,7 +364,7 @@
                                   "message"))
                                 (:shape-name "IDPCommunicationErrorException")
                                 (:error-name "IDPCommunicationError")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sts-error))
 
 (smithy/sdk/shapes:define-error idprejected-claim-exception common-lisp:nil
                                 ((message :target-type
@@ -360,7 +372,7 @@
                                   "message"))
                                 (:shape-name "IDPRejectedClaimException")
                                 (:error-name "IDPRejectedClaim")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sts-error))
 
 (smithy/sdk/shapes:define-error invalid-authorization-message-exception
                                 common-lisp:nil
@@ -371,7 +383,7 @@
                                  "InvalidAuthorizationMessageException")
                                 (:error-name
                                  "InvalidAuthorizationMessageException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sts-error))
 
 (smithy/sdk/shapes:define-error invalid-identity-token-exception
                                 common-lisp:nil
@@ -380,7 +392,7 @@
                                   "message"))
                                 (:shape-name "InvalidIdentityTokenException")
                                 (:error-name "InvalidIdentityToken")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sts-error))
 
 (smithy/sdk/shapes:define-type issuer smithy/sdk/smithy-types:string)
 
@@ -392,7 +404,7 @@
                                 (:shape-name
                                  "MalformedPolicyDocumentException")
                                 (:error-name "MalformedPolicyDocument")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sts-error))
 
 (smithy/sdk/shapes:define-type name-qualifier smithy/sdk/smithy-types:string)
 
@@ -403,7 +415,7 @@
                                   "message"))
                                 (:shape-name "PackedPolicyTooLargeException")
                                 (:error-name "PackedPolicyTooLarge")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sts-error))
 
 (smithy/sdk/shapes:define-structure policy-descriptor-type common-lisp:nil
                                     ((arn :target-type arn-type :member-name
@@ -426,7 +438,7 @@
                                   :member-name "message"))
                                 (:shape-name "RegionDisabledException")
                                 (:error-name "RegionDisabledException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sts-error))
 
 (smithy/sdk/shapes:define-type root-duration-seconds-type
                                smithy/sdk/smithy-types:integer)

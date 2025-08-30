@@ -2,9 +2,13 @@
                              (:export #:actions-list #:add-permission
                               #:amazon-resource-name
                               #:amazon-simple-notification-service
+                              #:authorization-error-exception
+                              #:batch-entry-ids-not-distinct-exception
+                              #:batch-request-too-long-exception
                               #:batch-result-error-entry
                               #:batch-result-error-entry-list #:binary
                               #:check-if-phone-number-is-opted-out
+                              #:concurrent-access-exception
                               #:confirm-subscription
                               #:create-platform-application
                               #:create-platform-endpoint
@@ -12,15 +16,26 @@
                               #:delegates-list #:delete-endpoint
                               #:delete-platform-application
                               #:delete-smssandbox-phone-number #:delete-topic
-                              #:endpoint #:endpoint2
+                              #:empty-batch-request-exception #:endpoint
+                              #:endpoint2 #:endpoint-disabled-exception
+                              #:filter-policy-limit-exceeded-exception
                               #:get-data-protection-policy
                               #:get-endpoint-attributes
                               #:get-platform-application-attributes
                               #:get-smsattributes
                               #:get-smssandbox-account-status
                               #:get-subscription-attributes
-                              #:get-topic-attributes #:iso2country-code
-                              #:language-code-string
+                              #:get-topic-attributes #:internal-error-exception
+                              #:invalid-batch-entry-id-exception
+                              #:invalid-parameter-exception
+                              #:invalid-parameter-value-exception
+                              #:invalid-security-exception
+                              #:invalid-state-exception #:iso2country-code
+                              #:kmsaccess-denied-exception
+                              #:kmsdisabled-exception
+                              #:kmsinvalid-state-exception
+                              #:kmsnot-found-exception #:kmsopt-in-required
+                              #:kmsthrottling-exception #:language-code-string
                               #:list-endpoints-by-platform-application
                               #:list-of-endpoints
                               #:list-of-platform-applications
@@ -34,38 +49,54 @@
                               #:map-string-to-string #:max-items
                               #:max-items-list-origination-numbers
                               #:message-attribute-map #:message-attribute-value
-                              #:number-capability #:number-capability-list
-                              #:otpcode #:opt-in-phone-number #:phone-number
-                              #:phone-number-information
+                              #:not-found-exception #:number-capability
+                              #:number-capability-list #:otpcode
+                              #:opt-in-phone-number #:opted-out-exception
+                              #:phone-number #:phone-number-information
                               #:phone-number-information-list
                               #:phone-number-list #:phone-number-string
-                              #:platform-application #:publish #:publish-batch
+                              #:platform-application
+                              #:platform-application-disabled-exception
+                              #:publish #:publish-batch
                               #:publish-batch-request-entry
                               #:publish-batch-request-entry-list
                               #:publish-batch-result-entry
                               #:publish-batch-result-entry-list
                               #:put-data-protection-policy #:remove-permission
-                              #:route-type #:smssandbox-phone-number
+                              #:replay-limit-exceeded-exception
+                              #:resource-not-found-exception #:route-type
+                              #:smssandbox-phone-number
                               #:smssandbox-phone-number-list
                               #:smssandbox-phone-number-verification-status
                               #:set-endpoint-attributes
                               #:set-platform-application-attributes
                               #:set-smsattributes #:set-subscription-attributes
-                              #:set-topic-attributes #:string #:subscribe
-                              #:subscription #:subscription-attributes-map
+                              #:set-topic-attributes #:stale-tag-exception
+                              #:string #:subscribe #:subscription
+                              #:subscription-attributes-map
+                              #:subscription-limit-exceeded-exception
                               #:subscriptions-list #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-value #:timestamp #:topic
-                              #:topic-attributes-map #:topics-list
+                              #:tag-key-list #:tag-limit-exceeded-exception
+                              #:tag-list #:tag-policy-exception #:tag-resource
+                              #:tag-value #:throttled-exception #:timestamp
+                              #:too-many-entries-in-batch-request-exception
+                              #:topic #:topic-attributes-map
+                              #:topic-limit-exceeded-exception #:topics-list
                               #:unsubscribe #:untag-resource
+                              #:user-error-exception #:validation-exception
+                              #:verification-exception
                               #:verify-smssandbox-phone-number #:account
                               #:action #:attribute-name #:attribute-value
                               #:authenticate-on-unsubscribe #:boolean
                               #:delegate #:label #:message #:message-id
                               #:message-structure #:next-token #:protocol
                               #:subject #:subscription-arn #:token #:topic-arn
-                              #:topic-name))
+                              #:topic-name #:sns-error))
 (common-lisp:in-package #:pira/sns)
+
+(common-lisp:define-condition sns-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-simple-notification-service
                                    :shape-name
@@ -143,7 +174,7 @@
                                   "message"))
                                 (:shape-name "AuthorizationErrorException")
                                 (:error-name "AuthorizationError")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error batch-entry-ids-not-distinct-exception
                                 common-lisp:nil
@@ -152,7 +183,7 @@
                                 (:shape-name
                                  "BatchEntryIdsNotDistinctException")
                                 (:error-name "BatchEntryIdsNotDistinct")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error batch-request-too-long-exception
                                 common-lisp:nil
@@ -160,7 +191,7 @@
                                   "message"))
                                 (:shape-name "BatchRequestTooLongException")
                                 (:error-name "BatchRequestTooLong")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-structure batch-result-error-entry common-lisp:nil
                                     ((id :target-type string :required
@@ -199,7 +230,7 @@
                                   "message"))
                                 (:shape-name "ConcurrentAccessException")
                                 (:error-name "ConcurrentAccess")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-input confirm-subscription-input common-lisp:nil
                                 ((topic-arn :target-type topic-arn :required
@@ -322,7 +353,7 @@
                                   "message"))
                                 (:shape-name "EmptyBatchRequestException")
                                 (:error-name "EmptyBatchRequest")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-structure endpoint common-lisp:nil
                                     ((endpoint-arn :target-type string
@@ -339,7 +370,7 @@
                                   "message"))
                                 (:shape-name "EndpointDisabledException")
                                 (:error-name "EndpointDisabled")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error filter-policy-limit-exceeded-exception
                                 common-lisp:nil
@@ -348,7 +379,7 @@
                                 (:shape-name
                                  "FilterPolicyLimitExceededException")
                                 (:error-name "FilterPolicyLimitExceeded")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-input get-data-protection-policy-input
                                 common-lisp:nil
@@ -440,7 +471,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InternalErrorException")
-                                (:error-name "InternalError") (:error-code 500))
+                                (:error-name "InternalError") (:error-code 500)
+                                (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error invalid-batch-entry-id-exception
                                 common-lisp:nil
@@ -448,14 +480,14 @@
                                   "message"))
                                 (:shape-name "InvalidBatchEntryIdException")
                                 (:error-name "InvalidBatchEntryId")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterException")
                                 (:error-name "InvalidParameter")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
@@ -463,20 +495,21 @@
                                   "message"))
                                 (:shape-name "InvalidParameterValueException")
                                 (:error-name "ParameterValueInvalid")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error invalid-security-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidSecurityException")
                                 (:error-name "InvalidSecurity")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-name "InvalidState") (:error-code 400))
+                                (:error-name "InvalidState") (:error-code 400)
+                                (:base-class sns-error))
 
 (smithy/sdk/shapes:define-type iso2country-code smithy/sdk/smithy-types:string)
 
@@ -485,39 +518,42 @@
                                   "message"))
                                 (:shape-name "KMSAccessDeniedException")
                                 (:error-name "KMSAccessDenied")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error kmsdisabled-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "KMSDisabledException")
-                                (:error-name "KMSDisabled") (:error-code 400))
+                                (:error-name "KMSDisabled") (:error-code 400)
+                                (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error kmsinvalid-state-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "KMSInvalidStateException")
                                 (:error-name "KMSInvalidState")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error kmsnot-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "KMSNotFoundException")
-                                (:error-name "KMSNotFound") (:error-code 400))
+                                (:error-name "KMSNotFound") (:error-code 400)
+                                (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error kmsopt-in-required common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "KMSOptInRequired")
                                 (:error-name "KMSOptInRequired")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error kmsthrottling-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "KMSThrottlingException")
-                                (:error-name "KMSThrottling") (:error-code 400))
+                                (:error-name "KMSThrottling") (:error-code 400)
+                                (:base-class sns-error))
 
 (smithy/sdk/shapes:define-enum language-code-string
     common-lisp:nil
@@ -704,7 +740,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-name "NotFound") (:error-code 404))
+                                (:error-name "NotFound") (:error-code 404)
+                                (:base-class sns-error))
 
 (smithy/sdk/shapes:define-enum number-capability
     common-lisp:nil
@@ -730,7 +767,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "OptedOutException")
-                                (:error-name "OptedOut") (:error-code 400))
+                                (:error-name "OptedOut") (:error-code 400)
+                                (:base-class sns-error))
 
 (smithy/sdk/shapes:define-type phone-number smithy/sdk/smithy-types:string)
 
@@ -775,7 +813,7 @@
                                 (:shape-name
                                  "PlatformApplicationDisabledException")
                                 (:error-name "PlatformApplicationDisabled")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-input publish-batch-input common-lisp:nil
                                 ((topic-arn :target-type topic-arn :required
@@ -880,14 +918,14 @@
                                   "message"))
                                 (:shape-name "ReplayLimitExceededException")
                                 (:error-name "ReplayLimitExceeded")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFound")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-enum route-type
     common-lisp:nil
@@ -967,7 +1005,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "StaleTagException")
-                                (:error-name "StaleTag") (:error-code 400))
+                                (:error-name "StaleTag") (:error-code 400)
+                                (:base-class sns-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -1015,7 +1054,7 @@
                                 (:shape-name
                                  "SubscriptionLimitExceededException")
                                 (:error-name "SubscriptionLimitExceeded")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-list subscriptions-list :member subscription)
 
@@ -1035,7 +1074,7 @@
                                   "message"))
                                 (:shape-name "TagLimitExceededException")
                                 (:error-name "TagLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-list tag-list :member tag)
 
@@ -1043,7 +1082,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TagPolicyException")
-                                (:error-name "TagPolicy") (:error-code 400))
+                                (:error-name "TagPolicy") (:error-code 400)
+                                (:base-class sns-error))
 
 (smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -1063,7 +1103,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ThrottledException")
-                                (:error-name "Throttled") (:error-code 429))
+                                (:error-name "Throttled") (:error-code 429)
+                                (:base-class sns-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -1074,7 +1115,7 @@
                                 (:shape-name
                                  "TooManyEntriesInBatchRequestException")
                                 (:error-name "TooManyEntriesInBatchRequest")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-structure topic common-lisp:nil
                                     ((topic-arn :target-type topic-arn
@@ -1089,7 +1130,7 @@
                                   "message"))
                                 (:shape-name "TopicLimitExceededException")
                                 (:error-name "TopicLimitExceeded")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-list topics-list :member topic)
 
@@ -1115,14 +1156,15 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "UserErrorException")
-                                (:error-name "UserError") (:error-code 400))
+                                (:error-name "UserError") (:error-code 400)
+                                (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error validation-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ValidationException")
                                 (:error-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-error verification-exception common-lisp:nil
                                 ((message :target-type string :required
@@ -1130,7 +1172,7 @@
                                  (status :target-type string :required
                                   common-lisp:t :member-name "Status"))
                                 (:shape-name "VerificationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sns-error))
 
 (smithy/sdk/shapes:define-input verify-smssandbox-phone-number-input
                                 common-lisp:nil

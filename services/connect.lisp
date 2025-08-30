@@ -1,7 +1,7 @@
 (uiop/package:define-package #:pira/connect (:use)
                              (:export #:arn #:awsaccount-id
-                              #:access-token-duration #:action-summaries
-                              #:action-summary #:action-type
+                              #:access-denied-exception #:access-token-duration
+                              #:action-summaries #:action-summary #:action-type
                               #:activate-evaluation-form
                               #:additional-email-recipients
                               #:after-contact-work-time-limit
@@ -99,8 +99,10 @@
                               #:common-name-length127 #:comparison
                               #:comparison-operator
                               #:complete-attached-file-upload #:concurrency
-                              #:condition #:conditions #:connection-data
-                              #:contact #:contact-analysis
+                              #:condition
+                              #:conditional-operation-failed-exception
+                              #:conditions #:conflict-exception
+                              #:connection-data #:contact #:contact-analysis
                               #:contact-configuration #:contact-data-request
                               #:contact-data-request-list
                               #:contact-detail-description
@@ -122,6 +124,7 @@
                               #:contact-flow-module-summary
                               #:contact-flow-modules-summary-list
                               #:contact-flow-name
+                              #:contact-flow-not-published-exception
                               #:contact-flow-search-condition-list
                               #:contact-flow-search-criteria
                               #:contact-flow-search-filter
@@ -133,6 +136,7 @@
                               #:contact-flow-version-summary
                               #:contact-flow-version-summary-list #:contact-id
                               #:contact-initiation-method
+                              #:contact-not-found-exception
                               #:contact-recording-type #:contact-references
                               #:contact-search-summary
                               #:contact-search-summary-agent-info
@@ -226,10 +230,11 @@
                               #:describe-user-hierarchy-structure
                               #:describe-view #:describe-vocabulary
                               #:description #:description250 #:destination-id
-                              #:device-info #:device-token #:device-type
-                              #:dimensions #:dimensions-v2key
-                              #:dimensions-v2map #:dimensions-v2value
-                              #:directory-alias #:directory-id #:directory-type
+                              #:destination-not-allowed-exception #:device-info
+                              #:device-token #:device-type #:dimensions
+                              #:dimensions-v2key #:dimensions-v2map
+                              #:dimensions-v2value #:directory-alias
+                              #:directory-id #:directory-type
                               #:directory-user-id
                               #:disassociate-analytics-data-set
                               #:disassociate-approved-origin #:disassociate-bot
@@ -246,7 +251,8 @@
                               #:disconnect-details #:disconnect-reason
                               #:disconnect-reason-code #:dismiss-user-contact
                               #:display-name #:distribution #:distribution-list
-                              #:double #:download-url-metadata #:duration
+                              #:double #:download-url-metadata
+                              #:duplicate-resource-exception #:duration
                               #:duration-in-seconds #:duration-millis
                               #:effective-hours-of-operation-list
                               #:effective-hours-of-operations #:email
@@ -383,7 +389,7 @@
                               #:hours-of-operation-summary
                               #:hours-of-operation-summary-list
                               #:hours-of-operation-time-slice #:iso8601datetime
-                              #:import-phone-number
+                              #:idempotency-exception #:import-phone-number
                               #:inbound-additional-recipients
                               #:inbound-calls-enabled #:inbound-email-content
                               #:inbound-message-source-type
@@ -403,8 +409,12 @@
                               #:integration-association-id
                               #:integration-association-summary
                               #:integration-association-summary-list
-                              #:integration-type #:interval-details
-                              #:interval-period
+                              #:integration-type #:internal-service-exception
+                              #:interval-details #:interval-period
+                              #:invalid-contact-flow-exception
+                              #:invalid-contact-flow-module-exception
+                              #:invalid-parameter-exception
+                              #:invalid-request-exception
                               #:invalid-request-exception-reason
                               #:invisible-field-info
                               #:invisible-task-template-fields #:ip-cidr
@@ -414,7 +424,8 @@
                               #:kinesis-video-stream-config #:large-next-token
                               #:lex-bot #:lex-bot-config #:lex-bot-config-list
                               #:lex-bots-list #:lex-region #:lex-v2bot
-                              #:lex-version #:list-agent-statuses
+                              #:lex-version #:limit-exceeded-exception
+                              #:list-agent-statuses
                               #:list-analytics-data-associations
                               #:list-analytics-data-lake-data-sets
                               #:list-approved-origins
@@ -458,9 +469,10 @@
                               #:match-criteria #:max-result10 #:max-result100
                               #:max-result1000 #:max-result2 #:max-result200
                               #:max-result25 #:max-result500 #:max-result7
-                              #:max-results #:media-concurrencies
-                              #:media-concurrency #:media-placement
-                              #:media-region #:media-stream-type #:meeting
+                              #:max-results #:maximum-result-returned-exception
+                              #:media-concurrencies #:media-concurrency
+                              #:media-placement #:media-region
+                              #:media-stream-type #:meeting
                               #:meeting-feature-status
                               #:meeting-features-configuration #:meeting-id
                               #:message #:message-template-id
@@ -489,11 +501,13 @@
                               #:outbound-additional-recipients
                               #:outbound-caller-config
                               #:outbound-caller-id-name
-                              #:outbound-calls-enabled #:outbound-email-config
-                              #:outbound-email-content
+                              #:outbound-calls-enabled
+                              #:outbound-contact-not-permitted-exception
+                              #:outbound-email-config #:outbound-email-content
                               #:outbound-message-source-type
                               #:outbound-raw-message #:outbound-request-id
-                              #:outbound-subject #:override-days
+                              #:outbound-subject
+                              #:output-type-not-found-exception #:override-days
                               #:override-time-slice #:pem
                               #:participant-capabilities #:participant-details
                               #:participant-details-to-add #:participant-id
@@ -541,6 +555,7 @@
                               #:prompt-search-condition-list
                               #:prompt-search-criteria #:prompt-search-filter
                               #:prompt-summary #:prompt-summary-list
+                              #:property-validation-exception
                               #:property-validation-exception-property
                               #:property-validation-exception-property-list
                               #:property-validation-exception-reason
@@ -623,7 +638,11 @@
                               #:replication-status-summary-list
                               #:request-identifier #:required-field-info
                               #:required-task-template-fields
-                              #:resource-arn-or-id #:resource-id
+                              #:resource-arn-or-id
+                              #:resource-conflict-exception #:resource-id
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception
+                              #:resource-not-ready-exception
                               #:resource-tags-search-criteria #:resource-type
                               #:resource-type-list #:resource-version
                               #:resume-contact #:resume-contact-recording
@@ -705,6 +724,7 @@
                               #:send-chat-integration-event
                               #:send-notification-action-definition
                               #:send-outbound-email
+                              #:service-quota-exceeded-exception
                               #:service-quota-exceeded-exception-reason
                               #:sign-in-config #:sign-in-distribution
                               #:sign-in-distribution-list
@@ -766,8 +786,9 @@
                               #:template-attributes #:template-id
                               #:templated-message-config #:threshold
                               #:threshold-collections #:threshold-v2
-                              #:threshold-value #:time-zone
-                              #:timer-eligible-participant-roles #:timestamp
+                              #:threshold-value #:throttling-exception
+                              #:time-zone #:timer-eligible-participant-roles
+                              #:timestamp #:too-many-requests-exception
                               #:total-count #:total-pause-count
                               #:total-pause-duration-in-seconds
                               #:traffic-distribution-group
@@ -847,7 +868,8 @@
                               #:user-hierarchy-group-search-filter #:user-id
                               #:user-id-list #:user-identity-info
                               #:user-identity-info-lite #:user-info
-                              #:user-phone-config #:user-proficiency
+                              #:user-not-found-exception #:user-phone-config
+                              #:user-proficiency
                               #:user-proficiency-disassociate
                               #:user-proficiency-disassociate-list
                               #:user-proficiency-list
@@ -873,8 +895,12 @@
                               #:vocabulary-summary #:vocabulary-summary-list
                               #:voice-recording-configuration
                               #:voice-recording-track #:wisdom-info
-                              #:resource-arn-list-max-limit100))
+                              #:resource-arn-list-max-limit100 #:connect-error))
 (common-lisp:in-package #:pira/connect)
+
+(common-lisp:define-condition connect-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-connect-service :shape-name
                                    "AmazonConnectService" :version "2017-08-08"
@@ -1129,7 +1155,7 @@
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
                                 (:error-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-type access-token-duration
                                smithy/sdk/smithy-types:integer)
@@ -2386,7 +2412,7 @@
                                   "Message"))
                                 (:shape-name
                                  "ConditionalOperationFailedException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-list conditions :member condition)
 
@@ -2394,7 +2420,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-structure connection-data common-lisp:nil
                                     ((attendee :target-type attendee
@@ -2746,7 +2772,7 @@
                                   "Message"))
                                 (:shape-name
                                  "ContactFlowNotPublishedException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-list contact-flow-search-condition-list :member
                                contact-flow-search-criteria)
@@ -2862,7 +2888,7 @@
                                   "Message"))
                                 (:shape-name "ContactNotFoundException")
                                 (:error-name "ContactNotFoundException")
-                                (:error-code 410))
+                                (:error-code 410) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-enum contact-recording-type
     common-lisp:nil
@@ -4884,7 +4910,7 @@
                                   "Message"))
                                 (:shape-name "DestinationNotAllowedException")
                                 (:error-name "DestinationNotAllowedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-structure device-info common-lisp:nil
                                     ((platform-name :target-type platform-name
@@ -5180,7 +5206,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "DuplicateResourceException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-type duration smithy/sdk/smithy-types:integer)
 
@@ -6867,7 +6893,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "IdempotencyException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-input import-phone-number-request common-lisp:nil
                                 ((instance-id :target-type instance-id
@@ -7150,7 +7176,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-structure interval-details common-lisp:nil
                                     ((time-zone :target-type string
@@ -7173,7 +7199,7 @@
                                 ((problems :target-type problems :member-name
                                   "problems"))
                                 (:shape-name "InvalidContactFlowException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-error invalid-contact-flow-module-exception
                                 common-lisp:nil
@@ -7181,13 +7207,13 @@
                                   "Problems"))
                                 (:shape-name
                                  "InvalidContactFlowModuleException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type message :member-name
@@ -7196,7 +7222,7 @@
                                   invalid-request-exception-reason :member-name
                                   "Reason"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-union invalid-request-exception-reason
                                 common-lisp:nil
@@ -7288,7 +7314,7 @@
                                   "Message"))
                                 (:shape-name "LimitExceededException")
                                 (:error-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-input list-agent-status-request common-lisp:nil
                                 ((instance-id :target-type instance-id
@@ -8581,7 +8607,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "MaximumResultReturnedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-list media-concurrencies :member media-concurrency)
 
@@ -8895,7 +8921,7 @@
                                  "OutboundContactNotPermittedException")
                                 (:error-name
                                  "OutboundContactNotPermittedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-structure outbound-email-config common-lisp:nil
                                     ((outbound-email-address-id :target-type
@@ -8942,7 +8968,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "OutputTypeNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-enum override-days
     common-lisp:nil
@@ -9609,7 +9635,7 @@
                                   property-validation-exception-property-list
                                   :member-name "PropertyList"))
                                 (:shape-name "PropertyValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-structure property-validation-exception-property
                                     common-lisp:nil
@@ -10404,7 +10430,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-type resource-id smithy/sdk/smithy-types:string)
 
@@ -10416,19 +10442,19 @@
                                  (resource-id :target-type arn :member-name
                                   "ResourceId"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-error resource-not-ready-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotReadyException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-structure resource-tags-search-criteria
                                     common-lisp:nil
@@ -11695,7 +11721,7 @@
                                   service-quota-exceeded-exception-reason
                                   :member-name "Reason"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-union service-quota-exceeded-exception-reason
                                 common-lisp:nil
@@ -12686,7 +12712,7 @@
                                   "Message"))
                                 (:shape-name "ThrottlingException")
                                 (:error-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-type time-zone smithy/sdk/smithy-types:string)
 
@@ -12701,7 +12727,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-type total-count smithy/sdk/smithy-types:long)
 
@@ -14060,7 +14086,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "UserNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class connect-error))
 
 (smithy/sdk/shapes:define-structure user-phone-config common-lisp:nil
                                     ((phone-type :target-type phone-type

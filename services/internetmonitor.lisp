@@ -1,9 +1,11 @@
 (uiop/package:define-package #:pira/internetmonitor (:use)
-                             (:export #:account-id #:arn
-                              #:availability-measurement #:client-location
-                              #:create-monitor #:delete-monitor #:filter-list
-                              #:filter-parameter #:filter-parameters
-                              #:get-health-event #:get-health-event-input
+                             (:export #:access-denied-exception #:account-id
+                              #:arn #:availability-measurement
+                              #:bad-request-exception #:client-location
+                              #:conflict-exception #:create-monitor
+                              #:delete-monitor #:filter-list #:filter-parameter
+                              #:filter-parameters #:get-health-event
+                              #:get-health-event-input
                               #:get-health-event-output #:get-internet-event
                               #:get-monitor #:get-query-results
                               #:get-query-status #:health-event
@@ -11,13 +13,16 @@
                               #:health-event-name #:health-event-resource
                               #:health-event-status #:health-events-config
                               #:impacted-location #:impacted-locations-list
-                              #:internet-event-id #:internet-event-max-results
+                              #:internal-server-error-exception
+                              #:internal-server-exception #:internet-event-id
+                              #:internet-event-max-results
                               #:internet-event-resource #:internet-event-status
                               #:internet-event-summary #:internet-event-type
                               #:internet-events-list #:internet-health
                               #:internet-measurements-log-delivery
                               #:internet-monitor20210603 #:ipv4prefix-list
-                              #:list-health-events #:list-health-events-input
+                              #:limit-exceeded-exception #:list-health-events
+                              #:list-health-events-input
                               #:list-health-events-output
                               #:list-internet-events #:list-monitors
                               #:list-tags-for-resource
@@ -30,19 +35,28 @@
                               #:monitor #:monitor-arn #:monitor-config-state
                               #:monitor-list #:monitor-processing-status-code
                               #:monitor-resource #:network #:network-impairment
-                              #:network-list #:operator #:percentage
-                              #:performance-measurement #:query-data
-                              #:query-field #:query-fields #:query-max-results
-                              #:query-row #:query-status #:query-type
-                              #:resource-name #:round-trip-time #:s3config
-                              #:set-of-arns #:start-query #:stop-query
-                              #:tag-key #:tag-keys #:tag-map #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
-                              #:tag-value #:traffic-percentage-to-monitor
+                              #:network-list #:not-found-exception #:operator
+                              #:percentage #:performance-measurement
+                              #:query-data #:query-field #:query-fields
+                              #:query-max-results #:query-row #:query-status
+                              #:query-type #:resource-name
+                              #:resource-not-found-exception #:round-trip-time
+                              #:s3config #:set-of-arns #:start-query
+                              #:stop-query #:tag-key #:tag-keys #:tag-map
+                              #:tag-resource #:tag-resource-input
+                              #:tag-resource-output #:tag-value
+                              #:throttling-exception
+                              #:too-many-requests-exception
+                              #:traffic-percentage-to-monitor
                               #:triangulation-event-type #:untag-resource
                               #:untag-resource-input #:untag-resource-output
-                              #:update-monitor))
+                              #:update-monitor #:validation-exception
+                              #:internetmonitor-error))
 (common-lisp:in-package #:pira/internetmonitor)
+
+(common-lisp:define-condition internetmonitor-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service internet-monitor20210603 :shape-name
                                    "InternetMonitor20210603" :version
@@ -89,7 +103,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class internetmonitor-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -116,7 +131,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class internetmonitor-error))
 
 (smithy/sdk/shapes:define-structure client-location common-lisp:nil
                                     ((asname :target-type
@@ -150,7 +166,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class internetmonitor-error))
 
 (smithy/sdk/shapes:define-input create-monitor-input common-lisp:nil
                                 ((monitor-name :target-type resource-name
@@ -520,14 +537,16 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class internetmonitor-error))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class internetmonitor-error))
 
 (smithy/sdk/shapes:define-type internet-event-id smithy/sdk/smithy-types:string)
 
@@ -596,7 +615,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class internetmonitor-error))
 
 (smithy/sdk/shapes:define-input list-health-events-input common-lisp:nil
                                 ((monitor-name :target-type resource-name
@@ -781,7 +801,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class internetmonitor-error))
 
 (smithy/sdk/shapes:define-type operator smithy/sdk/smithy-types:string)
 
@@ -835,7 +856,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class internetmonitor-error))
 
 (smithy/sdk/shapes:define-structure round-trip-time common-lisp:nil
                                     ((p50 :target-type
@@ -929,14 +951,16 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class internetmonitor-error))
 
 (smithy/sdk/shapes:define-error too-many-requests-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class internetmonitor-error))
 
 (smithy/sdk/shapes:define-type traffic-percentage-to-monitor
                                smithy/sdk/smithy-types:integer)
@@ -1000,7 +1024,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class internetmonitor-error))
 
 (smithy/sdk/operation:define-operation create-monitor :shape-name
                                        "CreateMonitor" :input

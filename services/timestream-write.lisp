@@ -1,12 +1,13 @@
 (uiop/package:define-package #:pira/timestream-write (:use)
-                             (:export #:amazon-resource-name
-                              #:batch-load-data-format
+                             (:export #:access-denied-exception
+                              #:amazon-resource-name #:batch-load-data-format
                               #:batch-load-progress-report #:batch-load-status
                               #:batch-load-task #:batch-load-task-description
                               #:batch-load-task-id #:batch-load-task-list
                               #:boolean #:client-request-token
-                              #:create-batch-load-task #:create-database
-                              #:create-table #:csv-configuration #:data-model
+                              #:conflict-exception #:create-batch-load-task
+                              #:create-database #:create-table
+                              #:csv-configuration #:data-model
                               #:data-model-configuration
                               #:data-model-s3configuration
                               #:data-source-configuration
@@ -17,9 +18,11 @@
                               #:describe-table #:dimension #:dimension-mapping
                               #:dimension-mappings #:dimension-value-type
                               #:dimensions #:endpoint #:endpoints
-                              #:error-message #:integer #:list-batch-load-tasks
-                              #:list-databases #:list-tables
-                              #:list-tags-for-resource #:long
+                              #:error-message #:integer
+                              #:internal-server-exception
+                              #:invalid-endpoint-exception
+                              #:list-batch-load-tasks #:list-databases
+                              #:list-tables #:list-tags-for-resource #:long
                               #:magnetic-store-rejected-data-location
                               #:magnetic-store-retention-period-in-days
                               #:magnetic-store-write-properties #:measure-value
@@ -35,21 +38,30 @@
                               #:partition-key-list #:partition-key-type
                               #:record #:record-index #:record-version
                               #:records #:records-ingested #:rejected-record
-                              #:rejected-records #:report-configuration
-                              #:report-s3configuration
+                              #:rejected-records #:rejected-records-exception
+                              #:report-configuration #:report-s3configuration
                               #:resource-create-apiname #:resource-name
+                              #:resource-not-found-exception
                               #:resume-batch-load-task #:retention-properties
                               #:s3bucket-name #:s3configuration
                               #:s3encryption-option #:s3object-key
                               #:s3object-key-prefix #:scalar-measure-value-type
-                              #:schema #:schema-name #:schema-value #:string
+                              #:schema #:schema-name #:schema-value
+                              #:service-quota-exceeded-exception #:string
                               #:string-value1 #:string-value2048
                               #:string-value256 #:table #:table-list
                               #:table-status #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-value #:time-unit
+                              #:tag-list #:tag-resource #:tag-value
+                              #:throttling-exception #:time-unit
                               #:timestream-20181101 #:untag-resource
-                              #:update-database #:update-table #:write-records))
+                              #:update-database #:update-table
+                              #:validation-exception #:write-records
+                              #:timestream-write-error))
 (common-lisp:in-package #:pira/timestream-write)
+
+(common-lisp:define-condition timestream-write-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service timestream-20181101 :shape-name
                                    "Timestream_20181101" :version "2018-11-01"
@@ -84,7 +96,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class timestream-write-error))
 
 (smithy/sdk/shapes:define-type amazon-resource-name
                                smithy/sdk/smithy-types:string)
@@ -188,7 +201,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class timestream-write-error))
 
 (smithy/sdk/shapes:define-input create-batch-load-task-request common-lisp:nil
                                 ((client-token :target-type
@@ -459,13 +473,15 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class timestream-write-error))
 
 (smithy/sdk/shapes:define-error invalid-endpoint-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidEndpointException")
-                                (:error-code 421))
+                                (:error-code 421)
+                                (:base-class timestream-write-error))
 
 (smithy/sdk/shapes:define-input list-batch-load-tasks-request common-lisp:nil
                                 ((next-token :target-type string :member-name
@@ -710,7 +726,8 @@
                                   rejected-records :member-name
                                   "RejectedRecords"))
                                 (:shape-name "RejectedRecordsException")
-                                (:error-code 419))
+                                (:error-code 419)
+                                (:base-class timestream-write-error))
 
 (smithy/sdk/shapes:define-structure report-configuration common-lisp:nil
                                     ((report-s3configuration :target-type
@@ -741,7 +758,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class timestream-write-error))
 
 (smithy/sdk/shapes:define-input resume-batch-load-task-request common-lisp:nil
                                 ((task-id :target-type batch-load-task-id
@@ -814,7 +832,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class timestream-write-error))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -888,7 +907,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class timestream-write-error))
 
 (smithy/sdk/shapes:define-enum time-unit
     common-lisp:nil
@@ -949,7 +969,8 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class timestream-write-error))
 
 (smithy/sdk/shapes:define-input write-records-request common-lisp:nil
                                 ((database-name :target-type resource-name

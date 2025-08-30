@@ -1,13 +1,16 @@
 (uiop/package:define-package #:pira/keyspacesstreams (:use)
-                             (:export #:date #:get-records #:get-shard-iterator
-                              #:get-stream #:keyspace-name #:keyspaces-cell
-                              #:keyspaces-cell-list #:keyspaces-cell-map
+                             (:export #:access-denied-exception #:date
+                              #:get-records #:get-shard-iterator #:get-stream
+                              #:internal-server-exception #:keyspace-name
+                              #:keyspaces-cell #:keyspaces-cell-list
+                              #:keyspaces-cell-map
                               #:keyspaces-cell-map-definition
                               #:keyspaces-cell-value #:keyspaces-cells
                               #:keyspaces-keys-map #:keyspaces-metadata
                               #:keyspaces-row #:keyspaces-streams
                               #:keyspaces-udt-map #:list-streams #:origin-type
-                              #:record #:record-list #:sequence-number
+                              #:record #:record-list
+                              #:resource-not-found-exception #:sequence-number
                               #:sequence-number-range #:shard
                               #:shard-description-list #:shard-filter
                               #:shard-filter-type #:shard-id #:shard-id-list
@@ -15,8 +18,14 @@
                               #:shard-iterator-type #:stream #:stream-arn
                               #:stream-arn-token #:stream-list #:stream-status
                               #:stream-view-type #:table-name
-                              #:validation-exception-type))
+                              #:throttling-exception #:validation-exception
+                              #:validation-exception-type
+                              #:keyspacesstreams-error))
 (common-lisp:in-package #:pira/keyspacesstreams)
+
+(common-lisp:define-condition keyspacesstreams-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service keyspaces-streams :shape-name
                                    "KeyspacesStreams" :version "2024-09-09"
@@ -42,7 +51,8 @@
                                   "message"))
                                 (:shape-name "AccessDeniedException")
                                 (:error-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class keyspacesstreams-error))
 
 (smithy/sdk/shapes:define-type date smithy/sdk/smithy-types:timestamp)
 
@@ -124,7 +134,8 @@
                                   "message"))
                                 (:shape-name "InternalServerException")
                                 (:error-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class keyspacesstreams-error))
 
 (smithy/sdk/shapes:define-type keyspace-name smithy/sdk/smithy-types:string)
 
@@ -310,7 +321,8 @@
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class keyspacesstreams-error))
 
 (smithy/sdk/shapes:define-type sequence-number smithy/sdk/smithy-types:string)
 
@@ -406,7 +418,8 @@
                                   "message"))
                                 (:shape-name "ThrottlingException")
                                 (:error-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class keyspacesstreams-error))
 
 (smithy/sdk/shapes:define-error validation-exception common-lisp:nil
                                 ((message :target-type
@@ -417,7 +430,8 @@
                                   "errorCode"))
                                 (:shape-name "ValidationException")
                                 (:error-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class keyspacesstreams-error))
 
 (smithy/sdk/shapes:define-enum validation-exception-type
     common-lisp:nil

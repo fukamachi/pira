@@ -3,20 +3,26 @@
                               #:add-attachments-to-set
                               #:add-communication-to-case #:after-time
                               #:attachment #:attachment-details #:attachment-id
-                              #:attachment-set #:attachment-set-id
+                              #:attachment-id-not-found
+                              #:attachment-limit-exceeded #:attachment-set
+                              #:attachment-set-expired #:attachment-set-id
+                              #:attachment-set-id-not-found
+                              #:attachment-set-size-limit-exceeded
                               #:attachments #:availability-error-message
-                              #:before-time #:boolean #:case-details #:case-id
-                              #:case-id-list #:case-list #:case-status
-                              #:category #:category-code #:category-list
-                              #:category-name #:cc-email-address
-                              #:cc-email-address-list #:code #:communication
-                              #:communication-body #:communication-list
-                              #:communication-type-options
+                              #:before-time #:boolean
+                              #:case-creation-limit-exceeded #:case-details
+                              #:case-id #:case-id-list #:case-id-not-found
+                              #:case-list #:case-status #:category
+                              #:category-code #:category-list #:category-name
+                              #:cc-email-address #:cc-email-address-list #:code
+                              #:communication #:communication-body
+                              #:communication-list #:communication-type-options
                               #:communication-type-options-list #:create-case
                               #:data #:date-interval
                               #:dates-without-support-list
-                              #:describe-attachment #:describe-cases
-                              #:describe-communications
+                              #:describe-attachment
+                              #:describe-attachment-limit-exceeded
+                              #:describe-cases #:describe-communications
                               #:describe-create-case-options
                               #:describe-services #:describe-severity-levels
                               #:describe-supported-languages
@@ -27,8 +33,9 @@
                               #:display-id #:double #:end-time #:error-message
                               #:expiry-time #:file-name
                               #:include-communications #:include-resolved-cases
-                              #:issue-type #:language #:long #:max-results
-                              #:next-token #:recent-case-communications
+                              #:internal-server-error #:issue-type #:language
+                              #:long #:max-results #:next-token
+                              #:recent-case-communications
                               #:refresh-trusted-advisor-check #:resolve-case
                               #:result #:service #:service-code #:service-code2
                               #:service-code-list #:service-list #:service-name
@@ -38,7 +45,7 @@
                               #:string #:string-list #:subject #:submitted-by
                               #:supported-hour #:supported-hours-list
                               #:supported-language #:supported-languages-list
-                              #:time-created
+                              #:throttling-exception #:time-created
                               #:trusted-advisor-category-specific-summary
                               #:trusted-advisor-check-description
                               #:trusted-advisor-check-list
@@ -56,8 +63,12 @@
                               #:validated-date-time
                               #:validated-issue-type-string
                               #:validated-language-availability
-                              #:validated-service-code))
+                              #:validated-service-code #:support-error))
 (common-lisp:in-package #:pira/support)
+
+(common-lisp:define-condition support-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awssupport-20130415 :shape-name
                                    "AWSSupport_20130415" :version "2013-04-15"
@@ -150,13 +161,13 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AttachmentIdNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class support-error))
 
 (smithy/sdk/shapes:define-error attachment-limit-exceeded common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AttachmentLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class support-error))
 
 (smithy/sdk/shapes:define-list attachment-set :member attachment-details)
 
@@ -164,7 +175,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AttachmentSetExpired")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class support-error))
 
 (smithy/sdk/shapes:define-type attachment-set-id smithy/sdk/smithy-types:string)
 
@@ -172,14 +183,14 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AttachmentSetIdNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class support-error))
 
 (smithy/sdk/shapes:define-error attachment-set-size-limit-exceeded
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AttachmentSetSizeLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class support-error))
 
 (smithy/sdk/shapes:define-list attachments :member attachment)
 
@@ -194,7 +205,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "CaseCreationLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class support-error))
 
 (smithy/sdk/shapes:define-structure case-details common-lisp:nil
                                     ((case-id :target-type case-id :member-name
@@ -233,7 +244,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "CaseIdNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class support-error))
 
 (smithy/sdk/shapes:define-list case-list :member case-details)
 
@@ -339,7 +350,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DescribeAttachmentLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class support-error))
 
 (smithy/sdk/shapes:define-input describe-attachment-request common-lisp:nil
                                 ((attachment-id :target-type attachment-id
@@ -558,7 +569,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class support-error))
 
 (smithy/sdk/shapes:define-type issue-type smithy/sdk/smithy-types:string)
 
@@ -682,7 +693,8 @@
                                   availability-error-message :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-name "Throttling") (:error-code 400))
+                                (:error-name "Throttling") (:error-code 400)
+                                (:base-class support-error))
 
 (smithy/sdk/shapes:define-type time-created smithy/sdk/smithy-types:string)
 

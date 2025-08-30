@@ -15,14 +15,15 @@
                               #:disable-domain-transfer-lock
                               #:disassociate-delegation-signer-from-domain
                               #:dnssec-key #:dnssec-key-list
-                              #:dnssec-public-key #:dnssec-signing-attributes
-                              #:domain-auth-code #:domain-availability
+                              #:dnssec-limit-exceeded #:dnssec-public-key
+                              #:dnssec-signing-attributes #:domain-auth-code
+                              #:domain-availability #:domain-limit-exceeded
                               #:domain-name #:domain-price #:domain-price-list
                               #:domain-price-name #:domain-status
                               #:domain-status-list #:domain-suggestion
                               #:domain-suggestions-list #:domain-summary
                               #:domain-summary-list #:domain-transferability
-                              #:duration-in-years #:email
+                              #:duplicate-request #:duration-in-years #:email
                               #:enable-domain-auto-renew
                               #:enable-domain-transfer-lock #:error-message
                               #:extra-param #:extra-param-list
@@ -32,18 +33,18 @@
                               #:get-contact-reachability-status
                               #:get-domain-detail #:get-domain-suggestions
                               #:get-operation-detail #:glue-ip #:glue-ip-list
-                              #:host-name #:integer #:invoice-id #:label
-                              #:lang-code #:list-domains
+                              #:host-name #:integer #:invalid-input
+                              #:invoice-id #:label #:lang-code #:list-domains
                               #:list-domains-attribute-name #:list-operations
                               #:list-operations-sort-attribute-name
                               #:list-prices #:list-prices-page-max-items
                               #:list-tags-for-domain #:message #:nameserver
                               #:nameserver-list #:nullable-integer
-                              #:operation-id #:operation-status
-                              #:operation-status-list #:operation-summary
-                              #:operation-summary-list #:operation-type
-                              #:operation-type-list #:operator #:page-marker
-                              #:page-max-items #:password #:price
+                              #:operation-id #:operation-limit-exceeded
+                              #:operation-status #:operation-status-list
+                              #:operation-summary #:operation-summary-list
+                              #:operation-type #:operation-type-list #:operator
+                              #:page-marker #:page-max-items #:password #:price
                               #:price-with-currency #:push-domain
                               #:reachability-status #:register-domain
                               #:registrar-name #:registrar-url
@@ -54,16 +55,23 @@
                               #:resend-operation-authorization
                               #:retrieve-domain-auth-code
                               #:route53domains-v20140515 #:sort-condition
-                              #:sort-order #:state #:status-flag #:string #:tag
-                              #:tag-key #:tag-key-list #:tag-list #:tag-value
-                              #:timestamp #:tld-name #:transfer-domain
+                              #:sort-order #:state #:status-flag #:string
+                              #:tldrules-violation #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-value #:timestamp
+                              #:tld-name #:transfer-domain
                               #:transfer-domain-to-another-aws-account
-                              #:transferable #:update-domain-contact
+                              #:transferable #:unsupported-tld
+                              #:update-domain-contact
                               #:update-domain-contact-privacy
                               #:update-domain-nameservers
                               #:update-tags-for-domain #:value #:values
-                              #:view-billing #:zip-code))
+                              #:view-billing #:zip-code
+                              #:route-53-domains-error))
 (common-lisp:in-package #:pira/route-53-domains)
+
+(common-lisp:define-condition route-53-domains-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service route53domains-v20140515 :shape-name
                                    "Route53Domains_v20140515" :version
@@ -614,7 +622,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DnssecLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route-53-domains-error))
 
 (smithy/sdk/shapes:define-type dnssec-public-key smithy/sdk/smithy-types:string)
 
@@ -646,7 +655,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DomainLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route-53-domains-error))
 
 (smithy/sdk/shapes:define-type domain-name smithy/sdk/smithy-types:string)
 
@@ -712,7 +722,8 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DuplicateRequest")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route-53-domains-error))
 
 (smithy/sdk/shapes:define-type duration-in-years
                                smithy/sdk/smithy-types:integer)
@@ -938,7 +949,8 @@
 (smithy/sdk/shapes:define-error invalid-input common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "InvalidInput") (:error-code 400))
+                                (:shape-name "InvalidInput") (:error-code 400)
+                                (:base-class route-53-domains-error))
 
 (smithy/sdk/shapes:define-type invoice-id smithy/sdk/smithy-types:string)
 
@@ -1049,7 +1061,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "OperationLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route-53-domains-error))
 
 (smithy/sdk/shapes:define-enum operation-status
     common-lisp:nil
@@ -1295,7 +1308,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TLDRulesViolation")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route-53-domains-error))
 
 (smithy/sdk/shapes:define-structure tag common-lisp:nil
                                     ((key :target-type tag-key :member-name
@@ -1390,7 +1404,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnsupportedTLD")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class route-53-domains-error))
 
 (smithy/sdk/shapes:define-input update-domain-contact-privacy-request
                                 common-lisp:nil

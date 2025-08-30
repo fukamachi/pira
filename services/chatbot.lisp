@@ -10,10 +10,14 @@
                               #:chime-webhook-description #:chime-webhook-url
                               #:client-token #:configuration-name
                               #:configured-team #:configured-teams-list
+                              #:conflict-exception
                               #:create-chime-webhook-configuration
+                              #:create-chime-webhook-configuration-exception
                               #:create-custom-action
                               #:create-microsoft-teams-channel-configuration
                               #:create-slack-channel-configuration
+                              #:create-slack-channel-configuration-exception
+                              #:create-teams-channel-configuration-exception
                               #:custom-action #:custom-action-alias-name
                               #:custom-action-arn #:custom-action-arn-list
                               #:custom-action-attachment
@@ -27,29 +31,53 @@
                               #:custom-action-definition #:custom-action-name
                               #:custom-action-resource #:customer-cw-log-level
                               #:delete-chime-webhook-configuration
+                              #:delete-chime-webhook-configuration-exception
                               #:delete-custom-action
                               #:delete-microsoft-teams-channel-configuration
                               #:delete-microsoft-teams-configured-team
                               #:delete-microsoft-teams-user-identity
+                              #:delete-microsoft-teams-user-identity-exception
                               #:delete-slack-channel-configuration
+                              #:delete-slack-channel-configuration-exception
                               #:delete-slack-user-identity
+                              #:delete-slack-user-identity-exception
                               #:delete-slack-workspace-authorization
+                              #:delete-slack-workspace-authorization-fault
+                              #:delete-teams-channel-configuration-exception
+                              #:delete-teams-configured-team-exception
                               #:describe-chime-webhook-configurations
+                              #:describe-chime-webhook-configurations-exception
                               #:describe-slack-channel-configurations
+                              #:describe-slack-channel-configurations-exception
                               #:describe-slack-user-identities
+                              #:describe-slack-user-identities-exception
                               #:describe-slack-workspaces
+                              #:describe-slack-workspaces-exception
                               #:disassociate-from-configuration #:error-message
-                              #:get-account-preferences #:get-custom-action
+                              #:get-account-preferences
+                              #:get-account-preferences-exception
+                              #:get-custom-action
                               #:get-microsoft-teams-channel-configuration
+                              #:get-teams-channel-configuration-exception
                               #:guardrail-policy-arn
-                              #:guardrail-policy-arn-list #:list-associations
+                              #:guardrail-policy-arn-list
+                              #:internal-service-error
+                              #:invalid-parameter-exception
+                              #:invalid-request-exception
+                              #:limit-exceeded-exception #:list-associations
                               #:list-custom-actions
                               #:list-microsoft-teams-channel-configurations
                               #:list-microsoft-teams-configured-teams
+                              #:list-microsoft-teams-configured-teams-exception
                               #:list-microsoft-teams-user-identities
-                              #:list-tags-for-resource #:max-results
-                              #:pagination-token #:resource-identifier
-                              #:resource-state #:slack-channel-configuration
+                              #:list-microsoft-teams-user-identities-exception
+                              #:list-tags-for-resource
+                              #:list-teams-channel-configurations-exception
+                              #:max-results #:pagination-token
+                              #:resource-identifier
+                              #:resource-not-found-exception #:resource-state
+                              #:service-unavailable-exception
+                              #:slack-channel-configuration
                               #:slack-channel-configuration-list
                               #:slack-channel-display-name #:slack-channel-id
                               #:slack-team-id #:slack-team-name #:slack-user-id
@@ -61,14 +89,24 @@
                               #:team-channel-configurations-list #:team-name
                               #:teams-channel-configuration #:teams-channel-id
                               #:teams-channel-name #:teams-user-identities-list
-                              #:teams-user-identity #:uuid #:untag-resource
+                              #:teams-user-identity #:too-many-tags-exception
+                              #:uuid #:unauthorized-exception #:untag-resource
                               #:update-account-preferences
+                              #:update-account-preferences-exception
                               #:update-chime-webhook-configuration
+                              #:update-chime-webhook-configuration-exception
                               #:update-custom-action
                               #:update-microsoft-teams-channel-configuration
                               #:update-slack-channel-configuration
-                              #:wheatley-orchestration-20171011))
+                              #:update-slack-channel-configuration-exception
+                              #:update-teams-channel-configuration-exception
+                              #:wheatley-orchestration-20171011
+                              #:chatbot-error))
 (common-lisp:in-package #:pira/chatbot)
+
+(common-lisp:define-condition chatbot-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service wheatley-orchestration-20171011 :shape-name
                                    "WheatleyOrchestration_20171011" :version
@@ -224,7 +262,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-error create-chime-webhook-configuration-exception
                                 common-lisp:nil
@@ -232,7 +270,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CreateChimeWebhookConfigurationException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input create-chime-webhook-configuration-request
                                 common-lisp:nil
@@ -297,7 +335,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CreateSlackChannelConfigurationException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input create-slack-channel-configuration-request
                                 common-lisp:nil
@@ -345,7 +383,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CreateTeamsChannelConfigurationException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input create-teams-channel-configuration-request
                                 common-lisp:nil
@@ -487,7 +525,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "DeleteChimeWebhookConfigurationException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input delete-chime-webhook-configuration-request
                                 common-lisp:nil
@@ -519,7 +557,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "DeleteMicrosoftTeamsUserIdentityException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input delete-microsoft-teams-user-identity-request
                                 common-lisp:nil
@@ -543,7 +581,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "DeleteSlackChannelConfigurationException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input delete-slack-channel-configuration-request
                                 common-lisp:nil
@@ -565,7 +603,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "DeleteSlackUserIdentityException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input delete-slack-user-identity-request
                                 common-lisp:nil
@@ -591,7 +629,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "DeleteSlackWorkspaceAuthorizationFault")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input delete-slack-workspace-authorization-request
                                 common-lisp:nil
@@ -612,7 +650,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "DeleteTeamsChannelConfigurationException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input delete-teams-channel-configuration-request
                                 common-lisp:nil
@@ -634,7 +672,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "DeleteTeamsConfiguredTeamException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input delete-teams-configured-team-request
                                 common-lisp:nil
@@ -654,7 +692,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "DescribeChimeWebhookConfigurationsException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input describe-chime-webhook-configurations-request
                                 common-lisp:nil
@@ -684,7 +722,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "DescribeSlackChannelConfigurationsException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input describe-slack-channel-configurations-request
                                 common-lisp:nil
@@ -714,7 +752,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "DescribeSlackUserIdentitiesException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input describe-slack-user-identities-request
                                 common-lisp:nil
@@ -744,7 +782,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "DescribeSlackWorkspacesException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input describe-slack-workspaces-request
                                 common-lisp:nil
@@ -787,7 +825,7 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "GetAccountPreferencesException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input get-account-preferences-request common-lisp:nil
                                 common-lisp:nil
@@ -816,7 +854,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "GetTeamsChannelConfigurationException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input get-teams-channel-configuration-request
                                 common-lisp:nil
@@ -845,25 +883,25 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceError")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input list-associations-request common-lisp:nil
                                 ((chat-configuration :target-type
@@ -909,7 +947,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "ListMicrosoftTeamsConfiguredTeamsException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input list-microsoft-teams-configured-teams-request
                                 common-lisp:nil
@@ -936,7 +974,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "ListMicrosoftTeamsUserIdentitiesException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input list-microsoft-teams-user-identities-request
                                 common-lisp:nil
@@ -978,7 +1016,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "ListTeamsChannelConfigurationsException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input list-teams-channel-configurations-request
                                 common-lisp:nil
@@ -1012,7 +1050,7 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-type resource-state smithy/sdk/smithy-types:string)
 
@@ -1020,7 +1058,7 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-structure slack-channel-configuration common-lisp:nil
                                     ((slack-team-name :target-type
@@ -1231,7 +1269,7 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 
@@ -1239,7 +1277,7 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -1259,7 +1297,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "UpdateAccountPreferencesException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input update-account-preferences-request
                                 common-lisp:nil
@@ -1284,7 +1322,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "UpdateChimeWebhookConfigurationException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input update-chime-webhook-configuration-request
                                 common-lisp:nil
@@ -1343,7 +1381,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "UpdateSlackChannelConfigurationException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input update-slack-channel-configuration-request
                                 common-lisp:nil
@@ -1388,7 +1426,7 @@ common-lisp:nil
                                   :member-name "Message"))
                                 (:shape-name
                                  "UpdateTeamsChannelConfigurationException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chatbot-error))
 
 (smithy/sdk/shapes:define-input update-teams-channel-configuration-request
                                 common-lisp:nil

@@ -1,8 +1,10 @@
 (uiop/package:define-package #:pira/license-manager-user-subscriptions (:use)
-                             (:export #:active-directory-identity-provider
+                             (:export #:access-denied-exception
+                              #:active-directory-identity-provider
                               #:active-directory-settings
                               #:active-directory-type #:arn #:associate-user
-                              #:box-integer #:create-license-server-endpoint
+                              #:box-integer #:conflict-exception
+                              #:create-license-server-endpoint
                               #:credentials-provider
                               #:delete-license-server-endpoint
                               #:deregister-identity-provider #:directory
@@ -12,7 +14,8 @@
                               #:identity-provider-summary-list
                               #:instance-summary #:instance-summary-list
                               #:instance-user-summary
-                              #:instance-user-summary-list #:ip-v4 #:ip-v4list
+                              #:instance-user-summary-list
+                              #:internal-server-exception #:ip-v4 #:ip-v4list
                               #:license-manager-user-subscriptions
                               #:license-server #:license-server-endpoint
                               #:license-server-endpoint-id
@@ -27,16 +30,23 @@
                               #:product-user-summary
                               #:product-user-summary-list #:rds-sal-settings
                               #:register-identity-provider #:resource-arn
+                              #:resource-not-found-exception
                               #:secrets-manager-credentials-provider
                               #:security-group #:server-endpoint
-                              #:server-settings #:server-type #:settings
+                              #:server-settings #:server-type
+                              #:service-quota-exceeded-exception #:settings
                               #:start-product-subscription
                               #:stop-product-subscription #:string-list
                               #:subnet #:subnets #:tag-key-list #:tag-resource
-                              #:tags #:untag-resource
+                              #:tags #:throttling-exception #:untag-resource
                               #:update-identity-provider-settings
-                              #:update-settings))
+                              #:update-settings #:validation-exception
+                              #:license-manager-user-subscriptions-error))
 (common-lisp:in-package #:pira/license-manager-user-subscriptions)
+
+(common-lisp:define-condition license-manager-user-subscriptions-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service license-manager-user-subscriptions
                                    :shape-name
@@ -77,7 +87,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 license-manager-user-subscriptions-error))
 
 (smithy/sdk/shapes:define-structure active-directory-identity-provider
                                     common-lisp:nil
@@ -141,7 +153,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class
+                                 license-manager-user-subscriptions-error))
 
 (smithy/sdk/shapes:define-input create-license-server-endpoint-request
                                 common-lisp:nil
@@ -346,7 +360,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class
+                                 license-manager-user-subscriptions-error))
 
 (smithy/sdk/shapes:define-type ip-v4 smithy/sdk/smithy-types:string)
 
@@ -614,7 +630,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class
+                                 license-manager-user-subscriptions-error))
 
 (smithy/sdk/shapes:define-structure secrets-manager-credentials-provider
                                     common-lisp:nil
@@ -646,7 +664,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 license-manager-user-subscriptions-error))
 
 (smithy/sdk/shapes:define-structure settings common-lisp:nil
                                     ((subnets :target-type subnets :required
@@ -737,7 +757,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 license-manager-user-subscriptions-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type resource-arn
@@ -794,7 +816,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 license-manager-user-subscriptions-error))
 
 (smithy/sdk/operation:define-operation associate-user :shape-name
                                        "AssociateUser" :input

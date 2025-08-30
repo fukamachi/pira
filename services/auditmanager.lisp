@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/auditmanager (:use)
                              (:export #:awsaccount #:awsaccounts #:awsservice
-                              #:awsservice-name #:awsservices #:account-id
+                              #:awsservice-name #:awsservices
+                              #:access-denied-exception #:account-id
                               #:account-name #:account-status #:action-enum
                               #:action-plan-instructions #:action-plan-title
                               #:assessment #:assessment-control
@@ -107,8 +108,9 @@
                               #:get-services-in-scope #:get-settings
                               #:hyperlink-name #:iam-arn #:insights
                               #:insights-by-assessment #:integer
-                              #:keyword-input-type #:keyword-value #:keywords
-                              #:kms-key #:last-updated-by
+                              #:internal-server-exception #:keyword-input-type
+                              #:keyword-value #:keywords #:kms-key
+                              #:last-updated-by
                               #:list-assessment-control-insights-by-control-domain
                               #:list-assessment-framework-share-requests
                               #:list-assessment-frameworks
@@ -126,18 +128,20 @@
                               #:nullable-integer #:object-type-enum
                               #:query-statement #:region #:register-account
                               #:register-organization-admin-account #:resource
-                              #:resources #:role #:role-type #:roles #:s3url
-                              #:snstopic #:scope #:service-metadata
-                              #:service-metadata-list #:setting-attribute
-                              #:settings #:share-request-action
-                              #:share-request-comment #:share-request-status
-                              #:share-request-type #:sns-arn
-                              #:source-description #:source-frequency
+                              #:resource-not-found-exception #:resources #:role
+                              #:role-type #:roles #:s3url #:snstopic #:scope
+                              #:service-metadata #:service-metadata-list
+                              #:service-quota-exceeded-exception
+                              #:setting-attribute #:settings
+                              #:share-request-action #:share-request-comment
+                              #:share-request-status #:share-request-type
+                              #:sns-arn #:source-description #:source-frequency
                               #:source-keyword #:source-name
                               #:source-set-up-option #:source-type
                               #:start-assessment-framework-share #:string
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-value #:testing-information #:timestamp
+                              #:tag-value #:testing-information
+                              #:throttling-exception #:timestamp
                               #:timestamp-uuid #:token #:troubleshooting-text
                               #:url #:uuid #:untag-resource #:update-assessment
                               #:update-assessment-control
@@ -149,10 +153,16 @@
                               #:update-assessment-status #:update-control
                               #:update-settings #:url-link #:username
                               #:validate-assessment-report-integrity
-                              #:validation-errors #:validation-exception-field
+                              #:validation-errors #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason #:organization-id))
+                              #:validation-exception-reason #:organization-id
+                              #:auditmanager-error))
 (common-lisp:in-package #:pira/auditmanager)
+
+(common-lisp:define-condition auditmanager-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service bedrock-assessment-manager-lambda
                                    :shape-name "BedrockAssessmentManagerLambda"
@@ -244,7 +254,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class auditmanager-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -1868,7 +1879,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class auditmanager-error))
 
 (smithy/sdk/shapes:define-enum keyword-input-type
     common-lisp:nil
@@ -2220,7 +2232,8 @@
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class auditmanager-error))
 
 (smithy/sdk/shapes:define-list resources :member resource)
 
@@ -2269,7 +2282,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class auditmanager-error))
 
 (smithy/sdk/shapes:define-enum setting-attribute
     common-lisp:nil
@@ -2424,7 +2438,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class auditmanager-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -2707,7 +2722,8 @@
                                   validation-exception-field-list :member-name
                                   "fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class auditmanager-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type string :required

@@ -3,6 +3,7 @@
                               #:access-advisor-usage-granularity-type
                               #:access-detail #:access-details #:access-key
                               #:access-key-last-used #:access-key-metadata
+                              #:account-not-management-or-delegated-administrator-exception
                               #:action-name-list-type #:action-name-type
                               #:add-client-idto-open-idconnect-provider
                               #:add-role-to-instance-profile
@@ -10,12 +11,14 @@
                               #:attach-group-policy #:attach-role-policy
                               #:attach-user-policy
                               #:attached-permissions-boundary #:attached-policy
-                              #:bootstrap-datum #:certification-key-type
-                              #:certification-map-type
+                              #:bootstrap-datum
+                              #:caller-is-not-management-account-exception
+                              #:certification-key-type #:certification-map-type
                               #:certification-value-type #:change-password
-                              #:column-number #:concurrent-modification-message
-                              #:context-entry #:context-entry-list-type
-                              #:context-key-name-type
+                              #:column-number
+                              #:concurrent-modification-exception
+                              #:concurrent-modification-message #:context-entry
+                              #:context-entry-list-type #:context-key-name-type
                               #:context-key-names-result-list-type
                               #:context-key-type-enum
                               #:context-key-value-list-type
@@ -28,9 +31,13 @@
                               #:create-service-linked-role
                               #:create-service-specific-credential
                               #:create-user #:create-virtual-mfadevice
+                              #:credential-report-expired-exception
+                              #:credential-report-not-present-exception
+                              #:credential-report-not-ready-exception
                               #:deactivate-mfadevice #:delete-access-key
                               #:delete-account-alias
-                              #:delete-account-password-policy #:delete-group
+                              #:delete-account-password-policy
+                              #:delete-conflict-exception #:delete-group
                               #:delete-group-policy #:delete-instance-profile
                               #:delete-login-profile
                               #:delete-open-idconnect-provider #:delete-policy
@@ -50,11 +57,16 @@
                               #:detach-role-policy #:detach-user-policy
                               #:disable-organizations-root-credentials-management
                               #:disable-organizations-root-sessions
+                              #:duplicate-certificate-exception
+                              #:duplicate-sshpublic-key-exception
                               #:enable-mfadevice
                               #:enable-organizations-root-credentials-management
                               #:enable-organizations-root-sessions
-                              #:entity-details #:entity-info #:entity-type
-                              #:error-details #:eval-decision-details-type
+                              #:entity-already-exists-exception
+                              #:entity-details #:entity-info
+                              #:entity-temporarily-unmodifiable-exception
+                              #:entity-type #:error-details
+                              #:eval-decision-details-type
                               #:eval-decision-source-type #:evaluation-result
                               #:evaluation-results-list-type
                               #:exception-message #:feature-type
@@ -80,7 +92,14 @@
                               #:get-service-last-accessed-details-with-entities
                               #:get-service-linked-role-deletion-status
                               #:get-user #:get-user-policy #:group
-                              #:group-detail #:instance-profile #:line-number
+                              #:group-detail #:instance-profile
+                              #:invalid-authentication-code-exception
+                              #:invalid-certificate-exception
+                              #:invalid-input-exception
+                              #:invalid-public-key-exception
+                              #:invalid-user-type-exception
+                              #:key-pair-mismatch-exception
+                              #:limit-exceeded-exception #:line-number
                               #:list-access-keys #:list-account-aliases
                               #:list-attached-group-policies
                               #:list-attached-role-policies
@@ -106,22 +125,31 @@
                               #:list-signing-certificates #:list-user-policies
                               #:list-user-tags #:list-users
                               #:list-virtual-mfadevices #:login-profile
-                              #:mfadevice #:managed-policy-detail
+                              #:mfadevice #:malformed-certificate-exception
+                              #:malformed-policy-document-exception
+                              #:managed-policy-detail
                               #:managed-policy-detail-list-type
+                              #:no-such-entity-exception
                               #:open-idconnect-provider-list-entry
                               #:open-idconnect-provider-list-type
                               #:open-idconnect-provider-url-type
+                              #:open-id-idp-communication-error-exception
                               #:organization-id-type
+                              #:organization-not-found-exception
+                              #:organization-not-in-all-features-mode-exception
                               #:organizations-decision-detail #:password-policy
+                              #:password-policy-violation-exception
                               #:permissions-boundary-attachment-type
                               #:permissions-boundary-decision-detail #:policy
                               #:policy-detail #:policy-evaluation-decision-type
+                              #:policy-evaluation-exception
                               #:policy-granting-service-access #:policy-group
                               #:policy-group-list-type #:policy-identifier-type
-                              #:policy-role #:policy-role-list-type
-                              #:policy-source-type #:policy-usage-type
-                              #:policy-user #:policy-user-list-type
-                              #:policy-version #:position #:put-group-policy
+                              #:policy-not-attachable-exception #:policy-role
+                              #:policy-role-list-type #:policy-source-type
+                              #:policy-usage-type #:policy-user
+                              #:policy-user-list-type #:policy-version
+                              #:position #:put-group-policy
                               #:put-role-permissions-boundary #:put-role-policy
                               #:put-user-permissions-boundary #:put-user-policy
                               #:reason-type #:region-name-type
@@ -129,6 +157,7 @@
                               #:remove-role-from-instance-profile
                               #:remove-user-from-group #:report-content-type
                               #:report-format-type
+                              #:report-generation-limit-exceeded-exception
                               #:report-state-description-type
                               #:report-state-type
                               #:reset-service-specific-credential
@@ -144,7 +173,10 @@
                               #:sshpublic-key #:sshpublic-key-list-type
                               #:sshpublic-key-metadata #:server-certificate
                               #:server-certificate-metadata
+                              #:service-access-not-enabled-exception
+                              #:service-failure-exception
                               #:service-last-accessed
+                              #:service-not-supported-exception
                               #:service-specific-credential
                               #:service-specific-credential-metadata
                               #:service-specific-credentials-list-type
@@ -162,6 +194,8 @@
                               #:tag-server-certificate #:tag-user
                               #:tracked-action-last-accessed
                               #:tracked-actions-last-accessed
+                              #:unmodifiable-entity-exception
+                              #:unrecognized-public-key-encoding-exception
                               #:untag-instance-profile #:untag-mfadevice
                               #:untag-open-idconnect-provider #:untag-policy
                               #:untag-role #:untag-samlprovider
@@ -270,8 +304,12 @@
                               #:unrecognized-public-key-encoding-message
                               #:user-detail-list-type #:user-list-type
                               #:user-name-type #:virtual-mfadevice-list-type
-                              #:virtual-mfadevice-name))
+                              #:virtual-mfadevice-name #:iam-error))
 (common-lisp:in-package #:pira/iam)
+
+(common-lisp:define-condition iam-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsidentity-management-v20100508 :shape-name
                                    "AWSIdentityManagementV20100508" :version
@@ -485,7 +523,7 @@
  account-not-management-or-delegated-administrator-exception common-lisp:nil
  ((message :target-type exception-message :member-name "Message"))
  (:shape-name "AccountNotManagementOrDelegatedAdministratorException")
- (:error-code 400))
+ (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-list action-name-list-type :member action-name-type)
 
@@ -573,7 +611,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CallerIsNotManagementAccountException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-type certification-key-type
                                smithy/sdk/smithy-types:string)
@@ -603,7 +641,7 @@
                                   "message"))
                                 (:shape-name "ConcurrentModificationException")
                                 (:error-name "ConcurrentModification")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-type concurrent-modification-message
                                smithy/sdk/smithy-types:string)
@@ -905,7 +943,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "CredentialReportExpiredException")
-                                (:error-name "ReportExpired") (:error-code 410))
+                                (:error-name "ReportExpired") (:error-code 410)
+                                (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error credential-report-not-present-exception
                                 common-lisp:nil
@@ -915,7 +954,7 @@
                                 (:shape-name
                                  "CredentialReportNotPresentException")
                                 (:error-name "ReportNotPresent")
-                                (:error-code 410))
+                                (:error-code 410) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error credential-report-not-ready-exception
                                 common-lisp:nil
@@ -925,7 +964,7 @@
                                 (:shape-name
                                  "CredentialReportNotReadyException")
                                 (:error-name "ReportInProgress")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-input deactivate-mfadevice-request common-lisp:nil
                                 ((user-name :target-type
@@ -956,7 +995,7 @@
                                   :member-name "message"))
                                 (:shape-name "DeleteConflictException")
                                 (:error-name "DeleteConflict")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-input delete-group-policy-request common-lisp:nil
                                 ((group-name :target-type group-name-type
@@ -1198,7 +1237,7 @@
                                   "message"))
                                 (:shape-name "DuplicateCertificateException")
                                 (:error-name "DuplicateCertificate")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error duplicate-sshpublic-key-exception
                                 common-lisp:nil
@@ -1207,7 +1246,7 @@
                                   "message"))
                                 (:shape-name "DuplicateSSHPublicKeyException")
                                 (:error-name "DuplicateSSHPublicKey")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-input enable-mfadevice-request common-lisp:nil
                                 ((user-name :target-type
@@ -1261,7 +1300,7 @@
                                   "message"))
                                 (:shape-name "EntityAlreadyExistsException")
                                 (:error-name "EntityAlreadyExists")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-structure entity-details common-lisp:nil
                                     ((entity-info :target-type entity-info
@@ -1294,7 +1333,7 @@
                                 (:shape-name
                                  "EntityTemporarilyUnmodifiableException")
                                 (:error-name "EntityTemporarilyUnmodifiable")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-enum entity-type
     common-lisp:nil
@@ -1947,7 +1986,7 @@
                                 (:shape-name
                                  "InvalidAuthenticationCodeException")
                                 (:error-name "InvalidAuthenticationCode")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error invalid-certificate-exception common-lisp:nil
                                 ((message :target-type
@@ -1955,13 +1994,14 @@
                                   "message"))
                                 (:shape-name "InvalidCertificateException")
                                 (:error-name "InvalidCertificate")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error invalid-input-exception common-lisp:nil
                                 ((message :target-type invalid-input-message
                                   :member-name "message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-name "InvalidInput") (:error-code 400))
+                                (:error-name "InvalidInput") (:error-code 400)
+                                (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error invalid-public-key-exception common-lisp:nil
                                 ((message :target-type
@@ -1969,7 +2009,7 @@
                                   "message"))
                                 (:shape-name "InvalidPublicKeyException")
                                 (:error-name "InvalidPublicKey")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error invalid-user-type-exception common-lisp:nil
                                 ((message :target-type
@@ -1977,7 +2017,7 @@
                                   "message"))
                                 (:shape-name "InvalidUserTypeException")
                                 (:error-name "InvalidUserType")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error key-pair-mismatch-exception common-lisp:nil
                                 ((message :target-type
@@ -1985,13 +2025,14 @@
                                   "message"))
                                 (:shape-name "KeyPairMismatchException")
                                 (:error-name "KeyPairMismatch")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type limit-exceeded-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-name "LimitExceeded") (:error-code 409))
+                                (:error-name "LimitExceeded") (:error-code 409)
+                                (:base-class iam-error))
 
 (smithy/sdk/shapes:define-type line-number smithy/sdk/smithy-types:integer)
 
@@ -2775,7 +2816,7 @@
                                   "message"))
                                 (:shape-name "MalformedCertificateException")
                                 (:error-name "MalformedCertificate")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error malformed-policy-document-exception
                                 common-lisp:nil
@@ -2785,7 +2826,7 @@
                                 (:shape-name
                                  "MalformedPolicyDocumentException")
                                 (:error-name "MalformedPolicyDocument")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-structure managed-policy-detail common-lisp:nil
                                     ((policy-name :target-type policy-name-type
@@ -2827,7 +2868,8 @@
                                 ((message :target-type no-such-entity-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchEntityException")
-                                (:error-name "NoSuchEntity") (:error-code 404))
+                                (:error-name "NoSuchEntity") (:error-code 404)
+                                (:base-class iam-error))
 
 (smithy/sdk/shapes:define-structure open-idconnect-provider-list-entry
                                     common-lisp:nil
@@ -2850,7 +2892,7 @@
                                 (:shape-name
                                  "OpenIdIdpCommunicationErrorException")
                                 (:error-name "OpenIdIdpCommunicationError")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-type organization-id-type
                                smithy/sdk/smithy-types:string)
@@ -2860,7 +2902,7 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "OrganizationNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error organization-not-in-all-features-mode-exception
                                 common-lisp:nil
@@ -2868,7 +2910,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "OrganizationNotInAllFeaturesModeException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-structure organizations-decision-detail
                                     common-lisp:nil
@@ -2916,7 +2958,7 @@
                                 (:shape-name
                                  "PasswordPolicyViolationException")
                                 (:error-name "PasswordPolicyViolation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-enum permissions-boundary-attachment-type
     common-lisp:nil
@@ -2982,7 +3024,7 @@
                                   "message"))
                                 (:shape-name "PolicyEvaluationException")
                                 (:error-name "PolicyEvaluation")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-structure policy-granting-service-access
                                     common-lisp:nil
@@ -3019,7 +3061,7 @@
                                   "message"))
                                 (:shape-name "PolicyNotAttachableException")
                                 (:error-name "PolicyNotAttachable")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-structure policy-role common-lisp:nil
                                     ((role-name :target-type role-name-type
@@ -3180,7 +3222,7 @@
                                 (:shape-name
                                  "ReportGenerationLimitExceededException")
                                 (:error-name "ReportGenerationLimitExceeded")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-type report-state-description-type
                                smithy/sdk/smithy-types:string)
@@ -3449,7 +3491,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ServiceAccessNotEnabledException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error service-failure-exception common-lisp:nil
                                 ((message :target-type
@@ -3457,7 +3499,7 @@
                                   :member-name "message"))
                                 (:shape-name "ServiceFailureException")
                                 (:error-name "ServiceFailure")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-structure service-last-accessed common-lisp:nil
                                     ((service-name :target-type
@@ -3491,7 +3533,7 @@
                                   "message"))
                                 (:shape-name "ServiceNotSupportedException")
                                 (:error-name "NotSupportedService")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-structure service-specific-credential common-lisp:nil
                                     ((create-date :target-type date-type
@@ -3794,7 +3836,7 @@
                                   "message"))
                                 (:shape-name "UnmodifiableEntityException")
                                 (:error-name "UnmodifiableEntity")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-error unrecognized-public-key-encoding-exception
                                 common-lisp:nil
@@ -3804,7 +3846,7 @@
                                 (:shape-name
                                  "UnrecognizedPublicKeyEncodingException")
                                 (:error-name "UnrecognizedPublicKeyEncoding")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class iam-error))
 
 (smithy/sdk/shapes:define-input untag-instance-profile-request common-lisp:nil
                                 ((instance-profile-name :target-type

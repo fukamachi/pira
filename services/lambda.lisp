@@ -15,8 +15,11 @@
                               #:code-signing-config-arn
                               #:code-signing-config-id
                               #:code-signing-config-list
+                              #:code-signing-config-not-found-exception
                               #:code-signing-config-resource
                               #:code-signing-policies #:code-signing-policy
+                              #:code-storage-exceeded-exception
+                              #:code-verification-failed-exception
                               #:collection-name #:compatible-architectures
                               #:compatible-runtimes #:concurrency #:cors
                               #:create-alias #:create-code-signing-config
@@ -33,7 +36,14 @@
                               #:delete-provisioned-concurrency-config
                               #:description #:destination-arn
                               #:destination-config
-                              #:document-dbevent-source-config #:enabled
+                              #:document-dbevent-source-config
+                              #:ec2access-denied-exception
+                              #:ec2throttled-exception
+                              #:ec2unexpected-exception #:efsioexception
+                              #:efsmount-connectivity-exception
+                              #:efsmount-failure-exception
+                              #:efsmount-timeout-exception
+                              #:enilimit-reached-exception #:enabled
                               #:end-point-type #:endpoint #:endpoint-lists
                               #:endpoints #:environment #:environment-error
                               #:environment-response
@@ -83,12 +93,22 @@
                               #:header #:headers-list #:http-status
                               #:image-config #:image-config-error
                               #:image-config-response #:integer
-                              #:invocation-type #:invoke #:invoke-async
-                              #:invoke-mode #:invoke-response-stream-update
+                              #:invalid-code-signature-exception
+                              #:invalid-parameter-value-exception
+                              #:invalid-request-content-exception
+                              #:invalid-runtime-exception
+                              #:invalid-security-group-idexception
+                              #:invalid-subnet-idexception
+                              #:invalid-zip-file-exception #:invocation-type
+                              #:invoke #:invoke-async #:invoke-mode
+                              #:invoke-response-stream-update
                               #:invoke-with-response-stream
                               #:invoke-with-response-stream-complete-event
                               #:invoke-with-response-stream-response-event
-                              #:kmskey-arn
+                              #:kmsaccess-denied-exception
+                              #:kmsdisabled-exception
+                              #:kmsinvalid-state-exception #:kmskey-arn
+                              #:kmsnot-found-exception
                               #:kafka-schema-registry-access-config
                               #:kafka-schema-registry-access-config-list
                               #:kafka-schema-registry-auth-type
@@ -138,10 +158,14 @@
                               #:nullable-boolean #:on-failure #:on-success
                               #:organization-id #:origin #:package-type
                               #:parallelization-factor #:pattern #:permission
-                              #:positive-integer #:principal #:principal-org-id
+                              #:policy-length-exceeded-exception
+                              #:positive-integer
+                              #:precondition-failed-exception #:principal
+                              #:principal-org-id
                               #:provisioned-concurrency-config
                               #:provisioned-concurrency-config-list
                               #:provisioned-concurrency-config-list-item
+                              #:provisioned-concurrency-config-not-found-exception
                               #:provisioned-concurrency-status-enum
                               #:provisioned-poller-config
                               #:publish-layer-version #:publish-version
@@ -151,11 +175,15 @@
                               #:put-function-recursion-config
                               #:put-provisioned-concurrency-config
                               #:put-runtime-management-config #:qualifier
-                              #:queue #:queues #:recursive-loop
+                              #:queue #:queues #:recursive-invocation-exception
+                              #:recursive-loop
                               #:remove-layer-version-permission
-                              #:remove-permission
+                              #:remove-permission #:request-too-large-exception
                               #:reserved-concurrent-executions #:resource-arn
-                              #:resource-policy
+                              #:resource-conflict-exception
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception
+                              #:resource-not-ready-exception #:resource-policy
                               #:response-streaming-invocation-type #:role-arn
                               #:runtime #:runtime-version-arn
                               #:runtime-version-config #:runtime-version-error
@@ -165,24 +193,31 @@
                               #:schema-registry-uri #:security-group-id
                               #:security-group-ids #:self-managed-event-source
                               #:self-managed-kafka-event-source-config
-                              #:sensitive-string #:signing-profile-version-arns
-                              #:snap-start #:snap-start-apply-on
+                              #:sensitive-string #:service-exception
+                              #:signing-profile-version-arns #:snap-start
+                              #:snap-start-apply-on #:snap-start-exception
+                              #:snap-start-not-ready-exception
                               #:snap-start-optimization-status
                               #:snap-start-response
+                              #:snap-start-timeout-exception
                               #:source-access-configuration
                               #:source-access-configurations
                               #:source-access-type #:source-owner #:state
                               #:state-reason #:state-reason-code #:statement-id
-                              #:string #:string-list #:subnet-id #:subnet-ids
-                              #:system-log-level #:tag-key #:tag-key-list
-                              #:tag-resource #:tag-value #:taggable-resource
-                              #:tags #:tags-error #:tags-error-code
+                              #:string #:string-list
+                              #:subnet-ipaddress-limit-reached-exception
+                              #:subnet-id #:subnet-ids #:system-log-level
+                              #:tag-key #:tag-key-list #:tag-resource
+                              #:tag-value #:taggable-resource #:tags
+                              #:tags-error #:tags-error-code
                               #:tags-error-message #:throttle-reason #:timeout
-                              #:timestamp #:topic #:topics #:tracing-config
+                              #:timestamp #:too-many-requests-exception #:topic
+                              #:topics #:tracing-config
                               #:tracing-config-response #:tracing-mode
                               #:tumbling-window-in-seconds #:uri
                               #:unqualified-function-name
                               #:unreserved-concurrent-executions
+                              #:unsupported-media-type-exception
                               #:untag-resource #:update-alias
                               #:update-code-signing-config
                               #:update-event-source-mapping
@@ -191,8 +226,13 @@
                               #:update-function-event-invoke-config
                               #:update-function-url-config #:update-runtime-on
                               #:version #:vpc-config #:vpc-config-response
-                              #:vpc-id #:weight #:working-directory))
+                              #:vpc-id #:weight #:working-directory
+                              #:lambda-error))
 (common-lisp:in-package #:pira/lambda)
+
+(common-lisp:define-condition lambda-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsgir-api-service :shape-name
                                    "AWSGirApiService" :version "2015-03-31"
@@ -525,7 +565,7 @@
                                   "Message"))
                                 (:shape-name
                                  "CodeSigningConfigNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class lambda-error))
 
 common-lisp:nil
 
@@ -546,7 +586,7 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "CodeStorageExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error code-verification-failed-exception
                                 common-lisp:nil
@@ -554,7 +594,7 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "CodeVerificationFailedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-type collection-name smithy/sdk/smithy-types:string)
 
@@ -927,14 +967,14 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EC2AccessDeniedException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error ec2throttled-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EC2ThrottledException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error ec2unexpected-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
@@ -943,42 +983,42 @@ common-lisp:nil
                                  (ec2error-code :target-type string
                                   :member-name "EC2ErrorCode"))
                                 (:shape-name "EC2UnexpectedException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error efsioexception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EFSIOException")
-                                (:error-code 410))
+                                (:error-code 410) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error efsmount-connectivity-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EFSMountConnectivityException")
-                                (:error-code 408))
+                                (:error-code 408) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error efsmount-failure-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EFSMountFailureException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error efsmount-timeout-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EFSMountTimeoutException")
-                                (:error-code 408))
+                                (:error-code 408) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error enilimit-reached-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ENILimitReachedException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-type enabled smithy/sdk/smithy-types:boolean)
 
@@ -1759,7 +1799,7 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidCodeSignatureException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
@@ -1767,7 +1807,7 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterValueException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error invalid-request-content-exception
                                 common-lisp:nil
@@ -1775,14 +1815,14 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidRequestContentException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error invalid-runtime-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidRuntimeException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error invalid-security-group-idexception
                                 common-lisp:nil
@@ -1790,21 +1830,21 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidSecurityGroupIDException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error invalid-subnet-idexception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidSubnetIDException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error invalid-zip-file-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidZipFileException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-input invocation-request common-lisp:nil
                                 ((function-name :target-type
@@ -1940,21 +1980,21 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "KMSAccessDeniedException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error kmsdisabled-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "KMSDisabledException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error kmsinvalid-state-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "KMSInvalidStateException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-type kmskey-arn smithy/sdk/smithy-types:string)
 
@@ -1963,7 +2003,7 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "KMSNotFoundException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-structure kafka-schema-registry-access-config
                                     common-lisp:nil
@@ -2525,7 +2565,7 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "PolicyLengthExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-type positive-integer smithy/sdk/smithy-types:integer)
 
@@ -2534,7 +2574,7 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "PreconditionFailedException")
-                                (:error-code 412))
+                                (:error-code 412) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-type principal smithy/sdk/smithy-types:string)
 
@@ -2576,7 +2616,7 @@ common-lisp:nil
  ((type :target-type string :member-name "Type")
   (message :target-type string :member-name "message"))
  (:shape-name "ProvisionedConcurrencyConfigNotFoundException")
- (:error-code 404))
+ (:error-code 404) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-enum provisioned-concurrency-status-enum
     common-lisp:nil
@@ -2801,7 +2841,7 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "RecursiveInvocationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-enum recursive-loop
     common-lisp:nil
@@ -2844,7 +2884,7 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "RequestTooLargeException")
-                                (:error-code 413))
+                                (:error-code 413) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-type reserved-concurrent-executions
                                smithy/sdk/smithy-types:integer)
@@ -2856,28 +2896,28 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error resource-in-use-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error resource-not-ready-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotReadyException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 common-lisp:nil
 
@@ -2996,7 +3036,7 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-list signing-profile-version-arns :member arn)
 
@@ -3015,14 +3055,14 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "SnapStartException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-error snap-start-not-ready-exception common-lisp:nil
                                 ((type :target-type string :member-name "Type")
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "SnapStartNotReadyException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-enum snap-start-optimization-status
     common-lisp:nil
@@ -3042,7 +3082,7 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "SnapStartTimeoutException")
-                                (:error-code 408))
+                                (:error-code 408) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-structure source-access-configuration common-lisp:nil
                                     ((type :target-type source-access-type
@@ -3115,7 +3155,7 @@ common-lisp:nil
                                   "Message"))
                                 (:shape-name
                                  "SubnetIPAddressLimitReachedException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-type subnet-id smithy/sdk/smithy-types:string)
 
@@ -3186,7 +3226,7 @@ common-lisp:nil
                                  (reason :target-type throttle-reason
                                   :member-name "Reason"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-type topic smithy/sdk/smithy-types:string)
 
@@ -3224,7 +3264,7 @@ common-lisp:nil
                                  (message :target-type string :member-name
                                   "message"))
                                 (:shape-name "UnsupportedMediaTypeException")
-                                (:error-code 415))
+                                (:error-code 415) (:base-class lambda-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource :target-type taggable-resource

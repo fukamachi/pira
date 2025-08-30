@@ -1,11 +1,13 @@
 (uiop/package:define-package #:pira/voice-id (:use)
-                             (:export #:amazon-resource-name #:arn
+                             (:export #:access-denied-exception
+                              #:amazon-resource-name #:arn
                               #:associate-fraudster
                               #:associate-fraudster-request
                               #:associate-fraudster-response
                               #:authentication-configuration
                               #:authentication-decision #:authentication-result
-                              #:boolean #:client-token-string #:conflict-type
+                              #:boolean #:client-token-string
+                              #:conflict-exception #:conflict-type
                               #:create-domain #:create-domain-request
                               #:create-domain-response #:create-watchlist
                               #:create-watchlist-request
@@ -54,7 +56,8 @@
                               #:fraudster-summaries #:fraudster-summary
                               #:generated-fraudster-id #:generated-speaker-id
                               #:iam-role-arn #:input-data-config #:integer
-                              #:job-id #:job-name #:job-progress #:kms-key-id
+                              #:internal-server-exception #:job-id #:job-name
+                              #:job-progress #:kms-key-id
                               #:known-fraudster-risk #:list-domains
                               #:list-domains-request #:list-domains-response
                               #:list-fraudster-registration-jobs
@@ -76,12 +79,14 @@
                               #:opt-out-speaker-response #:output-data-config
                               #:registration-config
                               #:registration-config-watchlist-ids
-                              #:resource-type #:response-watchlist-ids #:s3uri
-                              #:score #:server-side-encryption-configuration
+                              #:resource-not-found-exception #:resource-type
+                              #:response-watchlist-ids #:s3uri #:score
+                              #:server-side-encryption-configuration
                               #:server-side-encryption-update-details
                               #:server-side-encryption-update-status
-                              #:session-id #:session-name #:session-name-or-id
-                              #:speaker #:speaker-enrollment-job
+                              #:service-quota-exceeded-exception #:session-id
+                              #:session-name #:session-name-or-id #:speaker
+                              #:speaker-enrollment-job
                               #:speaker-enrollment-job-status
                               #:speaker-enrollment-job-summaries
                               #:speaker-enrollment-job-summary #:speaker-id
@@ -96,17 +101,24 @@
                               #:streaming-status #:string #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:timestamp #:unique-id-large
-                              #:untag-resource #:untag-resource-request
+                              #:tag-value #:throttling-exception #:timestamp
+                              #:unique-id-large #:untag-resource
+                              #:untag-resource-request
                               #:untag-resource-response #:update-domain
                               #:update-domain-request #:update-domain-response
                               #:update-watchlist #:update-watchlist-request
-                              #:update-watchlist-response #:voice-id
+                              #:update-watchlist-response
+                              #:validation-exception #:voice-id
                               #:voice-spoofing-risk #:watchlist
                               #:watchlist-description #:watchlist-details
                               #:watchlist-id #:watchlist-name
-                              #:watchlist-summaries #:watchlist-summary))
+                              #:watchlist-summaries #:watchlist-summary
+                              #:voice-id-error))
 (common-lisp:in-package #:pira/voice-id)
+
+(common-lisp:define-condition voice-id-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service voice-id :shape-name "VoiceID" :version
                                    "2021-09-27" :title "Amazon Voice ID"
@@ -141,7 +153,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class voice-id-error))
 
 (smithy/sdk/shapes:define-type amazon-resource-name
                                smithy/sdk/smithy-types:string)
@@ -213,7 +225,7 @@
                                  (conflict-type :target-type conflict-type
                                   :member-name "ConflictType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class voice-id-error))
 
 (smithy/sdk/shapes:define-type conflict-type smithy/sdk/smithy-types:string)
 
@@ -703,7 +715,7 @@ common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class voice-id-error))
 
 (smithy/sdk/shapes:define-type job-id smithy/sdk/smithy-types:string)
 
@@ -917,7 +929,7 @@ common-lisp:nil
                                  (resource-type :target-type resource-type
                                   :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class voice-id-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -955,7 +967,7 @@ common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class voice-id-error))
 
 (smithy/sdk/shapes:define-type session-id smithy/sdk/smithy-types:string)
 
@@ -1171,7 +1183,7 @@ common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class voice-id-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -1233,7 +1245,7 @@ common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class voice-id-error))
 
 (smithy/sdk/shapes:define-structure voice-spoofing-risk common-lisp:nil
                                     ((risk-score :target-type score :required

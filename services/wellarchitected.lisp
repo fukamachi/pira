@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/wellarchitected (:use)
-                             (:export #:account-jira-configuration-input
+                             (:export #:access-denied-exception
+                              #:account-jira-configuration-input
                               #:account-jira-configuration-output
                               #:account-jira-issue-management-status
                               #:account-summary #:additional-resource-type
@@ -23,7 +24,7 @@
                               #:choice-improvement-plans #:choice-notes
                               #:choice-reason #:choice-status #:choice-title
                               #:choice-update #:choice-updates #:choices
-                              #:client-request-token
+                              #:client-request-token #:conflict-exception
                               #:consolidated-report-metric
                               #:consolidated-report-metrics #:count
                               #:create-lens-share #:create-lens-version
@@ -55,7 +56,8 @@
                               #:improvement-summaries #:improvement-summary
                               #:include-shared-resources #:integrating-service
                               #:integration-status #:integration-status-input
-                              #:is-applicable #:is-major-version
+                              #:internal-server-exception #:is-applicable
+                              #:is-major-version
                               #:is-review-owner-update-acknowledged
                               #:issue-management-type #:jira-configuration
                               #:jira-issue-url #:jira-project-key
@@ -121,8 +123,8 @@
                               #:question-metric #:question-metrics
                               #:question-priority #:question-title
                               #:question-type #:quota-code #:report-format
-                              #:resource-arn #:review-template
-                              #:review-template-answer
+                              #:resource-arn #:resource-not-found-exception
+                              #:review-template #:review-template-answer
                               #:review-template-answer-status
                               #:review-template-answer-summaries
                               #:review-template-answer-summary
@@ -139,7 +141,8 @@
                               #:selected-pillar #:selected-pillars
                               #:selected-profile-choice-ids
                               #:selected-question-id #:selected-question-ids
-                              #:service-code #:share-id #:share-invitation
+                              #:service-code #:service-quota-exceeded-exception
+                              #:share-id #:share-invitation
                               #:share-invitation-action #:share-invitation-id
                               #:share-invitation-summaries
                               #:share-invitation-summary #:share-resource-type
@@ -149,8 +152,8 @@
                               #:tag-value #:template-arn #:template-description
                               #:template-name #:template-name-prefix
                               #:template-questions #:template-share-summaries
-                              #:template-share-summary #:timestamp
-                              #:trusted-advisor-integration-status
+                              #:template-share-summary #:throttling-exception
+                              #:timestamp #:trusted-advisor-integration-status
                               #:untag-resource #:update-answer
                               #:update-global-settings #:update-integration
                               #:update-lens-review #:update-profile
@@ -161,6 +164,7 @@
                               #:update-workload-share #:upgrade-lens-review
                               #:upgrade-profile-version
                               #:upgrade-review-template-lens-review #:urls
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-field-name
@@ -186,8 +190,12 @@
                               #:workload-review-owner #:workload-share
                               #:workload-share-summaries
                               #:workload-share-summary #:workload-summaries
-                              #:workload-summary))
+                              #:workload-summary #:wellarchitected-error))
 (common-lisp:in-package #:pira/wellarchitected)
+
+(common-lisp:define-condition wellarchitected-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service well-architected-api-service-lambda
                                    :shape-name
@@ -256,7 +264,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class wellarchitected-error))
 
 (smithy/sdk/shapes:define-structure account-jira-configuration-input
                                     common-lisp:nil
@@ -649,7 +658,8 @@
                                   exception-resource-type :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class wellarchitected-error))
 
 (smithy/sdk/shapes:define-structure consolidated-report-metric common-lisp:nil
                                     ((metric-type :target-type metric-type
@@ -1411,7 +1421,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class wellarchitected-error))
 
 (smithy/sdk/shapes:define-type is-applicable smithy/sdk/smithy-types:boolean)
 
@@ -2570,7 +2581,8 @@
                                   exception-resource-type :required
                                   common-lisp:t :member-name "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class wellarchitected-error))
 
 (smithy/sdk/shapes:define-structure review-template common-lisp:nil
                                     ((description :target-type
@@ -2803,7 +2815,8 @@
                                   :required common-lisp:t :member-name
                                   "ServiceCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class wellarchitected-error))
 
 (smithy/sdk/shapes:define-type share-id smithy/sdk/smithy-types:string)
 
@@ -2953,7 +2966,8 @@
                                  (service-code :target-type service-code
                                   :member-name "ServiceCode"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class wellarchitected-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -3305,7 +3319,8 @@
                                   validation-exception-field-list :member-name
                                   "Fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class wellarchitected-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

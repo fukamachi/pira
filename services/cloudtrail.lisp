@@ -1,18 +1,34 @@
 (uiop/package:define-package #:pira/cloudtrail (:use)
-                             (:export #:account-id #:add-tags
+                             (:export #:access-denied-exception
+                              #:account-has-ongoing-import-exception
+                              #:account-id #:account-not-found-exception
+                              #:account-not-registered-exception
+                              #:account-registered-exception #:add-tags
                               #:advanced-event-selector
                               #:advanced-event-selectors
                               #:advanced-field-selector
                               #:advanced-field-selectors #:billing-mode
-                              #:boolean #:byte-buffer #:cancel-query #:channel
-                              #:channel-arn #:channel-name #:channels
-                              #:cloud-trail-20131101 #:context-key-selector
+                              #:boolean #:byte-buffer #:cancel-query
+                              #:cannot-delegate-management-account-exception
+                              #:channel #:channel-arninvalid-exception
+                              #:channel-already-exists-exception #:channel-arn
+                              #:channel-exists-for-edsexception
+                              #:channel-max-limit-exceeded-exception
+                              #:channel-name #:channel-not-found-exception
+                              #:channels #:cloud-trail-arninvalid-exception
+                              #:cloud-trail-access-not-enabled-exception
+                              #:cloud-trail-invalid-client-token-id-exception
+                              #:cloud-trail-20131101
+                              #:cloud-watch-logs-delivery-unavailable-exception
+                              #:concurrent-modification-exception
+                              #:conflict-exception #:context-key-selector
                               #:context-key-selectors #:create-channel
                               #:create-dashboard #:create-event-data-store
                               #:create-trail #:dashboard-arn #:dashboard-detail
                               #:dashboard-name #:dashboard-status
                               #:dashboard-type #:dashboards #:data-resource
                               #:data-resource-values #:data-resources #:date
+                              #:delegated-admin-account-limit-exceeded-exception
                               #:delete-channel #:delete-dashboard
                               #:delete-event-data-store
                               #:delete-resource-policy #:delete-trail
@@ -23,31 +39,76 @@
                               #:disable-federation #:double #:enable-federation
                               #:error-code #:error-message #:event
                               #:event-category #:event-data-store
+                              #:event-data-store-arninvalid-exception
+                              #:event-data-store-already-exists-exception
                               #:event-data-store-arn
+                              #:event-data-store-federation-enabled-exception
+                              #:event-data-store-has-ongoing-import-exception
                               #:event-data-store-kms-key-id
-                              #:event-data-store-list #:event-data-store-name
-                              #:event-data-store-status #:event-data-stores
-                              #:event-name #:event-selector #:event-selectors
-                              #:event-source #:events-list
+                              #:event-data-store-list
+                              #:event-data-store-max-limit-exceeded-exception
+                              #:event-data-store-name
+                              #:event-data-store-not-found-exception
+                              #:event-data-store-status
+                              #:event-data-store-termination-protected-exception
+                              #:event-data-stores #:event-name #:event-selector
+                              #:event-selectors #:event-source #:events-list
                               #:exclude-management-event-sources
                               #:federation-role-arn #:federation-status
-                              #:generate-query #:get-channel #:get-dashboard
+                              #:generate-query #:generate-response-exception
+                              #:get-channel #:get-dashboard
                               #:get-event-configuration #:get-event-data-store
                               #:get-event-selectors #:get-import
                               #:get-insight-selectors #:get-query-results
                               #:get-resource-policy #:get-trail
                               #:get-trail-status #:import-destinations
                               #:import-failure-list #:import-failure-list-item
-                              #:import-failure-status #:import-source
+                              #:import-failure-status
+                              #:import-not-found-exception #:import-source
                               #:import-statistics #:import-status
                               #:imports-list #:imports-list-item
-                              #:ingestion-status #:insight-selector
-                              #:insight-selectors #:insight-type
-                              #:insights-metric-data-type
+                              #:inactive-event-data-store-exception
+                              #:inactive-query-exception #:ingestion-status
+                              #:insight-not-enabled-exception
+                              #:insight-selector #:insight-selectors
+                              #:insight-type #:insights-metric-data-type
                               #:insights-metric-max-results
                               #:insights-metric-next-token
                               #:insights-metric-period #:insights-metric-values
-                              #:integer #:list-channels
+                              #:insufficient-dependency-service-access-permission-exception
+                              #:insufficient-encryption-policy-exception
+                              #:insufficient-iamaccess-permission-exception
+                              #:insufficient-s3bucket-policy-exception
+                              #:insufficient-sns-topic-policy-exception
+                              #:integer
+                              #:invalid-cloud-watch-logs-log-group-arn-exception
+                              #:invalid-cloud-watch-logs-role-arn-exception
+                              #:invalid-date-range-exception
+                              #:invalid-event-category-exception
+                              #:invalid-event-data-store-category-exception
+                              #:invalid-event-data-store-status-exception
+                              #:invalid-event-selectors-exception
+                              #:invalid-home-region-exception
+                              #:invalid-import-source-exception
+                              #:invalid-insight-selectors-exception
+                              #:invalid-kms-key-id-exception
+                              #:invalid-lookup-attributes-exception
+                              #:invalid-max-results-exception
+                              #:invalid-next-token-exception
+                              #:invalid-parameter-combination-exception
+                              #:invalid-parameter-exception
+                              #:invalid-query-statement-exception
+                              #:invalid-query-status-exception
+                              #:invalid-s3bucket-name-exception
+                              #:invalid-s3prefix-exception
+                              #:invalid-sns-topic-name-exception
+                              #:invalid-source-exception
+                              #:invalid-tag-parameter-exception
+                              #:invalid-time-range-exception
+                              #:invalid-token-exception
+                              #:invalid-trail-name-exception #:kms-exception
+                              #:kms-key-disabled-exception
+                              #:kms-key-not-found-exception #:list-channels
                               #:list-channels-max-results-count
                               #:list-dashboards
                               #:list-dashboards-max-results-count
@@ -61,23 +122,33 @@
                               #:list-tags #:list-trails #:location #:long
                               #:lookup-attribute #:lookup-attribute-key
                               #:lookup-attribute-value #:lookup-attributes-list
-                              #:lookup-events #:max-event-size
-                              #:max-query-results #:max-results #:next-token
-                              #:operator #:operator-target-list
+                              #:lookup-events
+                              #:max-concurrent-queries-exception
+                              #:max-event-size #:max-query-results
+                              #:max-results
+                              #:maximum-number-of-trails-exceeded-exception
+                              #:next-token
+                              #:no-management-account-slrexists-exception
+                              #:not-organization-management-account-exception
+                              #:not-organization-master-account-exception
+                              #:operation-not-permitted-exception #:operator
+                              #:operator-target-list
                               #:operator-target-list-member #:operator-value
+                              #:organization-not-in-all-features-mode-exception
+                              #:organizations-not-in-use-exception
                               #:pagination-token #:partition-key
                               #:partition-key-list #:partition-key-name
                               #:partition-key-type #:prompt #:public-key
                               #:public-key-list #:put-event-configuration
                               #:put-event-selectors #:put-insight-selectors
                               #:put-resource-policy #:queries #:query
-                              #:query-alias #:query-parameter
-                              #:query-parameter-key #:query-parameter-value
-                              #:query-parameter-values #:query-parameters
-                              #:query-result-column #:query-result-key
-                              #:query-result-row #:query-result-rows
-                              #:query-result-value #:query-statement
-                              #:query-statistics
+                              #:query-alias #:query-id-not-found-exception
+                              #:query-parameter #:query-parameter-key
+                              #:query-parameter-value #:query-parameter-values
+                              #:query-parameters #:query-result-column
+                              #:query-result-key #:query-result-row
+                              #:query-result-rows #:query-result-value
+                              #:query-statement #:query-statistics
                               #:query-statistics-for-describe-query
                               #:query-status #:read-write-type #:refresh-id
                               #:refresh-schedule #:refresh-schedule-frequency
@@ -86,33 +157,48 @@
                               #:refresh-schedule-status
                               #:register-organization-delegated-admin
                               #:remove-tags #:request-widget
-                              #:request-widget-list #:resource #:resource-arn
+                              #:request-widget-list #:resource
+                              #:resource-arnnot-valid-exception #:resource-arn
                               #:resource-id-list #:resource-list
-                              #:resource-policy #:resource-tag
-                              #:resource-tag-list #:restore-event-data-store
-                              #:retention-period #:s3import-source
-                              #:sample-query-description #:sample-query-name
-                              #:sample-query-relevance #:sample-query-sql
-                              #:search-sample-queries
+                              #:resource-not-found-exception #:resource-policy
+                              #:resource-policy-not-found-exception
+                              #:resource-policy-not-valid-exception
+                              #:resource-tag #:resource-tag-list
+                              #:resource-type-not-supported-exception
+                              #:restore-event-data-store #:retention-period
+                              #:s3bucket-does-not-exist-exception
+                              #:s3import-source #:sample-query-description
+                              #:sample-query-name #:sample-query-relevance
+                              #:sample-query-sql #:search-sample-queries
                               #:search-sample-queries-max-results
                               #:search-sample-queries-search-phrase
                               #:search-sample-queries-search-result
                               #:search-sample-queries-search-results
-                              #:selector-field #:selector-name #:source
+                              #:selector-field #:selector-name
+                              #:service-quota-exceeded-exception #:source
                               #:source-config #:start-dashboard-refresh
                               #:start-event-data-store-ingestion #:start-import
                               #:start-logging #:start-query
                               #:stop-event-data-store-ingestion #:stop-import
                               #:stop-logging #:string #:tag #:tag-key
-                              #:tag-value #:tags-list
-                              #:termination-protection-enabled #:time-of-day
-                              #:timestamps #:trail #:trail-info #:trail-list
-                              #:trail-name-list #:trails #:type #:uuid
+                              #:tag-value #:tags-limit-exceeded-exception
+                              #:tags-list #:termination-protection-enabled
+                              #:throttling-exception #:time-of-day #:timestamps
+                              #:trail #:trail-already-exists-exception
+                              #:trail-info #:trail-list #:trail-name-list
+                              #:trail-not-found-exception
+                              #:trail-not-provided-exception #:trails #:type
+                              #:uuid #:unsupported-operation-exception
                               #:update-channel #:update-dashboard
                               #:update-event-data-store #:update-trail
                               #:view-properties-key #:view-properties-map
-                              #:view-properties-value #:widget #:widget-list))
+                              #:view-properties-value #:widget #:widget-list
+                              #:cloudtrail-error))
 (common-lisp:in-package #:pira/cloudtrail)
+
+(common-lisp:define-condition cloudtrail-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service cloud-trail-20131101 :shape-name
                                    "CloudTrail_20131101" :version "2013-11-01"
@@ -168,7 +254,8 @@
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
                                 (:error-name "ResourceAccessDenied")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error account-has-ongoing-import-exception
                                 common-lisp:nil
@@ -177,7 +264,8 @@
                                 (:shape-name
                                  "AccountHasOngoingImportException")
                                 (:error-name "AccountHasOngoingImport")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -186,7 +274,8 @@
                                   :member-name "Message"))
                                 (:shape-name "AccountNotFoundException")
                                 (:error-name "AccountNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error account-not-registered-exception
                                 common-lisp:nil
@@ -194,14 +283,16 @@
                                   :member-name "Message"))
                                 (:shape-name "AccountNotRegisteredException")
                                 (:error-name "AccountNotRegistered")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error account-registered-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccountRegisteredException")
                                 (:error-name "AccountRegistered")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-input add-tags-request common-lisp:nil
                                 ((resource-id :target-type string :required
@@ -285,7 +376,8 @@
                                 (:shape-name
                                  "CannotDelegateManagementAccountException")
                                 (:error-name "CannotDelegateManagementAccount")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-structure channel common-lisp:nil
                                     ((channel-arn :target-type channel-arn
@@ -299,7 +391,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ChannelARNInvalidException")
                                 (:error-name "ChannelARNInvalid")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error channel-already-exists-exception
                                 common-lisp:nil
@@ -307,7 +400,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ChannelAlreadyExistsException")
                                 (:error-name "ChannelAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type channel-arn smithy/sdk/smithy-types:string)
 
@@ -316,7 +410,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ChannelExistsForEDSException")
                                 (:error-name "ChannelExistsForEDS")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error channel-max-limit-exceeded-exception
                                 common-lisp:nil
@@ -325,7 +420,8 @@
                                 (:shape-name
                                  "ChannelMaxLimitExceededException")
                                 (:error-name "ChannelMaxLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type channel-name smithy/sdk/smithy-types:string)
 
@@ -334,7 +430,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ChannelNotFoundException")
                                 (:error-name "ChannelNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-list channels :member channel)
 
@@ -344,7 +441,8 @@
                                   :member-name "Message"))
                                 (:shape-name "CloudTrailARNInvalidException")
                                 (:error-name "CloudTrailARNInvalid")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error cloud-trail-access-not-enabled-exception
                                 common-lisp:nil
@@ -353,7 +451,8 @@
                                 (:shape-name
                                  "CloudTrailAccessNotEnabledException")
                                 (:error-name "CloudTrailAccessNotEnabled")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error cloud-trail-invalid-client-token-id-exception
                                 common-lisp:nil
@@ -362,7 +461,8 @@
                                 (:shape-name
                                  "CloudTrailInvalidClientTokenIdException")
                                 (:error-name "CloudTrailInvalidClientTokenId")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error cloud-watch-logs-delivery-unavailable-exception
                                 common-lisp:nil
@@ -372,7 +472,8 @@
                                  "CloudWatchLogsDeliveryUnavailableException")
                                 (:error-name
                                  "CloudWatchLogsDeliveryUnavailable")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error concurrent-modification-exception
                                 common-lisp:nil
@@ -380,14 +481,16 @@
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentModificationException")
                                 (:error-name "ConcurrentModification")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
                                 (:error-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-structure context-key-selector common-lisp:nil
                                     ((type :target-type type :required
@@ -626,7 +729,8 @@
  delegated-admin-account-limit-exceeded-exception common-lisp:nil
  ((message :target-type error-message :member-name "Message"))
  (:shape-name "DelegatedAdminAccountLimitExceededException")
- (:error-name "DelegatedAdminAccountLimitExceeded") (:error-code 400))
+ (:error-name "DelegatedAdminAccountLimitExceeded") (:error-code 400)
+ (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-input delete-channel-request common-lisp:nil
                                 ((channel :target-type channel-arn :required
@@ -871,7 +975,8 @@
                                 (:shape-name
                                  "EventDataStoreARNInvalidException")
                                 (:error-name "EventDataStoreARNInvalid")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error event-data-store-already-exists-exception
                                 common-lisp:nil
@@ -880,7 +985,8 @@
                                 (:shape-name
                                  "EventDataStoreAlreadyExistsException")
                                 (:error-name "EventDataStoreAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type event-data-store-arn
                                smithy/sdk/smithy-types:string)
@@ -892,7 +998,8 @@
                                 (:shape-name
                                  "EventDataStoreFederationEnabledException")
                                 (:error-name "EventDataStoreFederationEnabled")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error event-data-store-has-ongoing-import-exception
                                 common-lisp:nil
@@ -901,7 +1008,8 @@
                                 (:shape-name
                                  "EventDataStoreHasOngoingImportException")
                                 (:error-name "EventDataStoreHasOngoingImport")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type event-data-store-kms-key-id
                                smithy/sdk/smithy-types:string)
@@ -916,7 +1024,8 @@
                                 (:shape-name
                                  "EventDataStoreMaxLimitExceededException")
                                 (:error-name "EventDataStoreMaxLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type event-data-store-name
                                smithy/sdk/smithy-types:string)
@@ -927,7 +1036,8 @@
                                   :member-name "Message"))
                                 (:shape-name "EventDataStoreNotFoundException")
                                 (:error-name "EventDataStoreNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-enum event-data-store-status
     common-lisp:nil
@@ -942,7 +1052,8 @@
  event-data-store-termination-protected-exception common-lisp:nil
  ((message :target-type error-message :member-name "Message"))
  (:shape-name "EventDataStoreTerminationProtectedException")
- (:error-name "EventDataStoreTerminationProtectedException") (:error-code 400))
+ (:error-name "EventDataStoreTerminationProtectedException") (:error-code 400)
+ (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-list event-data-stores :member event-data-store)
 
@@ -1006,7 +1117,8 @@
                                   :member-name "Message"))
                                 (:shape-name "GenerateResponseException")
                                 (:error-name "GenerateResponse")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-input get-channel-request common-lisp:nil
                                 ((channel :target-type channel-arn :required
@@ -1327,7 +1439,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ImportNotFoundException")
                                 (:error-name "ImportNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-structure import-source common-lisp:nil
                                     ((s3 :target-type s3import-source :required
@@ -1377,13 +1490,15 @@
                                   :member-name "Message"))
                                 (:shape-name "InactiveEventDataStoreException")
                                 (:error-name "InactiveEventDataStore")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error inactive-query-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InactiveQueryException")
-                                (:error-name "InactiveQuery") (:error-code 400))
+                                (:error-name "InactiveQuery") (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-structure ingestion-status common-lisp:nil
                                     ((latest-ingestion-success-time
@@ -1408,7 +1523,8 @@
                                   :member-name "Message"))
                                 (:shape-name "InsightNotEnabledException")
                                 (:error-name "InsightNotEnabled")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-structure insight-selector common-lisp:nil
                                     ((insight-type :target-type insight-type
@@ -1443,7 +1559,7 @@
  ((message :target-type error-message :member-name "Message"))
  (:shape-name "InsufficientDependencyServiceAccessPermissionException")
  (:error-name "InsufficientDependencyServiceAccessPermission")
- (:error-code 400))
+ (:error-code 400) (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error insufficient-encryption-policy-exception
                                 common-lisp:nil
@@ -1452,7 +1568,8 @@
                                 (:shape-name
                                  "InsufficientEncryptionPolicyException")
                                 (:error-name "InsufficientEncryptionPolicy")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error insufficient-iamaccess-permission-exception
                                 common-lisp:nil
@@ -1461,7 +1578,8 @@
                                 (:shape-name
                                  "InsufficientIAMAccessPermissionException")
                                 (:error-name "InsufficientIAMAccessPermission")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error insufficient-s3bucket-policy-exception
                                 common-lisp:nil
@@ -1470,7 +1588,8 @@
                                 (:shape-name
                                  "InsufficientS3BucketPolicyException")
                                 (:error-name "InsufficientS3BucketPolicy")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error insufficient-sns-topic-policy-exception
                                 common-lisp:nil
@@ -1479,7 +1598,8 @@
                                 (:shape-name
                                  "InsufficientSnsTopicPolicyException")
                                 (:error-name "InsufficientSnsTopicPolicy")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
 
@@ -1487,7 +1607,8 @@
  invalid-cloud-watch-logs-log-group-arn-exception common-lisp:nil
  ((message :target-type error-message :member-name "Message"))
  (:shape-name "InvalidCloudWatchLogsLogGroupArnException")
- (:error-name "InvalidCloudWatchLogsLogGroupArn") (:error-code 400))
+ (:error-name "InvalidCloudWatchLogsLogGroupArn") (:error-code 400)
+ (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-cloud-watch-logs-role-arn-exception
                                 common-lisp:nil
@@ -1496,14 +1617,16 @@
                                 (:shape-name
                                  "InvalidCloudWatchLogsRoleArnException")
                                 (:error-name "InvalidCloudWatchLogsRoleArn")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-date-range-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidDateRangeException")
                                 (:error-name "InvalidDateRange")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-event-category-exception
                                 common-lisp:nil
@@ -1511,7 +1634,8 @@
                                   :member-name "Message"))
                                 (:shape-name "InvalidEventCategoryException")
                                 (:error-name "InvalidEventCategory")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-event-data-store-category-exception
                                 common-lisp:nil
@@ -1520,7 +1644,8 @@
                                 (:shape-name
                                  "InvalidEventDataStoreCategoryException")
                                 (:error-name "InvalidEventDataStoreCategory")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-event-data-store-status-exception
                                 common-lisp:nil
@@ -1529,7 +1654,8 @@
                                 (:shape-name
                                  "InvalidEventDataStoreStatusException")
                                 (:error-name "InvalidEventDataStoreStatus")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-event-selectors-exception
                                 common-lisp:nil
@@ -1537,21 +1663,24 @@
                                   :member-name "Message"))
                                 (:shape-name "InvalidEventSelectorsException")
                                 (:error-name "InvalidEventSelectors")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-home-region-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidHomeRegionException")
                                 (:error-name "InvalidHomeRegion")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-import-source-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidImportSourceException")
                                 (:error-name "InvalidImportSource")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-insight-selectors-exception
                                 common-lisp:nil
@@ -1560,14 +1689,16 @@
                                 (:shape-name
                                  "InvalidInsightSelectorsException")
                                 (:error-name "InvalidInsightSelectors")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-kms-key-id-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidKmsKeyIdException")
                                 (:error-name "InvalidKmsKeyId")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-lookup-attributes-exception
                                 common-lisp:nil
@@ -1576,21 +1707,24 @@
                                 (:shape-name
                                  "InvalidLookupAttributesException")
                                 (:error-name "InvalidLookupAttributes")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-max-results-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidMaxResultsException")
                                 (:error-name "InvalidMaxResults")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
                                 (:error-name "InvalidNextToken")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-combination-exception
                                 common-lisp:nil
@@ -1600,14 +1734,16 @@
                                  "InvalidParameterCombinationException")
                                 (:error-name
                                  "InvalidParameterCombinationError")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidParameterException")
                                 (:error-name "InvalidParameter")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-query-statement-exception
                                 common-lisp:nil
@@ -1615,28 +1751,32 @@
                                   :member-name "Message"))
                                 (:shape-name "InvalidQueryStatementException")
                                 (:error-name "InvalidQueryStatement")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-query-status-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidQueryStatusException")
                                 (:error-name "InvalidQueryStatus")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-s3bucket-name-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidS3BucketNameException")
                                 (:error-name "InvalidS3BucketName")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-s3prefix-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidS3PrefixException")
                                 (:error-name "InvalidS3Prefix")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-sns-topic-name-exception
                                 common-lisp:nil
@@ -1644,60 +1784,69 @@
                                   :member-name "Message"))
                                 (:shape-name "InvalidSnsTopicNameException")
                                 (:error-name "InvalidSnsTopicName")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-source-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidSourceException")
-                                (:error-name "InvalidSource") (:error-code 400))
+                                (:error-name "InvalidSource") (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-tag-parameter-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidTagParameterException")
                                 (:error-name "InvalidTagParameter")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-time-range-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidTimeRangeException")
                                 (:error-name "InvalidTimeRange")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidTokenException")
-                                (:error-name "InvalidToken") (:error-code 400))
+                                (:error-name "InvalidToken") (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error invalid-trail-name-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidTrailNameException")
                                 (:error-name "InvalidTrailName")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error kms-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "KmsException")
-                                (:error-name "KmsException") (:error-code 400))
+                                (:error-name "KmsException") (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error kms-key-disabled-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "KmsKeyDisabledException")
                                 (:error-name "KmsKeyDisabled")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error kms-key-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "KmsKeyNotFoundException")
                                 (:error-name "KmsKeyNotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type list-channels-max-results-count
                                smithy/sdk/smithy-types:integer)
@@ -1980,7 +2129,8 @@
                                   :member-name "Message"))
                                 (:shape-name "MaxConcurrentQueriesException")
                                 (:error-name "MaxConcurrentQueries")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-enum max-event-size
     common-lisp:nil
@@ -1999,7 +2149,8 @@
                                 (:shape-name
                                  "MaximumNumberOfTrailsExceededException")
                                 (:error-name "MaximumNumberOfTrailsExceeded")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
 
@@ -2010,7 +2161,8 @@
                                 (:shape-name
                                  "NoManagementAccountSLRExistsException")
                                 (:error-name "NoManagementAccountSLRExists")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error not-organization-management-account-exception
                                 common-lisp:nil
@@ -2020,7 +2172,8 @@
                                  "NotOrganizationManagementAccountException")
                                 (:error-name
                                  "NotOrganizationManagementAccount")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error not-organization-master-account-exception
                                 common-lisp:nil
@@ -2029,7 +2182,8 @@
                                 (:shape-name
                                  "NotOrganizationMasterAccountException")
                                 (:error-name "NotOrganizationMasterAccount")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error operation-not-permitted-exception
                                 common-lisp:nil
@@ -2037,7 +2191,8 @@
                                   :member-name "Message"))
                                 (:shape-name "OperationNotPermittedException")
                                 (:error-name "OperationNotPermitted")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-list operator :member operator-value)
 
@@ -2057,7 +2212,8 @@
                                  "OrganizationNotInAllFeaturesModeException")
                                 (:error-name
                                  "OrganizationNotInAllFeaturesMode")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error organizations-not-in-use-exception
                                 common-lisp:nil
@@ -2065,7 +2221,8 @@
                                   :member-name "Message"))
                                 (:shape-name "OrganizationsNotInUseException")
                                 (:error-name "OrganizationsNotInUse")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type pagination-token smithy/sdk/smithy-types:string)
 
@@ -2209,7 +2366,8 @@
                                   :member-name "Message"))
                                 (:shape-name "QueryIdNotFoundException")
                                 (:error-name "QueryIdNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type query-parameter smithy/sdk/smithy-types:string)
 
@@ -2364,7 +2522,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ResourceARNNotValidException")
                                 (:error-name "ResourceARNNotValid")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type resource-arn smithy/sdk/smithy-types:string)
 
@@ -2377,7 +2536,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFound")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type resource-policy smithy/sdk/smithy-types:string)
 
@@ -2387,7 +2547,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ResourcePolicyNotFoundException")
                                 (:error-name "ResourcePolicyNotFound")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error resource-policy-not-valid-exception
                                 common-lisp:nil
@@ -2395,7 +2556,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ResourcePolicyNotValidException")
                                 (:error-name "ResourcePolicyNotValid")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-structure resource-tag common-lisp:nil
                                     ((resource-id :target-type string
@@ -2413,7 +2575,8 @@
                                 (:shape-name
                                  "ResourceTypeNotSupportedException")
                                 (:error-name "ResourceTypeNotSupported")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-input restore-event-data-store-request
                                 common-lisp:nil
@@ -2463,7 +2626,8 @@
                                   :member-name "Message"))
                                 (:shape-name "S3BucketDoesNotExistException")
                                 (:error-name "S3BucketDoesNotExist")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-structure s3import-source common-lisp:nil
                                     ((s3location-uri :target-type string
@@ -2540,7 +2704,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
                                 (:error-name "ServiceQuotaExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type source smithy/sdk/smithy-types:string)
 
@@ -2713,7 +2878,8 @@
                                   :member-name "Message"))
                                 (:shape-name "TagsLimitExceededException")
                                 (:error-name "TagsLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-list tags-list :member tag)
 
@@ -2725,7 +2891,8 @@
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
                                 (:error-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-type time-of-day smithy/sdk/smithy-types:string)
 
@@ -2779,7 +2946,8 @@
                                   :member-name "Message"))
                                 (:shape-name "TrailAlreadyExistsException")
                                 (:error-name "TrailAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-structure trail-info common-lisp:nil
                                     ((trail-arn :target-type string
@@ -2798,14 +2966,16 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "TrailNotFoundException")
-                                (:error-name "TrailNotFound") (:error-code 404))
+                                (:error-name "TrailNotFound") (:error-code 404)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-error trail-not-provided-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "TrailNotProvidedException")
                                 (:error-name "TrailNotProvided")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-list trails :member trail-info)
 
@@ -2821,7 +2991,8 @@
                                   :member-name "Message"))
                                 (:shape-name "UnsupportedOperationException")
                                 (:error-name "UnsupportedOperation")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cloudtrail-error))
 
 (smithy/sdk/shapes:define-input update-channel-request common-lisp:nil
                                 ((channel :target-type channel-arn :required

@@ -64,8 +64,15 @@
                               #:ipset #:ipset-arn #:ipset-metadata
                               #:ipset-metadata-map #:ipset-reference
                               #:ipset-reference-map #:ipset-reference-name
-                              #:ipsets #:identified-type #:key-id #:keyword
+                              #:ipsets #:identified-type
+                              #:insufficient-capacity-exception
+                              #:internal-server-error
+                              #:invalid-operation-exception
+                              #:invalid-request-exception
+                              #:invalid-resource-policy-exception
+                              #:invalid-token-exception #:key-id #:keyword
                               #:last-accessed #:last-update-time
+                              #:limit-exceeded-exception
                               #:list-analysis-reports #:list-firewall-policies
                               #:list-firewalls #:list-flow-operation-results
                               #:list-flow-operations #:list-rule-groups
@@ -74,6 +81,7 @@
                               #:list-vpc-endpoint-associations
                               #:log-destination-config
                               #:log-destination-configs #:log-destination-map
+                              #:log-destination-permission-exception
                               #:log-destination-type #:log-type
                               #:logging-configuration #:match-attributes
                               #:network-firewall-20201112
@@ -90,9 +98,10 @@
                               #:reject-network-firewall-transit-gateway-attachment
                               #:report-time #:resource-arn #:resource-id
                               #:resource-managed-status #:resource-managed-type
-                              #:resource-name #:resource-status
-                              #:revocation-check-action #:rule-capacity
-                              #:rule-definition #:rule-group
+                              #:resource-name #:resource-not-found-exception
+                              #:resource-owner-check-exception
+                              #:resource-status #:revocation-check-action
+                              #:rule-capacity #:rule-definition #:rule-group
                               #:rule-group-metadata #:rule-group-response
                               #:rule-group-type #:rule-groups #:rule-id-list
                               #:rule-option #:rule-options #:rule-order
@@ -134,12 +143,13 @@
                               #:tag-value #:tags-pagination-max-results
                               #:target-type #:target-types
                               #:tcp-idle-timeout-range-bound
-                              #:tls-certificate-data
+                              #:throttling-exception #:tls-certificate-data
                               #:transit-gateway-attachment-id
                               #:transit-gateway-attachment-status
                               #:transit-gateway-attachment-sync-state
                               #:transit-gateway-attachment-sync-state-message
                               #:transit-gateway-id #:unique-sources
+                              #:unsupported-operation-exception
                               #:untag-resource
                               #:update-availability-zone-change-protection
                               #:update-firewall-analysis-settings
@@ -158,8 +168,12 @@
                               #:vpc-endpoint-association-metadata
                               #:vpc-endpoint-association-status
                               #:vpc-endpoint-associations #:vpc-endpoint-id
-                              #:vpc-id #:vpc-ids))
+                              #:vpc-id #:vpc-ids #:network-firewall-error))
 (common-lisp:in-package #:pira/network-firewall)
+
+(common-lisp:define-condition network-firewall-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service network-firewall-20201112 :shape-name
                                    "NetworkFirewall_20201112" :version
@@ -1543,38 +1557,44 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InsufficientCapacityException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class network-firewall-error))
 
 (smithy/sdk/shapes:define-error internal-server-error common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class network-firewall-error))
 
 (smithy/sdk/shapes:define-error invalid-operation-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class network-firewall-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class network-firewall-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-policy-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidResourcePolicyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class network-firewall-error))
 
 (smithy/sdk/shapes:define-error invalid-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class network-firewall-error))
 
 (smithy/sdk/shapes:define-type key-id smithy/sdk/smithy-types:string)
 
@@ -1589,7 +1609,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class network-firewall-error))
 
 (smithy/sdk/shapes:define-input list-analysis-reports-request common-lisp:nil
                                 ((firewall-name :target-type resource-name
@@ -1835,7 +1856,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "LogDestinationPermissionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class network-firewall-error))
 
 (smithy/sdk/shapes:define-enum log-destination-type
     common-lisp:nil
@@ -2002,13 +2024,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class network-firewall-error))
 
 (smithy/sdk/shapes:define-error resource-owner-check-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceOwnerCheckException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class network-firewall-error))
 
 (smithy/sdk/shapes:define-enum resource-status
     common-lisp:nil
@@ -2626,7 +2650,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class network-firewall-error))
 
 (smithy/sdk/shapes:define-structure tls-certificate-data common-lisp:nil
                                     ((certificate-arn :target-type resource-arn
@@ -2686,7 +2711,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "UnsupportedOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class network-firewall-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type resource-arn

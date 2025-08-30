@@ -1,7 +1,8 @@
 (uiop/package:define-package #:pira/qbusiness (:use)
                              (:export #:apischema #:apischema-type
                               #:access-configuration #:access-control
-                              #:access-controls #:action-configuration
+                              #:access-controls #:access-denied-exception
+                              #:action-configuration
                               #:action-configuration-list #:action-execution
                               #:action-execution-event
                               #:action-execution-payload
@@ -64,11 +65,11 @@
                               #:check-document-access #:client-id-for-oidc
                               #:client-ids-for-oidc #:client-namespace
                               #:client-token #:configuration-event
-                              #:content-blocker-rule #:content-retrieval-rule
-                              #:content-source #:content-type #:conversation
-                              #:conversation-id #:conversation-source
-                              #:conversation-title #:conversations
-                              #:copy-from-source
+                              #:conflict-exception #:content-blocker-rule
+                              #:content-retrieval-rule #:content-source
+                              #:content-type #:conversation #:conversation-id
+                              #:conversation-source #:conversation-title
+                              #:conversations #:copy-from-source
                               #:create-anonymous-web-experience-url
                               #:create-application
                               #:create-chat-response-configuration
@@ -135,6 +136,7 @@
                               #:error-code #:error-detail #:error-message
                               #:example-chat-message #:example-chat-messages
                               #:execution-id #:expert-q
+                              #:external-resource-exception
                               #:failed-attachment-event #:failed-document
                               #:failed-documents #:favicon-url #:font-url
                               #:get-application
@@ -166,8 +168,10 @@
                               #:instance-arn #:instruction
                               #:instruction-collection #:integer
                               #:integration-id #:integration-resource
+                              #:internal-server-exception
                               #:kendra-index-configuration #:kendra-index-id
-                              #:kms-key-id #:lambda-arn #:list-applications
+                              #:kms-key-id #:lambda-arn
+                              #:license-not-found-exception #:list-applications
                               #:list-attachments
                               #:list-chat-response-configurations
                               #:list-conversations #:list-data-accessors
@@ -200,11 +204,11 @@
                               #:max-results-integer-for-list-subscriptions
                               #:max-results-integer-for-list-web-experiences-request
                               #:media-extraction-configuration #:media-id
-                              #:member-group #:member-groups #:member-relation
-                              #:member-user #:member-users #:membership-type
-                              #:message #:message-body #:message-id
-                              #:message-type #:message-usefulness
-                              #:message-usefulness-comment
+                              #:media-too-large-exception #:member-group
+                              #:member-groups #:member-relation #:member-user
+                              #:member-users #:membership-type #:message
+                              #:message-body #:message-id #:message-type
+                              #:message-usefulness #:message-usefulness-comment
                               #:message-usefulness-feedback
                               #:message-usefulness-reason #:messages
                               #:metadata-event #:metric-value
@@ -236,6 +240,7 @@
                               #:qiam-action #:qiam-actions #:query-text
                               #:quick-sight-configuration #:read-access-type
                               #:relevant-content #:relevant-content-list
+                              #:resource-not-found-exception
                               #:response-configuration
                               #:response-configuration-summary
                               #:response-configuration-type
@@ -253,6 +258,7 @@
                               #:score-attributes #:score-confidence
                               #:search-relevant-content #:secret-arn
                               #:security-group-id #:security-group-ids
+                              #:service-quota-exceeded-exception
                               #:session-duration-in-minutes #:snippet-excerpt
                               #:snippet-excerpt-text #:source-attribution
                               #:source-attribution-media-id
@@ -272,11 +278,11 @@
                               #:tag #:tag-key #:tag-keys #:tag-resource
                               #:tag-value #:tags #:text-document-statistics
                               #:text-input-event #:text-output-event
-                              #:text-segment #:text-segment-list #:timestamp
-                              #:title #:topic-configuration
-                              #:topic-configuration-name #:topic-configurations
-                              #:topic-description #:untag-resource
-                              #:update-application
+                              #:text-segment #:text-segment-list
+                              #:throttling-exception #:timestamp #:title
+                              #:topic-configuration #:topic-configuration-name
+                              #:topic-configurations #:topic-description
+                              #:untag-resource #:update-application
                               #:update-chat-controls-configuration
                               #:update-chat-response-configuration
                               #:update-data-accessor #:update-data-source
@@ -285,7 +291,8 @@
                               #:update-web-experience #:url #:user-alias
                               #:user-aliases #:user-groups #:user-id
                               #:user-identifier #:user-ids #:user-message
-                              #:users-and-groups #:validation-exception-field
+                              #:users-and-groups #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-fields
                               #:validation-exception-reason
                               #:video-extraction-configuration
@@ -299,8 +306,12 @@
                               #:web-experience-status #:web-experience-subtitle
                               #:web-experience-title
                               #:web-experience-welcome-message
-                              #:web-experiences))
+                              #:web-experiences #:qbusiness-error))
 (common-lisp:in-package #:pira/qbusiness)
+
+(common-lisp:define-condition qbusiness-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service expert-q :shape-name "ExpertQ" :version
                                    "2023-11-27" :title "QBusiness" :operations
@@ -380,7 +391,7 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class qbusiness-error))
 
 (smithy/sdk/shapes:define-structure action-configuration common-lisp:nil
                                     ((action :target-type qiam-action :required
@@ -1232,7 +1243,7 @@ common-lisp:nil
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class qbusiness-error))
 
 (smithy/sdk/shapes:define-structure content-blocker-rule common-lisp:nil
                                     ((system-message-override :target-type
@@ -2390,7 +2401,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ExternalResourceException")
-                                (:error-code 424))
+                                (:error-code 424) (:base-class qbusiness-error))
 
 (smithy/sdk/shapes:define-structure failed-attachment-event common-lisp:nil
                                     ((conversation-id :target-type
@@ -3116,7 +3127,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class qbusiness-error))
 
 (smithy/sdk/shapes:define-structure kendra-index-configuration common-lisp:nil
                                     ((index-id :target-type kendra-index-id
@@ -3134,7 +3145,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "LicenseNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class qbusiness-error))
 
 (smithy/sdk/shapes:define-input list-applications-request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -3653,7 +3664,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "MediaTooLargeException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class qbusiness-error))
 
 (smithy/sdk/shapes:define-structure member-group common-lisp:nil
                                     ((group-name :target-type group-name
@@ -4136,7 +4147,7 @@ common-lisp:nil
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class qbusiness-error))
 
 (smithy/sdk/shapes:define-structure response-configuration common-lisp:nil
                                     ((instruction-collection :target-type
@@ -4339,7 +4350,7 @@ common-lisp:nil
                                  (resource-type :target-type string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class qbusiness-error))
 
 (smithy/sdk/shapes:define-type session-duration-in-minutes
                                smithy/sdk/smithy-types:integer)
@@ -4602,7 +4613,7 @@ common-lisp:nil
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class qbusiness-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -5001,7 +5012,7 @@ common-lisp:nil
                                   validation-exception-fields :member-name
                                   "fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class qbusiness-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type string :required

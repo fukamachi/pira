@@ -5,30 +5,39 @@
                               #:describe-objects #:describe-pipelines
                               #:evaluate-expression #:field
                               #:get-pipeline-definition #:instance-identity
-                              #:list-pipelines #:operator #:operator-type
-                              #:parameter-attribute #:parameter-attribute-list
-                              #:parameter-object #:parameter-object-list
-                              #:parameter-value #:parameter-value-list
+                              #:internal-service-error
+                              #:invalid-request-exception #:list-pipelines
+                              #:operator #:operator-type #:parameter-attribute
+                              #:parameter-attribute-list #:parameter-object
+                              #:parameter-object-list #:parameter-value
+                              #:parameter-value-list
+                              #:pipeline-deleted-exception
                               #:pipeline-description
                               #:pipeline-description-list #:pipeline-id-name
-                              #:pipeline-object #:pipeline-object-list
-                              #:pipeline-object-map #:poll-for-task
-                              #:put-pipeline-definition #:query #:query-objects
-                              #:remove-tags #:report-task-progress
+                              #:pipeline-not-found-exception #:pipeline-object
+                              #:pipeline-object-list #:pipeline-object-map
+                              #:poll-for-task #:put-pipeline-definition #:query
+                              #:query-objects #:remove-tags
+                              #:report-task-progress
                               #:report-task-runner-heartbeat #:selector
                               #:selector-list #:set-status #:set-task-status
-                              #:tag #:task-object #:task-status
-                              #:validate-pipeline-definition #:validation-error
-                              #:validation-errors #:validation-warning
-                              #:validation-warnings #:attribute-name-string
-                              #:attribute-value-string #:boolean
-                              #:cancel-active #:error-message #:field-list
-                              #:field-name-string #:field-string-value #:id
-                              #:id-list #:int #:long-string #:pipeline-list
-                              #:string #:string-list #:tag-key #:tag-list
-                              #:tag-value #:task-id #:timestamp
-                              #:validation-message #:validation-messages))
+                              #:tag #:task-not-found-exception #:task-object
+                              #:task-status #:validate-pipeline-definition
+                              #:validation-error #:validation-errors
+                              #:validation-warning #:validation-warnings
+                              #:attribute-name-string #:attribute-value-string
+                              #:boolean #:cancel-active #:error-message
+                              #:field-list #:field-name-string
+                              #:field-string-value #:id #:id-list #:int
+                              #:long-string #:pipeline-list #:string
+                              #:string-list #:tag-key #:tag-list #:tag-value
+                              #:task-id #:timestamp #:validation-message
+                              #:validation-messages #:data-pipeline-error))
 (common-lisp:in-package #:pira/data-pipeline)
+
+(common-lisp:define-condition data-pipeline-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service data-pipeline :shape-name "DataPipeline"
                                    :version "2012-10-29" :title
@@ -206,13 +215,15 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServiceError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class data-pipeline-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class data-pipeline-error))
 
 (smithy/sdk/shapes:define-input list-pipelines-input common-lisp:nil
                                 ((marker :target-type string :member-name
@@ -284,7 +295,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "PipelineDeletedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class data-pipeline-error))
 
 (smithy/sdk/shapes:define-structure pipeline-description common-lisp:nil
                                     ((pipeline-id :target-type id :required
@@ -312,7 +324,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "PipelineNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class data-pipeline-error))
 
 (smithy/sdk/shapes:define-structure pipeline-object common-lisp:nil
                                     ((id :target-type id :required
@@ -480,7 +493,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TaskNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class data-pipeline-error))
 
 (smithy/sdk/shapes:define-structure task-object common-lisp:nil
                                     ((task-id :target-type task-id :member-name

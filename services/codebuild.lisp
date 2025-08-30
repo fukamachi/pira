@@ -1,5 +1,7 @@
 (uiop/package:define-package #:pira/codebuild (:use)
-                             (:export #:artifact-namespace #:artifact-packaging
+                             (:export #:account-limit-exceeded-exception
+                              #:account-suspended-exception
+                              #:artifact-namespace #:artifact-packaging
                               #:artifacts-type #:auth-type #:auto-retry-config
                               #:batch-delete-builds #:batch-get-build-batches
                               #:batch-get-builds #:batch-get-command-executions
@@ -57,6 +59,7 @@
                               #:git-clone-depth #:git-submodules-config
                               #:identifiers #:image-pull-credentials-type
                               #:image-versions #:import-source-credentials
+                              #:invalid-input-exception
                               #:invalidate-project-cache #:key-input
                               #:language-type #:list-build-batches
                               #:list-build-batches-for-project #:list-builds
@@ -71,7 +74,8 @@
                               #:list-source-credentials #:logs-config
                               #:logs-config-status-type #:logs-location
                               #:machine-type #:network-interface
-                              #:non-empty-string #:non-negative-int #:page-size
+                              #:non-empty-string #:non-negative-int
+                              #:oauth-provider-exception #:page-size
                               #:percentage #:phase-context #:phase-contexts
                               #:platform-type #:project #:project-arns
                               #:project-artifacts #:project-artifacts-list
@@ -100,7 +104,9 @@
                               #:report-status-type #:report-type
                               #:report-with-raw-data #:reports
                               #:resolved-artifact
-                              #:resolved-secondary-artifacts #:retry-build
+                              #:resolved-secondary-artifacts
+                              #:resource-already-exists-exception
+                              #:resource-not-found-exception #:retry-build
                               #:retry-build-batch #:retry-build-batch-type
                               #:s3logs-config #:s3report-export-config
                               #:ssmsession #:sandbox #:sandbox-ids
@@ -129,8 +135,13 @@
                               #:webhook #:webhook-build-type #:webhook-filter
                               #:webhook-filter-type #:webhook-scope-type
                               #:webhook-status #:wrapper-boolean
-                              #:wrapper-double #:wrapper-int #:wrapper-long))
+                              #:wrapper-double #:wrapper-int #:wrapper-long
+                              #:codebuild-error))
 (common-lisp:in-package #:pira/codebuild)
+
+(common-lisp:define-condition codebuild-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service code-build-20161006 :shape-name
                                    "CodeBuild_20161006" :version "2016-10-06"
@@ -186,13 +197,13 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "AccountLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class codebuild-error))
 
 (smithy/sdk/shapes:define-error account-suspended-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "AccountSuspendedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class codebuild-error))
 
 (smithy/sdk/shapes:define-enum artifact-namespace
     common-lisp:nil
@@ -1437,7 +1448,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class codebuild-error))
 
 (smithy/sdk/shapes:define-input invalidate-project-cache-input common-lisp:nil
                                 ((project-name :target-type non-empty-string
@@ -1807,7 +1818,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "OAuthProviderException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class codebuild-error))
 
 (smithy/sdk/shapes:define-type page-size smithy/sdk/smithy-types:integer)
 
@@ -2289,13 +2300,13 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class codebuild-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class codebuild-error))
 
 (smithy/sdk/shapes:define-input retry-build-batch-input common-lisp:nil
                                 ((id :target-type non-empty-string :member-name

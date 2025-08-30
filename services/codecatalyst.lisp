@@ -1,9 +1,10 @@
 (uiop/package:define-package #:pira/codecatalyst (:use)
-                             (:export #:access-token #:access-token-id
-                              #:access-token-name #:access-token-secret
-                              #:access-token-summaries #:access-token-summary
-                              #:client-token #:code-catalyst
-                              #:comparison-operator #:create-access-token
+                             (:export #:access-denied-exception #:access-token
+                              #:access-token-id #:access-token-name
+                              #:access-token-secret #:access-token-summaries
+                              #:access-token-summary #:client-token
+                              #:code-catalyst #:comparison-operator
+                              #:conflict-exception #:create-access-token
                               #:create-dev-environment #:create-project
                               #:create-source-repository
                               #:create-source-repository-branch
@@ -50,8 +51,9 @@
                               #:project-list-filters #:project-summaries
                               #:project-summary #:region-string
                               #:repositories-input #:repository-input
-                              #:sensitive-string #:source-repository
-                              #:source-repository-branch
+                              #:resource-not-found-exception #:sensitive-string
+                              #:service-quota-exceeded-exception
+                              #:source-repository #:source-repository-branch
                               #:source-repository-branch-ref-string
                               #:source-repository-branch-string
                               #:source-repository-description-string
@@ -63,10 +65,11 @@
                               #:start-workflow-run #:status-reason
                               #:stop-dev-environment
                               #:stop-dev-environment-session #:string-list
-                              #:subscription #:timestamp
+                              #:subscription #:throttling-exception #:timestamp
                               #:update-dev-environment #:update-project
                               #:update-space #:user-identity #:user-type #:uuid
-                              #:verify-session #:workflow #:workflow-definition
+                              #:validation-exception #:verify-session
+                              #:workflow #:workflow-definition
                               #:workflow-definition-summary #:workflow-run
                               #:workflow-run-mode #:workflow-run-sort-criteria
                               #:workflow-run-sort-criteria-list
@@ -76,8 +79,13 @@
                               #:workflow-run-summaries #:workflow-run-summary
                               #:workflow-sort-criteria
                               #:workflow-sort-criteria-list #:workflow-status
-                              #:workflow-summaries #:workflow-summary))
+                              #:workflow-summaries #:workflow-summary
+                              #:codecatalyst-error))
 (common-lisp:in-package #:pira/codecatalyst)
+
+(common-lisp:define-condition codecatalyst-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service code-catalyst :shape-name "CodeCatalyst"
                                    :version "2022-09-28" :title
@@ -98,7 +106,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class codecatalyst-error))
 
 common-lisp:nil
 
@@ -133,7 +142,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class codecatalyst-error))
 
 (smithy/sdk/shapes:define-input create-access-token-request common-lisp:nil
                                 ((name :target-type access-token-name :required
@@ -1302,7 +1312,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class codecatalyst-error))
 
 (smithy/sdk/shapes:define-type sensitive-string smithy/sdk/smithy-types:string)
 
@@ -1312,7 +1323,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class codecatalyst-error))
 
 common-lisp:nil
 
@@ -1519,7 +1531,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class codecatalyst-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -1638,7 +1651,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecatalyst-error))
 
 (smithy/sdk/shapes:define-output verify-session-response common-lisp:nil
                                  ((identity :target-type

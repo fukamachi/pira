@@ -1,11 +1,12 @@
 (uiop/package:define-package #:pira/rekognition (:use)
-                             (:export #:age-range #:asset #:assets
-                              #:associate-faces #:associated-face
-                              #:associated-faces-list #:attribute #:attributes
-                              #:audio-metadata #:audio-metadata-list
-                              #:audit-image #:audit-images #:audit-images-limit
-                              #:beard #:black-frame #:body-part #:body-parts
-                              #:boolean #:bounding-box #:bounding-box-height
+                             (:export #:access-denied-exception #:age-range
+                              #:asset #:assets #:associate-faces
+                              #:associated-face #:associated-faces-list
+                              #:attribute #:attributes #:audio-metadata
+                              #:audio-metadata-list #:audit-image
+                              #:audit-images #:audit-images-limit #:beard
+                              #:black-frame #:body-part #:body-parts #:boolean
+                              #:bounding-box #:bounding-box-height
                               #:bounding-box-width #:celebrity
                               #:celebrity-detail #:celebrity-list
                               #:celebrity-recognition
@@ -18,8 +19,8 @@
                               #:compare-faces-match-list
                               #:compare-faces-unmatch-list #:compared-face
                               #:compared-face-list #:compared-source-image-face
-                              #:connected-home-label #:connected-home-labels
-                              #:connected-home-settings
+                              #:conflict-exception #:connected-home-label
+                              #:connected-home-labels #:connected-home-settings
                               #:connected-home-settings-for-update
                               #:content-classifier #:content-classifiers
                               #:content-moderation-aggregate-by
@@ -99,11 +100,20 @@
                               #:human-loop-activation-reason
                               #:human-loop-activation-reasons #:human-loop-arn
                               #:human-loop-config #:human-loop-data-attributes
-                              #:human-loop-name #:image #:image-blob #:image-id
-                              #:image-quality #:index-faces
+                              #:human-loop-name
+                              #:human-loop-quota-exceeded-exception
+                              #:idempotent-parameter-mismatch-exception #:image
+                              #:image-blob #:image-id #:image-quality
+                              #:image-too-large-exception #:index-faces
                               #:index-faces-model-version #:inference-units
-                              #:instance #:instances #:is-labeled #:job-id
-                              #:job-tag #:kinesis-data-arn
+                              #:instance #:instances #:internal-server-error
+                              #:invalid-image-format-exception
+                              #:invalid-manifest-exception
+                              #:invalid-pagination-token-exception
+                              #:invalid-parameter-exception
+                              #:invalid-policy-revision-id-exception
+                              #:invalid-s3object-exception #:is-labeled
+                              #:job-id #:job-tag #:kinesis-data-arn
                               #:kinesis-data-stream #:kinesis-video-arn
                               #:kinesis-video-stream
                               #:kinesis-video-stream-fragment-number
@@ -117,7 +127,8 @@
                               #:label-detection-settings
                               #:label-detection-sort-by #:label-detections
                               #:labels #:landmark #:landmark-type #:landmarks
-                              #:list-collections #:list-dataset-entries
+                              #:limit-exceeded-exception #:list-collections
+                              #:list-dataset-entries
                               #:list-dataset-entries-page-size
                               #:list-dataset-labels
                               #:list-dataset-labels-page-size #:list-faces
@@ -129,6 +140,7 @@
                               #:list-users #:liveness-image-blob
                               #:liveness-output-config #:liveness-s3key-prefix
                               #:liveness-session-id #:liveness-session-status
+                              #:malformed-policy-document-exception
                               #:matched-user #:max-duration-in-seconds-ulong
                               #:max-faces #:max-faces-to-index
                               #:max-pixel-threshold #:max-results
@@ -173,23 +185,30 @@
                               #:protective-equipment-summarization-attributes
                               #:protective-equipment-summary
                               #:protective-equipment-type
-                              #:protective-equipment-types #:put-project-policy
-                              #:quality-filter #:query-string #:reason
-                              #:reasons #:recognize-celebrities
-                              #:region-of-interest #:regions-of-interest
-                              #:rekognition-service #:rekognition-unique-id
-                              #:resource-arn #:role-arn #:s3bucket
-                              #:s3destination #:s3key-prefix #:s3object
-                              #:s3object-name #:s3object-version #:snstopic-arn
-                              #:search-faces #:search-faces-by-image
-                              #:search-users #:search-users-by-image
-                              #:searched-face #:searched-face-details
-                              #:searched-user #:segment-confidence
-                              #:segment-detection #:segment-detections
-                              #:segment-type #:segment-type-info
-                              #:segment-types #:segment-types-info
-                              #:shot-segment #:smile
-                              #:start-celebrity-recognition
+                              #:protective-equipment-types
+                              #:provisioned-throughput-exceeded-exception
+                              #:put-project-policy #:quality-filter
+                              #:query-string #:reason #:reasons
+                              #:recognize-celebrities #:region-of-interest
+                              #:regions-of-interest #:rekognition-service
+                              #:rekognition-unique-id
+                              #:resource-already-exists-exception
+                              #:resource-arn #:resource-in-use-exception
+                              #:resource-not-found-exception
+                              #:resource-not-ready-exception #:role-arn
+                              #:s3bucket #:s3destination #:s3key-prefix
+                              #:s3object #:s3object-name #:s3object-version
+                              #:snstopic-arn #:search-faces
+                              #:search-faces-by-image #:search-users
+                              #:search-users-by-image #:searched-face
+                              #:searched-face-details #:searched-user
+                              #:segment-confidence #:segment-detection
+                              #:segment-detections #:segment-type
+                              #:segment-type-info #:segment-types
+                              #:segment-types-info
+                              #:service-quota-exceeded-exception
+                              #:session-not-found-exception #:shot-segment
+                              #:smile #:start-celebrity-recognition
                               #:start-content-moderation #:start-face-detection
                               #:start-face-search #:start-label-detection
                               #:start-media-analysis-job
@@ -223,10 +242,10 @@
                               #:technical-cue-type #:testing-data
                               #:testing-data-result #:text-detection
                               #:text-detection-list #:text-detection-result
-                              #:text-detection-results #:text-types #:timecode
-                              #:timestamp #:training-data
-                              #:training-data-result #:uinteger #:ulong
-                              #:unindexed-face #:unindexed-faces
+                              #:text-detection-results #:text-types
+                              #:throttling-exception #:timecode #:timestamp
+                              #:training-data #:training-data-result #:uinteger
+                              #:ulong #:unindexed-face #:unindexed-faces
                               #:unsearched-face #:unsearched-face-reason
                               #:unsearched-face-reasons #:unsearched-faces-list
                               #:unsuccessful-face-association
@@ -248,8 +267,13 @@
                               #:validation-data #:version #:version-description
                               #:version-name #:version-names #:versions #:video
                               #:video-color-range #:video-job-status
-                              #:video-metadata #:video-metadata-list))
+                              #:video-metadata #:video-metadata-list
+                              #:video-too-large-exception #:rekognition-error))
 (common-lisp:in-package #:pira/rekognition)
+
+(common-lisp:define-condition rekognition-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service rekognition-service :shape-name
                                    "RekognitionService" :version "2016-06-27"
@@ -322,7 +346,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-structure age-range common-lisp:nil
                                     ((low :target-type uinteger :member-name
@@ -619,7 +644,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-type connected-home-label
                                smithy/sdk/smithy-types:string)
@@ -2234,7 +2260,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "HumanLoopQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-error idempotent-parameter-mismatch-exception
                                 common-lisp:nil
@@ -2245,7 +2272,8 @@
                                   "Logref"))
                                 (:shape-name
                                  "IdempotentParameterMismatchException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-structure image common-lisp:nil
                                     ((bytes :target-type image-blob
@@ -2272,7 +2300,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "ImageTooLargeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-type index-faces-model-version
                                smithy/sdk/smithy-types:string)
@@ -2327,7 +2356,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-error invalid-image-format-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -2336,7 +2366,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "InvalidImageFormatException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-error invalid-manifest-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -2345,7 +2376,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "InvalidManifestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-error invalid-pagination-token-exception
                                 common-lisp:nil
@@ -2355,7 +2387,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "InvalidPaginationTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -2364,7 +2397,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-error invalid-policy-revision-id-exception
                                 common-lisp:nil
@@ -2375,7 +2409,8 @@
                                   "Logref"))
                                 (:shape-name
                                  "InvalidPolicyRevisionIdException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-error invalid-s3object-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -2384,7 +2419,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "InvalidS3ObjectException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-type is-labeled smithy/sdk/smithy-types:boolean)
 
@@ -2551,7 +2587,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-input list-collections-request common-lisp:nil
                                 ((next-token :target-type pagination-token
@@ -2775,7 +2812,8 @@
                                   "Logref"))
                                 (:shape-name
                                  "MalformedPolicyDocumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-structure matched-user common-lisp:nil
                                     ((user-id :target-type user-id :member-name
@@ -3274,7 +3312,8 @@
                                   "Logref"))
                                 (:shape-name
                                  "ProvisionedThroughputExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-input put-project-policy-request common-lisp:nil
                                 ((project-arn :target-type project-arn
@@ -3355,7 +3394,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-type resource-arn smithy/sdk/smithy-types:string)
 
@@ -3366,7 +3406,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -3375,7 +3416,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-error resource-not-ready-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -3384,7 +3426,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "ResourceNotReadyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -3588,7 +3631,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-error session-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -3597,7 +3641,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "SessionNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-structure shot-segment common-lisp:nil
                                     ((index :target-type ulong :member-name
@@ -4121,7 +4166,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/shapes:define-type timecode smithy/sdk/smithy-types:string)
 
@@ -4392,7 +4438,8 @@
                                  (logref :target-type string :member-name
                                   "Logref"))
                                 (:shape-name "VideoTooLargeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rekognition-error))
 
 (smithy/sdk/operation:define-operation associate-faces :shape-name
                                        "AssociateFaces" :input

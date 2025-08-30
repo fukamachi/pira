@@ -1,7 +1,8 @@
 (uiop/package:define-package #:pira/transcribe-streaming (:use)
                              (:export #:alternative #:alternative-list
                               #:audio-chunk #:audio-event #:audio-stream
-                              #:boolean #:bucket-name #:call-analytics-entity
+                              #:bad-request-exception #:boolean #:bucket-name
+                              #:call-analytics-entity
                               #:call-analytics-entity-list
                               #:call-analytics-item #:call-analytics-item-list
                               #:call-analytics-language-code
@@ -12,17 +13,19 @@
                               #:clinical-note-generation-result
                               #:clinical-note-generation-settings
                               #:clinical-note-generation-status #:confidence
-                              #:configuration-event
+                              #:configuration-event #:conflict-exception
                               #:content-identification-type
                               #:content-redaction-output
                               #:content-redaction-type #:date-time #:double
                               #:entity #:entity-list
                               #:get-medical-scribe-stream #:iam-role-arn
-                              #:integer #:issue-detected #:issues-detected
-                              #:item #:item-list #:item-type
+                              #:integer #:internal-failure-exception
+                              #:issue-detected #:issues-detected #:item
+                              #:item-list #:item-type
                               #:kmsencryption-context-map #:kmskey-id
                               #:language-code #:language-identification
-                              #:language-options #:language-with-score #:long
+                              #:language-options #:language-with-score
+                              #:limit-exceeded-exception #:long
                               #:matched-category-details #:media-encoding
                               #:media-sample-rate-hertz #:medical-alternative
                               #:medical-alternative-list
@@ -62,7 +65,9 @@
                               #:participant-role #:pii-entity-types
                               #:points-of-interest
                               #:post-call-analytics-settings #:request-id
-                              #:result #:result-list #:sentiment #:session-id
+                              #:resource-not-found-exception #:result
+                              #:result-list #:sentiment
+                              #:service-unavailable-exception #:session-id
                               #:specialty #:stable
                               #:start-call-analytics-stream-transcription
                               #:start-medical-scribe-stream
@@ -75,8 +80,12 @@
                               #:vocabulary-filter-method
                               #:vocabulary-filter-name
                               #:vocabulary-filter-names #:vocabulary-name
-                              #:vocabulary-names))
+                              #:vocabulary-names #:transcribe-streaming-error))
 (common-lisp:in-package #:pira/transcribe-streaming)
+
+(common-lisp:define-condition transcribe-streaming-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service transcribe :shape-name "Transcribe" :version
                                    "2017-10-26" :title
@@ -132,7 +141,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class transcribe-streaming-error))
 
 (smithy/sdk/shapes:define-type boolean smithy/sdk/smithy-types:boolean)
 
@@ -290,7 +300,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class transcribe-streaming-error))
 
 (smithy/sdk/shapes:define-enum content-identification-type
     common-lisp:nil
@@ -348,7 +359,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class transcribe-streaming-error))
 
 (smithy/sdk/shapes:define-structure issue-detected common-lisp:nil
                                     ((character-offsets :target-type
@@ -463,7 +475,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class transcribe-streaming-error))
 
 (smithy/sdk/shapes:define-type long smithy/sdk/smithy-types:long)
 
@@ -898,7 +911,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class transcribe-streaming-error))
 
 (smithy/sdk/shapes:define-structure result common-lisp:nil
                                     ((result-id :target-type string
@@ -934,7 +948,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class transcribe-streaming-error))
 
 (smithy/sdk/shapes:define-type session-id smithy/sdk/smithy-types:string)
 

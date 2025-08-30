@@ -51,8 +51,11 @@
                               #:ingress-configuration
                               #:ingress-vpc-configuration
                               #:instance-configuration #:integer
-                              #:ip-address-type #:is-default #:kms-key-arn
-                              #:latest #:list-auto-scaling-configurations
+                              #:internal-service-error-exception
+                              #:invalid-request-exception
+                              #:invalid-state-exception #:ip-address-type
+                              #:is-default #:kms-key-arn #:latest
+                              #:list-auto-scaling-configurations
                               #:list-connections
                               #:list-observability-configurations
                               #:list-operations #:list-operations-max-results
@@ -71,7 +74,8 @@
                               #:observability-configuration-summary-list
                               #:operation-status #:operation-summary
                               #:operation-summary-list #:operation-type
-                              #:pause-service #:provider-type #:resume-service
+                              #:pause-service #:provider-type
+                              #:resource-not-found-exception #:resume-service
                               #:role-arn #:runtime
                               #:runtime-environment-secrets
                               #:runtime-environment-secrets-name
@@ -82,6 +86,7 @@
                               #:service-arn-list #:service-id
                               #:service-max-results #:service-name
                               #:service-observability-configuration
+                              #:service-quota-exceeded-exception
                               #:service-status #:service-summary
                               #:service-summary-list #:source-code-version
                               #:source-code-version-type #:source-configuration
@@ -100,8 +105,13 @@
                               #:vpc-ingress-connection-name
                               #:vpc-ingress-connection-status
                               #:vpc-ingress-connection-summary
-                              #:vpc-ingress-connection-summary-list))
+                              #:vpc-ingress-connection-summary-list
+                              #:apprunner-error))
 (common-lisp:in-package #:pira/apprunner)
+
+(common-lisp:define-condition apprunner-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service app-runner :shape-name "AppRunner" :version
                                    "2020-05-15" :title "AWS App Runner"
@@ -933,20 +943,21 @@
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceErrorException")
                                 (:error-name "InternalServiceError")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class apprunner-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
                                 (:error-name "InvalidRequest")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class apprunner-error))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-name "InvalidState") (:error-code 400))
+                                (:error-name "InvalidState") (:error-code 400)
+                                (:base-class apprunner-error))
 
 (smithy/sdk/shapes:define-enum ip-address-type
     common-lisp:nil
@@ -1284,7 +1295,7 @@
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotfound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class apprunner-error))
 
 (smithy/sdk/shapes:define-input resume-service-request common-lisp:nil
                                 ((service-arn :target-type
@@ -1416,7 +1427,7 @@
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
                                 (:error-name "ServiceQuotaExceeded")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class apprunner-error))
 
 (smithy/sdk/shapes:define-enum service-status
     common-lisp:nil

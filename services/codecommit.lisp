@@ -1,22 +1,34 @@
 (uiop/package:define-package #:pira/codecommit (:use)
-                             (:export #:account-id #:additional-data #:approval
-                              #:approval-list #:approval-rule
-                              #:approval-rule-content
+                             (:export #:account-id
+                              #:actor-does-not-exist-exception
+                              #:additional-data #:approval #:approval-list
+                              #:approval-rule #:approval-rule-content
+                              #:approval-rule-content-required-exception
+                              #:approval-rule-does-not-exist-exception
                               #:approval-rule-event-metadata #:approval-rule-id
                               #:approval-rule-name
+                              #:approval-rule-name-already-exists-exception
+                              #:approval-rule-name-required-exception
                               #:approval-rule-overridden-event-metadata
                               #:approval-rule-template
                               #:approval-rule-template-content
+                              #:approval-rule-template-content-required-exception
                               #:approval-rule-template-description
+                              #:approval-rule-template-does-not-exist-exception
                               #:approval-rule-template-id
+                              #:approval-rule-template-in-use-exception
                               #:approval-rule-template-name
+                              #:approval-rule-template-name-already-exists-exception
                               #:approval-rule-template-name-list
+                              #:approval-rule-template-name-required-exception
                               #:approval-rules-list
                               #:approval-rules-not-satisfied-list
                               #:approval-rules-satisfied-list #:approval-state
                               #:approval-state-changed-event-metadata
-                              #:approved #:arn
+                              #:approval-state-required-exception #:approved
+                              #:arn
                               #:associate-approval-rule-template-with-repository
+                              #:author-does-not-exist-exception
                               #:batch-associate-approval-rule-template-with-repositories
                               #:batch-associate-approval-rule-template-with-repositories-error
                               #:batch-associate-approval-rule-template-with-repositories-errors-list
@@ -32,19 +44,43 @@
                               #:batch-get-repositories-error
                               #:batch-get-repositories-error-code-enum
                               #:batch-get-repositories-errors-list
-                              #:blob-metadata #:branch-info #:branch-name
-                              #:branch-name-list #:caller-reactions
+                              #:before-commit-id-and-after-commit-id-are-same-exception
+                              #:blob-id-does-not-exist-exception
+                              #:blob-id-required-exception #:blob-metadata
+                              #:branch-does-not-exist-exception #:branch-info
+                              #:branch-name #:branch-name-exists-exception
+                              #:branch-name-is-tag-name-exception
+                              #:branch-name-list
+                              #:branch-name-required-exception
+                              #:caller-reactions
+                              #:cannot-delete-approval-rule-from-template-exception
+                              #:cannot-modify-approval-rule-from-template-exception
                               #:capital-boolean #:change-type-enum
-                              #:client-request-token #:clone-url-http
-                              #:clone-url-ssh #:code-commit-20150413 #:comment
-                              #:comment-id #:comments
-                              #:comments-for-compared-commit
+                              #:client-request-token
+                              #:client-request-token-required-exception
+                              #:clone-url-http #:clone-url-ssh
+                              #:code-commit-20150413 #:comment
+                              #:comment-content-required-exception
+                              #:comment-content-size-limit-exceeded-exception
+                              #:comment-deleted-exception
+                              #:comment-does-not-exist-exception #:comment-id
+                              #:comment-id-required-exception
+                              #:comment-not-created-by-caller-exception
+                              #:comments #:comments-for-compared-commit
                               #:comments-for-compared-commit-data
                               #:comments-for-pull-request
                               #:comments-for-pull-request-data #:commit
-                              #:commit-id #:commit-ids-input-list #:commit-name
-                              #:commit-objects-list #:conflict
-                              #:conflict-detail-level-type-enum
+                              #:commit-does-not-exist-exception #:commit-id
+                              #:commit-id-does-not-exist-exception
+                              #:commit-id-required-exception
+                              #:commit-ids-input-list
+                              #:commit-ids-limit-exceeded-exception
+                              #:commit-ids-list-required-exception
+                              #:commit-message-length-exceeded-exception
+                              #:commit-name #:commit-objects-list
+                              #:commit-required-exception
+                              #:concurrent-reference-update-exception
+                              #:conflict #:conflict-detail-level-type-enum
                               #:conflict-metadata #:conflict-metadata-list
                               #:conflict-resolution
                               #:conflict-resolution-strategy-type-enum
@@ -55,6 +91,7 @@
                               #:create-repository
                               #:create-unreferenced-merge-commit
                               #:creation-date #:date
+                              #:default-branch-cannot-be-deleted-exception
                               #:delete-approval-rule-template #:delete-branch
                               #:delete-comment-content #:delete-file
                               #:delete-file-entries #:delete-file-entry
@@ -62,14 +99,35 @@
                               #:delete-repository #:describe-merge-conflicts
                               #:describe-pull-request-events #:description
                               #:difference #:difference-list
+                              #:directory-name-conflicts-with-file-name-exception
                               #:disassociate-approval-rule-template-from-repository
-                              #:email #:error-code #:error-message
+                              #:email
+                              #:encryption-integrity-checks-failed-exception
+                              #:encryption-key-access-denied-exception
+                              #:encryption-key-disabled-exception
+                              #:encryption-key-invalid-id-exception
+                              #:encryption-key-invalid-usage-exception
+                              #:encryption-key-not-found-exception
+                              #:encryption-key-required-exception
+                              #:encryption-key-unavailable-exception
+                              #:error-code #:error-message
                               #:evaluate-pull-request-approval-rules
                               #:evaluation #:event-date #:exception-name #:file
-                              #:file-content #:file-list #:file-metadata
-                              #:file-mode-type-enum #:file-modes #:file-paths
-                              #:file-size #:file-sizes #:file-version
-                              #:files-metadata #:folder #:folder-list
+                              #:file-content
+                              #:file-content-and-source-file-specified-exception
+                              #:file-content-required-exception
+                              #:file-content-size-limit-exceeded-exception
+                              #:file-does-not-exist-exception
+                              #:file-entry-required-exception #:file-list
+                              #:file-metadata #:file-mode-required-exception
+                              #:file-mode-type-enum #:file-modes
+                              #:file-name-conflicts-with-directory-name-exception
+                              #:file-path-conflicts-with-submodule-path-exception
+                              #:file-paths #:file-size #:file-sizes
+                              #:file-too-large-exception #:file-version
+                              #:files-metadata #:folder
+                              #:folder-content-size-limit-exceeded-exception
+                              #:folder-does-not-exist-exception #:folder-list
                               #:get-approval-rule-template #:get-blob
                               #:get-branch #:get-comment
                               #:get-comment-reactions
@@ -81,7 +139,71 @@
                               #:get-pull-request-approval-states
                               #:get-pull-request-override-state
                               #:get-repository #:get-repository-triggers
-                              #:hunk-content #:is-binary-file
+                              #:hunk-content
+                              #:idempotency-parameter-mismatch-exception
+                              #:invalid-actor-arn-exception
+                              #:invalid-approval-rule-content-exception
+                              #:invalid-approval-rule-name-exception
+                              #:invalid-approval-rule-template-content-exception
+                              #:invalid-approval-rule-template-description-exception
+                              #:invalid-approval-rule-template-name-exception
+                              #:invalid-approval-state-exception
+                              #:invalid-author-arn-exception
+                              #:invalid-blob-id-exception
+                              #:invalid-branch-name-exception
+                              #:invalid-client-request-token-exception
+                              #:invalid-comment-id-exception
+                              #:invalid-commit-exception
+                              #:invalid-commit-id-exception
+                              #:invalid-conflict-detail-level-exception
+                              #:invalid-conflict-resolution-exception
+                              #:invalid-conflict-resolution-strategy-exception
+                              #:invalid-continuation-token-exception
+                              #:invalid-deletion-parameter-exception
+                              #:invalid-description-exception
+                              #:invalid-destination-commit-specifier-exception
+                              #:invalid-email-exception
+                              #:invalid-file-location-exception
+                              #:invalid-file-mode-exception
+                              #:invalid-file-position-exception
+                              #:invalid-max-conflict-files-exception
+                              #:invalid-max-merge-hunks-exception
+                              #:invalid-max-results-exception
+                              #:invalid-merge-option-exception
+                              #:invalid-order-exception
+                              #:invalid-override-status-exception
+                              #:invalid-parent-commit-id-exception
+                              #:invalid-path-exception
+                              #:invalid-pull-request-event-type-exception
+                              #:invalid-pull-request-id-exception
+                              #:invalid-pull-request-status-exception
+                              #:invalid-pull-request-status-update-exception
+                              #:invalid-reaction-user-arn-exception
+                              #:invalid-reaction-value-exception
+                              #:invalid-reference-name-exception
+                              #:invalid-relative-file-version-enum-exception
+                              #:invalid-replacement-content-exception
+                              #:invalid-replacement-type-exception
+                              #:invalid-repository-description-exception
+                              #:invalid-repository-name-exception
+                              #:invalid-repository-trigger-branch-name-exception
+                              #:invalid-repository-trigger-custom-data-exception
+                              #:invalid-repository-trigger-destination-arn-exception
+                              #:invalid-repository-trigger-events-exception
+                              #:invalid-repository-trigger-name-exception
+                              #:invalid-repository-trigger-region-exception
+                              #:invalid-resource-arn-exception
+                              #:invalid-revision-id-exception
+                              #:invalid-rule-content-sha256exception
+                              #:invalid-sort-by-exception
+                              #:invalid-source-commit-specifier-exception
+                              #:invalid-system-tag-usage-exception
+                              #:invalid-tag-keys-list-exception
+                              #:invalid-tags-map-exception
+                              #:invalid-target-branch-exception
+                              #:invalid-target-exception
+                              #:invalid-targets-exception
+                              #:invalid-title-exception #:is-binary-file
                               #:is-comment-deleted #:is-content-conflict
                               #:is-file-mode-conflict #:is-hunk-conflict
                               #:is-mergeable #:is-merged #:is-move
@@ -92,69 +214,141 @@
                               #:list-branches #:list-file-commit-history
                               #:list-pull-requests #:list-repositories
                               #:list-repositories-for-approval-rule-template
-                              #:list-tags-for-resource #:location #:max-results
+                              #:list-tags-for-resource #:location
+                              #:manual-merge-required-exception #:max-results
+                              #:maximum-branches-exceeded-exception
+                              #:maximum-conflict-resolution-entries-exceeded-exception
+                              #:maximum-file-content-to-load-exceeded-exception
+                              #:maximum-file-entries-exceeded-exception
+                              #:maximum-items-to-compare-exceeded-exception
+                              #:maximum-number-of-approvals-exceeded-exception
+                              #:maximum-open-pull-requests-exceeded-exception
+                              #:maximum-repository-names-exceeded-exception
+                              #:maximum-repository-triggers-exceeded-exception
+                              #:maximum-rule-templates-associated-with-repository-exception
                               #:merge-branches-by-fast-forward
                               #:merge-branches-by-squash
                               #:merge-branches-by-three-way #:merge-hunk
                               #:merge-hunk-detail #:merge-hunks
                               #:merge-metadata #:merge-operations
+                              #:merge-option-required-exception
                               #:merge-option-type-enum #:merge-options
                               #:merge-pull-request-by-fast-forward
                               #:merge-pull-request-by-squash
                               #:merge-pull-request-by-three-way #:message
-                              #:mode #:name #:next-token #:number-of-conflicts
-                              #:object-id #:object-size #:object-type-enum
-                              #:object-types #:order-enum
+                              #:mode
+                              #:multiple-conflict-resolution-entries-exception
+                              #:multiple-repositories-in-pull-request-exception
+                              #:name #:name-length-exceeded-exception
+                              #:next-token #:no-change-exception
+                              #:number-of-conflicts
+                              #:number-of-rule-templates-exceeded-exception
+                              #:number-of-rules-exceeded-exception #:object-id
+                              #:object-size #:object-type-enum #:object-types
+                              #:operation-not-allowed-exception #:order-enum
                               #:origin-approval-rule-template #:overridden
+                              #:override-already-set-exception
                               #:override-pull-request-approval-rules
-                              #:override-status #:parent-list #:path #:position
+                              #:override-status
+                              #:override-status-required-exception
+                              #:parent-commit-does-not-exist-exception
+                              #:parent-commit-id-outdated-exception
+                              #:parent-commit-id-required-exception
+                              #:parent-list #:path
+                              #:path-does-not-exist-exception
+                              #:path-required-exception #:position
                               #:post-comment-for-compared-commit
                               #:post-comment-for-pull-request
                               #:post-comment-reply #:pull-request
+                              #:pull-request-already-closed-exception
+                              #:pull-request-approval-rules-not-satisfied-exception
+                              #:pull-request-cannot-be-approved-by-author-exception
                               #:pull-request-created-event-metadata
+                              #:pull-request-does-not-exist-exception
                               #:pull-request-event #:pull-request-event-list
                               #:pull-request-event-type #:pull-request-id
                               #:pull-request-id-list
+                              #:pull-request-id-required-exception
                               #:pull-request-merged-state-changed-event-metadata
                               #:pull-request-source-reference-updated-event-metadata
                               #:pull-request-status-changed-event-metadata
-                              #:pull-request-status-enum #:pull-request-target
-                              #:pull-request-target-list #:put-comment-reaction
-                              #:put-file #:put-file-entries #:put-file-entry
+                              #:pull-request-status-enum
+                              #:pull-request-status-required-exception
+                              #:pull-request-target #:pull-request-target-list
+                              #:put-comment-reaction #:put-file
+                              #:put-file-entries #:put-file-entry
+                              #:put-file-entry-conflict-exception
                               #:put-repository-triggers #:reaction-counts-map
                               #:reaction-emoji #:reaction-for-comment
+                              #:reaction-limit-exceeded-exception
                               #:reaction-short-code #:reaction-unicode
                               #:reaction-users-list #:reaction-value
                               #:reaction-value-formats
-                              #:reactions-for-comment-list #:reference-name
+                              #:reaction-value-required-exception
+                              #:reactions-for-comment-list
+                              #:reference-does-not-exist-exception
+                              #:reference-name
+                              #:reference-name-required-exception
+                              #:reference-type-not-supported-exception
                               #:relative-file-version-enum
                               #:replace-content-entries #:replace-content-entry
-                              #:replacement-type-enum #:repository-description
-                              #:repository-id #:repository-metadata
-                              #:repository-metadata-list #:repository-name
+                              #:replacement-content-required-exception
+                              #:replacement-type-enum
+                              #:replacement-type-required-exception
+                              #:repository-description
+                              #:repository-does-not-exist-exception
+                              #:repository-id
+                              #:repository-limit-exceeded-exception
+                              #:repository-metadata #:repository-metadata-list
+                              #:repository-name
+                              #:repository-name-exists-exception
                               #:repository-name-id-pair
                               #:repository-name-id-pair-list
                               #:repository-name-list
+                              #:repository-name-required-exception
+                              #:repository-names-required-exception
+                              #:repository-not-associated-with-pull-request-exception
                               #:repository-not-found-list #:repository-trigger
+                              #:repository-trigger-branch-name-list-required-exception
                               #:repository-trigger-custom-data
+                              #:repository-trigger-destination-arn-required-exception
                               #:repository-trigger-event-enum
                               #:repository-trigger-event-list
+                              #:repository-trigger-events-list-required-exception
                               #:repository-trigger-execution-failure
                               #:repository-trigger-execution-failure-list
                               #:repository-trigger-execution-failure-message
                               #:repository-trigger-name
                               #:repository-trigger-name-list
+                              #:repository-trigger-name-required-exception
                               #:repository-triggers-configuration-id
-                              #:repository-triggers-list #:resource-arn
+                              #:repository-triggers-list
+                              #:repository-triggers-list-required-exception
+                              #:resource-arn #:resource-arn-required-exception
+                              #:restricted-source-file-exception
                               #:revision-children #:revision-dag #:revision-id
-                              #:rule-content-sha256 #:set-file-mode-entries
-                              #:set-file-mode-entry #:sort-by-enum
+                              #:revision-id-required-exception
+                              #:revision-not-current-exception
+                              #:rule-content-sha256
+                              #:same-file-content-exception
+                              #:same-path-request-exception
+                              #:set-file-mode-entries #:set-file-mode-entry
+                              #:sort-by-enum
+                              #:source-and-destination-are-same-exception
+                              #:source-file-or-content-required-exception
                               #:source-file-specifier #:sub-module
                               #:sub-module-list #:symbolic-link
                               #:symbolic-link-list #:tag-key #:tag-keys-list
-                              #:tag-resource #:tag-value #:tags-map #:target
-                              #:target-list #:test-repository-triggers #:title
-                              #:untag-resource
+                              #:tag-keys-list-required-exception
+                              #:tag-policy-exception #:tag-resource #:tag-value
+                              #:tags-map #:tags-map-required-exception #:target
+                              #:target-list #:target-required-exception
+                              #:targets-required-exception
+                              #:test-repository-triggers
+                              #:tip-of-source-reference-is-different-exception
+                              #:tips-divergence-exceeded-exception #:title
+                              #:title-required-exception
+                              #:too-many-tags-exception #:untag-resource
                               #:update-approval-rule-template-content
                               #:update-approval-rule-template-description
                               #:update-approval-rule-template-name
@@ -166,8 +360,13 @@
                               #:update-pull-request-title
                               #:update-repository-description
                               #:update-repository-encryption-key
-                              #:update-repository-name #:user-info #:blob))
+                              #:update-repository-name #:user-info #:blob
+                              #:codecommit-error))
 (common-lisp:in-package #:pira/codecommit)
+
+(common-lisp:define-condition codecommit-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service code-commit-20150413 :shape-name
                                    "CodeCommit_20150413" :version "2015-04-13"
@@ -254,7 +453,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ActorDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type additional-data smithy/sdk/smithy-types:string)
 
@@ -304,7 +504,8 @@
                                   "message"))
                                 (:shape-name
                                  "ApprovalRuleContentRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error approval-rule-does-not-exist-exception
                                 common-lisp:nil
@@ -312,7 +513,8 @@
                                   "message"))
                                 (:shape-name
                                  "ApprovalRuleDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure approval-rule-event-metadata
                                     common-lisp:nil
@@ -338,7 +540,8 @@
                                   "message"))
                                 (:shape-name
                                  "ApprovalRuleNameAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error approval-rule-name-required-exception
                                 common-lisp:nil
@@ -346,7 +549,8 @@
                                   "message"))
                                 (:shape-name
                                  "ApprovalRuleNameRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure approval-rule-overridden-event-metadata
                                     common-lisp:nil
@@ -393,7 +597,8 @@
 (smithy/sdk/shapes:define-error
  approval-rule-template-content-required-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
- (:shape-name "ApprovalRuleTemplateContentRequiredException") (:error-code 400))
+ (:shape-name "ApprovalRuleTemplateContentRequiredException") (:error-code 400)
+ (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type approval-rule-template-description
                                smithy/sdk/smithy-types:string)
@@ -404,7 +609,8 @@
                                   "message"))
                                 (:shape-name
                                  "ApprovalRuleTemplateDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type approval-rule-template-id
                                smithy/sdk/smithy-types:string)
@@ -415,7 +621,8 @@
                                   "message"))
                                 (:shape-name
                                  "ApprovalRuleTemplateInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type approval-rule-template-name
                                smithy/sdk/smithy-types:string)
@@ -424,7 +631,7 @@
  approval-rule-template-name-already-exists-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "ApprovalRuleTemplateNameAlreadyExistsException")
- (:error-code 400))
+ (:error-code 400) (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list approval-rule-template-name-list :member
                                approval-rule-template-name)
@@ -435,7 +642,8 @@
                                   "message"))
                                 (:shape-name
                                  "ApprovalRuleTemplateNameRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list approval-rules-list :member approval-rule)
 
@@ -465,7 +673,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ApprovalStateRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type approved smithy/sdk/smithy-types:boolean)
 
@@ -483,7 +692,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "AuthorDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure
  batch-associate-approval-rule-template-with-repositories-error common-lisp:nil
@@ -689,20 +899,22 @@
  before-commit-id-and-after-commit-id-are-same-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "BeforeCommitIdAndAfterCommitIdAreSameException")
- (:error-code 400))
+ (:error-code 400) (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error blob-id-does-not-exist-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "BlobIdDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error blob-id-required-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "BlobIdRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure blob-metadata common-lisp:nil
                                     ((blob-id :target-type object-id
@@ -717,7 +929,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "BranchDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure branch-info common-lisp:nil
                                     ((branch-name :target-type branch-name
@@ -732,14 +945,16 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "BranchNameExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error branch-name-is-tag-name-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "BranchNameIsTagNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list branch-name-list :member branch-name)
 
@@ -747,7 +962,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "BranchNameRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list caller-reactions :member reaction-value)
 
@@ -755,13 +971,13 @@
  cannot-delete-approval-rule-from-template-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "CannotDeleteApprovalRuleFromTemplateException")
- (:error-code 400))
+ (:error-code 400) (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error
  cannot-modify-approval-rule-from-template-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "CannotModifyApprovalRuleFromTemplateException")
- (:error-code 400))
+ (:error-code 400) (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type capital-boolean smithy/sdk/smithy-types:boolean)
 
@@ -780,7 +996,8 @@
                                   "message"))
                                 (:shape-name
                                  "ClientRequestTokenRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type clone-url-http smithy/sdk/smithy-types:string)
 
@@ -818,7 +1035,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "CommentContentRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error comment-content-size-limit-exceeded-exception
                                 common-lisp:nil
@@ -826,20 +1044,23 @@
                                   "message"))
                                 (:shape-name
                                  "CommentContentSizeLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error comment-deleted-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "CommentDeletedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error comment-does-not-exist-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "CommentDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type comment-id smithy/sdk/smithy-types:string)
 
@@ -847,7 +1068,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "CommentIdRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error comment-not-created-by-caller-exception
                                 common-lisp:nil
@@ -855,7 +1077,8 @@
                                   "message"))
                                 (:shape-name
                                  "CommentNotCreatedByCallerException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list comments :member comment)
 
@@ -927,7 +1150,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "CommitDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type commit-id smithy/sdk/smithy-types:string)
 
@@ -936,13 +1160,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "CommitIdDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error commit-id-required-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "CommitIdRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list commit-ids-input-list :member object-id)
 
@@ -951,14 +1177,16 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "CommitIdsLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error commit-ids-list-required-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "CommitIdsListRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error commit-message-length-exceeded-exception
                                 common-lisp:nil
@@ -966,7 +1194,8 @@
                                   "message"))
                                 (:shape-name
                                  "CommitMessageLengthExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type commit-name smithy/sdk/smithy-types:string)
 
@@ -976,7 +1205,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "CommitRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error concurrent-reference-update-exception
                                 common-lisp:nil
@@ -984,7 +1214,8 @@
                                   "message"))
                                 (:shape-name
                                  "ConcurrentReferenceUpdateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure conflict common-lisp:nil
                                     ((conflict-metadata :target-type
@@ -1245,7 +1476,8 @@
                                   "message"))
                                 (:shape-name
                                  "DefaultBranchCannotBeDeletedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-input delete-approval-rule-template-input
                                 common-lisp:nil
@@ -1448,7 +1680,8 @@
 (smithy/sdk/shapes:define-error
  directory-name-conflicts-with-file-name-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
- (:shape-name "DirectoryNameConflictsWithFileNameException") (:error-code 400))
+ (:shape-name "DirectoryNameConflictsWithFileNameException") (:error-code 400)
+ (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-input
  disassociate-approval-rule-template-from-repository-input common-lisp:nil
@@ -1466,7 +1699,8 @@
                                   "message"))
                                 (:shape-name
                                  "EncryptionIntegrityChecksFailedException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error encryption-key-access-denied-exception
                                 common-lisp:nil
@@ -1474,21 +1708,24 @@
                                   "message"))
                                 (:shape-name
                                  "EncryptionKeyAccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error encryption-key-disabled-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "EncryptionKeyDisabledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error encryption-key-invalid-id-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "EncryptionKeyInvalidIdException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error encryption-key-invalid-usage-exception
                                 common-lisp:nil
@@ -1496,21 +1733,24 @@
                                   "message"))
                                 (:shape-name
                                  "EncryptionKeyInvalidUsageException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error encryption-key-not-found-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "EncryptionKeyNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error encryption-key-required-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "EncryptionKeyRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error encryption-key-unavailable-exception
                                 common-lisp:nil
@@ -1518,7 +1758,8 @@
                                   "message"))
                                 (:shape-name
                                  "EncryptionKeyUnavailableException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type error-code smithy/sdk/smithy-types:string)
 
@@ -1577,13 +1818,15 @@
 (smithy/sdk/shapes:define-error
  file-content-and-source-file-specified-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
- (:shape-name "FileContentAndSourceFileSpecifiedException") (:error-code 400))
+ (:shape-name "FileContentAndSourceFileSpecifiedException") (:error-code 400)
+ (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error file-content-required-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "FileContentRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error file-content-size-limit-exceeded-exception
                                 common-lisp:nil
@@ -1591,19 +1834,22 @@
                                   "message"))
                                 (:shape-name
                                  "FileContentSizeLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error file-does-not-exist-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "FileDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error file-entry-required-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "FileEntryRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list file-list :member file)
 
@@ -1621,7 +1867,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "FileModeRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-enum file-mode-type-enum
     common-lisp:nil
@@ -1642,12 +1889,14 @@
 (smithy/sdk/shapes:define-error
  file-name-conflicts-with-directory-name-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
- (:shape-name "FileNameConflictsWithDirectoryNameException") (:error-code 400))
+ (:shape-name "FileNameConflictsWithDirectoryNameException") (:error-code 400)
+ (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error
  file-path-conflicts-with-submodule-path-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
- (:shape-name "FilePathConflictsWithSubmodulePathException") (:error-code 400))
+ (:shape-name "FilePathConflictsWithSubmodulePathException") (:error-code 400)
+ (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list file-paths :member path)
 
@@ -1666,7 +1915,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "FileTooLargeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure file-version common-lisp:nil
                                     ((commit :target-type commit :member-name
@@ -1697,13 +1947,15 @@
                                   "message"))
                                 (:shape-name
                                  "FolderContentSizeLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error folder-does-not-exist-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "FolderDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list folder-list :member folder)
 
@@ -2121,13 +2373,15 @@
                                   "message"))
                                 (:shape-name
                                  "IdempotencyParameterMismatchException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-actor-arn-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidActorArnException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-approval-rule-content-exception
                                 common-lisp:nil
@@ -2135,7 +2389,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidApprovalRuleContentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-approval-rule-name-exception
                                 common-lisp:nil
@@ -2143,18 +2398,20 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidApprovalRuleNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error
  invalid-approval-rule-template-content-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
- (:shape-name "InvalidApprovalRuleTemplateContentException") (:error-code 400))
+ (:shape-name "InvalidApprovalRuleTemplateContentException") (:error-code 400)
+ (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error
  invalid-approval-rule-template-description-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "InvalidApprovalRuleTemplateDescriptionException")
- (:error-code 400))
+ (:error-code 400) (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-approval-rule-template-name-exception
                                 common-lisp:nil
@@ -2162,32 +2419,37 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidApprovalRuleTemplateNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-approval-state-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidApprovalStateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-author-arn-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidAuthorArnException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-blob-id-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidBlobIdException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-branch-name-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidBranchNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-client-request-token-exception
                                 common-lisp:nil
@@ -2195,25 +2457,29 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidClientRequestTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-comment-id-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidCommentIdException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-commit-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidCommitException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-commit-id-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidCommitIdException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-conflict-detail-level-exception
                                 common-lisp:nil
@@ -2221,7 +2487,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidConflictDetailLevelException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-conflict-resolution-exception
                                 common-lisp:nil
@@ -2229,7 +2496,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidConflictResolutionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-conflict-resolution-strategy-exception
                                 common-lisp:nil
@@ -2237,7 +2505,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidConflictResolutionStrategyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-continuation-token-exception
                                 common-lisp:nil
@@ -2245,7 +2514,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidContinuationTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-deletion-parameter-exception
                                 common-lisp:nil
@@ -2253,13 +2523,15 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidDeletionParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-description-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidDescriptionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-destination-commit-specifier-exception
                                 common-lisp:nil
@@ -2267,31 +2539,36 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidDestinationCommitSpecifierException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-email-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidEmailException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-file-location-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidFileLocationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-file-mode-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidFileModeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-file-position-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidFilePositionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-max-conflict-files-exception
                                 common-lisp:nil
@@ -2299,52 +2576,60 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidMaxConflictFilesException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-max-merge-hunks-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidMaxMergeHunksException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-max-results-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidMaxResultsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-merge-option-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidMergeOptionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-order-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidOrderException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-override-status-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidOverrideStatusException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-parent-commit-id-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidParentCommitIdException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-path-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidPathException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-pull-request-event-type-exception
                                 common-lisp:nil
@@ -2352,14 +2637,16 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidPullRequestEventTypeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-pull-request-id-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidPullRequestIdException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-pull-request-status-exception
                                 common-lisp:nil
@@ -2367,7 +2654,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidPullRequestStatusException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-pull-request-status-update-exception
                                 common-lisp:nil
@@ -2375,28 +2663,32 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidPullRequestStatusUpdateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-reaction-user-arn-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidReactionUserArnException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-reaction-value-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidReactionValueException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-reference-name-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidReferenceNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-relative-file-version-enum-exception
                                 common-lisp:nil
@@ -2404,7 +2696,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidRelativeFileVersionEnumException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-replacement-content-exception
                                 common-lisp:nil
@@ -2412,14 +2705,16 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidReplacementContentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-replacement-type-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidReplacementTypeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-repository-description-exception
                                 common-lisp:nil
@@ -2427,30 +2722,34 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidRepositoryDescriptionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-repository-name-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidRepositoryNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error
  invalid-repository-trigger-branch-name-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
- (:shape-name "InvalidRepositoryTriggerBranchNameException") (:error-code 400))
+ (:shape-name "InvalidRepositoryTriggerBranchNameException") (:error-code 400)
+ (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error
  invalid-repository-trigger-custom-data-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
- (:shape-name "InvalidRepositoryTriggerCustomDataException") (:error-code 400))
+ (:shape-name "InvalidRepositoryTriggerCustomDataException") (:error-code 400)
+ (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error
  invalid-repository-trigger-destination-arn-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "InvalidRepositoryTriggerDestinationArnException")
- (:error-code 400))
+ (:error-code 400) (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-repository-trigger-events-exception
                                 common-lisp:nil
@@ -2458,7 +2757,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidRepositoryTriggerEventsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-repository-trigger-name-exception
                                 common-lisp:nil
@@ -2466,7 +2766,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidRepositoryTriggerNameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-repository-trigger-region-exception
                                 common-lisp:nil
@@ -2474,19 +2775,22 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidRepositoryTriggerRegionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-arn-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidResourceArnException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-revision-id-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidRevisionIdException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-rule-content-sha256exception
                                 common-lisp:nil
@@ -2494,13 +2798,15 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidRuleContentSha256Exception")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-sort-by-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidSortByException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-source-commit-specifier-exception
                                 common-lisp:nil
@@ -2508,50 +2814,58 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidSourceCommitSpecifierException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-system-tag-usage-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidSystemTagUsageException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-tag-keys-list-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTagKeysListException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-tags-map-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTagsMapException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-target-branch-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTargetBranchException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-target-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTargetException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-targets-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTargetsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error invalid-title-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidTitleException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure is-binary-file common-lisp:nil
                                     ((source :target-type capital-boolean
@@ -2750,7 +3064,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ManualMergeRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type max-results smithy/sdk/smithy-types:integer)
 
@@ -2760,13 +3075,14 @@
                                   "message"))
                                 (:shape-name
                                  "MaximumBranchesExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error
  maximum-conflict-resolution-entries-exceeded-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "MaximumConflictResolutionEntriesExceededException")
- (:error-code 400))
+ (:error-code 400) (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error maximum-file-content-to-load-exceeded-exception
                                 common-lisp:nil
@@ -2774,7 +3090,8 @@
                                   "message"))
                                 (:shape-name
                                  "MaximumFileContentToLoadExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error maximum-file-entries-exceeded-exception
                                 common-lisp:nil
@@ -2782,7 +3099,8 @@
                                   "message"))
                                 (:shape-name
                                  "MaximumFileEntriesExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error maximum-items-to-compare-exceeded-exception
                                 common-lisp:nil
@@ -2790,7 +3108,8 @@
                                   "message"))
                                 (:shape-name
                                  "MaximumItemsToCompareExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error maximum-number-of-approvals-exceeded-exception
                                 common-lisp:nil
@@ -2798,7 +3117,8 @@
                                   "message"))
                                 (:shape-name
                                  "MaximumNumberOfApprovalsExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error maximum-open-pull-requests-exceeded-exception
                                 common-lisp:nil
@@ -2806,7 +3126,8 @@
                                   "message"))
                                 (:shape-name
                                  "MaximumOpenPullRequestsExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error maximum-repository-names-exceeded-exception
                                 common-lisp:nil
@@ -2814,7 +3135,8 @@
                                   "message"))
                                 (:shape-name
                                  "MaximumRepositoryNamesExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error maximum-repository-triggers-exceeded-exception
                                 common-lisp:nil
@@ -2822,13 +3144,14 @@
                                   "message"))
                                 (:shape-name
                                  "MaximumRepositoryTriggersExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error
  maximum-rule-templates-associated-with-repository-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "MaximumRuleTemplatesAssociatedWithRepositoryException")
- (:error-code 400))
+ (:error-code 400) (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-input merge-branches-by-fast-forward-input
                                 common-lisp:nil
@@ -2981,7 +3304,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "MergeOptionRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-enum merge-option-type-enum
     common-lisp:nil
@@ -3094,7 +3418,8 @@
                                   "message"))
                                 (:shape-name
                                  "MultipleConflictResolutionEntriesException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error multiple-repositories-in-pull-request-exception
                                 common-lisp:nil
@@ -3102,7 +3427,8 @@
                                   "message"))
                                 (:shape-name
                                  "MultipleRepositoriesInPullRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type name smithy/sdk/smithy-types:string)
 
@@ -3110,7 +3436,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "NameLengthExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
 
@@ -3118,7 +3445,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "NoChangeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type number-of-conflicts
                                smithy/sdk/smithy-types:integer)
@@ -3129,14 +3457,16 @@
                                   "message"))
                                 (:shape-name
                                  "NumberOfRuleTemplatesExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error number-of-rules-exceeded-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "NumberOfRulesExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type object-id smithy/sdk/smithy-types:string)
 
@@ -3162,7 +3492,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "OperationNotAllowedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-enum order-enum
     common-lisp:nil
@@ -3185,7 +3516,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "OverrideAlreadySetException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-input override-pull-request-approval-rules-input
                                 common-lisp:nil
@@ -3211,7 +3543,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "OverrideStatusRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error parent-commit-does-not-exist-exception
                                 common-lisp:nil
@@ -3219,21 +3552,24 @@
                                   "message"))
                                 (:shape-name
                                  "ParentCommitDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error parent-commit-id-outdated-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ParentCommitIdOutdatedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error parent-commit-id-required-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ParentCommitIdRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list parent-list :member object-id)
 
@@ -3243,13 +3579,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "PathDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error path-required-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "PathRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type position smithy/sdk/smithy-types:long)
 
@@ -3388,18 +3726,20 @@
                                   "message"))
                                 (:shape-name
                                  "PullRequestAlreadyClosedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error
  pull-request-approval-rules-not-satisfied-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "PullRequestApprovalRulesNotSatisfiedException")
- (:error-code 400))
+ (:error-code 400) (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error
  pull-request-cannot-be-approved-by-author-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
- (:shape-name "PullRequestCannotBeApprovedByAuthorException") (:error-code 400))
+ (:shape-name "PullRequestCannotBeApprovedByAuthorException") (:error-code 400)
+ (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure pull-request-created-event-metadata
                                     common-lisp:nil
@@ -3422,7 +3762,8 @@
                                   "message"))
                                 (:shape-name
                                  "PullRequestDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure pull-request-event common-lisp:nil
                                     ((pull-request-id :target-type
@@ -3496,7 +3837,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "PullRequestIdRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure
  pull-request-merged-state-changed-event-metadata common-lisp:nil
@@ -3533,7 +3875,8 @@
                                   "message"))
                                 (:shape-name
                                  "PullRequestStatusRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure pull-request-target common-lisp:nil
                                     ((repository-name :target-type
@@ -3587,7 +3930,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "PutFileEntryConflictException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-input put-file-input common-lisp:nil
                                 ((repository-name :target-type repository-name
@@ -3658,7 +4002,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ReactionLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type reaction-short-code
                                smithy/sdk/smithy-types:string)
@@ -3684,7 +4029,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ReactionValueRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list reactions-for-comment-list :member
                                reaction-for-comment)
@@ -3694,7 +4040,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ReferenceDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type reference-name smithy/sdk/smithy-types:string)
 
@@ -3703,7 +4050,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ReferenceNameRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error reference-type-not-supported-exception
                                 common-lisp:nil
@@ -3711,7 +4059,8 @@
                                   "message"))
                                 (:shape-name
                                  "ReferenceTypeNotSupportedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-enum relative-file-version-enum
     common-lisp:nil
@@ -3741,7 +4090,8 @@
                                   "message"))
                                 (:shape-name
                                  "ReplacementContentRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-enum replacement-type-enum
     common-lisp:nil
@@ -3756,7 +4106,8 @@
                                   "message"))
                                 (:shape-name
                                  "ReplacementTypeRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type repository-description
                                smithy/sdk/smithy-types:string)
@@ -3766,7 +4117,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "RepositoryDoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type repository-id smithy/sdk/smithy-types:string)
 
@@ -3776,7 +4128,8 @@
                                   "message"))
                                 (:shape-name
                                  "RepositoryLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure repository-metadata common-lisp:nil
                                     ((account-id :target-type account-id
@@ -3816,7 +4169,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "RepositoryNameExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure repository-name-id-pair common-lisp:nil
                                     ((repository-name :target-type
@@ -3836,7 +4190,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "RepositoryNameRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error repository-names-required-exception
                                 common-lisp:nil
@@ -3844,13 +4199,14 @@
                                   "message"))
                                 (:shape-name
                                  "RepositoryNamesRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error
  repository-not-associated-with-pull-request-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "RepositoryNotAssociatedWithPullRequestException")
- (:error-code 400))
+ (:error-code 400) (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list repository-not-found-list :member
                                repository-name)
@@ -3876,7 +4232,7 @@
  repository-trigger-branch-name-list-required-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "RepositoryTriggerBranchNameListRequiredException")
- (:error-code 400))
+ (:error-code 400) (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type repository-trigger-custom-data
                                smithy/sdk/smithy-types:string)
@@ -3885,7 +4241,7 @@
  repository-trigger-destination-arn-required-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
  (:shape-name "RepositoryTriggerDestinationArnRequiredException")
- (:error-code 400))
+ (:error-code 400) (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-enum repository-trigger-event-enum
     common-lisp:nil
@@ -3900,7 +4256,8 @@
 (smithy/sdk/shapes:define-error
  repository-trigger-events-list-required-exception common-lisp:nil
  ((message :target-type message :member-name "message"))
- (:shape-name "RepositoryTriggerEventsListRequiredException") (:error-code 400))
+ (:shape-name "RepositoryTriggerEventsListRequiredException") (:error-code 400)
+ (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure repository-trigger-execution-failure
                                     common-lisp:nil
@@ -3931,7 +4288,8 @@
                                   "message"))
                                 (:shape-name
                                  "RepositoryTriggerNameRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type repository-triggers-configuration-id
                                smithy/sdk/smithy-types:string)
@@ -3945,7 +4303,8 @@
                                   "message"))
                                 (:shape-name
                                  "RepositoryTriggersListRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type resource-arn smithy/sdk/smithy-types:string)
 
@@ -3953,14 +4312,16 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ResourceArnRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error restricted-source-file-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "RestrictedSourceFileException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list revision-children :member revision-id)
 
@@ -3972,13 +4333,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "RevisionIdRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error revision-not-current-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "RevisionNotCurrentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type rule-content-sha256
                                smithy/sdk/smithy-types:string)
@@ -3987,13 +4350,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "SameFileContentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error same-path-request-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "SamePathRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-list set-file-mode-entries :member
                                set-file-mode-entry)
@@ -4017,7 +4382,8 @@
                                   "message"))
                                 (:shape-name
                                  "SourceAndDestinationAreSameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error source-file-or-content-required-exception
                                 common-lisp:nil
@@ -4025,7 +4391,8 @@
                                   "message"))
                                 (:shape-name
                                  "SourceFileOrContentRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure source-file-specifier common-lisp:nil
                                     ((file-path :target-type path :required
@@ -4068,13 +4435,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "TagKeysListRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error tag-policy-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "TagPolicyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-input tag-resource-input common-lisp:nil
                                 ((resource-arn :target-type resource-arn
@@ -4092,7 +4461,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "TagsMapRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-structure target common-lisp:nil
                                     ((repository-name :target-type
@@ -4112,13 +4482,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "TargetRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error targets-required-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "TargetsRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-input test-repository-triggers-input common-lisp:nil
                                 ((repository-name :target-type repository-name
@@ -4145,14 +4517,16 @@
                                   "message"))
                                 (:shape-name
                                  "TipOfSourceReferenceIsDifferentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error tips-divergence-exceeded-exception
                                 common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "TipsDivergenceExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-type title smithy/sdk/smithy-types:string)
 
@@ -4160,13 +4534,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "TitleRequiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class codecommit-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type resource-arn

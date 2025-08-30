@@ -15,7 +15,15 @@
                               #:get-permission #:get-resource-policies
                               #:get-resource-share-associations
                               #:get-resource-share-invitations
-                              #:get-resource-shares #:integer
+                              #:get-resource-shares
+                              #:idempotent-parameter-mismatch-exception
+                              #:integer #:invalid-client-token-exception
+                              #:invalid-max-results-exception
+                              #:invalid-next-token-exception
+                              #:invalid-parameter-exception
+                              #:invalid-policy-exception
+                              #:invalid-resource-type-exception
+                              #:invalid-state-transition-exception
                               #:list-pending-invitation-resources
                               #:list-permission-associations
                               #:list-permission-versions #:list-permissions
@@ -23,12 +31,19 @@
                               #:list-replace-permission-associations-work
                               #:list-resource-share-permissions
                               #:list-resource-types #:list-resources
-                              #:max-results #:permission-arn-list
-                              #:permission-feature-set #:permission-name
-                              #:permission-status #:permission-type
-                              #:permission-type-filter #:policy #:policy-list
-                              #:principal #:principal-arn-or-id-list
-                              #:principal-list
+                              #:malformed-arn-exception
+                              #:malformed-policy-template-exception
+                              #:max-results
+                              #:missing-required-parameter-exception
+                              #:operation-not-permitted-exception
+                              #:permission-already-exists-exception
+                              #:permission-arn-list #:permission-feature-set
+                              #:permission-limit-exceeded-exception
+                              #:permission-name #:permission-status
+                              #:permission-type #:permission-type-filter
+                              #:permission-versions-limit-exceeded-exception
+                              #:policy #:policy-list #:principal
+                              #:principal-arn-or-id-list #:principal-list
                               #:promote-permission-created-from-policy
                               #:promote-resource-share-created-from-policy
                               #:reject-resource-share-invitation
@@ -37,8 +52,10 @@
                               #:replace-permission-associations-work-id-list
                               #:replace-permission-associations-work-list
                               #:replace-permission-associations-work-status
-                              #:resource #:resource-arn-list #:resource-list
-                              #:resource-owner #:resource-region-scope
+                              #:resource #:resource-arn-list
+                              #:resource-arn-not-found-exception
+                              #:resource-list #:resource-owner
+                              #:resource-region-scope
                               #:resource-region-scope-filter #:resource-share
                               #:resource-share-arn-list
                               #:resource-share-association
@@ -47,23 +64,39 @@
                               #:resource-share-association-type
                               #:resource-share-feature-set
                               #:resource-share-invitation
+                              #:resource-share-invitation-already-accepted-exception
+                              #:resource-share-invitation-already-rejected-exception
                               #:resource-share-invitation-arn-list
+                              #:resource-share-invitation-arn-not-found-exception
+                              #:resource-share-invitation-expired-exception
                               #:resource-share-invitation-list
                               #:resource-share-invitation-status
+                              #:resource-share-limit-exceeded-exception
                               #:resource-share-list
                               #:resource-share-permission-detail
                               #:resource-share-permission-list
                               #:resource-share-permission-summary
                               #:resource-share-status #:resource-status
+                              #:server-internal-exception
                               #:service-name-and-resource-type
                               #:service-name-and-resource-type-list
+                              #:service-unavailable-exception
                               #:set-default-permission-version
                               #:source-arn-or-account-list #:string #:tag
                               #:tag-filter #:tag-filters #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-value #:tag-value-list #:untag-resource
-                              #:update-resource-share))
+                              #:tag-key-list #:tag-limit-exceeded-exception
+                              #:tag-list #:tag-policy-violation-exception
+                              #:tag-resource #:tag-value #:tag-value-list
+                              #:throttling-exception
+                              #:unknown-resource-exception
+                              #:unmatched-policy-permission-exception
+                              #:untag-resource #:update-resource-share
+                              #:ram-error))
 (common-lisp:in-package #:pira/ram)
+
+(common-lisp:define-condition ram-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-resource-sharing :shape-name
                                    "AmazonResourceSharing" :version
@@ -526,7 +559,7 @@
                                 (:shape-name
                                  "IdempotentParameterMismatchException")
                                 (:error-name "IdempotentParameterMismatch")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
 
@@ -535,41 +568,42 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidClientTokenException")
                                 (:error-name "InvalidClientToken")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error invalid-max-results-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidMaxResultsException")
                                 (:error-name "InvalidMaxResults")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidNextTokenException")
                                 (:error-name "InvalidNextToken")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidParameterException")
                                 (:error-name "InvalidParameter")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error invalid-policy-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidPolicyException")
-                                (:error-name "InvalidPolicy") (:error-code 400))
+                                (:error-name "InvalidPolicy") (:error-code 400)
+                                (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-type-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidResourceTypeException")
                                 (:error-name "InvalidResourceType.Unknown")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error invalid-state-transition-exception
                                 common-lisp:nil
@@ -578,7 +612,7 @@
                                 (:shape-name "InvalidStateTransitionException")
                                 (:error-name
                                  "InvalidStateTransitionException.Unknown")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-input list-pending-invitation-resources-request
                                 common-lisp:nil
@@ -795,7 +829,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "MalformedArnException")
                                 (:error-name "InvalidArn.Malformed")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error malformed-policy-template-exception
                                 common-lisp:nil
@@ -805,7 +839,7 @@
                                  "MalformedPolicyTemplateException")
                                 (:error-name
                                  "MalformedPolicyTemplateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-type max-results smithy/sdk/smithy-types:integer)
 
@@ -816,7 +850,7 @@
                                 (:shape-name
                                  "MissingRequiredParameterException")
                                 (:error-name "MissingRequiredParameter")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error operation-not-permitted-exception
                                 common-lisp:nil
@@ -824,7 +858,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "OperationNotPermittedException")
                                 (:error-name "OperationNotPermitted")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error permission-already-exists-exception
                                 common-lisp:nil
@@ -834,7 +868,7 @@
                                  "PermissionAlreadyExistsException")
                                 (:error-name
                                  "PermissionAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-list permission-arn-list :member
                                (string :xml-name "item"))
@@ -853,7 +887,7 @@
                                  "PermissionLimitExceededException")
                                 (:error-name
                                  "PermissionLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-type permission-name smithy/sdk/smithy-types:string)
 
@@ -883,7 +917,7 @@
                                  "PermissionVersionsLimitExceededException")
                                 (:error-name
                                  "PermissionVersionsLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-type policy smithy/sdk/smithy-types:string)
 
@@ -1053,7 +1087,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceArnNotFoundException")
                                 (:error-name "InvalidResourceArn.NotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-list resource-list :member
                                (resource :xml-name "item"))
@@ -1177,14 +1211,14 @@
  ((message :target-type string :required common-lisp:t :member-name "message"))
  (:shape-name "ResourceShareInvitationAlreadyAcceptedException")
  (:error-name "InvalidResourceShareInvitationArn.AlreadyAccepted")
- (:error-code 400))
+ (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error
  resource-share-invitation-already-rejected-exception common-lisp:nil
  ((message :target-type string :required common-lisp:t :member-name "message"))
  (:shape-name "ResourceShareInvitationAlreadyRejectedException")
  (:error-name "InvalidResourceShareInvitationArn.AlreadyRejected")
- (:error-code 400))
+ (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-list resource-share-invitation-arn-list :member
                                (string :xml-name "item"))
@@ -1193,7 +1227,8 @@
  resource-share-invitation-arn-not-found-exception common-lisp:nil
  ((message :target-type string :required common-lisp:t :member-name "message"))
  (:shape-name "ResourceShareInvitationArnNotFoundException")
- (:error-name "InvalidResourceShareInvitationArn.NotFound") (:error-code 400))
+ (:error-name "InvalidResourceShareInvitationArn.NotFound") (:error-code 400)
+ (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error resource-share-invitation-expired-exception
                                 common-lisp:nil
@@ -1203,7 +1238,7 @@
                                  "ResourceShareInvitationExpiredException")
                                 (:error-name
                                  "InvalidResourceShareInvitationArn.Expired")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-list resource-share-invitation-list :member
                                (resource-share-invitation :xml-name "item"))
@@ -1222,7 +1257,7 @@
                                 (:shape-name
                                  "ResourceShareLimitExceededException")
                                 (:error-name "ResourceShareLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-list resource-share-list :member
                                (resource-share :xml-name "item"))
@@ -1317,7 +1352,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServerInternalException")
-                                (:error-name "InternalError") (:error-code 500))
+                                (:error-name "InternalError") (:error-code 500)
+                                (:base-class ram-error))
 
 (smithy/sdk/shapes:define-structure service-name-and-resource-type
                                     common-lisp:nil
@@ -1338,7 +1374,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-name "Unavailable") (:error-code 503))
+                                (:error-name "Unavailable") (:error-code 503)
+                                (:base-class ram-error))
 
 (smithy/sdk/shapes:define-input set-default-permission-version-request
                                 common-lisp:nil
@@ -1392,7 +1429,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "TagLimitExceededException")
                                 (:error-name "TagLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-list tag-list :member tag)
 
@@ -1401,7 +1438,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "TagPolicyViolationException")
                                 (:error-name "TagPolicyViolation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
                                 ((resource-share-arn :target-type string
@@ -1425,7 +1462,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
                                 (:error-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error unknown-resource-exception common-lisp:nil
                                 ((message :target-type string :required
@@ -1433,7 +1470,7 @@
                                 (:shape-name "UnknownResourceException")
                                 (:error-name
                                  "InvalidResourceShareArn.NotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-error unmatched-policy-permission-exception
                                 common-lisp:nil
@@ -1443,7 +1480,7 @@
                                  "UnmatchedPolicyPermissionException")
                                 (:error-name
                                  "UnmatchedPolicyPermissionException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ram-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-share-arn :target-type string

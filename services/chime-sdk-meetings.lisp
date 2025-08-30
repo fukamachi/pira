@@ -3,13 +3,13 @@
                               #:attendee-capabilities #:attendee-features
                               #:attendee-id-item #:attendee-ids-list
                               #:attendee-list #:attendee-max #:audio-features
-                              #:batch-create-attendee
+                              #:bad-request-exception #:batch-create-attendee
                               #:batch-create-attendee-error-list
                               #:batch-update-attendee-capabilities-except
                               #:boolean #:chime-meetings-sdkservice
-                              #:client-request-token #:content-features
-                              #:content-resolution #:create-attendee
-                              #:create-attendee-error
+                              #:client-request-token #:conflict-exception
+                              #:content-features #:content-resolution
+                              #:create-attendee #:create-attendee-error
                               #:create-attendee-request-item
                               #:create-attendee-request-item-list
                               #:create-meeting #:create-meeting-with-attendees
@@ -18,20 +18,25 @@
                               #:engine-transcribe-medical-settings
                               #:engine-transcribe-settings
                               #:external-meeting-id #:external-user-id
-                              #:get-attendee #:get-meeting #:guid-string
-                              #:join-token-string #:list-attendees
+                              #:forbidden-exception #:get-attendee
+                              #:get-meeting #:guid-string #:join-token-string
+                              #:limit-exceeded-exception #:list-attendees
                               #:list-tags-for-resource #:media-capabilities
                               #:media-placement #:media-region #:meeting
                               #:meeting-feature-status
                               #:meeting-features-configuration
+                              #:not-found-exception
                               #:notifications-configuration
-                              #:primary-meeting-id #:result-max
-                              #:retry-after-seconds
+                              #:primary-meeting-id
+                              #:resource-not-found-exception #:result-max
+                              #:retry-after-seconds #:service-failure-exception
+                              #:service-unavailable-exception
                               #:start-meeting-transcription
                               #:stop-meeting-transcription #:string #:tag
                               #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-value #:tenant-id
-                              #:tenant-id-list
+                              #:tenant-id-list #:throttling-exception
+                              #:too-many-tags-exception
                               #:transcribe-content-identification-type
                               #:transcribe-content-redaction-type
                               #:transcribe-language-code
@@ -46,10 +51,16 @@
                               #:transcribe-pii-entity-types #:transcribe-region
                               #:transcribe-vocabulary-filter-method
                               #:transcribe-vocabulary-names-or-filter-names-string
-                              #:transcription-configuration #:untag-resource
+                              #:transcription-configuration
+                              #:unauthorized-exception
+                              #:unprocessable-entity-exception #:untag-resource
                               #:update-attendee-capabilities #:video-features
-                              #:video-resolution))
+                              #:video-resolution #:chime-sdk-meetings-error))
 (common-lisp:in-package #:pira/chime-sdk-meetings)
+
+(common-lisp:define-condition chime-sdk-meetings-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service chime-meetings-sdkservice :shape-name
                                    "ChimeMeetingsSDKService" :version
@@ -138,7 +149,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class chime-sdk-meetings-error))
 
 (smithy/sdk/shapes:define-list batch-create-attendee-error-list :member
                                create-attendee-error)
@@ -182,7 +194,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class chime-sdk-meetings-error))
 
 (smithy/sdk/shapes:define-structure content-features common-lisp:nil
                                     ((max-resolution :target-type
@@ -415,7 +428,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class chime-sdk-meetings-error))
 
 (smithy/sdk/shapes:define-input get-attendee-request common-lisp:nil
                                 ((meeting-id :target-type guid-string :required
@@ -453,7 +467,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class chime-sdk-meetings-error))
 
 (smithy/sdk/shapes:define-input list-attendees-request common-lisp:nil
                                 ((meeting-id :target-type guid-string :required
@@ -566,7 +581,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class chime-sdk-meetings-error))
 
 (smithy/sdk/shapes:define-structure notifications-configuration common-lisp:nil
                                     ((lambda-function-arn :target-type arn
@@ -590,7 +606,8 @@
                                   amazon-resource-name :member-name
                                   "ResourceName"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class chime-sdk-meetings-error))
 
 (smithy/sdk/shapes:define-type result-max smithy/sdk/smithy-types:integer)
 
@@ -604,7 +621,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ServiceFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class chime-sdk-meetings-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((code :target-type string :member-name "Code")
@@ -617,7 +635,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class chime-sdk-meetings-error))
 
 (smithy/sdk/shapes:define-input start-meeting-transcription-request
                                 common-lisp:nil
@@ -678,7 +697,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class chime-sdk-meetings-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((code :target-type string :member-name "Code")
@@ -690,7 +710,8 @@
                                   amazon-resource-name :member-name
                                   "ResourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class chime-sdk-meetings-error))
 
 (smithy/sdk/shapes:define-enum transcribe-content-identification-type
     common-lisp:nil
@@ -808,7 +829,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class chime-sdk-meetings-error))
 
 (smithy/sdk/shapes:define-error unprocessable-entity-exception common-lisp:nil
                                 ((code :target-type string :member-name "Code")
@@ -817,7 +839,8 @@
                                  (request-id :target-type string :member-name
                                   "RequestId"))
                                 (:shape-name "UnprocessableEntityException")
-                                (:error-code 422))
+                                (:error-code 422)
+                                (:base-class chime-sdk-meetings-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type

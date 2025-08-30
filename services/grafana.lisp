@@ -1,16 +1,17 @@
 (uiop/package:define-package #:pira/grafana (:use)
                              (:export #:awsgrafana-control-plane
-                              #:account-access-type #:allowed-organization
-                              #:allowed-organizations #:api-key #:api-key-name
-                              #:api-key-token #:assertion-attribute
-                              #:assertion-attributes #:associate-license
-                              #:associate-license-request
+                              #:access-denied-exception #:account-access-type
+                              #:allowed-organization #:allowed-organizations
+                              #:api-key #:api-key-name #:api-key-token
+                              #:assertion-attribute #:assertion-attributes
+                              #:associate-license #:associate-license-request
                               #:associate-license-response #:authentication
                               #:authentication-description
                               #:authentication-provider-types
                               #:authentication-providers
                               #:authentication-summary #:aws-sso-authentication
-                              #:client-token #:configuration #:create-workspace
+                              #:client-token #:configuration
+                              #:conflict-exception #:create-workspace
                               #:create-workspace-api-key
                               #:create-workspace-api-key-request
                               #:create-workspace-api-key-response
@@ -40,7 +41,8 @@
                               #:disassociate-license-response #:endpoint
                               #:grafana-token #:grafana-version
                               #:grafana-version-list #:iam-role-arn
-                              #:idp-metadata #:idp-metadata-url #:license
+                              #:idp-metadata #:idp-metadata-url
+                              #:internal-server-exception #:license
                               #:license-type #:list-permissions
                               #:list-permissions-request
                               #:list-permissions-response
@@ -61,8 +63,9 @@
                               #:pagination-token #:permission
                               #:permission-entry #:permission-entry-list
                               #:permission-type #:prefix-list-id
-                              #:prefix-list-ids #:role #:role-value
-                              #:role-value-list #:role-values #:ssoclient-id
+                              #:prefix-list-ids #:resource-not-found-exception
+                              #:role #:role-value #:role-value-list
+                              #:role-values #:ssoclient-id
                               #:saml-authentication #:saml-configuration
                               #:saml-configuration-status #:security-group-id
                               #:security-group-ids #:service-account
@@ -72,12 +75,13 @@
                               #:service-account-token-list
                               #:service-account-token-name
                               #:service-account-token-summary
-                              #:service-account-token-summary-with-key #:sso-id
+                              #:service-account-token-summary-with-key
+                              #:service-quota-exceeded-exception #:sso-id
                               #:stack-set-name #:subnet-id #:subnet-ids
                               #:tag-key #:tag-keys #:tag-map #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:untag-resource
-                              #:untag-resource-request
+                              #:tag-value #:throttling-exception
+                              #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:update-action
                               #:update-error #:update-error-list
                               #:update-instruction #:update-instruction-batch
@@ -91,14 +95,20 @@
                               #:update-workspace-configuration-response
                               #:update-workspace-request
                               #:update-workspace-response #:user #:user-list
-                              #:user-type #:validation-exception-field
+                              #:user-type #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vpc-configuration
                               #:vpce-id #:vpce-ids #:workspace
                               #:workspace-description #:workspace-id
                               #:workspace-list #:workspace-name
-                              #:workspace-status #:workspace-summary))
+                              #:workspace-status #:workspace-summary
+                              #:grafana-error))
 (common-lisp:in-package #:pira/grafana)
+
+(common-lisp:define-condition grafana-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsgrafana-control-plane :shape-name
                                    "AWSGrafanaControlPlane" :version
@@ -121,7 +131,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class grafana-error))
 
 (smithy/sdk/shapes:define-type account-access-type
                                smithy/sdk/smithy-types:string)
@@ -222,7 +232,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class grafana-error))
 
 (smithy/sdk/shapes:define-input create-workspace-api-key-request
                                 common-lisp:nil
@@ -553,7 +563,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class grafana-error))
 
 common-lisp:nil
 
@@ -760,7 +770,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class grafana-error))
 
 (smithy/sdk/shapes:define-type role smithy/sdk/smithy-types:string)
 
@@ -897,7 +907,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class grafana-error))
 
 (smithy/sdk/shapes:define-type sso-id smithy/sdk/smithy-types:string)
 
@@ -943,7 +953,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class grafana-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -1120,7 +1130,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class grafana-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

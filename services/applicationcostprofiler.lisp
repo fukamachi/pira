@@ -1,15 +1,25 @@
 (uiop/package:define-package #:pira/applicationcostprofiler (:use)
                              (:export #:awsapplication-cost-profiler
+                              #:access-denied-exception
                               #:delete-report-definition #:error-message
                               #:format #:get-report-definition
                               #:import-application-usage #:import-id #:integer
+                              #:internal-server-exception
                               #:list-report-definitions #:put-report-definition
                               #:report-definition #:report-definition-list
                               #:report-description #:report-frequency
                               #:report-id #:s3bucket #:s3bucket-region #:s3key
-                              #:s3location #:s3prefix #:source-s3location
-                              #:timestamp #:token #:update-report-definition))
+                              #:s3location #:s3prefix
+                              #:service-quota-exceeded-exception
+                              #:source-s3location #:throttling-exception
+                              #:timestamp #:token #:update-report-definition
+                              #:validation-exception
+                              #:applicationcostprofiler-error))
 (common-lisp:in-package #:pira/applicationcostprofiler)
+
+(common-lisp:define-condition applicationcostprofiler-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsapplication-cost-profiler :shape-name
                                    "AWSApplicationCostProfiler" :version
@@ -42,7 +52,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class applicationcostprofiler-error))
 
 (smithy/sdk/shapes:define-input delete-report-definition-request
                                 common-lisp:nil
@@ -112,7 +123,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class applicationcostprofiler-error))
 
 (smithy/sdk/shapes:define-input list-report-definitions-request common-lisp:nil
                                 ((next-token :target-type token :member-name
@@ -208,7 +220,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class applicationcostprofiler-error))
 
 (smithy/sdk/shapes:define-structure source-s3location common-lisp:nil
                                     ((bucket :target-type s3bucket :required
@@ -223,7 +236,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class applicationcostprofiler-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -257,7 +271,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class applicationcostprofiler-error))
 
 (smithy/sdk/operation:define-operation delete-report-definition :shape-name
                                        "DeleteReportDefinition" :input

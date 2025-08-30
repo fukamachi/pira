@@ -1,9 +1,10 @@
 (uiop/package:define-package #:pira/macie2 (:use)
                              (:export #:accept-invitation #:access-control-list
-                              #:account-detail #:account-level-permissions
-                              #:admin-account #:admin-status
-                              #:allow-list-criteria #:allow-list-status
-                              #:allow-list-status-code #:allow-list-summary
+                              #:access-denied-exception #:account-detail
+                              #:account-level-permissions #:admin-account
+                              #:admin-status #:allow-list-criteria
+                              #:allow-list-status #:allow-list-status-code
+                              #:allow-list-summary
                               #:allows-unencrypted-object-uploads
                               #:api-call-details #:assumed-role
                               #:auto-enable-mode #:automated-discovery-account
@@ -39,7 +40,8 @@
                               #:classification-scope-name
                               #:classification-scope-summary
                               #:classification-scope-update-operation
-                              #:create-allow-list #:create-classification-job
+                              #:conflict-exception #:create-allow-list
+                              #:create-classification-job
                               #:create-custom-data-identifier
                               #:create-findings-filter #:create-invitations
                               #:create-member #:create-sample-findings
@@ -89,7 +91,8 @@
                               #:get-sensitive-data-occurrences-availability
                               #:get-sensitivity-inspection-template
                               #:get-usage-statistics #:get-usage-totals
-                              #:group-by #:group-count #:iam-user #:invitation
+                              #:group-by #:group-count #:iam-user
+                              #:internal-server-exception #:invitation
                               #:ip-address-details #:ip-city #:ip-country
                               #:ip-geo-location #:ip-owner #:is-defined-in-job
                               #:is-monitored-by-job #:job-comparator
@@ -124,12 +127,13 @@
                               #:put-classification-export-configuration
                               #:put-findings-publication-configuration #:range
                               #:ranges #:record #:records #:relationship-status
-                              #:replication-details #:resource-profile-artifact
-                              #:resource-statistics #:resources-affected
-                              #:retrieval-configuration #:retrieval-mode
-                              #:reveal-configuration #:reveal-request-status
-                              #:reveal-status #:s3bucket
-                              #:s3bucket-criteria-for-job
+                              #:replication-details
+                              #:resource-not-found-exception
+                              #:resource-profile-artifact #:resource-statistics
+                              #:resources-affected #:retrieval-configuration
+                              #:retrieval-mode #:reveal-configuration
+                              #:reveal-request-status #:reveal-status
+                              #:s3bucket #:s3bucket-criteria-for-job
                               #:s3bucket-definition-for-job #:s3bucket-name
                               #:s3bucket-owner #:s3classification-scope
                               #:s3classification-scope-exclusion
@@ -157,6 +161,7 @@
                               #:sensitivity-inspection-template-includes
                               #:sensitivity-inspection-templates-entry
                               #:server-side-encryption #:service-limit
+                              #:service-quota-exceeded-exception
                               #:session-context #:session-context-attributes
                               #:session-issuer #:severity
                               #:severity-description #:severity-level
@@ -169,8 +174,9 @@
                               #:tag-criterion-pair-for-job #:tag-map
                               #:tag-resource #:tag-scope-term #:tag-target
                               #:tag-value-pair #:test-custom-data-identifier
-                              #:time-range #:timestamp #:type
-                              #:unavailability-reason-code #:unit
+                              #:throttling-exception #:time-range #:timestamp
+                              #:type #:unavailability-reason-code #:unit
+                              #:unprocessable-entity-exception
                               #:unprocessed-account #:untag-resource
                               #:update-allow-list
                               #:update-automated-discovery-configuration
@@ -192,7 +198,8 @@
                               #:usage-statistics-sort-key #:usage-total
                               #:usage-type #:user-identity #:user-identity-root
                               #:user-identity-type #:user-paused-details
-                              #:weekly-schedule #:boolean #:double #:integer
+                              #:validation-exception #:weekly-schedule
+                              #:boolean #:double #:integer
                               #:list-of-admin-account
                               #:list-of-allow-list-summary
                               #:list-of-automated-discovery-account
@@ -235,8 +242,12 @@
                               #:string-min22max22pattern-az0922
                               #:string-min3max255pattern-aza-z093255
                               #:string-min71max89pattern-arn-aws-aws-cn-aws-us-gov-macie2az19920d12allow-list-az0922
-                              #:timestamp-iso8601))
+                              #:timestamp-iso8601 #:macie2-error))
 (common-lisp:in-package #:pira/macie2)
+
+(common-lisp:define-condition macie2-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service macie2 :shape-name "Macie2" :version
                                    "2020-01-01" :title "Amazon Macie 2"
@@ -346,7 +357,7 @@
                                 ((message :target-type string :member-name
                                   "message" :json-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class macie2-error))
 
 (smithy/sdk/shapes:define-structure account-detail common-lisp:nil
                                     ((account-id :target-type string :required
@@ -980,7 +991,7 @@
                                 ((message :target-type string :member-name
                                   "message" :json-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class macie2-error))
 
 (smithy/sdk/shapes:define-input create-allow-list-request common-lisp:nil
                                 ((client-token :target-type string :required
@@ -2316,7 +2327,7 @@
                                 ((message :target-type string :member-name
                                   "message" :json-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class macie2-error))
 
 (smithy/sdk/shapes:define-structure invitation common-lisp:nil
                                     ((account-id :target-type string
@@ -3147,7 +3158,7 @@
                                 ((message :target-type string :member-name
                                   "message" :json-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class macie2-error))
 
 (smithy/sdk/shapes:define-structure resource-profile-artifact common-lisp:nil
                                     ((arn :target-type string :required
@@ -3662,7 +3673,7 @@
                                 ((message :target-type string :member-name
                                   "message" :json-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class macie2-error))
 
 (smithy/sdk/shapes:define-structure session-context common-lisp:nil
                                     ((attributes :target-type
@@ -3890,7 +3901,7 @@
                                 ((message :target-type string :member-name
                                   "message" :json-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class macie2-error))
 
 (smithy/sdk/shapes:define-enum time-range
     common-lisp:nil
@@ -3930,7 +3941,7 @@
                                   common-lisp:t :member-name "message"
                                   :json-name "message"))
                                 (:shape-name "UnprocessableEntityException")
-                                (:error-code 422))
+                                (:error-code 422) (:base-class macie2-error))
 
 (smithy/sdk/shapes:define-structure unprocessed-account common-lisp:nil
                                     ((account-id :target-type string
@@ -4338,7 +4349,7 @@
                                 ((message :target-type string :member-name
                                   "message" :json-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class macie2-error))
 
 (smithy/sdk/shapes:define-structure weekly-schedule common-lisp:nil
                                     ((day-of-week :target-type day-of-week

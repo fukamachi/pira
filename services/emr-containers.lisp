@@ -18,7 +18,8 @@
                               #:describe-job-template
                               #:describe-managed-endpoint
                               #:describe-security-configuration
-                              #:describe-virtual-cluster #:eks-info
+                              #:describe-virtual-cluster
+                              #:eksrequest-throttled-exception #:eks-info
                               #:encryption-configuration #:endpoint
                               #:endpoint-arn #:endpoint-state #:endpoint-states
                               #:endpoint-type #:endpoint-types #:endpoints
@@ -27,10 +28,11 @@
                               #:get-managed-endpoint-session-credentials
                               #:iamrole-arn
                               #:in-transit-encryption-configuration
-                              #:java-integer #:job-arn #:job-driver #:job-run
-                              #:job-run-state #:job-run-states #:job-runs
-                              #:job-template #:job-template-arn
-                              #:job-template-data #:job-templates #:kms-key-arn
+                              #:internal-server-exception #:java-integer
+                              #:job-arn #:job-driver #:job-run #:job-run-state
+                              #:job-run-states #:job-runs #:job-template
+                              #:job-template-arn #:job-template-data
+                              #:job-templates #:kms-key-arn
                               #:kubernetes-namespace
                               #:lake-formation-configuration #:list-job-runs
                               #:list-job-templates #:list-managed-endpoints
@@ -46,8 +48,10 @@
                               #:parametric-release-label
                               #:parametric-s3monitoring-configuration
                               #:persistent-app-ui #:release-label
-                              #:request-identity-user-arn #:resource-id-string
-                              #:resource-name-string
+                              #:request-identity-user-arn
+                              #:request-throttled-exception
+                              #:resource-id-string #:resource-name-string
+                              #:resource-not-found-exception
                               #:retry-policy-configuration
                               #:retry-policy-execution #:rotation-size
                               #:rsi-arn #:s3monitoring-configuration
@@ -69,10 +73,16 @@
                               #:template-parameter-data-type
                               #:template-parameter-input-map
                               #:template-parameter-name #:token
-                              #:untag-resource #:uri-string #:virtual-cluster
+                              #:untag-resource #:uri-string
+                              #:validation-exception #:virtual-cluster
                               #:virtual-cluster-arn #:virtual-cluster-state
-                              #:virtual-cluster-states #:virtual-clusters))
+                              #:virtual-cluster-states #:virtual-clusters
+                              #:emr-containers-error))
 (common-lisp:in-package #:pira/emr-containers)
+
+(common-lisp:define-condition emr-containers-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service aws-chicago-web-service :shape-name
                                    "AwsChicagoWebService" :version "2020-10-01"
@@ -472,7 +482,8 @@
                                 ((message :target-type string1024 :member-name
                                   "message"))
                                 (:shape-name "EKSRequestThrottledException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class emr-containers-error))
 
 (smithy/sdk/shapes:define-structure eks-info common-lisp:nil
                                     ((namespace :target-type
@@ -603,7 +614,8 @@
                                 ((message :target-type string1024 :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class emr-containers-error))
 
 (smithy/sdk/shapes:define-type java-integer smithy/sdk/smithy-types:integer)
 
@@ -994,7 +1006,8 @@
                                 ((message :target-type string1024 :member-name
                                   "message"))
                                 (:shape-name "RequestThrottledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class emr-containers-error))
 
 (smithy/sdk/shapes:define-type resource-id-string
                                smithy/sdk/smithy-types:string)
@@ -1006,7 +1019,8 @@
                                 ((message :target-type string1024 :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class emr-containers-error))
 
 (smithy/sdk/shapes:define-structure retry-policy-configuration common-lisp:nil
                                     ((max-attempts :target-type java-integer
@@ -1238,7 +1252,8 @@
                                 ((message :target-type string1024 :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class emr-containers-error))
 
 (smithy/sdk/shapes:define-structure virtual-cluster common-lisp:nil
                                     ((id :target-type resource-id-string

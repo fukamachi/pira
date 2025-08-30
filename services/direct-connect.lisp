@@ -58,6 +58,7 @@
                               #:describe-router-configuration #:describe-tags
                               #:describe-virtual-gateways
                               #:describe-virtual-interfaces
+                              #:direct-connect-client-exception
                               #:direct-connect-gateway
                               #:direct-connect-gateway-association
                               #:direct-connect-gateway-association-id
@@ -75,8 +76,10 @@
                               #:direct-connect-gateway-list
                               #:direct-connect-gateway-name
                               #:direct-connect-gateway-state
+                              #:direct-connect-server-exception
                               #:disassociate-connection-from-lag
-                              #:disassociate-mac-sec-key #:enable-site-link
+                              #:disassociate-mac-sec-key
+                              #:duplicate-tag-keys-exception #:enable-site-link
                               #:encryption-mode #:end-time #:error-message
                               #:failure-test-history-status
                               #:gateway-id-to-associate #:gateway-identifier
@@ -115,7 +118,8 @@
                               #:status #:stop-bgp-failover-test #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-value #:test-duration #:test-id
-                              #:untag-resource #:update-connection
+                              #:too-many-tags-exception #:untag-resource
+                              #:update-connection
                               #:update-direct-connect-gateway
                               #:update-direct-connect-gateway-association
                               #:update-lag
@@ -131,8 +135,13 @@
                               #:virtual-interface-test-history-list
                               #:virtual-interface-type #:virtual-interfaces
                               #:xslt-template-name
-                              #:xslt-template-name-for-mac-sec))
+                              #:xslt-template-name-for-mac-sec
+                              #:direct-connect-error))
 (common-lisp:in-package #:pira/direct-connect)
+
+(common-lisp:define-condition direct-connect-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service overture-service :shape-name
                                    "OvertureService" :version "2012-10-25"
@@ -1164,7 +1173,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DirectConnectClientException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class direct-connect-error))
 
 (smithy/sdk/shapes:define-structure direct-connect-gateway common-lisp:nil
                                     ((direct-connect-gateway-id :target-type
@@ -1342,7 +1352,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DirectConnectServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class direct-connect-error))
 
 (smithy/sdk/shapes:define-input disassociate-connection-from-lag-request
                                 common-lisp:nil
@@ -1375,7 +1386,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DuplicateTagKeysException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class direct-connect-error))
 
 (smithy/sdk/shapes:define-type enable-site-link smithy/sdk/smithy-types:boolean)
 
@@ -2001,7 +2013,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class direct-connect-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type resource-arn

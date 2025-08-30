@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/inspector (:use)
                              (:export #:access-denied-error-code
+                              #:access-denied-exception
                               #:add-attributes-to-findings
                               #:add-remove-attributes-finding-arn-list
                               #:agent-already-running-assessment
@@ -7,14 +8,16 @@
                               #:agent-filter #:agent-health #:agent-health-code
                               #:agent-health-code-list #:agent-health-list
                               #:agent-id #:agent-id-list #:agent-preview
-                              #:agent-preview-list #:agent-version #:ami-id
-                              #:arn #:arn-count
+                              #:agent-preview-list #:agent-version
+                              #:agents-already-running-assessment-exception
+                              #:ami-id #:arn #:arn-count
                               #:assessment-rules-package-arn-list
                               #:assessment-run #:assessment-run-agent
                               #:assessment-run-agent-list
                               #:assessment-run-duration #:assessment-run-filter
                               #:assessment-run-finding-counts
                               #:assessment-run-in-progress-arn-list
+                              #:assessment-run-in-progress-exception
                               #:assessment-run-list #:assessment-run-name
                               #:assessment-run-notification
                               #:assessment-run-notification-list
@@ -60,10 +63,14 @@
                               #:get-exclusions-preview #:get-telemetry-metadata
                               #:hostname #:inspector-event #:inspector-service
                               #:inspector-service-attributes
+                              #:internal-exception
                               #:invalid-cross-account-role-error-code
-                              #:invalid-input-error-code #:ioc-confidence
+                              #:invalid-cross-account-role-exception
+                              #:invalid-input-error-code
+                              #:invalid-input-exception #:ioc-confidence
                               #:ipv4address #:ipv4address-list #:ipv6addresses
                               #:kernel-version #:limit-exceeded-error-code
+                              #:limit-exceeded-exception
                               #:list-assessment-run-agents
                               #:list-assessment-runs #:list-assessment-targets
                               #:list-assessment-templates
@@ -75,12 +82,14 @@
                               #:list-tags-for-resource #:locale #:long
                               #:message #:message-type #:name-pattern
                               #:network-interface #:network-interfaces
-                              #:no-such-entity-error-code #:numeric-severity
+                              #:no-such-entity-error-code
+                              #:no-such-entity-exception #:numeric-severity
                               #:numeric-version #:operating-system
                               #:pagination-token #:preview-agents
-                              #:preview-agents-max-results #:preview-status
-                              #:private-ip #:private-ip-addresses
-                              #:provider-name
+                              #:preview-agents-max-results
+                              #:preview-generation-in-progress-exception
+                              #:preview-status #:private-ip
+                              #:private-ip-addresses #:provider-name
                               #:register-cross-account-access-role
                               #:remove-attributes-from-findings
                               #:report-file-format #:report-status
@@ -91,6 +100,7 @@
                               #:rules-package-list #:rules-package-name #:scope
                               #:scope-list #:scope-type #:scope-value
                               #:security-group #:security-groups #:service-name
+                              #:service-temporarily-unavailable-exception
                               #:set-tags-for-resource #:severity
                               #:severity-list #:start-assessment-run
                               #:stop-action #:stop-assessment-run
@@ -99,10 +109,15 @@
                               #:tag-value #:tags #:telemetry-metadata
                               #:telemetry-metadata-list #:text #:timestamp
                               #:timestamp-range #:uuid #:unsubscribe-from-event
+                              #:unsupported-feature-exception
                               #:update-assessment-target #:url
                               #:user-attribute-key-list #:user-attribute-list
-                              #:version))
+                              #:version #:inspector-error))
 (common-lisp:in-package #:pira/inspector)
+
+(common-lisp:define-condition inspector-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service inspector-service :shape-name
                                    "InspectorService" :version "2016-02-16"
@@ -168,7 +183,7 @@
                                  (can-retry :target-type bool :required
                                   common-lisp:t :member-name "canRetry"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class inspector-error))
 
 (smithy/sdk/shapes:define-input add-attributes-to-findings-request
                                 common-lisp:nil
@@ -278,7 +293,7 @@
                                   common-lisp:t :member-name "canRetry"))
                                 (:shape-name
                                  "AgentsAlreadyRunningAssessmentException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class inspector-error))
 
 (smithy/sdk/shapes:define-type ami-id smithy/sdk/smithy-types:string)
 
@@ -411,7 +426,7 @@
                                   common-lisp:t :member-name "canRetry"))
                                 (:shape-name
                                  "AssessmentRunInProgressException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class inspector-error))
 
 (smithy/sdk/shapes:define-list assessment-run-list :member assessment-run)
 
@@ -1081,7 +1096,7 @@
                                  (can-retry :target-type bool :required
                                   common-lisp:t :member-name "canRetry"))
                                 (:shape-name "InternalException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class inspector-error))
 
 (smithy/sdk/shapes:define-enum invalid-cross-account-role-error-code
     common-lisp:nil
@@ -1101,7 +1116,7 @@
                                   common-lisp:t :member-name "canRetry"))
                                 (:shape-name
                                  "InvalidCrossAccountRoleException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class inspector-error))
 
 (smithy/sdk/shapes:define-enum invalid-input-error-code
     common-lisp:nil
@@ -1184,7 +1199,7 @@
                                  (can-retry :target-type bool :required
                                   common-lisp:t :member-name "canRetry"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class inspector-error))
 
 (smithy/sdk/shapes:define-type ioc-confidence smithy/sdk/smithy-types:integer)
 
@@ -1213,7 +1228,7 @@
                                  (can-retry :target-type bool :required
                                   common-lisp:t :member-name "canRetry"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class inspector-error))
 
 (smithy/sdk/shapes:define-input list-assessment-run-agents-request
                                 common-lisp:nil
@@ -1457,7 +1472,7 @@
                                  (can-retry :target-type bool :required
                                   common-lisp:t :member-name "canRetry"))
                                 (:shape-name "NoSuchEntityException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class inspector-error))
 
 (smithy/sdk/shapes:define-type numeric-severity smithy/sdk/smithy-types:double)
 
@@ -1495,7 +1510,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
                                  "PreviewGenerationInProgressException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class inspector-error))
 
 (smithy/sdk/shapes:define-enum preview-status
     common-lisp:nil
@@ -1637,7 +1652,7 @@
                                   common-lisp:t :member-name "canRetry"))
                                 (:shape-name
                                  "ServiceTemporarilyUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class inspector-error))
 
 (smithy/sdk/shapes:define-input set-tags-for-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -1762,7 +1777,7 @@
                                  (can-retry :target-type bool :required
                                   common-lisp:t :member-name "canRetry"))
                                 (:shape-name "UnsupportedFeatureException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class inspector-error))
 
 (smithy/sdk/shapes:define-input update-assessment-target-request
                                 common-lisp:nil

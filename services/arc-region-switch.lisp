@@ -1,9 +1,9 @@
 (uiop/package:define-package #:pira/arc-region-switch (:use)
                              (:export #:abbreviated-execution
                               #:abbreviated-executions-list #:abbreviated-plan
-                              #:account-id #:alarm-condition #:alarm-type
-                              #:approval #:approve-plan-execution-step
-                              #:arc-region-switch
+                              #:access-denied-exception #:account-id
+                              #:alarm-condition #:alarm-type #:approval
+                              #:approve-plan-execution-step #:arc-region-switch
                               #:arc-routing-control-configuration
                               #:arc-routing-control-state
                               #:arc-routing-control-states #:asg #:asg-arn
@@ -39,6 +39,9 @@
                               #:global-aurora-ungraceful
                               #:global-aurora-ungraceful-behavior
                               #:global-cluster-identifier #:iam-role-arn
+                              #:illegal-argument-exception
+                              #:illegal-state-exception
+                              #:internal-server-exception
                               #:kubernetes-namespace #:kubernetes-resource-type
                               #:kubernetes-scaling-application
                               #:kubernetes-scaling-apps
@@ -60,9 +63,9 @@
                               #:region-switch-plan
                               #:region-switch-plan-configuration
                               #:region-to-run-in #:regional-scaling-resource
-                              #:resource-arn #:resource-warning
-                              #:resource-warning-status #:resources #:role-arn
-                              #:route53health-check
+                              #:resource-arn #:resource-not-found-exception
+                              #:resource-warning #:resource-warning-status
+                              #:resources #:role-arn #:route53health-check
                               #:route53health-check-configuration
                               #:route53health-check-id
                               #:route53health-check-list
@@ -82,8 +85,13 @@
                               #:update-plan-execution-action
                               #:update-plan-execution-step
                               #:update-plan-execution-step-action #:workflow
-                              #:workflow-list #:workflow-target-action))
+                              #:workflow-list #:workflow-target-action
+                              #:arc-region-switch-error))
 (common-lisp:in-package #:pira/arc-region-switch)
+
+(common-lisp:define-condition arc-region-switch-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service arc-region-switch :shape-name
                                    "ArcRegionSwitch" :version "2022-07-26"
@@ -217,7 +225,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class arc-region-switch-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -846,21 +855,24 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "IllegalArgumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class arc-region-switch-error))
 
 (smithy/sdk/shapes:define-error illegal-state-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "IllegalStateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class arc-region-switch-error))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class arc-region-switch-error))
 
 (smithy/sdk/shapes:define-type kubernetes-namespace
                                smithy/sdk/smithy-types:string)
@@ -1149,7 +1161,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class arc-region-switch-error))
 
 (smithy/sdk/shapes:define-structure resource-warning common-lisp:nil
                                     ((workflow :target-type minimal-workflow

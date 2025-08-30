@@ -6,7 +6,7 @@
                               #:get-service-settings
                               #:get-service-settings-request
                               #:get-service-settings-response #:instance
-                              #:instance-list
+                              #:instance-list #:internal-server-exception
                               #:license-manager-linux-subscriptions
                               #:linux-subscriptions-discovery
                               #:linux-subscriptions-discovery-settings
@@ -22,17 +22,24 @@
                               #:register-subscription-provider
                               #:registered-subscription-provider
                               #:registered-subscription-provider-list
-                              #:secret-arn #:status #:string-list #:string-map
+                              #:resource-not-found-exception #:secret-arn
+                              #:status #:string-list #:string-map
                               #:subscription #:subscription-list
                               #:subscription-provider-arn
                               #:subscription-provider-source
                               #:subscription-provider-source-list
                               #:subscription-provider-status #:tag-key-list
-                              #:tag-resource #:tags #:untag-resource
-                              #:update-service-settings
+                              #:tag-resource #:tags #:throttling-exception
+                              #:untag-resource #:update-service-settings
                               #:update-service-settings-request
-                              #:update-service-settings-response))
+                              #:update-service-settings-response
+                              #:validation-exception
+                              #:license-manager-linux-subscriptions-error))
 (common-lisp:in-package #:pira/license-manager-linux-subscriptions)
+
+(common-lisp:define-condition license-manager-linux-subscriptions-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service license-manager-linux-subscriptions
                                    :shape-name
@@ -211,7 +218,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class
+                                 license-manager-linux-subscriptions-error))
 
 (smithy/sdk/shapes:define-type linux-subscriptions-discovery
                                smithy/sdk/smithy-types:string)
@@ -375,7 +384,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 license-manager-linux-subscriptions-error))
 
 (smithy/sdk/shapes:define-type secret-arn smithy/sdk/smithy-types:string)
 
@@ -436,7 +447,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 license-manager-linux-subscriptions-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -496,7 +509,9 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 license-manager-linux-subscriptions-error))
 
 (smithy/sdk/operation:define-operation deregister-subscription-provider
                                        :shape-name

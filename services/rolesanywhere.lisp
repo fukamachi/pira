@@ -1,8 +1,9 @@
 (uiop/package:define-package #:pira/rolesanywhere (:use)
-                             (:export #:amazon-resource-name
-                              #:attribute-mapping #:attribute-mappings
-                              #:certificate-field #:create-profile
-                              #:create-profile-request #:create-trust-anchor
+                             (:export #:access-denied-exception
+                              #:amazon-resource-name #:attribute-mapping
+                              #:attribute-mappings #:certificate-field
+                              #:create-profile #:create-profile-request
+                              #:create-trust-anchor
                               #:create-trust-anchor-request
                               #:credential-summaries #:credential-summary #:crl
                               #:crl-detail #:crl-detail-response #:crl-details
@@ -35,7 +36,8 @@
                               #:profile-details #:put-attribute-mapping
                               #:put-notification-settings
                               #:reset-notification-settings #:resource-name
-                              #:role-arn #:role-arn-list #:roles-anywhere
+                              #:resource-not-found-exception #:role-arn
+                              #:role-arn-list #:roles-anywhere
                               #:scalar-crl-request #:scalar-profile-request
                               #:scalar-subject-request
                               #:scalar-trust-anchor-request #:source
@@ -45,16 +47,21 @@
                               #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-resource-request
                               #:tag-resource-response #:tag-value
-                              #:trust-anchor #:trust-anchor-arn
-                              #:trust-anchor-detail
+                              #:too-many-tags-exception #:trust-anchor
+                              #:trust-anchor-arn #:trust-anchor-detail
                               #:trust-anchor-detail-response
                               #:trust-anchor-details #:trust-anchor-type
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:update-crl
                               #:update-crl-request #:update-profile
                               #:update-profile-request #:update-trust-anchor
-                              #:update-trust-anchor-request #:uuid))
+                              #:update-trust-anchor-request #:uuid
+                              #:validation-exception #:rolesanywhere-error))
 (common-lisp:in-package #:pira/rolesanywhere)
+
+(common-lisp:define-condition rolesanywhere-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service roles-anywhere :shape-name "RolesAnywhere"
                                    :version "2018-05-10" :title
@@ -77,7 +84,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class rolesanywhere-error))
 
 (smithy/sdk/shapes:define-type amazon-resource-name
                                smithy/sdk/smithy-types:string)
@@ -489,7 +497,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class rolesanywhere-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -638,7 +647,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rolesanywhere-error))
 
 common-lisp:nil
 
@@ -745,7 +755,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class rolesanywhere-error))
 
 (smithy/sdk/operation:define-operation create-profile :shape-name
                                        "CreateProfile" :input

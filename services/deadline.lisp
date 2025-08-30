@@ -6,9 +6,9 @@
                               #:accelerator-selections
                               #:accelerator-total-memory-mi-brange
                               #:accelerator-type #:accelerator-types
-                              #:access-key-id #:acquired-limit
-                              #:acquired-limits #:aggregation-id
-                              #:allowed-storage-profile-ids
+                              #:access-denied-exception #:access-key-id
+                              #:acquired-limit #:acquired-limits
+                              #:aggregation-id #:allowed-storage-profile-ids
                               #:amount-capability-name
                               #:amount-requirement-name
                               #:assigned-environment-enter-session-action-definition
@@ -42,7 +42,7 @@
                               #:budget-summary #:cancel-session-actions
                               #:client-token #:combination-expression
                               #:comparison-operator #:completed-status
-                              #:conflict-exception-reason
+                              #:conflict-exception #:conflict-exception-reason
                               #:consumed-usage-limit #:consumed-usages
                               #:copy-job-template #:cpu-architecture-type
                               #:create-budget #:create-farm #:create-fleet
@@ -124,9 +124,9 @@
                               #:identity-center-principal-id
                               #:identity-store-id #:instance-type
                               #:instance-types #:int-string #:integer
-                              #:ip-addresses #:ip-v4address #:ip-v4addresses
-                              #:ip-v6address #:ip-v6addresses
-                              #:job-attachment-details-entity
+                              #:internal-server-error-exception #:ip-addresses
+                              #:ip-v4address #:ip-v4addresses #:ip-v6address
+                              #:ip-v6addresses #:job-attachment-details-entity
                               #:job-attachment-details-error
                               #:job-attachment-details-identifiers
                               #:job-attachment-settings
@@ -203,7 +203,8 @@
                               #:queue-member-list #:queue-resource
                               #:queue-status #:queue-summaries #:queue-summary
                               #:required-file-system-location-names
-                              #:resource-name #:response-budget-action
+                              #:resource-name #:resource-not-found-exception
+                              #:response-budget-action
                               #:response-budget-action-list #:run-as
                               #:s3bucket-name #:s3key #:s3location #:s3prefix
                               #:search-filter-expression
@@ -220,6 +221,7 @@
                               #:service-managed-ec2instance-capabilities
                               #:service-managed-ec2instance-market-options
                               #:service-managed-fleet-operating-system-family
+                              #:service-quota-exceeded-exception
                               #:service-quota-exceeded-exception-reason
                               #:session-action-definition
                               #:session-action-definition-summary
@@ -276,9 +278,9 @@
                               #:task-search-summaries #:task-search-summary
                               #:task-summaries #:task-summary
                               #:task-target-run-status #:threshold-percentage
-                              #:timestamp #:timezone #:total-results
-                              #:untag-resource #:update-budget #:update-farm
-                              #:update-fleet #:update-job
+                              #:throttling-exception #:timestamp #:timezone
+                              #:total-results #:untag-resource #:update-budget
+                              #:update-farm #:update-fleet #:update-job
                               #:update-job-lifecycle-status #:update-limit
                               #:update-monitor #:update-queue
                               #:update-queue-environment
@@ -296,6 +298,7 @@
                               #:usage-statistic #:usage-statistics
                               #:usage-tracking-resource #:usage-type #:user-id
                               #:user-jobs-first #:vcpu-count-range
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vpc-configuration
@@ -309,8 +312,12 @@
                               #:worker-resource #:worker-search-summaries
                               #:worker-search-summary #:worker-session-summary
                               #:worker-status #:worker-summaries
-                              #:worker-summary))
+                              #:worker-summary #:deadline-error))
 (common-lisp:in-package #:pira/deadline)
+
+(common-lisp:define-condition deadline-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service deadline :shape-name "Deadline" :version
                                    "2023-10-12" :title "AWSDeadlineCloud"
@@ -472,7 +479,7 @@
                                  (context :target-type exception-context
                                   :member-name "context"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class deadline-error))
 
 (smithy/sdk/shapes:define-type access-key-id smithy/sdk/smithy-types:string)
 
@@ -972,7 +979,7 @@ common-lisp:nil
                                  (context :target-type exception-context
                                   :member-name "context"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class deadline-error))
 
 (smithy/sdk/shapes:define-enum conflict-exception-reason
     common-lisp:nil
@@ -2959,7 +2966,7 @@ common-lisp:nil
                                   :member-name "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class deadline-error))
 
 (smithy/sdk/shapes:define-structure ip-addresses common-lisp:nil
                                     ((ip-v4addresses :target-type
@@ -4454,7 +4461,7 @@ common-lisp:nil
                                  (context :target-type exception-context
                                   :member-name "context"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class deadline-error))
 
 (smithy/sdk/shapes:define-structure response-budget-action common-lisp:nil
                                     ((type :target-type budget-action-type
@@ -4769,7 +4776,7 @@ common-lisp:nil
                                  (context :target-type exception-context
                                   :member-name "context"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class deadline-error))
 
 (smithy/sdk/shapes:define-enum service-quota-exceeded-exception-reason
     common-lisp:nil
@@ -5504,7 +5511,7 @@ common-lisp:nil
                                  (context :target-type exception-context
                                   :member-name "context"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class deadline-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -6088,7 +6095,7 @@ common-lisp:nil
                                  (context :target-type exception-context
                                   :member-name "context"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class deadline-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type string :required

@@ -50,15 +50,21 @@
                               #:device-operating-system-list #:device-type
                               #:device-type-list #:device-user-agent
                               #:device-user-agent-list #:directory-id
+                              #:directory-in-use-exception
+                              #:directory-service-authentication-failed-exception
+                              #:directory-unavailable-exception
                               #:disassociate-delegate-from-resource
                               #:disassociate-member-from-group #:dns-record
                               #:dns-record-verification-status #:dns-records
                               #:domain #:domain-name #:domains #:email-address
-                              #:entity-identifier #:entity-state #:entity-type
-                              #:ews-availability-provider #:expires-in
-                              #:external-user-name #:folder-configuration
-                              #:folder-configurations #:folder-name
-                              #:get-access-control-effect
+                              #:email-address-in-use-exception
+                              #:entity-already-registered-exception
+                              #:entity-identifier #:entity-not-found-exception
+                              #:entity-state #:entity-state-exception
+                              #:entity-type #:ews-availability-provider
+                              #:expires-in #:external-user-name
+                              #:folder-configuration #:folder-configurations
+                              #:folder-name #:get-access-control-effect
                               #:get-default-retention-policy
                               #:get-impersonation-role
                               #:get-impersonation-role-effect #:get-mail-domain
@@ -88,9 +94,13 @@
                               #:impersonation-rule-description
                               #:impersonation-rule-id #:impersonation-rule-list
                               #:impersonation-rule-name #:impersonation-token
-                              #:instance-arn #:ip-address #:ip-range
-                              #:ip-range-list #:jobs #:kms-key-arn #:lambda-arn
-                              #:lambda-availability-provider
+                              #:instance-arn #:invalid-configuration-exception
+                              #:invalid-custom-ses-configuration-exception
+                              #:invalid-parameter-exception
+                              #:invalid-password-exception #:ip-address
+                              #:ip-range #:ip-range-list #:jobs #:kms-key-arn
+                              #:lambda-arn #:lambda-availability-provider
+                              #:limit-exceeded-exception
                               #:list-access-control-rules #:list-aliases
                               #:list-availability-configurations
                               #:list-group-members #:list-groups
@@ -106,6 +116,9 @@
                               #:list-resource-delegates #:list-resources
                               #:list-resources-filters #:list-tags-for-resource
                               #:list-users #:list-users-filters #:log-group-arn
+                              #:mail-domain-in-use-exception
+                              #:mail-domain-not-found-exception
+                              #:mail-domain-state-exception
                               #:mail-domain-summary #:mail-domains
                               #:mailbox-export-error-info #:mailbox-export-job
                               #:mailbox-export-job-id
@@ -122,8 +135,11 @@
                               #:mobile-device-access-rule-id
                               #:mobile-device-access-rule-name
                               #:mobile-device-access-rules-list
+                              #:name-availability-exception
                               #:new-resource-description #:next-token
                               #:organization-id #:organization-name
+                              #:organization-not-found-exception
+                              #:organization-state-exception
                               #:organization-summaries #:organization-summary
                               #:password #:percentage #:permission
                               #:permission-type #:permission-values
@@ -146,15 +162,19 @@
                               #:put-retention-policy
                               #:redacted-ews-availability-provider
                               #:register-mail-domain #:register-to-work-mail
-                              #:reset-password #:resource #:resource-delegates
+                              #:reserved-name-exception #:reset-password
+                              #:resource #:resource-delegates
                               #:resource-description #:resource-id
-                              #:resource-name #:resource-type #:resources
-                              #:retention-action #:retention-period #:role-arn
-                              #:s3bucket-name #:s3object-key #:short-string
+                              #:resource-name #:resource-not-found-exception
+                              #:resource-type #:resources #:retention-action
+                              #:retention-period #:role-arn #:s3bucket-name
+                              #:s3object-key #:short-string
                               #:start-mailbox-export-job #:string #:tag
                               #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-value #:target-users
                               #:test-availability-configuration #:timestamp
+                              #:too-many-tags-exception
+                              #:unsupported-operation-exception
                               #:untag-resource
                               #:update-availability-configuration
                               #:update-default-mail-domain #:update-group
@@ -165,8 +185,12 @@
                               #:update-user #:url #:user #:user-attribute
                               #:user-id-list #:user-name #:user-role #:users
                               #:work-mail-domain-name #:work-mail-identifier
-                              #:work-mail-service))
+                              #:work-mail-service #:workmail-error))
 (common-lisp:in-package #:pira/workmail)
+
+(common-lisp:define-condition workmail-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service work-mail-service :shape-name
                                    "WorkMailService" :version "2017-10-01"
@@ -1231,19 +1255,19 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "DirectoryInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-error
  directory-service-authentication-failed-exception common-lisp:nil
  ((message :target-type string :member-name "Message"))
  (:shape-name "DirectoryServiceAuthenticationFailedException")
- (:error-code 400))
+ (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-error directory-unavailable-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "DirectoryUnavailableException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-input disassociate-delegate-from-resource-request
                                 common-lisp:nil
@@ -1319,7 +1343,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EmailAddressInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-error entity-already-registered-exception
                                 common-lisp:nil
@@ -1327,7 +1351,7 @@
                                   "Message"))
                                 (:shape-name
                                  "EntityAlreadyRegisteredException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-type entity-identifier smithy/sdk/smithy-types:string)
 
@@ -1335,7 +1359,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EntityNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-enum entity-state
     common-lisp:nil
@@ -1347,7 +1371,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EntityStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-enum entity-type
     common-lisp:nil
@@ -1780,7 +1804,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidConfigurationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-error invalid-custom-ses-configuration-exception
                                 common-lisp:nil
@@ -1788,19 +1812,19 @@
                                   "Message"))
                                 (:shape-name
                                  "InvalidCustomSesConfigurationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-error invalid-password-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidPasswordException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-type ip-address smithy/sdk/smithy-types:string)
 
@@ -1825,7 +1849,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-input list-access-control-rules-request
                                 common-lisp:nil
@@ -2220,19 +2244,19 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "MailDomainInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-error mail-domain-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "MailDomainNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-error mail-domain-state-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "MailDomainStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-structure mail-domain-summary common-lisp:nil
                                     ((domain-name :target-type domain-name
@@ -2406,7 +2430,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NameAvailabilityException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-type new-resource-description
                                smithy/sdk/smithy-types:string)
@@ -2422,13 +2446,13 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "OrganizationNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-error organization-state-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "OrganizationStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-list organization-summaries :member
                                organization-summary)
@@ -2735,7 +2759,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ReservedNameException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-input reset-password-request common-lisp:nil
                                 ((organization-id :target-type organization-id
@@ -2785,7 +2809,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -2903,13 +2927,13 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-error unsupported-operation-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnsupportedOperationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class workmail-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type

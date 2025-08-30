@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/mpa (:use)
-                             (:export #:awsfluffy-core-service #:account-id
+                             (:export #:awsfluffy-core-service
+                              #:access-denied-exception #:account-id
                               #:action-completion-strategy #:action-name
                               #:approval-strategy #:approval-strategy-response
                               #:approval-team #:approval-team-arn
@@ -8,8 +9,8 @@
                               #:approval-team-request-approvers
                               #:approval-team-status
                               #:approval-team-status-code #:cancel-session
-                              #:create-approval-team #:create-identity-source
-                              #:delete-identity-source
+                              #:conflict-exception #:create-approval-team
+                              #:create-identity-source #:delete-identity-source
                               #:delete-inactive-approval-team-version
                               #:description #:filter #:filter-field #:filters
                               #:get-approval-team
@@ -30,7 +31,8 @@
                               #:identity-source-status
                               #:identity-source-status-code
                               #:identity-source-type #:identity-sources
-                              #:identity-status #:iso-timestamp
+                              #:identity-status #:internal-server-exception
+                              #:invalid-parameter-exception #:iso-timestamp
                               #:list-approval-teams
                               #:list-approval-teams-response-approval-team
                               #:list-approval-teams-response-approval-teams
@@ -48,17 +50,26 @@
                               #:policy-type #:policy-version
                               #:policy-version-id #:policy-version-summary
                               #:policy-versions #:qualified-policy-arn #:region
-                              #:requester-comment #:service-principal #:session
+                              #:requester-comment
+                              #:resource-not-found-exception
+                              #:service-principal
+                              #:service-quota-exceeded-exception #:session
                               #:session-arn #:session-execution-status
                               #:session-key #:session-metadata
                               #:session-response #:session-status
                               #:session-status-code #:session-value
                               #:start-active-approval-team-deletion #:string
                               #:tag-key #:tag-key-list #:tag-resource
-                              #:tag-value #:tags #:token
+                              #:tag-value #:tags #:throttling-exception #:token
+                              #:too-many-tags-exception
                               #:unqualified-policy-arn #:untag-resource
-                              #:update-approval-team))
+                              #:update-approval-team #:validation-exception
+                              #:mpa-error))
 (common-lisp:in-package #:pira/mpa)
+
+(common-lisp:define-condition mpa-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsfluffy-core-service :shape-name
                                    "AWSFluffyCoreService" :version "2022-07-26"
@@ -115,7 +126,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class mpa-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -191,7 +202,7 @@ common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class mpa-error))
 
 (smithy/sdk/shapes:define-input create-approval-team-request common-lisp:nil
                                 ((client-token :target-type token :member-name
@@ -607,13 +618,13 @@ common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class mpa-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class mpa-error))
 
 (smithy/sdk/shapes:define-type iso-timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -995,7 +1006,7 @@ common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class mpa-error))
 
 (smithy/sdk/shapes:define-type service-principal smithy/sdk/smithy-types:string)
 
@@ -1004,7 +1015,7 @@ common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class mpa-error))
 
 common-lisp:nil
 
@@ -1091,7 +1102,7 @@ common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class mpa-error))
 
 (smithy/sdk/shapes:define-type token smithy/sdk/smithy-types:string)
 
@@ -1101,7 +1112,7 @@ common-lisp:nil
                                  (resource-name :target-type string
                                   :member-name "ResourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class mpa-error))
 
 (smithy/sdk/shapes:define-type unqualified-policy-arn
                                smithy/sdk/smithy-types:string)
@@ -1141,7 +1152,7 @@ common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class mpa-error))
 
 (smithy/sdk/operation:define-operation cancel-session :shape-name
                                        "CancelSession" :input

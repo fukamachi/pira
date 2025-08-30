@@ -5,9 +5,16 @@
                               #:filter-value #:filter-value-list
                               #:get-entitlement-filter-name
                               #:get-entitlement-filters #:get-entitlements
-                              #:integer #:non-empty-string #:page-size-integer
-                              #:product-code #:string #:timestamp))
+                              #:integer #:internal-service-error-exception
+                              #:invalid-parameter-exception #:non-empty-string
+                              #:page-size-integer #:product-code #:string
+                              #:throttling-exception #:timestamp
+                              #:marketplace-entitlement-service-error))
 (common-lisp:in-package #:pira/marketplace-entitlement-service)
+
+(common-lisp:define-condition marketplace-entitlement-service-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsmpentitlement-service :shape-name
                                    "AWSMPEntitlementService" :version
@@ -106,13 +113,17 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServiceErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class
+                                 marketplace-entitlement-service-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 marketplace-entitlement-service-error))
 
 (smithy/sdk/shapes:define-type non-empty-string smithy/sdk/smithy-types:string)
 
@@ -127,7 +138,9 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 marketplace-entitlement-service-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 

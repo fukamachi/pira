@@ -1,11 +1,20 @@
 (uiop/package:define-package #:pira/kinesis-video-signaling (:use)
                              (:export #:awsacuity-signaling-service #:answer
-                              #:client-id #:error-message
-                              #:get-ice-server-config #:ice-server
-                              #:ice-server-list #:message-payload #:password
-                              #:resource-arn #:send-alexa-offer-to-master
-                              #:service #:ttl #:uri #:uris #:username))
+                              #:client-id #:client-limit-exceeded-exception
+                              #:error-message #:get-ice-server-config
+                              #:ice-server #:ice-server-list
+                              #:invalid-argument-exception
+                              #:invalid-client-exception #:message-payload
+                              #:not-authorized-exception #:password
+                              #:resource-arn #:resource-not-found-exception
+                              #:send-alexa-offer-to-master #:service
+                              #:session-expired-exception #:ttl #:uri #:uris
+                              #:username #:kinesis-video-signaling-error))
 (common-lisp:in-package #:pira/kinesis-video-signaling)
+
+(common-lisp:define-condition kinesis-video-signaling-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsacuity-signaling-service :shape-name
                                    "AWSAcuitySignalingService" :version
@@ -35,7 +44,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ClientLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-signaling-error))
 
 (smithy/sdk/shapes:define-type error-message smithy/sdk/smithy-types:string)
 
@@ -72,13 +82,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-signaling-error))
 
 (smithy/sdk/shapes:define-error invalid-client-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidClientException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-signaling-error))
 
 (smithy/sdk/shapes:define-type message-payload smithy/sdk/smithy-types:string)
 
@@ -86,7 +98,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NotAuthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class kinesis-video-signaling-error))
 
 (smithy/sdk/shapes:define-type password smithy/sdk/smithy-types:string)
 
@@ -96,7 +109,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class kinesis-video-signaling-error))
 
 (smithy/sdk/shapes:define-input send-alexa-offer-to-master-request
                                 common-lisp:nil
@@ -125,7 +139,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "SessionExpiredException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-video-signaling-error))
 
 (smithy/sdk/shapes:define-type ttl smithy/sdk/smithy-types:integer)
 

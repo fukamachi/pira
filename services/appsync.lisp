@@ -1,31 +1,37 @@
 (uiop/package:define-package #:pira/appsync (:use)
                              (:export #:awsdeepdish-control-plane-service
+                              #:access-denied-exception
                               #:additional-authentication-provider
                               #:additional-authentication-providers #:api
                               #:api-association #:api-cache #:api-cache-status
                               #:api-cache-type #:api-caching-behavior #:api-key
-                              #:api-keys #:api-name #:apis #:app-sync-runtime
+                              #:api-key-limit-exceeded-exception
+                              #:api-key-validity-out-of-bounds-exception
+                              #:api-keys #:api-limit-exceeded-exception
+                              #:api-name #:apis #:app-sync-runtime
                               #:associate-api #:associate-merged-graphql-api
                               #:associate-source-graphql-api
                               #:association-status #:auth-mode #:auth-modes
                               #:auth-provider #:auth-providers
                               #:authentication-type #:authorization-config
                               #:authorization-type #:aws-iam-config
-                              #:bad-request-detail #:bad-request-reason #:blob
-                              #:boolean #:boolean-value
-                              #:cache-health-metrics-config #:caching-config
-                              #:caching-keys #:certificate-arn
+                              #:bad-request-detail #:bad-request-exception
+                              #:bad-request-reason #:blob #:boolean
+                              #:boolean-value #:cache-health-metrics-config
+                              #:caching-config #:caching-keys #:certificate-arn
                               #:channel-namespace #:channel-namespaces #:code
                               #:code-error #:code-error-column
                               #:code-error-line #:code-error-location
                               #:code-error-span #:code-errors #:cognito-config
                               #:cognito-user-pool-config
-                              #:conflict-detection-type #:conflict-handler-type
-                              #:context #:create-api #:create-api-cache
-                              #:create-api-key #:create-channel-namespace
-                              #:create-data-source #:create-domain-name
-                              #:create-function #:create-graphql-api
-                              #:create-resolver #:create-type #:data-source
+                              #:concurrent-modification-exception
+                              #:conflict-detection-type #:conflict-exception
+                              #:conflict-handler-type #:context #:create-api
+                              #:create-api-cache #:create-api-key
+                              #:create-channel-namespace #:create-data-source
+                              #:create-domain-name #:create-function
+                              #:create-graphql-api #:create-resolver
+                              #:create-type #:data-source
                               #:data-source-introspection-model
                               #:data-source-introspection-model-field
                               #:data-source-introspection-model-field-type
@@ -74,12 +80,15 @@
                               #:get-source-api-association #:get-type
                               #:graph-qlapi-introspection-config
                               #:graph-qlapi-type #:graph-qlapi-visibility
-                              #:graphql-api #:graphql-apis #:handler-behavior
+                              #:graph-qlschema-exception #:graphql-api
+                              #:graphql-apis #:handler-behavior
                               #:handler-config #:handler-configs
                               #:http-data-source-config #:integration
-                              #:invoke-type #:lambda-authorizer-config
-                              #:lambda-config #:lambda-conflict-handler-config
-                              #:lambda-data-source-config #:list-api-keys
+                              #:internal-failure-exception #:invoke-type
+                              #:lambda-authorizer-config #:lambda-config
+                              #:lambda-conflict-handler-config
+                              #:lambda-data-source-config
+                              #:limit-exceeded-exception #:list-api-keys
                               #:list-apis #:list-channel-namespaces
                               #:list-data-sources #:list-domain-names
                               #:list-functions #:list-graphql-apis
@@ -89,7 +98,8 @@
                               #:list-types-by-association #:log-config #:logs
                               #:long #:map-of-string-to-string
                               #:mapping-template #:max-batch-size #:max-results
-                              #:merge-type #:namespace #:open-idconnect-config
+                              #:merge-type #:namespace #:not-found-exception
+                              #:open-idconnect-config
                               #:open-search-service-data-source-config
                               #:operation-level-metrics-config #:out-errors
                               #:output-type #:owner-contact #:ownership
@@ -106,7 +116,9 @@
                               #:resolver-level-metrics-behavior
                               #:resolver-level-metrics-config #:resolvers
                               #:resource-arn #:resource-name #:runtime-name
-                              #:schema-status #:source-api-association
+                              #:schema-status
+                              #:service-quota-exceeded-exception
+                              #:source-api-association
                               #:source-api-association-config
                               #:source-api-association-status
                               #:source-api-association-summary
@@ -117,13 +129,18 @@
                               #:tag-key-list #:tag-map #:tag-resource
                               #:tag-value #:template #:timestamp #:type
                               #:type-definition-format #:type-list
-                              #:untag-resource #:update-api #:update-api-cache
-                              #:update-api-key #:update-channel-namespace
-                              #:update-data-source #:update-domain-name
-                              #:update-function #:update-graphql-api
-                              #:update-resolver #:update-source-api-association
-                              #:update-type #:user-pool-config))
+                              #:unauthorized-exception #:untag-resource
+                              #:update-api #:update-api-cache #:update-api-key
+                              #:update-channel-namespace #:update-data-source
+                              #:update-domain-name #:update-function
+                              #:update-graphql-api #:update-resolver
+                              #:update-source-api-association #:update-type
+                              #:user-pool-config #:appsync-error))
 (common-lisp:in-package #:pira/appsync)
+
+(common-lisp:define-condition appsync-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsdeepdish-control-plane-service
                                    :shape-name "AWSDeepdishControlPlaneService"
@@ -190,7 +207,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-structure additional-authentication-provider
                                     common-lisp:nil
@@ -314,7 +331,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ApiKeyLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-error api-key-validity-out-of-bounds-exception
                                 common-lisp:nil
@@ -322,7 +339,7 @@
                                   "message"))
                                 (:shape-name
                                  "ApiKeyValidityOutOfBoundsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-list api-keys :member api-key)
 
@@ -330,7 +347,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ApiLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-type api-name smithy/sdk/smithy-types:string)
 
@@ -480,7 +497,7 @@
                                  (detail :target-type bad-request-detail
                                   :member-name "detail"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-enum bad-request-reason
     common-lisp:nil
@@ -590,7 +607,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-enum conflict-detection-type
     common-lisp:nil
@@ -601,7 +618,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-enum conflict-handler-type
     common-lisp:nil
@@ -1726,7 +1743,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "GraphQLSchemaException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-structure graphql-api common-lisp:nil
                                     ((name :target-type resource-name
@@ -1833,7 +1850,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-enum invoke-type
     common-lisp:nil
@@ -1874,7 +1891,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-input list-api-keys-request common-lisp:nil
                                 ((api-id :target-type string :required
@@ -2176,7 +2193,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-structure open-idconnect-config common-lisp:nil
                                     ((issuer :target-type string :required
@@ -2380,7 +2397,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-structure source-api-association common-lisp:nil
                                     ((association-id :target-type string
@@ -2572,7 +2589,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class appsync-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type resource-arn

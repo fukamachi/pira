@@ -40,7 +40,8 @@
                               #:av1rate-control-mode #:av1scene-change-detect
                               #:av1settings #:avail-blanking
                               #:avail-blanking-state #:avail-configuration
-                              #:avail-settings
+                              #:avail-settings #:bad-gateway-exception
+                              #:bad-request-exception
                               #:bandwidth-reduction-filter-settings
                               #:bandwidth-reduction-filter-strength
                               #:bandwidth-reduction-post-filter-sharpening
@@ -91,8 +92,8 @@
                               #:cmaf-timed-metadata-passthrough
                               #:color-correction #:color-correction-settings
                               #:color-space #:color-space-passthrough-settings
-                              #:content-type #:create-channel
-                              #:create-channel-placement-group
+                              #:conflict-exception #:content-type
+                              #:create-channel #:create-channel-placement-group
                               #:create-cloud-watch-alarm-template
                               #:create-cloud-watch-alarm-template-group
                               #:create-cluster
@@ -177,13 +178,15 @@
                               #:fmp4hls-settings #:fmp4nielsen-id3behavior
                               #:fmp4timed-metadata-behavior
                               #:follow-mode-schedule-action-start-settings
-                              #:follow-point #:frame-capture-cdn-settings
+                              #:follow-point #:forbidden-exception
+                              #:frame-capture-cdn-settings
                               #:frame-capture-group-settings
                               #:frame-capture-hls-settings
                               #:frame-capture-interval-unit
                               #:frame-capture-output-settings
                               #:frame-capture-s3settings
                               #:frame-capture-settings
+                              #:gateway-timeout-exception
                               #:get-cloud-watch-alarm-template
                               #:get-cloud-watch-alarm-template-group
                               #:get-event-bridge-rule-template
@@ -296,7 +299,8 @@
                               #:input-vpc-request #:input-whitelist-rule
                               #:input-whitelist-rule-cidr #:interface-mapping
                               #:interface-mapping-create-request
-                              #:interface-mapping-update-request #:ip-pool
+                              #:interface-mapping-update-request
+                              #:internal-server-error-exception #:ip-pool
                               #:ip-pool-create-request #:ip-pool-update-request
                               #:key-provider-settings
                               #:last-frame-clipping-behavior
@@ -384,9 +388,9 @@
                               #:nielsen-watermarks-settings
                               #:node-connection-state #:node-interface-mapping
                               #:node-interface-mapping-create-request
-                              #:node-role #:node-state #:offering
-                              #:offering-duration-units #:offering-type
-                              #:output #:output-destination
+                              #:node-role #:node-state #:not-found-exception
+                              #:offering #:offering-duration-units
+                              #:offering-type #:output #:output-destination
                               #:output-destination-settings #:output-group
                               #:output-group-settings #:output-location-ref
                               #:output-locking-settings #:output-settings
@@ -493,6 +497,7 @@
                               #:timecode-burnin-settings #:timecode-config
                               #:timecode-config-source
                               #:timed-metadata-schedule-action-settings
+                              #:too-many-requests-exception
                               #:transfer-input-device
                               #:transferring-input-device-summary
                               #:ttml-destination-settings
@@ -500,6 +505,7 @@
                               #:udp-container-settings #:udp-group-settings
                               #:udp-output-settings
                               #:udp-timed-metadata-id3frame
+                              #:unprocessable-entity-exception
                               #:update-account-configuration #:update-channel
                               #:update-channel-class
                               #:update-channel-placement-group
@@ -675,8 +681,12 @@
                               #:string-pattern-arn-medialive-eventbridge-rule-template-group
                               #:string-pattern-arn-medialive-signal-map
                               #:string-pattern-s #:timestamp
-                              #:timestamp-iso8601))
+                              #:timestamp-iso8601 #:medialive-error))
 (common-lisp:in-package #:pira/medialive)
+
+(common-lisp:define-condition medialive-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service media-live :shape-name "MediaLive" :version
                                    "2017-10-14" :title
@@ -1492,13 +1502,13 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "BadGatewayException")
-                                (:error-code 502))
+                                (:error-code 502) (:base-class medialive-error))
 
 (smithy/sdk/shapes:define-error bad-request-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class medialive-error))
 
 (smithy/sdk/shapes:define-structure bandwidth-reduction-filter-settings
                                     common-lisp:nil
@@ -2531,7 +2541,7 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class medialive-error))
 
 (smithy/sdk/shapes:define-enum content-type
     common-lisp:nil
@@ -5282,7 +5292,7 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class medialive-error))
 
 (smithy/sdk/shapes:define-structure frame-capture-cdn-settings common-lisp:nil
                                     ((frame-capture-s3settings :target-type
@@ -5344,7 +5354,7 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "GatewayTimeoutException")
-                                (:error-code 504))
+                                (:error-code 504) (:base-class medialive-error))
 
 (smithy/sdk/shapes:define-input get-cloud-watch-alarm-template-group-request
                                 common-lisp:nil
@@ -7592,7 +7602,7 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class medialive-error))
 
 (smithy/sdk/shapes:define-structure ip-pool common-lisp:nil
                                     ((cidr :target-type string :member-name
@@ -9413,7 +9423,7 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class medialive-error))
 
 (smithy/sdk/shapes:define-structure offering common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -11623,7 +11633,7 @@
                                 ((message :target-type string :member-name
                                   "Message" :json-name "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class medialive-error))
 
 (smithy/sdk/shapes:define-input transfer-input-device-request common-lisp:nil
                                 ((input-device-id :target-type string :required
@@ -11726,7 +11736,7 @@
                                   "ValidationErrors" :json-name
                                   "validationErrors"))
                                 (:shape-name "UnprocessableEntityException")
-                                (:error-code 422))
+                                (:error-code 422) (:base-class medialive-error))
 
 (smithy/sdk/shapes:define-input update-account-configuration-request
                                 common-lisp:nil

@@ -3,6 +3,7 @@
                               #:abort-config-criteria-list
                               #:abort-criteria-action
                               #:abort-criteria-failure-type
+                              #:access-denied-exception
                               #:account-association-arn
                               #:account-association-description
                               #:account-association-error-message
@@ -40,7 +41,8 @@
                               #:configuration-error #:configuration-error-code
                               #:configuration-error-message
                               #:configuration-state #:configuration-status
-                              #:connectivity-status #:connectivity-timestamp
+                              #:conflict-exception #:connectivity-status
+                              #:connectivity-timestamp
                               #:connector-association-id
                               #:connector-destination-description
                               #:connector-destination-id
@@ -137,11 +139,15 @@
                               #:hub-configuration-updated-at #:hub-network-mode
                               #:hub-token-timer-expiry-setting-in-seconds
                               #:in-progress-timeout-in-minutes
-                              #:increment-factor #:international-article-number
+                              #:increment-factor #:internal-failure-exception
+                              #:internal-server-exception
+                              #:international-article-number
+                              #:invalid-request-exception
                               #:io-tmanaged-integrations-resource-arn
                               #:iot-managed-integrations #:kms-key-arn
                               #:kms-key-association-resource #:lambda-arn
                               #:lambda-config #:last-updated-at
+                              #:limit-exceeded-exception
                               #:list-account-associations
                               #:list-cloud-connectors
                               #:list-connector-destinations
@@ -238,7 +244,8 @@
                               #:put-runtime-log-configuration #:queued-at
                               #:register-account-association
                               #:register-custom-endpoint
-                              #:reset-runtime-log-configuration #:retry-attempt
+                              #:reset-runtime-log-configuration
+                              #:resource-not-found-exception #:retry-attempt
                               #:retry-config-criteria
                               #:retry-config-criteria-list
                               #:retry-criteria-failure-type #:role
@@ -260,7 +267,9 @@
                               #:secrets-manager-version-id
                               #:send-connector-event
                               #:send-managed-thing-command #:serial-number
-                              #:setup-at #:smart-home-resource-id
+                              #:service-quota-exceeded-exception
+                              #:service-unavailable-exception #:setup-at
+                              #:smart-home-resource-id
                               #:smart-home-resource-type #:spec-version
                               #:start-account-association-refresh
                               #:start-device-discovery #:start-time
@@ -269,10 +278,11 @@
                               #:state-endpoints #:tag-key #:tag-key-list
                               #:tag-resource #:tag-value #:tags-map #:target
                               #:task-processing-details #:third-party-user-id
-                              #:threshold-percentage
+                              #:threshold-percentage #:throttling-exception
                               #:token-endpoint-authentication-scheme
-                              #:token-url #:trace-id #:universal-product-code
-                              #:untag-resource #:update-account-association
+                              #:token-url #:trace-id #:unauthorized-exception
+                              #:universal-product-code #:untag-resource
+                              #:update-account-association
                               #:update-cloud-connector
                               #:update-connector-destination
                               #:update-destination
@@ -280,8 +290,14 @@
                               #:update-managed-thing
                               #:update-notification-configuration
                               #:update-ota-task #:updated-at #:upload-log
-                              #:upload-period-minutes #:validation-schema))
+                              #:upload-period-minutes #:validation-exception
+                              #:validation-schema
+                              #:iot-managed-integrations-error))
 (common-lisp:in-package #:pira/iot-managed-integrations)
+
+(common-lisp:define-condition iot-managed-integrations-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service iot-managed-integrations :shape-name
                                    "IotManagedIntegrations" :version
@@ -338,7 +354,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class iot-managed-integrations-error))
 
 (smithy/sdk/shapes:define-type account-association-arn
                                smithy/sdk/smithy-types:string)
@@ -640,7 +657,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class iot-managed-integrations-error))
 
 (smithy/sdk/shapes:define-type connectivity-status
                                smithy/sdk/smithy-types:boolean)
@@ -2050,13 +2068,15 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalFailureException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iot-managed-integrations-error))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class iot-managed-integrations-error))
 
 (smithy/sdk/shapes:define-type international-article-number
                                smithy/sdk/smithy-types:string)
@@ -2065,7 +2085,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iot-managed-integrations-error))
 
 (smithy/sdk/shapes:define-type io-tmanaged-integrations-resource-arn
                                smithy/sdk/smithy-types:string)
@@ -2088,7 +2109,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 410))
+                                (:error-code 410)
+                                (:base-class iot-managed-integrations-error))
 
 (smithy/sdk/shapes:define-input list-account-associations-request
                                 common-lisp:nil
@@ -3224,7 +3246,8 @@ common-lisp:nil
                                   error-resource-type :member-name
                                   "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iot-managed-integrations-error))
 
 (smithy/sdk/shapes:define-type retry-attempt smithy/sdk/smithy-types:integer)
 
@@ -3455,13 +3478,15 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class iot-managed-integrations-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class iot-managed-integrations-error))
 
 (smithy/sdk/shapes:define-type setup-at smithy/sdk/smithy-types:timestamp)
 
@@ -3623,7 +3648,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class iot-managed-integrations-error))
 
 (smithy/sdk/shapes:define-enum token-endpoint-authentication-scheme
     common-lisp:nil
@@ -3638,7 +3664,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class iot-managed-integrations-error))
 
 (smithy/sdk/shapes:define-type universal-product-code
                                smithy/sdk/smithy-types:string)
@@ -3797,7 +3824,8 @@ common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class iot-managed-integrations-error))
 
 (smithy/sdk/shapes:define-type validation-schema
                                smithy/sdk/smithy-types:document)

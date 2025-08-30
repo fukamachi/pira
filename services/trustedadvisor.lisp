@@ -1,13 +1,16 @@
 (uiop/package:define-package #:pira/trustedadvisor (:use)
-                             (:export #:account-id #:account-recommendation-arn
+                             (:export #:access-denied-exception #:account-id
+                              #:account-recommendation-arn
                               #:account-recommendation-identifier
                               #:account-recommendation-lifecycle-summary
                               #:account-recommendation-lifecycle-summary-list
                               #:batch-update-recommendation-resource-exclusion
                               #:check-arn #:check-identifier #:check-summary
-                              #:check-summary-list #:exclusion-status
+                              #:check-summary-list #:conflict-exception
+                              #:exclusion-status
                               #:get-organization-recommendation
-                              #:get-recommendation #:list-checks
+                              #:get-recommendation #:internal-server-exception
+                              #:list-checks
                               #:list-organization-recommendation-accounts
                               #:list-organization-recommendation-resources
                               #:list-organization-recommendations
@@ -39,15 +42,22 @@
                               #:recommendation-summary
                               #:recommendation-summary-list
                               #:recommendation-type
-                              #:recommendation-update-reason #:resource-status
-                              #:string-map #:trusted-advisor
+                              #:recommendation-update-reason
+                              #:resource-not-found-exception #:resource-status
+                              #:string-map #:throttling-exception
+                              #:trusted-advisor
                               #:update-organization-recommendation-lifecycle
                               #:update-recommendation-lifecycle
                               #:update-recommendation-lifecycle-stage
                               #:update-recommendation-lifecycle-stage-reason-code
                               #:update-recommendation-resource-exclusion-error
-                              #:update-recommendation-resource-exclusion-error-list))
+                              #:update-recommendation-resource-exclusion-error-list
+                              #:validation-exception #:trustedadvisor-error))
 (common-lisp:in-package #:pira/trustedadvisor)
+
+(common-lisp:define-condition trustedadvisor-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service trusted-advisor :shape-name "TrustedAdvisor"
                                    :version "2022-09-15" :title
@@ -77,7 +87,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class trustedadvisor-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -171,7 +182,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class trustedadvisor-error))
 
 (smithy/sdk/shapes:define-enum exclusion-status
     common-lisp:nil
@@ -215,7 +227,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class trustedadvisor-error))
 
 (smithy/sdk/shapes:define-input list-checks-request common-lisp:nil
                                 ((next-token :target-type
@@ -871,7 +884,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class trustedadvisor-error))
 
 (smithy/sdk/shapes:define-enum resource-status
     common-lisp:nil
@@ -887,7 +901,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class trustedadvisor-error))
 
 (smithy/sdk/shapes:define-input
  update-organization-recommendation-lifecycle-request common-lisp:nil
@@ -958,7 +973,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class trustedadvisor-error))
 
 (smithy/sdk/operation:define-operation
  batch-update-recommendation-resource-exclusion :shape-name

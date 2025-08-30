@@ -1,7 +1,8 @@
 (uiop/package:define-package #:pira/omics (:use)
                              (:export #:abort-multipart-read-set-upload
                               #:accelerators #:accept-share
-                              #:access-log-location #:activate-read-set-filter
+                              #:access-denied-exception #:access-log-location
+                              #:activate-read-set-filter
                               #:activate-read-set-job-item
                               #:activate-read-set-job-list
                               #:activate-read-set-source-item
@@ -26,8 +27,8 @@
                               #:complete-multipart-read-set-upload
                               #:complete-read-set-upload-part-list
                               #:complete-read-set-upload-part-list-item
-                              #:completion-time #:connection-arn
-                              #:create-annotation-store
+                              #:completion-time #:conflict-exception
+                              #:connection-arn #:create-annotation-store
                               #:create-annotation-store-version
                               #:create-multipart-read-set-upload
                               #:create-reference-store #:create-run-cache
@@ -81,7 +82,8 @@
                               #:import-reference-job-item
                               #:import-reference-job-list
                               #:import-reference-source-item
-                              #:import-reference-source-list #:job-status
+                              #:import-reference-source-list
+                              #:internal-server-exception #:job-status
                               #:job-status-message #:job-status-msg #:line-sep
                               #:list-annotation-import-jobs
                               #:list-annotation-import-jobs-filter
@@ -107,10 +109,12 @@
                               #:list-workflow-versions #:list-workflows #:md5
                               #:multipart-read-set-upload-list
                               #:multipart-read-set-upload-list-item
-                              #:next-token #:numeric-id-in-arn #:omics
+                              #:next-token #:not-supported-operation-exception
+                              #:numeric-id-in-arn #:omics
                               #:parameter-template-path
                               #:propagated-set-level-tags #:put-s3access-policy
-                              #:quote #:quote-all #:range #:read-options
+                              #:quote #:quote-all #:range
+                              #:range-not-satisfiable-exception #:read-options
                               #:read-set-activation-job-item-status
                               #:read-set-activation-job-status #:read-set-arn
                               #:read-set-batch-error
@@ -146,15 +150,17 @@
                               #:reference-store-detail-list
                               #:reference-store-filter #:reference-store-id
                               #:reference-store-name #:reference-store-resource
-                              #:reference-streaming-blob #:resource-id
-                              #:resource-identifier #:resource-owner #:role-arn
-                              #:run-arn #:run-cache-arn #:run-cache-id
-                              #:run-cache-list #:run-cache-list-item
-                              #:run-cache-request-id #:run-cache-resource
-                              #:run-cache-status #:run-cache-timestamp
-                              #:run-export #:run-export-list
-                              #:run-failure-reason #:run-group-arn
-                              #:run-group-id #:run-group-list
+                              #:reference-streaming-blob
+                              #:request-timeout-exception #:resource-id
+                              #:resource-identifier
+                              #:resource-not-found-exception #:resource-owner
+                              #:role-arn #:run-arn #:run-cache-arn
+                              #:run-cache-id #:run-cache-list
+                              #:run-cache-list-item #:run-cache-request-id
+                              #:run-cache-resource #:run-cache-status
+                              #:run-cache-timestamp #:run-export
+                              #:run-export-list #:run-failure-reason
+                              #:run-group-arn #:run-group-id #:run-group-list
                               #:run-group-list-item #:run-group-list-token
                               #:run-group-name #:run-group-request-id
                               #:run-group-resource #:run-group-timestamp
@@ -179,7 +185,8 @@
                               #:sequence-store-filter #:sequence-store-id
                               #:sequence-store-name #:sequence-store-resource
                               #:sequence-store-s3access #:sequence-store-status
-                              #:sequence-store-status-message #:share
+                              #:sequence-store-status-message
+                              #:service-quota-exceeded-exception #:share
                               #:share-details #:share-details-list #:share-name
                               #:share-resource-type #:share-status
                               #:source-files #:source-reference
@@ -206,17 +213,18 @@
                               #:task-list-item #:task-list-token
                               #:task-log-stream #:task-name #:task-resource
                               #:task-status #:task-status-message
-                              #:task-timestamp #:tsv-options
-                              #:tsv-store-options #:tsv-version-options
-                              #:type-list #:untag-resource
-                              #:update-annotation-store
+                              #:task-timestamp #:throttling-exception
+                              #:tsv-options #:tsv-store-options
+                              #:tsv-version-options #:type-list
+                              #:untag-resource #:update-annotation-store
                               #:update-annotation-store-version
                               #:update-run-cache #:update-run-group
                               #:update-sequence-store #:update-time
                               #:update-variant-store #:update-workflow
                               #:update-workflow-version #:upload-id
                               #:upload-read-set-part #:user-custom-description
-                              #:user-custom-name #:variant-import-item-detail
+                              #:user-custom-name #:validation-exception
+                              #:variant-import-item-detail
                               #:variant-import-item-details
                               #:variant-import-item-source
                               #:variant-import-item-sources
@@ -248,8 +256,12 @@
                               #:workflow-version-list
                               #:workflow-version-list-item
                               #:workflow-version-list-token
-                              #:workflow-version-name))
+                              #:workflow-version-name #:omics-error))
 (common-lisp:in-package #:pira/omics)
+
+(common-lisp:define-condition omics-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service omics :shape-name "Omics" :version
                                    "2022-11-28" :title "Amazon Omics"
@@ -321,7 +333,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class omics-error))
 
 (smithy/sdk/shapes:define-type access-log-location
                                smithy/sdk/smithy-types:string)
@@ -633,7 +645,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class omics-error))
 
 (smithy/sdk/shapes:define-type connection-arn smithy/sdk/smithy-types:string)
 
@@ -2571,7 +2583,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class omics-error))
 
 (smithy/sdk/shapes:define-type job-status smithy/sdk/smithy-types:string)
 
@@ -3200,7 +3212,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "NotSupportedOperationException")
-                                (:error-code 405))
+                                (:error-code 405) (:base-class omics-error))
 
 (smithy/sdk/shapes:define-type numeric-id-in-arn smithy/sdk/smithy-types:string)
 
@@ -3240,7 +3252,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "RangeNotSatisfiableException")
-                                (:error-code 416))
+                                (:error-code 416) (:base-class omics-error))
 
 (smithy/sdk/shapes:define-structure read-options common-lisp:nil
                                     ((sep :target-type separator :member-name
@@ -3603,7 +3615,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "RequestTimeoutException")
-                                (:error-code 408))
+                                (:error-code 408) (:base-class omics-error))
 
 (smithy/sdk/shapes:define-type resource-id smithy/sdk/smithy-types:string)
 
@@ -3615,7 +3627,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class omics-error))
 
 (smithy/sdk/shapes:define-type resource-owner smithy/sdk/smithy-types:string)
 
@@ -3943,7 +3955,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class omics-error))
 
 common-lisp:nil
 
@@ -4440,7 +4452,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class omics-error))
 
 (smithy/sdk/shapes:define-structure tsv-options common-lisp:nil
                                     ((read-options :target-type read-options
@@ -4763,7 +4775,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class omics-error))
 
 (smithy/sdk/shapes:define-structure variant-import-item-detail common-lisp:nil
                                     ((source :target-type s3uri :required

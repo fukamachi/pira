@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/clouddirectory (:use)
-                             (:export #:add-facet-to-object
+                             (:export #:access-denied-exception
+                              #:add-facet-to-object
                               #:amazon-cloud-directory-20170111 #:apply-schema
                               #:arn #:arns #:attach-object #:attach-policy
                               #:attach-to-index #:attach-typed-link
@@ -74,38 +75,59 @@
                               #:batch-update-link-attributes-response
                               #:batch-update-object-attributes
                               #:batch-update-object-attributes-response
-                              #:batch-write #:batch-write-exception-type
+                              #:batch-write #:batch-write-exception
+                              #:batch-write-exception-type
                               #:batch-write-operation
                               #:batch-write-operation-list
                               #:batch-write-operation-response
                               #:batch-write-operation-response-list
                               #:binary-attribute-value #:bool
-                              #:boolean-attribute-value #:consistency-level
-                              #:create-directory #:create-facet #:create-index
-                              #:create-object #:create-schema
-                              #:create-typed-link-facet #:date
+                              #:boolean-attribute-value
+                              #:cannot-list-parent-of-root-exception
+                              #:consistency-level #:create-directory
+                              #:create-facet #:create-index #:create-object
+                              #:create-schema #:create-typed-link-facet #:date
                               #:datetime-attribute-value #:delete-directory
                               #:delete-facet #:delete-object #:delete-schema
                               #:delete-typed-link-facet #:detach-from-index
                               #:detach-object #:detach-policy
-                              #:detach-typed-link #:directory #:directory-arn
+                              #:detach-typed-link #:directory
+                              #:directory-already-exists-exception
+                              #:directory-arn #:directory-deleted-exception
                               #:directory-list #:directory-name
+                              #:directory-not-disabled-exception
+                              #:directory-not-enabled-exception
                               #:directory-state #:disable-directory
                               #:enable-directory #:exception-message #:facet
+                              #:facet-already-exists-exception
                               #:facet-attribute #:facet-attribute-definition
                               #:facet-attribute-list
                               #:facet-attribute-reference
                               #:facet-attribute-type #:facet-attribute-update
-                              #:facet-attribute-update-list #:facet-name
-                              #:facet-name-list #:facet-style
+                              #:facet-attribute-update-list
+                              #:facet-in-use-exception #:facet-name
+                              #:facet-name-list #:facet-not-found-exception
+                              #:facet-style #:facet-validation-exception
                               #:get-applied-schema-version #:get-directory
                               #:get-facet #:get-link-attributes
                               #:get-object-attributes #:get-object-information
                               #:get-schema-as-json
                               #:get-typed-link-facet-information
+                              #:incompatible-schema-exception
                               #:index-attachment #:index-attachment-list
+                              #:indexed-attribute-missing-exception
+                              #:internal-service-exception
+                              #:invalid-arn-exception
+                              #:invalid-attachment-exception
+                              #:invalid-facet-update-exception
+                              #:invalid-next-token-exception
+                              #:invalid-rule-exception
+                              #:invalid-schema-doc-exception
+                              #:invalid-tagging-request-exception
+                              #:limit-exceeded-exception
                               #:link-attribute-action #:link-attribute-update
                               #:link-attribute-update-list #:link-name
+                              #:link-name-already-in-use-exception
                               #:link-name-to-object-identifier-map
                               #:list-applied-schema-arns
                               #:list-attached-indices
@@ -122,8 +144,11 @@
                               #:list-tags-for-resource
                               #:list-typed-link-facet-attributes
                               #:list-typed-link-facet-names #:lookup-policy
-                              #:next-token #:number-attribute-value
-                              #:number-results #:object-attribute-action
+                              #:next-token #:not-index-exception
+                              #:not-node-exception #:not-policy-exception
+                              #:number-attribute-value #:number-results
+                              #:object-already-detached-exception
+                              #:object-attribute-action
                               #:object-attribute-range
                               #:object-attribute-range-list
                               #:object-attribute-update
@@ -133,6 +158,7 @@
                               #:object-identifier-and-link-name-tuple
                               #:object-identifier-list
                               #:object-identifier-to-link-name-map
+                              #:object-not-detached-exception
                               #:object-reference #:object-type #:path-string
                               #:path-to-object-identifiers
                               #:path-to-object-identifiers-list
@@ -141,12 +167,17 @@
                               #:policy-type #:publish-schema
                               #:put-schema-from-json #:range-mode
                               #:remove-facet-from-object
-                              #:required-attribute-behavior #:rule #:rule-key
+                              #:required-attribute-behavior
+                              #:resource-not-found-exception
+                              #:retryable-conflict-exception #:rule #:rule-key
                               #:rule-map #:rule-parameter-key
                               #:rule-parameter-map #:rule-parameter-value
-                              #:rule-type #:schema-facet #:schema-facet-list
+                              #:rule-type #:schema-already-exists-exception
+                              #:schema-already-published-exception
+                              #:schema-facet #:schema-facet-list
                               #:schema-json-document #:schema-name
                               #:selector-object-reference
+                              #:still-contains-links-exception
                               #:string-attribute-value #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-value #:tags-number-results
@@ -162,14 +193,20 @@
                               #:typed-link-name #:typed-link-name-list
                               #:typed-link-schema-and-facet-name
                               #:typed-link-specifier
-                              #:typed-link-specifier-list #:untag-resource
-                              #:update-action-type #:update-facet
-                              #:update-link-attributes
+                              #:typed-link-specifier-list
+                              #:unsupported-index-type-exception
+                              #:untag-resource #:update-action-type
+                              #:update-facet #:update-link-attributes
                               #:update-object-attributes #:update-schema
                               #:update-typed-link-facet
                               #:upgrade-applied-schema
-                              #:upgrade-published-schema #:version))
+                              #:upgrade-published-schema #:validation-exception
+                              #:version #:clouddirectory-error))
 (common-lisp:in-package #:pira/clouddirectory)
+
+(common-lisp:define-condition clouddirectory-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-cloud-directory-20170111 :shape-name
                                    "AmazonCloudDirectory_20170111" :version
@@ -232,7 +269,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-input add-facet-to-object-request common-lisp:nil
                                 ((directory-arn :target-type arn :required
@@ -1113,7 +1151,8 @@
                                  (message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "BatchWriteException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-enum batch-write-exception-type
     common-lisp:nil
@@ -1267,7 +1306,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "CannotListParentOfRootException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-enum consistency-level
     common-lisp:nil
@@ -1521,7 +1561,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "DirectoryAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-type directory-arn smithy/sdk/smithy-types:string)
 
@@ -1529,7 +1570,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "DirectoryDeletedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-list directory-list :member directory)
 
@@ -1540,13 +1582,15 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "DirectoryNotDisabledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error directory-not-enabled-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "DirectoryNotEnabledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-enum directory-state
     common-lisp:nil
@@ -1591,7 +1635,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "FacetAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-structure facet-attribute common-lisp:nil
                                     ((name :target-type attribute-name
@@ -1655,7 +1700,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "FacetInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-type facet-name smithy/sdk/smithy-types:string)
 
@@ -1665,7 +1711,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "FacetNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-enum facet-style
     common-lisp:nil
@@ -1676,7 +1723,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "FacetValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-input get-applied-schema-version-request
                                 common-lisp:nil
@@ -1819,7 +1867,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "IncompatibleSchemaException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-structure index-attachment common-lisp:nil
                                     ((indexed-attributes :target-type
@@ -1838,62 +1887,72 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "IndexedAttributeMissingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error internal-service-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error invalid-arn-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidArnException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error invalid-attachment-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidAttachmentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error invalid-facet-update-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidFacetUpdateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error invalid-rule-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRuleException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error invalid-schema-doc-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidSchemaDocException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error invalid-tagging-request-exception
                                 common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidTaggingRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-structure link-attribute-action common-lisp:nil
                                     ((attribute-action-type :target-type
@@ -1922,7 +1981,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "LinkNameAlreadyInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-map link-name-to-object-identifier-map :key link-name
                               :value object-identifier)
@@ -2419,19 +2479,22 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "NotIndexException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error not-node-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "NotNodeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error not-policy-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "NotPolicyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-type number-attribute-value
                                smithy/sdk/smithy-types:string)
@@ -2443,7 +2506,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ObjectAlreadyDetachedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-structure object-attribute-action common-lisp:nil
                                     ((object-attribute-action-type :target-type
@@ -2502,7 +2566,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ObjectNotDetachedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-structure object-reference common-lisp:nil
                                     ((selector :target-type
@@ -2619,13 +2684,15 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error retryable-conflict-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "RetryableConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-structure rule common-lisp:nil
                                     ((type :target-type rule-type :member-name
@@ -2659,14 +2726,16 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "SchemaAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-error schema-already-published-exception
                                 common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "SchemaAlreadyPublishedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-structure schema-facet common-lisp:nil
                                     ((schema-arn :target-type arn :member-name
@@ -2689,7 +2758,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "StillContainsLinksException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-type string-attribute-value
                                smithy/sdk/smithy-types:string)
@@ -2859,7 +2929,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "UnsupportedIndexTypeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -3006,7 +3077,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class clouddirectory-error))
 
 (smithy/sdk/shapes:define-type version smithy/sdk/smithy-types:string)
 

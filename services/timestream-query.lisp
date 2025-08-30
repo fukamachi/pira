@@ -1,18 +1,19 @@
 (uiop/package:define-package #:pira/timestream-query (:use)
-                             (:export
+                             (:export #:access-denied-exception
                               #:account-settings-notification-configuration
                               #:amazon-resource-name #:cancel-query
                               #:client-request-token #:client-token
                               #:column-info #:column-info-list #:compute-mode
-                              #:create-scheduled-query #:datum #:datum-list
-                              #:delete-scheduled-query
+                              #:conflict-exception #:create-scheduled-query
+                              #:datum #:datum-list #:delete-scheduled-query
                               #:describe-account-settings #:describe-endpoints
                               #:describe-scheduled-query #:dimension-mapping
                               #:dimension-mapping-list #:dimension-value-type
                               #:double #:endpoint #:endpoints #:error-message
                               #:error-report-configuration
                               #:error-report-location #:execute-scheduled-query
-                              #:execution-stats #:last-update
+                              #:execution-stats #:internal-server-exception
+                              #:invalid-endpoint-exception #:last-update
                               #:last-update-status #:list-scheduled-queries
                               #:list-tags-for-resource #:long
                               #:max-query-capacity #:max-query-results
@@ -32,13 +33,15 @@
                               #:provisioned-capacity-request
                               #:provisioned-capacity-response #:query
                               #:query-compute-request #:query-compute-response
-                              #:query-id #:query-insights #:query-insights-mode
+                              #:query-execution-exception #:query-id
+                              #:query-insights #:query-insights-mode
                               #:query-insights-response #:query-pricing-model
                               #:query-spatial-coverage
                               #:query-spatial-coverage-max #:query-status
                               #:query-string #:query-tcu #:query-temporal-range
-                              #:query-temporal-range-max #:resource-name #:row
-                              #:row-list #:s3bucket-name #:s3configuration
+                              #:query-temporal-range-max #:resource-name
+                              #:resource-not-found-exception #:row #:row-list
+                              #:s3bucket-name #:s3configuration
                               #:s3encryption-option #:s3object-key
                               #:s3object-key-prefix #:s3report-location
                               #:scalar-measure-value-type #:scalar-type
@@ -54,18 +57,24 @@
                               #:scheduled-query-run-summary-list
                               #:scheduled-query-state #:schema-name
                               #:select-column #:select-column-list
-                              #:service-error-message #:sns-configuration
-                              #:string #:string-value2048 #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-value #:target-configuration
-                              #:target-destination #:time
-                              #:time-series-data-point
+                              #:service-error-message
+                              #:service-quota-exceeded-exception
+                              #:sns-configuration #:string #:string-value2048
+                              #:tag #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:target-configuration
+                              #:target-destination #:throttling-exception
+                              #:time #:time-series-data-point
                               #:time-series-data-point-list #:timestamp
                               #:timestream-configuration
                               #:timestream-destination #:timestream-20181101
                               #:type #:untag-resource #:update-account-settings
-                              #:update-scheduled-query))
+                              #:update-scheduled-query #:validation-exception
+                              #:timestream-query-error))
 (common-lisp:in-package #:pira/timestream-query)
+
+(common-lisp:define-condition timestream-query-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service timestream-20181101 :shape-name
                                    "Timestream_20181101" :version "2018-11-01"
@@ -102,7 +111,8 @@
                                 ((message :target-type service-error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-name "AccessDenied") (:error-code 403))
+                                (:error-name "AccessDenied") (:error-code 403)
+                                (:base-class timestream-query-error))
 
 (smithy/sdk/shapes:define-structure account-settings-notification-configuration
                                     common-lisp:nil
@@ -151,7 +161,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class timestream-query-error))
 
 (smithy/sdk/shapes:define-input create-scheduled-query-request common-lisp:nil
                                 ((name :target-type scheduled-query-name
@@ -331,13 +342,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class timestream-query-error))
 
 (smithy/sdk/shapes:define-error invalid-endpoint-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidEndpointException")
-                                (:error-code 421))
+                                (:error-code 421)
+                                (:base-class timestream-query-error))
 
 (smithy/sdk/shapes:define-structure last-update common-lisp:nil
                                     ((target-query-tcu :target-type query-tcu
@@ -558,7 +571,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "QueryExecutionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class timestream-query-error))
 
 (smithy/sdk/shapes:define-type query-id smithy/sdk/smithy-types:string)
 
@@ -685,7 +699,8 @@
                                   amazon-resource-name :member-name
                                   "ScheduledQueryArn"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class timestream-query-error))
 
 (smithy/sdk/shapes:define-structure row common-lisp:nil
                                     ((data :target-type datum-list :required
@@ -929,7 +944,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class timestream-query-error))
 
 (smithy/sdk/shapes:define-structure sns-configuration common-lisp:nil
                                     ((topic-arn :target-type
@@ -985,7 +1001,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class timestream-query-error))
 
 (smithy/sdk/shapes:define-type time smithy/sdk/smithy-types:timestamp)
 
@@ -1096,7 +1113,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class timestream-query-error))
 
 (smithy/sdk/operation:define-operation cancel-query :shape-name "CancelQuery"
                                        :input cancel-query-request :output

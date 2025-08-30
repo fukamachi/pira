@@ -1,9 +1,9 @@
 (uiop/package:define-package #:pira/ssm (:use)
-                             (:export #:access-key-id-type
-                              #:access-key-secret-type #:access-request-id
-                              #:access-request-status #:access-type #:account
-                              #:account-id #:account-id-list
-                              #:account-sharing-info
+                             (:export #:access-denied-exception
+                              #:access-key-id-type #:access-key-secret-type
+                              #:access-request-id #:access-request-status
+                              #:access-type #:account #:account-id
+                              #:account-id-list #:account-sharing-info
                               #:account-sharing-info-list #:accounts
                               #:activation #:activation-code
                               #:activation-description #:activation-id
@@ -13,13 +13,18 @@
                               #:alarm-configuration #:alarm-list #:alarm-name
                               #:alarm-state-information
                               #:alarm-state-information-list #:allowed-pattern
-                              #:amazon-ssm #:apply-only-at-cron-interval
+                              #:already-exists-exception #:amazon-ssm
+                              #:apply-only-at-cron-interval
                               #:approve-after-days #:architecture
-                              #:associate-ops-item-related-item #:association
+                              #:associate-ops-item-related-item
+                              #:associated-instances #:association
+                              #:association-already-exists
                               #:association-compliance-severity
                               #:association-description
                               #:association-description-list
+                              #:association-does-not-exist
                               #:association-execution
+                              #:association-execution-does-not-exist
                               #:association-execution-filter
                               #:association-execution-filter-key
                               #:association-execution-filter-list
@@ -36,7 +41,8 @@
                               #:association-filter-list
                               #:association-filter-operator-type
                               #:association-filter-value #:association-id
-                              #:association-id-list #:association-list
+                              #:association-id-list
+                              #:association-limit-exceeded #:association-list
                               #:association-name #:association-overview
                               #:association-resource-id
                               #:association-resource-type #:association-status
@@ -44,6 +50,7 @@
                               #:association-status-name
                               #:association-sync-compliance
                               #:association-version #:association-version-info
+                              #:association-version-limit-exceeded
                               #:association-version-list #:attachment-content
                               #:attachment-content-list #:attachment-hash
                               #:attachment-hash-type #:attachment-identifier
@@ -55,6 +62,9 @@
                               #:attachments-source-value
                               #:attachments-source-values #:attribute-name
                               #:attribute-value #:automation-action-name
+                              #:automation-definition-not-approved-exception
+                              #:automation-definition-not-found-exception
+                              #:automation-definition-version-not-found-exception
                               #:automation-execution
                               #:automation-execution-filter
                               #:automation-execution-filter-key
@@ -63,14 +73,17 @@
                               #:automation-execution-filter-value-list
                               #:automation-execution-id
                               #:automation-execution-inputs
+                              #:automation-execution-limit-exceeded-exception
                               #:automation-execution-metadata
                               #:automation-execution-metadata-list
+                              #:automation-execution-not-found-exception
                               #:automation-execution-preview
                               #:automation-execution-status
                               #:automation-parameter-key
                               #:automation-parameter-map
                               #:automation-parameter-value
                               #:automation-parameter-value-list
+                              #:automation-step-not-found-exception
                               #:automation-subtype
                               #:automation-target-parameter-name
                               #:automation-type #:baseline-description
@@ -114,6 +127,7 @@
                               #:compliance-summary-count
                               #:compliance-summary-item
                               #:compliance-summary-item-list
+                              #:compliance-type-count-limit-exceeded-exception
                               #:compliance-type-name #:compliance-upload-type
                               #:compliant-summary #:computer-name
                               #:connection-status #:content-length
@@ -125,7 +139,9 @@
                               #:create-ops-item #:create-ops-metadata
                               #:create-patch-baseline
                               #:create-resource-data-sync #:created-date
-                              #:credentials #:date-time #:default-baseline
+                              #:credentials
+                              #:custom-schema-count-limit-exceeded-exception
+                              #:date-time #:default-baseline
                               #:default-instance-name #:delete-activation
                               #:delete-association #:delete-document
                               #:delete-inventory #:delete-maintenance-window
@@ -175,8 +191,8 @@
                               #:describe-patch-properties #:describe-sessions
                               #:description-in-document
                               #:disassociate-ops-item-related-item
-                              #:document-arn #:document-author
-                              #:document-content
+                              #:document-arn #:document-already-exists
+                              #:document-author #:document-content
                               #:document-default-version-description
                               #:document-description #:document-display-name
                               #:document-filter #:document-filter-key
@@ -189,6 +205,7 @@
                               #:document-key-values-filter-list
                               #:document-key-values-filter-value
                               #:document-key-values-filter-values
+                              #:document-limit-exceeded
                               #:document-metadata-enum
                               #:document-metadata-response-info #:document-name
                               #:document-owner #:document-parameter
@@ -197,6 +214,7 @@
                               #:document-parameter-list
                               #:document-parameter-name
                               #:document-parameter-type
+                              #:document-permission-limit
                               #:document-permission-max-results
                               #:document-permission-type #:document-requires
                               #:document-requires-list #:document-review-action
@@ -210,8 +228,13 @@
                               #:document-sha1 #:document-status
                               #:document-status-information #:document-type
                               #:document-version #:document-version-info
+                              #:document-version-limit-exceeded
                               #:document-version-list #:document-version-name
-                              #:document-version-number #:dry-run #:duration
+                              #:document-version-number
+                              #:does-not-exist-exception #:dry-run
+                              #:duplicate-document-content
+                              #:duplicate-document-version-name
+                              #:duplicate-instance-id #:duration
                               #:effective-instance-association-max-results
                               #:effective-patch #:effective-patch-list
                               #:error-count #:exclude-account
@@ -222,9 +245,11 @@
                               #:external-alarm-state
                               #:failed-create-association
                               #:failed-create-association-list
-                              #:failure-details #:fault #:get-access-token
-                              #:get-automation-execution #:get-calendar-state
-                              #:get-command-invocation #:get-connection-status
+                              #:failure-details #:fault
+                              #:feature-not-available-exception
+                              #:get-access-token #:get-automation-execution
+                              #:get-calendar-state #:get-command-invocation
+                              #:get-connection-status
                               #:get-default-patch-baseline
                               #:get-deployable-patch-snapshot-for-instance
                               #:get-document #:get-execution-preview
@@ -245,8 +270,12 @@
                               #:get-resource-policies
                               #:get-resource-policies-response-entries
                               #:get-resource-policies-response-entry
-                              #:get-service-setting #:ipaddress #:iso8601string
-                              #:iam-role #:idempotency-token #:impact-type
+                              #:get-service-setting
+                              #:hierarchy-level-limit-exceeded-exception
+                              #:hierarchy-type-mismatch-exception #:ipaddress
+                              #:iso8601string #:iam-role #:idempotency-token
+                              #:idempotent-parameter-mismatch #:impact-type
+                              #:incompatible-policy-exception
                               #:install-override-list
                               #:instance-aggregated-association-overview
                               #:instance-association
@@ -290,6 +319,44 @@
                               #:instance-role #:instance-state
                               #:instance-status #:instance-tag-name
                               #:instance-type #:instances-count #:integer
+                              #:internal-server-error #:invalid-activation
+                              #:invalid-activation-id
+                              #:invalid-aggregator-exception
+                              #:invalid-allowed-pattern-exception
+                              #:invalid-association
+                              #:invalid-association-version
+                              #:invalid-automation-execution-parameters-exception
+                              #:invalid-automation-signal-exception
+                              #:invalid-automation-status-update-exception
+                              #:invalid-command-id
+                              #:invalid-delete-inventory-parameters-exception
+                              #:invalid-deletion-id-exception
+                              #:invalid-document #:invalid-document-content
+                              #:invalid-document-operation
+                              #:invalid-document-schema-version
+                              #:invalid-document-type
+                              #:invalid-document-version #:invalid-filter
+                              #:invalid-filter-key #:invalid-filter-option
+                              #:invalid-filter-value #:invalid-instance-id
+                              #:invalid-instance-information-filter-value
+                              #:invalid-instance-property-filter-value
+                              #:invalid-inventory-group-exception
+                              #:invalid-inventory-item-context-exception
+                              #:invalid-inventory-request-exception
+                              #:invalid-item-content-exception #:invalid-key-id
+                              #:invalid-next-token
+                              #:invalid-notification-config
+                              #:invalid-option-exception
+                              #:invalid-output-folder #:invalid-output-location
+                              #:invalid-parameters #:invalid-permission-type
+                              #:invalid-plugin-name
+                              #:invalid-policy-attribute-exception
+                              #:invalid-policy-type-exception
+                              #:invalid-resource-id #:invalid-resource-type
+                              #:invalid-result-attribute-exception
+                              #:invalid-role #:invalid-schedule #:invalid-tag
+                              #:invalid-target #:invalid-target-maps
+                              #:invalid-type-name-exception #:invalid-update
                               #:inventory-aggregator
                               #:inventory-aggregator-expression
                               #:inventory-aggregator-list
@@ -329,8 +396,11 @@
                               #:inventory-result-item-map
                               #:inventory-schema-delete-option
                               #:inventory-type-display-name
+                              #:invocation-does-not-exist
                               #:invocation-trace-output #:is-sub-type-schema
-                              #:key-list #:key-name #:label-parameter-version
+                              #:item-content-mismatch-exception
+                              #:item-size-limit-exceeded-exception #:key-list
+                              #:key-name #:label-parameter-version
                               #:last-resource-data-sync-message
                               #:last-resource-data-sync-status
                               #:last-resource-data-sync-time
@@ -412,8 +482,10 @@
                               #:maintenance-window-task-type
                               #:maintenance-window-timezone
                               #:maintenance-windows-for-target-list
+                              #:malformed-resource-policy-document-exception
                               #:managed-instance-id #:managed-status
-                              #:max-concurrency #:max-errors #:max-results
+                              #:max-concurrency #:max-document-size-exceeded
+                              #:max-errors #:max-results
                               #:max-results-ec2compatible
                               #:max-session-duration #:metadata-key
                               #:metadata-keys-to-delete-list #:metadata-map
@@ -447,8 +519,11 @@
                               #:ops-entity-list #:ops-filter #:ops-filter-key
                               #:ops-filter-list #:ops-filter-operator-type
                               #:ops-filter-value #:ops-filter-value-list
-                              #:ops-item #:ops-item-account-id #:ops-item-arn
-                              #:ops-item-category #:ops-item-data-key
+                              #:ops-item #:ops-item-access-denied-exception
+                              #:ops-item-account-id
+                              #:ops-item-already-exists-exception
+                              #:ops-item-arn #:ops-item-category
+                              #:ops-item-conflict-exception #:ops-item-data-key
                               #:ops-item-data-type #:ops-item-data-value
                               #:ops-item-data-value-string
                               #:ops-item-description #:ops-item-event-filter
@@ -463,13 +538,19 @@
                               #:ops-item-filter-key #:ops-item-filter-operator
                               #:ops-item-filter-value #:ops-item-filter-values
                               #:ops-item-filters #:ops-item-id
-                              #:ops-item-identity #:ops-item-max-results
+                              #:ops-item-identity
+                              #:ops-item-invalid-parameter-exception
+                              #:ops-item-limit-exceeded-exception
+                              #:ops-item-max-results
+                              #:ops-item-not-found-exception
                               #:ops-item-notification #:ops-item-notifications
                               #:ops-item-operational-data
                               #:ops-item-ops-data-keys-list
                               #:ops-item-parameter-names-list
                               #:ops-item-priority
+                              #:ops-item-related-item-already-exists-exception
                               #:ops-item-related-item-association-id
+                              #:ops-item-related-item-association-not-found-exception
                               #:ops-item-related-item-association-resource-type
                               #:ops-item-related-item-association-resource-uri
                               #:ops-item-related-item-association-type
@@ -485,33 +566,48 @@
                               #:ops-item-severity #:ops-item-source
                               #:ops-item-status #:ops-item-summaries
                               #:ops-item-summary #:ops-item-title
-                              #:ops-item-type #:ops-metadata #:ops-metadata-arn
-                              #:ops-metadata-filter #:ops-metadata-filter-key
+                              #:ops-item-type #:ops-metadata
+                              #:ops-metadata-already-exists-exception
+                              #:ops-metadata-arn #:ops-metadata-filter
+                              #:ops-metadata-filter-key
                               #:ops-metadata-filter-list
                               #:ops-metadata-filter-value
                               #:ops-metadata-filter-value-list
-                              #:ops-metadata-list #:ops-metadata-resource-id
+                              #:ops-metadata-invalid-argument-exception
+                              #:ops-metadata-key-limit-exceeded-exception
+                              #:ops-metadata-limit-exceeded-exception
+                              #:ops-metadata-list
+                              #:ops-metadata-not-found-exception
+                              #:ops-metadata-resource-id
+                              #:ops-metadata-too-many-updates-exception
                               #:ops-result-attribute
                               #:ops-result-attribute-list #:output-source
                               #:output-source-id #:output-source-type
                               #:owner-information #:psparameter-name
                               #:psparameter-selector #:psparameter-value
                               #:psparameter-version #:parameter
-                              #:parameter-data-type #:parameter-description
-                              #:parameter-history #:parameter-history-list
+                              #:parameter-already-exists #:parameter-data-type
+                              #:parameter-description #:parameter-history
+                              #:parameter-history-list
                               #:parameter-inline-policy #:parameter-key-id
                               #:parameter-label #:parameter-label-list
-                              #:parameter-list #:parameter-metadata
-                              #:parameter-metadata-list #:parameter-name
-                              #:parameter-name-list #:parameter-policies
-                              #:parameter-policy-list #:parameter-string-filter
+                              #:parameter-limit-exceeded #:parameter-list
+                              #:parameter-max-version-limit-exceeded
+                              #:parameter-metadata #:parameter-metadata-list
+                              #:parameter-name #:parameter-name-list
+                              #:parameter-not-found
+                              #:parameter-pattern-mismatch-exception
+                              #:parameter-policies #:parameter-policy-list
+                              #:parameter-string-filter
                               #:parameter-string-filter-key
                               #:parameter-string-filter-list
                               #:parameter-string-filter-value
                               #:parameter-string-filter-value-list
                               #:parameter-string-query-option #:parameter-tier
                               #:parameter-type #:parameter-value
-                              #:parameter-value-list #:parameters
+                              #:parameter-value-list
+                              #:parameter-version-label-limit-exceeded
+                              #:parameter-version-not-found #:parameters
                               #:parameters-filter #:parameters-filter-key
                               #:parameters-filter-list
                               #:parameters-filter-value
@@ -569,7 +665,8 @@
                               #:patch-unreported-not-applicable-count
                               #:patch-vendor #:patch-version #:ping-status
                               #:platform-name #:platform-type
-                              #:platform-type-list #:platform-version #:policy
+                              #:platform-type-list #:platform-version
+                              #:policies-limit-exceeded-exception #:policy
                               #:policy-hash #:policy-id #:product
                               #:progress-counters #:put-compliance-items
                               #:put-inventory #:put-inventory-message
@@ -592,16 +689,21 @@
                               #:resource-compliance-summary-item-list
                               #:resource-count #:resource-count-by-status
                               #:resource-data-sync-awskmskey-arn
+                              #:resource-data-sync-already-exists-exception
                               #:resource-data-sync-aws-organizations-source
+                              #:resource-data-sync-conflict-exception
+                              #:resource-data-sync-count-exceeded-exception
                               #:resource-data-sync-created-time
                               #:resource-data-sync-destination-data-sharing
                               #:resource-data-sync-destination-data-sharing-type
                               #:resource-data-sync-enable-all-ops-data-sources
                               #:resource-data-sync-include-future-regions
+                              #:resource-data-sync-invalid-configuration-exception
                               #:resource-data-sync-item
                               #:resource-data-sync-item-list
                               #:resource-data-sync-last-modified-time
                               #:resource-data-sync-name
+                              #:resource-data-sync-not-found-exception
                               #:resource-data-sync-organization-source-type
                               #:resource-data-sync-organizational-unit
                               #:resource-data-sync-organizational-unit-id
@@ -618,7 +720,14 @@
                               #:resource-data-sync-source-with-state
                               #:resource-data-sync-state
                               #:resource-data-sync-type #:resource-id
+                              #:resource-in-use-exception
+                              #:resource-limit-exceeded-exception
+                              #:resource-not-found-exception
+                              #:resource-policy-conflict-exception
+                              #:resource-policy-invalid-parameter-exception
+                              #:resource-policy-limit-exceeded-exception
                               #:resource-policy-max-results
+                              #:resource-policy-not-found-exception
                               #:resource-policy-parameter-names-list
                               #:resource-type #:resource-type-for-tagging
                               #:response-code #:result-attribute
@@ -631,9 +740,11 @@
                               #:scheduled-window-execution
                               #:scheduled-window-execution-list
                               #:send-automation-signal #:send-command
-                              #:service-role #:service-setting
-                              #:service-setting-id #:service-setting-value
-                              #:session #:session-details #:session-filter
+                              #:service-quota-exceeded-exception #:service-role
+                              #:service-setting #:service-setting-id
+                              #:service-setting-not-found
+                              #:service-setting-value #:session
+                              #:session-details #:session-filter
                               #:session-filter-key #:session-filter-list
                               #:session-filter-value #:session-id
                               #:session-list
@@ -657,8 +768,8 @@
                               #:start-change-request-execution
                               #:start-execution-preview #:start-session
                               #:status-additional-info #:status-details
-                              #:status-message #:status-name #:step-execution
-                              #:step-execution-filter
+                              #:status-message #:status-name #:status-unchanged
+                              #:step-execution #:step-execution-filter
                               #:step-execution-filter-key
                               #:step-execution-filter-list
                               #:step-execution-filter-value
@@ -666,18 +777,31 @@
                               #:step-execution-list #:step-preview-map
                               #:stop-automation-execution #:stop-type
                               #:stream-url #:string #:string1to256
-                              #:string-date-time #:string-list #:tag #:tag-key
-                              #:tag-list #:tag-value #:target #:target-count
+                              #:string-date-time #:string-list
+                              #:sub-type-count-limit-exceeded-exception #:tag
+                              #:tag-key #:tag-list #:tag-value #:target
+                              #:target-count #:target-in-use-exception
                               #:target-key #:target-location #:target-locations
                               #:target-locations-url #:target-map
                               #:target-map-key #:target-map-value
                               #:target-map-value-list #:target-maps
-                              #:target-parameter-list #:target-preview
-                              #:target-preview-list #:target-type
-                              #:target-value #:target-values #:targets
-                              #:terminate-session #:timeout-seconds
-                              #:token-value #:total-count #:uuid
-                              #:unlabel-parameter-version #:update-association
+                              #:target-not-connected #:target-parameter-list
+                              #:target-preview #:target-preview-list
+                              #:target-type #:target-value #:target-values
+                              #:targets #:terminate-session
+                              #:throttling-exception #:timeout-seconds
+                              #:token-value #:too-many-tags-error
+                              #:too-many-updates #:total-count
+                              #:total-size-limit-exceeded-exception #:uuid
+                              #:unlabel-parameter-version
+                              #:unsupported-calendar-exception
+                              #:unsupported-feature-required-exception
+                              #:unsupported-inventory-item-context-exception
+                              #:unsupported-inventory-schema-version-exception
+                              #:unsupported-operating-system
+                              #:unsupported-operation-exception
+                              #:unsupported-parameter-type
+                              #:unsupported-platform-type #:update-association
                               #:update-association-status #:update-document
                               #:update-document-default-version
                               #:update-document-metadata
@@ -688,8 +812,13 @@
                               #:update-ops-metadata #:update-patch-baseline
                               #:update-resource-data-sync
                               #:update-service-setting #:url #:valid-next-step
-                              #:valid-next-step-list #:version))
+                              #:valid-next-step-list #:validation-exception
+                              #:version #:ssm-error))
 (common-lisp:in-package #:pira/ssm)
+
+(common-lisp:define-condition ssm-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-ssm :shape-name "AmazonSSM" :version
                                    "2014-11-06" :title
@@ -827,7 +956,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type access-key-id-type
                                smithy/sdk/smithy-types:string)
@@ -967,7 +1096,7 @@
                                   "Message"))
                                 (:shape-name "AlreadyExistsException")
                                 (:error-name "AlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type apply-only-at-cron-interval
                                smithy/sdk/smithy-types:boolean)
@@ -1009,7 +1138,7 @@
                                 common-lisp:nil
                                 (:shape-name "AssociatedInstances")
                                 (:error-name "AssociatedInstances")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure association common-lisp:nil
                                     ((name :target-type document-arn
@@ -1052,7 +1181,7 @@
                                 common-lisp:nil
                                 (:shape-name "AssociationAlreadyExists")
                                 (:error-name "AssociationAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-enum association-compliance-severity
     common-lisp:nil
@@ -1154,7 +1283,7 @@
                                   "Message"))
                                 (:shape-name "AssociationDoesNotExist")
                                 (:error-name "AssociationDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure association-execution common-lisp:nil
                                     ((association-id :target-type
@@ -1194,7 +1323,7 @@
                                  "AssociationExecutionDoesNotExist")
                                 (:error-name
                                  "AssociationExecutionDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure association-execution-filter
                                     common-lisp:nil
@@ -1332,7 +1461,7 @@
                                 common-lisp:nil
                                 (:shape-name "AssociationLimitExceeded")
                                 (:error-name "AssociationLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-list association-list :member
                                (association :xml-name "Association"))
@@ -1450,7 +1579,7 @@
                                   "Message"))
                                 (:shape-name "AssociationVersionLimitExceeded")
                                 (:error-name "AssociationVersionLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-list association-version-list :member
                                association-version-info)
@@ -1534,7 +1663,7 @@
                                 (:shape-name
                                  "AutomationDefinitionNotApprovedException")
                                 (:error-name "AutomationDefinitionNotApproved")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error automation-definition-not-found-exception
                                 common-lisp:nil
@@ -1543,13 +1672,14 @@
                                 (:shape-name
                                  "AutomationDefinitionNotFoundException")
                                 (:error-name "AutomationDefinitionNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error
  automation-definition-version-not-found-exception common-lisp:nil
  ((message :target-type string :member-name "Message"))
  (:shape-name "AutomationDefinitionVersionNotFoundException")
- (:error-name "AutomationDefinitionVersionNotFound") (:error-code 400))
+ (:error-name "AutomationDefinitionVersionNotFound") (:error-code 400)
+ (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure automation-execution common-lisp:nil
                                     ((automation-execution-id :target-type
@@ -1709,7 +1839,7 @@
                                  "AutomationExecutionLimitExceededException")
                                 (:error-name
                                  "AutomationExecutionLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure automation-execution-metadata
                                     common-lisp:nil
@@ -1803,7 +1933,7 @@
                                 (:shape-name
                                  "AutomationExecutionNotFoundException")
                                 (:error-name "AutomationExecutionNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure automation-execution-preview
                                     common-lisp:nil
@@ -1860,7 +1990,7 @@
                                   "Message"))
                                 (:shape-name "AutomationStepNotFoundException")
                                 (:error-name "AutomationStepNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-enum automation-subtype
     common-lisp:nil
@@ -2373,7 +2503,7 @@
                                  "ComplianceTypeCountLimitExceededException")
                                 (:error-name
                                  "ComplianceTypeCountLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type compliance-type-name
                                smithy/sdk/smithy-types:string)
@@ -2802,7 +2932,7 @@
                                 (:shape-name
                                  "CustomSchemaCountLimitExceededException")
                                 (:error-name "CustomSchemaCountLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type date-time smithy/sdk/smithy-types:timestamp)
 
@@ -3849,7 +3979,7 @@
                                   "Message"))
                                 (:shape-name "DocumentAlreadyExists")
                                 (:error-name "DocumentAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type document-author smithy/sdk/smithy-types:string)
 
@@ -4056,7 +4186,7 @@
                                   "Message"))
                                 (:shape-name "DocumentLimitExceeded")
                                 (:error-name "DocumentLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-enum document-metadata-enum
     common-lisp:nil
@@ -4110,7 +4240,7 @@
                                   "Message"))
                                 (:shape-name "DocumentPermissionLimit")
                                 (:error-name "DocumentPermissionLimit")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type document-permission-max-results
                                smithy/sdk/smithy-types:integer)
@@ -4259,7 +4389,7 @@
                                   "Message"))
                                 (:shape-name "DocumentVersionLimitExceeded")
                                 (:error-name "DocumentVersionLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-list document-version-list :member
                                document-version-info)
@@ -4275,7 +4405,7 @@
                                   "Message"))
                                 (:shape-name "DoesNotExistException")
                                 (:error-name "DoesNotExistException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type dry-run smithy/sdk/smithy-types:boolean)
 
@@ -4284,20 +4414,20 @@
                                   "Message"))
                                 (:shape-name "DuplicateDocumentContent")
                                 (:error-name "DuplicateDocumentContent")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error duplicate-document-version-name common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "DuplicateDocumentVersionName")
                                 (:error-name "DuplicateDocumentVersionName")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error duplicate-instance-id common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "DuplicateInstanceId")
                                 (:error-name "DuplicateInstanceId")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type duration smithy/sdk/smithy-types:integer)
 
@@ -4392,7 +4522,7 @@
                                   "Message"))
                                 (:shape-name "FeatureNotAvailableException")
                                 (:error-name "FeatureNotAvailableException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-input get-access-token-request common-lisp:nil
                                 ((access-request-id :target-type
@@ -5149,7 +5279,7 @@
                                  "HierarchyLevelLimitExceededException")
                                 (:error-name
                                  "HierarchyLevelLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error hierarchy-type-mismatch-exception
                                 common-lisp:nil
@@ -5157,7 +5287,7 @@
                                   "message"))
                                 (:shape-name "HierarchyTypeMismatchException")
                                 (:error-name "HierarchyTypeMismatchException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type ipaddress smithy/sdk/smithy-types:string)
 
@@ -5172,7 +5302,7 @@
                                   "Message"))
                                 (:shape-name "IdempotentParameterMismatch")
                                 (:error-name "IdempotentParameterMismatch")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-enum impact-type
     common-lisp:nil
@@ -5185,7 +5315,7 @@
                                   "message"))
                                 (:shape-name "IncompatiblePolicyException")
                                 (:error-name "IncompatiblePolicyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type install-override-list
                                smithy/sdk/smithy-types:string)
@@ -5679,28 +5809,28 @@
                                   "Message"))
                                 (:shape-name "InternalServerError")
                                 (:error-name "InternalServerError")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-activation common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidActivation")
                                 (:error-name "InvalidActivation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-activation-id common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidActivationId")
                                 (:error-name "InvalidActivationId")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-aggregator-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidAggregatorException")
                                 (:error-name "InvalidAggregator")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-allowed-pattern-exception
                                 common-lisp:nil
@@ -5708,27 +5838,28 @@
                                   "message"))
                                 (:shape-name "InvalidAllowedPatternException")
                                 (:error-name "InvalidAllowedPatternException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-association common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidAssociation")
                                 (:error-name "InvalidAssociation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-association-version common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidAssociationVersion")
                                 (:error-name "InvalidAssociationVersion")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error
  invalid-automation-execution-parameters-exception common-lisp:nil
  ((message :target-type string :member-name "Message"))
  (:shape-name "InvalidAutomationExecutionParametersException")
- (:error-name "InvalidAutomationExecutionParameters") (:error-code 400))
+ (:error-name "InvalidAutomationExecutionParameters") (:error-code 400)
+ (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-automation-signal-exception
                                 common-lisp:nil
@@ -5738,7 +5869,7 @@
                                  "InvalidAutomationSignalException")
                                 (:error-name
                                  "InvalidAutomationSignalException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-automation-status-update-exception
                                 common-lisp:nil
@@ -5748,13 +5879,13 @@
                                  "InvalidAutomationStatusUpdateException")
                                 (:error-name
                                  "InvalidAutomationStatusUpdateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-command-id common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "InvalidCommandId")
                                 (:error-name "InvalidCommandId")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-delete-inventory-parameters-exception
                                 common-lisp:nil
@@ -5764,89 +5895,90 @@
                                  "InvalidDeleteInventoryParametersException")
                                 (:error-name
                                  "InvalidDeleteInventoryParameters")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-deletion-id-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidDeletionIdException")
                                 (:error-name "InvalidDeletionId")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-document common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidDocument")
                                 (:error-name "InvalidDocument")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-document-content common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidDocumentContent")
                                 (:error-name "InvalidDocumentContent")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-document-operation common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidDocumentOperation")
                                 (:error-name "InvalidDocumentOperation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-document-schema-version common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidDocumentSchemaVersion")
                                 (:error-name "InvalidDocumentSchemaVersion")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-document-type common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidDocumentType")
                                 (:error-name "InvalidDocumentType")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-document-version common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidDocumentVersion")
                                 (:error-name "InvalidDocumentVersion")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-filter common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidFilter")
-                                (:error-name "InvalidFilter") (:error-code 400))
+                                (:error-name "InvalidFilter") (:error-code 400)
+                                (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-filter-key common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "InvalidFilterKey")
                                 (:error-name "InvalidFilterKey")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-filter-option common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidFilterOption")
                                 (:error-name "InvalidFilterOption")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-filter-value common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidFilterValue")
                                 (:error-name "InvalidFilterValue")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-instance-id common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidInstanceId")
                                 (:error-name "InvalidInstanceId")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-instance-information-filter-value
                                 common-lisp:nil
@@ -5856,7 +5988,7 @@
                                  "InvalidInstanceInformationFilterValue")
                                 (:error-name
                                  "InvalidInstanceInformationFilterValue")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-instance-property-filter-value
                                 common-lisp:nil
@@ -5866,7 +5998,7 @@
                                  "InvalidInstancePropertyFilterValue")
                                 (:error-name
                                  "InvalidInstancePropertyFilterValue")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-inventory-group-exception
                                 common-lisp:nil
@@ -5874,7 +6006,7 @@
                                   "Message"))
                                 (:shape-name "InvalidInventoryGroupException")
                                 (:error-name "InvalidInventoryGroup")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-inventory-item-context-exception
                                 common-lisp:nil
@@ -5883,7 +6015,7 @@
                                 (:shape-name
                                  "InvalidInventoryItemContextException")
                                 (:error-name "InvalidInventoryItemContext")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-inventory-request-exception
                                 common-lisp:nil
@@ -5892,7 +6024,7 @@
                                 (:shape-name
                                  "InvalidInventoryRequestException")
                                 (:error-name "InvalidInventoryRequest")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-item-content-exception common-lisp:nil
                                 ((type-name :target-type
@@ -5902,65 +6034,67 @@
                                   "Message"))
                                 (:shape-name "InvalidItemContentException")
                                 (:error-name "InvalidItemContent")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-key-id common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidKeyId")
-                                (:error-name "InvalidKeyId") (:error-code 400))
+                                (:error-name "InvalidKeyId") (:error-code 400)
+                                (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidNextToken")
                                 (:error-name "InvalidNextToken")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-notification-config common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidNotificationConfig")
                                 (:error-name "InvalidNotificationConfig")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-option-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidOptionException")
-                                (:error-name "InvalidOption") (:error-code 400))
+                                (:error-name "InvalidOption") (:error-code 400)
+                                (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-output-folder common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "InvalidOutputFolder")
                                 (:error-name "InvalidOutputFolder")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-output-location common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "InvalidOutputLocation")
                                 (:error-name "InvalidOutputLocation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-parameters common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidParameters")
                                 (:error-name "InvalidParameters")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-permission-type common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidPermissionType")
                                 (:error-name "InvalidPermissionType")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-plugin-name common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "InvalidPluginName")
                                 (:error-name "InvalidPluginName")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-policy-attribute-exception
                                 common-lisp:nil
@@ -5968,26 +6102,26 @@
                                   "message"))
                                 (:shape-name "InvalidPolicyAttributeException")
                                 (:error-name "InvalidPolicyAttributeException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-policy-type-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidPolicyTypeException")
                                 (:error-name "InvalidPolicyTypeException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-id common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "InvalidResourceId")
                                 (:error-name "InvalidResourceId")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-resource-type common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "InvalidResourceType")
                                 (:error-name "InvalidResourceType")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-result-attribute-exception
                                 common-lisp:nil
@@ -5995,52 +6129,56 @@
                                   "Message"))
                                 (:shape-name "InvalidResultAttributeException")
                                 (:error-name "InvalidResultAttribute")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-role common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidRole")
-                                (:error-name "InvalidRole") (:error-code 400))
+                                (:error-name "InvalidRole") (:error-code 400)
+                                (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-schedule common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidSchedule")
                                 (:error-name "InvalidSchedule")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-tag common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidTag")
-                                (:error-name "InvalidTag") (:error-code 400))
+                                (:error-name "InvalidTag") (:error-code 400)
+                                (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-target common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidTarget")
-                                (:error-name "InvalidTarget") (:error-code 400))
+                                (:error-name "InvalidTarget") (:error-code 400)
+                                (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-target-maps common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidTargetMaps")
                                 (:error-name "InvalidTargetMaps")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-type-name-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidTypeNameException")
                                 (:error-name "InvalidTypeName")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error invalid-update common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidUpdate")
-                                (:error-name "InvalidUpdate") (:error-code 400))
+                                (:error-name "InvalidUpdate") (:error-code 400)
+                                (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure inventory-aggregator common-lisp:nil
                                     ((expression :target-type
@@ -6315,7 +6453,7 @@
                                 common-lisp:nil
                                 (:shape-name "InvocationDoesNotExist")
                                 (:error-name "InvocationDoesNotExist")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type invocation-trace-output
                                smithy/sdk/smithy-types:string)
@@ -6331,7 +6469,7 @@
                                   "Message"))
                                 (:shape-name "ItemContentMismatchException")
                                 (:error-name "ItemContentMismatch")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error item-size-limit-exceeded-exception
                                 common-lisp:nil
@@ -6342,7 +6480,7 @@
                                   "Message"))
                                 (:shape-name "ItemSizeLimitExceededException")
                                 (:error-name "ItemSizeLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-list key-list :member tag-key)
 
@@ -7253,7 +7391,7 @@
                                  "MalformedResourcePolicyDocumentException")
                                 (:error-name
                                  "MalformedResourcePolicyDocumentException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type managed-instance-id
                                smithy/sdk/smithy-types:string)
@@ -7271,7 +7409,7 @@
                                   "Message"))
                                 (:shape-name "MaxDocumentSizeExceeded")
                                 (:error-name "MaxDocumentSizeExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type max-errors smithy/sdk/smithy-types:string)
 
@@ -7681,7 +7819,7 @@
                                   "Message"))
                                 (:shape-name "OpsItemAccessDeniedException")
                                 (:error-name "OpsItemAccessDeniedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type ops-item-account-id
                                smithy/sdk/smithy-types:string)
@@ -7694,7 +7832,7 @@
                                   "OpsItemId"))
                                 (:shape-name "OpsItemAlreadyExistsException")
                                 (:error-name "OpsItemAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type ops-item-arn smithy/sdk/smithy-types:string)
 
@@ -7705,7 +7843,7 @@
                                   "Message"))
                                 (:shape-name "OpsItemConflictException")
                                 (:error-name "OpsItemConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type ops-item-data-key smithy/sdk/smithy-types:string)
 
@@ -7865,7 +8003,7 @@
                                  "OpsItemInvalidParameterException")
                                 (:error-name
                                  "OpsItemInvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error ops-item-limit-exceeded-exception
                                 common-lisp:nil
@@ -7880,7 +8018,7 @@
                                   "Message"))
                                 (:shape-name "OpsItemLimitExceededException")
                                 (:error-name "OpsItemLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type ops-item-max-results
                                smithy/sdk/smithy-types:integer)
@@ -7890,7 +8028,7 @@
                                   "Message"))
                                 (:shape-name "OpsItemNotFoundException")
                                 (:error-name "OpsItemNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure ops-item-notification common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -7923,7 +8061,7 @@
                                  "OpsItemRelatedItemAlreadyExistsException")
                                 (:error-name
                                  "OpsItemRelatedItemAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type ops-item-related-item-association-id
                                smithy/sdk/smithy-types:string)
@@ -7933,7 +8071,7 @@
  ((message :target-type string :member-name "Message"))
  (:shape-name "OpsItemRelatedItemAssociationNotFoundException")
  (:error-name "OpsItemRelatedItemAssociationNotFoundException")
- (:error-code 400))
+ (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type ops-item-related-item-association-resource-type
                                smithy/sdk/smithy-types:string)
@@ -8106,7 +8244,7 @@
                                  "OpsMetadataAlreadyExistsException")
                                 (:error-name
                                  "OpsMetadataAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type ops-metadata-arn smithy/sdk/smithy-types:string)
 
@@ -8139,7 +8277,7 @@
                                  "OpsMetadataInvalidArgumentException")
                                 (:error-name
                                  "OpsMetadataInvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error ops-metadata-key-limit-exceeded-exception
                                 common-lisp:nil
@@ -8149,7 +8287,7 @@
                                  "OpsMetadataKeyLimitExceededException")
                                 (:error-name
                                  "OpsMetadataKeyLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error ops-metadata-limit-exceeded-exception
                                 common-lisp:nil
@@ -8159,7 +8297,7 @@
                                  "OpsMetadataLimitExceededException")
                                 (:error-name
                                  "OpsMetadataLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-list ops-metadata-list :member ops-metadata)
 
@@ -8169,7 +8307,7 @@
                                   "message"))
                                 (:shape-name "OpsMetadataNotFoundException")
                                 (:error-name "OpsMetadataNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type ops-metadata-resource-id
                                smithy/sdk/smithy-types:string)
@@ -8182,7 +8320,7 @@
                                  "OpsMetadataTooManyUpdatesException")
                                 (:error-name
                                  "OpsMetadataTooManyUpdatesException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure ops-result-attribute common-lisp:nil
                                     ((type-name :target-type ops-data-type-name
@@ -8247,7 +8385,7 @@
                                   "message"))
                                 (:shape-name "ParameterAlreadyExists")
                                 (:error-name "ParameterAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type parameter-data-type
                                smithy/sdk/smithy-types:string)
@@ -8310,7 +8448,7 @@
                                   "message"))
                                 (:shape-name "ParameterLimitExceeded")
                                 (:error-name "ParameterLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-list parameter-list :member parameter)
 
@@ -8322,7 +8460,7 @@
                                  "ParameterMaxVersionLimitExceeded")
                                 (:error-name
                                  "ParameterMaxVersionLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure parameter-metadata common-lisp:nil
                                     ((name :target-type psparameter-name
@@ -8367,7 +8505,7 @@
                                   "message"))
                                 (:shape-name "ParameterNotFound")
                                 (:error-name "ParameterNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error parameter-pattern-mismatch-exception
                                 common-lisp:nil
@@ -8377,7 +8515,7 @@
                                  "ParameterPatternMismatchException")
                                 (:error-name
                                  "ParameterPatternMismatchException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type parameter-policies
                                smithy/sdk/smithy-types:string)
@@ -8436,14 +8574,14 @@
                                  "ParameterVersionLabelLimitExceeded")
                                 (:error-name
                                  "ParameterVersionLabelLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error parameter-version-not-found common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ParameterVersionNotFound")
                                 (:error-name "ParameterVersionNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-map parameters :key parameter-name :value
                               parameter-value-list)
@@ -8924,7 +9062,7 @@
                                   "message"))
                                 (:shape-name "PoliciesLimitExceededException")
                                 (:error-name "PoliciesLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type policy smithy/sdk/smithy-types:string)
 
@@ -9296,7 +9434,7 @@
                                 (:shape-name
                                  "ResourceDataSyncAlreadyExistsException")
                                 (:error-name "ResourceDataSyncAlreadyExists")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure resource-data-sync-aws-organizations-source
                                     common-lisp:nil
@@ -9318,7 +9456,7 @@
                                  "ResourceDataSyncConflictException")
                                 (:error-name
                                  "ResourceDataSyncConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error resource-data-sync-count-exceeded-exception
                                 common-lisp:nil
@@ -9327,7 +9465,7 @@
                                 (:shape-name
                                  "ResourceDataSyncCountExceededException")
                                 (:error-name "ResourceDataSyncCountExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type resource-data-sync-created-time
                                smithy/sdk/smithy-types:timestamp)
@@ -9355,7 +9493,8 @@
  resource-data-sync-invalid-configuration-exception common-lisp:nil
  ((message :target-type string :member-name "Message"))
  (:shape-name "ResourceDataSyncInvalidConfigurationException")
- (:error-name "ResourceDataSyncInvalidConfiguration") (:error-code 400))
+ (:error-name "ResourceDataSyncInvalidConfiguration") (:error-code 400)
+ (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure resource-data-sync-item common-lisp:nil
                                     ((sync-name :target-type
@@ -9412,7 +9551,7 @@
                                 (:shape-name
                                  "ResourceDataSyncNotFoundException")
                                 (:error-name "ResourceDataSyncNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type resource-data-sync-organization-source-type
                                smithy/sdk/smithy-types:string)
@@ -9532,7 +9671,7 @@
                                   "Message"))
                                 (:shape-name "ResourceInUseException")
                                 (:error-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error resource-limit-exceeded-exception
                                 common-lisp:nil
@@ -9540,14 +9679,14 @@
                                   "Message"))
                                 (:shape-name "ResourceLimitExceededException")
                                 (:error-name "ResourceLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error resource-policy-conflict-exception
                                 common-lisp:nil
@@ -9555,7 +9694,7 @@
                                   "Message"))
                                 (:shape-name "ResourcePolicyConflictException")
                                 (:error-name "ResourcePolicyConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error resource-policy-invalid-parameter-exception
                                 common-lisp:nil
@@ -9568,7 +9707,7 @@
                                  "ResourcePolicyInvalidParameterException")
                                 (:error-name
                                  "ResourcePolicyInvalidParameterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error resource-policy-limit-exceeded-exception
                                 common-lisp:nil
@@ -9582,7 +9721,7 @@
                                  "ResourcePolicyLimitExceededException")
                                 (:error-name
                                  "ResourcePolicyLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type resource-policy-max-results
                                smithy/sdk/smithy-types:integer)
@@ -9593,7 +9732,7 @@
                                   "Message"))
                                 (:shape-name "ResourcePolicyNotFoundException")
                                 (:error-name "ResourcePolicyNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-list resource-policy-parameter-names-list :member
                                string)
@@ -9812,7 +9951,7 @@
                                  (service-code :target-type string :required
                                   common-lisp:t :member-name "ServiceCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type service-role smithy/sdk/smithy-types:string)
 
@@ -9841,7 +9980,7 @@
                                   "Message"))
                                 (:shape-name "ServiceSettingNotFound")
                                 (:error-name "ServiceSettingNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type service-setting-value
                                smithy/sdk/smithy-types:string)
@@ -10174,7 +10313,7 @@
 (smithy/sdk/shapes:define-error status-unchanged common-lisp:nil
                                 common-lisp:nil (:shape-name "StatusUnchanged")
                                 (:error-name "StatusUnchanged")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure step-execution common-lisp:nil
                                     ((step-name :target-type string
@@ -10308,7 +10447,7 @@
                                 (:shape-name
                                  "SubTypeCountLimitExceededException")
                                 (:error-name "SubTypeCountLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-structure tag common-lisp:nil
                                     ((key :target-type tag-key :required
@@ -10337,7 +10476,7 @@
                                   "Message"))
                                 (:shape-name "TargetInUseException")
                                 (:error-name "TargetInUseException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type target-key smithy/sdk/smithy-types:string)
 
@@ -10396,7 +10535,7 @@
                                   "Message"))
                                 (:shape-name "TargetNotConnected")
                                 (:error-name "TargetNotConnected")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-list target-parameter-list :member parameter-value)
 
@@ -10435,7 +10574,7 @@
                                  (service-code :target-type string :member-name
                                   "ServiceCode"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type timeout-seconds smithy/sdk/smithy-types:integer)
 
@@ -10445,14 +10584,14 @@
                                 common-lisp:nil
                                 (:shape-name "TooManyTagsError")
                                 (:error-name "TooManyTagsError")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error too-many-updates common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyUpdates")
                                 (:error-name "TooManyUpdates")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type total-count smithy/sdk/smithy-types:integer)
 
@@ -10462,7 +10601,7 @@
                                   "Message"))
                                 (:shape-name "TotalSizeLimitExceededException")
                                 (:error-name "TotalSizeLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 
@@ -10493,7 +10632,7 @@
                                   "Message"))
                                 (:shape-name "UnsupportedCalendarException")
                                 (:error-name "UnsupportedCalendarException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error unsupported-feature-required-exception
                                 common-lisp:nil
@@ -10503,7 +10642,7 @@
                                  "UnsupportedFeatureRequiredException")
                                 (:error-name
                                  "UnsupportedFeatureRequiredException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error unsupported-inventory-item-context-exception
                                 common-lisp:nil
@@ -10515,7 +10654,7 @@
                                 (:shape-name
                                  "UnsupportedInventoryItemContextException")
                                 (:error-name "UnsupportedInventoryItemContext")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error unsupported-inventory-schema-version-exception
                                 common-lisp:nil
@@ -10525,35 +10664,35 @@
                                  "UnsupportedInventorySchemaVersionException")
                                 (:error-name
                                  "UnsupportedInventorySchemaVersion")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error unsupported-operating-system common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnsupportedOperatingSystem")
                                 (:error-name "UnsupportedOperatingSystem")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error unsupported-operation-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnsupportedOperationException")
                                 (:error-name "UnsupportedOperation")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error unsupported-parameter-type common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "UnsupportedParameterType")
                                 (:error-name "UnsupportedParameterType")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-error unsupported-platform-type common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnsupportedPlatformType")
                                 (:error-name "UnsupportedPlatformType")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-input update-association-request common-lisp:nil
                                 ((association-id :target-type association-id
@@ -11111,7 +11250,7 @@
                                   "ReasonCode"))
                                 (:shape-name "ValidationException")
                                 (:error-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class ssm-error))
 
 (smithy/sdk/shapes:define-type version smithy/sdk/smithy-types:string)
 

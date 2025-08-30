@@ -1,14 +1,15 @@
 (uiop/package:define-package #:pira/kendra-ranking (:use)
                              (:export #:awskendra-reranking-frontend-service
-                              #:amazon-resource-name #:body-tokens-list
-                              #:capacity-units-configuration
-                              #:client-token-name
+                              #:access-denied-exception #:amazon-resource-name
+                              #:body-tokens-list #:capacity-units-configuration
+                              #:client-token-name #:conflict-exception
                               #:create-rescore-execution-plan
                               #:delete-rescore-execution-plan
                               #:describe-rescore-execution-plan #:description
                               #:document #:document-body #:document-id
                               #:document-list #:document-title #:error-message
-                              #:float #:group-id #:list-rescore-execution-plans
+                              #:float #:group-id #:internal-server-exception
+                              #:list-rescore-execution-plans
                               #:list-tags-for-resource
                               #:max-results-integer-for-list-rescore-execution-plans-request
                               #:next-token #:rescore #:rescore-capacity-unit
@@ -19,12 +20,20 @@
                               #:rescore-execution-plan-summary
                               #:rescore-execution-plan-summary-list
                               #:rescore-id #:rescore-result-item
-                              #:rescore-result-item-list #:search-query #:tag
+                              #:rescore-result-item-list
+                              #:resource-not-found-exception
+                              #:resource-unavailable-exception #:search-query
+                              #:service-quota-exceeded-exception #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-value #:timestamp
-                              #:title-tokens-list #:tokens #:untag-resource
-                              #:update-rescore-execution-plan))
+                              #:tag-resource #:tag-value #:throttling-exception
+                              #:timestamp #:title-tokens-list #:tokens
+                              #:untag-resource #:update-rescore-execution-plan
+                              #:validation-exception #:kendra-ranking-error))
 (common-lisp:in-package #:pira/kendra-ranking)
+
+(common-lisp:define-condition kendra-ranking-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awskendra-reranking-frontend-service
                                    :shape-name
@@ -55,7 +64,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class kendra-ranking-error))
 
 (smithy/sdk/shapes:define-type amazon-resource-name
                                smithy/sdk/smithy-types:string)
@@ -76,7 +86,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class kendra-ranking-error))
 
 (smithy/sdk/shapes:define-input create-rescore-execution-plan-request
                                 common-lisp:nil
@@ -185,7 +196,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class kendra-ranking-error))
 
 (smithy/sdk/shapes:define-input list-rescore-execution-plans-request
                                 common-lisp:nil
@@ -304,13 +316,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class kendra-ranking-error))
 
 (smithy/sdk/shapes:define-error resource-unavailable-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceUnavailableException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class kendra-ranking-error))
 
 (smithy/sdk/shapes:define-type search-query smithy/sdk/smithy-types:string)
 
@@ -319,7 +333,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class kendra-ranking-error))
 
 (smithy/sdk/shapes:define-structure tag common-lisp:nil
                                     ((key :target-type tag-key :required
@@ -352,7 +367,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class kendra-ranking-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -391,7 +407,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kendra-ranking-error))
 
 (smithy/sdk/operation:define-operation create-rescore-execution-plan
                                        :shape-name "CreateRescoreExecutionPlan"

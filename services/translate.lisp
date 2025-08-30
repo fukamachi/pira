@@ -2,22 +2,29 @@
                              (:export #:awsshine-frontend-service-20170701
                               #:applied-terminology #:applied-terminology-list
                               #:bounded-length-string #:brevity
-                              #:client-token-string #:content-type
+                              #:client-token-string
+                              #:concurrent-modification-exception
+                              #:conflict-exception #:content-type
                               #:create-parallel-data #:delete-parallel-data
                               #:delete-terminology
                               #:describe-text-translation-job #:description
+                              #:detected-language-low-confidence-exception
                               #:directionality #:display-language-code
                               #:document #:document-content #:encryption-key
                               #:encryption-key-id #:encryption-key-type
                               #:formality #:get-parallel-data #:get-terminology
                               #:iam-role-arn #:import-terminology
-                              #:input-data-config #:integer #:job-details
+                              #:input-data-config #:integer
+                              #:internal-server-exception
+                              #:invalid-filter-exception
+                              #:invalid-parameter-value-exception
+                              #:invalid-request-exception #:job-details
                               #:job-id #:job-name #:job-status #:language
                               #:language-code-string
                               #:language-code-string-list #:languages-list
-                              #:list-languages #:list-parallel-data
-                              #:list-tags-for-resource #:list-terminologies
-                              #:list-text-translation-jobs
+                              #:limit-exceeded-exception #:list-languages
+                              #:list-parallel-data #:list-tags-for-resource
+                              #:list-terminologies #:list-text-translation-jobs
                               #:localized-name-string #:long
                               #:max-results-integer #:merge-strategy
                               #:next-token #:output-data-config
@@ -26,7 +33,9 @@
                               #:parallel-data-format #:parallel-data-properties
                               #:parallel-data-properties-list
                               #:parallel-data-status #:profanity #:resource-arn
-                              #:resource-name #:resource-name-list #:s3uri
+                              #:resource-name #:resource-name-list
+                              #:resource-not-found-exception #:s3uri
+                              #:service-unavailable-exception
                               #:start-text-translation-job
                               #:stop-text-translation-job #:string #:tag
                               #:tag-key #:tag-key-list #:tag-list
@@ -37,16 +46,25 @@
                               #:terminology-data-location #:terminology-file
                               #:terminology-properties
                               #:terminology-properties-list
+                              #:text-size-limit-exceeded-exception
                               #:text-translation-job-filter
                               #:text-translation-job-properties
                               #:text-translation-job-properties-list
-                              #:timestamp #:translate-document #:translate-text
-                              #:translated-document
+                              #:timestamp #:too-many-requests-exception
+                              #:too-many-tags-exception #:translate-document
+                              #:translate-text #:translated-document
                               #:translated-document-content
                               #:translated-text-string #:translation-settings
-                              #:unbounded-length-string #:untag-resource
-                              #:update-parallel-data))
+                              #:unbounded-length-string
+                              #:unsupported-display-language-code-exception
+                              #:unsupported-language-pair-exception
+                              #:untag-resource #:update-parallel-data
+                              #:translate-error))
 (common-lisp:in-package #:pira/translate)
+
+(common-lisp:define-condition translate-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsshine-frontend-service-20170701
                                    :shape-name
@@ -100,13 +118,13 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-type content-type smithy/sdk/smithy-types:string)
 
@@ -177,7 +195,7 @@
                                   "DetectedLanguageCode"))
                                 (:shape-name
                                  "DetectedLanguageLowConfidenceException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-enum directionality
     common-lisp:nil
@@ -311,26 +329,26 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-error invalid-filter-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidFilterException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidParameterValueException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-structure job-details common-lisp:nil
                                     ((translated-documents-count :target-type
@@ -381,7 +399,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-input list-languages-request common-lisp:nil
                                 ((display-language-code :target-type
@@ -582,7 +600,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-type s3uri smithy/sdk/smithy-types:string)
 
@@ -590,7 +608,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-input start-text-translation-job-request
                                 common-lisp:nil
@@ -764,7 +782,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TextSizeLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-structure text-translation-job-filter common-lisp:nil
                                     ((job-name :target-type job-name
@@ -832,7 +850,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -840,7 +858,7 @@
                                  (resource-arn :target-type resource-arn
                                   :member-name "ResourceArn"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-input translate-document-request common-lisp:nil
                                 ((document :target-type document :required
@@ -943,7 +961,7 @@
                                   "DisplayLanguageCode"))
                                 (:shape-name
                                  "UnsupportedDisplayLanguageCodeException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-error unsupported-language-pair-exception
                                 common-lisp:nil
@@ -957,7 +975,7 @@
                                   "TargetLanguageCode"))
                                 (:shape-name
                                  "UnsupportedLanguagePairException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class translate-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type resource-arn

@@ -1,6 +1,7 @@
 (uiop/package:define-package #:pira/security-ir (:use)
-                             (:export #:awsaccount-id #:awsaccount-ids #:arn
-                              #:attachment-id #:aws-region #:aws-service
+                             (:export #:awsaccount-id #:awsaccount-ids
+                              #:access-denied-exception #:arn #:attachment-id
+                              #:aws-region #:aws-service
                               #:batch-get-member-account-details
                               #:cancel-membership #:case #:case-arn
                               #:case-attachment-attributes
@@ -9,11 +10,12 @@
                               #:case-edit-item #:case-edit-items
                               #:case-edit-message #:case-id #:case-status
                               #:case-title #:close-case #:closure-code
-                              #:comment-body #:comment-id #:content-length
-                              #:create-case #:create-case-comment
-                              #:create-membership #:customer-type
-                              #:email-address #:engagement-type #:file-name
-                              #:get-case #:get-case-attachment-download-url
+                              #:comment-body #:comment-id #:conflict-exception
+                              #:content-length #:create-case
+                              #:create-case-comment #:create-membership
+                              #:customer-type #:email-address #:engagement-type
+                              #:file-name #:get-case
+                              #:get-case-attachment-download-url
                               #:get-case-attachment-upload-url #:get-membership
                               #:get-membership-account-detail-error
                               #:get-membership-account-detail-errors
@@ -23,7 +25,9 @@
                               #:impacted-aws-region-list
                               #:impacted-services-list #:incident-responder
                               #:incident-responder-name
-                              #:incident-response-team #:job-title
+                              #:incident-response-team
+                              #:internal-server-exception
+                              #:invalid-token-exception #:job-title
                               #:list-case-edits #:list-cases #:list-cases-item
                               #:list-cases-items #:list-comments
                               #:list-comments-item #:list-comments-items
@@ -37,18 +41,27 @@
                               #:opt-in-feature #:opt-in-feature-name
                               #:opt-in-features #:pending-action #:person-name
                               #:principal-id #:resolver-type
+                              #:resource-not-found-exception
                               #:security-incident-response
-                              #:self-managed-case-status #:tag-key #:tag-keys
-                              #:tag-map #:tag-resource #:tag-value
+                              #:security-incident-response-not-active-exception
+                              #:self-managed-case-status
+                              #:service-quota-exceeded-exception #:tag-key
+                              #:tag-keys #:tag-map #:tag-resource #:tag-value
                               #:threat-actor-ip #:threat-actor-ip-list
-                              #:untag-resource #:update-case
-                              #:update-case-comment #:update-case-status
-                              #:update-membership #:update-resolver-type #:url
-                              #:user-agent #:validation-exception-field
+                              #:throttling-exception #:untag-resource
+                              #:update-case #:update-case-comment
+                              #:update-case-status #:update-membership
+                              #:update-resolver-type #:url #:user-agent
+                              #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:watcher
-                              #:watchers))
+                              #:watchers #:security-ir-error))
 (common-lisp:in-package #:pira/security-ir)
+
+(common-lisp:define-condition security-ir-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service security-incident-response :shape-name
                                    "SecurityIncidentResponse" :version
@@ -107,7 +120,8 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class security-ir-error))
 
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
 
@@ -291,7 +305,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class security-ir-error))
 
 (smithy/sdk/shapes:define-type content-length smithy/sdk/smithy-types:long)
 
@@ -606,14 +621,16 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class security-ir-error))
 
 (smithy/sdk/shapes:define-error invalid-token-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidTokenException")
-                                (:error-code 423))
+                                (:error-code 423)
+                                (:base-class security-ir-error))
 
 (smithy/sdk/shapes:define-type job-title smithy/sdk/smithy-types:string)
 
@@ -837,7 +854,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class security-ir-error))
 
 (smithy/sdk/shapes:define-error security-incident-response-not-active-exception
                                 common-lisp:nil
@@ -846,7 +864,8 @@ common-lisp:nil
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
                                  "SecurityIncidentResponseNotActiveException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class security-ir-error))
 
 (smithy/sdk/shapes:define-enum self-managed-case-status
     common-lisp:nil
@@ -874,7 +893,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class security-ir-error))
 
 (smithy/sdk/shapes:define-type tag-key smithy/sdk/smithy-types:string)
 
@@ -921,7 +941,8 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class security-ir-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -1070,7 +1091,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class security-ir-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

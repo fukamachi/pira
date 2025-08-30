@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/wisdom (:use)
-                             (:export #:app-integrations-configuration #:arn
+                             (:export #:access-denied-exception
+                              #:app-integrations-configuration #:arn
                               #:assistant #:assistant-association
                               #:assistant-association-data
                               #:assistant-association-input-data
@@ -12,8 +13,8 @@
                               #:assistant-summary #:assistant-type
                               #:association-type #:channel #:channels
                               #:client-token #:configuration
-                              #:connect-configuration #:contact-attribute-key
-                              #:contact-attribute-keys
+                              #:conflict-exception #:connect-configuration
+                              #:contact-attribute-key #:contact-attribute-keys
                               #:contact-attribute-value #:contact-attributes
                               #:content #:content-data #:content-metadata
                               #:content-reference #:content-status
@@ -89,7 +90,8 @@
                               #:notify-recommendations-received-error-message
                               #:notify-recommendations-received-request
                               #:notify-recommendations-received-response
-                              #:object-fields-list #:order #:priority
+                              #:object-fields-list #:order
+                              #:precondition-failed-exception #:priority
                               #:query-assistant #:query-assistant-request
                               #:query-assistant-response
                               #:query-recommendation-trigger-data
@@ -128,13 +130,16 @@
                               #:remove-knowledge-base-template-uri
                               #:remove-knowledge-base-template-uri-request
                               #:remove-knowledge-base-template-uri-response
-                              #:rendering-configuration #:result-data
+                              #:rendering-configuration
+                              #:request-timeout-exception
+                              #:resource-not-found-exception #:result-data
                               #:search-content #:search-content-request
                               #:search-content-response #:search-expression
                               #:search-quick-responses #:search-sessions
                               #:search-sessions-request
                               #:search-sessions-response #:sensitive-string
-                              #:server-side-encryption-configuration #:session
+                              #:server-side-encryption-configuration
+                              #:service-quota-exceeded-exception #:session
                               #:session-data
                               #:session-integration-configuration
                               #:session-summaries #:session-summary
@@ -145,8 +150,8 @@
                               #:start-import-job #:tag-key #:tag-key-list
                               #:tag-resource #:tag-resource-request
                               #:tag-resource-response #:tag-value #:tags
-                              #:time-to-live #:untag-resource
-                              #:untag-resource-request
+                              #:time-to-live #:too-many-tags-exception
+                              #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:update-content
                               #:update-content-request
                               #:update-content-response
@@ -154,9 +159,14 @@
                               #:update-knowledge-base-template-uri-request
                               #:update-knowledge-base-template-uri-response
                               #:update-quick-response #:upload-id #:uri #:url
-                              #:uuid #:uuid-or-arn #:wait-time-seconds
-                              #:wisdom-service))
+                              #:uuid #:uuid-or-arn #:validation-exception
+                              #:wait-time-seconds #:wisdom-service
+                              #:wisdom-error))
 (common-lisp:in-package #:pira/wisdom)
+
+(common-lisp:define-condition wisdom-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service wisdom-service :shape-name "WisdomService"
                                    :version "2020-10-19" :title
@@ -175,7 +185,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class wisdom-error))
 
 (smithy/sdk/shapes:define-structure app-integrations-configuration
                                     common-lisp:nil
@@ -346,7 +356,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class wisdom-error))
 
 (smithy/sdk/shapes:define-structure connect-configuration common-lisp:nil
                                     ((instance-id :target-type non-empty-string
@@ -1301,7 +1311,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "PreconditionFailedException")
-                                (:error-code 412))
+                                (:error-code 412) (:base-class wisdom-error))
 
 (smithy/sdk/shapes:define-type priority smithy/sdk/smithy-types:string)
 
@@ -1707,7 +1717,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "RequestTimeoutException")
-                                (:error-code 408))
+                                (:error-code 408) (:base-class wisdom-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type
@@ -1717,7 +1727,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceName"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class wisdom-error))
 
 (smithy/sdk/shapes:define-structure result-data common-lisp:nil
                                     ((result-id :target-type uuid :required
@@ -1824,7 +1834,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class wisdom-error))
 
 common-lisp:nil
 
@@ -1956,7 +1966,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class wisdom-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -2077,7 +2087,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class wisdom-error))
 
 (smithy/sdk/shapes:define-type wait-time-seconds
                                smithy/sdk/smithy-types:integer)

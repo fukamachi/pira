@@ -264,9 +264,9 @@
                               #:compute-quota-target
                               #:compute-quota-target-team-name
                               #:condition-outcome #:condition-step-metadata
-                              #:config-key #:config-value #:container-argument
-                              #:container-arguments #:container-config
-                              #:container-definition
+                              #:config-key #:config-value #:conflict-exception
+                              #:container-argument #:container-arguments
+                              #:container-config #:container-definition
                               #:container-definition-list
                               #:container-entrypoint
                               #:container-entrypoint-string
@@ -1283,8 +1283,10 @@
                               #:resource-catalog-sort-by
                               #:resource-catalog-sort-order #:resource-config
                               #:resource-config-for-update #:resource-id
-                              #:resource-identifier #:resource-limits
-                              #:resource-policy-string #:resource-property-name
+                              #:resource-identifier #:resource-in-use
+                              #:resource-limit-exceeded #:resource-limits
+                              #:resource-not-found #:resource-policy-string
+                              #:resource-property-name
                               #:resource-retained-billable-time-in-seconds
                               #:resource-sharing-config
                               #:resource-sharing-strategy #:resource-spec
@@ -1599,8 +1601,13 @@
                               #:workforce-vpc-config-response
                               #:workforce-vpc-endpoint-id #:workforce-vpc-id
                               #:workforces #:workspace-settings #:workteam
-                              #:workteam-arn #:workteam-name #:workteams))
+                              #:workteam-arn #:workteam-name #:workteams
+                              #:sagemaker-error))
 (common-lisp:in-package #:pira/sagemaker)
+
+(common-lisp:define-condition sagemaker-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service sage-maker :shape-name "SageMaker" :version
                                    "2017-07-24" :title
@@ -5238,7 +5245,7 @@
                                 ((message :target-type failure-reason
                                   :member-name "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sagemaker-error))
 
 (smithy/sdk/shapes:define-type container-argument
                                smithy/sdk/smithy-types:string)
@@ -23234,13 +23241,14 @@
 (smithy/sdk/shapes:define-error resource-in-use common-lisp:nil
                                 ((message :target-type failure-reason
                                   :member-name "Message"))
-                                (:shape-name "ResourceInUse") (:error-code 400))
+                                (:shape-name "ResourceInUse") (:error-code 400)
+                                (:base-class sagemaker-error))
 
 (smithy/sdk/shapes:define-error resource-limit-exceeded common-lisp:nil
                                 ((message :target-type failure-reason
                                   :member-name "Message"))
                                 (:shape-name "ResourceLimitExceeded")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sagemaker-error))
 
 (smithy/sdk/shapes:define-structure resource-limits common-lisp:nil
                                     ((max-number-of-training-jobs :target-type
@@ -23259,7 +23267,7 @@
                                 ((message :target-type failure-reason
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFound")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class sagemaker-error))
 
 (smithy/sdk/shapes:define-type resource-policy-string
                                smithy/sdk/smithy-types:string)

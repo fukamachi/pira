@@ -14,7 +14,9 @@
                               #:certificate-authority-usage-mode
                               #:certificate-body #:certificate-body-blob
                               #:certificate-chain #:certificate-chain-blob
+                              #:certificate-mismatch-exception
                               #:certificate-policy-list #:cname-string
+                              #:concurrent-modification-exception
                               #:country-code-string
                               #:create-certificate-authority
                               #:create-certificate-authority-audit-report
@@ -38,17 +40,31 @@
                               #:get-certificate-authority-csr #:get-policy
                               #:idempotency-token
                               #:import-certificate-authority-certificate
-                              #:integer1to5000 #:issue-certificate
-                              #:key-algorithm #:key-storage-security-standard
-                              #:key-usage #:list-certificate-authorities
-                              #:list-permissions #:list-tags #:max-results
+                              #:integer1to5000 #:invalid-args-exception
+                              #:invalid-arn-exception
+                              #:invalid-next-token-exception
+                              #:invalid-policy-exception
+                              #:invalid-request-exception
+                              #:invalid-state-exception #:invalid-tag-exception
+                              #:issue-certificate #:key-algorithm
+                              #:key-storage-security-standard #:key-usage
+                              #:limit-exceeded-exception
+                              #:list-certificate-authorities #:list-permissions
+                              #:list-tags #:lockout-prevented-exception
+                              #:malformed-csrexception
+                              #:malformed-certificate-exception #:max-results
                               #:next-token #:ocsp-configuration #:other-name
                               #:permanent-deletion-time-in-days #:permission
+                              #:permission-already-exists-exception
                               #:permission-list #:policy-information
                               #:policy-qualifier-id #:policy-qualifier-info
                               #:policy-qualifier-info-list #:positive-long
                               #:principal #:put-policy #:qualifier
-                              #:resource-owner #:restore-certificate-authority
+                              #:request-already-processed-exception
+                              #:request-failed-exception
+                              #:request-in-progress-exception
+                              #:resource-not-found-exception #:resource-owner
+                              #:restore-certificate-authority
                               #:revocation-configuration #:revocation-reason
                               #:revoke-certificate #:s3bucket-name
                               #:s3bucket-name3to255 #:s3key #:s3object-acl
@@ -57,10 +73,15 @@
                               #:string3 #:string39 #:string40 #:string5
                               #:string64 #:tstamp #:tag
                               #:tag-certificate-authority #:tag-key #:tag-list
-                              #:tag-value #:untag-certificate-authority
+                              #:tag-value #:too-many-tags-exception
+                              #:untag-certificate-authority
                               #:update-certificate-authority #:validity
-                              #:validity-period-type))
+                              #:validity-period-type #:acm-pca-error))
 (common-lisp:in-package #:pira/acm-pca)
+
+(common-lisp:define-condition acm-pca-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service acmprivate-ca :shape-name "ACMPrivateCA"
                                    :version "2017-08-22" :title
@@ -298,7 +319,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "CertificateMismatchException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-list certificate-policy-list :member
                                policy-information)
@@ -310,7 +331,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-type country-code-string
                                smithy/sdk/smithy-types:string)
@@ -671,43 +692,43 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidArgsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-error invalid-arn-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidArnException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-error invalid-policy-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidPolicyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-error invalid-tag-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidTagException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-input issue-certificate-request common-lisp:nil
                                 ((api-passthrough :target-type api-passthrough
@@ -777,7 +798,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-input list-certificate-authorities-request
                                 common-lisp:nil
@@ -838,19 +859,19 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "LockoutPreventedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-error malformed-csrexception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "MalformedCSRException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-error malformed-certificate-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "MalformedCertificateException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-type max-results smithy/sdk/smithy-types:integer)
 
@@ -897,7 +918,7 @@
                                   "message"))
                                 (:shape-name
                                  "PermissionAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-list permission-list :member permission)
 
@@ -950,25 +971,25 @@
                                   "message"))
                                 (:shape-name
                                  "RequestAlreadyProcessedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-error request-failed-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "RequestFailedException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-error request-in-progress-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "RequestInProgressException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-enum resource-owner
     common-lisp:nil
@@ -1087,7 +1108,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class acm-pca-error))
 
 (smithy/sdk/shapes:define-input untag-certificate-authority-request
                                 common-lisp:nil

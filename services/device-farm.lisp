@@ -2,9 +2,10 @@
                              (:export #:awsaccount-number #:account-settings
                               #:accounts-cleanup #:amazon-resource-name
                               #:amazon-resource-names #:android-paths
-                              #:app-packages-cleanup #:artifact
-                              #:artifact-category #:artifact-type #:artifacts
-                              #:billing-method #:boolean #:cpu #:client-id
+                              #:app-packages-cleanup #:argument-exception
+                              #:artifact #:artifact-category #:artifact-type
+                              #:artifacts #:billing-method #:boolean #:cpu
+                              #:cannot-delete-exception #:client-id
                               #:content-type #:counters #:create-device-pool
                               #:create-instance-profile
                               #:create-network-profile #:create-project
@@ -44,13 +45,16 @@
                               #:get-run #:get-suite #:get-test
                               #:get-test-grid-project #:get-test-grid-session
                               #:get-upload #:get-vpceconfiguration
-                              #:host-address #:incompatibility-message
+                              #:host-address #:idempotency-exception
+                              #:incompatibility-message
                               #:incompatibility-messages
                               #:install-to-remote-access-session
                               #:instance-labels #:instance-profile
                               #:instance-profiles #:instance-status #:integer
-                              #:interaction-mode #:ios-paths #:job
-                              #:job-timeout-minutes #:jobs #:list-artifacts
+                              #:interaction-mode #:internal-service-exception
+                              #:invalid-operation-exception #:ios-paths #:job
+                              #:job-timeout-minutes #:jobs
+                              #:limit-exceeded-exception #:list-artifacts
                               #:list-device-instances #:list-device-pools
                               #:list-devices #:list-instance-profiles
                               #:list-jobs #:list-network-profiles
@@ -68,8 +72,10 @@
                               #:max-page-size #:max-slot-map #:message
                               #:metadata #:monetary-amount #:name
                               #:network-profile #:network-profile-type
-                              #:network-profiles #:non-empty-string #:offering
-                              #:offering-identifier #:offering-promotion
+                              #:network-profiles #:non-empty-string
+                              #:not-eligible-exception #:not-found-exception
+                              #:offering #:offering-identifier
+                              #:offering-promotion
                               #:offering-promotion-identifier
                               #:offering-promotions #:offering-status
                               #:offering-status-map #:offering-transaction
@@ -89,11 +95,13 @@
                               #:schedule-run #:schedule-run-configuration
                               #:schedule-run-test #:security-group-id
                               #:security-group-ids #:sensitive-string
-                              #:sensitive-url #:service-dns-name
-                              #:skip-app-resign #:ssh-public-key #:stop-job
+                              #:sensitive-url #:service-account-exception
+                              #:service-dns-name #:skip-app-resign
+                              #:ssh-public-key #:stop-job
                               #:stop-remote-access-session #:stop-run #:string
                               #:subnet-id #:subnet-ids #:suite #:suites #:tag
                               #:tag-key #:tag-key-list #:tag-list
+                              #:tag-operation-exception #:tag-policy-exception
                               #:tag-resource #:tag-value #:test
                               #:test-grid-project #:test-grid-projects
                               #:test-grid-session #:test-grid-session-action
@@ -105,9 +113,9 @@
                               #:test-grid-session-status #:test-grid-sessions
                               #:test-grid-url-expires-in-seconds-input
                               #:test-grid-vpc-config #:test-parameters
-                              #:test-type #:tests #:transaction-identifier
-                              #:trial-minutes #:url #:unique-problem
-                              #:unique-problems
+                              #:test-type #:tests #:too-many-tags-exception
+                              #:transaction-identifier #:trial-minutes #:url
+                              #:unique-problem #:unique-problems
                               #:unique-problems-by-execution-result-map
                               #:untag-resource #:update-device-instance
                               #:update-device-pool #:update-instance-profile
@@ -119,8 +127,13 @@
                               #:vpceconfiguration-description
                               #:vpceconfiguration-name #:vpceconfigurations
                               #:vpceservice-name #:video-capture #:vpc-config
-                              #:vpc-security-group-ids #:vpc-subnet-ids))
+                              #:vpc-security-group-ids #:vpc-subnet-ids
+                              #:device-farm-error))
 (common-lisp:in-package #:pira/device-farm)
+
+(common-lisp:define-condition device-farm-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service device-farm-20150623 :shape-name
                                    "DeviceFarm_20150623" :version "2015-06-23"
@@ -231,7 +244,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ArgumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class device-farm-error))
 
 (smithy/sdk/shapes:define-structure artifact common-lisp:nil
                                     ((arn :target-type amazon-resource-name
@@ -304,7 +318,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "CannotDeleteException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class device-farm-error))
 
 (smithy/sdk/shapes:define-type client-id smithy/sdk/smithy-types:string)
 
@@ -1134,7 +1149,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "IdempotencyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class device-farm-error))
 
 (smithy/sdk/shapes:define-structure incompatibility-message common-lisp:nil
                                     ((message :target-type message :member-name
@@ -1203,13 +1219,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InternalServiceException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class device-farm-error))
 
 (smithy/sdk/shapes:define-error invalid-operation-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "InvalidOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class device-farm-error))
 
 (smithy/sdk/shapes:define-list ios-paths :member string)
 
@@ -1257,7 +1275,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class device-farm-error))
 
 (smithy/sdk/shapes:define-input list-artifacts-request common-lisp:nil
                                 ((arn :target-type amazon-resource-name
@@ -1711,13 +1730,15 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "NotEligibleException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class device-farm-error))
 
 (smithy/sdk/shapes:define-error not-found-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class device-farm-error))
 
 (smithy/sdk/shapes:define-structure offering common-lisp:nil
                                     ((id :target-type offering-identifier
@@ -2192,7 +2213,8 @@
                                 ((message :target-type message :member-name
                                   "message"))
                                 (:shape-name "ServiceAccountException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class device-farm-error))
 
 (smithy/sdk/shapes:define-type service-dns-name smithy/sdk/smithy-types:string)
 
@@ -2285,7 +2307,8 @@
                                   amazon-resource-name :member-name
                                   "resourceName"))
                                 (:shape-name "TagOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class device-farm-error))
 
 (smithy/sdk/shapes:define-error tag-policy-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -2294,7 +2317,8 @@
                                   amazon-resource-name :member-name
                                   "resourceName"))
                                 (:shape-name "TagPolicyException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class device-farm-error))
 
 (smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
                                 ((resource-arn :target-type device-farm-arn
@@ -2460,7 +2484,8 @@
                                   amazon-resource-name :member-name
                                   "resourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class device-farm-error))
 
 (smithy/sdk/shapes:define-type transaction-identifier
                                smithy/sdk/smithy-types:string)

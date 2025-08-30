@@ -1,5 +1,5 @@
 (uiop/package:define-package #:pira/managedblockchain (:use)
-                             (:export #:accessor
+                             (:export #:access-denied-exception #:accessor
                               #:accessor-billing-token-string
                               #:accessor-list-max-results
                               #:accessor-network-type #:accessor-status
@@ -14,8 +14,10 @@
                               #:exception-message #:framework
                               #:framework-version-string #:get-accessor
                               #:get-member #:get-network #:get-node
-                              #:get-proposal #:input-tag-map
-                              #:instance-type-string #:invitation
+                              #:get-proposal #:illegal-action-exception
+                              #:input-tag-map #:instance-type-string
+                              #:internal-service-error-exception
+                              #:invalid-request-exception #:invitation
                               #:invitation-list #:invitation-status
                               #:invite-action #:invite-action-list #:is-owned
                               #:list-accessors #:list-invitations
@@ -54,15 +56,25 @@
                               #:proposal-summary #:proposal-summary-list
                               #:proposal-vote-list #:reject-invitation
                               #:remove-action #:remove-action-list
-                              #:resource-id-string #:state-dbtype #:string
-                              #:tag-key #:tag-key-list #:tag-resource
+                              #:resource-already-exists-exception
+                              #:resource-id-string
+                              #:resource-limit-exceeded-exception
+                              #:resource-not-found-exception
+                              #:resource-not-ready-exception #:state-dbtype
+                              #:string #:tag-key #:tag-key-list #:tag-resource
                               #:tag-value #:taiga-web-service
                               #:threshold-comparator #:threshold-percentage-int
-                              #:timestamp #:untag-resource #:update-member
-                              #:update-node #:username-string #:vote-count
-                              #:vote-on-proposal #:vote-summary #:vote-value
-                              #:voting-policy))
+                              #:throttling-exception #:timestamp
+                              #:too-many-tags-exception #:untag-resource
+                              #:update-member #:update-node #:username-string
+                              #:vote-count #:vote-on-proposal #:vote-summary
+                              #:vote-value #:voting-policy
+                              #:managedblockchain-error))
 (common-lisp:in-package #:pira/managedblockchain)
+
+(common-lisp:define-condition managedblockchain-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service taiga-web-service :shape-name
                                    "TaigaWebService" :version "2018-09-24"
@@ -96,7 +108,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class managedblockchain-error))
 
 (smithy/sdk/shapes:define-structure accessor common-lisp:nil
                                     ((id :target-type resource-id-string
@@ -439,7 +452,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "IllegalActionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class managedblockchain-error))
 
 (smithy/sdk/shapes:define-map input-tag-map :key tag-key :value tag-value)
 
@@ -449,13 +463,15 @@
 (smithy/sdk/shapes:define-error internal-service-error-exception
                                 common-lisp:nil common-lisp:nil
                                 (:shape-name "InternalServiceErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class managedblockchain-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class managedblockchain-error))
 
 (smithy/sdk/shapes:define-structure invitation common-lisp:nil
                                     ((invitation-id :target-type
@@ -1146,7 +1162,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class managedblockchain-error))
 
 (smithy/sdk/shapes:define-type resource-id-string
                                smithy/sdk/smithy-types:string)
@@ -1156,7 +1173,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceLimitExceededException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class managedblockchain-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -1164,13 +1182,15 @@
                                  (resource-name :target-type arn-string
                                   :member-name "ResourceName"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class managedblockchain-error))
 
 (smithy/sdk/shapes:define-error resource-not-ready-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotReadyException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class managedblockchain-error))
 
 (smithy/sdk/shapes:define-enum state-dbtype
     common-lisp:nil
@@ -1208,7 +1228,8 @@
 (smithy/sdk/shapes:define-error throttling-exception common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class managedblockchain-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
                                :timestamp-format "date-time")
@@ -1219,7 +1240,8 @@
                                  (resource-name :target-type arn-string
                                   :member-name "ResourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class managedblockchain-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn-string

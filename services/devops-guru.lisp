@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/devops-guru (:use)
-                             (:export #:account-health #:account-healths
+                             (:export #:access-denied-exception
+                              #:account-health #:account-healths
                               #:account-id-list #:account-insight-health
                               #:add-notification-channel
                               #:amazon-code-guru-profiler-integration
@@ -31,7 +32,8 @@
                               #:cloud-watch-metrics-namespace
                               #:cloud-watch-metrics-period
                               #:cloud-watch-metrics-stat
-                              #:cloud-watch-metrics-unit #:cost
+                              #:cloud-watch-metrics-unit #:conflict-exception
+                              #:cost
                               #:cost-estimation-resource-collection-filter
                               #:cost-estimation-service-resource-count
                               #:cost-estimation-service-resource-state
@@ -63,7 +65,8 @@
                               #:insight-health #:insight-id #:insight-name
                               #:insight-severities #:insight-severity
                               #:insight-status #:insight-statuses
-                              #:insight-time-range #:insight-type #:kmskey-id
+                              #:insight-time-range #:insight-type
+                              #:internal-server-exception #:kmskey-id
                               #:kmsserver-side-encryption-integration
                               #:kmsserver-side-encryption-integration-config
                               #:list-anomalies-for-insight
@@ -176,10 +179,10 @@
                               #:resource-collection-filter
                               #:resource-collection-type #:resource-hours
                               #:resource-id-string #:resource-id-type
-                              #:resource-name #:resource-permission
-                              #:resource-type #:resource-type-filter
-                              #:resource-type-filters #:retry-after-seconds
-                              #:search-insights
+                              #:resource-name #:resource-not-found-exception
+                              #:resource-permission #:resource-type
+                              #:resource-type-filter #:resource-type-filters
+                              #:retry-after-seconds #:search-insights
                               #:search-insights-account-id-list
                               #:search-insights-filters
                               #:search-insights-max-results
@@ -190,16 +193,18 @@
                               #:service-collection #:service-health
                               #:service-healths #:service-insight-health
                               #:service-integration-config #:service-name
-                              #:service-names #:service-resource-cost
-                              #:service-resource-costs #:sns-channel-config
-                              #:ssm-ops-item-id #:stack-name #:stack-names
+                              #:service-names
+                              #:service-quota-exceeded-exception
+                              #:service-resource-cost #:service-resource-costs
+                              #:sns-channel-config #:ssm-ops-item-id
+                              #:stack-name #:stack-names
                               #:start-cost-estimation #:start-time-range
                               #:tag-collection #:tag-collection-filter
                               #:tag-collection-filters #:tag-collections
                               #:tag-cost-estimation-resource-collection-filter
                               #:tag-cost-estimation-resource-collection-filters
                               #:tag-health #:tag-healths #:tag-value
-                              #:tag-values #:timestamp
+                              #:tag-values #:throttling-exception #:timestamp
                               #:timestamp-metric-value-pair
                               #:timestamp-metric-value-pair-list #:topic-arn
                               #:update-cloud-formation-collection-filter
@@ -213,10 +218,16 @@
                               #:update-tag-collection-filter
                               #:update-tag-collection-filters
                               #:update-tag-values #:uuid-next-token
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-fields
-                              #:validation-exception-reason))
+                              #:validation-exception-reason
+                              #:devops-guru-error))
 (common-lisp:in-package #:pira/devops-guru)
+
+(common-lisp:define-condition devops-guru-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service capstone-control-plane-service :shape-name
                                    "CapstoneControlPlaneService" :version
@@ -264,7 +275,8 @@
                                   :required common-lisp:t :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class devops-guru-error))
 
 (smithy/sdk/shapes:define-structure account-health common-lisp:nil
                                     ((account-id :target-type aws-account-id
@@ -542,7 +554,8 @@
                                   :required common-lisp:t :member-name
                                   "ResourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class devops-guru-error))
 
 (smithy/sdk/shapes:define-type cost smithy/sdk/smithy-types:double)
 
@@ -1039,7 +1052,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class devops-guru-error))
 
 (smithy/sdk/shapes:define-type kmskey-id smithy/sdk/smithy-types:string)
 
@@ -2232,7 +2246,8 @@
                                   :required common-lisp:t :member-name
                                   "ResourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class devops-guru-error))
 
 (smithy/sdk/shapes:define-enum resource-permission
     common-lisp:nil
@@ -2457,7 +2472,8 @@
                                 ((message :target-type error-message-string
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class devops-guru-error))
 
 (smithy/sdk/shapes:define-structure service-resource-cost common-lisp:nil
                                     ((type :target-type resource-type
@@ -2577,7 +2593,8 @@
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class devops-guru-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -2702,7 +2719,8 @@
                                   validation-exception-fields :member-name
                                   "Fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class devops-guru-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type error-name-string

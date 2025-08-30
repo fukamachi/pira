@@ -1,23 +1,32 @@
 (uiop/package:define-package #:pira/dsql (:use)
-                             (:export #:arn #:client-token #:cluster
-                              #:cluster-arn #:cluster-arn-list
-                              #:cluster-creation-time #:cluster-id
-                              #:cluster-list #:cluster-status #:cluster-summary
+                             (:export #:access-denied-exception #:arn
+                              #:client-token #:cluster #:cluster-arn
+                              #:cluster-arn-list #:cluster-creation-time
+                              #:cluster-id #:cluster-list #:cluster-status
+                              #:cluster-summary #:conflict-exception
                               #:create-cluster #:dsql #:delete-cluster
                               #:deletion-protection-enabled
                               #:encryption-details #:encryption-status
                               #:encryption-type #:get-cluster
                               #:get-vpc-endpoint-service-name
-                              #:kms-encryption-key #:kms-key-arn
-                              #:list-clusters #:list-tags-for-resource
-                              #:max-results #:multi-region-properties
-                              #:next-token #:region #:service-name #:tag-key
+                              #:internal-server-exception #:kms-encryption-key
+                              #:kms-key-arn #:list-clusters
+                              #:list-tags-for-resource #:max-results
+                              #:multi-region-properties #:next-token #:region
+                              #:resource-not-found-exception #:service-name
+                              #:service-quota-exceeded-exception #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-value #:untag-resource #:update-cluster
+                              #:tag-value #:throttling-exception
+                              #:untag-resource #:update-cluster
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
-                              #:validation-exception-reason))
+                              #:validation-exception-reason #:dsql-error))
 (common-lisp:in-package #:pira/dsql)
+
+(common-lisp:define-condition dsql-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service dsql :shape-name "DSQL" :version
                                    "2018-05-10" :title "Amazon Aurora DSQL"
@@ -44,7 +53,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class dsql-error))
 
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
 
@@ -95,7 +104,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class dsql-error))
 
 (smithy/sdk/shapes:define-input create-cluster-input common-lisp:nil
                                 ((deletion-protection-enabled :target-type
@@ -236,7 +245,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class dsql-error))
 
 (smithy/sdk/shapes:define-type kms-encryption-key
                                smithy/sdk/smithy-types:string)
@@ -294,7 +303,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class dsql-error))
 
 (smithy/sdk/shapes:define-type service-name smithy/sdk/smithy-types:string)
 
@@ -316,7 +325,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class dsql-error))
 
 (smithy/sdk/shapes:define-type tag-key smithy/sdk/smithy-types:string)
 
@@ -349,7 +358,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class dsql-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -400,7 +409,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class dsql-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

@@ -1,9 +1,11 @@
 (uiop/package:define-package #:pira/lightsail (:use)
-                             (:export #:access-direction #:access-key
+                             (:export #:access-denied-exception
+                              #:access-direction #:access-key
                               #:access-key-last-used #:access-key-list
                               #:access-receiver-list #:access-rules
                               #:access-type #:account-level-bpa-sync
-                              #:account-level-bpa-sync-status #:add-on
+                              #:account-level-bpa-sync-status
+                              #:account-setup-in-progress-exception #:add-on
                               #:add-on-list #:add-on-request
                               #:add-on-request-list #:add-on-type #:alarm
                               #:alarm-state #:alarms-list #:allocate-static-ip
@@ -195,7 +197,8 @@
                               #:instance-port-state-list #:instance-snapshot
                               #:instance-snapshot-info #:instance-snapshot-list
                               #:instance-snapshot-state #:instance-state
-                              #:ip-address #:ip-address-type #:ipv6address
+                              #:invalid-input-exception #:ip-address
+                              #:ip-address-type #:ipv6address
                               #:ipv6address-list #:is-vpc-peered #:iso-date
                               #:issuer-ca #:key-algorithm #:key-pair
                               #:key-pair-list #:lightsail-distribution
@@ -230,10 +233,10 @@
                               #:name-servers-update-state
                               #:name-servers-update-state-code
                               #:network-protocol #:non-empty-string
-                              #:notification-trigger-list
+                              #:not-found-exception #:notification-trigger-list
                               #:open-instance-public-ports #:operation
-                              #:operation-list #:operation-status
-                              #:operation-type #:origin
+                              #:operation-failure-exception #:operation-list
+                              #:operation-status #:operation-type #:origin
                               #:origin-protocol-policy-enum #:partner-id-list
                               #:password-data #:peer-vpc
                               #:pending-maintenance-action
@@ -249,7 +252,9 @@
                               #:r53hosted-zone-deletion-state-code
                               #:reboot-instance #:reboot-relational-database
                               #:record-state #:region #:region-list
-                              #:region-name #:register-container-image
+                              #:region-name
+                              #:region-setup-in-progress-exception
+                              #:register-container-image
                               #:registered-domain-delegation-info
                               #:relational-database
                               #:relational-database-blueprint
@@ -280,8 +285,8 @@
                               #:revocation-reason
                               #:send-contact-method-verification
                               #:sensitive-non-empty-string #:sensitive-string
-                              #:serial-number #:session #:sessions
-                              #:set-ip-address-type
+                              #:serial-number #:service-exception #:session
+                              #:sessions #:set-ip-address-type
                               #:set-resource-access-for-bucket
                               #:setup-domain-name #:setup-domain-name-list
                               #:setup-execution-details
@@ -298,7 +303,8 @@
                               #:tag #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-value #:test-alarm
                               #:time-of-day #:time-period #:treat-missing-data
-                              #:unpeer-vpc #:untag-resource #:update-bucket
+                              #:unauthenticated-exception #:unpeer-vpc
+                              #:untag-resource #:update-bucket
                               #:update-bucket-bundle #:update-container-service
                               #:update-distribution
                               #:update-distribution-bundle
@@ -309,8 +315,13 @@
                               #:update-relational-database-parameters
                               #:viewer-minimum-tls-protocol-version-enum
                               #:boolean #:double #:float #:integer #:long
-                              #:setup-history-list #:string #:timestamp))
+                              #:setup-history-list #:string #:timestamp
+                              #:lightsail-error))
 (common-lisp:in-package #:pira/lightsail)
+
+(common-lisp:define-condition lightsail-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service lightsail-20161128 :shape-name
                                    "Lightsail_20161128" :version "2016-11-28"
@@ -446,7 +457,7 @@
                                   "message")
                                  (tip :target-type string :member-name "tip"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class lightsail-error))
 
 (smithy/sdk/shapes:define-enum access-direction
     common-lisp:nil
@@ -524,7 +535,7 @@
                                   "message")
                                  (tip :target-type string :member-name "tip"))
                                 (:shape-name "AccountSetupInProgressException")
-                                (:error-code 428))
+                                (:error-code 428) (:base-class lightsail-error))
 
 (smithy/sdk/shapes:define-structure add-on common-lisp:nil
                                     ((name :target-type string :member-name
@@ -4283,7 +4294,7 @@
                                   "message")
                                  (tip :target-type string :member-name "tip"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class lightsail-error))
 
 (smithy/sdk/shapes:define-type ip-address smithy/sdk/smithy-types:string)
 
@@ -4812,7 +4823,7 @@
                                   "message")
                                  (tip :target-type string :member-name "tip"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class lightsail-error))
 
 (smithy/sdk/shapes:define-list notification-trigger-list :member alarm-state)
 
@@ -4866,7 +4877,7 @@
                                   "message")
                                  (tip :target-type string :member-name "tip"))
                                 (:shape-name "OperationFailureException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class lightsail-error))
 
 (smithy/sdk/shapes:define-list operation-list :member operation)
 
@@ -5245,7 +5256,7 @@
                                   "message")
                                  (tip :target-type string :member-name "tip"))
                                 (:shape-name "RegionSetupInProgressException")
-                                (:error-code 428))
+                                (:error-code 428) (:base-class lightsail-error))
 
 (smithy/sdk/shapes:define-input register-container-image-request
                                 common-lisp:nil
@@ -5677,7 +5688,7 @@
                                   "message")
                                  (tip :target-type string :member-name "tip"))
                                 (:shape-name "ServiceException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class lightsail-error))
 
 (smithy/sdk/shapes:define-structure session common-lisp:nil
                                     ((name :target-type non-empty-string
@@ -6021,7 +6032,7 @@
                                   "message")
                                  (tip :target-type string :member-name "tip"))
                                 (:shape-name "UnauthenticatedException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class lightsail-error))
 
 (smithy/sdk/shapes:define-input unpeer-vpc-request common-lisp:nil
                                 common-lisp:nil

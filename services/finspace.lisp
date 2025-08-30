@@ -1,7 +1,7 @@
 (uiop/package:define-package #:pira/finspace (:use)
                              (:export #:awshabanero-management-service
-                              #:attached-cluster-list #:attribute-map
-                              #:auto-scaling-configuration
+                              #:access-denied-exception #:attached-cluster-list
+                              #:attribute-map #:auto-scaling-configuration
                               #:auto-scaling-metric
                               #:auto-scaling-metric-target
                               #:availability-zone-id #:availability-zone-ids
@@ -9,15 +9,16 @@
                               #:change-request #:change-requests #:change-type
                               #:changeset-id #:changeset-status #:client-token
                               #:client-token-string #:cluster-node-count
-                              #:code-configuration #:cooldown-time #:cpu-count
-                              #:create-environment #:create-kx-changeset
-                              #:create-kx-cluster #:create-kx-database
-                              #:create-kx-dataview #:create-kx-environment
-                              #:create-kx-scaling-group #:create-kx-user
-                              #:create-kx-volume #:custom-dnsconfiguration
-                              #:custom-dnsserver #:data-bundle-arn
-                              #:data-bundle-arns #:database-arn #:database-name
-                              #:db-path #:db-paths #:delete-environment
+                              #:code-configuration #:conflict-exception
+                              #:cooldown-time #:cpu-count #:create-environment
+                              #:create-kx-changeset #:create-kx-cluster
+                              #:create-kx-database #:create-kx-dataview
+                              #:create-kx-environment #:create-kx-scaling-group
+                              #:create-kx-user #:create-kx-volume
+                              #:custom-dnsconfiguration #:custom-dnsserver
+                              #:data-bundle-arn #:data-bundle-arns
+                              #:database-arn #:database-name #:db-path
+                              #:db-paths #:delete-environment
                               #:delete-kx-cluster #:delete-kx-cluster-node
                               #:delete-kx-database #:delete-kx-dataview
                               #:delete-kx-environment #:delete-kx-scaling-group
@@ -38,7 +39,9 @@
                               #:get-kx-scaling-group #:get-kx-user
                               #:get-kx-volume #:ipaddress-type #:icmp-type-code
                               #:icmp-type-or-code #:id-type
-                              #:initialization-script-file-path #:kms-key-arn
+                              #:initialization-script-file-path
+                              #:internal-server-exception
+                              #:invalid-request-exception #:kms-key-arn
                               #:kms-key-id #:kx-attached-cluster
                               #:kx-attached-clusters #:kx-az-mode
                               #:kx-cache-storage-configuration
@@ -84,7 +87,8 @@
                               #:kx-user-list #:kx-user-name-string #:kx-volume
                               #:kx-volume-arn #:kx-volume-name
                               #:kx-volume-status #:kx-volume-status-reason
-                              #:kx-volume-type #:kx-volumes #:list-environments
+                              #:kx-volume-type #:kx-volumes
+                              #:limit-exceeded-exception #:list-environments
                               #:list-kx-changesets #:list-kx-cluster-nodes
                               #:list-kx-clusters #:list-kx-databases
                               #:list-kx-dataviews #:list-kx-environments
@@ -94,16 +98,19 @@
                               #:network-aclconfiguration #:network-aclentry
                               #:node-count #:node-type #:pagination-token
                               #:port #:port-range #:protocol #:release-label
-                              #:result-limit #:role-arn #:rule-action
-                              #:rule-number #:s3bucket #:s3key
-                              #:s3object-version #:s3path
+                              #:resource-already-exists-exception
+                              #:resource-not-found-exception #:result-limit
+                              #:role-arn #:rule-action #:rule-number #:s3bucket
+                              #:s3key #:s3object-version #:s3path
                               #:saml-metadata-document #:security-group-id-list
                               #:security-group-id-string
                               #:segment-configuration-db-path-list
+                              #:service-quota-exceeded-exception
                               #:signed-kx-connection-string #:sms-domain-url
                               #:subnet-id-list #:subnet-id-string
                               #:superuser-parameters #:tag-key #:tag-key-list
                               #:tag-map #:tag-resource #:tag-value
+                              #:throttling-exception
                               #:tickerplant-log-configuration
                               #:tickerplant-log-volumes #:timestamp
                               #:transit-gateway-configuration
@@ -116,14 +123,18 @@
                               #:update-kx-environment-network #:update-kx-user
                               #:update-kx-volume #:valid-cidrblock
                               #:valid-cidrspace #:valid-hostname
-                              #:valid-ipaddress #:version-id #:volume
-                              #:volume-name #:volume-type #:volumes
-                              #:vpc-configuration #:vpc-id-string #:arn
-                              #:boolean-value #:dns-status #:num-bytes
+                              #:valid-ipaddress #:validation-exception
+                              #:version-id #:volume #:volume-name #:volume-type
+                              #:volumes #:vpc-configuration #:vpc-id-string
+                              #:arn #:boolean-value #:dns-status #:num-bytes
                               #:num-changesets #:num-files
                               #:string-value-length1to255 #:tgw-status #:url
-                              #:urn))
+                              #:urn #:finspace-error))
 (common-lisp:in-package #:pira/finspace)
+
+(common-lisp:define-condition finspace-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awshabanero-management-service :shape-name
                                    "AWSHabaneroManagementService" :version
@@ -172,7 +183,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class finspace-error))
 
 (smithy/sdk/shapes:define-list attached-cluster-list :member kx-cluster-name)
 
@@ -270,7 +281,7 @@
                                  (reason :target-type error-message2
                                   :member-name "reason"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class finspace-error))
 
 (smithy/sdk/shapes:define-type cooldown-time smithy/sdk/smithy-types:double)
 
@@ -1401,13 +1412,13 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class finspace-error))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class finspace-error))
 
 (smithy/sdk/shapes:define-type kms-key-arn smithy/sdk/smithy-types:string)
 
@@ -1973,7 +1984,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class finspace-error))
 
 (smithy/sdk/shapes:define-input list-environments-request common-lisp:nil
                                 ((next-token :target-type pagination-token
@@ -2243,13 +2254,13 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class finspace-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class finspace-error))
 
 (smithy/sdk/shapes:define-type result-limit smithy/sdk/smithy-types:integer)
 
@@ -2287,7 +2298,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class finspace-error))
 
 (smithy/sdk/shapes:define-type signed-kx-connection-string
                                smithy/sdk/smithy-types:string)
@@ -2335,7 +2346,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class finspace-error))
 
 (smithy/sdk/shapes:define-structure tickerplant-log-configuration
                                     common-lisp:nil
@@ -2732,7 +2743,7 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class finspace-error))
 
 (smithy/sdk/shapes:define-type version-id smithy/sdk/smithy-types:string)
 

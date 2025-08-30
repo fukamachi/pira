@@ -17,6 +17,8 @@
                               #:cloud-watch-logging-option-update
                               #:cloud-watch-logging-option-updates
                               #:cloud-watch-logging-options
+                              #:code-validation-exception
+                              #:concurrent-modification-exception
                               #:create-application #:delete-application
                               #:delete-application-cloud-watch-logging-option
                               #:delete-application-input-processing-configuration
@@ -39,6 +41,8 @@
                               #:input-schema-update #:input-starting-position
                               #:input-starting-position-configuration
                               #:input-update #:input-updates #:inputs
+                              #:invalid-application-configuration-exception
+                              #:invalid-argument-exception
                               #:jsonmapping-parameters #:kinesis-analytics-arn
                               #:kinesis-analytics-20150814
                               #:kinesis-firehose-input
@@ -54,7 +58,8 @@
                               #:kinesis-streams-output-description
                               #:kinesis-streams-output-update #:lambda-output
                               #:lambda-output-description
-                              #:lambda-output-update #:list-applications
+                              #:lambda-output-update #:limit-exceeded-exception
+                              #:list-applications
                               #:list-applications-input-limit
                               #:list-tags-for-resource #:log-stream-arn
                               #:mapping-parameters #:output
@@ -74,15 +79,26 @@
                               #:reference-data-source-descriptions
                               #:reference-data-source-update
                               #:reference-data-source-updates #:resource-arn
+                              #:resource-in-use-exception
+                              #:resource-not-found-exception
+                              #:resource-provisioned-throughput-exceeded-exception
                               #:role-arn #:s3configuration
                               #:s3reference-data-source
                               #:s3reference-data-source-description
-                              #:s3reference-data-source-update #:source-schema
+                              #:s3reference-data-source-update
+                              #:service-unavailable-exception #:source-schema
                               #:start-application #:stop-application #:tag
                               #:tag-key #:tag-keys #:tag-resource #:tag-value
-                              #:tags #:timestamp #:untag-resource
-                              #:update-application))
+                              #:tags #:timestamp #:too-many-tags-exception
+                              #:unable-to-detect-schema-exception
+                              #:unsupported-operation-exception
+                              #:untag-resource #:update-application
+                              #:kinesis-analytics-error))
 (common-lisp:in-package #:pira/kinesis-analytics)
+
+(common-lisp:define-condition kinesis-analytics-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service kinesis-analytics-20150814 :shape-name
                                    "KinesisAnalytics_20150814" :version
@@ -365,14 +381,16 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "CodeValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-analytics-error))
 
 (smithy/sdk/shapes:define-error concurrent-modification-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ConcurrentModificationException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class kinesis-analytics-error))
 
 (smithy/sdk/shapes:define-input create-application-request common-lisp:nil
                                 ((application-name :target-type
@@ -743,13 +761,15 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidApplicationConfigurationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-analytics-error))
 
 (smithy/sdk/shapes:define-error invalid-argument-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-analytics-error))
 
 (smithy/sdk/shapes:define-structure jsonmapping-parameters common-lisp:nil
                                     ((record-row-path :target-type
@@ -891,7 +911,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-analytics-error))
 
 (smithy/sdk/shapes:define-type list-applications-input-limit
                                smithy/sdk/smithy-types:integer)
@@ -1133,19 +1154,21 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-analytics-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-analytics-error))
 
 (smithy/sdk/shapes:define-error
  resource-provisioned-throughput-exceeded-exception common-lisp:nil
  ((message :target-type error-message :member-name "message"))
  (:shape-name "ResourceProvisionedThroughputExceededException")
- (:error-code 400))
+ (:error-code 400) (:base-class kinesis-analytics-error))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
 
@@ -1198,7 +1221,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class kinesis-analytics-error))
 
 (smithy/sdk/shapes:define-structure source-schema common-lisp:nil
                                     ((record-format :target-type record-format
@@ -1268,7 +1292,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-analytics-error))
 
 (smithy/sdk/shapes:define-error unable-to-detect-schema-exception
                                 common-lisp:nil
@@ -1281,13 +1306,15 @@
                                   processed-input-records :member-name
                                   "ProcessedInputRecords"))
                                 (:shape-name "UnableToDetectSchemaException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-analytics-error))
 
 (smithy/sdk/shapes:define-error unsupported-operation-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnsupportedOperationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kinesis-analytics-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type

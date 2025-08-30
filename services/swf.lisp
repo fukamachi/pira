@@ -42,15 +42,16 @@
                               #:decision-task-started-event-attributes
                               #:decision-task-timed-out-event-attributes
                               #:decision-task-timeout-type #:decision-type
-                              #:delete-activity-type #:delete-workflow-type
-                              #:deprecate-activity-type #:deprecate-domain
-                              #:deprecate-workflow-type
+                              #:default-undefined-fault #:delete-activity-type
+                              #:delete-workflow-type #:deprecate-activity-type
+                              #:deprecate-domain #:deprecate-workflow-type
                               #:describe-activity-type #:describe-domain
                               #:describe-workflow-execution
                               #:describe-workflow-type #:description
-                              #:domain-configuration #:domain-detail
-                              #:domain-info #:domain-info-list #:domain-infos
-                              #:domain-name #:duration-in-days
+                              #:domain-already-exists-fault
+                              #:domain-configuration #:domain-deprecated-fault
+                              #:domain-detail #:domain-info #:domain-info-list
+                              #:domain-infos #:domain-name #:duration-in-days
                               #:duration-in-seconds
                               #:duration-in-seconds-optional #:error-message
                               #:event-id #:event-type #:execution-status
@@ -69,13 +70,15 @@
                               #:lambda-function-scheduled-event-attributes
                               #:lambda-function-started-event-attributes
                               #:lambda-function-timed-out-event-attributes
-                              #:lambda-function-timeout-type #:limited-data
+                              #:lambda-function-timeout-type
+                              #:limit-exceeded-fault #:limited-data
                               #:list-activity-types
                               #:list-closed-workflow-executions #:list-domains
                               #:list-open-workflow-executions
                               #:list-tags-for-resource #:list-workflow-types
                               #:marker-name #:marker-recorded-event-attributes
-                              #:name #:open-decision-tasks-count #:page-size
+                              #:name #:open-decision-tasks-count
+                              #:operation-not-permitted-fault #:page-size
                               #:page-token #:pending-task-count
                               #:poll-for-activity-task #:poll-for-decision-task
                               #:record-activity-task-heartbeat
@@ -129,10 +132,15 @@
                               #:timer-canceled-event-attributes
                               #:timer-fired-event-attributes #:timer-id
                               #:timer-started-event-attributes #:timestamp
-                              #:truncated #:undeprecate-activity-type
-                              #:undeprecate-domain #:undeprecate-workflow-type
-                              #:untag-resource #:version #:version-optional
-                              #:workflow-execution
+                              #:too-many-tags-fault #:truncated
+                              #:type-already-exists-fault
+                              #:type-deprecated-fault
+                              #:type-not-deprecated-fault
+                              #:undeprecate-activity-type #:undeprecate-domain
+                              #:undeprecate-workflow-type
+                              #:unknown-resource-fault #:untag-resource
+                              #:version #:version-optional #:workflow-execution
+                              #:workflow-execution-already-started-fault
                               #:workflow-execution-cancel-requested-cause
                               #:workflow-execution-cancel-requested-event-attributes
                               #:workflow-execution-canceled-event-attributes
@@ -157,8 +165,12 @@
                               #:workflow-type #:workflow-type-configuration
                               #:workflow-type-detail #:workflow-type-filter
                               #:workflow-type-info #:workflow-type-info-list
-                              #:workflow-type-infos))
+                              #:workflow-type-infos #:swf-error))
 (common-lisp:in-package #:pira/swf)
+
+(common-lisp:define-condition swf-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service simple-workflow-service :shape-name
                                    "SimpleWorkflowService" :version
@@ -873,7 +885,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DefaultUndefinedFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class swf-error))
 
 (smithy/sdk/shapes:define-input delete-activity-type-input common-lisp:nil
                                 ((domain :target-type domain-name :required
@@ -948,7 +960,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DomainAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class swf-error))
 
 (smithy/sdk/shapes:define-structure domain-configuration common-lisp:nil
                                     ((workflow-execution-retention-period-in-days
@@ -961,7 +973,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DomainDeprecatedFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class swf-error))
 
 (smithy/sdk/shapes:define-structure domain-detail common-lisp:nil
                                     ((domain-info :target-type domain-info
@@ -1516,7 +1528,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class swf-error))
 
 (smithy/sdk/shapes:define-type limited-data smithy/sdk/smithy-types:string)
 
@@ -1648,7 +1660,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "OperationNotPermittedFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class swf-error))
 
 (smithy/sdk/shapes:define-type page-size smithy/sdk/smithy-types:integer)
 
@@ -2338,7 +2350,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TooManyTagsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class swf-error))
 
 (smithy/sdk/shapes:define-type truncated smithy/sdk/smithy-types:boolean)
 
@@ -2346,19 +2358,19 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TypeAlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class swf-error))
 
 (smithy/sdk/shapes:define-error type-deprecated-fault common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TypeDeprecatedFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class swf-error))
 
 (smithy/sdk/shapes:define-error type-not-deprecated-fault common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TypeNotDeprecatedFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class swf-error))
 
 (smithy/sdk/shapes:define-input undeprecate-activity-type-input common-lisp:nil
                                 ((domain :target-type domain-name :required
@@ -2385,7 +2397,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnknownResourceFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class swf-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -2414,7 +2426,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "WorkflowExecutionAlreadyStartedFault")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class swf-error))
 
 (smithy/sdk/shapes:define-enum workflow-execution-cancel-requested-cause
     common-lisp:nil

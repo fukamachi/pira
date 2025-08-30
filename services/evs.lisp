@@ -19,20 +19,28 @@
                               #:max-results #:network-interface
                               #:network-interface-id #:network-interface-list
                               #:pagination-token #:placement-group-id
-                              #:request-tag-map #:response-tag-map
-                              #:route-server-peering
+                              #:request-tag-map #:resource-not-found-exception
+                              #:response-tag-map #:route-server-peering
                               #:route-server-peering-list #:secret
                               #:secret-list #:security-group-id
                               #:security-groups
-                              #:service-access-security-groups #:solution-key
+                              #:service-access-security-groups
+                              #:service-quota-exceeded-exception #:solution-key
                               #:state-details #:subnet-id #:tag-key #:tag-keys
-                              #:tag-resource #:tag-value #:untag-resource
-                              #:vsan-license-key #:validation-exception-field
+                              #:tag-policy-exception #:tag-resource #:tag-value
+                              #:throttling-exception #:too-many-tags-exception
+                              #:untag-resource #:vsan-license-key
+                              #:validation-exception
+                              #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vcf-hostnames
                               #:vcf-version #:vlan #:vlan-id #:vlan-list
-                              #:vlan-state #:vpc-id))
+                              #:vlan-state #:vpc-id #:evs-error))
 (common-lisp:in-package #:pira/evs)
+
+(common-lisp:define-condition evs-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-elastic-vmware-service :shape-name
                                    "AmazonElasticVMwareService" :version
@@ -540,7 +548,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class evs-error))
 
 (smithy/sdk/shapes:define-map response-tag-map :key tag-key :value tag-value)
 
@@ -575,7 +583,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class evs-error))
 
 (smithy/sdk/shapes:define-type solution-key smithy/sdk/smithy-types:string)
 
@@ -592,7 +600,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "TagPolicyException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class evs-error))
 
 (smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -616,14 +624,14 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class evs-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class evs-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -649,7 +657,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class evs-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

@@ -1,9 +1,11 @@
 (uiop/package:define-package #:pira/identitystore (:use)
-                             (:export #:awsidentity-store #:address #:addresses
+                             (:export #:awsidentity-store
+                              #:access-denied-exception #:address #:addresses
                               #:alternate-identifier #:attribute-operation
                               #:attribute-operations #:attribute-path
-                              #:attribute-value #:conflict-exception-reason
-                              #:create-group #:create-group-membership
+                              #:attribute-value #:conflict-exception
+                              #:conflict-exception-reason #:create-group
+                              #:create-group-membership
                               #:create-group-membership-request
                               #:create-group-membership-response
                               #:create-group-request #:create-group-response
@@ -35,7 +37,7 @@
                               #:group-membership-existence-results
                               #:group-membership-resource #:group-memberships
                               #:group-resource #:groups #:identity-store-id
-                              #:is-member-in-groups
+                              #:internal-server-exception #:is-member-in-groups
                               #:is-member-in-groups-request
                               #:is-member-in-groups-response
                               #:list-group-memberships
@@ -49,14 +51,21 @@
                               #:list-users-response #:max-results #:member-id
                               #:name #:next-token #:phone-number
                               #:phone-numbers #:request-id #:resource-id
-                              #:resource-type #:retry-after-seconds
-                              #:sensitive-boolean-type #:sensitive-string-type
-                              #:unique-attribute #:update-group
-                              #:update-group-request #:update-group-response
-                              #:update-user #:update-user-request
-                              #:update-user-response #:user #:user-name
-                              #:user-resource #:users))
+                              #:resource-not-found-exception #:resource-type
+                              #:retry-after-seconds #:sensitive-boolean-type
+                              #:sensitive-string-type
+                              #:service-quota-exceeded-exception
+                              #:throttling-exception #:unique-attribute
+                              #:update-group #:update-group-request
+                              #:update-group-response #:update-user
+                              #:update-user-request #:update-user-response
+                              #:user #:user-name #:user-resource #:users
+                              #:validation-exception #:identitystore-error))
 (common-lisp:in-package #:pira/identitystore)
+
+(common-lisp:define-condition identitystore-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsidentity-store :shape-name
                                    "AWSIdentityStore" :version "2020-06-15"
@@ -86,7 +95,8 @@
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class identitystore-error))
 
 (smithy/sdk/shapes:define-structure address common-lisp:nil
                                     ((street-address :target-type
@@ -146,7 +156,8 @@
                                  (reason :target-type conflict-exception-reason
                                   :member-name "Reason"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class identitystore-error))
 
 (smithy/sdk/shapes:define-type conflict-exception-reason
                                smithy/sdk/smithy-types:string)
@@ -566,7 +577,8 @@ common-lisp:nil
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class identitystore-error))
 
 (smithy/sdk/shapes:define-structure is-member-in-groups-request common-lisp:nil
                                     ((identity-store-id :target-type
@@ -731,7 +743,8 @@ common-lisp:nil
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class identitystore-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -751,7 +764,8 @@ common-lisp:nil
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class identitystore-error))
 
 (smithy/sdk/shapes:define-error throttling-exception common-lisp:nil
                                 ((message :target-type exception-message
@@ -763,7 +777,8 @@ common-lisp:nil
                                   "RetryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class identitystore-error))
 
 (smithy/sdk/shapes:define-structure unique-attribute common-lisp:nil
                                     ((attribute-path :target-type
@@ -861,7 +876,8 @@ common-lisp:nil
                                  (request-id :target-type request-id
                                   :member-name "RequestId"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class identitystore-error))
 
 (smithy/sdk/operation:define-operation create-group :shape-name "CreateGroup"
                                        :input create-group-request :output

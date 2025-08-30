@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/cleanrooms (:use)
                              (:export #:awsbastion-control-plane-service-lambda
+                              #:access-denied-exception
                               #:access-denied-exception-reason #:account-id
                               #:additional-analyses
                               #:additional-analyses-resource-arn
@@ -118,7 +119,8 @@
                               #:configured-table-resource
                               #:configured-table-summary
                               #:configured-table-summary-list
-                              #:conflict-exception-reason #:consolidated-policy
+                              #:conflict-exception #:conflict-exception-reason
+                              #:consolidated-policy
                               #:consolidated-policy-aggregation
                               #:consolidated-policy-custom
                               #:consolidated-policy-list
@@ -249,9 +251,10 @@
                               #:id-namespace-association-resource
                               #:id-namespace-association-summary
                               #:id-namespace-association-summary-list
-                              #:id-namespace-type #:job-compute-payment-config
-                              #:join-operator #:join-operators-list
-                              #:join-required-option #:kmskey-arn #:key-prefix
+                              #:id-namespace-type #:internal-server-exception
+                              #:job-compute-payment-config #:join-operator
+                              #:join-operators-list #:join-required-option
+                              #:kmskey-arn #:key-prefix
                               #:list-analysis-templates
                               #:list-analysis-templates-input
                               #:list-analysis-templates-output
@@ -375,7 +378,8 @@
                               #:query-constraint-require-overlap #:query-tables
                               #:receiver-account-ids #:receiver-configuration
                               #:receiver-configurations-list #:resource-alias
-                              #:resource-description #:resource-type
+                              #:resource-description
+                              #:resource-not-found-exception #:resource-type
                               #:result-format #:role-arn #:s3location
                               #:scalar-functions #:scalar-functions-list
                               #:schema #:schema-analysis-rule-list
@@ -392,6 +396,7 @@
                               #:schema-type-properties #:secrets-manager-arn
                               #:selected-analysis-method
                               #:selected-analysis-methods
+                              #:service-quota-exceeded-exception
                               #:snowflake-account-identifier
                               #:snowflake-database-name #:snowflake-schema-name
                               #:snowflake-table-name
@@ -406,8 +411,9 @@
                               #:table-reference #:tag-key #:tag-keys #:tag-map
                               #:tag-resource #:tag-value
                               #:target-protected-job-status
-                              #:target-protected-query-status #:uuid
-                              #:untag-resource #:update-analysis-template
+                              #:target-protected-query-status
+                              #:throttling-exception #:uuid #:untag-resource
+                              #:update-analysis-template
                               #:update-analysis-template-input
                               #:update-analysis-template-output
                               #:update-collaboration
@@ -432,13 +438,17 @@
                               #:update-protected-job #:update-protected-query
                               #:update-protected-query-input
                               #:update-protected-query-output
-                              #:users-noise-per-query
+                              #:users-noise-per-query #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason
                               #:worker-compute-configuration
-                              #:worker-compute-type))
+                              #:worker-compute-type #:cleanrooms-error))
 (common-lisp:in-package #:pira/cleanrooms)
+
+(common-lisp:define-condition cleanrooms-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsbastion-control-plane-service-lambda
                                    :shape-name
@@ -467,7 +477,8 @@
                                   access-denied-exception-reason :member-name
                                   "reason"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class cleanrooms-error))
 
 (smithy/sdk/shapes:define-type access-denied-exception-reason
                                smithy/sdk/smithy-types:string)
@@ -1936,7 +1947,8 @@ common-lisp:nil
                                  (reason :target-type conflict-exception-reason
                                   :member-name "reason"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class cleanrooms-error))
 
 (smithy/sdk/shapes:define-type conflict-exception-reason
                                smithy/sdk/smithy-types:string)
@@ -3425,7 +3437,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class cleanrooms-error))
 
 (smithy/sdk/shapes:define-structure job-compute-payment-config common-lisp:nil
                                     ((is-responsible :target-type
@@ -5001,7 +5014,8 @@ common-lisp:nil
                                   :required common-lisp:t :member-name
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class cleanrooms-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -5219,7 +5233,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:double :required
                                   common-lisp:t :member-name "quotaValue"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class cleanrooms-error))
 
 (smithy/sdk/shapes:define-type snowflake-account-identifier
                                smithy/sdk/smithy-types:string)
@@ -5368,7 +5383,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class cleanrooms-error))
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 
@@ -5716,7 +5732,8 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class cleanrooms-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type

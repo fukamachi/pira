@@ -10,7 +10,7 @@
                               #:crallocation-strategy #:crtype
                               #:crupdate-allocation-strategy #:cancel-job
                               #:capacity-limit #:capacity-limits
-                              #:client-request-token
+                              #:client-exception #:client-request-token
                               #:compute-environment-detail
                               #:compute-environment-detail-list
                               #:compute-environment-order
@@ -134,7 +134,8 @@
                               #:scheduling-policy-detail-list
                               #:scheduling-policy-listing-detail
                               #:scheduling-policy-listing-detail-list #:secret
-                              #:secret-list #:service-environment-detail
+                              #:secret-list #:server-exception
+                              #:service-environment-detail
                               #:service-environment-detail-list
                               #:service-environment-order
                               #:service-environment-orders
@@ -166,8 +167,12 @@
                               #:update-consumable-resource #:update-job-queue
                               #:update-policy #:update-scheduling-policy
                               #:update-service-environment #:userdata-type
-                              #:volume #:volumes))
+                              #:volume #:volumes #:batch-error))
 (common-lisp:in-package #:pira/batch)
+
+(common-lisp:define-condition batch-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsbatch-v20160810 :shape-name
                                    "AWSBatchV20160810" :version "2016-08-10"
@@ -374,7 +379,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ClientException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class batch-error))
 
 (smithy/sdk/shapes:define-type client-request-token
                                smithy/sdk/smithy-types:string)
@@ -2521,7 +2526,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class batch-error))
 
 (smithy/sdk/shapes:define-structure service-environment-detail common-lisp:nil
                                     ((service-environment-name :target-type

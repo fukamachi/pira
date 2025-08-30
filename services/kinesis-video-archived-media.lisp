@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/kinesis-video-archived-media (:use)
                              (:export #:awsacuity-reader
+                              #:client-limit-exceeded-exception
                               #:clip-fragment-selector
                               #:clip-fragment-selector-type
                               #:clip-timestamp-range #:container-format
@@ -24,12 +25,25 @@
                               #:hlsplayback-mode #:hlsstreaming-session-url
                               #:hlstimestamp-range #:height-pixels #:image
                               #:image-content #:image-error
-                              #:image-selector-type #:images #:list-fragments
-                              #:list-fragments-max-results #:long #:next-token
-                              #:payload #:resource-arn #:sampling-interval
-                              #:stream-name #:timestamp #:timestamp-range
-                              #:width-pixels))
+                              #:image-selector-type #:images
+                              #:invalid-argument-exception
+                              #:invalid-codec-private-data-exception
+                              #:invalid-media-frame-exception #:list-fragments
+                              #:list-fragments-max-results #:long
+                              #:missing-codec-private-data-exception
+                              #:next-token #:no-data-retention-exception
+                              #:not-authorized-exception #:payload
+                              #:resource-arn #:resource-not-found-exception
+                              #:sampling-interval #:stream-name #:timestamp
+                              #:timestamp-range
+                              #:unsupported-stream-media-type-exception
+                              #:width-pixels
+                              #:kinesis-video-archived-media-error))
 (common-lisp:in-package #:pira/kinesis-video-archived-media)
+
+(common-lisp:define-condition kinesis-video-archived-media-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsacuity-reader :shape-name
                                    "AWSAcuityReader" :version "2017-09-30"
@@ -58,7 +72,9 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ClientLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 kinesis-video-archived-media-error))
 
 (smithy/sdk/shapes:define-structure clip-fragment-selector common-lisp:nil
                                     ((fragment-selector-type :target-type
@@ -411,7 +427,9 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidArgumentException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 kinesis-video-archived-media-error))
 
 (smithy/sdk/shapes:define-error invalid-codec-private-data-exception
                                 common-lisp:nil
@@ -419,13 +437,17 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "InvalidCodecPrivateDataException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 kinesis-video-archived-media-error))
 
 (smithy/sdk/shapes:define-error invalid-media-frame-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidMediaFrameException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 kinesis-video-archived-media-error))
 
 (smithy/sdk/shapes:define-input list-fragments-input common-lisp:nil
                                 ((stream-name :target-type stream-name
@@ -460,7 +482,9 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "MissingCodecPrivateDataException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 kinesis-video-archived-media-error))
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
 
@@ -468,13 +492,17 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NoDataRetentionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 kinesis-video-archived-media-error))
 
 (smithy/sdk/shapes:define-error not-authorized-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NotAuthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class
+                                 kinesis-video-archived-media-error))
 
 (smithy/sdk/shapes:define-type payload smithy/sdk/smithy-types:blob :streaming
                                common-lisp:t)
@@ -485,7 +513,9 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class
+                                 kinesis-video-archived-media-error))
 
 (smithy/sdk/shapes:define-type sampling-interval
                                smithy/sdk/smithy-types:integer)
@@ -509,7 +539,9 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "UnsupportedStreamMediaTypeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class
+                                 kinesis-video-archived-media-error))
 
 (smithy/sdk/shapes:define-type width-pixels smithy/sdk/smithy-types:integer)
 

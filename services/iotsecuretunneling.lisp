@@ -5,16 +5,23 @@
                               #:connection-status #:date-type #:delete-flag
                               #:describe-tunnel #:description
                               #:destination-config #:error-message
-                              #:io-tsecured-tunneling #:list-tags-for-resource
-                              #:list-tunnels #:max-results #:next-token
-                              #:open-tunnel #:rotate-tunnel-access-token
-                              #:service #:service-list #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-value #:thing-name #:timeout-config
-                              #:timeout-in-min #:tunnel #:tunnel-arn
-                              #:tunnel-id #:tunnel-status #:tunnel-summary
-                              #:tunnel-summary-list #:untag-resource))
+                              #:io-tsecured-tunneling
+                              #:limit-exceeded-exception
+                              #:list-tags-for-resource #:list-tunnels
+                              #:max-results #:next-token #:open-tunnel
+                              #:resource-not-found-exception
+                              #:rotate-tunnel-access-token #:service
+                              #:service-list #:tag #:tag-key #:tag-key-list
+                              #:tag-list #:tag-resource #:tag-value
+                              #:thing-name #:timeout-config #:timeout-in-min
+                              #:tunnel #:tunnel-arn #:tunnel-id #:tunnel-status
+                              #:tunnel-summary #:tunnel-summary-list
+                              #:untag-resource #:iotsecuretunneling-error))
 (common-lisp:in-package #:pira/iotsecuretunneling)
+
+(common-lisp:define-condition iotsecuretunneling-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service io-tsecured-tunneling :shape-name
                                    "IoTSecuredTunneling" :version "2018-10-05"
@@ -105,7 +112,8 @@
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
                                 (:error-name "LimitExceededException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class iotsecuretunneling-error))
 
 (smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -174,7 +182,8 @@
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class iotsecuretunneling-error))
 
 (smithy/sdk/shapes:define-input rotate-tunnel-access-token-request
                                 common-lisp:nil

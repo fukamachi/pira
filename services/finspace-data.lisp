@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/finspace-data (:use)
-                             (:export #:awshabanero-public-api #:access-key-id
+                             (:export #:awshabanero-public-api
+                              #:access-denied-exception #:access-key-id
                               #:alias-string #:api-access
                               #:application-permission
                               #:application-permission-list
@@ -10,10 +11,10 @@
                               #:changeset-summary #:client-token
                               #:column-data-type #:column-definition
                               #:column-description #:column-list #:column-name
-                              #:column-name-list #:create-changeset
-                              #:create-data-view #:create-dataset
-                              #:create-permission-group #:create-user
-                              #:credentials #:data-view-arn
+                              #:column-name-list #:conflict-exception
+                              #:create-changeset #:create-data-view
+                              #:create-dataset #:create-permission-group
+                              #:create-user #:credentials #:data-view-arn
                               #:data-view-destination-type
                               #:data-view-destination-type-params
                               #:data-view-error-info #:data-view-id
@@ -32,9 +33,10 @@
                               #:get-permission-group
                               #:get-programmatic-access-credentials #:get-user
                               #:get-working-location #:id-type
-                              #:ingestion-status #:last-name #:list-changesets
-                              #:list-data-views #:list-datasets
-                              #:list-permission-groups
+                              #:ingestion-status #:internal-server-exception
+                              #:last-name #:limit-exceeded-exception
+                              #:list-changesets #:list-data-views
+                              #:list-datasets #:list-permission-groups
                               #:list-permission-groups-by-user #:list-users
                               #:list-users-by-permission-group #:owner-name
                               #:pagination-token #:partition-column-list
@@ -46,6 +48,7 @@
                               #:permission-group-membership-status
                               #:permission-group-name #:permission-group-params
                               #:phone-number #:reset-user-password
+                              #:resource-not-found-exception
                               #:resource-permission #:resource-permissions-list
                               #:result-limit #:role-arn #:s3bucket-name
                               #:s3destination-format-options #:s3key
@@ -55,16 +58,23 @@
                               #:source-params #:status-code #:string-map-key
                               #:string-map-value #:string-value-length1to250
                               #:string-value-length1to255
-                              #:string-value-length1to2552 #:timestamp-epoch
+                              #:string-value-length1to2552
+                              #:throttling-exception #:timestamp-epoch
                               #:update-changeset #:update-dataset
                               #:update-permission-group #:update-user #:user
                               #:user-by-permission-group
                               #:user-by-permission-group-list #:user-id
                               #:user-list #:user-status #:user-type
-                              #:location-type #:string-value-length1to1024
+                              #:validation-exception #:location-type
+                              #:string-value-length1to1024
                               #:string-value-length1to63
-                              #:string-value-max-length1000))
+                              #:string-value-max-length1000
+                              #:finspace-data-error))
 (common-lisp:in-package #:pira/finspace-data)
+
+(common-lisp:define-condition finspace-data-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awshabanero-public-api :shape-name
                                    "AWSHabaneroPublicAPI" :version "2020-07-13"
@@ -105,7 +115,8 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class finspace-data-error))
 
 (smithy/sdk/shapes:define-type access-key-id smithy/sdk/smithy-types:string)
 
@@ -261,7 +272,8 @@
                                  (reason :target-type error-message2
                                   :member-name "reason"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class finspace-data-error))
 
 (smithy/sdk/shapes:define-input create-changeset-request common-lisp:nil
                                 ((client-token :target-type client-token
@@ -879,7 +891,8 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class finspace-data-error))
 
 (smithy/sdk/shapes:define-type last-name smithy/sdk/smithy-types:string)
 
@@ -887,7 +900,8 @@
                                 ((message :target-type error-message2
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class finspace-data-error))
 
 (smithy/sdk/shapes:define-input list-changesets-request common-lisp:nil
                                 ((dataset-id :target-type dataset-id :required
@@ -1120,7 +1134,8 @@
                                  (reason :target-type error-message2
                                   :member-name "reason"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class finspace-data-error))
 
 (smithy/sdk/shapes:define-structure resource-permission common-lisp:nil
                                     ((permission :target-type
@@ -1194,7 +1209,8 @@
 (smithy/sdk/shapes:define-error throttling-exception common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class finspace-data-error))
 
 (smithy/sdk/shapes:define-type timestamp-epoch smithy/sdk/smithy-types:long)
 
@@ -1376,7 +1392,8 @@
                                  (reason :target-type error-message2
                                   :member-name "reason"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class finspace-data-error))
 
 (smithy/sdk/shapes:define-enum location-type
     common-lisp:nil

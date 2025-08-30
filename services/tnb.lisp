@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/tnb (:use)
-                             (:export #:cancel-sol-network-operation
+                             (:export #:access-denied-exception
+                              #:cancel-sol-network-operation
                               #:create-sol-function-package
                               #:create-sol-network-instance
                               #:create-sol-network-package
@@ -31,7 +32,8 @@
                               #:get-sol-vnfc-resource-info-metadata
                               #:instantiate-metadata
                               #:instantiate-sol-network-instance
-                              #:lcm-operation-info #:lcm-operation-type
+                              #:internal-server-exception #:lcm-operation-info
+                              #:lcm-operation-type
                               #:list-sol-function-instance-info
                               #:list-sol-function-instance-metadata
                               #:list-sol-function-instance-resources
@@ -67,10 +69,12 @@
                               #:put-sol-function-package-content-metadata
                               #:put-sol-network-package-content
                               #:put-sol-network-package-content-metadata
-                              #:sensitive-blob #:string-map #:tnb
-                              #:tnbresource-arn #:tag-key #:tag-keys #:tag-map
-                              #:tag-resource #:tag-value #:task-status
-                              #:terminate-sol-network-instance #:tosca-override
+                              #:resource-not-found-exception #:sensitive-blob
+                              #:service-quota-exceeded-exception #:string-map
+                              #:tnb #:tnbresource-arn #:tag-key #:tag-keys
+                              #:tag-map #:tag-resource #:tag-value
+                              #:task-status #:terminate-sol-network-instance
+                              #:throttling-exception #:tosca-override
                               #:untag-resource #:update-ns-metadata
                               #:update-sol-function-package
                               #:update-sol-network-instance
@@ -82,11 +86,16 @@
                               #:validate-sol-function-package-content-metadata
                               #:validate-sol-network-package-content
                               #:validate-sol-network-package-content-metadata
-                              #:vnf-instance-arn #:vnf-instance-id
-                              #:vnf-instantiation-state #:vnf-operational-state
-                              #:vnf-pkg-arn #:vnf-pkg-id #:vnf-pkg-id-list
-                              #:vnfd-id))
+                              #:validation-exception #:vnf-instance-arn
+                              #:vnf-instance-id #:vnf-instantiation-state
+                              #:vnf-operational-state #:vnf-pkg-arn
+                              #:vnf-pkg-id #:vnf-pkg-id-list #:vnfd-id
+                              #:tnb-error))
 (common-lisp:in-package #:pira/tnb)
+
+(common-lisp:define-condition tnb-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service tnb :shape-name "TNB" :version "2008-10-21"
                                    :title "AWS Telco Network Builder"
@@ -135,7 +144,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class tnb-error))
 
 (smithy/sdk/shapes:define-input cancel-sol-network-operation-input
                                 common-lisp:nil
@@ -739,7 +748,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class tnb-error))
 
 (smithy/sdk/shapes:define-structure lcm-operation-info common-lisp:nil
                                     ((ns-lcm-op-occ-id :target-type
@@ -1305,7 +1314,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class tnb-error))
 
 (smithy/sdk/shapes:define-type sensitive-blob smithy/sdk/smithy-types:blob)
 
@@ -1315,7 +1324,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class tnb-error))
 
 (smithy/sdk/shapes:define-map string-map :key smithy/sdk/smithy-types:string
                               :value smithy/sdk/smithy-types:string)
@@ -1377,7 +1386,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class tnb-error))
 
 (smithy/sdk/shapes:define-structure tosca-override common-lisp:nil
                                     ((name :target-type
@@ -1591,7 +1600,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class tnb-error))
 
 (smithy/sdk/shapes:define-type vnf-instance-arn smithy/sdk/smithy-types:string)
 

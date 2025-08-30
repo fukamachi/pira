@@ -1,10 +1,12 @@
 (uiop/package:define-package #:pira/chime (:use)
-                             (:export #:account #:account-list #:account-name
-                              #:account-settings #:account-status
-                              #:account-type #:alexa-for-business-metadata
+                             (:export #:access-denied-exception #:account
+                              #:account-list #:account-name #:account-settings
+                              #:account-status #:account-type
+                              #:alexa-for-business-metadata
                               #:alpha2country-code
                               #:associate-phone-number-with-user
                               #:associate-signin-delegate-groups-with-account
+                              #:bad-request-exception
                               #:batch-create-room-membership
                               #:batch-delete-phone-number #:batch-suspend-user
                               #:batch-unsuspend-user
@@ -12,6 +14,7 @@
                               #:boolean #:bot #:bot-list #:bot-type
                               #:business-calling-settings #:calling-name
                               #:calling-name-status #:client-request-token
+                              #:conflict-exception
                               #:conversation-retention-settings
                               #:create-account #:create-bot
                               #:create-meeting-dial-out
@@ -24,8 +27,8 @@
                               #:disassociate-signin-delegate-groups-from-account
                               #:e164phone-number #:e164phone-number-list
                               #:email-address #:email-status #:error-code
-                              #:events-configuration #:get-account
-                              #:get-account-settings #:get-bot
+                              #:events-configuration #:forbidden-exception
+                              #:get-account #:get-account-settings #:get-bot
                               #:get-events-configuration #:get-global-settings
                               #:get-phone-number #:get-phone-number-order
                               #:get-phone-number-settings
@@ -41,7 +44,8 @@
                               #:member-error #:member-error-list #:member-type
                               #:membership-item #:membership-item-list
                               #:non-empty-string #:non-empty-string-list
-                              #:nullable-boolean #:ordered-phone-number
+                              #:not-found-exception #:nullable-boolean
+                              #:ordered-phone-number
                               #:ordered-phone-number-list
                               #:ordered-phone-number-status #:phone-number
                               #:phone-number-association
@@ -62,16 +66,21 @@
                               #:redact-conversation-message
                               #:redact-room-message #:regenerate-security-token
                               #:registration-status #:reset-personal-pin
+                              #:resource-limit-exceeded-exception
                               #:restore-phone-number #:result-max
                               #:retention-days #:retention-settings #:room
                               #:room-list #:room-membership
                               #:room-membership-list #:room-membership-role
                               #:room-retention-settings
                               #:search-available-phone-numbers
-                              #:sensitive-string #:signin-delegate-group
+                              #:sensitive-string #:service-failure-exception
+                              #:service-unavailable-exception
+                              #:signin-delegate-group
                               #:signin-delegate-group-list #:string
-                              #:telephony-settings #:toll-free-prefix
-                              #:ucbuzz-console-service #:update-account
+                              #:telephony-settings #:throttled-client-exception
+                              #:toll-free-prefix #:ucbuzz-console-service
+                              #:unauthorized-client-exception
+                              #:unprocessable-entity-exception #:update-account
                               #:update-account-settings #:update-bot
                               #:update-global-settings #:update-phone-number
                               #:update-phone-number-request-item
@@ -83,8 +92,12 @@
                               #:update-user-settings #:user #:user-email-list
                               #:user-error #:user-error-list #:user-id-list
                               #:user-list #:user-settings #:user-type
-                              #:voice-connector-settings))
+                              #:voice-connector-settings #:chime-error))
 (common-lisp:in-package #:pira/chime)
+
+(common-lisp:define-condition chime-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ucbuzz-console-service :shape-name
                                    "UCBuzzConsoleService" :version "2018-05-01"
@@ -146,7 +159,7 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class chime-error))
 
 (smithy/sdk/shapes:define-structure account common-lisp:nil
                                     ((aws-account-id :target-type string
@@ -248,7 +261,7 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class chime-error))
 
 (smithy/sdk/shapes:define-input batch-create-room-membership-request
                                 common-lisp:nil
@@ -400,7 +413,7 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class chime-error))
 
 (smithy/sdk/shapes:define-structure conversation-retention-settings
                                     common-lisp:nil
@@ -650,7 +663,7 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class chime-error))
 
 (smithy/sdk/shapes:define-input get-account-request common-lisp:nil
                                 ((account-id :target-type non-empty-string
@@ -1081,7 +1094,7 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class chime-error))
 
 (smithy/sdk/shapes:define-type nullable-boolean smithy/sdk/smithy-types:boolean)
 
@@ -1388,7 +1401,7 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceLimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class chime-error))
 
 (smithy/sdk/shapes:define-input restore-phone-number-request common-lisp:nil
                                 ((phone-number-id :target-type non-empty-string
@@ -1506,7 +1519,7 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceFailureException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class chime-error))
 
 (smithy/sdk/shapes:define-error service-unavailable-exception common-lisp:nil
                                 ((code :target-type error-code :member-name
@@ -1514,7 +1527,7 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class chime-error))
 
 (smithy/sdk/shapes:define-structure signin-delegate-group common-lisp:nil
                                     ((group-name :target-type non-empty-string
@@ -1543,7 +1556,7 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ThrottledClientException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class chime-error))
 
 (smithy/sdk/shapes:define-type toll-free-prefix smithy/sdk/smithy-types:string)
 
@@ -1553,7 +1566,7 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnauthorizedClientException")
-                                (:error-code 401))
+                                (:error-code 401) (:base-class chime-error))
 
 (smithy/sdk/shapes:define-error unprocessable-entity-exception common-lisp:nil
                                 ((code :target-type error-code :member-name
@@ -1561,7 +1574,7 @@
                                  (message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "UnprocessableEntityException")
-                                (:error-code 422))
+                                (:error-code 422) (:base-class chime-error))
 
 (smithy/sdk/shapes:define-input update-account-request common-lisp:nil
                                 ((account-id :target-type non-empty-string

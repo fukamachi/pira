@@ -2,6 +2,7 @@
                              (:export #:accept-grouping-recommendation-entries
                               #:accept-grouping-recommendation-entry
                               #:accept-resource-grouping-recommendations
+                              #:access-denied-exception
                               #:add-draft-app-version-resource-mappings
                               #:add-draft-app-version-resource-mappings-request
                               #:add-draft-app-version-resource-mappings-response
@@ -40,9 +41,10 @@
                               #:condition-list #:condition-operator-type
                               #:config-recommendation
                               #:config-recommendation-list
-                              #:config-recommendation-optimization-type #:cost
-                              #:cost-frequency #:create-app
-                              #:create-app-request #:create-app-response
+                              #:config-recommendation-optimization-type
+                              #:conflict-exception #:cost #:cost-frequency
+                              #:create-app #:create-app-request
+                              #:create-app-response
                               #:create-app-version-app-component
                               #:create-app-version-app-component-request
                               #:create-app-version-app-component-response
@@ -132,6 +134,7 @@
                               #:import-resources-to-draft-app-version-request
                               #:import-resources-to-draft-app-version-response
                               #:integer #:integer-optional
+                              #:internal-server-exception
                               #:list-alarm-recommendations
                               #:list-alarm-recommendations-request
                               #:list-alarm-recommendations-response
@@ -226,6 +229,7 @@
                               #:resource-import-strategy-type
                               #:resource-mapping #:resource-mapping-list
                               #:resource-mapping-type
+                              #:resource-not-found-exception
                               #:resource-resolution-status-type
                               #:resource-source-type #:resource-type
                               #:resources-grouping-rec-gen-status-type
@@ -233,6 +237,7 @@
                               #:s3location #:s3url
                               #:scoring-component-resiliency-score
                               #:scoring-component-resiliency-scores #:seconds
+                              #:service-quota-exceeded-exception
                               #:sop-recommendation #:sop-recommendation-list
                               #:sop-service-type #:sort #:sort-list
                               #:spec-reference-id #:start-app-assessment
@@ -248,7 +253,8 @@
                               #:tag-value #:template-format #:terraform-source
                               #:terraform-source-list #:test-recommendation
                               #:test-recommendation-list #:test-risk
-                              #:test-type #:time-stamp #:unsupported-resource
+                              #:test-type #:throttling-exception #:time-stamp
+                              #:unsupported-resource
                               #:unsupported-resource-list #:untag-resource
                               #:untag-resource-request
                               #:untag-resource-response #:update-app
@@ -267,8 +273,13 @@
                               #:update-recommendation-status-request-entry
                               #:update-resiliency-policy
                               #:update-resiliency-policy-request
-                              #:update-resiliency-policy-response #:uuid))
+                              #:update-resiliency-policy-response #:uuid
+                              #:validation-exception #:resiliencehub-error))
 (common-lisp:in-package #:pira/resiliencehub)
+
+(common-lisp:define-condition resiliencehub-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service aws-resilience-hub :shape-name
                                    "AwsResilienceHub" :version "2020-04-30"
@@ -368,7 +379,8 @@
                                 ((message :target-type string500 :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class resiliencehub-error))
 
 (smithy/sdk/shapes:define-structure
  add-draft-app-version-resource-mappings-request common-lisp:nil
@@ -943,7 +955,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class resiliencehub-error))
 
 (smithy/sdk/shapes:define-structure cost common-lisp:nil
                                     ((amount :target-type double :required
@@ -1834,7 +1847,8 @@
                                 ((message :target-type string500 :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class resiliencehub-error))
 
 (smithy/sdk/shapes:define-structure list-alarm-recommendations-request
                                     common-lisp:nil
@@ -2841,7 +2855,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class resiliencehub-error))
 
 (smithy/sdk/shapes:define-enum resource-resolution-status-type
     common-lisp:nil
@@ -2904,7 +2919,8 @@
                                 ((message :target-type string500 :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402)
+                                (:base-class resiliencehub-error))
 
 (smithy/sdk/shapes:define-structure sop-recommendation common-lisp:nil
                                     ((service-type :target-type
@@ -3110,7 +3126,8 @@
                                   retry-after-seconds :member-name
                                   "retryAfterSeconds"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class resiliencehub-error))
 
 (smithy/sdk/shapes:define-type time-stamp smithy/sdk/smithy-types:timestamp)
 
@@ -3334,7 +3351,8 @@
                                 ((message :target-type string500 :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class resiliencehub-error))
 
 (smithy/sdk/operation:define-operation accept-resource-grouping-recommendations
                                        :shape-name

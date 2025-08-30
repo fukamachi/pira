@@ -15,12 +15,17 @@
                               #:engine-attribute #:engine-attribute-name
                               #:engine-attribute-value #:engine-attributes
                               #:export-server-engine-attribute
-                              #:instance-profile-arn #:integer #:key-pair
+                              #:instance-profile-arn #:integer
+                              #:invalid-next-token-exception
+                              #:invalid-state-exception #:key-pair
+                              #:limit-exceeded-exception
                               #:list-tags-for-resource #:maintenance-status
                               #:max-results #:next-token
                               #:node-association-status
                               #:node-association-status-token #:node-name
-                              #:ops-works-cm-v2016-11-01 #:restore-server
+                              #:ops-works-cm-v2016-11-01
+                              #:resource-already-exists-exception
+                              #:resource-not-found-exception #:restore-server
                               #:server #:server-event #:server-events
                               #:server-name #:server-status #:servers
                               #:service-role-arn #:start-maintenance #:string
@@ -28,8 +33,13 @@
                               #:tag-list #:tag-resource #:tag-value
                               #:time-window-definition #:timestamp
                               #:untag-resource #:update-server
-                              #:update-server-engine-attributes))
+                              #:update-server-engine-attributes
+                              #:validation-exception #:opsworkscm-error))
 (common-lisp:in-package #:pira/opsworkscm)
+
+(common-lisp:define-condition opsworkscm-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ops-works-cm-v2016-11-01 :shape-name
                                    "OpsWorksCM_V2016_11_01" :version
@@ -424,13 +434,15 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidNextTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class opsworkscm-error))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class opsworkscm-error))
 
 (smithy/sdk/shapes:define-type key-pair smithy/sdk/smithy-types:string)
 
@@ -438,7 +450,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class opsworkscm-error))
 
 (smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -483,13 +496,15 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceAlreadyExistsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class opsworkscm-error))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class opsworkscm-error))
 
 (smithy/sdk/shapes:define-input restore-server-request common-lisp:nil
                                 ((backup-id :target-type backup-id :required
@@ -709,7 +724,8 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class opsworkscm-error))
 
 (smithy/sdk/operation:define-operation associate-node :shape-name
                                        "AssociateNode" :input

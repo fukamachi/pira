@@ -1,8 +1,11 @@
 (uiop/package:define-package #:pira/cloud9 (:use)
                              (:export #:awscloud9workspace-management-service
                               #:automatic-stop-time-minutes
+                              #:bad-request-exception
                               #:bounded-environment-id-list
-                              #:client-request-token #:connection-type
+                              #:client-request-token
+                              #:concurrent-access-exception
+                              #:conflict-exception #:connection-type
                               #:create-environment-ec2
                               #:create-environment-membership
                               #:delete-environment
@@ -16,18 +19,27 @@
                               #:environment-lifecycle-status #:environment-list
                               #:environment-member #:environment-members-list
                               #:environment-name #:environment-status
-                              #:environment-type #:image-id #:instance-type
-                              #:integer #:list-environments
+                              #:environment-type #:forbidden-exception
+                              #:image-id #:instance-type #:integer
+                              #:internal-server-error-exception
+                              #:limit-exceeded-exception #:list-environments
                               #:list-tags-for-resource
                               #:managed-credentials-action
                               #:managed-credentials-status #:max-results
-                              #:member-permissions #:nullable-boolean
-                              #:permissions #:permissions-list #:string
-                              #:subnet-id #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-value #:timestamp
-                              #:untag-resource #:update-environment
-                              #:update-environment-membership #:user-arn))
+                              #:member-permissions #:not-found-exception
+                              #:nullable-boolean #:permissions
+                              #:permissions-list #:string #:subnet-id #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:timestamp
+                              #:too-many-requests-exception #:untag-resource
+                              #:update-environment
+                              #:update-environment-membership #:user-arn
+                              #:cloud9-error))
 (common-lisp:in-package #:pira/cloud9)
+
+(common-lisp:define-condition cloud9-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awscloud9workspace-management-service
                                    :shape-name
@@ -66,7 +78,7 @@
                                  (code :target-type integer :member-name
                                   "code"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class cloud9-error))
 
 (smithy/sdk/shapes:define-list bounded-environment-id-list :member
                                environment-id)
@@ -82,7 +94,7 @@
                                  (code :target-type integer :member-name
                                   "code"))
                                 (:shape-name "ConcurrentAccessException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class cloud9-error))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -92,7 +104,7 @@
                                  (code :target-type integer :member-name
                                   "code"))
                                 (:shape-name "ConflictException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class cloud9-error))
 
 (smithy/sdk/shapes:define-enum connection-type
     common-lisp:nil
@@ -331,7 +343,7 @@
                                  (code :target-type integer :member-name
                                   "code"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class cloud9-error))
 
 (smithy/sdk/shapes:define-type image-id smithy/sdk/smithy-types:string)
 
@@ -347,7 +359,7 @@
                                  (code :target-type integer :member-name
                                   "code"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class cloud9-error))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -357,7 +369,7 @@
                                  (code :target-type integer :member-name
                                   "code"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class cloud9-error))
 
 (smithy/sdk/shapes:define-input list-environments-request common-lisp:nil
                                 ((next-token :target-type string :member-name
@@ -421,7 +433,7 @@
                                  (code :target-type integer :member-name
                                   "code"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class cloud9-error))
 
 (smithy/sdk/shapes:define-type nullable-boolean smithy/sdk/smithy-types:boolean)
 
@@ -474,7 +486,7 @@
                                  (code :target-type integer :member-name
                                   "code"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class cloud9-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type environment-arn

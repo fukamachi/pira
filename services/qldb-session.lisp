@@ -1,22 +1,32 @@
 (uiop/package:define-package #:pira/qldb-session (:use)
                              (:export #:abort-transaction-request
-                              #:abort-transaction-result #:commit-digest
+                              #:abort-transaction-result
+                              #:bad-request-exception
+                              #:capacity-exceeded-exception #:commit-digest
                               #:commit-transaction-request
                               #:commit-transaction-result #:end-session-request
                               #:end-session-result #:error-code #:error-message
                               #:execute-statement-request
                               #:execute-statement-result #:fetch-page-request
-                              #:fetch-page-result #:iousage #:ion-binary
-                              #:ion-text #:ledger-name #:page #:page-token
+                              #:fetch-page-result #:iousage
+                              #:invalid-session-exception #:ion-binary
+                              #:ion-text #:ledger-name
+                              #:limit-exceeded-exception
+                              #:occ-conflict-exception #:page #:page-token
                               #:processing-time-milliseconds #:qldbsession
-                              #:read-ios #:send-command #:session-token
+                              #:rate-exceeded-exception #:read-ios
+                              #:send-command #:session-token
                               #:start-session-request #:start-session-result
                               #:start-transaction-request
                               #:start-transaction-result #:statement
                               #:statement-parameters #:timing-information
                               #:transaction-id #:value-holder #:value-holders
-                              #:write-ios))
+                              #:write-ios #:qldb-session-error))
 (common-lisp:in-package #:pira/qldb-session)
+
+(common-lisp:define-condition qldb-session-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service qldbsession :shape-name "QLDBSession"
                                    :version "2019-07-11" :title
@@ -48,13 +58,15 @@
                                  (code :target-type error-code :member-name
                                   "Code"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class qldb-session-error))
 
 (smithy/sdk/shapes:define-error capacity-exceeded-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "CapacityExceededException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class qldb-session-error))
 
 (smithy/sdk/shapes:define-type commit-digest smithy/sdk/smithy-types:blob)
 
@@ -148,7 +160,8 @@
                                  (code :target-type error-code :member-name
                                   "Code"))
                                 (:shape-name "InvalidSessionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class qldb-session-error))
 
 (smithy/sdk/shapes:define-type ion-binary smithy/sdk/smithy-types:blob)
 
@@ -160,13 +173,15 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class qldb-session-error))
 
 (smithy/sdk/shapes:define-error occ-conflict-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "OccConflictException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class qldb-session-error))
 
 (smithy/sdk/shapes:define-structure page common-lisp:nil
                                     ((values :target-type value-holders
@@ -184,7 +199,8 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "RateExceededException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class qldb-session-error))
 
 (smithy/sdk/shapes:define-type read-ios smithy/sdk/smithy-types:long)
 

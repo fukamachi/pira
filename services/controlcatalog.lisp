@@ -1,5 +1,6 @@
 (uiop/package:define-package #:pira/controlcatalog (:use)
-                             (:export #:associated-domain-summary
+                             (:export #:access-denied-exception
+                              #:associated-domain-summary
                               #:associated-objective-summary
                               #:common-control-arn
                               #:common-control-arn-filter-list
@@ -28,6 +29,7 @@
                               #:implementation-identifier-filter-list
                               #:implementation-summary #:implementation-type
                               #:implementation-type-filter-list
+                              #:internal-server-exception
                               #:list-common-controls #:list-control-mappings
                               #:list-controls #:list-domains #:list-objectives
                               #:mapping #:mapping-type
@@ -42,8 +44,15 @@
                               #:objective-resource-filter-list
                               #:objective-summary #:objective-summary-list
                               #:pagination-token #:region-code
-                              #:region-configuration))
+                              #:region-configuration
+                              #:resource-not-found-exception
+                              #:throttling-exception #:validation-exception
+                              #:controlcatalog-error))
 (common-lisp:in-package #:pira/controlcatalog)
+
+(common-lisp:define-condition controlcatalog-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service control-catalog :shape-name "ControlCatalog"
                                    :version "2018-05-10" :title
@@ -66,7 +75,8 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class controlcatalog-error))
 
 (smithy/sdk/shapes:define-structure associated-domain-summary common-lisp:nil
                                     ((arn :target-type domain-arn :member-name
@@ -365,7 +375,8 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class controlcatalog-error))
 
 (smithy/sdk/shapes:define-input list-common-controls-request common-lisp:nil
                                 ((max-results :target-type
@@ -553,21 +564,24 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class controlcatalog-error))
 
 (smithy/sdk/shapes:define-error throttling-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class controlcatalog-error))
 
 (smithy/sdk/shapes:define-error validation-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class controlcatalog-error))
 
 (smithy/sdk/operation:define-operation get-control :shape-name "GetControl"
                                        :input get-control-request :output

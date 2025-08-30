@@ -2,18 +2,37 @@
                              (:export #:awsmpmetering-service
                               #:allocated-usage-quantity #:batch-meter-usage
                               #:boolean #:customer-awsaccount-id
-                              #:customer-identifier #:meter-usage
-                              #:non-empty-string #:nonce #:product-code
+                              #:customer-identifier
+                              #:customer-not-entitled-exception
+                              #:disabled-api-exception
+                              #:duplicate-request-exception
+                              #:expired-token-exception
+                              #:internal-service-error-exception
+                              #:invalid-customer-identifier-exception
+                              #:invalid-endpoint-region-exception
+                              #:invalid-product-code-exception
+                              #:invalid-public-key-version-exception
+                              #:invalid-region-exception
+                              #:invalid-tag-exception #:invalid-token-exception
+                              #:invalid-usage-allocations-exception
+                              #:invalid-usage-dimension-exception #:meter-usage
+                              #:non-empty-string #:nonce
+                              #:platform-not-supported-exception #:product-code
                               #:register-usage #:resolve-customer #:string
                               #:tag #:tag-key #:tag-list #:tag-value
-                              #:timestamp #:usage-allocation
-                              #:usage-allocations #:usage-dimension
-                              #:usage-quantity #:usage-record
+                              #:throttling-exception #:timestamp
+                              #:timestamp-out-of-bounds-exception
+                              #:usage-allocation #:usage-allocations
+                              #:usage-dimension #:usage-quantity #:usage-record
                               #:usage-record-list #:usage-record-result
                               #:usage-record-result-list
                               #:usage-record-result-status #:version-integer
-                              #:error-message))
+                              #:error-message #:marketplace-metering-error))
 (common-lisp:in-package #:pira/marketplace-metering)
+
+(common-lisp:define-condition marketplace-metering-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsmpmetering-service :shape-name
                                    "AWSMPMeteringService" :version "2016-01-14"
@@ -69,32 +88,37 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "CustomerNotEntitledException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error disabled-api-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DisabledApiException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error duplicate-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DuplicateRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error expired-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ExpiredTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error internal-service-error-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InternalServiceErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error invalid-customer-identifier-exception
                                 common-lisp:nil
@@ -102,20 +126,23 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidCustomerIdentifierException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error invalid-endpoint-region-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidEndpointRegionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error invalid-product-code-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidProductCodeException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error invalid-public-key-version-exception
                                 common-lisp:nil
@@ -123,25 +150,29 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidPublicKeyVersionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error invalid-region-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRegionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error invalid-tag-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTagException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error invalid-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTokenException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error invalid-usage-allocations-exception
                                 common-lisp:nil
@@ -149,14 +180,16 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidUsageAllocationsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-error invalid-usage-dimension-exception
                                 common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidUsageDimensionException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-input meter-usage-request common-lisp:nil
                                 ((product-code :target-type product-code
@@ -190,7 +223,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "PlatformNotSupportedException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-type product-code smithy/sdk/smithy-types:string)
 
@@ -249,7 +283,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -258,7 +293,8 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TimestampOutOfBoundsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-metering-error))
 
 (smithy/sdk/shapes:define-structure usage-allocation common-lisp:nil
                                     ((allocated-usage-quantity :target-type

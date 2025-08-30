@@ -1,10 +1,12 @@
 (uiop/package:define-package #:pira/drs (:use)
-                             (:export #:arn #:account #:account-id
-                              #:account-ids #:account-resource #:accounts
-                              #:agent-version #:associate-source-network-stack
+                             (:export #:arn #:access-denied-exception #:account
+                              #:account-id #:account-ids #:account-resource
+                              #:accounts #:agent-version
+                              #:associate-source-network-stack
                               #:aws-availability-zone #:aws-region
                               #:bounded-string #:cpu #:cfn-stack-name
-                              #:conversion-map #:conversion-properties #:cpus
+                              #:conflict-exception #:conversion-map
+                              #:conversion-properties #:cpus
                               #:create-extended-source-server
                               #:create-extended-source-server-request
                               #:create-extended-source-server-response
@@ -91,12 +93,12 @@
                               #:iso8601duration-string #:identification-hints
                               #:initialize-service #:initialize-service-request
                               #:initialize-service-response #:initiated-by
-                              #:job #:job-id #:job-log #:job-log-event
-                              #:job-log-event-data #:job-logs #:job-resource
-                              #:job-status #:job-type #:jobs-list
-                              #:large-bounded-string #:last-launch-result
-                              #:last-launch-type #:launch-action
-                              #:launch-action-category
+                              #:internal-server-exception #:job #:job-id
+                              #:job-log #:job-log-event #:job-log-event-data
+                              #:job-logs #:job-resource #:job-status #:job-type
+                              #:jobs-list #:large-bounded-string
+                              #:last-launch-result #:last-launch-type
+                              #:launch-action #:launch-action-category
                               #:launch-action-description #:launch-action-id
                               #:launch-action-ids #:launch-action-name
                               #:launch-action-order #:launch-action-parameter
@@ -175,12 +177,15 @@
                               #:replication-configuration-templates
                               #:replication-direction
                               #:replication-servers-security-groups-ids
-                              #:replication-status #:retry-data-replication
+                              #:replication-status
+                              #:resource-not-found-exception
+                              #:retry-data-replication
                               #:retry-data-replication-request
                               #:reverse-replication
                               #:reverse-replication-request
                               #:reverse-replication-response
                               #:security-group-id #:sensitive-bounded-string
+                              #:service-quota-exceeded-exception
                               #:small-bounded-string #:source-cloud-properties
                               #:source-network #:source-network-data
                               #:source-network-id #:source-network-resource
@@ -216,6 +221,8 @@
                               #:terminate-recovery-instances
                               #:terminate-recovery-instances-request
                               #:terminate-recovery-instances-response
+                              #:throttling-exception
+                              #:uninitialized-account-exception
                               #:untag-resource #:untag-resource-request
                               #:update-failback-replication-configuration
                               #:update-failback-replication-configuration-request
@@ -228,13 +235,18 @@
                               #:update-replication-configuration-request
                               #:update-replication-configuration-template
                               #:update-replication-configuration-template-request
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:volume-status
                               #:volume-to-conversion-map
                               #:volume-to-product-codes #:volume-to-size-map
-                              #:vpc-id))
+                              #:vpc-id #:drs-error))
 (common-lisp:in-package #:pira/drs)
+
+(common-lisp:define-condition drs-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service elastic-disaster-recovery-service
                                    :shape-name "ElasticDisasterRecoveryService"
@@ -268,7 +280,7 @@
                                  (code :target-type large-bounded-string
                                   :member-name "code"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class drs-error))
 
 (smithy/sdk/shapes:define-structure account common-lisp:nil
                                     ((account-id :target-type account-id
@@ -329,7 +341,7 @@ common-lisp:nil
                                   large-bounded-string :member-name
                                   "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class drs-error))
 
 (smithy/sdk/shapes:define-map conversion-map :key ebs-snapshot :value
                               ebs-snapshot)
@@ -1005,7 +1017,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class drs-error))
 
 (smithy/sdk/shapes:define-structure job common-lisp:nil
                                     ((job-id :target-type job-id :required
@@ -2029,7 +2041,7 @@ common-lisp:nil
                                   large-bounded-string :member-name
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class drs-error))
 
 (smithy/sdk/shapes:define-structure retry-data-replication-request
                                     common-lisp:nil
@@ -2075,7 +2087,7 @@ common-lisp:nil
                                  (quota-code :target-type large-bounded-string
                                   :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
-                                (:error-code 402))
+                                (:error-code 402) (:base-class drs-error))
 
 (smithy/sdk/shapes:define-type small-bounded-string
                                smithy/sdk/smithy-types:string)
@@ -2435,7 +2447,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class drs-error))
 
 (smithy/sdk/shapes:define-error uninitialized-account-exception common-lisp:nil
                                 ((message :target-type large-bounded-string
@@ -2443,7 +2455,7 @@ common-lisp:nil
                                  (code :target-type large-bounded-string
                                   :member-name "code"))
                                 (:shape-name "UninitializedAccountException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class drs-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type arn :required
@@ -2637,7 +2649,7 @@ common-lisp:nil
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class drs-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type large-bounded-string

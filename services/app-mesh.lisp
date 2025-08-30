@@ -7,9 +7,10 @@
                               #:aws-cloud-map-name
                               #:aws-cloud-map-service-discovery #:backend
                               #:backend-defaults #:backends
+                              #:bad-request-exception
                               #:certificate-authority-arns #:client-policy
                               #:client-policy-tls #:client-tls-certificate
-                              #:create-gateway-route
+                              #:conflict-exception #:create-gateway-route
                               #:create-gateway-route-input
                               #:create-gateway-route-output #:create-mesh
                               #:create-mesh-input #:create-mesh-output
@@ -64,7 +65,8 @@
                               #:duration #:duration-unit #:duration-value
                               #:egress-filter #:egress-filter-type
                               #:exact-host-name #:file-access-log #:file-path
-                              #:gateway-route #:gateway-route-data
+                              #:forbidden-exception #:gateway-route
+                              #:gateway-route-data
                               #:gateway-route-hostname-match
                               #:gateway-route-hostname-rewrite
                               #:gateway-route-list #:gateway-route-priority
@@ -103,10 +105,11 @@
                               #:http-retry-policy-events #:http-route
                               #:http-route-action #:http-route-header
                               #:http-route-headers #:http-route-match
-                              #:http-scheme #:http-timeout #:ip-preference
+                              #:http-scheme #:http-timeout
+                              #:internal-server-error-exception #:ip-preference
                               #:json-format #:json-format-ref #:json-key
-                              #:json-value #:list-gateway-routes
-                              #:list-gateway-routes-input
+                              #:json-value #:limit-exceeded-exception
+                              #:list-gateway-routes #:list-gateway-routes-input
                               #:list-gateway-routes-limit
                               #:list-gateway-routes-output #:list-meshes
                               #:list-meshes-input #:list-meshes-limit
@@ -144,17 +147,18 @@
                               #:max-retries #:mesh #:mesh-data #:mesh-list
                               #:mesh-ref #:mesh-service-discovery #:mesh-spec
                               #:mesh-status #:mesh-status-code #:method-name
-                              #:outlier-detection
+                              #:not-found-exception #:outlier-detection
                               #:outlier-detection-max-ejection-percent
                               #:outlier-detection-max-server-errors
                               #:percent-int #:port-mapping #:port-number
                               #:port-protocol #:port-set
                               #:query-parameter-match #:query-parameter-name
-                              #:resource-metadata #:resource-name #:route
-                              #:route-data #:route-list #:route-priority
-                              #:route-ref #:route-spec #:route-status
-                              #:route-status-code #:sds-secret-name
-                              #:service-discovery #:service-name
+                              #:resource-in-use-exception #:resource-metadata
+                              #:resource-name #:route #:route-data #:route-list
+                              #:route-priority #:route-ref #:route-spec
+                              #:route-status #:route-status-code
+                              #:sds-secret-name #:service-discovery
+                              #:service-name #:service-unavailable-exception
                               #:subject-alternative-name
                               #:subject-alternative-name-list
                               #:subject-alternative-name-matchers
@@ -170,7 +174,9 @@
                               #:tls-validation-context-acm-trust
                               #:tls-validation-context-file-trust
                               #:tls-validation-context-sds-trust
-                              #:tls-validation-context-trust #:untag-resource
+                              #:tls-validation-context-trust
+                              #:too-many-requests-exception
+                              #:too-many-tags-exception #:untag-resource
                               #:untag-resource-input #:untag-resource-output
                               #:update-gateway-route
                               #:update-gateway-route-input
@@ -247,8 +253,12 @@
                               #:virtual-service-ref #:virtual-service-spec
                               #:virtual-service-status
                               #:virtual-service-status-code #:weighted-target
-                              #:weighted-targets))
+                              #:weighted-targets #:app-mesh-error))
 (common-lisp:in-package #:pira/app-mesh)
+
+(common-lisp:define-condition app-mesh-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service app-mesh :shape-name "AppMesh" :version
                                    "2019-01-25" :title "AWS App Mesh"
@@ -332,7 +342,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class app-mesh-error))
 
 (smithy/sdk/shapes:define-list certificate-authority-arns :member arn)
 
@@ -368,7 +378,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class app-mesh-error))
 
 (smithy/sdk/shapes:define-input create-gateway-route-input common-lisp:nil
                                 ((gateway-route-name :target-type resource-name
@@ -900,7 +910,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403) (:base-class app-mesh-error))
 
 common-lisp:nil
 
@@ -1420,7 +1430,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500) (:base-class app-mesh-error))
 
 (smithy/sdk/shapes:define-type ip-preference smithy/sdk/smithy-types:string)
 
@@ -1442,7 +1452,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class app-mesh-error))
 
 (smithy/sdk/shapes:define-input list-gateway-routes-input common-lisp:nil
                                 ((mesh-name :target-type resource-name
@@ -1858,7 +1868,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404) (:base-class app-mesh-error))
 
 (smithy/sdk/shapes:define-structure outlier-detection common-lisp:nil
                                     ((max-server-errors :target-type
@@ -1912,7 +1922,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 409))
+                                (:error-code 409) (:base-class app-mesh-error))
 
 (smithy/sdk/shapes:define-structure resource-metadata common-lisp:nil
                                     ((arn :target-type arn :required
@@ -2036,7 +2046,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503) (:base-class app-mesh-error))
 
 (smithy/sdk/shapes:define-type subject-alternative-name
                                smithy/sdk/smithy-types:string)
@@ -2175,14 +2185,14 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429) (:base-class app-mesh-error))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400) (:base-class app-mesh-error))
 
 (smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
                                 ((resource-arn :target-type arn :required

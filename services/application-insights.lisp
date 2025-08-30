@@ -1,11 +1,12 @@
 (uiop/package:define-package #:pira/application-insights (:use)
-                             (:export #:account-id #:add-workload
-                              #:affected-resource #:amazon-resource-name
-                              #:application-component
+                             (:export #:access-denied-exception #:account-id
+                              #:add-workload #:affected-resource
+                              #:amazon-resource-name #:application-component
                               #:application-component-list #:application-info
                               #:application-info-list
                               #:attach-missing-permission #:auto-config-enabled
-                              #:auto-create #:cwemonitor-enabled
+                              #:auto-create #:bad-request-exception
+                              #:cwemonitor-enabled
                               #:cloud-watch-event-detail-type
                               #:cloud-watch-event-id #:cloud-watch-event-source
                               #:code-deploy-application
@@ -39,8 +40,9 @@
                               #:health-event-arn #:health-event-description
                               #:health-event-type-category
                               #:health-event-type-code #:health-service
-                              #:insights #:last-recurrence-time #:life-cycle
-                              #:line-time #:list-applications #:list-components
+                              #:insights #:internal-server-exception
+                              #:last-recurrence-time #:life-cycle #:line-time
+                              #:list-applications #:list-components
                               #:list-configuration-history
                               #:list-log-pattern-sets #:list-log-patterns
                               #:list-problems #:list-tags-for-resource
@@ -60,27 +62,34 @@
                               #:recurring-count #:related-observations
                               #:remarks #:remove-snstopic #:remove-workload
                               #:resolution-method #:resource-arn
-                              #:resource-group-name #:resource-list
+                              #:resource-group-name #:resource-in-use-exception
+                              #:resource-list #:resource-not-found-exception
                               #:resource-type #:s3event-name
                               #:snsnotification-arn #:severity-level
                               #:short-name #:source-arn #:source-type
                               #:start-time #:states-arn #:states-execution-arn
                               #:states-input #:states-status #:status #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-value #:tier #:title #:unit
-                              #:untag-resource #:update-application
-                              #:update-component
+                              #:tag-resource #:tag-value
+                              #:tags-already-exist-exception #:tier #:title
+                              #:too-many-tags-exception #:unit #:untag-resource
+                              #:update-application #:update-component
                               #:update-component-configuration
                               #:update-log-pattern #:update-problem
-                              #:update-status #:update-workload #:value
-                              #:visibility #:workload #:workload-configuration
-                              #:workload-id #:workload-list
-                              #:workload-meta-data #:workload-name
-                              #:xray-error-percent #:xray-fault-percent
-                              #:xray-node-name #:xray-node-type
-                              #:xray-request-average-latency
-                              #:xray-request-count #:xray-throttle-percent))
+                              #:update-status #:update-workload
+                              #:validation-exception #:value #:visibility
+                              #:workload #:workload-configuration #:workload-id
+                              #:workload-list #:workload-meta-data
+                              #:workload-name #:xray-error-percent
+                              #:xray-fault-percent #:xray-node-name
+                              #:xray-node-type #:xray-request-average-latency
+                              #:xray-request-count #:xray-throttle-percent
+                              #:application-insights-error))
 (common-lisp:in-package #:pira/application-insights)
+
+(common-lisp:define-condition application-insights-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service ec2windows-barley-service :shape-name
                                    "EC2WindowsBarleyService" :version
@@ -126,7 +135,8 @@
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
                                 (:error-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class application-insights-error))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 
@@ -226,7 +236,8 @@
                                   "Message"))
                                 (:shape-name "BadRequestException")
                                 (:error-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class application-insights-error))
 
 (smithy/sdk/shapes:define-type cwemonitor-enabled
                                smithy/sdk/smithy-types:boolean)
@@ -664,7 +675,8 @@
                                   "Message"))
                                 (:shape-name "InternalServerException")
                                 (:error-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class application-insights-error))
 
 (smithy/sdk/shapes:define-type last-recurrence-time
                                smithy/sdk/smithy-types:timestamp)
@@ -1147,7 +1159,8 @@
                                   "Message"))
                                 (:shape-name "ResourceInUseException")
                                 (:error-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class application-insights-error))
 
 (smithy/sdk/shapes:define-list resource-list :member resource-arn)
 
@@ -1156,7 +1169,8 @@
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class application-insights-error))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
 
@@ -1228,7 +1242,8 @@
                                 ((message :target-type exception-message
                                   :member-name "Message"))
                                 (:shape-name "TagsAlreadyExistException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class application-insights-error))
 
 (smithy/sdk/shapes:define-enum tier
     common-lisp:nil
@@ -1266,7 +1281,8 @@
                                   amazon-resource-name :member-name
                                   "ResourceName"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class application-insights-error))
 
 (smithy/sdk/shapes:define-type unit smithy/sdk/smithy-types:string)
 
@@ -1426,7 +1442,8 @@
                                   "Message"))
                                 (:shape-name "ValidationException")
                                 (:error-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class application-insights-error))
 
 (smithy/sdk/shapes:define-type value smithy/sdk/smithy-types:double)
 

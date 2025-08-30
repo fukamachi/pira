@@ -2,10 +2,11 @@
                              (:export #:apache-kafka-cluster
                               #:apache-kafka-cluster-description #:auto-scaling
                               #:auto-scaling-description #:auto-scaling-update
-                              #:capacity #:capacity-description
-                              #:capacity-update #:cloud-watch-logs-log-delivery
+                              #:bad-request-exception #:capacity
+                              #:capacity-description #:capacity-update
+                              #:cloud-watch-logs-log-delivery
                               #:cloud-watch-logs-log-delivery-description
-                              #:connector-configuration
+                              #:conflict-exception #:connector-configuration
                               #:connector-configuration-update
                               #:connector-operation-state
                               #:connector-operation-step
@@ -40,7 +41,8 @@
                               #:describe-worker-configuration-response
                               #:firehose-log-delivery
                               #:firehose-log-delivery-description
-                              #:kafka-cluster
+                              #:forbidden-exception
+                              #:internal-server-error-exception #:kafka-cluster
                               #:kafka-cluster-client-authentication
                               #:kafka-cluster-client-authentication-description
                               #:kafka-cluster-client-authentication-type
@@ -57,8 +59,8 @@
                               #:list-worker-configurations
                               #:list-worker-configurations-response
                               #:log-delivery #:log-delivery-description
-                              #:max-results #:plugin #:plugin-description
-                              #:provisioned-capacity
+                              #:max-results #:not-found-exception #:plugin
+                              #:plugin-description #:provisioned-capacity
                               #:provisioned-capacity-description
                               #:provisioned-capacity-update #:s3location
                               #:s3location-description #:s3log-delivery
@@ -66,12 +68,15 @@
                               #:scale-in-policy-description
                               #:scale-in-policy-update #:scale-out-policy
                               #:scale-out-policy-description
-                              #:scale-out-policy-update #:state-description
-                              #:tag-key #:tag-key-list #:tag-resource
-                              #:tag-resource-response #:tag-value #:tags
-                              #:untag-resource #:untag-resource-response
-                              #:update-connector #:update-connector-response
-                              #:vpc #:vpc-description #:worker-configuration
+                              #:scale-out-policy-update
+                              #:service-unavailable-exception
+                              #:state-description #:tag-key #:tag-key-list
+                              #:tag-resource #:tag-resource-response
+                              #:tag-value #:tags #:too-many-requests-exception
+                              #:unauthorized-exception #:untag-resource
+                              #:untag-resource-response #:update-connector
+                              #:update-connector-response #:vpc
+                              #:vpc-description #:worker-configuration
                               #:worker-configuration-description
                               #:worker-configuration-revision-description
                               #:worker-configuration-revision-summary
@@ -89,8 +94,13 @@
                               #:list-of-worker-configuration-summary
                               #:list-of-string #:long #:long-min1
                               #:sensitive-string #:string #:string-max1024
-                              #:string-min1max128 #:timestamp-iso8601))
+                              #:string-min1max128 #:timestamp-iso8601
+                              #:kafkaconnect-error))
 (common-lisp:in-package #:pira/kafkaconnect)
+
+(common-lisp:define-condition kafkaconnect-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service kafka-connect :shape-name "KafkaConnect"
                                    :version "2021-09-14" :title
@@ -195,7 +205,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "BadRequestException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class kafkaconnect-error))
 
 (smithy/sdk/shapes:define-structure capacity common-lisp:nil
                                     ((auto-scaling :target-type auto-scaling
@@ -244,7 +255,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-code 409)
+                                (:base-class kafkaconnect-error))
 
 (smithy/sdk/shapes:define-map connector-configuration :key string :value string)
 
@@ -765,13 +777,15 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ForbiddenException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class kafkaconnect-error))
 
 (smithy/sdk/shapes:define-error internal-server-error-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InternalServerErrorException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class kafkaconnect-error))
 
 (smithy/sdk/shapes:define-structure kafka-cluster common-lisp:nil
                                     ((apache-kafka-cluster :target-type
@@ -934,7 +948,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class kafkaconnect-error))
 
 (smithy/sdk/shapes:define-structure plugin common-lisp:nil
                                     ((custom-plugin :target-type custom-plugin
@@ -1056,7 +1071,8 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class kafkaconnect-error))
 
 (smithy/sdk/shapes:define-structure state-description common-lisp:nil
                                     ((code :target-type string :member-name
@@ -1089,13 +1105,15 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TooManyRequestsException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class kafkaconnect-error))
 
 (smithy/sdk/shapes:define-error unauthorized-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "UnauthorizedException")
-                                (:error-code 401))
+                                (:error-code 401)
+                                (:base-class kafkaconnect-error))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
                                 ((resource-arn :target-type string :required

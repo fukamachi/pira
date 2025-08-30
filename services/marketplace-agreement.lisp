@@ -2,6 +2,7 @@
                              (:export #:awsaccount-id
                               #:awsmpcommerce-service-v20200301 #:accepted-term
                               #:accepted-term-list #:acceptor
+                              #:access-denied-exception
                               #:agreement-resource-type #:agreement-status
                               #:agreement-type #:agreement-view-summary
                               #:agreement-view-summary-list #:boolean
@@ -17,7 +18,8 @@
                               #:filter-list #:filter-name #:filter-value
                               #:filter-value-list #:fixed-upfront-pricing-term
                               #:free-trial-pricing-term #:get-agreement-terms
-                              #:grant-item #:grant-list #:legal-term
+                              #:grant-item #:grant-list
+                              #:internal-server-exception #:legal-term
                               #:max-results #:next-token #:offer-id
                               #:payment-schedule-term
                               #:positive-integer-with-default-value-one
@@ -25,18 +27,26 @@
                               #:rate-card-list #:recurring-payment-term
                               #:renewal-term #:renewal-term-configuration
                               #:request-id #:resource #:resource-id
-                              #:resource-type #:resources #:schedule-item
-                              #:schedule-list #:search-agreements #:selector
-                              #:sort #:sort-by #:sort-order #:support-term
-                              #:timestamp #:unversioned-term-type
+                              #:resource-not-found-exception #:resource-type
+                              #:resources #:schedule-item #:schedule-list
+                              #:search-agreements #:selector #:sort #:sort-by
+                              #:sort-order #:support-term
+                              #:throttling-exception #:timestamp
+                              #:unversioned-term-type
                               #:usage-based-pricing-term
                               #:usage-based-rate-card-item
                               #:usage-based-rate-card-list
+                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:validity-term
-                              #:zero-value-integer))
+                              #:zero-value-integer
+                              #:marketplace-agreement-error))
 (common-lisp:in-package #:pira/marketplace-agreement)
+
+(common-lisp:define-condition marketplace-agreement-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service awsmpcommerce-service-v20200301 :shape-name
                                    "AWSMPCommerceService_v20200301" :version
@@ -103,7 +113,8 @@
                                  (message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-code 403)
+                                (:base-class marketplace-agreement-error))
 
 (smithy/sdk/shapes:define-type agreement-resource-type
                                smithy/sdk/smithy-types:string)
@@ -342,7 +353,8 @@
                                  (message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class marketplace-agreement-error))
 
 (smithy/sdk/shapes:define-structure legal-term common-lisp:nil
                                     ((type :target-type unversioned-term-type
@@ -437,7 +449,8 @@
                                  (resource-type :target-type resource-type
                                   :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
-                                (:error-code 404))
+                                (:error-code 404)
+                                (:base-class marketplace-agreement-error))
 
 (smithy/sdk/shapes:define-enum resource-type
     common-lisp:nil
@@ -508,7 +521,8 @@
                                  (message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class marketplace-agreement-error))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -545,7 +559,8 @@
                                   validation-exception-field-list :member-name
                                   "fields"))
                                 (:shape-name "ValidationException")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class marketplace-agreement-error))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil
                                     ((name :target-type bounded-string

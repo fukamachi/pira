@@ -5,17 +5,26 @@
                               #:error-code #:header
                               #:inference-component-header #:inference-id
                               #:input-location-header
+                              #:internal-dependency-exception
+                              #:internal-failure #:internal-stream-failure
                               #:invocation-timeout-seconds-header
                               #:invoke-endpoint #:invoke-endpoint-async
                               #:invoke-endpoint-with-response-stream
-                              #:log-stream-arn #:message
+                              #:log-stream-arn #:message #:model-error
+                              #:model-not-ready-exception #:model-stream-error
                               #:new-session-response-header #:part-blob
                               #:payload-part #:request-ttlseconds-header
-                              #:response-stream #:session-id-header
+                              #:response-stream #:service-unavailable
+                              #:session-id-header
                               #:session-id-or-new-session-constant-header
                               #:status-code #:target-container-hostname-header
-                              #:target-model-header #:target-variant-header))
+                              #:target-model-header #:target-variant-header
+                              #:validation-error #:sagemaker-runtime-error))
 (common-lisp:in-package #:pira/sagemaker-runtime)
+
+(common-lisp:define-condition sagemaker-runtime-error
+    (pira/error:aws-error)
+    common-lisp:nil)
 
 (smithy/sdk/service:define-service amazon-sage-maker-runtime :shape-name
                                    "AmazonSageMakerRuntime" :version
@@ -63,19 +72,22 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InternalDependencyException")
-                                (:error-code 530))
+                                (:error-code 530)
+                                (:base-class sagemaker-runtime-error))
 
 (smithy/sdk/shapes:define-error internal-failure common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InternalFailure")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class sagemaker-runtime-error))
 
 (smithy/sdk/shapes:define-error internal-stream-failure common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InternalStreamFailure")
-                                (:error-code 500))
+                                (:error-code 500)
+                                (:base-class sagemaker-runtime-error))
 
 (smithy/sdk/shapes:define-type invocation-timeout-seconds-header
                                smithy/sdk/smithy-types:integer)
@@ -261,14 +273,16 @@
                                   :member-name "OriginalMessage")
                                  (log-stream-arn :target-type log-stream-arn
                                   :member-name "LogStreamArn"))
-                                (:shape-name "ModelError") (:error-code 424))
+                                (:shape-name "ModelError") (:error-code 424)
+                                (:base-class sagemaker-runtime-error))
 
 (smithy/sdk/shapes:define-error model-not-ready-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ModelNotReadyException")
                                 (:error-name "ModelNotReadyException")
-                                (:error-code 429))
+                                (:error-code 429)
+                                (:base-class sagemaker-runtime-error))
 
 (smithy/sdk/shapes:define-error model-stream-error common-lisp:nil
                                 ((message :target-type message :member-name
@@ -276,7 +290,8 @@
                                  (error-code :target-type error-code
                                   :member-name "ErrorCode"))
                                 (:shape-name "ModelStreamError")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class sagemaker-runtime-error))
 
 (smithy/sdk/shapes:define-type new-session-response-header
                                smithy/sdk/smithy-types:string)
@@ -306,7 +321,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ServiceUnavailable")
-                                (:error-code 503))
+                                (:error-code 503)
+                                (:base-class sagemaker-runtime-error))
 
 (smithy/sdk/shapes:define-type session-id-header smithy/sdk/smithy-types:string)
 
@@ -328,7 +344,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ValidationError")
-                                (:error-code 400))
+                                (:error-code 400)
+                                (:base-class sagemaker-runtime-error))
 
 (smithy/sdk/operation:define-operation invoke-endpoint :shape-name
                                        "InvokeEndpoint" :input
