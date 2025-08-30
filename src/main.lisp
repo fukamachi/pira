@@ -3,7 +3,8 @@
   (:use-reexport #:pira/session
                  #:pira/make-session
                  #:pira/credentials
-                 #:pira/api)
+                 #:pira/api
+                 #:pira/error)
   (:import-from #:pira/config
                 #:*aws-profile*)
   (:export #:*aws-profile*))

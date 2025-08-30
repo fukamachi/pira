@@ -8,6 +8,7 @@
                "quri"
                "trivial-timeout"
                "pira/sts"
+               "pira-core/error"
                "local-time"
                "yason"
                "cl-ppcre"
@@ -44,8 +45,16 @@
    (:file "main"))
   :in-order-to ((test-op (test-op "pira-tests"))))
 
+(defsystem "pira-core/error"
+  :depends-on ("alexandria"
+               "closer-mop")
+  :pathname "src"
+  :components
+  ((:file "error")))
+
 (defsystem "pira-core/codegen"
-  :depends-on ("smithy")
+  :depends-on ("pira-core/error"
+               "smithy")
   :pathname "src"
   :components
   ((:file "codegen")))
