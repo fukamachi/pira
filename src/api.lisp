@@ -60,7 +60,11 @@
                                :method (http:request-method req)
                                :host (request-host req region)
                                :path (http:request-path-info req)
-                               :params (http:request-query req)
+                               :params (mapcar (lambda (kv)
+                                                 (if (null (cdr kv))
+                                                     (cons (car kv) "")
+                                                     kv))
+                                               (http:request-query req))
                                :headers headers
                                :payload (or payload ""))
         (multiple-value-bind (body status headers)
