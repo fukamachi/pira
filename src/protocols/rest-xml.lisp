@@ -71,9 +71,10 @@
          (assert (equal "ErrorResponse" (xml:xml-tag-name payload)))
          (get-error-info (find-error-tag payload))))
     (when code
-      (or (find (util:shape-name->symbol code
-                                         (symbol-package (operation:operation-name operation)))
-                (operation:operation-errors operation))
+      (or (cdr (find (util:shape-name->symbol code
+                                              (symbol-package (operation:operation-name operation)))
+                     (operation:operation-errors operation)
+                     :key #'cdr))
           (error "~A: ~A (Code: ~A)"
                  (operation:operation-name operation)
                  message
