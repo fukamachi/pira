@@ -62,9 +62,10 @@
            (and error-shape-name
                 (sanitize-error-code error-shape-name))))
     (and error-shape-name
-         (find (util:shape-name->symbol error-shape-name
-                                        (symbol-package (operation:operation-name operation)))
-               (operation:operation-errors operation)))))
+         (cdr (find (util:shape-name->symbol error-shape-name
+                                             (symbol-package (operation:operation-name operation)))
+                    (operation:operation-errors operation)
+                    :key #'cdr)))))
 
 (defmethod protocols:find-error-shape ((json rest-json1) operation status headers payload)
   (find-aws-json-error-type operation status headers payload))
