@@ -122,7 +122,7 @@
                                                    (car child-elem)))
                                      child-elem)
                                    (to-query child))))
-                    (string
+                    ((or string number)
                      `((,(xml:xml-tag-name elem) . ,body)))))))))
     (quri:url-encode-params (mappend #'to-query payload))))
 
