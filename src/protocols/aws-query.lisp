@@ -131,24 +131,23 @@
   '((:content-type . "application/x-www-form-urlencoded")))
 
 (defmethod protocols:deserialize-output-payload ((query aws-query) output-class payload)
-  (when (equal (shape:structure-shape-name output-class) (xml:xml-tag-name payload))
-    (let ((result-tag
-            (find-if (lambda (tag)
-                       (and (typep tag 'xml:xml-tag)
-                            (ends-with-subseq "Result" (xml:xml-tag-name tag))))
-                     (xml:xml-tag-body payload))))
-      (when result-tag
-        (append (call-next-method query output-class result-tag)
-                (let* ((metadata (find-if (lambda (tag)
-                                            (and (typep tag 'xml:xml-tag)
-                                                 (equal "ResponseMetadata" (xml:xml-tag-name tag))))
-                                          (xml:xml-tag-body payload)))
-                       (request-id (find-if (lambda (child-tag)
-                                              (and (typep child-tag 'xml:xml-tag)
-                                                   (equal "RequestId" (xml:xml-tag-name child-tag))))
-                                            (xml:xml-tag-body metadata))))
-                  (when request-id
-                    (list (cons "RequestId" (first (xml:xml-tag-body request-id)))))))))))
+  (let ((result-tag
+          (find-if (lambda (tag)
+                     (and (typep tag 'xml:xml-tag)
+                          (ends-with-subseq "Result" (xml:xml-tag-name tag))))
+                   (xml:xml-tag-body payload))))
+    (when result-tag
+      (append (xml:deserialize-payload-as-xml output-class result-tag)
+              (let* ((metadata (find-if (lambda (tag)
+                                          (and (typep tag 'xml:xml-tag)
+                                               (equal "ResponseMetadata" (xml:xml-tag-name tag))))
+                                        (xml:xml-tag-body payload)))
+                     (request-id (find-if (lambda (child-tag)
+                                            (and (typep child-tag 'xml:xml-tag)
+                                                 (equal "RequestId" (xml:xml-tag-name child-tag))))
+                                          (xml:xml-tag-body metadata))))
+                (when request-id
+                  (list (cons "RequestId" (first (xml:xml-tag-body request-id))))))))))
 
 (defmethod protocols:find-error-shape ((query aws-query) operation status headers payload)
   (assert (equal "ErrorResponse" (xml:xml-tag-name payload)))
@@ -162,13 +161,3 @@
                  (operation:operation-name operation)
                  message
                  code)))))
-
-(defmethod protocols:deserialize-output-payload ((query aws-query) (output-class shape:smithy-error) payload)
-  (assert (equal "ErrorResponse" (xml:xml-tag-name payload)))
-  (append
-   (call-next-method query
-                     output-class
-                     (rest-xml:find-error-tag payload))
-   (let ((request-id (rest-xml:get-tag-value payload "RequestId")))
-     (when request-id
-       (list (cons "RequestId" request-id))))))
