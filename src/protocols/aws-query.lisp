@@ -2,7 +2,8 @@
   (:use #:cl)
   (:import-from #:alexandria
                 #:mappend
-                #:ends-with-subseq)
+                #:ends-with-subseq
+                #:ensure-list)
   (:local-nicknames
    (#:pira #:pira/protocols/aws)
    (#:rest-xml #:pira/protocols/rest-xml)
@@ -35,7 +36,7 @@
                         (service:service-version service))
 
      (and input
-          (xml:xml-tag-body input)))))
+          (ensure-list (xml:xml-tag-body input))))))
 
 ;; payload is xml-tag
 (defmethod protocols:encode-payload ((query aws-query) content-type payload)
@@ -46,45 +47,77 @@
                (xml::xml-list
                 (loop for i from 1
                       for child in (xml:xml-tag-body elem)
-                      collect
-                      (cons
-                       (format nil "~A~@[.~A~].~D"
-                               (xml:xml-tag-name elem)
-                               (if (xml::xml-list-flattened-p elem)
-                                   nil
-                                   (xml::xml-list-member-xml-name elem))
-                               i)
-                       (to-query child))))
+                      for prefix = (format nil "~@[~A.~]~@[~A.~]~D"
+                                           (xml:xml-tag-name elem)
+                                           (if (xml::xml-list-flattened-p elem)
+                                               nil
+                                               (xml::xml-list-member-xml-name elem))
+                                           i)
+                      append
+                      (typecase child
+                        ((or string number)
+                         (list (cons prefix child)))
+                        (otherwise
+                         (mapcar (lambda (kv)
+                                   (cons (format nil "~A.~A" prefix (car kv))
+                                         (cdr kv)))
+                                 (to-query child))))))
                (xml::xml-map
                 (loop for i from 1
                       for (key . val) in (xml:xml-tag-body elem)
-                      for prefix = (format nil "~A~@[.~A~].~D"
+                      for prefix = (format nil "~@[~A.~]~@[~A.~]~D"
                                            (xml:xml-tag-name elem)
                                            (if (xml::xml-map-flattened-p elem)
                                                nil
                                                "entry")
                                            i)
                       append
-                      (list
-                       (cons
-                        (format nil "~A.~A"
-                                prefix
-                                (xml::xml-map-key-xml-name elem))
-                        key)
-                       (cons
-                        (format nil "~A.~A"
-                                prefix
-                                (xml::xml-map-value-xml-name elem))
-                        (to-query val)))))
+                      (typecase val
+                        ((or string number)
+                         (list
+                          (cons
+                           (format nil "~A.~A"
+                                   prefix
+                                   (xml::xml-map-key-xml-name elem))
+                           key)
+                          (cons
+                           (format nil "~A.~A"
+                                   prefix
+                                   (xml::xml-map-value-xml-name elem))
+                           val)))
+                        (otherwise
+                         (cons
+                          (cons
+                           (format nil "~A.~A"
+                                   prefix
+                                   (xml::xml-map-key-xml-name elem))
+                           key)
+                          (mappend (lambda (kv)
+                                     (list
+                                      (cons
+                                       (format nil "~A.~A.~A"
+                                               prefix
+                                               (xml::xml-map-value-xml-name elem)
+                                               (car kv))
+                                       (cdr kv))))
+                                   (to-query val)))))))
                ((or xml::xml-structure xml:xml-tag)
                 (let ((body (xml::xml-tag-body elem)))
                   (etypecase body
+                    (xml::xml-structure
+                     (mapcar (lambda (child-elem)
+                               (setf (car child-elem)
+                                     (format nil "~@[~A.~]~A"
+                                             (xml:xml-tag-name elem)
+                                             (car child-elem)))
+                               child-elem)
+                             (to-query body)))
                     (list
                      (loop for child in body
                            append
                            (mapcar (lambda (child-elem)
                                      (setf (car child-elem)
-                                           (format nil "~A.~A"
+                                           (format nil "~@[~A.~]~A"
                                                    (xml:xml-tag-name elem)
                                                    (car child-elem)))
                                      child-elem)
