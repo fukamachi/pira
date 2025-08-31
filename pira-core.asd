@@ -41,7 +41,8 @@
      (:file "rest-json1")
      (:file "aws-json")
      (:file "rest-xml")
-     (:file "aws-query")))
+     (:file "aws-query")
+     (:file "ec2-query")))
    (:file "main"))
   :in-order-to ((test-op (test-op "pira-tests"))))
 
