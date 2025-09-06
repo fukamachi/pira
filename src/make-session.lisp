@@ -25,7 +25,7 @@
   (:export #:make-session))
 (in-package #:pira/make-session)
 
-(defun make-session (&key credentials region (profile *aws-profile*))
+(defun make-session (&key credentials region endpoint (profile *aws-profile*))
   (let ((shared-config (make-shared-config :profile profile)))
     (%make-session
      :credentials
@@ -48,4 +48,5 @@
            (t nil)))
      :region (or region
                  (shared-config-region shared-config)
-                 (uiop:getenvp "AWS_REGION")))))
+                 (uiop:getenvp "AWS_REGION"))
+     :endpoint endpoint)))

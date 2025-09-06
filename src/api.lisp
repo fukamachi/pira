@@ -23,9 +23,9 @@
         (format nil "~(~A~).amazonaws.com" service-name)
         (format nil "~@[~(~A~).~]~(~A~).~(~A~).amazonaws.com" host-prefix service-name region))))
 
-(defun request-uri (request region)
+(defun request-uri (request region host)
   (quri:make-uri :scheme "https"
-                 :host (request-host request region)
+                 :host host
                  :path (http:request-path-info request)
                  :query (http:request-query request)))
 
@@ -45,7 +45,9 @@
   (let* ((session session:*session*)
          (credentials (or (session:session-credentials session)
                           (credentials:default-aws-credentials)))
-         (region (session:session-region session)))
+         (region (session:session-region session))
+         (host (or (session:session-endpoint session)
+                   (request-host req region))))
     (unless credentials
       (error "No credentials are found"))
     (unless region
@@ -58,7 +60,7 @@
           (aws-sign4:aws-sign4 :region region
                                :service (http:request-service-name req)
                                :method (http:request-method req)
-                               :host (request-host req region)
+                               :host host
                                :path (http:request-path-info req)
                                :params (mapcar (lambda (kv)
                                                  (if (null (cdr kv))
@@ -69,7 +71,7 @@
                                :payload (or payload ""))
         (multiple-value-bind (body status headers)
             (handler-bind ((dex:http-request-failed #'dex:ignore-and-continue))
-              (dex:request (request-uri req region)
+              (dex:request (request-uri req region host)
                            :method (http:request-method req)
                            :headers `(("Authorization" . ,authorization)
                                       ("X-Amz-Date" . ,x-amz-date)
