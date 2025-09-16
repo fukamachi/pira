@@ -1,1 +1,3 @@
 assets/aws-models/**/* linguist-vendored
+*.lisp linguist-language=Common Lisp linguist-detectable
+*.asd linguist-language=Common Lisp linguist-detectable
