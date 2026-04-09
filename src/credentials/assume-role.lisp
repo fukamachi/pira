@@ -50,17 +50,17 @@
                                              (slot-value provider 'shared-credentials)
                                              :region (session-region *session*))))
                (pira/sts::assume-role :role-arn role-arn
-                                    :role-session-name role-session-name
-                                    :duration-seconds duration-seconds
-                                    :external-id external-id
-                                    :policy policy
-                                    :serial-number serial-number
-                                    :token-code token-code))))
+                                      :role-session-name role-session-name
+                                      :duration-seconds duration-seconds
+                                      :external-id external-id
+                                      :policy policy
+                                      :serial-number serial-number
+                                      :token-code token-code))))
          (credentials (aget res "Credentials")))
     (setf (provider-expiration provider)
-          (local-time:parse-timestring (first (aget credentials "Expiration"))))
+          (local-time:parse-timestring (aget credentials "Expiration")))
     (make-credentials
-     :access-key-id (first (aget credentials "AccessKeyId"))
-     :secret-access-key (first (aget credentials "SecretAccessKey"))
-     :session-token (first (aget credentials "SessionToken"))
+     :access-key-id (aget credentials "AccessKeyId")
+     :secret-access-key (aget credentials "SecretAccessKey")
+     :session-token (aget credentials "SessionToken")
      :provider-name "assume-role-provider")))
